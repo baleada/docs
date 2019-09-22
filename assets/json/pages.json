@@ -1,0 +1,26 @@
+[
+  {
+    "name": "Home",
+    "href": "/",
+    "main": true,
+    "footer": true
+  },
+  {
+    "name": "Docs",
+    "href": "/docs",
+    "main": true,
+    "footer": true
+  },
+  {
+    "name": "Blog",
+    "href": "/blog",
+    "main": true,
+    "footer": true
+  },
+  {
+    "name": "Privacy",
+    "href": "/privacy",
+    "main": false,
+    "footer": true
+  }
+]

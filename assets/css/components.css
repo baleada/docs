@@ -1,0 +1,136 @@
+/* Buttons */
+@variants responsive, group-hover, focus-within, hover, focus, active {
+  .btn {
+    @apply cursor-pointer inline-flex items-center justify-center px-3 py-2 rounded-full transition;
+
+    a& {
+      @apply no-underline;
+    }
+
+    svg {
+      height: 1em;
+      width: 1em;
+    }
+
+    svg + * {
+      @apply flex-1;
+    }
+
+    * + * {
+      @apply ml-1;
+    }
+
+    &.btn-bordered {
+      @apply border-2;
+    }
+  }
+
+  .btn-raised {
+    @apply shadow-1;
+  }
+
+  .btn-lg {
+    @apply px-4 py-3 text-3;
+
+    * + * {
+      @apply ml-2;
+    }
+  }
+
+  .btn-sm {
+    @apply px-2 py-px text-1;
+
+    &.btn-bordered {
+      @apply border;
+    }
+  }
+
+  .btn-bordered {
+    @apply bg-transparent border-current;
+  }
+}
+
+.btn:focus,
+.btn-raised:focus {
+  @apply shadow-outline;
+}
+
+.btn-raised {
+  &:hover {
+    @apply shadow-3;
+  }
+
+  &:active {
+    @apply shadow-1;
+  }
+}
+
+.btn-grows {
+  &:hover {
+    @apply scale-1;
+  }
+
+  &:focus {
+    @apply scale;
+  }
+
+  &:active {
+    @apply scale;
+  }
+}
+
+@media screen and (min-width: theme('screens.md')) {
+  .btn {
+    @apply rounded;
+  }
+
+  .btn-lg {
+    @apply text-4;
+  }
+}
+
+
+/* Form inputs */
+@variants responsive, group-hover, focus-within, hover, focus, active {
+  .inp {
+    @apply py-1 px-2;
+
+    &.inp-bordered {
+      @apply border;
+    }
+  }
+
+  .inp:not(textarea) {
+    @apply rounded-full;
+  }
+
+  textarea.inp {
+    @apply rounded;
+  }
+
+  .inp-bordered {
+    @apply bg-transparent border-current;
+  }
+}
+
+.inp:focus {
+  @apply shadow-outline;
+}
+
+@media screen and (min-width: theme('screens.md')) {
+  .inp {
+    @apply rounded;
+  }
+}
+
+
+/* Decorations */
+@variants responsive, group-hover, focus-within, hover, focus, active {
+  .avatar {
+    @apply rounded-full -shadow;
+  }
+
+  .icon {
+    @apply inline-block h-full w-full fill-current;
+  }
+}

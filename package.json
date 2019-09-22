@@ -1,0 +1,66 @@
+{
+  "name": "@baleada/docs",
+  "version": "0.0.0",
+  "description": "Documentation for Baleada, a toolkit for building web apps.",
+  "keywords": [
+    "baleada",
+    "nuxt",
+    "netlify",
+    "tailwindcss",
+    "vue composition functions",
+    "react hooks",
+    "user interface logic",
+    "documentation"
+  ],
+  "author": {
+    "name": "Alex Vipond",
+    "email": "hello@alexvipond.dev",
+    "url": "https://alexvipond.dev"
+  },
+  "private": false,
+  "scripts": {
+    "dev": "nuxt",
+    "build": "nuxt build",
+    "start": "nuxt start",
+    "generate": "nuxt generate"
+  },
+  "bugs": {
+    "url": "https://gitlab.com/baleada/vue/issues"
+  },
+  "homepage": "https://baleada.netlify.com",
+  "license": "MIT",
+  "dependencies": {
+    "@babel/plugin-proposal-class-properties": "^7.4.4",
+    "@babel/plugin-proposal-private-methods": "^7.4.4",
+    "@baleada/vue": "^0.0.2",
+    "@nuxtjs/eslint-config": "0.0.1",
+    "@nuxtjs/markdownit": "^1.2.4",
+    "@nuxtjs/pwa": "^2.6.0",
+    "@vue/composition-api": "^0.2.1",
+    "autoprefixer": "^8.6.4",
+    "babel-eslint": "^10.0.1",
+    "cross-env": "^5.2.0",
+    "eslint": "^5.16.0",
+    "eslint-config-standard": "^12.0.0",
+    "eslint-plugin-import": "^2.17.3",
+    "eslint-plugin-jest": "^22.6.4",
+    "eslint-plugin-node": "^9.1.0",
+    "eslint-plugin-nuxt": "^0.4.3",
+    "eslint-plugin-promise": "^4.1.1",
+    "eslint-plugin-standard": "^4.0.0",
+    "frontmatter-markdown-loader": "^2.1.0",
+    "markdown-it": "^9.1.0",
+    "nodemon": "^1.18.9",
+    "nuxt": "^2.4.0",
+    "nuxt-purgecss": "^0.2.1",
+    "portal-vue": "^2.1.4",
+    "postcss-import": "^12.0.1",
+    "postcss-nested": "^4.1.2",
+    "tailwindcss": "^1.1.0",
+    "typeface-caveat": "0.0.54",
+    "typeface-fira-mono": "0.0.72",
+    "typeface-fira-sans": "0.0.75",
+    "vue-template-compiler": "^2.6.10",
+    "vue-template-es2015-compiler": "^1.9.1"
+  }
+}

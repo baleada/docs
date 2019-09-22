@@ -1,0 +1,22 @@
+html {
+  font-size: 17.5px;
+}
+
+*:focus,
+.shadow-0,
+.shadow,
+.shadow-1,
+.shadow-2,
+.shadow-3,
+.shadow-4,
+.shadow-inner {
+  @apply shadow-outline;
+}
+
+em {
+  @apply not-italic;
+}
+
+*::selection {
+  @apply bg-primary-500 text-primary-100;
+}
