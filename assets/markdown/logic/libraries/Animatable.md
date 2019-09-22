@@ -1,6 +1,5 @@
 ---
 title: Animatable
-
 framework: agnostic
 publish: false
 ---

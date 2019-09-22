@@ -33,30 +33,31 @@ function getFiles (dir) {
 function getMetadata (files) {
   return files.map(path => {
     const contents = fs.readFileSync(path, 'utf8'),
-          { attributes: { title, framework, publish }, body } = fm(contents),
+          { attributes: { title, framework, publish, order }, body } = fm(contents),
           { mtime: updatedAt } = fs.statSync(path),
-          { fileName, siteUrl } = toPathMetadata(path)
-          
+          { fileName, href } = toPathMetadata(path)
+
     return {
       title,
       framework,
       publish,
+      order,
       body,
       updatedAt,
       path,
       fileName,
-      siteUrl
+      href
     }
   })
 }
 
 function toPathMetadata (path) {
   const fileName = path.match(/[A-Za-z-]+\.md$/)[0].replace(/\.md$/, ''),
-        siteUrlPrefix = `/docs${path.replace(/\.\/assets\/markdown/, '').replace(/\/[A-Za-z-]+\.md$/, '')}`,
-        siteUrlSuffix = `${fileName === 'index' ? '' : '/' + fileName}`,
-        siteUrl = `${siteUrlPrefix}${siteUrlSuffix}`
+        hrefPrefix = `/docs${path.replace(/\.\/assets\/markdown/, '').replace(/\/[A-Za-z-]+\.md$/, '')}`,
+        hrefSuffix = `${fileName === 'index' ? '' : '/' + fileName}`,
+        href = `${hrefPrefix}${hrefSuffix}`
 
-  return { fileName, siteUrl }
+  return { fileName, href }
 }
 
 generateMetafiles()

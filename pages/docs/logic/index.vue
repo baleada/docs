@@ -6,6 +6,7 @@
 
 <script>
 export default {
+  layout: 'article',
   head: () => ({
     title: 'Baleada - What is Baleada Logic?',
   })

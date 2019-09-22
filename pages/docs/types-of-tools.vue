@@ -1,5 +1,5 @@
 <template lang="md">
-<UpdatedAt timestamp="Sun Sep 22 2019 01:21:42 GMT-0600 (CST)" />
+<UpdatedAt timestamp="Sun Sep 22 2019 11:18:40 GMT-0600 (CST)" />
 # Types of tools
 
 Each tool in the Baleada app-building toolkit falls into one of the following categories:
@@ -51,6 +51,7 @@ Baleada's icon components do just that! To get started with them, check out the 
 
 <script>
 export default {
+  layout: 'article',
   head: () => ({
     title: 'Baleada - Types of tools',
   })

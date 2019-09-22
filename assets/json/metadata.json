@@ -3,11 +3,12 @@
     "title": "What is Baleada Composition?",
     "framework": "agnostic",
     "publish": true,
+    "order": 0,
     "body": "",
-    "updatedAt": "2019-09-22T06:14:33.839Z",
+    "updatedAt": "2019-09-22T17:20:04.587Z",
     "path": "./assets/markdown/composition/index.md",
     "fileName": "index",
-    "siteUrl": "/docs/composition"
+    "href": "/docs/composition"
   },
   {
     "title": "Using Baleada Composition with React",
@@ -17,7 +18,7 @@
     "updatedAt": "2019-09-22T06:51:25.227Z",
     "path": "./assets/markdown/composition/using-with-react.md",
     "fileName": "using-with-react",
-    "siteUrl": "/docs/composition/using-with-react"
+    "href": "/docs/composition/using-with-react"
   },
   {
     "title": "Using Baleada Composition with Svelte",
@@ -27,7 +28,7 @@
     "updatedAt": "2019-09-22T06:51:37.752Z",
     "path": "./assets/markdown/composition/using-with-svelte.md",
     "fileName": "using-with-svelte",
-    "siteUrl": "/docs/composition/using-with-svelte"
+    "href": "/docs/composition/using-with-svelte"
   },
   {
     "title": "Using Baleada Composition with Vue",
@@ -37,17 +38,18 @@
     "updatedAt": "2019-09-22T06:51:32.922Z",
     "path": "./assets/markdown/composition/using-with-vue.md",
     "fileName": "using-with-vue",
-    "siteUrl": "/docs/composition/using-with-vue"
+    "href": "/docs/composition/using-with-vue"
   },
   {
     "title": "What is Baleada Icons?",
     "framework": "agnostic",
     "publish": true,
+    "order": 0,
     "body": "",
-    "updatedAt": "2019-09-22T06:14:07.915Z",
+    "updatedAt": "2019-09-22T17:20:10.255Z",
     "path": "./assets/markdown/icons/index.md",
     "fileName": "index",
-    "siteUrl": "/docs/icons"
+    "href": "/docs/icons"
   },
   {
     "title": "Using Baleada Icons with React",
@@ -57,7 +59,7 @@
     "updatedAt": "2019-09-22T06:51:53.002Z",
     "path": "./assets/markdown/icons/using-with-react.md",
     "fileName": "using-with-react",
-    "siteUrl": "/docs/icons/using-with-react"
+    "href": "/docs/icons/using-with-react"
   },
   {
     "title": "Using Baleada Icons with Svelte",
@@ -67,7 +69,7 @@
     "updatedAt": "2019-09-22T06:51:49.235Z",
     "path": "./assets/markdown/icons/using-with-svelte.md",
     "fileName": "using-with-svelte",
-    "siteUrl": "/docs/icons/using-with-svelte"
+    "href": "/docs/icons/using-with-svelte"
   },
   {
     "title": "Using Baleada Icons with Vue",
@@ -77,17 +79,18 @@
     "updatedAt": "2019-09-22T06:51:47.032Z",
     "path": "./assets/markdown/icons/using-with-vue.md",
     "fileName": "using-with-vue",
-    "siteUrl": "/docs/icons/using-with-vue"
+    "href": "/docs/icons/using-with-vue"
   },
   {
     "title": "What is Baleada?",
     "framework": "agnostic",
     "publish": true,
+    "order": 0,
     "body": "Honduras's favorite food is the **baleada**—a fresh flour tortilla, spread with refried beans, then decorated with scrambled eggs, mantequilla, queso seco, avocado, or meat, and finally folded in half.\n\nYou can't have a baleada without its core ingredients and presentation (tortilla spread with refried beans and folded in half), but once those requirements are met, you can be creative and combine ingredients that suit your tastebuds.\n\nAnyway, the Baleada you're here for is **a toolkit for building web apps**. Baleada is decidedly not a framework, it's not a standalone library, and although libraries for UI logic makes up the majority of the Baleada codebase, Baleada offers plenty of other tools.\n\nGetting down to brass tacks, Baleada offers the following types of tools:\n- UI logic\n- Composition functions (a.k.a. hooks)\n- Icon components\n\n<NiftyAside>\n  <p>\n    Feeling a little fuzzy on what these terms mean? Check out the guide on <NuxtLink to=\"/docs/types-of-tools\">types of tools</NuxtLink> for definitions.\n  </p>\n</NiftyAside>\n\nThink of these tools as the ingredients in a savory, delectable baleada. You're encouraged to take what you want and sprinkle it into the stack you're already using to build your apps and websites. You're free to take just a few things, but if you're so inclined, you can really pile on the extras.s\n\n\n## Who is Baleada designed for?\n\nBaleada is designed for developers who:\n- **Do** want to add common UI features and behaviors to their app, but **don't** want to think about implementation details.\n- **Do** value consistency and predictability in JavaScript library APIs.\n- **Do** care about performance, best practices, internationalization, accessibility, and security, but **haven't** had time to fine-tune this stuff in the past, because they've always been too busy hacking together a custom autocomplete component or another 🤬 carousel for the who-knows-how-many-th time.\n- **Do** appreciate the role React hooks and Vue composition functions play in making web dev easier and more inclusive.\n- **Do** appreciate [the benefits of using SVG over icon fonts](http://www.fullstackradio.com/47).\n- **Do** appreciate documentation that makes them hungry.\n<!-- - **Do** want a design system to govern their styles, but **don't** want their apps and sites to look like everyone else's. -->\n\n<!-- <NiftyAside>\n  <p>\n    Baleada 1.0.0 will be optimized for developers building with <a href=\"http://vuejs.org/\">Vue.js</a>, styling with <a href=\"http://tailwindcss.com/\">TailwindCSS</a>, and using <a href=\"https://www.netlify.com\">Netlify</a> services like <a href=\"https://www.netlify.com/docs/identity/\">Identity</a> and <a href=\"https://www.netlify.com/products/functions/\">Functions</a>.\n  </p>\n  <p>\n    Future versions aim to not just support other stacks, but design specifically for them, as well. Check out the <NuxtLink to=\"/docs/roadmap\">roadmap</NuxtLink> for more info.\n  </p>\n</NiftyAside> -->\n",
-    "updatedAt": "2019-09-22T06:14:07.896Z",
+    "updatedAt": "2019-09-22T17:18:35.285Z",
     "path": "./assets/markdown/index.md",
     "fileName": "index",
-    "siteUrl": "/docs"
+    "href": "/docs"
   },
   {
     "title": "What is Baleada Logic?",
@@ -97,17 +100,17 @@
     "updatedAt": "2019-09-22T06:14:07.916Z",
     "path": "./assets/markdown/logic/index.md",
     "fileName": "index",
-    "siteUrl": "/docs/logic"
+    "href": "/docs/logic"
   },
   {
     "title": "Animatable",
     "framework": "agnostic",
     "publish": false,
     "body": "/*\n * Animatable.js\n * (c) 2019 Alex Vipond\n * Released under the MIT license\n */\n\n/* Dependencies */\nimport Dependency from '../wrappers/AnimatableAnime'\n\n/* Util */\nimport is from '../util/is'\n\nexport default class Animatable {\n  /* Private properties */\n  #dependencyOptions\n  #dependency\n\n  constructor(elements, options = {}) {\n    /* Options */\n\n    /* Public properties */\n    this.elements = elements\n\n    /* Dependency */\n    this.#dependencyOptions = options\n    this.#dependency = new Dependency(this.elements, this.#dependencyOptions)\n  }\n\n  /* Public getters */\n  get animation() {\n    return this.#dependency.animation\n  }\n\n  /* Public methods */\n  setElements(elements) {\n    this.elements = elements\n    this.#dependency = new Dependency(this.elements, this.#dependencyOptions)\n    return this\n  }\n  play() {\n    this.#dependency.play()\n    return this\n  }\n  pause() {\n    this.#dependency.pause()\n    return this\n  }\n  restart() {\n    this.#dependency.restart()\n    return this\n  }\n  reverse() {\n    this.#dependency.reverse()\n    return this\n  }\n  seek(timestamp) {\n    this.#dependency.seek(timestamp)\n    return this\n  }\n\n  /* Private methods */\n}\n",
-    "updatedAt": "2019-09-22T06:14:07.916Z",
+    "updatedAt": "2019-09-22T18:17:40.499Z",
     "path": "./assets/markdown/logic/libraries/Animatable.md",
     "fileName": "Animatable",
-    "siteUrl": "/docs/logic/libraries/Animatable"
+    "href": "/docs/logic/libraries/Animatable"
   },
   {
     "title": "Completable",
@@ -117,7 +120,7 @@
     "updatedAt": "2019-09-22T06:14:07.916Z",
     "path": "./assets/markdown/logic/libraries/Completable.md",
     "fileName": "Completable",
-    "siteUrl": "/docs/logic/libraries/Completable"
+    "href": "/docs/logic/libraries/Completable"
   },
   {
     "title": "Copiable",
@@ -127,7 +130,7 @@
     "updatedAt": "2019-09-22T06:14:07.916Z",
     "path": "./assets/markdown/logic/libraries/Copiable.md",
     "fileName": "Copiable",
-    "siteUrl": "/docs/logic/libraries/Copiable"
+    "href": "/docs/logic/libraries/Copiable"
   },
   {
     "title": "Delayable",
@@ -137,7 +140,7 @@
     "updatedAt": "2019-09-22T06:14:07.916Z",
     "path": "./assets/markdown/logic/libraries/Delayable.md",
     "fileName": "Delayable",
-    "siteUrl": "/docs/logic/libraries/Delayable"
+    "href": "/docs/logic/libraries/Delayable"
   },
   {
     "title": "Fetchable",
@@ -147,7 +150,7 @@
     "updatedAt": "2019-09-22T06:14:07.917Z",
     "path": "./assets/markdown/logic/libraries/Fetchable.md",
     "fileName": "Fetchable",
-    "siteUrl": "/docs/logic/libraries/Fetchable"
+    "href": "/docs/logic/libraries/Fetchable"
   },
   {
     "title": "Navigable",
@@ -157,7 +160,7 @@
     "updatedAt": "2019-09-22T06:14:07.917Z",
     "path": "./assets/markdown/logic/libraries/Navigable.md",
     "fileName": "Navigable",
-    "siteUrl": "/docs/logic/libraries/Navigable"
+    "href": "/docs/logic/libraries/Navigable"
   },
   {
     "title": "Observable",
@@ -167,7 +170,7 @@
     "updatedAt": "2019-09-22T06:14:07.917Z",
     "path": "./assets/markdown/logic/libraries/Observable.md",
     "fileName": "Observable",
-    "siteUrl": "/docs/logic/libraries/Observable"
+    "href": "/docs/logic/libraries/Observable"
   },
   {
     "title": "Poppable",
@@ -177,7 +180,7 @@
     "updatedAt": "2019-09-22T06:14:07.917Z",
     "path": "./assets/markdown/logic/libraries/Poppable.md",
     "fileName": "Poppable",
-    "siteUrl": "/docs/logic/libraries/Poppable"
+    "href": "/docs/logic/libraries/Poppable"
   },
   {
     "title": "Searchable",
@@ -187,7 +190,7 @@
     "updatedAt": "2019-09-22T06:14:07.917Z",
     "path": "./assets/markdown/logic/libraries/Searchable.md",
     "fileName": "Searchable",
-    "siteUrl": "/docs/logic/libraries/Searchable"
+    "href": "/docs/logic/libraries/Searchable"
   },
   {
     "title": "Syncable",
@@ -197,7 +200,7 @@
     "updatedAt": "2019-09-22T06:14:07.926Z",
     "path": "./assets/markdown/logic/libraries/Syncable.md",
     "fileName": "Syncable",
-    "siteUrl": "/docs/logic/libraries/Syncable"
+    "href": "/docs/logic/libraries/Syncable"
   },
   {
     "title": "Touchable",
@@ -207,7 +210,7 @@
     "updatedAt": "2019-09-22T06:14:07.926Z",
     "path": "./assets/markdown/logic/libraries/Touchable.md",
     "fileName": "Touchable",
-    "siteUrl": "/docs/logic/libraries/Touchable"
+    "href": "/docs/logic/libraries/Touchable"
   },
   {
     "title": "Renamable",
@@ -217,36 +220,38 @@
     "updatedAt": "2019-09-22T06:14:07.926Z",
     "path": "./assets/markdown/logic/subclasses/Renamable.md",
     "fileName": "Renamable",
-    "siteUrl": "/docs/logic/subclasses/Renamable"
+    "href": "/docs/logic/subclasses/Renamable"
   },
   {
     "title": "Reorderable",
     "framework": "agnostic",
     "publish": false,
     "body": "",
-    "updatedAt": "2019-09-22T06:14:07.926Z",
+    "updatedAt": "2019-09-22T18:17:36.930Z",
     "path": "./assets/markdown/logic/subclasses/Reorderable.md",
     "fileName": "Reorderable",
-    "siteUrl": "/docs/logic/subclasses/Reorderable"
+    "href": "/docs/logic/subclasses/Reorderable"
   },
   {
     "title": "Roadmap",
     "framework": "agnostic",
     "publish": false,
+    "order": 2,
     "body": "",
-    "updatedAt": "2019-09-22T06:14:07.915Z",
+    "updatedAt": "2019-09-22T18:14:10.814Z",
     "path": "./assets/markdown/roadmap.md",
     "fileName": "roadmap",
-    "siteUrl": "/docs/roadmap"
+    "href": "/docs/roadmap"
   },
   {
     "title": "Types of tools",
     "framework": "agnostic",
     "publish": true,
+    "order": 1,
     "body": "Each tool in the Baleada app-building toolkit falls into one of the following categories:\n- <NuxtLink to=\"#ui-logic\">UI logic</NuxtLink>\n- <NuxtLink to=\"#composition-functions-a-k-a-hooks\">Composition functions (a.k.a. hooks)</NuxtLink>\n- <NuxtLink to=\"#icon-components\">Icon components</NuxtLink>\n\nEach category of tools has its own NPM package that you can install:\n\n| Tool category | NPM package |\n| --- | --- |\n| UI logic | `@baleada/logic` |\n| Composition functions | `@baleada/composition` |\n| Icon components | `@baleada/icons` |\n\nIf you're itching to install those packages and get started with the tools they offer, you can check out the dedicated guides for <NuxtLink to=\"/docs/logic\">Baleada Logic</NuxtLink>, <NuxtLink to=\"/docs/composition\">Baleada Composition</NuxtLink>, and <NuxtLink to=\"/docs/icons\">Baleada Icons</NuxtLink>.\n\nIf you're not quite sure what all these terms mean, feel free to keep reading!\n\n## UI logic\n\nUI logic is JavaScript that powers **user interface behaviors**. Baleada provides UI logic for specific behaviors that are commonly needed, but can be complex to implement in a reusable way.\n\nFor example:\n- Allowing the user to edit any and all kinds of state (strings, numbers, arrays, objects, etc.), save changes when they're ready, or cancel their changes and revert to the previous version.\n- Allowing the user to enter a search term, query an array of strings or objects, and receive a list of search results based on fuzzy matches\n- Autocompleting text, replacing all or part of the original text with a completed value\n\nTo get started with Baleada's logic, check out the <NuxtLink to=\"/docs/logic\">Baleada Logic</NuxtLink> package.\n\n\n## Composition functions (a.k.a. hooks)\n\n\"Composition function\" is a term coined by the [Vue](https://vuejs.org) team to describe functions that **collocate code** related to the same logical concern. In [React](https://react.org), these functions are called \"hooks\", but the concept is virtually the same.\n\nBaleada's composition functions collocate **reactivity** code with **UI logic** code. More specifically, each Baleada composition function retrieves state and methods from one or more of the Baleada Logic tools, then makes all of the state reactive, using tools from the JavaScript framework of your choice.\n\nTo get started with Baleada's composition functions, check out the <NuxtLink to=\"/docs/composition\">Baleada Composition</NuxtLink> package.\n\n\n## Icon components\n\nThere are [tons of reasons](http://www.fullstackradio.com/47) to use **true SVG icons** instead of icon fonts. But copy/pasting SVG markup all over your website or app is tedious, not readable, and not maintainable.\n\nIf you're using a component framework like Vue, React, or Svelte, the clear solution is to wrap up your SVG icons in reusable components, so that you get all the benefits of SVGs while writing efficient code.\n\nBaleada's icon components do just that! To get started with them, check out the <NuxtLink to=\"/docs/icons\">Baleada Icons</NuxtLink> package.\n",
-    "updatedAt": "2019-09-22T07:21:42.725Z",
+    "updatedAt": "2019-09-22T17:18:40.229Z",
     "path": "./assets/markdown/types-of-tools.md",
     "fileName": "types-of-tools",
-    "siteUrl": "/docs/types-of-tools"
+    "href": "/docs/types-of-tools"
   }
 ]

@@ -1,4 +1,5 @@
-const fs = require('fs')
+const fs = require('fs'),
+      { getDirs } = require('./getDirs.js')
 
 function generateDirectories () {
   const dirs = getDirs('./assets/markdown')
@@ -10,17 +11,6 @@ function generateDirectories () {
   })
 
   console.log(`Generated ${dirs.length} directories`)
-}
-
-function getDirs (dir) {
-  return fs.readdirSync(dir)
-    .reduce((dirs, item) => {
-      item = !item.includes('.') ? [`${dir}/${item}`, ...getDirs(`${dir}/${item}`)] : []
-      return [
-        ...dirs,
-        ...item
-      ]
-    }, [])
 }
 
 module.exports = {

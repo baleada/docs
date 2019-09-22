@@ -1,27 +1,61 @@
 [
   {
-    "title": "What is Baleada Composition?",
-    "framework": "agnostic",
-    "siteUrl": "/docs/composition"
+    "level": 1,
+    "name": "overview",
+    "pages": [
+      {
+        "title": "What is Baleada?",
+        "framework": "agnostic",
+        "href": "/docs"
+      },
+      {
+        "title": "Types of tools",
+        "framework": "agnostic",
+        "href": "/docs/types-of-tools"
+      }
+    ]
   },
   {
-    "title": "What is Baleada Icons?",
-    "framework": "agnostic",
-    "siteUrl": "/docs/icons"
+    "level": 1,
+    "name": "composition",
+    "pages": [
+      {
+        "title": "What is Baleada Composition?",
+        "framework": "agnostic",
+        "href": "/docs/composition"
+      }
+    ]
   },
   {
-    "title": "What is Baleada?",
-    "framework": "agnostic",
-    "siteUrl": "/docs"
+    "level": 1,
+    "name": "icons",
+    "pages": [
+      {
+        "title": "What is Baleada Icons?",
+        "framework": "agnostic",
+        "href": "/docs/icons"
+      }
+    ]
   },
   {
-    "title": "What is Baleada Logic?",
-    "framework": "agnostic",
-    "siteUrl": "/docs/logic"
+    "level": 1,
+    "name": "logic",
+    "pages": [
+      {
+        "title": "What is Baleada Logic?",
+        "framework": "agnostic",
+        "href": "/docs/logic"
+      }
+    ]
   },
   {
-    "title": "Types of tools",
-    "framework": "agnostic",
-    "siteUrl": "/docs/types-of-tools"
+    "level": 2,
+    "name": "libraries",
+    "pages": []
+  },
+  {
+    "level": 2,
+    "name": "subclasses",
+    "pages": []
   }
 ]

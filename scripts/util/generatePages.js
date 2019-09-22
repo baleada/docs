@@ -21,6 +21,7 @@ ${body}</template>\n\
 \n\
 <script>\n\
 export default {\n\
+  layout: 'article',\n\
   head: () => ({\n\
     title: 'Baleada - ${title}',\n\
   })\n\

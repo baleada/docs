@@ -2,6 +2,7 @@
 title: Types of tools
 framework: agnostic
 publish: true
+order: 1
 ---
 
 Each tool in the Baleada app-building toolkit falls into one of the following categories:
