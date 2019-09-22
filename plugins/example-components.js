@@ -1,4 +1,4 @@
 import Vue from 'vue'
-import UseDelayable from '~/components/examples/UseDelayable.vue'
+import UseDelayable from '~/components/example/UseDelayable.vue'
 
-Vue.use('UseDelayable', UseDelayable)
+Vue.component('UseDelayable', UseDelayable)

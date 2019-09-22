@@ -1,6 +1,6 @@
 ---
 title: Poppable
-titleIsCode: false
+
 framework: agnostic
 publish: false
 ---

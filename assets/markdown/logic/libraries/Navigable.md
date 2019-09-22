@@ -1,6 +1,6 @@
 ---
 title: Navigable
-titleIsCode: false
+
 framework: agnostic
 publish: false
 ---
@@ -18,7 +18,7 @@ import is from '../util/is'
  * - Allowing it to store a index of the item that has been navigated to
  * - Giving it the methods necessary to navigate to a different item
  *
- * Navigable is written in vanilla JS with no dependencies. It powers <nuxt-link to="/docs/tools/composition-functions/useNavigable">`useNavigable`</nuxt-link>.
+ * Navigable is written in vanilla JS with no dependencies. It powers <NuxtLink to="/docs/tools/composition-functions/useNavigable">`useNavigable`</NuxtLink>.
  */
 class Navigable {
   #loops

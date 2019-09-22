@@ -1,6 +1,6 @@
 ---
 title: Searchable
-titleIsCode: false
+
 framework: agnostic
 publish: false
 ---

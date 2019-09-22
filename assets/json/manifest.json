@@ -1,0 +1,27 @@
+[
+  {
+    "title": "What is Baleada Composition?",
+    "framework": "agnostic",
+    "siteUrl": "/docs/composition"
+  },
+  {
+    "title": "What is Baleada Icons?",
+    "framework": "agnostic",
+    "siteUrl": "/docs/icons"
+  },
+  {
+    "title": "What is Baleada?",
+    "framework": "agnostic",
+    "siteUrl": "/docs"
+  },
+  {
+    "title": "What is Baleada Logic?",
+    "framework": "agnostic",
+    "siteUrl": "/docs/logic"
+  },
+  {
+    "title": "Types of tools",
+    "framework": "agnostic",
+    "siteUrl": "/docs/types-of-tools"
+  }
+]

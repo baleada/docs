@@ -1,6 +1,6 @@
 ---
 title: Observable
-titleIsCode: false
+
 framework: agnostic
 publish: false
 ---

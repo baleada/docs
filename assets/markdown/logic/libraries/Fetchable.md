@@ -1,6 +1,6 @@
 ---
 title: Fetchable
-titleIsCode: false
+
 framework: agnostic
 publish: false
 ---

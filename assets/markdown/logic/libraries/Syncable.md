@@ -1,6 +1,6 @@
 ---
 title: Syncable
-titleIsCode: false
+
 framework: agnostic
 publish: false
 ---

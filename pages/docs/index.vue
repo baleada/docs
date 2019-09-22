@@ -1,9 +1,6 @@
----
-title: What is Baleada?
-
-framework: agnostic
-publish: true
----
+<template lang="md">
+<UpdatedAt timestamp="Sun Sep 22 2019 00:14:07 GMT-0600 (CST)" />
+# What is Baleada?
 
 Honduras's favorite food is the **baleada**—a fresh flour tortilla, spread with refried beans, then decorated with scrambled eggs, mantequilla, queso seco, avocado, or meat, and finally folded in half.
 
@@ -44,3 +41,12 @@ Baleada is designed for developers who:
     Future versions aim to not just support other stacks, but design specifically for them, as well. Check out the <NuxtLink to="/docs/roadmap">roadmap</NuxtLink> for more info.
   </p>
 </NiftyAside> -->
+</template>
+
+<script>
+export default {
+  head: () => ({
+    title: 'Baleada - What is Baleada?',
+  })
+}
+</script>

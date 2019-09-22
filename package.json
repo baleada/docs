@@ -19,6 +19,9 @@
   },
   "private": false,
   "scripts": {
+    "empty-pages": "node scripts/emptyDir.js 'pages/docs'",
+    "gen-meta": "npm run empty-pages && node scripts/generateMetafiles.js",
+    "gen-comp-reg": "node scripts/generateComponentRegistration.js 'example' && node scripts/generateComponentRegistration.js 'global'",
     "dev": "nuxt",
     "build": "nuxt build",
     "start": "nuxt start",
@@ -32,6 +35,7 @@
   "dependencies": {
     "@babel/plugin-proposal-class-properties": "^7.4.4",
     "@babel/plugin-proposal-private-methods": "^7.4.4",
+    "@baleada/icons": "^0.3.0",
     "@baleada/vue": "^0.0.2",
     "@nuxtjs/eslint-config": "0.0.1",
     "@nuxtjs/markdownit": "^1.2.4",
@@ -48,7 +52,6 @@
     "eslint-plugin-nuxt": "^0.4.3",
     "eslint-plugin-promise": "^4.1.1",
     "eslint-plugin-standard": "^4.0.0",
-    "frontmatter-markdown-loader": "^2.1.0",
     "markdown-it": "^9.1.0",
     "nodemon": "^1.18.9",
     "nuxt": "^2.4.0",

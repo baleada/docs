@@ -1,0 +1,252 @@
+[
+  {
+    "title": "What is Baleada Composition?",
+    "framework": "agnostic",
+    "publish": true,
+    "body": "",
+    "updatedAt": "2019-09-22T06:14:33.839Z",
+    "path": "./assets/markdown/composition/index.md",
+    "fileName": "index",
+    "siteUrl": "/docs/composition"
+  },
+  {
+    "title": "Using Baleada Composition with React",
+    "framework": "React",
+    "publish": false,
+    "body": "",
+    "updatedAt": "2019-09-22T06:51:25.227Z",
+    "path": "./assets/markdown/composition/using-with-react.md",
+    "fileName": "using-with-react",
+    "siteUrl": "/docs/composition/using-with-react"
+  },
+  {
+    "title": "Using Baleada Composition with Svelte",
+    "framework": "Svelte",
+    "publish": false,
+    "body": "",
+    "updatedAt": "2019-09-22T06:51:37.752Z",
+    "path": "./assets/markdown/composition/using-with-svelte.md",
+    "fileName": "using-with-svelte",
+    "siteUrl": "/docs/composition/using-with-svelte"
+  },
+  {
+    "title": "Using Baleada Composition with Vue",
+    "framework": "Vue",
+    "publish": false,
+    "body": "",
+    "updatedAt": "2019-09-22T06:51:32.922Z",
+    "path": "./assets/markdown/composition/using-with-vue.md",
+    "fileName": "using-with-vue",
+    "siteUrl": "/docs/composition/using-with-vue"
+  },
+  {
+    "title": "What is Baleada Icons?",
+    "framework": "agnostic",
+    "publish": true,
+    "body": "",
+    "updatedAt": "2019-09-22T06:14:07.915Z",
+    "path": "./assets/markdown/icons/index.md",
+    "fileName": "index",
+    "siteUrl": "/docs/icons"
+  },
+  {
+    "title": "Using Baleada Icons with React",
+    "framework": "React",
+    "publish": false,
+    "body": "",
+    "updatedAt": "2019-09-22T06:51:53.002Z",
+    "path": "./assets/markdown/icons/using-with-react.md",
+    "fileName": "using-with-react",
+    "siteUrl": "/docs/icons/using-with-react"
+  },
+  {
+    "title": "Using Baleada Icons with Svelte",
+    "framework": "Svelte",
+    "publish": false,
+    "body": "",
+    "updatedAt": "2019-09-22T06:51:49.235Z",
+    "path": "./assets/markdown/icons/using-with-svelte.md",
+    "fileName": "using-with-svelte",
+    "siteUrl": "/docs/icons/using-with-svelte"
+  },
+  {
+    "title": "Using Baleada Icons with Vue",
+    "framework": "Vue",
+    "publish": false,
+    "body": "",
+    "updatedAt": "2019-09-22T06:51:47.032Z",
+    "path": "./assets/markdown/icons/using-with-vue.md",
+    "fileName": "using-with-vue",
+    "siteUrl": "/docs/icons/using-with-vue"
+  },
+  {
+    "title": "What is Baleada?",
+    "framework": "agnostic",
+    "publish": true,
+    "body": "Honduras's favorite food is the **baleada**—a fresh flour tortilla, spread with refried beans, then decorated with scrambled eggs, mantequilla, queso seco, avocado, or meat, and finally folded in half.\n\nYou can't have a baleada without its core ingredients and presentation (tortilla spread with refried beans and folded in half), but once those requirements are met, you can be creative and combine ingredients that suit your tastebuds.\n\nAnyway, the Baleada you're here for is **a toolkit for building web apps**. Baleada is decidedly not a framework, it's not a standalone library, and although libraries for UI logic makes up the majority of the Baleada codebase, Baleada offers plenty of other tools.\n\nGetting down to brass tacks, Baleada offers the following types of tools:\n- UI logic\n- Composition functions (a.k.a. hooks)\n- Icon components\n\n<NiftyAside>\n  <p>\n    Feeling a little fuzzy on what these terms mean? Check out the guide on <NuxtLink to=\"/docs/types-of-tools\">types of tools</NuxtLink> for definitions.\n  </p>\n</NiftyAside>\n\nThink of these tools as the ingredients in a savory, delectable baleada. You're encouraged to take what you want and sprinkle it into the stack you're already using to build your apps and websites. You're free to take just a few things, but if you're so inclined, you can really pile on the extras.s\n\n\n## Who is Baleada designed for?\n\nBaleada is designed for developers who:\n- **Do** want to add common UI features and behaviors to their app, but **don't** want to think about implementation details.\n- **Do** value consistency and predictability in JavaScript library APIs.\n- **Do** care about performance, best practices, internationalization, accessibility, and security, but **haven't** had time to fine-tune this stuff in the past, because they've always been too busy hacking together a custom autocomplete component or another 🤬 carousel for the who-knows-how-many-th time.\n- **Do** appreciate the role React hooks and Vue composition functions play in making web dev easier and more inclusive.\n- **Do** appreciate [the benefits of using SVG over icon fonts](http://www.fullstackradio.com/47).\n- **Do** appreciate documentation that makes them hungry.\n<!-- - **Do** want a design system to govern their styles, but **don't** want their apps and sites to look like everyone else's. -->\n\n<!-- <NiftyAside>\n  <p>\n    Baleada 1.0.0 will be optimized for developers building with <a href=\"http://vuejs.org/\">Vue.js</a>, styling with <a href=\"http://tailwindcss.com/\">TailwindCSS</a>, and using <a href=\"https://www.netlify.com\">Netlify</a> services like <a href=\"https://www.netlify.com/docs/identity/\">Identity</a> and <a href=\"https://www.netlify.com/products/functions/\">Functions</a>.\n  </p>\n  <p>\n    Future versions aim to not just support other stacks, but design specifically for them, as well. Check out the <NuxtLink to=\"/docs/roadmap\">roadmap</NuxtLink> for more info.\n  </p>\n</NiftyAside> -->\n",
+    "updatedAt": "2019-09-22T06:14:07.896Z",
+    "path": "./assets/markdown/index.md",
+    "fileName": "index",
+    "siteUrl": "/docs"
+  },
+  {
+    "title": "What is Baleada Logic?",
+    "framework": "agnostic",
+    "publish": true,
+    "body": "",
+    "updatedAt": "2019-09-22T06:14:07.916Z",
+    "path": "./assets/markdown/logic/index.md",
+    "fileName": "index",
+    "siteUrl": "/docs/logic"
+  },
+  {
+    "title": "Animatable",
+    "framework": "agnostic",
+    "publish": false,
+    "body": "/*\n * Animatable.js\n * (c) 2019 Alex Vipond\n * Released under the MIT license\n */\n\n/* Dependencies */\nimport Dependency from '../wrappers/AnimatableAnime'\n\n/* Util */\nimport is from '../util/is'\n\nexport default class Animatable {\n  /* Private properties */\n  #dependencyOptions\n  #dependency\n\n  constructor(elements, options = {}) {\n    /* Options */\n\n    /* Public properties */\n    this.elements = elements\n\n    /* Dependency */\n    this.#dependencyOptions = options\n    this.#dependency = new Dependency(this.elements, this.#dependencyOptions)\n  }\n\n  /* Public getters */\n  get animation() {\n    return this.#dependency.animation\n  }\n\n  /* Public methods */\n  setElements(elements) {\n    this.elements = elements\n    this.#dependency = new Dependency(this.elements, this.#dependencyOptions)\n    return this\n  }\n  play() {\n    this.#dependency.play()\n    return this\n  }\n  pause() {\n    this.#dependency.pause()\n    return this\n  }\n  restart() {\n    this.#dependency.restart()\n    return this\n  }\n  reverse() {\n    this.#dependency.reverse()\n    return this\n  }\n  seek(timestamp) {\n    this.#dependency.seek(timestamp)\n    return this\n  }\n\n  /* Private methods */\n}\n",
+    "updatedAt": "2019-09-22T06:14:07.916Z",
+    "path": "./assets/markdown/logic/libraries/Animatable.md",
+    "fileName": "Animatable",
+    "siteUrl": "/docs/logic/libraries/Animatable"
+  },
+  {
+    "title": "Completable",
+    "framework": "agnostic",
+    "publish": false,
+    "body": "/*\n * Completable.js\n * (c) 2019 Alex Vipond\n * Released under the MIT license\n */\n\n// Util\nimport is from '../util/is'\nimport lastMatch from '../util/lastMatch'\n\n/**\n * Completable is a library that enriches a string by:\n * - Allowing it to store\n * - Allowing it to extract a segment of the string\n * - Giving it the methods necessary to replace the segment or the full string with a more complete string\n *\n * Completable is written in vanilla JS with no dependencies. It powers <NuxtLink to=\"/docs/tools/composition-functions/useCompletable\">`useCompletable`</NuxtLink>.\n */\nclass Completable {\n  /* Private properties */\n  #segmentsFromDivider\n  #segmentsToPosition\n  #divider\n  // TODO: is there a use case for nextMatch instead of lastMatch?\n  // #matchDirection\n  #positionsAfterCompletion\n  #onComplete\n  #onPosition\n\n  /**\n   * Completable constructor\n   * @param {String}  string                          The string that will be made completable\n   * @param {Boolean} [segmentsFromDivider=false]     `true` when the Completable instance should start from a divider (for example, the space between words) while extracting a segment, and `false when it should start from the very beginning of the string. See the <NuxtLink to=\"#How-the-Completable-instance-extracts-segments\">How the Completable instance extracts segments</NuxtLink> section for more info.\n   * @param {Boolean} [segmentsToPosition=false]      `true` when the Completable instance should stop at the current position while extracting a segment, and `false` when it should stop at the very end of the string. See the <NuxtLink to=\"#How-the-Completable-instance-extracts-segments\">How the Completable instance extracts segments</NuxtLink> section for more info.\n   * @param {RegExp}  [divider=/s/]                   <p>Tells the Completable instance how segments of the string are divided. Has no effect when <code>segmentsFromDivider</code> is <code>false</code>.</p><p>See the <NuxtLink to=\"#How-the-Completable-instance-extracts-segments\">How the Completable instance extracts segments</NuxtLink> section for more info.</p>\n   * @param {Boolean} [positionsAfterCompletion=true] <p><code>true</code> when the Completable instance, after completing the string, should set the current position to the index after the segment's replacement. `false` when it should not change the current position.</p><p>See the <NuxtLink to=\"#How-the-Completable-instance-handles-current-position\">How the Completable instance handles current position</NuxtLink> section for more info.</p>\n   * @param {Function}  [onComplete]                    A function that Completable will call after completing the string. `onComplete` has one paramater: the completed string (String).\n   * @param {Function}  [onPosition]                    A function that Completable will call after completing the string. `onPosition` accepts two parameters: the new position (Number), and the Completable instance (Object).\n   */\n  constructor(string, options = {}) {\n    /* Options */\n    options = {\n      segmentsFromDivider: false,\n      segmentsToPosition: false,\n      divider: /\\s/,\n      positionsAfterCompletion: true,\n      ...options\n    }\n    this.#segmentsFromDivider = options.segmentsFromDivider\n    this.#segmentsToPosition = options.segmentsToPosition\n    this.#divider = options.divider\n    // this.#matchDirection = matchDirection\n    this.#positionsAfterCompletion = options.positionsAfterCompletion\n    this.#onComplete = options.onComplete\n    this.#onPosition = options.onPosition\n\n    /* Public properties */\n    /**\n     * A shallow copy of the string passed to the Completable constructor\n     * @type {String}\n     */\n    this.string = string\n    /**\n     * The current index-based position in the `string`. See the <NuxtLink to=\"#How-the-Completable-instance-handles-current-position\">How the Completable instance handles current position</NuxtLink> section for more info.\n     * @type {Number}\n     */\n    this.position = string.length\n  }\n\n  /* Public getters */\n  /**\n   * Segment getter function\n   * @return {String} An extracted segment of `string`. See the <NuxtLink to=\"#How-the-Completable-instance-extracts-segments\">How the Completable instance extracts segments</NuxtLink> section for more info.\n   */\n  get segment() {\n    return this.string.slice(\n      this.#computeSegmentStartIndex(),\n      this.#computeSegmentEndIndex()\n    )\n  }\n\n  /* Public methods */\n  /**\n   * Sets the Completable instance's string\n   * @param {String} string The new string\n   * @return {Object}       The Completable instance\n   */\n  setString(string) {\n    this.string = string\n    return this\n  }\n  /**\n   * <p>Sets the position from which the Completable instance will start extracting segments.</p><p>See the <NuxtLink to=\"#How-the-Completable-instance-extracts-segments\">How the Completable instance extracts segments</NuxtLink> section and the <NuxtLink to=\"#How-the-Completable-instance-handles-current-position\">How the Completable instance handles current position</NuxtLink> section for more info.</p>\n   * @param {Number} position The new `position`\n   * @return {Object}       The Completable instance\n   */\n  setPosition(position) {\n    this.position = position\n    return this\n  }\n  /**\n   * <p>Completes the string, replacing <code>segment</code> with a completion/replacement string, and computes a new position based on the <code>positionsAfterCompletion</code> option. Afterward, <code>complete</code> calls the user-provided <code>onComplete</code> function, passing the new string and the new position.</p><p>Note that <code>complete</code> does not set its <code>string</code> or <code>position</code> to the new values, but the user can do so using <code>set</code> and <code>setPosition</code>.</p>\n   * @param {String} completion The completion/replacement.\n   * @return {Object}       The Completable instance\n   */\n  complete(completion) {\n    const textBefore = this.#segmentsFromDivider ? this.string.slice(0, this.position - this.segment.length) : '',\n          textAfter = this.#segmentsToPosition ? this.string.slice(this.position) : '',\n          string = textBefore + completion + textAfter,\n          position = this.#positionsAfterCompletion ? textBefore.length + completion.length : this.position\n\n    if (is.function(this.#onComplete)) this.#onComplete(string, this)\n    if (is.function(this.#onPosition)) this.#onPosition(position, this)\n\n    return this\n  }\n\n  /* Private methods */\n  #computeSegmentStartIndex = function() {\n    return this.#segmentsFromDivider ? lastMatch(this.string, this.#divider, this.position) + 1 : 0\n  }\n  #computeSegmentEndIndex = function() {\n    return this.#segmentsToPosition ? this.position : this.string.length\n  }\n}\n\nexport default Completable\n",
+    "updatedAt": "2019-09-22T06:14:07.916Z",
+    "path": "./assets/markdown/logic/libraries/Completable.md",
+    "fileName": "Completable",
+    "siteUrl": "/docs/logic/libraries/Completable"
+  },
+  {
+    "title": "Copiable",
+    "framework": "agnostic",
+    "publish": false,
+    "body": "/*\n * Copiable.js\n * (c) 2019 Alex Vipond\n * Released under the MIT license\n */\n\n/* Dependencies */\n\n/* Util */\nimport warn from '../util/warn'\n\nexport default class Copiable {\n  #usesFallbacks\n  #computedClipboard\n  #computedSucceeded\n  #computedErrored\n\n  constructor (string, options = {}) {\n    /* Options */\n    options = {\n      usesFallbacks: false,\n      ...options,\n    }\n    this.#usesFallbacks = options.usesFallbacks\n\n    /* Public properties */\n    this.string = string\n\n    /* Private properties */\n    this.#computedClipboard = navigator.clipboard\n    this.#computedSucceeded = false\n    this.#computedErrored = false\n    /* Dependency */\n  }\n\n  /* Public getters */\n  get clipboard () {\n    return this.#computedClipboard\n  }\n  get copied () {\n    return this.#getCopied\n  }\n  get succeeded () {\n    return this.#computedSucceeded\n  }\n  get errored () {\n    return this.#computedErrored\n  }\n\n  /* Public methods */\n  setString (string) {\n    this.string = string\n    return this\n  }\n  copy () {\n    if (this.#usesFallbacks) {\n      this.#writeTextFallback()\n      this.#computedErrored = false\n      this.#computedSucceeded = true\n    } else {\n      this.#writeText()\n        .then(() => {\n          this.#computedErrored = false\n          this.#computedSucceeded = true\n        })\n        .catch(() => {\n          this.#computedErrored = true\n          this.#computedSucceeded = false\n        })\n    }\n\n    return this\n  }\n\n  /* Private methods */\n  #getCopied = function() {\n    if (this.#usesFallbacks) {\n      warn('noFallbackAvailable', {\n        subject: 'Copiable\\'s copied property'\n      })\n    } else {\n      return this.#readText()\n        .then(text => text)\n    }\n  }\n  #readText = function() {\n    return this.clipboard.readText()\n  }\n  #writeText = function() {\n    return this.clipboard.writeText(this.string)\n  }\n  #writeTextFallback = function() {\n    const input = document.createElement('input')\n    input.type = 'text'\n    input.value = this.string\n\n    document.body.appendChild(input)\n    input.select()\n    document.execCommand('copy')\n\n    document.body.removeChild(input)\n  }\n}\n",
+    "updatedAt": "2019-09-22T06:14:07.916Z",
+    "path": "./assets/markdown/logic/libraries/Copiable.md",
+    "fileName": "Copiable",
+    "siteUrl": "/docs/logic/libraries/Copiable"
+  },
+  {
+    "title": "Delayable",
+    "framework": "agnostic",
+    "publish": false,
+    "body": "/*\n * Delayable.js\n * (c) 2019 Alex Vipond\n * Released under the MIT license\n */\n\n/* Util */\nimport is from '../util/is'\n\n/**\n * Delayable is a library that enriches a function by:\n * - Giving it the methods necessary to execute itself after a delay or at regular intervals<\n * - Allowing it to store the time elapsed since it was delayed, the time remaining until it will be executed, and the number of times it has been executed\n * Delayable depends on `[setTimeout](https://developer.mozilla.org/en-US/docs/Web/API/WindowOrWorkerGlobalScope/setTimeout)`, `[setInterval](https://developer.mozilla.org/en-US/docs/Web/API/WindowOrWorkerGlobalScope/setInterval)`, `[requestAnimationFrame](https://developer.mozilla.org/en-US/docs/Web/API/window/requestAnimationFrame)`, and the `[global Data object](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date)`, but is otherwise written in vanilla JS. Delayable powers <NuxtLink to=\"/docs/tools/composition-functions/useDelayable\">`useDelayable`</NuxtLink>.\n */\nexport default class Delayable {\n  #delay\n  #isInterval\n  #parameters\n  #id\n  #tickId\n  #started\n  #computedExecutions\n  #computedTimeElapsed\n  #computedTimeRemaining\n\n  constructor (callback, options) {\n    options = {\n      delay: 0,\n      ...options\n    }\n\n    /* Options */\n    this.#delay = options.delay\n    this.#parameters = is.array(options.parameters) ? options.parameters : []\n\n    /* Public properties */\n    /**\n     * A shallow copy of the callback passed to the Delayable constructor\n     * @type {Function}\n     */\n    this.callback = callback\n\n    /* Private properties */\n    this.#computedExecutions = 0\n    this.#computedTimeElapsed = 0\n    this.#computedTimeRemaining = this.#delay\n  }\n\n  /* Public getters */\n  /**\n   * The number of times the callback function has been executed\n   * @type {Number}\n   */\n  get executions () {\n    return this.#computedExecutions\n  }\n  /**\n   * The time (in milliseconds) that has elapsed since the callback function was initially delayed OR last executed, whichever is smaller\n   * @type {Number}\n   */\n  get timeElapsed () {\n    return this.#computedTimeElapsed\n  }\n  /**\n   * The time (in milliseconds) that remains until the callback function will be executed\n   * @type {Number}\n   */\n  get timeRemaining () {\n    return this.#computedTimeRemaining\n  }\n\n  /* Public methods */\n  /**\n   * Sets the Delayable instance's callback function\n   * @param {Function} callback The new callback function\n   */\n  setCallback (callback) {\n    this.callback = callback\n  }\n  /**\n   * Clears the delayed callback function. The function won't be executed, but <code>timeElapsed</code> and <code>timeRemaining</code> will <b>not</b> be reset to their initial values.\n   */\n  clear () {\n    window.clearTimeout(this.#id)\n    window.clearInterval(this.#id)\n    this.#stopTick()\n    this.#computedExecutions = 0\n  }\n  /**\n   * Executes the callback function after the period of time specified by <code>delay</code>\n   */\n  timeout () {\n    this.#isInterval = false\n    this.#setup()\n    this.#id = this.#setTimeout()\n  }\n  /**\n   * Repeatedly executes the callback function with a fixed time delay (specified by <code>delay</code>) between each execution\n   */\n  interval () {\n    this.#isInterval = true\n    this.#setup()\n    this.#id = this.#setInterval()\n  }\n\n  /* Private methods */\n  #setTimeout = function() {\n    return window.setTimeout(\n      () => {\n        this.callback(...arguments)\n        this.#stopTick()\n        this.#computedTimeElapsed = this.#delay // Set timeElapsed to delay in case the user has switched tabs (which pauses requestAnimationFrame)\n        this.#computedExecutions = 1\n      },\n      this.#delay,\n      ...this.#parameters\n    )\n  }\n  #setInterval = function() {\n    return window.setInterval(\n      () => {\n        this.callback(...this.#parameters)\n        this.#stopTick()\n        this.#computedTimeElapsed = 0\n        this.#computedExecutions++\n        this.#startTick()\n      },\n      this.#delay,\n    )\n  }\n  #setTimeElapsed = function() {\n    const timeElapsed = Date.now() - this.#started\n    this.#computedTimeElapsed = this.#isInterval\n      ? timeElapsed - this.#delay * this.#computedExecutions\n      : Math.min(timeElapsed, this.#delay)\n  }\n  #setTimeRemaining = function() {\n    this.#computedTimeRemaining = this.#delay - this.#computedTimeElapsed\n  }\n  #tick = function() {\n    this.#setTimeElapsed()\n    this.#setTimeRemaining()\n    if (this.#computedTimeElapsed < this.#delay) {\n      this.#stopTick()\n      this.#startTick()\n    }\n  }\n  #startTick = function() {\n    this.#tickId = window.requestAnimationFrame(this.#tick.bind(this))\n  }\n  #stopTick = function() {\n    window.cancelAnimationFrame(this.#tickId)\n  }\n  #setup = function() {\n    this.clear()\n    this.#computedExecutions = 0\n    this.#computedTimeElapsed = 0\n    this.#computedTimeRemaining = this.#delay\n    this.#started = Date.now()\n    this.#startTick()\n  }\n}\n",
+    "updatedAt": "2019-09-22T06:14:07.916Z",
+    "path": "./assets/markdown/logic/libraries/Delayable.md",
+    "fileName": "Delayable",
+    "siteUrl": "/docs/logic/libraries/Delayable"
+  },
+  {
+    "title": "Fetchable",
+    "framework": "agnostic",
+    "publish": false,
+    "body": "/*\n * Fetchable.js\n * (c) 2019 Alex Vipond\n * Released under the MIT license\n */\n\n/* Dependencies */\n\n/* Util */\n\nexport default class Fetchable {\n  /* Private properties */\n  #computedFetching\n  #computedResponse\n  #computedError\n  #fetchOptions\n\n  constructor (resource, options = {}) {\n    /* Options */\n\n    /* Public properties */\n    this.resource = resource\n\n    /* Private properties */\n    this.#computedFetching = false\n    this.#computedResponse = {}\n    this.#computedError = {}\n\n    /* Dependency */\n    this.#fetchOptions = options\n  }\n\n  /* Public getters */\n  get fetching () {\n    return this.#computedFetching\n  }\n  get response () {\n    return this.#computedResponse\n  }\n  get responseJson () {\n    try {\n      return this.response.json()\n    } catch {\n      return {}\n    }\n  }\n  get error () {\n    return this.#computedError\n  }\n  get errorJson () {\n    try {\n      return this.error.json()\n    } catch {\n      return {}\n    }\n  }\n\n  /* Public methods */\n  setResource (resource) {\n    this.resource = resource\n    return this\n  }\n  fetch () {\n    this.#computedFetching = true\n\n    return fetch(this.resource, this.#fetchOptions)\n      .then(response => {\n        this.#computedResponse = response\n        return this\n      })\n      .catch(error => {\n        this.#computedError = error\n        return this\n      })\n  }\n\n  /* Private methods */\n}\n",
+    "updatedAt": "2019-09-22T06:14:07.917Z",
+    "path": "./assets/markdown/logic/libraries/Fetchable.md",
+    "fileName": "Fetchable",
+    "siteUrl": "/docs/logic/libraries/Fetchable"
+  },
+  {
+    "title": "Navigable",
+    "framework": "agnostic",
+    "publish": false,
+    "body": "/*\n * Navigable.js\n * (c) 2019 Alex Vipond\n * Released under the MIT license\n */\n\nimport is from '../util/is'\n\n/**\n * Navigable is a library that enriches an array by:\n * - Allowing it to store a index of the item that has been navigated to\n * - Giving it the methods necessary to navigate to a different item\n *\n * Navigable is written in vanilla JS with no dependencies. It powers <NuxtLink to=\"/docs/tools/composition-functions/useNavigable\">`useNavigable`</NuxtLink>.\n */\nclass Navigable {\n  #loops\n  #increment\n  #decrement\n  #computedLocation\n\n  /**\n   * Constructs a Navigable instance\n   * @param {Array}  array          The array that will be made navigable\n   * @param {Number}  [initialLocation=0] The default location\n   * @param {Boolean} [loops=true]   `true` when the Navigable instance should loop around to the beginning of the array when it navigates past the last item and loop around to the end when it navigates before the first item. `false` when navigating past the last item or before the first item does not change the location.\n   * @param {Number}  [increment=1]  The number of items that will be traversed when the navigable instance is stepping forward through the array\n   * @param {Number}  [decrement=1]  The number of items that will be traversed when the navigable instance is stepping backward through the array\n   * @param {Function}  onNavigate    A function that Navigable will call after navigating to a new item. `onNavigate` acceepts two parameters: the index-based location (Number) of the item that has been navigated to, and the Navigable instance (Object).\n   */\n  constructor(array, options = {}) {\n    /* Options */\n    options = {\n      initialLocation: 0,\n      loops: true,\n      increment: 1,\n      decrement: 1,\n      ...options\n    }\n\n    this.#loops = options.loops\n    this.#increment = options.increment\n    this.#decrement = options.decrement\n\n    /* Public properties */\n    /**\n     * A shallow copy of the array passed to the Navigable constructor\n     * @type {Array}\n     */\n    this.array = array\n\n    /* Private properties */\n    this.#computedLocation = options.initialLocation\n\n    /* Dependency */\n  }\n\n  /* Public getters */\n  get location() {\n    return this.#computedLocation\n  }\n\n  /* Public methods */\n  /**\n   * Sets the Navigable instance's array\n   * @param {Array} array The new array\n   * @return {Object}       The new Navigable instance\n   */\n  setArray(array) {\n    this.array = array\n    return this\n  }\n  /**\n   * Navigates to a specific item\n   * @param  {Number} newLocation The index-based location of the item that should be navigated to\n   * @return {Object}       The Navigable instance\n   */\n  goTo(newLocation) {\n    switch (true) {\n      case (newLocation > this.array.length):\n        newLocation = this.array.length\n        // TODO: decide whether to show warnings or not\n        // console.warn(`Cannot set new location: ${newLocation} is greater than ${this.array.length} (the array's length). Location has been set to the array's length instead.`)\n        break\n      case (newLocation < 0):\n        newLocation = 0\n        // TODO: decide whether to show warnings or not\n        // console.warn(`Cannot set newLocation: ${newLocation} is less than 0. Location has been set to 0 instead.` )\n        break\n      default:\n        newLocation = newLocation\n    }\n\n    return this.#navigate(newLocation)\n  }\n  /**\n   * Steps forward through the array, increasing `location` by `increment`\n   * @return {Object}       The Navigable instance\n   */\n  next() {\n    let newLocation\n    const lastLocation = this.array.length - 1\n\n    if (this.location + this.#increment > lastLocation) {\n      switch (true) {\n        case (this.#loops):\n          newLocation = this.location + this.#increment\n          while(newLocation > lastLocation) {\n            newLocation -= this.array.length\n          }\n          break\n        default:\n          newLocation = lastLocation\n      }\n    } else {\n      newLocation = this.location + this.#increment\n    }\n\n    return this.goTo(newLocation)\n  }\n  /**\n   * Steps backward through the array, decreasing `location` by `decrement`\n   * @return {Object}       The Navigable instance\n   */\n  prev() {\n    let newLocation\n\n    if (this.location - this.#decrement < 0) {\n      switch (true) {\n        case (this.#loops):\n          newLocation = this.location - this.#decrement\n          while(newLocation < 0) {\n            newLocation += this.array.length\n          }\n          break\n        default:\n          newLocation = 0\n      }\n    } else {\n      newLocation = this.location - this.#decrement\n    }\n\n    return this.goTo(newLocation)\n  }\n\n  /* Private methods */\n  #navigate = function(newLocation) {\n    this.#computedLocation = newLocation\n    return this\n  }\n}\n\nexport default Navigable\n",
+    "updatedAt": "2019-09-22T06:14:07.917Z",
+    "path": "./assets/markdown/logic/libraries/Navigable.md",
+    "fileName": "Navigable",
+    "siteUrl": "/docs/logic/libraries/Navigable"
+  },
+  {
+    "title": "Observable",
+    "framework": "agnostic",
+    "publish": false,
+    "body": "/*\n * Observable.js\n * (c) 2019 Alex Vipond\n * Released under the MIT license\n */\n\n/* Dependencies */\n\n/* Util */\nimport is from '../util/is'\nimport toNodeList from '../util/toNodeList'\n\nexport default class Observable {\n  #supportedObserverTypes\n  #onIntersect\n  #onMutate\n  #onResize\n  #intersectionOptions\n  #computedIntersection\n  #computedMutation\n  #computedResize\n\n  constructor (elements, options = {}) {\n    /* Options */\n    this.#onIntersect = options.onIntersect\n    this.#onMutate = options.onMutate\n    this.#onResize = options.onResize\n\n    /* Public properties */\n    this.elements = toNodeList(elements)\n\n    /* Private properties */\n    this.#supportedObserverTypes = ['intersection', 'mutation', 'resize']\n\n    /* Dependency */\n    this.#intersectionOptions = this.#getIntersectionOptions(options)\n    this.#computedIntersection = is.function(this.#onIntersect)\n      ? this.#getIntersection(this.#intersectionOptions)\n      : null\n    this.#computedMutation = is.function(this.#onMutate)\n      ? this.#getMutation()\n      : null\n    this.#computedResize = is.function(this.#onResize)\n      ? this.#getResize()\n      : null\n  }\n\n  /* Public getters */\n  get intersection () {\n    return this.#computedIntersection\n  }\n  get mutation () {\n    return this.#computedMutation\n  }\n  get resize () {\n    return this.#computedResize\n  }\n\n  /* Public methods */\n  setElements (elements) {\n    this.elements = toNodeList(elements)\n    return this\n  }\n  observe (options = {}) {\n    this.elements.forEach(element => {\n      this.#supportedObserverTypes.forEach(observerType => {\n        if (!is.null(this[`${observerType}`])) {\n          this[`${observerType}`].observe(element, options)\n        }\n      })\n    })\n  }\n  disconnect () {\n    this.#supportedObserverTypes.forEach(observerType => {\n      if (!is.null(this[`${observerType}`])) {\n        this[`${observerType}`].disconnect()\n      }\n    })\n  }\n  takeRecords () {\n    this.#supportedObserverTypes.forEach(observerType => {\n      if (!is.null(this[`${observerType}`])) {\n        this[`${observerType}`].takeRecords()\n      }\n    })\n  }\n  unobserve (element) {\n    this.#supportedObserverTypes.forEach(observerType => {\n      if (!is.null(this[`${observerType}`])) {\n        this[`${observerType}`].unobserve(element)\n      }\n    })\n  }\n\n  /* Private methods */\n  #getIntersectionOptions = ({ onIntersect, onMutate, onResize, ...rest }) => rest\n  #getIntersection = function(options) {\n    return new IntersectionObserver(this.#onIntersect, options)\n  }\n  #getMutation = function() {\n    return new MutationObserver(this.#onMutate)\n  }\n  #getResize = function() {\n    return new ResizeObserver(this.#onResize)\n  }\n}\n",
+    "updatedAt": "2019-09-22T06:14:07.917Z",
+    "path": "./assets/markdown/logic/libraries/Observable.md",
+    "fileName": "Observable",
+    "siteUrl": "/docs/logic/libraries/Observable"
+  },
+  {
+    "title": "Poppable",
+    "framework": "agnostic",
+    "publish": false,
+    "body": "/*\n * Poppable.js\n * (c) 2019 Alex Vipond\n * Released under the MIT license\n */\n\n/* Dependencies */\nimport Dependency from '../wrappers/PoppablePopper'\n\n/* Util */\n\nexport default class Poppable {\n  #dependencyOptions\n  #dependency\n\n  constructor ({ reference, popper }, options = {}) {\n    /* Options */\n\n    /* Public properties */\n    this.reference = reference\n    this.popper = popper\n\n    /* Private properties */\n\n    /* Dependency */\n    this.#dependencyOptions = this.#getDependencyOptions(options)\n    this.#dependency = new Dependency({ reference: this.reference, popper: this.popper }, this.#dependencyOptions)\n  }\n\n  /* Public getters */\n  get manager () {\n    return this.#dependency.manager\n  }\n\n  /* Public methods */\n  setReference (reference) {\n    this.reference = reference\n    return this\n  }\n  setPopper (popper) {\n    this.popper = popper\n    return this\n  }\n  update () {\n    this.#dependency.update()\n  }\n  enableEventListeners () {\n    this.#dependency.enableEventListeners()\n  }\n  disableEventListeners () {\n    this.#dependency.disableEventListeners()\n  }\n  scheduleUpdate () {\n    this.#dependency.scheduleUpdate()\n  }\n  destroy () {\n    this.#dependency.destroy()\n  }\n\n  /* Private methods */\n  #getDependencyOptions = (options) => options\n}\n",
+    "updatedAt": "2019-09-22T06:14:07.917Z",
+    "path": "./assets/markdown/logic/libraries/Poppable.md",
+    "fileName": "Poppable",
+    "siteUrl": "/docs/logic/libraries/Poppable"
+  },
+  {
+    "title": "Searchable",
+    "framework": "agnostic",
+    "publish": false,
+    "body": "/*\n * Searchable.js\n * (c) 2019 Alex Vipond\n * Released under the MIT license\n */\n\n/* Dependencies */\nimport Dependency from '../wrappers/SearchableLunr.js'\n\n/* Util */\n\nexport default class Searchable {\n  #computedResults\n  #dependencyOptions\n  #dependency\n\n  constructor (array, options = {}) {\n    /* Options */\n    options = {\n      positionIsIncluded: false,\n      itemIsIncluded: true,\n      ...options\n    }\n\n    /* Public properties */\n    this.array = array\n\n    /* Private properties */\n    this.#computedResults = []\n\n    /* Dependency */\n    this.#dependencyOptions = options\n    this.#dependency = new Dependency(this.array, this.#dependencyOptions)\n  }\n\n  /* Public getters */\n  get results () {\n    return this.#computedResults\n  }\n  get index () {\n    return this.#dependency.index\n  }\n\n  /* Public methods */\n  setArray (array) {\n    this.array = array\n    this.#dependency = new Dependency(this.array, this.#dependencyOptions)\n    return this\n  }\n  search (query) {\n    this.#computedResults = this.#dependency.search(query)\n    return this\n  }\n\n  /* Private methods */\n}\n",
+    "updatedAt": "2019-09-22T06:14:07.917Z",
+    "path": "./assets/markdown/logic/libraries/Searchable.md",
+    "fileName": "Searchable",
+    "siteUrl": "/docs/logic/libraries/Searchable"
+  },
+  {
+    "title": "Syncable",
+    "framework": "agnostic",
+    "publish": false,
+    "body": "/*\n * Syncable.js\n * (c) 2019 Alex Vipond\n * Released under the MIT license\n */\n\n/* Util */\nimport is from '../util/is'\nimport { hasEveryProperty } from '../util/hasProperties'\nimport warn from '../util/warn'\n\n/* Libraries */\nimport Renamable from '../subclasses/Renamable'\n\nclass Syncable {\n  /* Private properties */\n  #intendedTypes\n  #editsFullArray\n  #hardCodedType\n  #onSync\n  #writeDictionary\n  #eraseDictionary\n\n  constructor (state, options = {}) {\n    this.#intendedTypes = ['array', 'boolean', 'date', 'file', 'filelist', 'map', 'number', 'object', 'string']\n\n    /* Options */\n    options = {\n      editsFullArray: true,\n      ...options\n    }\n\n    this.#hardCodedType = options.type\n    this.#editsFullArray = options.editsFullArray\n    this.#onSync = options.onSync\n\n    this.#writeDictionary = {\n      array: () => this.#writeArray(),\n      map: options => this.#writeMap(options),\n      object: options => this.#writeObject(options),\n    }\n    this.#eraseDictionary = {\n      array: options => this.#eraseArray(options),\n      boolean: () => false,\n      date: () => new Date(),\n      map: options => this.#eraseMap(options),\n      number: () => 0,\n      object: options => this.#eraseObject(options),\n      string: () => '',\n    }\n\n    /* Public properties */\n    this.state = state\n    this.editableState = this.#getEditableState()\n  }\n\n  /* Public getters */\n  get type () {\n    return this.#getType(this.state)\n  }\n  get editableStateType () {\n    return this.#getType(this.editableState)\n  }\n\n  /* Public methods */\n  setState (state) {\n    this.state = state\n    this.setEditableState(this.#getEditableState())\n    return this\n  }\n  setEditableState (state) {\n    this.editableState = state\n    return this\n  }\n  cancel () {\n    this.editableState = this.#getEditableState()\n    return this\n  }\n  write (options = {}) {\n    const newState = this.#writeDictionary.hasOwnProperty(this.type)\n      ? this.#writeDictionary[this.type](options)\n      : this.editableState\n\n    return this.#sync(newState)\n  }\n  erase (options = {}) {\n    const newState = this.#eraseDictionary.hasOwnProperty(this.type)\n      ? this.#eraseDictionary[this.type](options)\n      : null\n\n    return this.#sync(newState)\n  }\n\n  /* Private methods */\n  #getType = function(state) {\n    if (this.#hardCodedType && this.#hardCodedType !== 'array') {\n      return this.#hardCodedType\n    } else {\n      return this.#guessType(state)\n    }\n  }\n  #guessType = function(state) {\n    let type,\n        i = 0\n    while (type === undefined && i < this.#intendedTypes.length) {\n      if (is[this.#intendedTypes[i]](state)) {\n        type = this.#intendedTypes[i]\n      }\n      i++\n    }\n\n    if (type === undefined) {\n      type = 'unintended'\n    }\n\n    return type\n  }\n  #getEditableState = function() {\n    if (this.type !== 'array') {\n      return this.state\n    } else {\n      return this.#editsFullArray ? this.state : ''\n    }\n  }\n  #sync = function(newState) {\n    if (is.function(this.#onSync)) {\n      this.#onSync(newState)\n    }\n    return this\n  }\n  #writeArray = function() {\n    return this.#editsFullArray\n      ? this.editableState\n      : this.state.concat([this.editableState])\n  }\n  #writeMap = function(options) {\n    warn('hasRequiredOptions', {\n      received: options,\n      required: ['key'],\n      subject: 'Syncable\\'s write method',\n      docs: 'https://baleada.netlify.com/docs/logic/Syncable',\n    })\n    warn('hasRequiredOptions', {\n      received: options,\n      required: ['value', 'rename'],\n      subject: 'Syncable\\'s write method',\n      docs: 'https://baleada.netlify.com/docs/logic/Syncable',\n    })\n\n    let newState = this.state\n    const key = options.key\n\n    if (hasEveryProperty(options, ['rename', 'value'])) {\n      const renamable = new Renamable(newState)\n\n      renamable.renameKey(options.rename, key)\n      renamable.set(key, options.value)\n\n      newState = new Map(renamable)\n    } else if (hasEveryProperty(options, ['rename'])) {\n      const renamable = new Renamable(newState)\n\n      renamable.renameKey(options.rename, key)\n\n      newState = new Map(renamable)\n    } else if (hasEveryProperty(options, ['value'])) {\n      newState.set(key, options.value)\n    }\n\n    return newState\n  }\n  #writeObject = function(options) {\n    warn('hasRequiredOptions', {\n      received: options,\n      required: ['key'],\n      subject: 'Syncable\\'s write method',\n      docs: 'https://baleada.netlify.com/docs/logic/Syncable',\n    })\n    warn('hasRequiredOptions', {\n      received: options,\n      required: ['value', 'rename'],\n      subject: 'Syncable\\'s write method',\n      docs: 'https://baleada.netlify.com/docs/logic/Syncable',\n    })\n\n    const newState = this.state,\n          key = options.key\n\n    if (hasEveryProperty(options, ['rename', 'value'])) {\n      newState[key] = options.value\n      delete newState[options.rename]\n    } else if (hasEveryProperty(options, ['rename'])) {\n      newState[key] = newState[options.rename]\n      delete newState[options.rename]\n    } else if (hasEveryProperty(options, ['value'])) {\n      newState[key] = options.value\n    }\n\n    return newState\n  }\n  #eraseArray = function(options) {\n    warn('hasRequiredOptions', {\n      received: options,\n      required: ['value', 'last', 'all'],\n      subject: 'Syncable\\'s erase method',\n      docs: 'https://baleada.netlify.com/docs/logic/Syncable',\n    })\n\n    let newState = this.state\n\n    if (options.hasOwnProperty('value')) {\n      newState = this.state.filter(item => item !== options.value)\n    }\n    if (options.hasOwnProperty('last') && options.last !== false) {\n      newState = this.state.slice(0, -1)\n    }\n    if (options.hasOwnProperty('all') && options.all !== false) {\n      newState = []\n    }\n\n    return newState\n  }\n  #eraseMap = function(options) {\n    warn('hasRequiredOptions', {\n      received: options,\n      required: ['key', 'last', 'all'],\n      subject: 'Syncable\\'s erase method',\n      docs: 'https://baleada.netlify.com/docs/logic/Syncable',\n    })\n\n    const newState = this.state\n\n    if (options.hasOwnProperty('key') && is.string(options.key)) {\n      newState.delete(options.key)\n    }\n    if (options.hasOwnProperty('last') && options.last !== false) {\n      const last = Array.from(newState.keys()).reverse()[0]\n      newState.delete(last) // TODO: What's the UI/feature/use case for deleting last key/value?\n    }\n    if (options.hasOwnProperty('all') && options.all !== false) {\n      newState.clear()\n    }\n\n    return newState\n  }\n  #eraseObject = function(options) {\n    warn('hasRequiredOptions', {\n      received: options,\n      required: ['value', 'last', 'all'],\n      subject: 'Syncable\\'s erase method',\n      docs: 'https://baleada.netlify.com/docs/logic/Syncable',\n    })\n\n    let newState = this.state\n\n    if (options.hasOwnProperty('key') && is.string(options.key)) {\n      delete newState[options.key]\n    }\n    if (options.hasOwnProperty('last') && options.last !== false) {\n      delete newState[Object.keys(newState).reverse()[0]] // TODO: What's the UI/feature/use case for deleting last key/value?\n    }\n    if (options.hasOwnProperty('all') && options.all !== false) {\n      newState = {}\n    }\n\n    return newState\n  }\n}\n\nexport default Syncable\n",
+    "updatedAt": "2019-09-22T06:14:07.926Z",
+    "path": "./assets/markdown/logic/libraries/Syncable.md",
+    "fileName": "Syncable",
+    "siteUrl": "/docs/logic/libraries/Syncable"
+  },
+  {
+    "title": "Touchable",
+    "framework": "agnostic",
+    "publish": false,
+    "body": "/*\n * Touchable.js\n * (c) 2019 Alex Vipond\n * Released under the MIT license\n */\n\n/* Dependencies */\nimport Dependency from '../wrappers/TouchableHammer'\n\n/* Util */\n\nexport default class Touchable {\n  #dependencyOptions\n  #dependency\n\n  constructor (element, options = {}) {\n    /* Options */\n\n    /* Public properties */\n    this.element = element\n\n    /* Private properties */\n\n    /* Dependency */\n    this.#dependencyOptions = options\n    this.#dependency = new Dependency(this.element, this.#dependencyOptions)\n  }\n\n  /* Public getters */\n  get manager () {\n    return this.#dependency.manager\n  }\n\n  /* Public methods */\n  setElement (element) {\n    this.element = element\n    return this\n  }\n  touch (touchType, data) {\n    this.#dependency.touch(touchType, data)\n  }\n  destroy () {\n    this.#dependency.destroy()\n  }\n\n  /* Private methods */\n}\n",
+    "updatedAt": "2019-09-22T06:14:07.926Z",
+    "path": "./assets/markdown/logic/libraries/Touchable.md",
+    "fileName": "Touchable",
+    "siteUrl": "/docs/logic/libraries/Touchable"
+  },
+  {
+    "title": "Renamable",
+    "framework": "agnostic",
+    "publish": false,
+    "body": "",
+    "updatedAt": "2019-09-22T06:14:07.926Z",
+    "path": "./assets/markdown/logic/subclasses/Renamable.md",
+    "fileName": "Renamable",
+    "siteUrl": "/docs/logic/subclasses/Renamable"
+  },
+  {
+    "title": "Reorderable",
+    "framework": "agnostic",
+    "publish": false,
+    "body": "",
+    "updatedAt": "2019-09-22T06:14:07.926Z",
+    "path": "./assets/markdown/logic/subclasses/Reorderable.md",
+    "fileName": "Reorderable",
+    "siteUrl": "/docs/logic/subclasses/Reorderable"
+  },
+  {
+    "title": "Roadmap",
+    "framework": "agnostic",
+    "publish": false,
+    "body": "",
+    "updatedAt": "2019-09-22T06:14:07.915Z",
+    "path": "./assets/markdown/roadmap.md",
+    "fileName": "roadmap",
+    "siteUrl": "/docs/roadmap"
+  },
+  {
+    "title": "Types of tools",
+    "framework": "agnostic",
+    "publish": true,
+    "body": "Each tool in the Baleada app-building toolkit falls into one of the following categories:\n- <NuxtLink to=\"#ui-logic\">UI logic</NuxtLink>\n- <NuxtLink to=\"#composition-functions-a-k-a-hooks\">Composition functions (a.k.a. hooks)</NuxtLink>\n- <NuxtLink to=\"#icon-components\">Icon components</NuxtLink>\n\nEach category of tools has its own NPM package that you can install:\n\n| Tool category | NPM package |\n| --- | --- |\n| UI logic | `@baleada/logic` |\n| Composition functions | `@baleada/composition` |\n| Icon components | `@baleada/icons` |\n\nIf you're itching to install those packages and get started with the tools they offer, you can check out the dedicated guides for <NuxtLink to=\"/docs/logic\">Baleada Logic</NuxtLink>, <NuxtLink to=\"/docs/composition\">Baleada Composition</NuxtLink>, and <NuxtLink to=\"/docs/icons\">Baleada Icons</NuxtLink>.\n\nIf you're not quite sure what all these terms mean, feel free to keep reading!\n\n## UI logic\n\nUI logic is JavaScript that powers **user interface behaviors**. Baleada provides UI logic for specific behaviors that are commonly needed, but can be complex to implement in a reusable way.\n\nFor example:\n- Allowing the user to edit any and all kinds of state (strings, numbers, arrays, objects, etc.), save changes when they're ready, or cancel their changes and revert to the previous version.\n- Allowing the user to enter a search term, query an array of strings or objects, and receive a list of search results based on fuzzy matches\n- Autocompleting text, replacing all or part of the original text with a completed value\n\nTo get started with Baleada's logic, check out the <NuxtLink to=\"/docs/logic\">Baleada Logic</NuxtLink> package.\n\n\n## Composition functions (a.k.a. hooks)\n\n\"Composition function\" is a term coined by the [Vue](https://vuejs.org) team to describe functions that **collocate code** related to the same logical concern. In [React](https://react.org), these functions are called \"hooks\", but the concept is virtually the same.\n\nBaleada's composition functions collocate **reactivity** code with **UI logic** code. More specifically, each Baleada composition function retrieves state and methods from one or more of the Baleada Logic tools, then makes all of the state reactive, using tools from the JavaScript framework of your choice.\n\nTo get started with Baleada's composition functions, check out the <NuxtLink to=\"/docs/composition\">Baleada Composition</NuxtLink> package.\n\n\n## Icon components\n\nThere are [tons of reasons](http://www.fullstackradio.com/47) to use **true SVG icons** instead of icon fonts. But copy/pasting SVG markup all over your website or app is tedious, not readable, and not maintainable.\n\nIf you're using a component framework like Vue, React, or Svelte, the clear solution is to wrap up your SVG icons in reusable components, so that you get all the benefits of SVGs while writing efficient code.\n\nBaleada's icon components do just that! To get started with them, check out the <NuxtLink to=\"/docs/icons\">Baleada Icons</NuxtLink> package.\n",
+    "updatedAt": "2019-09-22T07:21:42.725Z",
+    "path": "./assets/markdown/types-of-tools.md",
+    "fileName": "types-of-tools",
+    "siteUrl": "/docs/types-of-tools"
+  }
+]

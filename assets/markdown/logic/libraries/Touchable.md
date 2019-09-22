@@ -1,6 +1,6 @@
 ---
 title: Touchable
-titleIsCode: false
+
 framework: agnostic
 publish: false
 ---

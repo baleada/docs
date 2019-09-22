@@ -1,5 +1,6 @@
 const fs = require('fs'),
       fm = require('front-matter'),
+      { generateDirectories } = require('./util/generateDirectories.js'),
       { generatePages } = require('./util/generatePages.js'),
       { generateManifest } = require('./util/generateManifest.js'),
       { generateSearchable } = require('./util/generateSearchable.js')
@@ -8,21 +9,22 @@ function generateMetafiles () {
   const files = getFiles('./assets/markdown'),
         metadata = getMetadata(files)
 
-  console.log(metadata[1])
-  // generateManifest(metadata)
-  // generatePages(article)
+  fs.writeFileSync('./assets/json/metadata.json', JSON.stringify(metadata, null, 2))
+  generateDirectories(metadata)
+  generatePages(metadata)
+  generateManifest(metadata)
   // generateSearchable(metadata)
 
-  console.log(`Metafiles generated for ${files.length} articles.`)
+  console.log(`Analyzed ${files.length} articles for metadata`)
 }
 
 function getFiles (dir) {
   return fs.readdirSync(dir)
     .filter(item => item !== '.DS_Store')
-    .reduce((fileList, item) => {
+    .reduce((files, item) => {
       item = item.includes('.') ? [`${dir}/${item}`] : getFiles(`${dir}/${item}`)
       return [
-        ...fileList,
+        ...files,
         ...item
       ]
     }, [])
@@ -31,13 +33,12 @@ function getFiles (dir) {
 function getMetadata (files) {
   return files.map(path => {
     const contents = fs.readFileSync(path, 'utf8'),
-          { attributes: { title, titleIsCode, framework, publish }, body } = fm(contents),
+          { attributes: { title, framework, publish }, body } = fm(contents),
           { mtime: updatedAt } = fs.statSync(path),
           { fileName, siteUrl } = toPathMetadata(path)
-
+          
     return {
       title,
-      titleIsCode,
       framework,
       publish,
       body,
@@ -50,9 +51,9 @@ function getMetadata (files) {
 }
 
 function toPathMetadata (path) {
-  const fileName = path.split('/').reverse()[0].split('.')[0],
-        siteUrlPrefix = `/docs/${path.split('/').slice(3).reverse().slice(1).reverse().join('/')}`,
-        siteUrlSuffix = `/${fileName === 'index' ? '' : fileName}`,
+  const fileName = path.match(/[A-Za-z-]+\.md$/)[0].replace(/\.md$/, ''),
+        siteUrlPrefix = `/docs${path.replace(/\.\/assets\/markdown/, '').replace(/\/[A-Za-z-]+\.md$/, '')}`,
+        siteUrlSuffix = `${fileName === 'index' ? '' : '/' + fileName}`,
         siteUrl = `${siteUrlPrefix}${siteUrlSuffix}`
 
   return { fileName, siteUrl }

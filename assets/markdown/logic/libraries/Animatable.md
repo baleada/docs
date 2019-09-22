@@ -1,6 +1,6 @@
 ---
 title: Animatable
-titleIsCode: false
+
 framework: agnostic
 publish: false
 ---

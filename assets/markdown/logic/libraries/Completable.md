@@ -1,6 +1,6 @@
 ---
 title: Completable
-titleIsCode: false
+
 framework: agnostic
 publish: false
 ---
@@ -22,7 +22,7 @@ import lastMatch from '../util/lastMatch'
  * - Allowing it to extract a segment of the string
  * - Giving it the methods necessary to replace the segment or the full string with a more complete string
  *
- * Completable is written in vanilla JS with no dependencies. It powers <nuxt-link to="/docs/tools/composition-functions/useCompletable">`useCompletable`</nuxt-link>.
+ * Completable is written in vanilla JS with no dependencies. It powers <NuxtLink to="/docs/tools/composition-functions/useCompletable">`useCompletable`</NuxtLink>.
  */
 class Completable {
   /* Private properties */
@@ -38,10 +38,10 @@ class Completable {
   /**
    * Completable constructor
    * @param {String}  string                          The string that will be made completable
-   * @param {Boolean} [segmentsFromDivider=false]     `true` when the Completable instance should start from a divider (for example, the space between words) while extracting a segment, and `false when it should start from the very beginning of the string. See the <nuxt-link to="#How-the-Completable-instance-extracts-segments">How the Completable instance extracts segments</nuxt-link> section for more info.
-   * @param {Boolean} [segmentsToPosition=false]      `true` when the Completable instance should stop at the current position while extracting a segment, and `false` when it should stop at the very end of the string. See the <nuxt-link to="#How-the-Completable-instance-extracts-segments">How the Completable instance extracts segments</nuxt-link> section for more info.
-   * @param {RegExp}  [divider=/s/]                   <p>Tells the Completable instance how segments of the string are divided. Has no effect when <code>segmentsFromDivider</code> is <code>false</code>.</p><p>See the <nuxt-link to="#How-the-Completable-instance-extracts-segments">How the Completable instance extracts segments</nuxt-link> section for more info.</p>
-   * @param {Boolean} [positionsAfterCompletion=true] <p><code>true</code> when the Completable instance, after completing the string, should set the current position to the index after the segment's replacement. `false` when it should not change the current position.</p><p>See the <nuxt-link to="#How-the-Completable-instance-handles-current-position">How the Completable instance handles current position</nuxt-link> section for more info.</p>
+   * @param {Boolean} [segmentsFromDivider=false]     `true` when the Completable instance should start from a divider (for example, the space between words) while extracting a segment, and `false when it should start from the very beginning of the string. See the <NuxtLink to="#How-the-Completable-instance-extracts-segments">How the Completable instance extracts segments</NuxtLink> section for more info.
+   * @param {Boolean} [segmentsToPosition=false]      `true` when the Completable instance should stop at the current position while extracting a segment, and `false` when it should stop at the very end of the string. See the <NuxtLink to="#How-the-Completable-instance-extracts-segments">How the Completable instance extracts segments</NuxtLink> section for more info.
+   * @param {RegExp}  [divider=/s/]                   <p>Tells the Completable instance how segments of the string are divided. Has no effect when <code>segmentsFromDivider</code> is <code>false</code>.</p><p>See the <NuxtLink to="#How-the-Completable-instance-extracts-segments">How the Completable instance extracts segments</NuxtLink> section for more info.</p>
+   * @param {Boolean} [positionsAfterCompletion=true] <p><code>true</code> when the Completable instance, after completing the string, should set the current position to the index after the segment's replacement. `false` when it should not change the current position.</p><p>See the <NuxtLink to="#How-the-Completable-instance-handles-current-position">How the Completable instance handles current position</NuxtLink> section for more info.</p>
    * @param {Function}  [onComplete]                    A function that Completable will call after completing the string. `onComplete` has one paramater: the completed string (String).
    * @param {Function}  [onPosition]                    A function that Completable will call after completing the string. `onPosition` accepts two parameters: the new position (Number), and the Completable instance (Object).
    */
@@ -69,7 +69,7 @@ class Completable {
      */
     this.string = string
     /**
-     * The current index-based position in the `string`. See the <nuxt-link to="#How-the-Completable-instance-handles-current-position">How the Completable instance handles current position</nuxt-link> section for more info.
+     * The current index-based position in the `string`. See the <NuxtLink to="#How-the-Completable-instance-handles-current-position">How the Completable instance handles current position</NuxtLink> section for more info.
      * @type {Number}
      */
     this.position = string.length
@@ -78,7 +78,7 @@ class Completable {
   /* Public getters */
   /**
    * Segment getter function
-   * @return {String} An extracted segment of `string`. See the <nuxt-link to="#How-the-Completable-instance-extracts-segments">How the Completable instance extracts segments</nuxt-link> section for more info.
+   * @return {String} An extracted segment of `string`. See the <NuxtLink to="#How-the-Completable-instance-extracts-segments">How the Completable instance extracts segments</NuxtLink> section for more info.
    */
   get segment() {
     return this.string.slice(
@@ -98,7 +98,7 @@ class Completable {
     return this
   }
   /**
-   * <p>Sets the position from which the Completable instance will start extracting segments.</p><p>See the <nuxt-link to="#How-the-Completable-instance-extracts-segments">How the Completable instance extracts segments</nuxt-link> section and the <nuxt-link to="#How-the-Completable-instance-handles-current-position">How the Completable instance handles current position</nuxt-link> section for more info.</p>
+   * <p>Sets the position from which the Completable instance will start extracting segments.</p><p>See the <NuxtLink to="#How-the-Completable-instance-extracts-segments">How the Completable instance extracts segments</NuxtLink> section and the <NuxtLink to="#How-the-Completable-instance-handles-current-position">How the Completable instance handles current position</NuxtLink> section for more info.</p>
    * @param {Number} position The new `position`
    * @return {Object}       The Completable instance
    */
