@@ -1,6 +1,6 @@
 <template lang="html">
-<div class="italic text-2">
-  Last updated on {{ intl }}
+<div class="mt-3 mb-7 text-1 italic text-gray-800">
+  Updated on {{ intl }}
 </div>
 </template>
 

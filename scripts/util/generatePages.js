@@ -14,8 +14,8 @@ function generatePages (metadata) {
 function toPage ({ title, body, updatedAt }) {
   return `\
 <template lang="md">\n\
-<UpdatedAt timestamp="${updatedAt}" />\n\
 # ${title}\n\
+<UpdatedAt timestamp="${updatedAt}" />\n\
 \n\
 ${body}</template>\n\
 \n\

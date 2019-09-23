@@ -1,42 +1,42 @@
 const defaultTheme = require('tailwindcss/defaultTheme')
 
-function fractions(unit) {
-  const suffix = unit === '%' ? '' : '-screen'
-  const fractions = [
-    '1/2',
-    '1/3',
-    '2/3',
-    '1/4',
-    '2/4',
-    '3/4',
-    '1/5',
-    '2/5',
-    '3/5',
-    '4/5',
-    '1/6',
-    '2/6',
-    '3/6',
-    '4/6',
-    '5/6',
-    '1/12',
-    '2/12',
-    '3/12',
-    '4/12',
-    '5/12',
-    '6/12',
-    '7/12',
-    '8/12',
-    '9/12',
-    '10/12',
-    '11/12',
-  ]
-  const fractionScale = fractions.reduce(
-    (scale, fraction) => ({
-      ...scale,
-      [`${fraction}${suffix}`]: `calc(${fraction} * 100${unit})`,
-    }),
-    {}
-  )
+function fractions (unit) {
+  const suffix = unit === '%' ? '' : '-screen',
+        fractions = [
+          '1/2',
+          '1/3',
+          '2/3',
+          '1/4',
+          '2/4',
+          '3/4',
+          '1/5',
+          '2/5',
+          '3/5',
+          '4/5',
+          '1/6',
+          '2/6',
+          '3/6',
+          '4/6',
+          '5/6',
+          '1/12',
+          '2/12',
+          '3/12',
+          '4/12',
+          '5/12',
+          '6/12',
+          '7/12',
+          '8/12',
+          '9/12',
+          '10/12',
+          '11/12',
+        ],
+        fractionScale = fractions.reduce(
+          (scale, fraction) => ({
+            ...scale,
+            [`${fraction}${suffix}`]: `calc(${fraction} * 100${unit})`,
+          }),
+          {}
+        )
 
   return {
     ...fractionScale,
@@ -60,6 +60,7 @@ module.exports = {
     colors: {
       ...defaultTheme.colors,
       current: 'currentColor',
+      inherit: 'inherit',
       primary: { // horizon
         '100': 'hsla(242, 100%, 97%, 1.0)',
         '200': 'hsla(243, 94%, 90%, 1.0)',
@@ -96,6 +97,9 @@ module.exports = {
       '2px': '2px',
       '4px': '4px',
       '8px': '8px',
+      '1/4em': '0.25em',
+      '1/2em': '.5em',
+      '1em': '1em',
       '0': '0',
       '1': '0.25rem',
       '2': '0.5rem',
@@ -113,7 +117,9 @@ module.exports = {
       '14': '10rem',
       '15': '12rem',
       '16': '14rem',
-      '17': '16rem'
+      '17': '16rem',
+      '18': '20rem',
+      '19': '24rem',
     },
     borderRadius: {
       '0': '0',
@@ -218,6 +224,16 @@ module.exports = {
     }),
     minWidth: theme => ({
       '0': '0',
+      '1': '20rem',
+      '2': '24rem',
+      '3': '28rem',
+      '4': '32rem',
+      '5': '36rem',
+      '6': '42rem',
+      '7': '48rem',
+      '8': '56rem',
+      '9': '64rem',
+      '10': '72rem',
       ...screenWidthUtilities(defaultTheme),
       ...fractions('%'),
       ...fractions('vw')
@@ -238,7 +254,37 @@ module.exports = {
       ...defaultTheme.objectPosition,
       'center-top': 'center top',
       'center-bottom': 'center bottom',
-    }
+    },
+    opacity: {
+      '0': '0',
+      '10': '.10',
+      '20': '.20',
+      '25': '.25',
+      '30': '.30',
+      '33': '.33',
+      '40': '.40',
+      '50': '.50',
+      '60': '.60',
+      '67': '.67',
+      '70': '.70',
+      '75': '.75',
+      '80': '.80',
+      '90': '.90',
+      '100': '1.00',
+    },
+    zIndex: {
+      '0': '0',
+      '10': '10',
+      '20': '20',
+      '30': '30',
+      '40': '40',
+      '50': '50',
+      '60': '60',
+      '70': '70',
+      '80': '80',
+      '90': '90',
+      '100': '100',
+    },
   },
   variants: ['responsive', 'group-hover', 'focus-within', 'hover', 'focus', 'active']
 }

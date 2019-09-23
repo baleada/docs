@@ -48,6 +48,7 @@ export default {
   plugins: [
     '~/plugins/global-components',
     '~/plugins/example-components',
+    '~/plugins/vue-hooks',
     '~/plugins/vue-composition-api',
   ],
 

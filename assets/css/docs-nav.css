@@ -1,0 +1,26 @@
+.docs-nav {
+  h2::after {
+    content: '';
+    @apply w-9 mt-3 block rounded-full h-2px bg-gray-300;
+  }
+
+  h2 {
+    @apply mt-8 text-2 text-primary-700 font-600 tracking-3;
+  }
+
+  h3 {
+    @apply mt-6 text-2 text-gray-600 tracking-1;
+  }
+
+  a {
+    @apply block text-2 text-gray-900 mt-3 pl-2 no-underline transition-fast;
+  }
+
+  a.nuxt-link-exact-active {
+    @apply border-l-2 border-primary-700 text-primary-700 -ml-2px;
+  }
+
+  a:hover {
+    @apply text-primary-600 border-primary-600 underline;
+  }
+}

@@ -1,24 +1,24 @@
-<template functional>
-  <div class="alert" :class="[`alert-${type}`]">
+<template lang="html">
+  <aside class="aside" :class="[`aside-${type}`]">
     <div>
-      <div v-if="type === 'info'" class="alert-icon">
-        <EvaInfo />
+      <div v-if="type === 'info'" class="aside-icon">
+        <EvaInfo :class="'fill-current'"/>
       </div>
-      <div v-if="type === 'warning'" class="alert-icon">
-        <EvaAlertTriangle />
+      <div v-if="type === 'warning'" class="aside-icon">
+        <EvaAlertTriangle :class="'fill-current'"/>
       </div>
-      <div v-if="type === 'danger'" class="alert-icon">
-        <EvaFlash />
+      <div v-if="type === 'danger'" class="aside-icon">
+        <EvaFlash :class="'fill-current'"/>
       </div>
-      <div v-if="type === 'success'" class="alert-icon">
-        <EvaAward />
+      <div v-if="type === 'success'" class="aside-icon">
+        <EvaAward :class="'fill-current'"/>
       </div>
     </div>
     <div>
       <!-- TODO: Figure out how to inject markdown -->
       <slot></slot>
     </div>
-  </div>
+  </aside>
 </template>
 
 <script>
@@ -42,6 +42,6 @@ export default {
         return ['info', 'warning', 'danger', 'success'].indexOf(value) !== -1;
       }
     }
-  }
+  },
 }
 </script>

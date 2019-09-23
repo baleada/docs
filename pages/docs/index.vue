@@ -1,6 +1,6 @@
 <template lang="md">
-<UpdatedAt timestamp="Sun Sep 22 2019 11:18:35 GMT-0600 (CST)" />
 # What is Baleada?
+<UpdatedAt timestamp="Sun Sep 22 2019 11:18:35 GMT-0600 (CST)" />
 
 Honduras's favorite food is the **baleada**—a fresh flour tortilla, spread with refried beans, then decorated with scrambled eggs, mantequilla, queso seco, avocado, or meat, and finally folded in half.
 

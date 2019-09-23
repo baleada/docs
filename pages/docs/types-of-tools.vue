@@ -1,6 +1,6 @@
 <template lang="md">
-<UpdatedAt timestamp="Sun Sep 22 2019 11:18:40 GMT-0600 (CST)" />
 # Types of tools
+<UpdatedAt timestamp="Sun Sep 22 2019 11:18:40 GMT-0600 (CST)" />
 
 Each tool in the Baleada app-building toolkit falls into one of the following categories:
 - <NuxtLink to="#ui-logic">UI logic</NuxtLink>

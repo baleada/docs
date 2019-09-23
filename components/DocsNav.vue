@@ -1,5 +1,5 @@
 <template lang="html">
-  <nav>
+  <nav class="docs-nav">
     <section v-for="(directory, index) in directories" :key="directory.name">
       <component :is="`h${directory.level + 1}`">{{ directory.name.toUpperCase() }}</component>
       <transition
@@ -18,16 +18,14 @@
 </template>
 
 <script>
-import manifest from '~/assets/json/manifest.json'
+import directories from '~/assets/json/manifest.json'
 
 export default {
   setup() {
+    const frameworks = ['Vue', 'React', 'Svelte', 'agnostic']
+
     // TODO: filter based on framwork, with enter/leave transitions
-    const directories = manifest,
-          frameworks = ['Vue', 'React', 'Svelte', 'agnostic']
 
-
-    console.log(directories)
     return {
       directories,
       frameworks

@@ -1,4 +1,5 @@
 import Vue from 'vue'
+import BaleadaLogo from '~/components/global/BaleadaLogo.vue'
 import CompositionArticle from '~/components/global/CompositionArticle.vue'
 import IconArticle from '~/components/global/IconArticle.vue'
 import LibraryArticle from '~/components/global/LibraryArticle.vue'
@@ -7,6 +8,7 @@ import NiftyAside from '~/components/global/NiftyAside.vue'
 import SubclassArticle from '~/components/global/SubclassArticle.vue'
 import UpdatedAt from '~/components/global/UpdatedAt.vue'
 
+Vue.component('BaleadaLogo', BaleadaLogo)
 Vue.component('CompositionArticle', CompositionArticle)
 Vue.component('IconArticle', IconArticle)
 Vue.component('LibraryArticle', LibraryArticle)
