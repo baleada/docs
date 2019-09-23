@@ -20,24 +20,17 @@
         <div class="mt-4 md:mt-0 flex-1 flex items-center justify-center md:border-r border-gray-600">
           <a
             class="hover:text-primary-gray-200 transition"
-            href="https://gitlab.com/alexvipond"
+            href="https://gitlab.com/baleada"
           >
-            <span class="hidden">View GitLab profile</span>
-            <SimpleGitlab class="h-7 w-7" />
+            <span class="hidden">View on GitLab</span>
+            <SimpleGitLab :class="'icon h-7 w-7'" />
           </a>
           <a
             class="ml-4 hover:text-primary-gray-200 transition"
-            href="https://twitter.com/alpalvipond"
+            href="https://twitter.com/baleadajs"
           >
             <span class="hidden">View Twitter profile</span>
-            <SimpleTwitter class="h-7 w-7" />
-          </a>
-          <a
-            class="ml-4 hover:text-primary-gray-200 transition"
-            href="mailto:hello@alexvipond.dev"
-          >
-            <span class="hidden">Send email</span>
-            <EvaEmail class="h-7 w-7" />
+            <SimpleTwitter :class="'icon h-7 w-7'" />
           </a>
         </div>
         <!-- Spacer -->
@@ -45,7 +38,7 @@
         <div class="mt-7 md:mt-0 flex-1 flex flex-col items-center justify-center md:items-start md:pl-5">
           <span class="">&copy; {{ new Date().getFullYear() }} Alex Vipond</span>
           <span class="mt-7 md:mt-1">
-            Site by <a class="underline hover:text-primary-gray-200 transition" href="https://alexvipond.dev">Alex Vipond</a> 🌱
+            Created by <a class="underline hover:text-primary-gray-200 transition" href="https://alexvipond.dev">Alex Vipond</a> 🌱
           </span>
         </div>
       </div>
@@ -54,20 +47,25 @@
 </template>
 
 <script>
-import allPages from '../assets/json/pages.json'
-
-import SimpleGitlab from './SimpleGitlab.vue'
-import SimpleTwitter from './SimpleTwitter.vue'
-import EvaEmail from './EvaEmail.vue'
+import { SimpleGitLab } from '@baleada/icons/vue'
+import { SimpleTwitter } from '@baleada/icons/vue'
 
 export default {
   components: {
-    SimpleGitlab,
+    SimpleGitLab,
     SimpleTwitter,
-    EvaEmail,
   },
   setup() {
-    const pages = allPages.filter(page => page.footer)
+    const pages = [
+      {
+        name: 'Home',
+        href: '/',
+      },
+      {
+        name: 'Docs',
+        href: '/docs',
+      },
+    ]
 
     return {
       pages

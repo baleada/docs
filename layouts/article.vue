@@ -6,7 +6,7 @@
     >
       <header class="flex items-center py-3 border-b border-gray-300">
         <NuxtLink to="/" class="flex-none rounded-full h-10 w-10 bg-primary-600 p-2 -shadow transition btn-grows">
-          <BaleadaLogo class="-mt-px" />
+          <BaleadaLogo ref="logo" class="-mt-px" />
         </NuxtLink>
       </header>
 
@@ -51,14 +51,17 @@
         class="flex-1 long-form px-7 sm:px-9 lg:pl-11 pb-12 pt-11 lg:mr-10 transition"
       >
         <nuxt key="content" />
-        <AdjacentArticleLinks class="mt-16" key="previous-next" :route="route"/>
+        <AdjacentArticleLinks
+          class="mt-10"
+          :fullPath="fullPath"
+        />
       </section>
     </article>
   </main>
 </template>
 
 <script>
-import { ref, computed, onMounted, onBeforeUnmount } from '@vue/composition-api'
+import { ref, computed, watch, onMounted, onBeforeUnmount } from '@vue/composition-api'
 
 import useTouchable from '../assets/js/baleada/composition/useTouchable'
 import { useRouter } from '@u3u/vue-hooks'
@@ -146,15 +149,21 @@ export default {
     /* Highlight code */
 
     /* Track route */
-    const { route } = useRouter()
+    const { route } = useRouter(),
+          fullPath = computed(() => route.value.fullPath)
 
+    const logo = ref(null)
+    onMounted(() => {
+      console.log(logo)
+    })
     return {
       toggleNav,
       handleNavClick,
       navIsOpen,
       nav,
       article,
-      route
+      fullPath,
+      logo
     }
   },
 }

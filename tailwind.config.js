@@ -56,6 +56,7 @@ module.exports = {
     fontFamily: {
       sans: ['Fira Sans', ...defaultTheme.fontFamily.sans],
       mono: ['Fira Mono', ...defaultTheme.fontFamily.mono],
+      display: ['Caveat', ...defaultTheme.fontFamily.sans],
     },
     colors: {
       ...defaultTheme.colors,

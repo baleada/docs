@@ -1,5 +1,16 @@
 <template functional>
-  <svg :class="data.class" viewBox="0 0 1000 1000" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <svg
+    viewBox="0 0 1000 1000"
+    fill="none"
+    xmlns="http://www.w3.org/2000/svg"
+    preserveAspectRatio="xMidYMid meet"
+    v-bind="data.attrs"
+    v-on="listeners"
+    :class="data.class"
+    :ref="data.ref"
+    :key="data.key"
+    :slot="data.slot"
+  >
     <g clip-path="url(#baleada-logo-clip)">
       <g :filter="props.hasShadow ? 'url(#baleada-logo-shadow)' : ''">
         <mask id="baleada-logo-mask" mask-type="alpha" maskUnits="userSpaceOnUse" x="49" y="81" width="901" height="866">

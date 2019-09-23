@@ -16,7 +16,7 @@
 </template>
 
 <script>
-import { computed } from '@vue/composition-api'
+import { computed, watch } from '@vue/composition-api'
 
 import directories from '~/assets/json/manifest.json'
 
@@ -29,21 +29,24 @@ export default {
     EvaArrowheadRight
   },
   props: {
-    route: {
+    fullPath: {
+      type: String,
       required: true
-    }
+    },
   },
-  setup({ route }) {
+  setup(props) {
     const pages = directories.reduce((pages, directory) => pages.concat(directory.pages), []),
           routeMatches = (pageHref, basePath) => {
             return (
-              pageHref === route.fullPath ||
-              pageHref === route.fullPath.replace(/\/$/,'') ||
-              pageHref === `${route.fullPath}/`.replace(/\/+$/,'/')
+              pageHref === basePath ||
+              pageHref === basePath.replace(/\/$/,'') ||
+              pageHref === `${basePath}/`.replace(/\/+$/,'/')
             )
           },
-          basePath = computed(() => route.fullPath.split('#')[0]),
-          currentIndex = computed(() => pages.findIndex(page => routeMatches(page.href, basePath.value))),
+          currentIndex = computed(() => {
+            const basePath = props.fullPath.split('#')[0]
+            return pages.findIndex(page => routeMatches(page.href, basePath))
+          }),
           previous = computed(() => currentIndex.value - 1 === -1 ? undefined : pages[currentIndex.value - 1]),
           next = computed(() => currentIndex.value + 1 > pages.length ? undefined : pages[currentIndex.value + 1])
 
