@@ -18,7 +18,7 @@
 </template>
 
 <script>
-import directories from '~/assets/json/manifest.json'
+import directories from '~/static/json/manifest.json'
 
 export default {
   setup() {

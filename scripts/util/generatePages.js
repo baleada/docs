@@ -14,7 +14,9 @@ function generatePages (metadata) {
 function toPage ({ title, body, updatedAt }) {
   return `\
 <template lang="md">\n\
+<NiftyHeading :level="1">
 # ${title}\n\
+</NiftyHeading>
 <UpdatedAt timestamp="${updatedAt}" />\n\
 \n\
 ${body}</template>\n\

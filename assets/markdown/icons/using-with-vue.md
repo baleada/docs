@@ -4,6 +4,28 @@ framework: Vue
 publish: true
 ---
 
+<NiftyHeading level="2">
+Import a component (allows for tree-shaking)
+</NiftyHeading>
+
+All `@baleada/icons` Vue components are [functional components](https://vuejs.org/v2/guide/render-function.html#Functional-Components). They can be imported from `@baleada/icons/vue` for local or global registration.
+
+```js
+import { EvaGlobe2 } from '@baleada/icons/vue'
+
+export default {
+  components: {
+    EvaGlobe2,
+  },
+  ...
+}
+```
+
+
+<NiftyHeading level="2">
+Use a component
+</NiftyHeading>
+
 All components will render an SVG of their icon. The SVG has 4 default attributes:
 
 ```html

@@ -249,6 +249,7 @@ module.exports = {
     inset: (theme, { negative }) => ({
       auto: 'auto',
       ...theme('spacing'),
+      ...fractions('%'),
       ...negative(theme('spacing'))
     }),
     objectPosition: {

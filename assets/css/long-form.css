@@ -173,11 +173,11 @@
     @apply w-full rounded shadow-2;
   }
 
-  a:not(.btn) {
-    @apply text-primary-900 no-underline;
+  :not(.nifty-heading) > a:not(.btn) {
+    @apply text-primary-700 no-underline;
 
     &:visited {
-      @apply text-primary-800;
+      @apply text-primary-500;
     }
 
     &:hover {

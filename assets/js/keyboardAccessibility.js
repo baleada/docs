@@ -1,4 +1,4 @@
-function useGrid (gridContainerRef) {
+function useGrid (gridContainerGetter) {
   /* https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Roles/Grid_Role */
   const handlers = {
     arrowright: evt => {
@@ -33,11 +33,13 @@ function useGrid (gridContainerRef) {
     },
     arrowup: evt => {
       // ↑ Moves focus one cell up. If focus is on the top cell in the column, focus does not move.
-      const currentRow = evt.target.parentNode,
-            currentRowIsFirst = currentRow.matches(':first-child'),
-            previousRow = currentRowIsFirst ? currentRow.parentNode.previousElementSibling.children[0] : currentRow.previousElementSibling
+      const currentRowIsHeader = evt.target.matches('[role="columnheader"]')
 
-      if (previousRow !== null) {
+      if (!currentRowIsHeader) {
+        const currentRow = evt.target.parentNode,
+              currentRowIsFirst = currentRow.matches(':first-child'),
+              previousRow = currentRowIsFirst ? currentRow.parentNode.previousElementSibling.children[0] : currentRow.previousElementSibling
+
         let i = 0, targetIndex
         while (targetIndex === undefined) {
           if (currentRow.children[i].isSameNode(evt.target)) {
@@ -62,6 +64,49 @@ function useGrid (gridContainerRef) {
 
       cells[lastCell].focus()
     },
+    'meta+arrowleft': function(evt) {
+      this.home(evt)
+    },
+    'meta+arrowright': function(evt) {
+      this.end(evt)
+    },
+    'meta+arrowup': function(evt) {
+      const currentRowIsHeader = evt.target.matches('[role="columnheader"]')
+
+      if (!currentRowIsHeader) {
+        const currentRow = evt.target.parentNode,
+              header = currentRow.parentNode.previousElementSibling.children[0]
+
+        let i = 0, targetIndex
+        while (targetIndex === undefined) {
+          if (currentRow.children[i].isSameNode(evt.target)) {
+            targetIndex = i
+          }
+          i++
+        }
+
+        header.children[targetIndex].focus()
+      }
+    },
+    'meta+arrowdown': evt => {
+      const currentRow = evt.target.parentNode,
+            currentRowIsHeader = evt.target.matches('[role="columnheader"]'),
+            rows = currentRowIsHeader ? currentRow.parentNode.nextElementSibling.children : currentRow.parentNode.children,
+            lastRowIndex = rows.length - 1,
+            cells = rows[lastRowIndex].children
+
+      if (!currentRow.isSameNode(rows[lastRowIndex])) {
+        let i = 0, targetIndex
+        while (targetIndex === undefined) {
+          if (currentRow.children[i].isSameNode(evt.target)) {
+            targetIndex = i
+          }
+          i++
+        }
+
+        cells[targetIndex].focus()
+      }
+    },
     'meta+home': evt => {
       // ctrl + Home Moves focus to the first cell in the first row.
       const currentRow = evt.target.parentNode,
@@ -72,11 +117,12 @@ function useGrid (gridContainerRef) {
     'meta+end': evt => {
       // ctrl + End Moves focus to the last cell in the last row.
       const currentRow = evt.target.parentNode,
-            firstRow = currentRow.parentNode.children[0],
-            cells = firstRow.children,
-            lastCell = cells.length - 1
+            rows = currentRow.parentNode.children,
+            lastRowIndex = rows.length - 1,
+            cells = rows[lastRowIndex].children,
+            lastCellIndex = cells.length - 1
 
-      cells[lastCell].focus()
+      cells[lastCellIndex].focus()
     },
   }
   // Page Down Moves focus down an author-determined number of rows, typically scrolling so the bottom row in the currently visible set of rows becomes one of the first visible rows. If focus is in the last row of the grid, focus does not move.
@@ -85,10 +131,10 @@ function useGrid (gridContainerRef) {
   function handler (evt) {
     const key = evt.key.toLowerCase()
 
-    if (gridContainerRef.value.isSameNode(document.activeElement)) {
+    if (gridContainerGetter().isSameNode(document.activeElement)) {
       if (handlers.hasOwnProperty(key)) {
         evt.preventDefault()
-        gridContainerRef.value.querySelector('[role="columnheader"]').focus()
+        gridContainerGetter().querySelector('[role="columnheader"]').focus()
       }
     } else if (evt.ctrlKey || evt.metaKey) {
       if (handlers.hasOwnProperty(`meta+${key}`)) {

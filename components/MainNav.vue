@@ -13,7 +13,7 @@
 </template>
 
 <script>
-import allPages from '../assets/json/pages.json'
+import allPages from '../static/json/pages.json'
 
 export default {
   setup() {

@@ -18,7 +18,7 @@
 
 <script>
 import useNifty from '~/assets/js/useNifty'
-import toGrid from '~/assets/js/toGrid'
+import { toGrid } from '~/assets/js/postRender'
 import { useGrid } from '~/assets/js/keyboardAccessibility'
 
 export default {
@@ -37,13 +37,13 @@ export default {
     }
   },
   setup() {
-    const nifty = useNifty({ postMd: toGrid })
+    const nifty = useNifty({ postRender: toGrid })
 
     function handleFilterQuery ({ target: { value } }) {
       // filter based on value
     }
 
-    const handleKeydown = useGrid(nifty)
+    const handleKeydown = useGrid(() => nifty.value)
 
     return {
       nifty,

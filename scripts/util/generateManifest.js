@@ -18,7 +18,7 @@ function generateManifest (metadata) {
           }),
         ]
 
-  fs.writeFileSync('./assets/json/manifest.json', JSON.stringify(manifest, null, 2))
+  fs.writeFileSync('./static/json/manifest.json', JSON.stringify(manifest, null, 2))
 
   console.log(`Generated manifest with ${published.length} articles`)
 }

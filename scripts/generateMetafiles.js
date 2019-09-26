@@ -9,8 +9,8 @@ function generateMetafiles () {
   const files = getFiles('./assets/markdown'),
         metadata = getMetadata(files)
 
-  fs.writeFileSync('./assets/json/metadata.json', JSON.stringify(metadata, null, 2))
-  // generateDirectories(metadata)
+  fs.writeFileSync('./static/json/metadata.json', JSON.stringify(metadata, null, 2))
+  generateDirectories(metadata)
   generatePages(metadata)
   generateManifest(metadata)
   generateSearchable(metadata)
@@ -60,5 +60,5 @@ function toPathMetadata (path) {
   return { fileName, href }
 }
 
-module.exports = generateMetafiles
-// generateMetafiles()
+// module.exports = generateMetafiles
+generateMetafiles()

@@ -1,6 +1,24 @@
 <template lang="md">
+<NiftyHeading :level="1">
 # Using with React
-<UpdatedAt timestamp="Wed Sep 25 2019 14:35:56 GMT-0600 (CST)" />
+</NiftyHeading>
+<UpdatedAt timestamp="Thu Sep 26 2019 16:41:14 GMT-0600 (CST)" />
+
+<NiftyHeading level="2">
+Import a component (allows for tree-shaking)
+</NiftyHeading>
+
+React `@baleada/icons` components can be imported from `@baleada/icons/react`.
+
+```js
+import { EvaGlobe2 } from '@baleada/icons/react'
+```
+
+
+<NiftyHeading level="2">
+Use a component
+</NiftyHeading>
+
 
 All components will render an SVG of their icon. The SVG has 4 default attributes:
 

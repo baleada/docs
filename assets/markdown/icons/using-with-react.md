@@ -4,6 +4,22 @@ framework: React
 publish: true
 ---
 
+<NiftyHeading level="2">
+Import a component (allows for tree-shaking)
+</NiftyHeading>
+
+React `@baleada/icons` components can be imported from `@baleada/icons/react`.
+
+```js
+import { EvaGlobe2 } from '@baleada/icons/react'
+```
+
+
+<NiftyHeading level="2">
+Use a component
+</NiftyHeading>
+
+
 All components will render an SVG of their icon. The SVG has 4 default attributes:
 
 ```html

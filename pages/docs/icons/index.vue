@@ -1,8 +1,14 @@
 <template lang="md">
+<NiftyHeading :level="1">
 # What is Baleada Icons?
-<UpdatedAt timestamp="Wed Sep 25 2019 14:34:03 GMT-0600 (CST)" />
+</NiftyHeading>
+<UpdatedAt timestamp="Thu Sep 26 2019 17:41:33 GMT-0600 (CST)" />
 
 Baleada Icons is a collection of components that render SVG icons.
+
+<NiftyAside type="info">
+All icons used in the Baleada docs are sourced from Baleada Icons 😎
+</NiftyAside>
 
 Icons are sourced from the following icon sets:
 - [Simple Icons](https://simpleicons.org/)
@@ -13,19 +19,21 @@ Each icon in those sets has a corresponding component for the following framewor
 - [React](https://reactjs.org/)
 
 <NiftyAside type="info">
-  <p>
-    Didn't see your favorite icon set or framework in the list? Feel free to <a href="https://gitlab.com/baleada/icons/issues">raise an issue</a> to ask for support.
-  </p>
+Didn't see your favorite icon set or framework in the list? Feel free to [raise an issue](https://gitlab.com/baleada/icons/issues) to ask for support.
 </NiftyAside>
 
 
-## Install
+<NiftyHeading level="2">
+Install
+</NiftyHeading>
 
 ```bash
 npm i @baleada/icons
 ```
 
-## Available components
+<NiftyHeading level="2">
+Available components
+</NiftyHeading>
 
 `@baleada/icons` includes a component for each individual icon in the Eva Icons and Simple Icons icon sets.
 
@@ -35,7 +43,7 @@ Eva icons' names are created by removing all hyphens and capitalizing the first 
 
 Eva icon component examples:
 
-<NiftyTable>
+<NiftyTable ariaLabel="Table of examples showing how Baleada transforms Eva icon names into component names">
 | Original icon name | Component name |
 | --- | --- |
 | bulb | `EvaBulb` |
@@ -48,7 +56,7 @@ Simple icons' names are created by:
 2. Replacing special characters as indicated in the table below
 3. Capitalizing the first letter of each word and **preserving** the original case of other letters in the word
 
-<NiftyTable>
+<NiftyTable ariaLabel="Table showing how Baleada replaces special characters in Simple icon names">
 | Special character | Replacement |
 | --- | --- |
 | `.` | Dot |
@@ -66,7 +74,7 @@ Simple icons' names are created by:
 
 Simple icon component examples:
 
-<NiftyTable>
+<NiftyTable ariaLabel="Table of examples showing how Baleada transforms Simple icon names into component names">
 | Original icon name | Component name | Notice: |
 | --- | --- | --- |
 | Geocaching | `SimpleGeocaching` | Nothing special here! |
@@ -81,46 +89,20 @@ Simple icon component examples:
 For a full list of available components, <NuxtLink to="#full-component-list">jump to the last section of this article</NuxtLink>.
 
 
-## Import a component (allows for tree-shaking)
+<NiftyHeading level="2">
+Import and use the components
+</NiftyHeading>
 
-### Vue
-
-All `@baleada/icons` Vue components are [functional components](https://vuejs.org/v2/guide/render-function.html#Functional-Components). They can be imported from `@baleada/icons/vue` for local or global registration.
-
-
-```js
-import { EvaGlobe2 } from '@baleada/icons/vue'
-
-export default {
-  components: {
-    EvaGlobe2,
-  },
-  ...
-}
-```
-
-
-### React
-
-React `@baleada/icons` components can be imported from `@baleada/icons/react`.
-
-```js
-import { EvaGlobe2 } from '@baleada/icons/react'
-```
-
-
-## Use the components
-
-For more guidance on how to use the components, see one of the following framework-specific guides:
+For more guidance on how to import and use the components, see one of the following framework-specific guides:
 - <NuxtLink to="/docs/icons/using-with-vue">Using icons with Vue</NuxtLink>
 - <NuxtLink to="/docs/icons/using-with-react">Use icons with React</NuxtLink>
 
 
-## Full component list
+<NiftyHeading level="2">
+Full component list
+</NiftyHeading>
 
-<!-- TODO: type to filter -->
-
-<NiftyTable hasMaxH>
+<NiftyTable hasMaxH isTypeToFilterable ariaLabel="Full list of Baleada Icons components">
 | Component name |
 | --- |
 | EvaActivity |

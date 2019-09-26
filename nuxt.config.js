@@ -2,7 +2,7 @@ import pkg from './package'
 import purgecssConfig from './config/purgecss.config'
 import headConfig from './config/head.config'
 import markdownitConfig from './config/markdownit.config'
-import GenerateMetafilesPlugin from './scripts/webpack-plugins/generateMetafiles'
+//  import GenerateMetafilesPlugin from './scripts/webpack-plugins/generateMetafiles'
 
 export default {
   mode: 'spa',

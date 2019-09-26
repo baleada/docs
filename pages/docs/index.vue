@@ -1,6 +1,8 @@
 <template lang="md">
+<NiftyHeading :level="1">
 # What is Baleada?
-<UpdatedAt timestamp="Sun Sep 22 2019 11:18:35 GMT-0600 (CST)" />
+</NiftyHeading>
+<UpdatedAt timestamp="Thu Sep 26 2019 16:37:43 GMT-0600 (CST)" />
 
 Honduras's favorite food is the **baleada**—a fresh flour tortilla, spread with refried beans, then decorated with scrambled eggs, mantequilla, queso seco, avocado, or meat, and finally folded in half.
 
@@ -14,15 +16,14 @@ Getting down to brass tacks, Baleada offers the following types of tools:
 - Icon components
 
 <NiftyAside>
-  <p>
-    Feeling a little fuzzy on what these terms mean? Check out the guide on <NuxtLink to="/docs/types-of-tools">types of tools</NuxtLink> for definitions.
-  </p>
+Feeling a little fuzzy on what these terms mean? Check out the guide on <NuxtLink to="/docs/types-of-tools">types of tools</NuxtLink> for definitions.
 </NiftyAside>
 
 Think of these tools as the ingredients in a savory, delectable baleada. You're encouraged to take what you want and sprinkle it into the stack you're already using to build your apps and websites. You're free to take just a few things, but if you're so inclined, you can really pile on the extras.s
 
-
-## Who is Baleada designed for?
+<NiftyHeading level="2">
+Who is Baleada designed for?
+</NiftyHeading>
 
 Baleada is designed for developers who:
 - **Do** want to add common UI features and behaviors to their app, but **don't** want to think about implementation details.

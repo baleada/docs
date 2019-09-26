@@ -1,5 +1,5 @@
 <script>
-import metadata from '~/assets/json/metadata.json'
+import metadata from '~/static/json/metadata.json'
 
 import useMarkdownit from '~/assets/js/useMarkdownit'
 

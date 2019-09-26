@@ -18,7 +18,7 @@
 <script>
 import { computed, watch } from '@vue/composition-api'
 
-import directories from '~/assets/json/manifest.json'
+import directories from '~/static/json/manifest.json'
 
 import { EvaArrowheadLeft } from '@baleada/icons/vue'
 import { EvaArrowheadRight } from '@baleada/icons/vue'

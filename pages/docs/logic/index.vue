@@ -1,5 +1,7 @@
 <template lang="md">
+<NiftyHeading :level="1">
 # What is Baleada Logic?
+</NiftyHeading>
 <UpdatedAt timestamp="Sun Sep 22 2019 00:14:07 GMT-0600 (CST)" />
 
 </template>

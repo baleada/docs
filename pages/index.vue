@@ -4,7 +4,7 @@
       ref="logo"
       :class="'-ml-2 h-13 w-13 sm:h-14 sm:w-14 md:h-15 md:w-15 text-primary-100'"
       :hasShadow="true"
-      @mouseover.native="handleLogoMouseover"
+      @mouseover="handleLogoMouseover"
     />
 
     <h1 class="mt-6 font-display font-600 text-8 sm:text-9 md:text-10 text-center text-shadow-2 tracking-2 text-primary-100">Baleada&nbsp;</h1>
@@ -86,6 +86,7 @@ export default {
             const target = anim.children[0].animatables[0].target
             set(target, { rotate: '0deg' })
             navigable.next()
+            console.log(navigable.location)
           },
           currentAnimation = computed(() => navigable.array[navigable.location]),
           animation = computed(() => {
@@ -109,10 +110,10 @@ export default {
     const logo = ref(null)
     let animatable = {}
     onMounted(() => {
-      animatable = useAnimatable(logo, options.value)
+      animatable = useAnimatable(logo.value, options.value)
     })
     watch(() => {
-      animatable = useAnimatable(logo, options.value)
+      animatable = useAnimatable(logo.value, options.value)
     })
 
     function handleLogoMouseover () {
@@ -121,7 +122,8 @@ export default {
 
     return {
       logo,
-      animatable
+      animatable,
+      handleLogoMouseover
     }
   }
 }
