@@ -64,7 +64,12 @@
 import { ref, computed, watch, onMounted, onBeforeUnmount } from '@vue/composition-api'
 
 import useTouchable from '../assets/js/baleada/composition/useTouchable'
-import { useRouter } from '@u3u/vue-hooks'
+import useRouter from '../assets/js/useRouter'
+import useNextTick from '~/assets/js/useNextTick'
+
+import highlightCode from '~/assets/js/highlightCode'
+import scrollToHeader from '~/assets/js/scrollToHeader'
+import wrapElements from '~/assets/js/wrapElements'
 
 import DocsNav from '~/components/DocsNav.vue'
 import AdjacentArticleLinks from '~/components/AdjacentArticleLinks.vue'
@@ -80,9 +85,6 @@ export default {
     EvaClose
   },
   setup(props, context) {
-    /* Scroll to anchor */
-
-
     /* Manage nav state */
     const navIsOpen = ref(false),
           toggleNav = () => (navIsOpen.value = !navIsOpen.value),
@@ -146,24 +148,39 @@ export default {
       touchableArticle.destroy()
     })
 
-    /* Highlight code */
-
     /* Track route */
     const { route } = useRouter(),
           fullPath = computed(() => route.value.fullPath)
 
-    const logo = ref(null)
-    onMounted(() => {
-      console.log(logo)
-    })
+
+    /* Things to do when page is loaded */
+    function onLoad (container) {
+      // highlightCode()
+      scrollToHeader(fullPath, { container })
+      // wrapElements({
+      //   container,
+      //   classes: ['table-wrapper', 'scrollable'],
+      //   selector: 'table'
+      // })
+    }
+    let timeoutID
+    watch(
+      fullPath,
+      () => {
+        window.clearTimeout(timeoutID)
+        timeoutID = window.setTimeout(() => {
+          onLoad(article.value)
+        }, 50)
+      }
+    )
+
     return {
       toggleNav,
       handleNavClick,
       navIsOpen,
       nav,
       article,
-      fullPath,
-      logo
+      fullPath
     }
   },
 }

@@ -1,5 +1,5 @@
 const fs = require('fs'),
-      { getDirs } = require('./getDirs.js')
+      getDirs = require('./getDirs.js')
 
 function generateDirectories () {
   const dirs = getDirs('./assets/markdown')
@@ -13,6 +13,4 @@ function generateDirectories () {
   console.log(`Generated ${dirs.length} directories`)
 }
 
-module.exports = {
-  generateDirectories
-}
+module.exports = generateDirectories

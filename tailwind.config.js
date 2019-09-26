@@ -54,7 +54,7 @@ const screenWidthUtilities = (defaultTheme) => ({
 module.exports = {
   theme: {
     fontFamily: {
-      sans: ['Fira Sans', ...defaultTheme.fontFamily.sans],
+      sans: ['Inter', ...defaultTheme.fontFamily.sans],
       mono: ['Fira Mono', ...defaultTheme.fontFamily.mono],
       display: ['Caveat', ...defaultTheme.fontFamily.sans],
     },

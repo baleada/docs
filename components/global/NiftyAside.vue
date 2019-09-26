@@ -1,5 +1,5 @@
 <template lang="html">
-  <aside class="aside" :class="[`aside-${type}`]">
+  <aside class="nifty-aside" :class="[`aside-${type}`]">
     <div>
       <div v-if="type === 'info'" class="aside-icon">
         <EvaInfo :class="'fill-current'"/>
@@ -14,14 +14,15 @@
         <EvaAward :class="'fill-current'"/>
       </div>
     </div>
-    <div>
-      <!-- TODO: Figure out how to inject markdown -->
+    <div ref="nifty">
       <slot></slot>
     </div>
   </aside>
 </template>
 
 <script>
+import useNifty from '~/assets/js/useNifty'
+
 import { EvaInfo } from '@baleada/icons/vue'
 import { EvaAlertTriangle } from '@baleada/icons/vue'
 import { EvaFlash } from '@baleada/icons/vue'
@@ -41,6 +42,13 @@ export default {
       validator: (value) => {
         return ['info', 'warning', 'danger', 'success'].indexOf(value) !== -1;
       }
+    }
+  },
+  setup() {
+    const nifty = useNifty()
+
+    return {
+      nifty
     }
   },
 }

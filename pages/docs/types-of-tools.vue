@@ -1,6 +1,6 @@
 <template lang="md">
 # Types of tools
-<UpdatedAt timestamp="Sun Sep 22 2019 11:18:40 GMT-0600 (CST)" />
+<UpdatedAt timestamp="Wed Sep 25 2019 13:47:10 GMT-0600 (CST)" />
 
 Each tool in the Baleada app-building toolkit falls into one of the following categories:
 - <NuxtLink to="#ui-logic">UI logic</NuxtLink>
@@ -9,11 +9,13 @@ Each tool in the Baleada app-building toolkit falls into one of the following ca
 
 Each category of tools has its own NPM package that you can install:
 
+<NiftyTable>
 | Tool category | NPM package |
 | --- | --- |
 | UI logic | `@baleada/logic` |
 | Composition functions | `@baleada/composition` |
 | Icon components | `@baleada/icons` |
+</NiftyTable>
 
 If you're itching to install those packages and get started with the tools they offer, you can check out the dedicated guides for <NuxtLink to="/docs/logic">Baleada Logic</NuxtLink>, <NuxtLink to="/docs/composition">Baleada Composition</NuxtLink>, and <NuxtLink to="/docs/icons">Baleada Icons</NuxtLink>.
 

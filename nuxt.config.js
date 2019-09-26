@@ -2,6 +2,7 @@ import pkg from './package'
 import purgecssConfig from './config/purgecss.config'
 import headConfig from './config/head.config'
 import markdownitConfig from './config/markdownit.config'
+import GenerateMetafilesPlugin from './scripts/webpack-plugins/generateMetafiles'
 
 export default {
   mode: 'spa',
@@ -48,7 +49,7 @@ export default {
   plugins: [
     '~/plugins/global-components',
     '~/plugins/example-components',
-    '~/plugins/vue-hooks',
+    '~/plugins/runtime',
     '~/plugins/vue-composition-api',
   ],
 
@@ -86,5 +87,25 @@ export default {
         autoprefixer: {}
       }
     },
+    extend: config => {
+      // config.plugins.push(new GenerateMetafilesPlugin())
+    }
+  },
+  watchers: {
+    chokidar: {
+      ignoreInitial: true,
+      ignored: [
+        'pages/docs',
+        'assets/json/**/*.json',
+        'node_modules',
+      ]
+    },
+    webpack: {
+      ignored: [
+        'pages/docs',
+        'assets/json/**/*.json',
+        'node_modules',
+      ]
+    }
   }
 }

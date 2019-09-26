@@ -5,6 +5,7 @@ import IconArticle from '~/components/global/IconArticle.vue'
 import LibraryArticle from '~/components/global/LibraryArticle.vue'
 import NiftyArticle from '~/components/global/NiftyArticle.vue'
 import NiftyAside from '~/components/global/NiftyAside.vue'
+import NiftyTable from '~/components/global/NiftyTable.vue'
 import SubclassArticle from '~/components/global/SubclassArticle.vue'
 import UpdatedAt from '~/components/global/UpdatedAt.vue'
 
@@ -14,5 +15,6 @@ Vue.component('IconArticle', IconArticle)
 Vue.component('LibraryArticle', LibraryArticle)
 Vue.component('NiftyArticle', NiftyArticle)
 Vue.component('NiftyAside', NiftyAside)
+Vue.component('NiftyTable', NiftyTable)
 Vue.component('SubclassArticle', SubclassArticle)
 Vue.component('UpdatedAt', UpdatedAt)

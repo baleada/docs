@@ -1,5 +1,5 @@
 ---
-title: Using Baleada Icons with Svelte
+title: Using with Svelte
 framework: Svelte
 publish: false
 ---

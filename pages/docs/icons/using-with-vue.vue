@@ -1,8 +1,6 @@
----
-title: Using with Vue
-framework: Vue
-publish: true
----
+<template lang="md">
+# Using with Vue
+<UpdatedAt timestamp="Wed Sep 25 2019 14:35:59 GMT-0600 (CST)" />
 
 All components will render an SVG of their icon. The SVG has 4 default attributes:
 
@@ -33,3 +31,13 @@ These 4 attributes are easy to override or expand—all of the component's attri
 
 <script>...</script>
 ```
+</template>
+
+<script>
+export default {
+  layout: 'article',
+  head: () => ({
+    title: 'Baleada - Using with Vue',
+  })
+}
+</script>

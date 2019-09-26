@@ -11,6 +11,4 @@ function getDirs (dir) {
     }, [])
 }
 
-module.exports = {
-  getDirs
-}
+module.exports = getDirs

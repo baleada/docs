@@ -38,6 +38,4 @@ function write (article, { path }) {
   fs.writeFileSync(pagesPath, article)
 }
 
-module.exports = {
-  generatePages
-}
+module.exports = generatePages

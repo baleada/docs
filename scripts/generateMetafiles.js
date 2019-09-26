@@ -1,19 +1,19 @@
 const fs = require('fs'),
       fm = require('front-matter'),
-      { generateDirectories } = require('./util/generateDirectories.js'),
-      { generatePages } = require('./util/generatePages.js'),
-      { generateManifest } = require('./util/generateManifest.js'),
-      { generateSearchable } = require('./util/generateSearchable.js')
+      generateDirectories = require('./util/generateDirectories.js'),
+      generatePages = require('./util/generatePages.js'),
+      generateManifest = require('./util/generateManifest.js'),
+      generateSearchable = require('./util/generateSearchable.js')
 
 function generateMetafiles () {
   const files = getFiles('./assets/markdown'),
         metadata = getMetadata(files)
 
   fs.writeFileSync('./assets/json/metadata.json', JSON.stringify(metadata, null, 2))
-  generateDirectories(metadata)
+  // generateDirectories(metadata)
   generatePages(metadata)
   generateManifest(metadata)
-  // generateSearchable(metadata)
+  generateSearchable(metadata)
 
   console.log(`Analyzed ${files.length} articles for metadata`)
 }
@@ -60,4 +60,5 @@ function toPathMetadata (path) {
   return { fileName, href }
 }
 
-generateMetafiles()
+module.exports = generateMetafiles
+// generateMetafiles()

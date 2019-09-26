@@ -2,14 +2,14 @@
   <section class="adjacent-article-links flex flex-col sm:flex-row">
     <NuxtLink v-if="previous !== undefined" :to="previous.href" class="btn btn-grows mr-auto">
       <div class="inline-flex items-center text-primary-600">
-        <EvaArrowheadLeft />
+        <EvaArrowheadLeft :class="'icon'"/>
         <span class="hover:no-underline">{{ previous.title }}</span>
       </div>
     </NuxtLink>
     <NuxtLink v-if="next !== undefined" :to="next.href" class="mt-2 sm:mt-0 btn btn-grows ml-auto">
       <div class="inline-flex items-center text-primary-600">
         <span class="hover:no-underline">{{ next.title }}</span>
-        <EvaArrowheadRight />
+        <EvaArrowheadRight :class="'icon'"/>
       </div>
     </NuxtLink>
   </section>

@@ -1,8 +1,6 @@
----
-title: Using with React
-framework: React
-publish: true
----
+<template lang="md">
+# Using with React
+<UpdatedAt timestamp="Wed Sep 25 2019 14:35:56 GMT-0600 (CST)" />
 
 All components will render an SVG of their icon. The SVG has 4 default attributes:
 
@@ -39,3 +37,13 @@ export default function MyComponent() {
   )
 }
 ```
+</template>
+
+<script>
+export default {
+  layout: 'article',
+  head: () => ({
+    title: 'Baleada - Using with React',
+  })
+}
+</script>

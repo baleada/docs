@@ -1,8 +1,11 @@
+import 'markdown-it-multimd-table'
+
 const config = {
-  preset: 'default',
-  linkify: true,
-  breaks: true,
+  html: true,
   injected: true,
+  use: [
+    ['markdown-it-multimd-table', { enableMultilineRows: true }],
+  ],
 }
 
 export default config

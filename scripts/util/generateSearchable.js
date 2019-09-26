@@ -2,6 +2,4 @@ function generateSearchable (metadata) {
 
 }
 
-module.exports = {
-  generateSearchable
-}
+module.exports = generateSearchable

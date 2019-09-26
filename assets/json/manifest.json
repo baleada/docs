@@ -17,6 +17,11 @@
   },
   {
     "level": 1,
+    "name": "build",
+    "pages": []
+  },
+  {
+    "level": 1,
     "name": "composition",
     "pages": [
       {
@@ -34,6 +39,16 @@
         "title": "What is Baleada Icons?",
         "framework": "agnostic",
         "href": "/docs/icons"
+      },
+      {
+        "title": "Using with React",
+        "framework": "React",
+        "href": "/docs/icons/using-with-react"
+      },
+      {
+        "title": "Using with Vue",
+        "framework": "Vue",
+        "href": "/docs/icons/using-with-vue"
       }
     ]
   },

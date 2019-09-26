@@ -1,5 +1,5 @@
 const fs = require('fs'),
-      { getDirs } = require('./getDirs.js')
+      getDirs = require('./getDirs.js')
 
 function generateManifest (metadata) {
   const published = metadata.filter(article => article.publish),
@@ -51,6 +51,4 @@ function compareOrder (a, b) {
   }
 }
 
-module.exports = {
-  generateManifest
-}
+module.exports = generateManifest
