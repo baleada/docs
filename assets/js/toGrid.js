@@ -13,11 +13,11 @@ const replacers = [
   },
   {
     regexp: /<th>/g,
-    replacement: '<div role="columnheader">',
+    replacement: '<div role="columnheader" tabindex="-1">',
   },
   {
     regexp: /<td>/g,
-    replacement: '<div role="gridcell">',
+    replacement: '<div role="gridcell" tabindex="-1">',
   },
   {
     regexp: /<\/(?:table|thead|tbody|tr|th|td)>/g,
