@@ -35,7 +35,7 @@
   "dependencies": {
     "@babel/plugin-proposal-class-properties": "^7.4.4",
     "@babel/plugin-proposal-private-methods": "^7.4.4",
-    "@baleada/icons": "^0.3.0",
+    "@baleada/icons": "^0.3.1",
     "@baleada/logic": "0.0.0",
     "@baleada/vue": "^0.0.2",
     "@nuxtjs/eslint-config": "0.0.1",

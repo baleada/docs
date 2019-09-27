@@ -46,65 +46,66 @@ export default {
     const logoAnimations = [
             // Wiggle
             {
-              speed: 0.5,
               direction: 'alternate',
               loop: 6,
               children: [
-                { rotate: '12deg', easing: 'linear', duration: 70 },
+                { rotate: '12deg', easing: 'linear', duration: 120 },
               ],
             },
 
             // Spin
             {
-              speed: 0.5,
               children: [
-                { rotate: '360deg' },
+                { rotate: '360deg', duration: 1900 },
               ],
             },
 
             // Toss up and bounce
             {
-              speed: 0.5,
               children: [
-                { translateY: '-30%', easing: 'easeOutBack', duration: 200 },
+                { translateY: '-30%', easing: 'easeOutBack', duration: 420 },
                 { translateY: 0, easing: 'easeOutElastic(1, .3)' }
               ]
             },
 
             // Wind up and spin
             {
-              speed: 0.5,
               children: [
-                { rotate: '-42deg', easing: 'easeInBack', duration: 200 },
-                [{ rotate: `360deg` }, '+=200'],
+                { rotate: '-42deg', easing: 'easeInBack', duration: 400 },
+                [{ rotate: `360deg`, duration: 1250 }, '+=250'],
               ],
             },
           ],
+          animationCount = ref(0),
           navigable = useNavigable(logoAnimations),
-          logoAnimationIndex = ref(0),
           onComplete = (anim, set) => {
             const target = anim.children[0].animatables[0].target
             set(target, { rotate: '0deg' })
             navigable.next()
-            console.log(navigable.location)
+            animationCount.value += 1
           },
-          currentAnimation = computed(() => navigable.array[navigable.location]),
-          animation = computed(() => {
-            return ({ set }) => {
-              return {
-                autoplay: false,
-                complete: (anim) => onComplete(anim, set),
-                direction: currentAnimation.value.direction,
-                loop: currentAnimation.value.loop
-              }
+          currentAnimation = computed(() => {
+            if (animationCount.value) {
+              // Workaround to make this computed react properly
             }
+            return navigable.array[navigable.location]
           }),
+          getAnimation = ({ children, ...rest }) => ({ ...rest }),
+          animation = computed(() => ({
+            autoplay: false,
+            ...getAnimation(currentAnimation.value)
+          })),
           timelineChildren = computed(() => currentAnimation.value.hasOwnProperty('children') ? currentAnimation.value.children : undefined),
-          options = computed(() => ({
-            speed: currentAnimation.value.speed,
-            animation: animation.value,
-            timelineChildren: timelineChildren.value
-          }))
+          options = computed(() => {
+            return ({ set }) => ({
+              speed: currentAnimation.value.speed,
+              animation: {
+                ...animation.value,
+                complete: anim => onComplete(anim, set),
+              },
+              timelineChildren: timelineChildren.value
+            })
+          })
 
     /* Create and update animatable */
     const logo = ref(null)
