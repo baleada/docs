@@ -12,13 +12,13 @@
         "title": "Types of tools",
         "framework": "agnostic",
         "href": "/docs/types-of-tools"
+      },
+      {
+        "title": "Roadmap",
+        "framework": "agnostic",
+        "href": "/docs/roadmap"
       }
     ]
-  },
-  {
-    "level": 1,
-    "name": "build",
-    "pages": []
   },
   {
     "level": 1,

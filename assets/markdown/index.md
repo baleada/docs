@@ -9,12 +9,11 @@ Honduras's favorite food is the **baleada**—a fresh flour tortilla, spread wit
 
 You can't have a baleada without its core ingredients and presentation (tortilla spread with refried beans and folded in half), but once those requirements are met, you can be creative and combine ingredients that suit your tastebuds.
 
-Anyway, the Baleada you're here for is **a toolkit for building web apps**. Baleada is decidedly not a framework, it's not a standalone library, and although libraries for UI logic makes up the majority of the Baleada codebase, Baleada offers plenty of other tools.
-
-Getting down to brass tacks, Baleada offers the following types of tools:
+Anyway, the Baleada you're here for is **a toolkit for building web apps** (and websites). Getting down to brass tacks, Baleada offers the following types of tools:
 - UI logic
 - Composition functions (a.k.a. hooks)
-- Icon components
+- SVG icon components
+- More to come (<NuxtLink to="/docs/roadmap">see roadmap</NuxtLink>)
 
 <NiftyAside>
 Feeling a little fuzzy on what these terms mean? Check out the guide on <NuxtLink to="/docs/types-of-tools">types of tools</NuxtLink> for definitions.

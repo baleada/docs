@@ -1,9 +1,8 @@
----
-title: Roadmap
-framework: agnostic
-publish: true
-order: 2
----
+<template lang="md">
+<NiftyHeading :level="1">
+# Roadmap
+</NiftyHeading>
+<UpdatedAt timestamp="Thu Sep 26 2019 18:51:05 GMT-0600 (CST)" />
 
 <NiftyHeading level="2">
 Pre-1.0.0 to-do list
@@ -40,3 +39,13 @@ Ideas for other tool categories
 | Baleada Scaffold | CLI tool for scaffolding out Nuxt, Next, and Sapper projects with other Baleada tools pre-installed |
 | Baleada Baleadas | A gallery with photos of actual baleadas |
 </NiftyTable>
+</template>
+
+<script>
+export default {
+  layout: 'article',
+  head: () => ({
+    title: 'Baleada - Roadmap',
+  })
+}
+</script>

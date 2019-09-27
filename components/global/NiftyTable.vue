@@ -3,7 +3,7 @@
     <input v-if="isTypeToFilterable" type="text" @change="handleFilterQuery" />
     <div
       ref="nifty"
-      class="scrollable"
+      class="scrollable p-2px"
       :class="[
         hasMaxH ? 'max-h-2/3-screen' : ''
       ]"

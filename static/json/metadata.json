@@ -1,16 +1,5 @@
 [
   {
-    "title": "What is Baleada Build?",
-    "framework": "agnostic",
-    "publish": false,
-    "order": 0,
-    "body": "Config files and other resources for building/compiling apps\n",
-    "updatedAt": "2019-09-24T17:43:49.092Z",
-    "path": "./assets/markdown/build/index.md",
-    "fileName": "index",
-    "href": "/docs/build"
-  },
-  {
     "title": "What is Baleada Composition?",
     "framework": "agnostic",
     "publish": true,
@@ -97,8 +86,8 @@
     "framework": "agnostic",
     "publish": true,
     "order": 0,
-    "body": "Honduras's favorite food is the **baleada**—a fresh flour tortilla, spread with refried beans, then decorated with scrambled eggs, mantequilla, queso seco, avocado, or meat, and finally folded in half.\n\nYou can't have a baleada without its core ingredients and presentation (tortilla spread with refried beans and folded in half), but once those requirements are met, you can be creative and combine ingredients that suit your tastebuds.\n\nAnyway, the Baleada you're here for is **a toolkit for building web apps**. Baleada is decidedly not a framework, it's not a standalone library, and although libraries for UI logic makes up the majority of the Baleada codebase, Baleada offers plenty of other tools.\n\nGetting down to brass tacks, Baleada offers the following types of tools:\n- UI logic\n- Composition functions (a.k.a. hooks)\n- Icon components\n\n<NiftyAside>\nFeeling a little fuzzy on what these terms mean? Check out the guide on <NuxtLink to=\"/docs/types-of-tools\">types of tools</NuxtLink> for definitions.\n</NiftyAside>\n\nThink of these tools as the ingredients in a savory, delectable baleada. You're encouraged to take what you want and sprinkle it into the stack you're already using to build your apps and websites. You're free to take just a few things, but if you're so inclined, you can really pile on the extras.s\n\n<NiftyHeading level=\"2\">\nWho is Baleada designed for?\n</NiftyHeading>\n\nBaleada is designed for developers who:\n- **Do** want to add common UI features and behaviors to their app, but **don't** want to think about implementation details.\n- **Do** value consistency and predictability in JavaScript library APIs.\n- **Do** care about performance, best practices, internationalization, accessibility, and security, but **haven't** had time to fine-tune this stuff in the past, because they've always been too busy hacking together a custom autocomplete component or another 🤬 carousel for the who-knows-how-many-th time.\n- **Do** appreciate the role React hooks and Vue composition functions play in making web dev easier and more inclusive.\n- **Do** appreciate [the benefits of using SVG over icon fonts](http://www.fullstackradio.com/47).\n- **Do** appreciate documentation that makes them hungry.\n<!-- - **Do** want a design system to govern their styles, but **don't** want their apps and sites to look like everyone else's. -->\n\n<!-- <NiftyAside>\n  <p>\n    Baleada 1.0.0 will be optimized for developers building with <a href=\"http://vuejs.org/\">Vue.js</a>, styling with <a href=\"http://tailwindcss.com/\">TailwindCSS</a>, and using <a href=\"https://www.netlify.com\">Netlify</a> services like <a href=\"https://www.netlify.com/docs/identity/\">Identity</a> and <a href=\"https://www.netlify.com/products/functions/\">Functions</a>.\n  </p>\n  <p>\n    Future versions aim to not just support other stacks, but design specifically for them, as well. Check out the <NuxtLink to=\"/docs/roadmap\">roadmap</NuxtLink> for more info.\n  </p>\n</NiftyAside> -->\n",
-    "updatedAt": "2019-09-26T22:37:43.638Z",
+    "body": "Honduras's favorite food is the **baleada**—a fresh flour tortilla, spread with refried beans, then decorated with scrambled eggs, mantequilla, queso seco, avocado, or meat, and finally folded in half.\n\nYou can't have a baleada without its core ingredients and presentation (tortilla spread with refried beans and folded in half), but once those requirements are met, you can be creative and combine ingredients that suit your tastebuds.\n\nAnyway, the Baleada you're here for is **a toolkit for building web apps** (and websites). Getting down to brass tacks, Baleada offers the following types of tools:\n- UI logic\n- Composition functions (a.k.a. hooks)\n- SVG icon components\n- More to come (<NuxtLink to=\"/docs/roadmap\">see roadmap</NuxtLink>)\n\n<NiftyAside>\nFeeling a little fuzzy on what these terms mean? Check out the guide on <NuxtLink to=\"/docs/types-of-tools\">types of tools</NuxtLink> for definitions.\n</NiftyAside>\n\nThink of these tools as the ingredients in a savory, delectable baleada. You're encouraged to take what you want and sprinkle it into the stack you're already using to build your apps and websites. You're free to take just a few things, but if you're so inclined, you can really pile on the extras.s\n\n<NiftyHeading level=\"2\">\nWho is Baleada designed for?\n</NiftyHeading>\n\nBaleada is designed for developers who:\n- **Do** want to add common UI features and behaviors to their app, but **don't** want to think about implementation details.\n- **Do** value consistency and predictability in JavaScript library APIs.\n- **Do** care about performance, best practices, internationalization, accessibility, and security, but **haven't** had time to fine-tune this stuff in the past, because they've always been too busy hacking together a custom autocomplete component or another 🤬 carousel for the who-knows-how-many-th time.\n- **Do** appreciate the role React hooks and Vue composition functions play in making web dev easier and more inclusive.\n- **Do** appreciate [the benefits of using SVG over icon fonts](http://www.fullstackradio.com/47).\n- **Do** appreciate documentation that makes them hungry.\n<!-- - **Do** want a design system to govern their styles, but **don't** want their apps and sites to look like everyone else's. -->\n\n<!-- <NiftyAside>\n  <p>\n    Baleada 1.0.0 will be optimized for developers building with <a href=\"http://vuejs.org/\">Vue.js</a>, styling with <a href=\"http://tailwindcss.com/\">TailwindCSS</a>, and using <a href=\"https://www.netlify.com\">Netlify</a> services like <a href=\"https://www.netlify.com/docs/identity/\">Identity</a> and <a href=\"https://www.netlify.com/products/functions/\">Functions</a>.\n  </p>\n  <p>\n    Future versions aim to not just support other stacks, but design specifically for them, as well. Check out the <NuxtLink to=\"/docs/roadmap\">roadmap</NuxtLink> for more info.\n  </p>\n</NiftyAside> -->\n",
+    "updatedAt": "2019-09-27T00:47:13.324Z",
     "path": "./assets/markdown/index.md",
     "fileName": "index",
     "href": "/docs"
@@ -246,10 +235,10 @@
   {
     "title": "Roadmap",
     "framework": "agnostic",
-    "publish": false,
+    "publish": true,
     "order": 2,
-    "body": "",
-    "updatedAt": "2019-09-26T21:43:40.751Z",
+    "body": "<NiftyHeading level=\"2\">\nPre-1.0.0 to-do list\n</NiftyHeading>\n\n- Baleada Logic\n  - Document all Baleada Logic libraries\n  - Pursue [other library ideas](https://trello.com/b/UIRmWCOQ/baleada-logic)\n- Baleada Composition\n  - Publish 0.0.0\n  - Document installation, importing, and usage\n  - React and Svelte support\n- Baleada Icons\n  - Svelte support\n\n\n<NiftyHeading level=\"2\">\nPost-1.0.0 to-do list\n</NiftyHeading>\n\n- Build example to-do app using Baleada tools\n- Build example blog/static site using Baleada tools\n\n\n<NiftyHeading level=\"2\">\nIdeas for other tool categories\n</NiftyHeading>\n\n<NiftyTable>\n| Name | Description |\n| --- | --- |\n| Baleada Style | Custom Tailwind config files, custom Tailwind plugins that register component classes and utility classes |\n| Baleada Nifty | Components with a great user experience (WCAG compliant) and a great developer experience (can be used in `.md`, `.js`, `.vue`, `.jsx`, `.mdx`, and `.svelte` files, easy to style, easy to customize behavior). Will be _extremely_ nifty. |\n| Baleada Scaffold | CLI tool for scaffolding out Nuxt, Next, and Sapper projects with other Baleada tools pre-installed |\n| Baleada Baleadas | A gallery with photos of actual baleadas |\n</NiftyTable>\n",
+    "updatedAt": "2019-09-27T00:51:05.464Z",
     "path": "./assets/markdown/roadmap.md",
     "fileName": "roadmap",
     "href": "/docs/roadmap"
