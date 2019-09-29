@@ -5,7 +5,7 @@
       ref="nav"
     >
       <header class="flex items-center py-3 border-b border-gray-300">
-        <NuxtLink to="/" class="flex-none rounded-full h-10 w-10 bg-primary-600 p-2 -shadow transition btn-grows">
+        <NuxtLink to="/" aria-label="Link to home page" class="flex-none rounded-full h-10 w-10 bg-primary-600 p-2 -shadow transition btn-grows">
           <BaleadaLogo ref="logo" class="-mt-px" />
         </NuxtLink>
       </header>
@@ -47,15 +47,7 @@
 
       <!-- table of contents here? -->
 
-      <section
-        class="flex-1 long-form px-7 sm:px-9 lg:pl-11 pb-12 pt-11 lg:mr-10 transition"
-      >
-        <nuxt key="content" />
-        <AdjacentArticleLinks
-          class="mt-10"
-          :fullPath="fullPath"
-        />
-      </section>
+      <nuxt key="content" />
     </article>
   </main>
 </template>
@@ -64,15 +56,12 @@
 import { ref, computed, watch, onMounted, onBeforeUnmount } from '@vue/composition-api'
 
 import useTouchable from '../assets/js/baleada/composition/useTouchable'
-import useRouter from '../assets/js/useRouter'
-import useNextTick from '~/assets/js/useNextTick'
 
 import highlightCode from '~/assets/js/highlightCode'
 import scrollToHeader from '~/assets/js/scrollToHeader'
 import wrapElements from '~/assets/js/wrapElements'
 
 import DocsNav from '~/components/DocsNav.vue'
-import AdjacentArticleLinks from '~/components/AdjacentArticleLinks.vue'
 
 import { EvaMenu } from '@baleada/icons/vue'
 import { EvaClose } from '@baleada/icons/vue'
@@ -80,7 +69,6 @@ import { EvaClose } from '@baleada/icons/vue'
 export default {
   components: {
     DocsNav,
-    AdjacentArticleLinks,
     EvaMenu,
     EvaClose
   },
@@ -148,39 +136,12 @@ export default {
       touchableArticle.destroy()
     })
 
-    /* Track route */
-    const { route } = useRouter(),
-          fullPath = computed(() => route.value.fullPath)
-
-
-    /* Things to do when page is loaded */
-    function onLoad (container) {
-      // highlightCode()
-      scrollToHeader(fullPath, { container })
-      // wrapElements({
-      //   container,
-      //   classes: ['table-wrapper', 'scrollable'],
-      //   selector: 'table'
-      // })
-    }
-    let timeoutID
-    watch(
-      fullPath,
-      () => {
-        window.clearTimeout(timeoutID)
-        timeoutID = window.setTimeout(() => {
-          onLoad(article.value)
-        }, 50)
-      }
-    )
-
     return {
       toggleNav,
       handleNavClick,
       navIsOpen,
       nav,
       article,
-      fullPath
     }
   },
 }

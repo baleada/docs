@@ -1,9 +1,16 @@
 import { ref, onMounted } from '@vue/composition-api'
-import useNuxtMarkdownit from './useNuxtMarkdownit'
+import Markdownit from 'markdown-it'
+import defaultMarkdownitOptions from '~/config/markdownit.config'
 
 export default function useNifty (options = {}) {
-  const postRender = options.postRender === undefined ? markup => markup : options.postRender,
-        md = useNuxtMarkdownit(),
+  options = {
+    renderOptions: {},
+    postRender: markup => markup,
+    ...options
+  }
+  const renderOptions = options.renderOptions,
+        md = new Markdownit({ ...defaultMarkdownitOptions, renderOptions }),
+        postRender = options.postRender,
         nifty = ref(null)
 
   onMounted(() => {

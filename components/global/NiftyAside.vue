@@ -21,7 +21,7 @@
 </template>
 
 <script>
-import useNifty from '~/assets/js/useNifty'
+import { ref } from '@vue/composition-api'
 
 import { EvaInfo } from '@baleada/icons/vue'
 import { EvaAlertTriangle } from '@baleada/icons/vue'
@@ -29,6 +29,7 @@ import { EvaFlash } from '@baleada/icons/vue'
 import { EvaAward } from '@baleada/icons/vue'
 
 export default {
+  name: 'NiftyAside',
   components: {
     EvaInfo,
     EvaAlertTriangle,
@@ -45,7 +46,7 @@ export default {
     }
   },
   setup() {
-    const nifty = useNifty()
+    const nifty = ref(null)
 
     return {
       nifty

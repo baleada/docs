@@ -1,22 +1,8 @@
-export default function highlightCode (hljs, options) {
-  if (hljs === undefined) {
-    console.error('Cannot highlight syntax: hljs is undefined in the highlightCode function.')
-    return
-  }
+import Prism from 'prismjs'
 
-  options = {
-    container: document,
-    languages: [],
-    blocks: 'pre code',
-    ...options
-  }
+export default function highlightCode (markup) {
+  const language = markup.match(/language-\w+/)[0].replace(/language-/, ''),
+        grammar = Prism.languages[language]
 
-  const blocks = options.container.querySelectorAll(options.blocks)
-
-  blocks.forEach(block => {
-    options.languages.forEach(language => {
-      block.classList.add(language)
-    })
-    hljs.highlightBlock(block)
-  })
+  return Prism.highlight(markup, grammar, 'language')
 }

@@ -11,22 +11,23 @@ function generatePages (metadata) {
   console.log(`Generated ${published.length} pages`)
 }
 
-function toPage ({ title, body, updatedAt }) {
+function toPage ({ title, path, updatedAt }) {
   return `\
-<template lang="md">\n\
-<NiftyHeading :level="1">
-# ${title}\n\
-</NiftyHeading>
-<UpdatedAt timestamp="${updatedAt}" />\n\
-\n\
-${body}</template>\n\
+<template lang="html">\n\
+<NiftyArticle title="${title}" updatedAt="${updatedAt}">\n\
+  <component :is="article" />\n\
+</NiftyArticle>\n\
+</template>\n\
 \n\
 <script>\n\
+import article from '${path.replace(/^\./, '~')}'\n\
 export default {\n\
   layout: 'article',\n\
-  head: () => ({\n\
-    title: 'Baleada - ${title}',\n\
-  })\n\
+  setup () {\n\
+    return {\n\
+      article\n\
+    }\n\
+  }\n\
 }\n\
 </script>\n\
 `

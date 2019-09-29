@@ -22,6 +22,7 @@ Use a component
 
 All components will render an SVG of their icon. The SVG has 4 default attributes:
 
+
 ```html
 <svg
   role="img"
