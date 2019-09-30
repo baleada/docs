@@ -4,14 +4,14 @@
 
   :not(table):not(div):not(main):not(section):not(article),
   .nifty-aside,
-  .docs-previous-next,
+  .adjacent-article-links,
   *.with-max-w,
   hr,
   img {
     @apply max-w-5;
   }
 
-  table tr :not(table):not(pre):not(div):not(main):not(section):not(article) {
+  table tr :not(.nifty-table):not(.nifty-codeblock):not(div):not(main):not(section):not(article) {
     @apply max-w-5;
   }
 
@@ -36,9 +36,9 @@
   * + p,
   * + ul,
   * + ol,
-  * + pre,
   * + img,
   * + .nifty-aside,
+  * + .nifty-codeblock,
   * + .with-mt {
     @apply mt-5;
   }
@@ -185,7 +185,7 @@
     }
   }
 
-  pre {
+  .nifty-codeblock {
     @apply rounded p-3 overflow-x-scroll bg-gray-100 -shadow max-h-2/3-screen scrolling-touch;
 
     code {
@@ -376,7 +376,7 @@
 
 @media screen and (min-width: theme('screens.md')) {
   .long-form {
-    pre,
+    .nifty-codeblock,
     .nifty-table {
       @apply max-h-full;
     }

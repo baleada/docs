@@ -1,7 +1,9 @@
+import niftyComponents from '@baleada/nifty-loader/lib/stubs/niftyComponents'
+
 import pkg from './package'
 import purgecssConfig from './config/purgecss.config'
 import headConfig from './config/head.config'
-import markdownitConfig from './config/markdownit.config'
+
 //  import GenerateMetafilesPlugin from './scripts/webpack-plugins/generateMetafiles'
 
 export default {
@@ -60,7 +62,7 @@ export default {
     '@nuxtjs/pwa',
     'portal-vue/nuxt',
     'nuxt-purgecss',
-    '@nuxtjs/markdownit'
+    // '@nuxtjs/markdownit'
   ],
 
   purgeCSS: {
@@ -69,7 +71,7 @@ export default {
     ...purgecssConfig
   },
 
-  markdownit: markdownitConfig,
+  // markdownit: markdownitConfig,
 
   /*
   ** Build configuration
@@ -89,6 +91,33 @@ export default {
     },
     extend: config => {
       // config.plugins.push(new GenerateMetafilesPlugin())
+      const replaceDelimiters = markup => markup.replace(/({{|}})/g, '<span>$1</span>'),
+            nifty = {
+              loader: '@baleada/nifty-loader',
+              options: {
+                components: niftyComponents,
+                postRender: markup => `<template lang="html"><section>${replaceDelimiters(markup)}</section></template>\n`
+              }
+            }
+
+      config.module.rules.push({
+        test: /\.md$/,
+        oneOf: [
+          {
+            use: [
+              'vue-loader',
+              nifty,
+            ]
+          }
+        ]
+      })
+    },
+    babel: {
+      plugins: [
+        ['prismjs', {
+          'languages': ['javascript', 'css', 'markup'],
+        }]
+      ]
     }
   },
   watchers: {

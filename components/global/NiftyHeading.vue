@@ -31,14 +31,12 @@
 <script>
 import { ref, computed, onMounted } from '@vue/composition-api'
 
-import useNifty from '~/assets/js/useNifty'
-
-import { toInnerHtml } from '~/assets/js/postRender'
 import simpleSlugify from '~/assets/js/simpleSlugify'
 
 import { EvaLink } from '@baleada/icons/vue'
 
 export default {
+  name: 'NiftyHeading',
   components: {
     EvaLink
   },
@@ -49,7 +47,7 @@ export default {
     }
   },
   setup() {
-    const nifty = useNifty({ postRender: toInnerHtml }),
+    const nifty = ref(null),
           slug = computed(() => nifty.value ? simpleSlugify(nifty.value.textContent) : ''),
           buttonIsShown = ref(false),
           handleMouseover = () => (buttonIsShown.value = true),

@@ -5,6 +5,7 @@
 @import "./fonts.css";
 @import "./long-form.css";
 @import "./docs-nav.css";
+@import "./code.css";
 /* purgecss end ignore */
 
 @import "tailwindcss/components";

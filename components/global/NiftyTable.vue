@@ -17,11 +17,11 @@
 </template>
 
 <script>
-import useNifty from '~/assets/js/useNifty'
-import { toGrid } from '~/assets/js/postRender'
+import { ref } from '@vue/composition-api'
 import { useGrid } from '~/assets/js/keyboardAccessibility'
 
 export default {
+  name: 'NiftyTable',
   props: {
     hasMaxH: {
       type: Boolean,
@@ -37,7 +37,7 @@ export default {
     }
   },
   setup() {
-    const nifty = useNifty({ postRender: toGrid })
+    const nifty = ref(null)
 
     function handleFilterQuery ({ target: { value } }) {
       // filter based on value
