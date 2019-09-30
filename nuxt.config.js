@@ -112,13 +112,6 @@ export default {
         ]
       })
     },
-    babel: {
-      plugins: [
-        ['prismjs', {
-          'languages': ['javascript', 'css', 'markup'],
-        }]
-      ]
-    }
   },
   watchers: {
     chokidar: {

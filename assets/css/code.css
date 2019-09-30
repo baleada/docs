@@ -1,54 +1,75 @@
 .nifty-codeblock {
-  @apply bg-gray-300 text-gray-900;
+  @apply bg-gray-200 text-gray-900;
 
-  .comment {
-    @apply text-gray-600;
+  .token.comment,
+  .token.block-comment,
+  .token.prolog,
+  .token.doctype,
+  .token.cdata {
+  	@apply text-gray-500;
   }
-  .support {
-    @apply text-blue-400;
+
+  .token.punctuation {
+  	@apply text-gray-600;
   }
-  .tag,
-  .tag-name {
-    @apply text-blue-700;
+
+  .token.property,
+  .token.tag,
+  .token.boolean,
+  .token.number,
+  .token.function-name,
+  .token.constant,
+  .token.symbol,
+  .token.deleted {
+  	@apply text-red-600;
   }
-  .keyword,
-  .css-property,
-  .vendor-fix,
-  .sass,
-  .class,
-  .id,
-  .css-value,
-  .entity.function,
-  .storage.function {
-    @apply font-500;
+
+  .token.selector,
+  .token.attr-name,
+  .token.string,
+  .token.char,
+  .token.function,
+  .token.builtin,
+  .token.inserted {
+  	@apply text-green-600;
   }
-  .css-property,
-  .css-value,
-  .vendor-fix,
-  .support.namespace {
-    @apply text-gray-700;
+
+  .token.operator,
+  .token.entity,
+  .token.url,
+  .token.variable {
+  	@apply text-yellow-800;
   }
-  .constant.numeric,
-  .keyword.unit,
-  .hex-color {
-    @apply font-400 text-primary-400;
+
+  .token.atrule,
+  .token.attr-value,
+  .token.keyword,
+  .token.class-name {
+  	@apply text-blue-600;
   }
-  .entity.class {
-    @apply text-primary-600;
+
+  .token.regex,
+  .token.important {
+  	@apply text-yellow-600;
   }
-  .entity.id,
-  .entity.function {
-    @apply text-red-800;
+
+  .language-css .token.string,
+  .style .token.string {
+  	@apply text-red-400;
   }
-  .attribute,
-  .variable {
-    @apply text-green-400;
+
+  .token.important {
+  	@apply font-400;
   }
-  .string,
-  .support.value {
-    @apply text-red-600
+
+  .token.bold {
+  	@apply font-600;
   }
-  .regexp {
-    @apply text-green-600;
+  .token.italic {
+  	@apply italic;
+  }
+
+  .namespace {
+  	@apply opacity-80;
   }
 }
