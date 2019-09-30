@@ -37,7 +37,7 @@
     "@babel/plugin-proposal-private-methods": "^7.4.4",
     "@baleada/icons": "^0.3.1",
     "@baleada/logic": "0.0.0",
-    "@baleada/nifty-loader": "file:baleada-nifty-loader-0.0.0.tgz",
+    "@baleada/nifty-loader": "0.0.1",
     "@baleada/vue": "^0.0.2",
     "@nuxtjs/eslint-config": "0.0.1",
     "@nuxtjs/markdownit": "^1.2.4",

@@ -1,6 +1,9 @@
+import niftyComponents from '@baleada/nifty-loader/lib/stubs/niftyComponents'
+
 import pkg from './package'
 import purgecssConfig from './config/purgecss.config'
 import headConfig from './config/head.config'
+
 //  import GenerateMetafilesPlugin from './scripts/webpack-plugins/generateMetafiles'
 
 export default {
@@ -92,26 +95,7 @@ export default {
             nifty = {
               loader: '@baleada/nifty-loader',
               options: {
-                components: (render, { toHighlighted, toInnerHtml, toGrid }) => {
-                  return new Map([
-                    [
-                      'NiftyAside',
-                      { preRender: string => render(string), isBlock: true }
-                    ],
-                    [
-                      'NiftyCodeblock',
-                      { preRender: string => toHighlighted(render(string)), isBlock: true }
-                    ],
-                    [
-                      'NiftyHeading',
-                      { preRender: string => toInnerHtml(render(string)), isBlock: true }
-                    ],
-                    [
-                      'NiftyTable',
-                      { preRender: string => toGrid(render(string)), isBlock: true }
-                    ],
-                  ])
-                },
+                components: niftyComponents,
                 postRender: markup => `<template lang="html"><section>${replaceDelimiters(markup)}</section></template>\n`
               }
             }

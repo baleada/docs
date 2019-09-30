@@ -5,7 +5,7 @@
     <!-- Copy button -->
     <button
       name="copy-code"
-      class="absolute right-0 top-0 mt-2 mr-2 h-4 w-4 text-primary-700 btn-grows"
+      class="absolute right-0 top-0 mt-2 mr-2 h-5 w-5 text-gray-600 btn-grows transition"
       @click="handleCopyButtonClick"
     >
       <EvaCopy :class="'icon'" />
@@ -13,7 +13,6 @@
     <div ref="nifty">
       <slot />
     </div>
-    <slot />
   </section>
 </template>
 
@@ -29,7 +28,7 @@ export default {
     EvaCopy,
   },
   setup() {
-    const nifty = ref(null)
+    const nifty = ref(null),
           copiable = useCopiable(''),
           code = computed(() => {
             const code = nifty.value ? nifty.value.textContent : ''

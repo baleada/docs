@@ -10,9 +10,11 @@ Import a component (allows for tree-shaking)
 
 React `@baleada/icons` components can be imported from `@baleada/icons/react`.
 
+<NiftyCodeblock>
 ```js
 import { EvaGlobe2 } from '@baleada/icons/react'
 ```
+</NiftyCodeblock>
 
 
 <NiftyHeading level="2">
@@ -22,7 +24,7 @@ Use a component
 
 All components will render an SVG of their icon. The SVG has 4 default attributes:
 
-
+<NiftyCodeblock>
 ```html
 <svg
   role="img"
@@ -33,9 +35,11 @@ All components will render an SVG of their icon. The SVG has 4 default attribute
   ...
 </svg>
 ```
+</NiftyCodeblock>
 
 These 4 attributes are easy to override or expand—simply pass an object to the component's `attrs` prop. All of the `attrs` (including event listeners) are passed directly to the SVG.
 
+<NiftyCodeblock>
 ```js
 export default function MyComponent() {
   ...
@@ -56,3 +60,4 @@ export default function MyComponent() {
   )
 }
 ```
+</NiftyCodeblock>

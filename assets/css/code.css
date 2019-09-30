@@ -1,0 +1,54 @@
+.nifty-codeblock {
+  @apply bg-gray-300 text-gray-900;
+
+  .comment {
+    @apply text-gray-600;
+  }
+  .support {
+    @apply text-blue-400;
+  }
+  .tag,
+  .tag-name {
+    @apply text-blue-700;
+  }
+  .keyword,
+  .css-property,
+  .vendor-fix,
+  .sass,
+  .class,
+  .id,
+  .css-value,
+  .entity.function,
+  .storage.function {
+    @apply font-500;
+  }
+  .css-property,
+  .css-value,
+  .vendor-fix,
+  .support.namespace {
+    @apply text-gray-700;
+  }
+  .constant.numeric,
+  .keyword.unit,
+  .hex-color {
+    @apply font-400 text-primary-400;
+  }
+  .entity.class {
+    @apply text-primary-600;
+  }
+  .entity.id,
+  .entity.function {
+    @apply text-red-800;
+  }
+  .attribute,
+  .variable {
+    @apply text-green-400;
+  }
+  .string,
+  .support.value {
+    @apply text-red-600
+  }
+  .regexp {
+    @apply text-green-600;
+  }
+}

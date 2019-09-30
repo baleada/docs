@@ -28,9 +28,11 @@ Didn't see your favorite icon set or framework in the list? Feel free to [raise 
 Install
 </NiftyHeading>
 
+<NiftyCodeblock>
 ```bash
 npm i @baleada/icons
 ```
+</NiftyCodeblock>
 
 <NiftyHeading level="2">
 Available components

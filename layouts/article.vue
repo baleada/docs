@@ -57,10 +57,6 @@ import { ref, computed, watch, onMounted, onBeforeUnmount } from '@vue/compositi
 
 import useTouchable from '../assets/js/baleada/composition/useTouchable'
 
-import highlightCode from '~/assets/js/highlightCode'
-import scrollToHeader from '~/assets/js/scrollToHeader'
-import wrapElements from '~/assets/js/wrapElements'
-
 import DocsNav from '~/components/DocsNav.vue'
 
 import { EvaMenu } from '@baleada/icons/vue'
