@@ -36,7 +36,7 @@ Ideas for other tool categories
 | Name | Description |
 | --- | --- |
 | Baleada Style | Custom Tailwind config files, custom Tailwind plugins that register component classes and utility classes |
-| Baleada Nifty | Components with a great user experience (WCAG compliant) and a great developer experience (can be used in `.md`, `.js`, `.vue`, `.jsx`, `.mdx`, and `.svelte` files, easy to style, easy to customize behavior). Will be _extremely_ nifty. |
+| Baleada Prose | Components for use in prose. Each component will have a great user experience (WCAG compliant) and a great developer experience (can render Markdown, HTML, and other components). |
 | Baleada Scaffold | CLI tool for scaffolding out Nuxt, Next, and Sapper projects with other Baleada tools pre-installed |
 | Baleada Baleadas | A gallery with photos of actual baleadas |
 </NiftyTable>

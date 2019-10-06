@@ -82,55 +82,45 @@ export default {
 
     const nav = ref(null)
     let touchableNav
-    onMounted(() => {
-      touchableNav = useTouchable(nav.value, {
-        allowsSelect: true,
-        onSwipeleft: closeNav,
-        onSwiperight: openNav
-      })
-    })
-    onBeforeUnmount(() => {
-      touchableNav.destroy()
-    })
+    useTouchable(nav, {
+      allowsSelect: true,
+      onSwipeleft: closeNav,
+      onSwiperight: openNav
+    }, touchableNav)
 
-    const article = ref(null)
+    const article = ref(null),
+          swiperNoSwiping = [
+            '.long-form .overflow-y-scroll',
+            '.long-form .overflow-y-scroll *',
+
+            '.long-form .overflow-x-scroll',
+            '.long-form .overflow-x-scroll *',
+
+            '.long-form pre',
+            '.long-form pre *',
+
+            '.long-form .scrollable-wrapper',
+            '.long-form .scrollable-wrapper *',
+
+            '.swiper-no-swiping',
+          ]
     let touchableArticle
-    onMounted(() => {
-      const swiperNoSwiping = [
-        '.long-form .overflow-y-scroll',
-        '.long-form .overflow-y-scroll *',
-
-        '.long-form .overflow-x-scroll',
-        '.long-form .overflow-x-scroll *',
-
-        '.long-form pre',
-        '.long-form pre *',
-
-        '.long-form .scrollable-wrapper',
-        '.long-form .scrollable-wrapper *',
-
-        '.swiper-no-swiping',
-      ]
-      touchableArticle = useTouchable(article.value, {
-        allowsSelect: true,
-        blacklist: swiperNoSwiping,
-        onSwipeleft: evt => {
-          let shouldCallback = !swiperNoSwiping.some(selector => evt.target.matches(selector))
-          if (shouldCallback) {
-            closeNav()
-          }
-        },
-        onSwiperight: evt => {
-          let shouldCallback = !swiperNoSwiping.some(selector => evt.target.matches(selector))
-          if (shouldCallback) {
-            openNav()
-          }
+    useTouchable(article, {
+      allowsSelect: true,
+      blacklist: swiperNoSwiping,
+      onSwipeleft: evt => {
+        let shouldCallback = !swiperNoSwiping.some(selector => evt.target.matches(selector))
+        if (shouldCallback) {
+          closeNav()
         }
-      })
-    })
-    onBeforeUnmount(() => {
-      touchableArticle.destroy()
-    })
+      },
+      onSwiperight: evt => {
+        let shouldCallback = !swiperNoSwiping.some(selector => evt.target.matches(selector))
+        if (shouldCallback) {
+          openNav()
+        }
+      }
+    }, touchableArticle)
 
     return {
       toggleNav,

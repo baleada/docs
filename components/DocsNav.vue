@@ -18,13 +18,14 @@
 </template>
 
 <script>
-import directories from '~/static/json/manifest.json'
+import allDirectories from '~/static/json/manifest.json'
 
 export default {
   setup() {
-    const frameworks = ['Vue', 'React', 'Svelte', 'agnostic']
+    const frameworks = ['Vue', 'React', 'Svelte', 'agnostic'],
+          directories = allDirectories.filter(dir => dir.pages.length > 0)
 
-    // TODO: filter based on framwork, with enter/leave transitions
+    // TODO: filter based on framework, with enter/leave transitions
 
     return {
       directories,

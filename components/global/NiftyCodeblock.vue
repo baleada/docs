@@ -1,6 +1,6 @@
 <template lang="html">
   <section
-    class="relative nifty-codeblock"
+    class="relative nifty-codeblock swiper-no-swiping"
   >
     <!-- Copy button -->
     <button

@@ -4,24 +4,9 @@ framework: agnostic
 publish: false
 ---
 
+`Animatable` is an action provider that allows you to animate one or more elements and control the animations (play, pause, seek, etc.). It's powered by [anime](https://animejs.com).
 
 
-/*
- * Animatable.js
- * (c) 2019 Alex Vipond
- * Released under the MIT license
- */
-
-/* Dependencies */
-import Dependency from '../wrappers/AnimatableAnime'
-
-/* Util */
-import is from '../util/is'
-
-export default class Animatable {
-  /* Private properties */
-  #dependencyOptions
-  #dependency
 
   constructor(elements, options = {}) {
     /* Options */

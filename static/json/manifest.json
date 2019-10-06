@@ -66,11 +66,27 @@
   {
     "level": 2,
     "name": "libraries",
-    "pages": []
+    "pages": [
+      {
+        "title": "Completable",
+        "framework": "agnostic",
+        "href": "/docs/logic/libraries/Completable"
+      }
+    ]
   },
   {
     "level": 2,
     "name": "subclasses",
+    "pages": []
+  },
+  {
+    "level": 2,
+    "name": "util",
+    "pages": []
+  },
+  {
+    "level": 1,
+    "name": "prose",
     "pages": []
   }
 ]

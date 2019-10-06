@@ -1,5 +1,5 @@
 <template lang="html">
-<NiftyArticle title="Using with Vue" updatedAt="Thu Sep 26 2019 16:41:17 GMT-0600 (CST)">
+<NiftyArticle title="Using with Vue" updatedAt="Sun Sep 29 2019 19:29:41 GMT-0600 (CST)">
   <component :is="article" />
 </NiftyArticle>
 </template>

@@ -1,5 +1,5 @@
 <template lang="html">
-<NiftyArticle title="What is Baleada Icons?" updatedAt="Thu Sep 26 2019 17:41:33 GMT-0600 (CST)">
+<NiftyArticle title="What is Baleada Icons?" updatedAt="Tue Oct 01 2019 14:39:54 GMT-0600 (CST)">
   <component :is="article" />
 </NiftyArticle>
 </template>

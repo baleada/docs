@@ -1,5 +1,5 @@
 <template lang="html">
-<NiftyArticle title="Roadmap" updatedAt="Thu Sep 26 2019 18:51:05 GMT-0600 (CST)">
+<NiftyArticle title="Roadmap" updatedAt="Sun Oct 06 2019 17:04:54 GMT-0600 (CST)">
   <component :is="article" />
 </NiftyArticle>
 </template>

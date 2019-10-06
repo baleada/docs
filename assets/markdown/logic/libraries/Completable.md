@@ -1,135 +1,126 @@
 ---
 title: Completable
-
 framework: agnostic
-publish: false
+publish: true
+order: 0
 ---
 
+<!-- <BaleadaLogicLibraryIntro
+  name="Completable"
+  stateType="string"
+  allowsTo="[
+    'extract a segment of the string'
+  ]"
+  givesMethodsTo="replace the segment or the full string with a more complete string"
+/> -->
 
-/*
- * Completable.js
- * (c) 2019 Alex Vipond
- * Released under the MIT license
- */
+Completable is a library that enriches a string by:
+  - Allowing it to store a current index-based location
+  - Allowing it to extract a segment of the string
+  - Giving it the methods necessary to replace the segment or the full string with a more complete string
 
-// Util
-import is from '../util/is'
-import lastMatch from '../util/lastMatch'
+Completable is written in vanilla JS with no dependencies.
 
-/**
- * Completable is a library that enriches a string by:
- * - Allowing it to store
- * - Allowing it to extract a segment of the string
- * - Giving it the methods necessary to replace the segment or the full string with a more complete string
- *
- * Completable is written in vanilla JS with no dependencies. It powers <NuxtLink to="/docs/tools/composition-functions/useCompletable">`useCompletable`</NuxtLink>.
- */
-class Completable {
-  /* Private properties */
-  #segmentsFromDivider
-  #segmentsToPosition
-  #divider
-  // TODO: is there a use case for nextMatch instead of lastMatch?
-  // #matchDirection
-  #positionsAfterCompletion
-  #onComplete
-  #onPosition
 
-  /**
-   * Completable constructor
-   * @param {String}  string                          The string that will be made completable
-   * @param {Boolean} [segmentsFromDivider=false]     `true` when the Completable instance should start from a divider (for example, the space between words) while extracting a segment, and `false when it should start from the very beginning of the string. See the <NuxtLink to="#How-the-Completable-instance-extracts-segments">How the Completable instance extracts segments</NuxtLink> section for more info.
-   * @param {Boolean} [segmentsToPosition=false]      `true` when the Completable instance should stop at the current position while extracting a segment, and `false` when it should stop at the very end of the string. See the <NuxtLink to="#How-the-Completable-instance-extracts-segments">How the Completable instance extracts segments</NuxtLink> section for more info.
-   * @param {RegExp}  [divider=/s/]                   <p>Tells the Completable instance how segments of the string are divided. Has no effect when <code>segmentsFromDivider</code> is <code>false</code>.</p><p>See the <NuxtLink to="#How-the-Completable-instance-extracts-segments">How the Completable instance extracts segments</NuxtLink> section for more info.</p>
-   * @param {Boolean} [positionsAfterCompletion=true] <p><code>true</code> when the Completable instance, after completing the string, should set the current position to the index after the segment's replacement. `false` when it should not change the current position.</p><p>See the <NuxtLink to="#How-the-Completable-instance-handles-current-position">How the Completable instance handles current position</NuxtLink> section for more info.</p>
-   * @param {Function}  [onComplete]                    A function that Completable will call after completing the string. `onComplete` has one paramater: the completed string (String).
-   * @param {Function}  [onPosition]                    A function that Completable will call after completing the string. `onPosition` accepts two parameters: the new position (Number), and the Completable instance (Object).
-   */
-  constructor(string, options = {}) {
-    /* Options */
-    options = {
-      segmentsFromDivider: false,
-      segmentsToPosition: false,
-      divider: /\s/,
-      positionsAfterCompletion: true,
-      ...options
-    }
-    this.#segmentsFromDivider = options.segmentsFromDivider
-    this.#segmentsToPosition = options.segmentsToPosition
-    this.#divider = options.divider
-    // this.#matchDirection = matchDirection
-    this.#positionsAfterCompletion = options.positionsAfterCompletion
-    this.#onComplete = options.onComplete
-    this.#onPosition = options.onPosition
+<NiftyHeading level="2">
+Construct a Completable instance
+</NiftyHeading>
 
-    /* Public properties */
-    /**
-     * A shallow copy of the string passed to the Completable constructor
-     * @type {String}
-     */
-    this.string = string
-    /**
-     * The current index-based position in the `string`. See the <NuxtLink to="#How-the-Completable-instance-handles-current-position">How the Completable instance handles current position</NuxtLink> section for more info.
-     * @type {Number}
-     */
-    this.position = string.length
-  }
+To construct a Completable instance (Object), use the Completable constructor, which takes two parameters:
 
-  /* Public getters */
-  /**
-   * Segment getter function
-   * @return {String} An extracted segment of `string`. See the <NuxtLink to="#How-the-Completable-instance-extracts-segments">How the Completable instance extracts segments</NuxtLink> section for more info.
-   */
-  get segment() {
-    return this.string.slice(
-      this.#computeSegmentStartIndex(),
-      this.#computeSegmentEndIndex()
-    )
-  }
+<NiftyTable>
 
-  /* Public methods */
-  /**
-   * Sets the Completable instance's string
-   * @param {String} string The new string
-   * @return {Object}       The Completable instance
-   */
-  setString(string) {
-    this.string = string
-    return this
-  }
-  /**
-   * <p>Sets the position from which the Completable instance will start extracting segments.</p><p>See the <NuxtLink to="#How-the-Completable-instance-extracts-segments">How the Completable instance extracts segments</NuxtLink> section and the <NuxtLink to="#How-the-Completable-instance-handles-current-position">How the Completable instance handles current position</NuxtLink> section for more info.</p>
-   * @param {Number} position The new `position`
-   * @return {Object}       The Completable instance
-   */
-  setPosition(position) {
-    this.position = position
-    return this
-  }
-  /**
-   * <p>Completes the string, replacing <code>segment</code> with a completion/replacement string, and computes a new position based on the <code>positionsAfterCompletion</code> option. Afterward, <code>complete</code> calls the user-provided <code>onComplete</code> function, passing the new string and the new position.</p><p>Note that <code>complete</code> does not set its <code>string</code> or <code>position</code> to the new values, but the user can do so using <code>set</code> and <code>setPosition</code>.</p>
-   * @param {String} completion The completion/replacement.
-   * @return {Object}       The Completable instance
-   */
-  complete(completion) {
-    const textBefore = this.#segmentsFromDivider ? this.string.slice(0, this.position - this.segment.length) : '',
-          textAfter = this.#segmentsToPosition ? this.string.slice(this.position) : '',
-          string = textBefore + completion + textAfter,
-          position = this.#positionsAfterCompletion ? textBefore.length + completion.length : this.position
+| Parameter | Type | Required | Description |
+| --- | --- | --- | --- |
+| `string` | String | yep | Passes the string that will be made completable. |
+| `options` | Object | nope | Passes options for the Completable instance. See the <NuxtLink to="#Completable-constructor-options">Completable constructor options</NuxtLink> section for more guidance. |
 
-    if (is.function(this.#onComplete)) this.#onComplete(string, this)
-    if (is.function(this.#onPosition)) this.#onPosition(position, this)
+</NiftyTable>
 
-    return this
-  }
 
-  /* Private methods */
-  #computeSegmentStartIndex = function() {
-    return this.#segmentsFromDivider ? lastMatch(this.string, this.#divider, this.position) + 1 : 0
-  }
-  #computeSegmentEndIndex = function() {
-    return this.#segmentsToPosition ? this.position : this.string.length
-  }
-}
+<NiftyCodeblock>
+```js
+const instance = new Completable(string[, options])
+```
+</NiftyCodeblock>
 
-export default Completable
+
+<NiftyHeading level="3">
+Completable constructor options
+</NiftyHeading>
+
+<NiftyTable>
+| Option | Type | Default | Description | Parameters | Return value |
+| --- | --- | --- | --- | --- | --- |
+| `segmentsFromDivider` | Boolean | `false` | <p>`true` when the Completable instance should start from a divider (for example, the space between words) while extracting a segment, and `false` when it should start from the very beginning of the string.</p><p>See the <NuxtLink to="#How-the-Completable-instance-extracts-segments">How the Completable instance extracts segments</NuxtLink> section for more info.</p> | N/A | N/A |
+| `segmentsToLocation` | Boolean | `false` | <p>`true` when the Completable instance should stop at the current location while extracting a segment, and `false` when it should stop at the very end of the string.</p><p>See the <NuxtLink to="#How-the-Completable-instance-extracts-segments">How the Completable instance extracts segments</NuxtLink> section for more info.</p> | N/A | N/A |
+| `divider` | RegExp | `/\s/` | <p>Tells the Completable instance how segments of the string are divided. Has no effect when <code>segmentsFromDivider</code> is <code>false</code>.</p><p>See the <NuxtLink to="#How-the-Completable-instance-extracts-segments">How the Completable instance extracts segments</NuxtLink> section for more info.</p> | N/A | N/A |
+| `locatesAfterCompletion` | Boolean | `true` | <p><code>true</code> when the Completable instance, after completing the string, should set the current location to the index after the segment's replacement. `false` when it should not change the current location.</p><p>See the <NuxtLink to="#How-the-Completable-instance-handles-current-location">How the Completable instance handles current location</NuxtLink> section for more info.</p> | N/A | N/A |
+| `onComplete(completedString, instance)` | Function | none | <p>Called by Completable after completing the string.</p><p>For more guidance on the `complete` method, see the <NuxtLink to="How-the-Completable-instance-creates-completed-strings-and-new-locations">How the Completable instance creates completed strings and new locations</NuxtLink> section.</p> | The completed string (String) and the Completable instance (Object). | N/A |
+| `onLocate(newLocation, instance)` | Function | none | <p>Called by Completable after completing the string.</p><p>For more guidance on the `complete` method, see the <NuxtLink to="How-the-Completable-instance-creates-completed-strings-and-new-locations">How the Completable instance creates completed strings and new locations</NuxtLink> section.</p> | The new location (Number) and the Completable instance (Object). | N/A |
+</NiftyTable>
+
+
+<NiftyHeading level="2">
+Access state and methods
+</NiftyHeading>
+
+The constructed Completable instance is an Object, and state and methods can be accessed via its properties:
+
+
+<NiftyTable>
+| Property | Type | Description | Parameters | Return value |
+| --- | --- | --- | --- | --- |
+| `string` | String | A shallow copy of the string passed to the Completable constructor | N/A | N/A |
+| `location` | Number | <p>The current index-based location in the <code>string</code>.</p><p>See the <NuxtLink to="#How-the-Completable-instance-extracts-segments">How the Completable instance extracts segments</NuxtLink> section and the <NuxtLink to="#How-the-Completable-instance-handles-current-location">How the Completable instance handles current location</NuxtLink> section for more info.</p> | N/A | N/A |
+| `segment` | Getter | Extracts and returns a segment of `string`. See the <NuxtLink to="#How-the-Completable-instance-extracts-segments">How the Completable instance extracts segments</NuxtLink> section for more info. | N/A | An extracted segment of `string` (String) |
+| `setString(newString)` | Function | Sets the Completable instance's `string` | The new `string` (String) | The Completable instance (`this`) |
+| `setLocation(location)` | Function | <p>Sets the location from which the Completable instance will start extracting segments.</p><p>See the <NuxtLink to="#How-the-Completable-instance-extracts-segments">How the Completable instance extracts segments</NuxtLink> section and the <NuxtLink to="#How-the-Completable-instance-handles-current-location">How the Completable instance handles current location</NuxtLink> section for more info.</p>  | The new `location` (Number) | The Completable instance (`this`) |
+| `complete(completion)` |  | <p>Completes the string, replacing <code>segment</code> with a completion/replacement, and computes a new location based on the <code>locatesAfterCompletion</code> option.</p><p>For more guidance on the `complete` method, see the <NuxtLink to="How-the-Completable-instance-creates-completed-strings-and-new-locations">How the Completable instance creates completed strings and new locations</NuxtLink> section.</p> | The completion/replacement (String) | The Completable instance (`this`) |
+</NiftyTable>
+
+
+<NiftyHeading level="3">
+How the Completable instance extracts segments
+</NiftyHeading>
+
+The Completable instance [slices](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/slice) the `string` in order to extract a segment. The starting location of the slice differs based on the `segmentsFromDivider` option, and the ending location of the slice differs based on the `segmentsToLocation` option.
+
+The tables below have a full breakdowns:
+
+<NiftyTable>
+| When `segmentsFromDivider` is... | `segment` start is... |
+| --- | --- |
+| `false` | The beginning of the `string` |
+| `true` | The index-based location of the previous character(s) matching the regular expression passed to the `divider` option, or `-1` if no matches are found. |
+</NiftyTable>
+
+<NiftyTable>
+| When `segmentsToLocation` is... | `segment` end is... |
+| --- | --- |
+| `false` | The end of the `string` |
+| `true` | The current `location` |
+</NiftyTable>
+
+The sliced `string` becomes the new `segment`.
+
+<NiftyAside type="info">
+`segment` is computed each time it is accessed, using a getter.
+</NiftyAside>
+
+
+<NiftyHeading level="3">
+How the Completable instance creates completed strings and new locations
+</NiftyHeading>
+
+When the Completable instance's `complete` method is called, passing a `completion` as the first parameter, Completable will create a completed version of the `string` and will compute a new value for `location`.
+
+The completed string is always the instance's `string`, but with its `segment` replaced by the `completion`. After completing the `string`, the `complete` method calls the user-specified `onComplete` function, passing the completed string as the first argument.
+
+The new value for `location` is computed based on the `locatesAfterCompletion` option. When `locatesAfterCompletion` is `true`, the new location will be the the index-based location just after the end of the `completion`. This is equal to the length of any text before the `segment` plus the length of the `completion`. But, when `locatesAfterCompletion` is `false`, the new location will be equal to the old location.
+
+After computing the new location, the `complete` method calls the user-specified `onLocate` function, passing the new location as the first argument.
+
+<NiftyAside type="info">
+Note that `complete` does not set `string` or `location` to the new values, but the user can do so using `setString` and `setLocation`.
+</NiftyAside>

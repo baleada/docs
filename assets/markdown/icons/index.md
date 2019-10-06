@@ -18,9 +18,10 @@ Icons are sourced from the following icon sets:
 Each icon in those sets has a corresponding component for the following frameworks:
 - [Vue](https://vuejs.org/)
 - [React](https://reactjs.org/)
+- [Svelte](https://svelte.dev) [WIP]
 
 <NiftyAside type="info">
-Didn't see your favorite icon set or framework in the list? Feel free to [raise an issue](https://gitlab.com/baleada/icons/issues) to ask for support.
+Didn't see your favorite icon set or framework in the list? Feel free to [raise an issue](https://gitlab.com/baleada/icons/issues) and ask for support.
 </NiftyAside>
 
 
@@ -105,7 +106,7 @@ For more guidance on how to import and use the components, see one of the follow
 Full component list
 </NiftyHeading>
 
-<NiftyTable hasMaxH isTypeToFilterable ariaLabel="Full list of Baleada Icons components">
+<NiftyTable isTypeToFilterable ariaLabel="Full list of Baleada Icons components">
 | Component name |
 | --- |
 | EvaActivity |

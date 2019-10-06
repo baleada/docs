@@ -214,6 +214,7 @@
     @apply max-w-full mb-6 inline-block max-h-2/3-screen;
 
     [role="grid"] {
+      @apply w-full;
       display: table;
 
       [role="rowgroup"] {
