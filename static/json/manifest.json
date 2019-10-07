@@ -71,6 +71,11 @@
         "title": "Completable",
         "framework": "agnostic",
         "href": "/docs/logic/libraries/Completable"
+      },
+      {
+        "title": "Navigable",
+        "framework": "agnostic",
+        "href": "/docs/logic/libraries/Navigable"
       }
     ]
   },

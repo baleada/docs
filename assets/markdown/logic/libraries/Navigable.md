@@ -1,160 +1,63 @@
 ---
 title: Navigable
-
 framework: agnostic
-publish: false
+publish: true
+order: 0
 ---
 
-/*
- * Navigable.js
- * (c) 2019 Alex Vipond
- * Released under the MIT license
- */
 
-import is from '../util/is'
+Navigable is a library that enriches an array by:
+- Allowing it to store the index-based location of an item that has been navigated to
+- Giving it the methods necessary to navigate to a different item
 
-/**
- * Navigable is a library that enriches an array by:
- * - Allowing it to store a index of the item that has been navigated to
- * - Giving it the methods necessary to navigate to a different item
- *
- * Navigable is written in vanilla JS with no dependencies. It powers <NuxtLink to="/docs/tools/composition-functions/useNavigable">`useNavigable`</NuxtLink>.
- */
-class Navigable {
-  #loops
-  #increment
-  #decrement
-  #computedLocation
+Navigable is written in vanilla JS with no dependencies.
 
-  /**
-   * Constructs a Navigable instance
-   * @param {Array}  array          The array that will be made navigable
-   * @param {Number}  [initialLocation=0] The default location
-   * @param {Boolean} [loops=true]   `true` when the Navigable instance should loop around to the beginning of the array when it navigates past the last item and loop around to the end when it navigates before the first item. `false` when navigating past the last item or before the first item does not change the location.
-   * @param {Number}  [increment=1]  The number of items that will be traversed when the navigable instance is stepping forward through the array
-   * @param {Number}  [decrement=1]  The number of items that will be traversed when the navigable instance is stepping backward through the array
-   * @param {Function}  onNavigate    A function that Navigable will call after navigating to a new item. `onNavigate` acceepts two parameters: the index-based location (Number) of the item that has been navigated to, and the Navigable instance (Object).
-   */
-  constructor(array, options = {}) {
-    /* Options */
-    options = {
-      initialLocation: 0,
-      loops: true,
-      increment: 1,
-      decrement: 1,
-      ...options
-    }
+<NiftyHeading level="2">
+Construct a Navigable instance
+</NiftyHeading>
 
-    this.#loops = options.loops
-    this.#increment = options.increment
-    this.#decrement = options.decrement
+To construct a Navigable instance (Object), use the Navigable constructor, which takes two parameters:
 
-    /* Public properties */
-    /**
-     * A shallow copy of the array passed to the Navigable constructor
-     * @type {Array}
-     */
-    this.array = array
+<NiftyTable>
 
-    /* Private properties */
-    this.#computedLocation = options.initialLocation
+| Parameter | Type | Required | Description |
+| --- | --- | --- | --- |
+| `array` | Array | yep | Passes the array that will be made navigable. |
+| `options` | Object | nope | Passes options for the Navigable instance. See the <NuxtLink to="#Navigable-constructor-options">Navigable constructor options</NuxtLink> section for more guidance. |
 
-    /* Dependency */
-  }
+</NiftyTable>
 
-  /* Public getters */
-  get location() {
-    return this.#computedLocation
-  }
 
-  /* Public methods */
-  /**
-   * Sets the Navigable instance's array
-   * @param {Array} array The new array
-   * @return {Object}       The new Navigable instance
-   */
-  setArray(array) {
-    this.array = array
-    return this
-  }
-  /**
-   * Navigates to a specific item
-   * @param  {Number} newLocation The index-based location of the item that should be navigated to
-   * @return {Object}       The Navigable instance
-   */
-  goTo(newLocation) {
-    switch (true) {
-      case (newLocation > this.array.length):
-        newLocation = this.array.length
-        // TODO: decide whether to show warnings or not
-        // console.warn(`Cannot set new location: ${newLocation} is greater than ${this.array.length} (the array's length). Location has been set to the array's length instead.`)
-        break
-      case (newLocation < 0):
-        newLocation = 0
-        // TODO: decide whether to show warnings or not
-        // console.warn(`Cannot set newLocation: ${newLocation} is less than 0. Location has been set to 0 instead.` )
-        break
-      default:
-        newLocation = newLocation
-    }
+<NiftyCodeblock>
+```js
+const instance = new Navigable(array[, options])
+```
+</NiftyCodeblock>
 
-    return this.#navigate(newLocation)
-  }
-  /**
-   * Steps forward through the array, increasing `location` by `increment`
-   * @return {Object}       The Navigable instance
-   */
-  next() {
-    let newLocation
-    const lastLocation = this.array.length - 1
+<NiftyTable>
+| Option | Type | Default | Description | Parameters | Return value |
+| --- | --- | --- | --- | --- | --- |
+| `initialLocation` | Number | `0` | The Navigable instance's initial index-based location | N/A | N/A |
+| `loops` | Boolean | `true` | <p>`true` when the Navigable instance should loop around to the beginning of the array after it navigates past the last item AND should loop around to the end after it navigates before the first item.</p><p>`false` when the instance should stop at the last item and first item instead of navigating past them.</p> | N/A | N/A |
+| `increment` | Number | `1` | The number of items that will be traversed when the navigable instance is stepping forward through the array | N/A | N/A |
+| `decrement` | Number | `1` | The number of items that will be traversed when the navigable instance is stepping backward through the array | N/A | N/A |
 
-    if (this.location + this.#increment > lastLocation) {
-      switch (true) {
-        case (this.#loops):
-          newLocation = this.location + this.#increment
-          while(newLocation > lastLocation) {
-            newLocation -= this.array.length
-          }
-          break
-        default:
-          newLocation = lastLocation
-      }
-    } else {
-      newLocation = this.location + this.#increment
-    }
+</NiftyTable>
 
-    return this.goTo(newLocation)
-  }
-  /**
-   * Steps backward through the array, decreasing `location` by `decrement`
-   * @return {Object}       The Navigable instance
-   */
-  prev() {
-    let newLocation
+<NiftyHeading level="2">
+Access state and methods
+</NiftyHeading>
 
-    if (this.location - this.#decrement < 0) {
-      switch (true) {
-        case (this.#loops):
-          newLocation = this.location - this.#decrement
-          while(newLocation < 0) {
-            newLocation += this.array.length
-          }
-          break
-        default:
-          newLocation = 0
-      }
-    } else {
-      newLocation = this.location - this.#decrement
-    }
+The constructed Completable instance is an Object, and state and methods can be accessed via its properties:
 
-    return this.goTo(newLocation)
-  }
 
-  /* Private methods */
-  #navigate = function(newLocation) {
-    this.#computedLocation = newLocation
-    return this
-  }
-}
-
-export default Navigable
+<NiftyTable>
+| Property | Type | Description | Parameters | Return value |
+| --- | --- | --- | --- | --- |
+| `array` | Array | A shallow copy of the array passed to the Navigable constructor | N/A | N/A |
+| `location` | Getter | See return value | N/A | The Navigable instance's current index-based location (Number) |
+| `setArray(newArray)` | Function | Sets the Navigable instance's `array` | The new `array` (Array) | The Navigable instance (`this`) |
+| `goTo(location)` | Function | Navigates to a specific item | The index-based location (Number) of the item that should be navigated to | The Navigable instance (`this`) |
+| `next()` | Function | Steps forward through the array, increasing `location` by `increment` | N/A | The Navigable instance (`this`) |
+| `prev()` | Function | Steps backward through the array, decreasing `location` by `decrement` | N/A | The Navigable instance (`this`) |
+</NiftyTable>

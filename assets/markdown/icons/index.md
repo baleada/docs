@@ -106,7 +106,7 @@ For more guidance on how to import and use the components, see one of the follow
 Full component list
 </NiftyHeading>
 
-<NiftyTable isTypeToFilterable ariaLabel="Full list of Baleada Icons components">
+<NiftyTable hasMaxH isTypeToFilterable ariaLabel="Full list of Baleada Icons components">
 | Component name |
 | --- |
 | EvaActivity |

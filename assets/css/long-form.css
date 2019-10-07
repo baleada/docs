@@ -4,7 +4,6 @@
 
   :not(table):not(div):not(main):not(section):not(article),
   .nifty-aside,
-  .adjacent-article-links,
   *.with-max-w,
   hr,
   img {
@@ -254,10 +253,6 @@
 
       tr {
         @apply border-b;
-      }
-
-      [role="gridcell"] > code {
-        @apply -ml-1;
       }
     }
   }

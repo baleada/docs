@@ -5,8 +5,14 @@
     </NiftyHeading>
     <UpdatedAt :timestamp="updatedAt" />
     <slot />
+    <section class="mt-10 with-max-w flex justify-center sm:justify-start">
+      <a class="btn btn-grows text-gray-600" :href="repoLink">
+        <SimpleGitLab :class="'icon'" />
+        <span class="hover:no-underline">Edit on GitLab</span>
+      </a>
+    </section>
     <AdjacentArticleLinks
-      class="mt-10"
+      class="mt-2"
       :fullPath="fullPath"
     />
   </article>
@@ -16,11 +22,14 @@
 import { computed, watch } from '@vue/composition-api'
 import useRouter from '~/assets/js/useRouter'
 
+import { SimpleGitLab } from '@baleada/icons/vue'
+
 import AdjacentArticleLinks from '~/components/AdjacentArticleLinks.vue'
 
 export default {
   name: 'NiftyArticle',
   components: {
+    SimpleGitLab,
     AdjacentArticleLinks,
   },
   props: {
@@ -29,6 +38,10 @@ export default {
       required: true,
     },
     updatedAt: {
+      type: String,
+      required: true,
+    },
+    repoLink: {
       type: String,
       required: true,
     }

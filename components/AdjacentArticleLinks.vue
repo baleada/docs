@@ -1,16 +1,12 @@
 <template lang="html">
-  <section class="adjacent-article-links flex flex-col sm:flex-row">
-    <NuxtLink v-if="previous !== undefined" :to="previous.href" class="btn btn-grows mr-auto">
-      <div class="inline-flex items-center text-primary-600">
-        <EvaArrowheadLeft :class="'icon'"/>
-        <span class="hover:no-underline">{{ previous.title }}</span>
-      </div>
+  <section class="with-max-w flex flex-col sm:flex-row">
+    <NuxtLink v-if="previous !== undefined" :to="previous.href" class="btn btn-grows mx-auto sm:ml-0 text-primary-600">
+      <EvaArrowheadLeft :class="'icon'"/>
+      <span class="hover:no-underline">{{ previous.title }}</span>
     </NuxtLink>
-    <NuxtLink v-if="next !== undefined" :to="next.href" class="mt-2 sm:mt-0 btn btn-grows ml-auto">
-      <div class="inline-flex items-center text-primary-600">
-        <span class="hover:no-underline">{{ next.title }}</span>
-        <EvaArrowheadRight :class="'icon'"/>
-      </div>
+    <NuxtLink v-if="next !== undefined" :to="next.href" class="btn btn-grows mt-2 sm:mt-0 mx-auto sm:mr-0 text-primary-600">
+      <span class="hover:no-underline">{{ next.title }}</span>
+      <EvaArrowheadRight :class="'icon'"/>
     </NuxtLink>
   </section>
 </template>

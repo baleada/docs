@@ -1,5 +1,5 @@
 <template lang="html">
-<NiftyArticle title="Roadmap" updatedAt="Sun Oct 06 2019 17:04:54 GMT-0600 (CST)">
+<NiftyArticle title="Roadmap" updatedAt="Sun Oct 06 2019 17:04:54 GMT-0600 (CST)" repoLink="https://gitlab.com/baleada/docs/tree/master/assets/markdown/roadmap.md">
   <component :is="article" />
 </NiftyArticle>
 </template>
