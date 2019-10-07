@@ -76,6 +76,11 @@
         "title": "Navigable",
         "framework": "agnostic",
         "href": "/docs/logic/libraries/Navigable"
+      },
+      {
+        "title": "Syncable",
+        "framework": "agnostic",
+        "href": "/docs/logic/libraries/Syncable"
       }
     ]
   },

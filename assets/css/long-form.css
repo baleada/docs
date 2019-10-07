@@ -19,12 +19,12 @@
   }
 
   *:not(h2) + h3,
-  *:not(h3) + h3 {
+  *:not(h3) + h4 {
     @apply mt-9;
   }
 
   *:not(h4) + h5,
-  *:not(h5) + h5 {
+  *:not(h5) + h6 {
     @apply mt-8;
   }
 
@@ -233,7 +233,7 @@
         @apply py-2 text-1 font-600 uppercase tracking-1 bg-primary-100 text-primary-900;
 
         code {
-          @apply bg-gray-200;
+          @apply bg-primary-200 normal-case;
         }
       }
 

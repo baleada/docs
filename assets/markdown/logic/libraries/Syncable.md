@@ -1,277 +1,190 @@
 ---
 title: Syncable
-
 framework: agnostic
-publish: false
+publish: true
+order: 0
 ---
 
-/*
- * Syncable.js
- * (c) 2019 Alex Vipond
- * Released under the MIT license
- */
 
-/* Util */
-import is from '../util/is'
-import { hasEveryProperty } from '../util/hasProperties'
-import warn from '../util/warn'
+Syncable is a library that enriches a piece of state by:
+- Allowing it to infer its data type
+- Allowing it to extract an editable version of itself, based on its data type
+- Giving it the methods necessary to handle different kinds of edits (write, overwrite, full delete, partial delete, cancel &amp; revert to previous value, etc.)
 
-/* Libraries */
-import Renamable from '../subclasses/Renamable'
+Syncable is written in vanilla JS with no dependencies.
 
-class Syncable {
-  /* Private properties */
-  #intendedTypes
-  #editsFullArray
-  #hardCodedType
-  #onSync
-  #writeDictionary
-  #eraseDictionary
+<NiftyHeading level="2">
+Construct a Syncable instance
+</NiftyHeading>
 
-  constructor (state, options = {}) {
-    this.#intendedTypes = ['array', 'boolean', 'date', 'file', 'filelist', 'map', 'number', 'object', 'string']
+To construct a Syncable instance (Object), use the Syncable constructor, which takes two parameters:
 
-    /* Options */
-    options = {
-      editsFullArray: true,
-      ...options
-    }
+<NiftyTable>
 
-    this.#hardCodedType = options.type
-    this.#editsFullArray = options.editsFullArray
-    this.#onSync = options.onSync
+| Parameter | Type | Required | Description |
+| --- | --- | --- | --- |
+| `state` | any | yep | Passes the state that will be made syncable. |
+| `options` | Object | nope | Passes options for the Syncable instance. See the <NuxtLink to="#Syncable-constructor-options">Syncable constructor options</NuxtLink> section for more guidance. |
 
-    this.#writeDictionary = {
-      array: () => this.#writeArray(),
-      map: options => this.#writeMap(options),
-      object: options => this.#writeObject(options),
-    }
-    this.#eraseDictionary = {
-      array: options => this.#eraseArray(options),
-      boolean: () => false,
-      date: () => new Date(),
-      map: options => this.#eraseMap(options),
-      number: () => 0,
-      object: options => this.#eraseObject(options),
-      string: () => '',
-    }
+</NiftyTable>
 
-    /* Public properties */
-    this.state = state
-    this.editableState = this.#getEditableState()
-  }
 
-  /* Public getters */
-  get type () {
-    return this.#getType(this.state)
-  }
-  get editableStateType () {
-    return this.#getType(this.editableState)
-  }
+<NiftyCodeblock>
+```js
+const instance = new Syncable(state[, options])
+```
+</NiftyCodeblock>
 
-  /* Public methods */
-  setState (state) {
-    this.state = state
-    this.setEditableState(this.#getEditableState())
-    return this
-  }
-  setEditableState (state) {
-    this.editableState = state
-    return this
-  }
-  cancel () {
-    this.editableState = this.#getEditableState()
-    return this
-  }
-  write (options = {}) {
-    const newState = this.#writeDictionary.hasOwnProperty(this.type)
-      ? this.#writeDictionary[this.type](options)
-      : this.editableState
+<NiftyTable>
 
-    return this.#sync(newState)
-  }
-  erase (options = {}) {
-    const newState = this.#eraseDictionary.hasOwnProperty(this.type)
-      ? this.#eraseDictionary[this.type](options)
-      : null
+| Option | Type | Default | Description | Parameters | Return value |
+| --- | --- | --- | --- | --- | --- |
+| `type` | String | none | <p>Tells the Syncable instance what data type your state is. If you don't pass this option, the Syncable instance will infer the data type based on the state passed to the constructor.</p><NiftyAside type="warning">You should pass the `type` option any time your original state is not the same type as the state that will be written—for example, when you're using Syncable to sync a Date, a File, or a FileList, but your store's placeholder value is a String or an empty Object.</NiftyAside><NiftyAside type="info"><p>You can pass any String as the <code>type</code> option, or you can pick from one of the following intended types:</p><ul><li>`'array'`</li><li>`'boolean'`</li><li>`'date'`</li><li>`'file'`</li><li>`'filelist'`</li><li>`'map'`</li><li>`'number'`</li><li>`'object'`</li><li>`'string'`</li></ul></NiftyAside> | N/A | N/A |
+| `editsFullArray` | Boolean | `true` | <p>Only has an effect when the state passed to the constructor is an Array.</p><p>`true` when the Syncable instance will be writing/deleting the full array, `false` when the instance will be writing/deleting individual items in the array.</p><p>See the <NuxtLink to="#How-Syncable-edits-state">How Syncable edits state</NuxtLink> section for more guidance.</p> | N/A | N/A |
+| `onSync(newState, instance)` | Function | none | <p>Called by the Syncable instance after writing or deleting state.</p><p>For more guidance, see the <NuxtLink to="#How-Syncable-edits-state">How Syncable edits state</NuxtLink> section.</p> | The new state (can be any type) and the Syncable instance (Object) | N/A |
 
-    return this.#sync(newState)
-  }
+</NiftyTable>
 
-  /* Private methods */
-  #getType = function(state) {
-    if (this.#hardCodedType && this.#hardCodedType !== 'array') {
-      return this.#hardCodedType
-    } else {
-      return this.#guessType(state)
-    }
-  }
-  #guessType = function(state) {
-    let type,
-        i = 0
-    while (type === undefined && i < this.#intendedTypes.length) {
-      if (is[this.#intendedTypes[i]](state)) {
-        type = this.#intendedTypes[i]
-      }
-      i++
-    }
+<NiftyHeading level="2">
+Access state and methods
+</NiftyHeading>
 
-    if (type === undefined) {
-      type = 'unintended'
-    }
+The constructed Syncable instance is an Object, and state and methods can be accessed via its properties:
 
-    return type
-  }
-  #getEditableState = function() {
-    if (this.type !== 'array') {
-      return this.state
-    } else {
-      return this.#editsFullArray ? this.state : ''
-    }
-  }
-  #sync = function(newState) {
-    if (is.function(this.#onSync)) {
-      this.#onSync(newState)
-    }
-    return this
-  }
-  #writeArray = function() {
-    return this.#editsFullArray
-      ? this.editableState
-      : this.state.concat([this.editableState])
-  }
-  #writeMap = function(options) {
-    warn('hasRequiredOptions', {
-      received: options,
-      required: ['key'],
-      subject: 'Syncable\'s write method',
-      docs: 'https://baleada.netlify.com/docs/logic/Syncable',
-    })
-    warn('hasRequiredOptions', {
-      received: options,
-      required: ['value', 'rename'],
-      subject: 'Syncable\'s write method',
-      docs: 'https://baleada.netlify.com/docs/logic/Syncable',
-    })
 
-    let newState = this.state
-    const key = options.key
+<NiftyTable>
 
-    if (hasEveryProperty(options, ['rename', 'value'])) {
-      const renamable = new Renamable(newState)
+| Property | Type | Description | Parameters | Return value |
+| --- | --- | --- | --- | --- |
+| `state` | any | A shallow copy of the state passed to the Syncable constructor | N/A | N/A |
+| `editableState` | any | An editable version of `state`. See the <NuxtLink to="#How-Syncable-extracts-an-editable-version-of-its-state">How Syncable extracts an editable version of its state</NuxtLink> section for more information. | N/A | N/A |
+| `type` | Getter | See return value | N/A | The Syncable instance's inferred data type (String) |
+| `setState(newState)` | Function | Sets the Syncable instance's `state` | The new `state` (any) | The Syncable instance (`this`) |
+| `setEditableState(newEditableState)` | Function | Sets the Syncable instance's `editableState` | The new `editableState` (any) | The Syncable instance (`this`) |
+| `cancel()` | Function | <p>Resets `editableState` to the initial value extracted from `state`.</p><NiftyAside type="info">`cancel` does not trigger the Syncable instance to call the user-specified `onSync` function.</NiftyAside> | none | The Syncable instance (`this`) |
+| `write(options)` | Function | <p>Writes `editableState` to `state`.</p><p>The exact write behavior depends on `type`, the `editsFullArray` option, and the `write` function's `options` parameter. See the <NuxtLink to="#How-Syncable-writes-state">How Syncable writes state</NuxtLink> section for more guidance.</p> | <p>An `options` object.</p><p>See the <NuxtLink to="#How-Syncable-writes-state">How Syncable writes state</NuxtLink> section for more guidance.</p> | The Syncable instance (`this`) |
+| `erase(options)` | Function | <p>Erases `state`.</p><p>The exact erase behavior depends on `type`, the `editsFullArray` option, and the `erase` function's `options` parameter. See the <NuxtLink to="#How-Syncable-erases-state">How Syncable erases state</NuxtLink> section for more guidance.</p> | <p>An `options` object.</p><p>See the <NuxtLink to="#How-Syncable-erases-state">How Syncable erases state</NuxtLink> section for more guidance.</p> | The Syncable instance (`this`) |
 
-      renamable.renameKey(options.rename, key)
-      renamable.set(key, options.value)
+</NiftyTable>
 
-      newState = new Map(renamable)
-    } else if (hasEveryProperty(options, ['rename'])) {
-      const renamable = new Renamable(newState)
 
-      renamable.renameKey(options.rename, key)
+<NiftyHeading level="3">
+How Syncable extracts an editable version of its state
+</NiftyHeading>
 
-      newState = new Map(renamable)
-    } else if (hasEveryProperty(options, ['value'])) {
-      newState.set(key, options.value)
-    }
+Syncable follows this logic to extract an editable version of its state:
+- If `type` is not `'array'`, `editableState` is a shallow copy of `state`
+- Otherwise:
+  - If `editsFullArray` is `true`, `editableState` is a shallow copy of `state`
+  - Otherwise, `editableState` is an empty string
 
-    return newState
-  }
-  #writeObject = function(options) {
-    warn('hasRequiredOptions', {
-      received: options,
-      required: ['key'],
-      subject: 'Syncable\'s write method',
-      docs: 'https://baleada.netlify.com/docs/logic/Syncable',
-    })
-    warn('hasRequiredOptions', {
-      received: options,
-      required: ['value', 'rename'],
-      subject: 'Syncable\'s write method',
-      docs: 'https://baleada.netlify.com/docs/logic/Syncable',
-    })
 
-    const newState = this.state,
-          key = options.key
+<NiftyHeading level="3">
+How Syncable edits state
+</NiftyHeading>
 
-    if (hasEveryProperty(options, ['rename', 'value'])) {
-      newState[key] = options.value
-      delete newState[options.rename]
-    } else if (hasEveryProperty(options, ['rename'])) {
-      newState[key] = newState[options.rename]
-      delete newState[options.rename]
-    } else if (hasEveryProperty(options, ['value'])) {
-      newState[key] = options.value
-    }
+In general, whenever the `write` or `erase` methods are called, the Syncable instance creates an edited version of its original state, then calls the user-specified `onSync` function, passing the edited stated as the first argument.
 
-    return newState
-  }
-  #eraseArray = function(options) {
-    warn('hasRequiredOptions', {
-      received: options,
-      required: ['value', 'last', 'all'],
-      subject: 'Syncable\'s erase method',
-      docs: 'https://baleada.netlify.com/docs/logic/Syncable',
-    })
+The edited state is created differently depending on whether you call `write` or `erase`; keep reading for more guidance.
 
-    let newState = this.state
 
-    if (options.hasOwnProperty('value')) {
-      newState = this.state.filter(item => item !== options.value)
-    }
-    if (options.hasOwnProperty('last') && options.last !== false) {
-      newState = this.state.slice(0, -1)
-    }
-    if (options.hasOwnProperty('all') && options.all !== false) {
-      newState = []
-    }
+<NiftyHeading level="4">
+How Syncable writes state
+</NiftyHeading>
 
-    return newState
-  }
-  #eraseMap = function(options) {
-    warn('hasRequiredOptions', {
-      received: options,
-      required: ['key', 'last', 'all'],
-      subject: 'Syncable\'s erase method',
-      docs: 'https://baleada.netlify.com/docs/logic/Syncable',
-    })
+The way Syncable writes state varies based on the user-specified `editsFullArray` option, the instance's `type` property, and the `options` object passed by the user as the `write` method's first argument.
 
-    const newState = this.state
+First, here's a breakdown of what `options` can contain:
 
-    if (options.hasOwnProperty('key') && is.string(options.key)) {
-      newState.delete(options.key)
-    }
-    if (options.hasOwnProperty('last') && options.last !== false) {
-      const last = Array.from(newState.keys()).reverse()[0]
-      newState.delete(last) // TODO: What's the UI/feature/use case for deleting last key/value?
-    }
-    if (options.hasOwnProperty('all') && options.all !== false) {
-      newState.clear()
-    }
+<NiftyTable>
 
-    return newState
-  }
-  #eraseObject = function(options) {
-    warn('hasRequiredOptions', {
-      received: options,
-      required: ['value', 'last', 'all'],
-      subject: 'Syncable\'s erase method',
-      docs: 'https://baleada.netlify.com/docs/logic/Syncable',
-    })
+| Property | Type | Required | Description |
+| --- | --- | --- | --- |
+| `key` | String | Only when `type` is `map` or `object` | Indicates which of the Map or Object's keys will have its value set |
+| `value` | any | nope | Passes the value that will be set as the new value for the Map or Object's key (specified by the `key` option) |
+| `rename` | String | nope | Indicates which of the Map or Object's keys will be renamed using the String passed to the `key` option |
 
-    let newState = this.state
+  </NiftyTable>
 
-    if (options.hasOwnProperty('key') && is.string(options.key)) {
-      delete newState[options.key]
-    }
-    if (options.hasOwnProperty('last') && options.last !== false) {
-      delete newState[Object.keys(newState).reverse()[0]] // TODO: What's the UI/feature/use case for deleting last key/value?
-    }
-    if (options.hasOwnProperty('all') && options.all !== false) {
-      newState = {}
-    }
+And here's a breakdown of how all those factors influence write behavior:
 
-    return newState
-  }
-}
+<NiftyTable>
 
-export default Syncable
+| When `editsFullArray` is... | And `type` is... | And `options` includes | New state is... |
+| --- | --- | --- | --- |
+| `true` | `'array'` | anything | `editableState` |
+| `false` | `'array'` | anything | `state`, with `editableState` appended as the last item in the array |
+| anything | `'map'` or `'object'` | `key`, `value`, and `rename` properties | `state` with the key specified by `rename` renamed to the key specified by `key`, and the value of `state[key]` set to `value` |
+| anything | `'map'` or `'object'` | Only `key` and `rename` properties | `state` with the key specified by `rename` renamed to the key specified by `key` (value is unchanged) |
+| anything | `'map'` or `'object'` | Only `key` and `value` properties | `state` with the value of `state[key]` set to `value` |
+| anything | anything else | anything | `editableState` |
+
+</NiftyTable>
+
+
+<NiftyHeading level="4">
+How Syncable erases state
+</NiftyHeading>
+
+The way Syncable erases state varies based on the user-specified `editsFullArray` option, the instance's `type` property, and the `options` object passed by the user as the `write` method's first argument.
+
+First, here's a breakdown of what `options` can contain:
+
+<NiftyTable>
+
+| Property | Type | Required | Description |
+| --- | --- | --- | --- |
+| `key` | String | nope | Indicates which key of a Map or Object should be deleted. |
+| `item(currentItem)` | String, Function | nope | Indicates which item in an Array should be removed. See the <NuxtLink to="#How-to-erase-items-from-arrays">How to erase items from Arrays</NuxtLink> section for more guidance. |
+| `last` | Boolean | nope | <p>Indicates whether or not the Syncable instance should remove the last item from an Array or delete the last key of a Map or Object.</p><NiftyAside type="warning">The order of keys in JavaScript Objects is not consistent. Deleting the "last" key may not produce the same results across all environments. If the order of keys is important for your use case, consider using Maps instead.</NiftyAside> |
+| `all` | Boolean | nope | Indicates whether or not Syncable should remove all items from an Array or delete all key/value pairs from a Map or Object. |
+
+</NiftyTable>
+
+
+And here's a breakdown of how all those factors influence erase behavior:
+
+<NiftyTable>
+
+| When `editsFullArray` is... | And `type` is... | And `options` includes | New state is... |
+| --- | --- | --- | --- |
+| `true` | `'array'` | anything | `[]` |
+| `false` | `'array'` | `item` | See the <NuxtLink to="#How-to-erase-items-from-arrays">How to erase items from Arrays</NuxtLink> section for more guidance. |
+| `false` | `'array'` | `last: true` | `state`, with the last item removed |
+| `false` | `'array'` | `all: true` | `[]` |
+| anything | `'map'` or `'object'` | `key` | `state`, with the key matching `options.key` deleted |
+| anything | `'map'` or `'object'` | `last: true` | <p>`state`, with the last key deleted.</p><NiftyAside type="warning">The order of keys in JavaScript Objects is not consistent. Deleting the "last" key may not produce the same results across all environments. If the order of keys is important for your use case, consider using Maps instead.</NiftyAside> |
+| anything | `'map'` | `all: true` | `new Map()` |
+| anything | `'object'` | `all: true` | `{}` |
+| anything | `'boolean'` | anything | `false` |
+| anything | `'date'` | anything | `new Date()` |
+| anything | `'number'` | anything | `0` |
+| anything | `'string'` | anything | `''` |
+| anything | anything else | anything | `undefined` |
+
+</NiftyTable>
+
+
+<NiftyHeading level="5">
+How to erase items from Arrays
+</NiftyHeading>
+
+When `type` is `'array'` and `editsFullArray` is `false`, the `erase` method's `item` option indicates which item in `state` should be erased.
+
+If `options.item` is a String, the Syncable instance will find and remove the first item in `state` that is strictly equal to `options.item`.
+
+If `options.item` is a Function, the Syncable instance will iterate through `state`, calling the `options.item` function on each item, passing the item as the first arugment. the Syncable instance will remove the first item for which the `options.item` function returns `true`.
+
+For example, if you have an array of objects that have a unique ID in the `id` key, and you want the Syncable instance to find and delete the item whose ID is `'abc'`, you can call `erase` like so:
+
+<NiftyCodeblock>
+```js
+syncable.erase({
+  item: currentItem => currentItem.id === 'abc'
+})
+```
+</NiftyCodeblock>
+
+<NiftyAside type="info">
+If `options.item(currentItem)` returns `false` for every item in `state`, the Syncable instance will not remove any items.
+</NiftyAside>

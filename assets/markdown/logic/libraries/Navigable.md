@@ -48,7 +48,7 @@ const instance = new Navigable(array[, options])
 Access state and methods
 </NiftyHeading>
 
-The constructed Completable instance is an Object, and state and methods can be accessed via its properties:
+The constructed Navigable instance is an Object, and state and methods can be accessed via its properties:
 
 
 <NiftyTable>
@@ -58,6 +58,6 @@ The constructed Completable instance is an Object, and state and methods can be 
 | `location` | Getter | See return value | N/A | The Navigable instance's current index-based location (Number) |
 | `setArray(newArray)` | Function | Sets the Navigable instance's `array` | The new `array` (Array) | The Navigable instance (`this`) |
 | `goTo(location)` | Function | Navigates to a specific item | The index-based location (Number) of the item that should be navigated to | The Navigable instance (`this`) |
-| `next()` | Function | Steps forward through the array, increasing `location` by `increment` | N/A | The Navigable instance (`this`) |
-| `prev()` | Function | Steps backward through the array, decreasing `location` by `decrement` | N/A | The Navigable instance (`this`) |
+| `next()` | Function | Steps forward through the array, increasing `location` by `increment` | none | The Navigable instance (`this`) |
+| `prev()` | Function | Steps backward through the array, decreasing `location` by `decrement` | none | The Navigable instance (`this`) |
 </NiftyTable>
