@@ -1,4 +1,4 @@
-.nifty-codeblock {
+.prose-codeblock {
   @apply bg-gray-200 text-gray-900;
 
   .token.comment,

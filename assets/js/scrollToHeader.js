@@ -1,5 +1,3 @@
-import simpleSlugify from './simpleSlugify.js'
-
 function isAnchored (route) {
   return /#[\w-]+$/.test(route)
 }
@@ -14,10 +12,10 @@ export default function scrollToHeader (fullPath, options) {
   if (!isAnchored(fullPath)) {
     options.container.scrollTop = 0
   } else {
-    const anchor = fullPath.split('#')[1].split('.')[0].toLowerCase(),
-          heading = Array.from(options.container.querySelectorAll('h1, h2, h3, h4, h5, h6'))
-            .find(heading => simpleSlugify(heading.textContent) === anchor)
-
+    const slug = fullPath.split('#')[1].split('.')[0].toLowerCase(),
+          anchor = options.container.querySelector(`a[href="#${slug}"]`),
+          heading = anchor ? anchor.parentNode : undefined
+          
     if (heading !== undefined) heading.scrollIntoView(options.scrollIntoView)
   }
 }

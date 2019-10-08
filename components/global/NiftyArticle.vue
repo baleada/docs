@@ -1,5 +1,8 @@
 <template lang="html">
-  <article class="flex-1 long-form px-7 sm:px-9 lg:pl-11 pb-12 pt-11 lg:mr-10 transition">
+  <article
+    ref="prose"
+    class="flex-1 prose px-7 sm:px-9 lg:pl-11 pb-12 pt-11 lg:mr-10 transition"
+  >
     <NiftyHeading level="1">
       {{ title }}
     </NiftyHeading>
@@ -19,8 +22,10 @@
 </template>
 
 <script>
-import { computed, watch } from '@vue/composition-api'
+import { ref, computed, watch, onMounted } from '@vue/composition-api'
 import useRouter from '~/assets/js/useRouter'
+
+import scrollToHeader from '~/assets/js/scrollToHeader'
 
 import { SimpleGitLab } from '@baleada/icons/vue'
 
@@ -55,26 +60,17 @@ export default {
     const { route } = useRouter(),
           fullPath = computed(() => route.value.fullPath)
 
-
     /* Things to do when page is loaded */
-    function onLoad (container) {
-      // highlightCode()
-      scrollToHeader(fullPath, { container })
-      // wrapElements({
-      //   container,
-      //   classes: ['table-wrapper', 'scrollable'],
-      //   selector: 'table'
-      // })
-    }
-    let timeoutID
-    watch(
-      fullPath,
-      () => {
-
-      }
-    )
+    const prose = ref(null)
+    onMounted(() => {
+      scrollToHeader(fullPath.value, { container: prose.value })
+    })
+    watch(fullPath, () => {
+      scrollToHeader(fullPath.value, { container: prose.value })
+    }, { lazy: true })
 
     return {
+      prose,
       fullPath
     }
   },

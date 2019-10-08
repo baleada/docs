@@ -40,8 +40,10 @@ const instance = new Syncable(state[, options])
 | Option | Type | Default | Description | Parameters | Return value |
 | --- | --- | --- | --- | --- | --- |
 | `type` | String | none | <p>Tells the Syncable instance what data type your state is. If you don't pass this option, the Syncable instance will infer the data type based on the state passed to the constructor.</p><NiftyAside type="warning">You should pass the `type` option any time your original state is not the same type as the state that will be written—for example, when you're using Syncable to sync a Date, a File, or a FileList, but your store's placeholder value is a String or an empty Object.</NiftyAside><NiftyAside type="info"><p>You can pass any String as the <code>type</code> option, or you can pick from one of the following intended types:</p><ul><li>`'array'`</li><li>`'boolean'`</li><li>`'date'`</li><li>`'file'`</li><li>`'filelist'`</li><li>`'map'`</li><li>`'number'`</li><li>`'object'`</li><li>`'string'`</li></ul></NiftyAside> | N/A | N/A |
-| `editsFullArray` | Boolean | `true` | <p>Only has an effect when the state passed to the constructor is an Array.</p><p>`true` when the Syncable instance will be writing/deleting the full array, `false` when the instance will be writing/deleting individual items in the array.</p><p>See the <NuxtLink to="#How-Syncable-edits-state">How Syncable edits state</NuxtLink> section for more guidance.</p> | N/A | N/A |
-| `onSync(newState, instance)` | Function | none | <p>Called by the Syncable instance after writing or deleting state.</p><p>For more guidance, see the <NuxtLink to="#How-Syncable-edits-state">How Syncable edits state</NuxtLink> section.</p> | The new state (can be any type) and the Syncable instance (Object) | N/A |
+| `editsFullArray` | Boolean | `true` | <p>Only has an effect when the state passed to the constructor is an Array.</p><p>`true` when the Syncable instance will be writing/erasing the full array, `false` when the instance will be writing/erasing individual items in the array.</p><p>See the <NuxtLink to="#How-Syncable-edits-state">How Syncable edits state</NuxtLink> section for more guidance.</p> | N/A | N/A |
+| `onSync(newState, instance)` | Function | <p>See the <NuxtLink to="#How-Syncable-edits-state">How Syncable edits state</NuxtLink> section for more guidance.</p> | <p>Called by the Syncable instance after either writing or erasing state.</p><p>For more guidance, see the <NuxtLink to="#How-Syncable-edits-state">How Syncable edits state</NuxtLink> section.</p> | The new state (can be any type) and the Syncable instance (Object) | N/A |
+| `onWrite(newState, instance)` | Function | none | <p>Called by the Syncable instance after writing state.</p><p>For more guidance, see the <NuxtLink to="#How-Syncable-edits-state">How Syncable edits state</NuxtLink> section.</p> | The new state (can be any type) and the Syncable instance (Object) | N/A |
+| `onErase(newState, instance)` | Function | none | <p>Called by the Syncable instance after erasing state.</p><p>For more guidance, see the <NuxtLink to="#How-Syncable-edits-state">How Syncable edits state</NuxtLink> section.</p> | The new state (can be any type) and the Syncable instance (Object) | N/A |
 
 </NiftyTable>
 
@@ -61,7 +63,7 @@ The constructed Syncable instance is an Object, and state and methods can be acc
 | `type` | Getter | See return value | N/A | The Syncable instance's inferred data type (String) |
 | `setState(newState)` | Function | Sets the Syncable instance's `state` | The new `state` (any) | The Syncable instance (`this`) |
 | `setEditableState(newEditableState)` | Function | Sets the Syncable instance's `editableState` | The new `editableState` (any) | The Syncable instance (`this`) |
-| `cancel()` | Function | <p>Resets `editableState` to the initial value extracted from `state`.</p><NiftyAside type="info">`cancel` does not trigger the Syncable instance to call the user-specified `onSync` function.</NiftyAside> | none | The Syncable instance (`this`) |
+| `cancel()` | Function | <p>Resets `editableState` to the initial value extracted from `state`.</p><NiftyAside type="info">`cancel` does not trigger the Syncable instance to call your `onSync`, `onWrite`, or `onErase` functions.</NiftyAside> | none | The Syncable instance (`this`) |
 | `write(options)` | Function | <p>Writes `editableState` to `state`.</p><p>The exact write behavior depends on `type`, the `editsFullArray` option, and the `write` function's `options` parameter. See the <NuxtLink to="#How-Syncable-writes-state">How Syncable writes state</NuxtLink> section for more guidance.</p> | <p>An `options` object.</p><p>See the <NuxtLink to="#How-Syncable-writes-state">How Syncable writes state</NuxtLink> section for more guidance.</p> | The Syncable instance (`this`) |
 | `erase(options)` | Function | <p>Erases `state`.</p><p>The exact erase behavior depends on `type`, the `editsFullArray` option, and the `erase` function's `options` parameter. See the <NuxtLink to="#How-Syncable-erases-state">How Syncable erases state</NuxtLink> section for more guidance.</p> | <p>An `options` object.</p><p>See the <NuxtLink to="#How-Syncable-erases-state">How Syncable erases state</NuxtLink> section for more guidance.</p> | The Syncable instance (`this`) |
 
@@ -83,7 +85,22 @@ Syncable follows this logic to extract an editable version of its state:
 How Syncable edits state
 </NiftyHeading>
 
-In general, whenever the `write` or `erase` methods are called, the Syncable instance creates an edited version of its original state, then calls the user-specified `onSync` function, passing the edited stated as the first argument.
+In general, whenever the `write` or `erase` methods are called, the Syncable instance creates an edited version of its original state, then calls your `onSync` function, passing the edited state as the first argument and itself (i.e. `this`) as the second argument.
+
+The default `onSync` function, shown below, sets `state` to the edited state each time you call one of the editing methods:
+
+<NiftyCodeblock>
+
+```js
+/*
+ * Default onSync function for Syncable 
+ */
+(newState, instance) => instance.setState(newState)
+```
+
+</NiftyCodeblock>
+
+Immediately afterward, the Syncable instance will also call your `onWrite` or `onErase` functions, depending on which method you called. `onWrite` and `onErase` also receive the edited state as the first argument and the Syncable instance (i.e. `this`) as the second argument.
 
 The edited state is created differently depending on whether you call `write` or `erase`; keep reading for more guidance.
 
@@ -92,7 +109,7 @@ The edited state is created differently depending on whether you call `write` or
 How Syncable writes state
 </NiftyHeading>
 
-The way Syncable writes state varies based on the user-specified `editsFullArray` option, the instance's `type` property, and the `options` object passed by the user as the `write` method's first argument.
+The way Syncable writes state varies based on your `editsFullArray` option, the instance's `type` property, and the `options` object passed by you as the `write` method's first argument.
 
 First, here's a breakdown of what `options` can contain:
 
@@ -121,12 +138,16 @@ And here's a breakdown of how all those factors influence write behavior:
 
 </NiftyTable>
 
+<NiftyAside type="info">
+Note that `write` does not update `state` or `editableState`, but you can do so using `setState` and `setEditableState`.
+</NiftyAside>
+
 
 <NiftyHeading level="4">
 How Syncable erases state
 </NiftyHeading>
 
-The way Syncable erases state varies based on the user-specified `editsFullArray` option, the instance's `type` property, and the `options` object passed by the user as the `write` method's first argument.
+The way Syncable erases state varies based on your `editsFullArray` option, the instance's `type` property, and the `options` object passed by you as the `write` method's first argument.
 
 First, here's a breakdown of what `options` can contain:
 
@@ -163,6 +184,10 @@ And here's a breakdown of how all those factors influence erase behavior:
 | anything | anything else | anything | `undefined` |
 
 </NiftyTable>
+
+<NiftyAside type="info">
+Note that `erase` does not update `state` or `editableState`, but you can do so using `setState` and `setEditableState`.
+</NiftyAside>
 
 
 <NiftyHeading level="5">

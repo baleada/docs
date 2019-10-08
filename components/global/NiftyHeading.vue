@@ -1,6 +1,6 @@
 <template lang="html">
   <component
-    class="nifty-heading relative hover:text-primary-700 transition cursor-pointer"
+    class="prose-heading relative hover:text-primary-700 transition cursor-pointer"
     :is="`h${level}`"
     @mouseover="handleMouseover"
     @mouseleave="handleMouseleave"
@@ -20,7 +20,7 @@
       <EvaLink :class="'icon text-inherit'" />
     </a>
     <a
-      ref="nifty"
+      ref="prose"
       :href="`#${slug}`"
     >
       <slot />
@@ -47,14 +47,14 @@ export default {
     }
   },
   setup() {
-    const nifty = ref(null),
-          slug = computed(() => nifty.value ? simpleSlugify(nifty.value.textContent) : ''),
+    const prose = ref(null),
+          slug = computed(() => prose.value ? simpleSlugify(prose.value.textContent).toLowerCase() : ''),
           buttonIsShown = ref(false),
           handleMouseover = () => (buttonIsShown.value = true),
           handleMouseleave = () => (buttonIsShown.value = false)
 
     return {
-      nifty,
+      prose,
       slug,
       buttonIsShown,
       handleMouseover,

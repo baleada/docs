@@ -1,6 +1,6 @@
 <template lang="html">
   <section
-    class="relative nifty-codeblock swiper-no-swiping"
+    class="relative prose-codeblock swiper-no-swiping"
   >
     <!-- Copy button -->
     <button
@@ -10,7 +10,7 @@
     >
       <EvaCopy :class="'icon'" />
     </button>
-    <div ref="nifty">
+    <div ref="prose">
       <slot />
     </div>
   </section>
@@ -28,10 +28,10 @@ export default {
     EvaCopy,
   },
   setup() {
-    const nifty = ref(null),
+    const prose = ref(null),
           copiable = useCopiable(''),
           code = computed(() => {
-            const code = nifty.value ? nifty.value.textContent : ''
+            const code = prose.value ? prose.value.textContent : ''
             useCopiable.setString(code)
             return code
           })
@@ -41,7 +41,7 @@ export default {
     }
 
     return {
-      nifty,
+      prose,
       handleCopyButtonClick
     }
   },

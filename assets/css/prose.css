@@ -1,16 +1,16 @@
-/* Long form Markdown article styles */
-.long-form {
+/* Markdown prose styles */
+.prose {
   @apply text-black;
 
   :not(table):not(div):not(main):not(section):not(article),
-  .nifty-aside,
+  .prose-aside,
   *.with-max-w,
   hr,
   img {
     @apply max-w-5;
   }
 
-  table tr :not(.nifty-table):not(.nifty-codeblock):not(div):not(main):not(section):not(article) {
+  table tr :not(.prose-table):not(.prose-codeblock):not(div):not(main):not(section):not(article) {
     @apply max-w-5;
   }
 
@@ -36,13 +36,13 @@
   * + ul,
   * + ol,
   * + img,
-  * + .nifty-aside,
-  * + .nifty-codeblock,
+  * + .prose-aside,
+  * + .prose-codeblock,
   * + .with-mt {
     @apply mt-5;
   }
 
-  * + .nifty-table {
+  * + .prose-table {
     @apply mt-7;
   }
 
@@ -172,7 +172,7 @@
     @apply w-full rounded shadow-2;
   }
 
-  :not(.nifty-heading) > a:not(.btn) {
+  :not(.prose-heading) > a:not(.btn) {
     @apply text-primary-700 no-underline;
 
     &:visited {
@@ -184,7 +184,7 @@
     }
   }
 
-  .nifty-codeblock {
+  .prose-codeblock {
     @apply rounded p-3 overflow-x-scroll -shadow max-h-2/3-screen scrolling-touch;
 
     code {
@@ -209,12 +209,16 @@
     @apply scrolling-touch overflow-x-scroll -shadow;
   }
 
-  .nifty-table {
-    @apply max-w-full mb-6 inline-block max-h-2/3-screen;
+  .prose-table {
+    @apply max-w-full mb-6 inline-block;
 
-    [role="grid"] {
-      @apply w-full;
-      display: table;
+    .contents {
+      @apply max-h-2/3-screen;
+
+      [role="grid"] {
+        @apply w-full;
+        display: table;
+      }
 
       [role="rowgroup"] {
         display: table-row-group;
@@ -227,6 +231,10 @@
 
       [role="row"] {
         display: table-row;
+
+        &:last-child {
+          @apply border-b-1 border-gray-300;
+        }
       }
 
       [role="columnheader"] {
@@ -244,20 +252,36 @@
       }
 
       [role="gridcell"] {
-        @apply py-4 leading-2 border-l border-b-1 border-gray-300;
-      }
+        @apply py-4 leading-2 border-l border-gray-300;
 
-      [role="gridcell"]:last-child {
-        @apply border-r;
+        &:last-child {
+          @apply border-r;
+        }
       }
+    }
 
-      tr {
-        @apply border-b;
+    &.prose-table-striped {
+      .contents {
+        [role="rowgroup"] > :nth-child(even) {
+          @apply bg-gray-100;
+
+          &:last-child {
+            @apply border-gray-400;
+          }
+
+          [role="gridcell"] {
+            @apply border-gray-400;
+
+            code {
+              @apply bg-gray-300;
+            }
+          }
+        }
       }
     }
   }
 
-  .nifty-aside {
+  .prose-aside {
     @apply relative flex items-start rounded-r-1 p-5 my-6 border-l-4;
 
     .aside-header {
@@ -371,9 +395,9 @@
 }
 
 @media screen and (min-width: theme('screens.md')) {
-  .long-form {
-    .nifty-codeblock,
-    .nifty-table {
+  .prose {
+    .prose-codeblock,
+    .prose-table .contents {
       @apply max-h-full;
     }
 

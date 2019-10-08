@@ -1,5 +1,5 @@
 <template lang="html">
-<NiftyArticle title="What is Baleada Logic?" updatedAt="Sun Sep 22 2019 00:14:07 GMT-0600 (CST)" repoLink="https://gitlab.com/baleada/docs/tree/master/assets/markdown/logic/index.md">
+<NiftyArticle title="What is Baleada Logic?" updatedAt="Mon Oct 07 2019 19:02:59 GMT-0600 (CST)" repoLink="https://gitlab.com/baleada/docs/tree/master/assets/markdown/logic/index.md">
   <component :is="article" />
 </NiftyArticle>
 </template>

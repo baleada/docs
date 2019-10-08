@@ -1,5 +1,5 @@
 <template lang="html">
-  <section class="nifty-table w-full sm:w-auto sm:min-w-2 swiper-no-swiping">
+  <section class="prose-table prose-table-striped w-full sm:w-auto sm:min-w-2 swiper-no-swiping">
     <div v-if="isTypeToFilterable">
       <input
         class="inp w-full bg-gray-100 -shadow"
@@ -15,8 +15,8 @@
       </div>
     </div>
     <div
-      ref="nifty"
-      class="scrollable p-2px"
+      ref="prose"
+      class="contents scrollable p-2px"
       :class="[
         hasMaxH ? 'max-h-2/3-screen' : '',
         isTypeToFilterable ? 'mt-4' : '',
@@ -55,7 +55,7 @@ export default {
     }
   },
   setup(props) {
-    const nifty = ref(null),
+    const prose = ref(null),
           getRows = grid => {
             const body = grid.querySelector('[role="rowgroup"]:last-child'),
                   nodes = body.querySelectorAll('[role="row"]'),
@@ -70,8 +70,8 @@ export default {
             return text
           },
           rows = computed(() => {
-            return nifty.value
-              ? getRows(nifty.value.querySelector('[role="grid"]'))
+            return prose.value
+              ? getRows(prose.value.querySelector('[role="grid"]'))
               : []
           }),
           reactiveFilterQueryIsCaseSensitive = ref(props.filterQueryIsCaseSensitive),
@@ -111,10 +111,10 @@ export default {
     }
 
     // TODO: use props/refs instead of DOM traversal to apply focus, so that filtered elements are not focusable
-    const handleKeydown = useGrid(() => nifty.value)
+    const handleKeydown = useGrid(() => prose.value)
 
     return {
-      nifty,
+      prose,
       filterQuery,
       handleFilterQuery,
       reactiveFilterQueryIsCaseSensitive,

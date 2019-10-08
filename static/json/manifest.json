@@ -60,27 +60,32 @@
         "title": "What is Baleada Logic?",
         "framework": "agnostic",
         "href": "/docs/logic"
+      },
+      {
+        "title": "API design",
+        "framework": "agnostic",
+        "href": "/docs/logic/api-design"
       }
     ]
   },
   {
     "level": 2,
-    "name": "libraries",
+    "name": "classes",
     "pages": [
       {
         "title": "Completable",
         "framework": "agnostic",
-        "href": "/docs/logic/libraries/Completable"
+        "href": "/docs/logic/classes/Completable"
       },
       {
         "title": "Navigable",
         "framework": "agnostic",
-        "href": "/docs/logic/libraries/Navigable"
+        "href": "/docs/logic/classes/Navigable"
       },
       {
         "title": "Syncable",
         "framework": "agnostic",
-        "href": "/docs/logic/libraries/Syncable"
+        "href": "/docs/logic/classes/Syncable"
       }
     ]
   },

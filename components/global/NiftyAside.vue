@@ -1,5 +1,5 @@
 <template lang="html">
-  <aside class="nifty-aside" :class="[`aside-${type}`]">
+  <aside class="prose-aside" :class="[`aside-${type}`]">
     <div>
       <div v-if="type === 'info'" class="aside-icon">
         <EvaInfo :class="'fill-current'"/>
@@ -14,7 +14,7 @@
         <EvaAward :class="'fill-current'"/>
       </div>
     </div>
-    <div ref="nifty">
+    <div ref="prose">
       <slot></slot>
     </div>
   </aside>
@@ -46,10 +46,10 @@ export default {
     }
   },
   setup() {
-    const nifty = ref(null)
+    const prose = ref(null)
 
     return {
-      nifty
+      prose
     }
   },
 }
