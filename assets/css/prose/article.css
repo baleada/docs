@@ -1,8 +1,8 @@
 /* Markdown prose styles */
 .prose {
-  @apply text-black;
+  @apply text-black transition;
 
-  :not(table):not(div):not(main):not(section):not(article),
+  :not(table):not([role="grid"]):not(div):not(main):not(section):not(article),
   .prose-aside,
   *.with-max-w,
   hr,
@@ -10,9 +10,6 @@
     @apply max-w-5;
   }
 
-  table tr :not(.prose-table):not(.prose-codeblock):not(div):not(main):not(section):not(article) {
-    @apply max-w-5;
-  }
 
   *:not(h1) + h2 {
     @apply mt-10;
@@ -96,6 +93,10 @@
     }
   }
 
+  .prose-heading:hover {
+    @apply text-primary-700;
+  }
+
   p {
     @apply text-3 leading-2;
   }
@@ -106,11 +107,11 @@
 
   blockquote::before {
     content: '\201C';
-    @apply absolute text-9 text-primary-900 opacity-70 top-0 left-0 -mt-1/2em;
+    @apply absolute text-9 font-300 text-primary-900 opacity-70 top-0 left-0 -mt-1/2em;
   }
 
   blockquote {
-    @apply relative pl-6 pr-4 py-3 rounded mb-8 text-6 font-600 tracking-1 bg-white shadow-1 text-gray-700;
+    @apply relative pl-6 pr-4 py-3 rounded mb-8 text-6 bg-primary-100 shadow-1 text-primary-900;
   }
 
   ul,
@@ -169,10 +170,10 @@
   }
 
   img {
-    @apply w-full rounded shadow-2;
+    @apply w-full rounded-1 shadow-2;
   }
 
-  :not(.prose-heading) > a:not(.btn) {
+  a {
     @apply text-primary-700 no-underline;
 
     &:visited {
@@ -181,6 +182,12 @@
 
     &:hover {
       @apply underline;
+    }
+  }
+
+  .prose-heading {
+    a {
+      @apply text-inherit no-underline;
     }
   }
 
@@ -212,6 +219,16 @@
   .prose-table {
     @apply max-w-full mb-6 inline-block;
 
+    .filter-input {
+      @apply -shadow bg-gray-100;
+    }
+    .filter-query-is-case-sensitive-checkbock {
+
+    }
+    .filter-query-is-case-sensitive-label {
+      @apply text-1 font-500 text-gray-600;
+    }
+
     .contents {
       @apply max-h-2/3-screen;
 
@@ -232,8 +249,8 @@
       [role="row"] {
         display: table-row;
 
-        &:last-child {
-          @apply border-b-1 border-gray-300;
+        &:last-child [role="gridcell"] {
+          @apply border-b-1;
         }
       }
 
@@ -264,10 +281,6 @@
       .contents {
         [role="rowgroup"] > :nth-child(even) {
           @apply bg-gray-100;
-
-          &:last-child {
-            @apply border-gray-400;
-          }
 
           [role="gridcell"] {
             @apply border-gray-400;
@@ -467,6 +480,215 @@
 
     th {
       @apply text-2;
+    }
+  }
+}
+
+.dark {
+  .prose {
+    @apply text-gray-200;
+
+    h1::after,
+    hr {
+      @apply bg-primary-gray-600;
+    }
+
+    h1 {
+      @apply text-gray-400;
+    }
+
+    h2 {
+      @apply text-gray-400;
+    }
+
+    h3 {
+      @apply text-gray-400;
+    }
+
+    h4 {
+      @apply text-gray-400;
+    }
+
+    h5 {
+      @apply text-gray-400;
+    }
+
+    .prose-heading:hover {
+      @apply text-primary-gray-500;
+    }
+
+    blockquote::before {
+      @apply text-primary-gray-800;
+    }
+
+    blockquote {
+      @apply bg-primary-gray-900 text-primary-gray-300;
+    }
+
+    ul,
+    ol {
+      li::before {
+        @apply text-primary-gray-500;
+      }
+    }
+
+    a {
+      @apply text-primary-200;
+
+      &:visited {
+        @apply text-primary-gray-500;
+      }
+    }
+
+    .prose-heading {
+      a {
+        @apply text-inherit no-underline;
+      }
+    }
+
+    :not(pre) > code {
+      @apply bg-gray-700;
+    }
+
+    .prose-table {
+      .filter-input {
+        @apply bg-gray-900;
+      }
+      .filter-query-is-case-sensitive-checkbock {
+
+      }
+      .filter-query-is-case-sensitive-label {
+        @apply text-gray-500;
+      }
+
+      .contents {
+        [role="columnheader"] {
+          @apply bg-primary-gray-800 text-primary-gray-200;
+
+          code {
+            @apply bg-primary-gray-700;
+          }
+        }
+
+        [role="gridcell"] {
+          @apply border-gray-700;
+        }
+      }
+
+      &.prose-table-striped {
+        .contents {
+          [role="rowgroup"] > :nth-child(even) {
+            @apply bg-gray-700;
+
+            [role="gridcell"] {
+              @apply border-gray-600;
+
+              code {
+                @apply bg-gray-600;
+              }
+            }
+          }
+        }
+      }
+    }
+
+    .prose-aside {
+      &.aside-info {
+        @apply border-blue-800 bg-blue-900 text-blue-100;
+
+        &::before {
+          background-image: linear-gradient(to bottom, theme(colors.blue-800) 0%, theme(colors.blue-800) 1.5rem, theme(colors.gray-800) 1.5rem, theme(colors.gray-800) 3rem, theme(colors.blue-800) 3rem, theme(colors.blue-800) 110%);
+        }
+
+        .aside-icon {
+          @apply bg-blue-700 text-blue-300;
+        }
+
+        code,
+        kbd {
+          @apply bg-blue-800;
+        }
+
+        a {
+          @apply text-blue-300;
+        }
+
+        li::before {
+          @apply text-blue-200;
+        }
+      }
+      &.aside-warning {
+        @apply border-yellow-800 bg-yellow-900 text-yellow-100;
+
+        &::before {
+          background-image: linear-gradient(to bottom, theme(colors.yellow-800) 0%, theme(colors.yellow-800) 1.5rem, theme(colors.gray-800) 1.5rem, theme(colors.gray-800) 3rem, theme(colors.yellow-800) 3rem, theme(colors.yellow-800) 110%);
+        }
+
+        .aside-icon {
+          @apply bg-yellow-700 text-yellow-300;
+        }
+
+        code,
+        kbd {
+          @apply bg-yellow-800;
+        }
+
+        a {
+          @apply text-yellow-300;
+        }
+
+        li::before {
+          @apply text-yellow-200;
+        }
+      }
+      &.aside-danger {
+        @apply border-red-800 bg-red-900 text-red-100;
+
+        &::before {
+          background-image: linear-gradient(to bottom, theme(colors.red-800) 0%, theme(colors.red-800) 1.5rem, theme(colors.gray-800) 1.5rem, theme(colors.gray-800) 3rem, theme(colors.red-800) 3rem, theme(colors.red-800) 110%);
+        }
+
+        .aside-icon {
+          @apply bg-red-700 text-red-300;
+        }
+
+        code,
+        kbd {
+          @apply bg-red-800;
+        }
+
+        a {
+          @apply text-red-300;
+        }
+
+        li::before {
+          @apply text-red-200;
+        }
+      }
+      &.aside-success {
+        @apply border-green-800 bg-green-900 text-green-100;
+
+        &::before {
+          background-image: linear-gradient(to bottom, theme(colors.green-800) 0%, theme(colors.green-800) 1.5rem, theme(colors.gray-800) 1.5rem, theme(colors.gray-800) 3rem, theme(colors.green-800) 3rem, theme(colors.green-800) 110%);
+        }
+
+        .aside-icon {
+          @apply bg-green-700 text-green-300;
+        }
+
+        code,
+        kbd {
+          @apply bg-green-800;
+        }
+
+        a {
+          @apply text-green-300;
+        }
+
+        li::before {
+          @apply text-green-200;
+        }
+      }
     }
   }
 }

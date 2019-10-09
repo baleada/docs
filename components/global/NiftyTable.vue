@@ -2,7 +2,7 @@
   <section class="prose-table prose-table-striped w-full sm:w-auto sm:min-w-2 swiper-no-swiping">
     <div v-if="isTypeToFilterable">
       <input
-        class="inp w-full bg-gray-100 -shadow"
+        class="filter-input inp w-full"
         placeholder="Type to filter..."
         name="Type to filter"
         type="text"
@@ -10,8 +10,13 @@
         @input="handleFilterQuery"
       />
       <div class="mt-2 flex items-center">
-        <input class="" type="checkbox" :checked="reactiveFilterQueryIsCaseSensitive" @change="handleCaseSensitiveChange" />
-        <label class="flex-1 ml-2 text-1 font-500 text-gray-600">Filter is case sensitive</label>
+        <input
+          class="filter-query-is-case-sensitive-checkbox"
+          type="checkbox"
+          :checked="reactiveFilterQueryIsCaseSensitive"
+          @change="handleCaseSensitiveChange"
+        />
+        <label class="filter-query-is-case-sensitive-label flex-1 ml-2">Filter is case sensitive</label>
       </div>
     </div>
     <div

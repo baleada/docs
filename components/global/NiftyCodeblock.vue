@@ -10,7 +10,7 @@
     >
       <EvaCopy :class="'icon'" />
     </button>
-    <div ref="prose">
+    <div class="contents" ref="prose">
       <slot />
     </div>
   </section>

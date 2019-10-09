@@ -1,0 +1,11 @@
+.prose {
+  .prose-blockquote {
+
+  }
+
+  &.dark {
+    .prose-blockquote {
+
+    }
+  }
+}

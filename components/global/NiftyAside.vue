@@ -14,7 +14,7 @@
         <EvaAward :class="'fill-current'"/>
       </div>
     </div>
-    <div ref="prose">
+    <div class="contents" ref="prose">
       <slot></slot>
     </div>
   </aside>

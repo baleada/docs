@@ -1,6 +1,6 @@
 <template lang="html">
   <component
-    class="prose-heading relative hover:text-primary-700 transition cursor-pointer"
+    class="prose-heading relative transition cursor-pointer"
     :is="`h${level}`"
     @mouseover="handleMouseover"
     @mouseleave="handleMouseleave"

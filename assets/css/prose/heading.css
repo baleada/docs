@@ -1,0 +1,11 @@
+.prose {
+  .prose-heading {
+
+  }
+
+  &.dark {
+    .prose-heading {
+
+    }
+  }
+}

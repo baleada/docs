@@ -9,6 +9,8 @@ For any individual piece of UI logic, there are plenty of ways to implement it, 
 
 Baleada Logic implements all kinds of UI logic for you, which is nice, but arguably more important is the fact that Baleada Logic's classes and subclasses all have **predictable, intuitive APIs**. In other words, you can construct all classes and subclasses in the same way, you can customize their behavior in the same way, and you can access their state and methods in the same way.
 
+> You can construct all Baleada Logic classes and subclasses in the same way, you can customize their behavior in the same way, and you can access their state and methods in the same way.
+
 To accomplish that, Baleada Logic's classes and subclasses all follow strict rules in three specific areas:
 1. How they are **constructed**
 2. How **state and methods** are made available to you
