@@ -1,7 +1,7 @@
 <template lang="html">
-<NiftyArticle title="Using with Vue" updatedAt="Sun Sep 29 2019 19:29:41 GMT-0600 (CST)" repoLink="https://gitlab.com/baleada/docs/tree/master/assets/markdown/icons/using-with-vue.md">
+<ProseArticle title="Using with Vue" updatedAt="Wed Oct 09 2019 12:53:52 GMT-0600 (CST)" repoLink="https://gitlab.com/baleada/docs/tree/master/assets/markdown/icons/using-with-vue.md">
   <component :is="article" />
-</NiftyArticle>
+</ProseArticle>
 </template>
 
 <script>

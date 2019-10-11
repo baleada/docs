@@ -1,7 +1,7 @@
 <template lang="html">
-<NiftyArticle title="Types of tools" updatedAt="Thu Sep 26 2019 17:38:46 GMT-0600 (CST)" repoLink="https://gitlab.com/baleada/docs/tree/master/assets/markdown/types-of-tools.md">
+<ProseArticle title="Types of tools" updatedAt="Wed Oct 09 2019 12:53:52 GMT-0600 (CST)" repoLink="https://gitlab.com/baleada/docs/tree/master/assets/markdown/types-of-tools.md">
   <component :is="article" />
-</NiftyArticle>
+</ProseArticle>
 </template>
 
 <script>

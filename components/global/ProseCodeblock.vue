@@ -23,7 +23,7 @@ import useCopiable from '~/assets/js/baleada/composition/useCopiable'
 import { EvaCopy } from '@baleada/icons/vue'
 
 export default {
-  name: 'NiftyCodeblock',
+  name: 'ProseCodeblock',
   components: {
     EvaCopy,
   },

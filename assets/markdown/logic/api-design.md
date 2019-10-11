@@ -5,7 +5,9 @@ publish: true
 order: 1
 ---
 
-For any individual piece of UI logic, there are plenty of ways to implement it, and plenty of packages already published that can `npm install` your troubles away. But implementing these things yourself, or learning the APIs of disparate packages, adds **complexity and mental overhead** to engineering tasks that are usually a few steps removed from the actual business logic of the app or site you're building.
+For any individual piece of UI logic, there are plenty of ways to implement it, and plenty of packages already published that can `npm install` your troubles away.
+
+But implementing these things yourself, or learning the APIs of disparate packages, adds **complexity and mental overhead** to engineering tasks that are usually a few steps removed from the actual business logic of the app or site you're building.
 
 Baleada Logic implements all kinds of UI logic for you, which is nice, but arguably more important is the fact that Baleada Logic's classes and subclasses all have **predictable, intuitive APIs**. In other words, you can construct all classes and subclasses in the same way, you can customize their behavior in the same way, and you can access their state and methods in the same way.
 
@@ -19,26 +21,26 @@ To accomplish that, Baleada Logic's classes and subclasses all follow strict rul
 This guide explains all the core concepts, rules, and patterns that classes and subclasses follow. The words "all", "always", and "never" are displayed in bold, to emphasize the rules that apply to every single class and subclass in Baleada Logic.
 
 
-<NiftyHeading level="2">
+<ProseHeading level="2">
 Constructing classes and subclasses
-</NiftyHeading>
+</ProseHeading>
 
 You can access the functionality of **all** classes and subclasses by **constructing new instances** of them.
 
-<NiftyCodeblock>
+<ProseCodeblock>
 
 ```js
 const instance = new Example(...)
 ```
 
-</NiftyCodeblock>
+</ProseCodeblock>
 
 That `...` represents the arguments you'll pass to constructor functions. The basic arguments for class constructors differ slightly from those of subclass constructors. Details are explained below.
 
 
-<NiftyHeading level="3">
+<ProseHeading level="3">
 Class constructors
-</NiftyHeading>
+</ProseHeading>
 
 
 All classes' constructors accept two parameters:
@@ -47,7 +49,7 @@ All classes' constructors accept two parameters:
 
 The `state` parameter is **always** required, and the `options` parameter is **always** optional. Given these parameters, the constructor **always** returns an instance of itself, which **always** takes the form of an Object.
 
-<NiftyCodeblock>
+<ProseCodeblock>
 
 ```js
 const instance = new Example(state[, options])
@@ -55,11 +57,11 @@ const instance = new Example(state[, options])
 typeof instance // --> 'object'
 ```
 
-</NiftyCodeblock>
+</ProseCodeblock>
 
 The `state` parameter is **always** used to pass a piece of state whose core functionality will be enhanced by the class. The `options` parameter is **always** an Object that serves as a catch-all for **all** optional parameters that affect how a class behaves.
 
-<NiftyCodeblock>
+<ProseCodeblock>
 
 ```js
 const instance = new Example(state, {
@@ -69,16 +71,16 @@ const instance = new Example(state, {
 })
 ```
 
-</NiftyCodeblock>
+</ProseCodeblock>
 
 
-<NiftyHeading level="3">
+<ProseHeading level="3">
 Subclass constructors
-</NiftyHeading>
+</ProseHeading>
 
 Subclass constructors accept only one parameter: the piece of state whose prototype will be extended by the subclass. Given this parameter, the subclass will **always** return an object that is an instance of the prototype it's extending.
 
-<NiftyCodeblock>
+<ProseCodeblock>
 
 ```js
 // The Example subclass extends String in this example
@@ -87,20 +89,20 @@ const instance = new Example(state)
 instance instanceof String // --> true
 ```
 
-</NiftyCodeblock>
+</ProseCodeblock>
 
 
-<NiftyHeading level="2">
+<ProseHeading level="2">
 How state and methods are made available to you
-</NiftyHeading>
+</ProseHeading>
 
-<NiftyHeading level="3">
+<ProseHeading level="3">
 Class state and methods
-</NiftyHeading>
+</ProseHeading>
 
 Classes take the form of JavaScript Objects, and **all** state and methods are accessible through the properties of those objects.
 
-<NiftyCodeblock>
+<ProseCodeblock>
 
 ```js
 const instance = new Example(state)
@@ -109,11 +111,11 @@ instance.exampleState // Access state through properties
 instance.exampleMethod() // Access methods through properties
 ```
 
-</NiftyCodeblock>
+</ProseCodeblock>
 
 Classes methods **always** return the instance through which they were called. The benefit of this is that you can use method chaining if needed.
 
-<NiftyCodeblock>
+<ProseCodeblock>
 
 ```js
 const instance = new Example(state)
@@ -125,14 +127,14 @@ instance
   .yetAnotherMethod() // -> Works 👍 and returns instance
 ```
 
-</NiftyCodeblock>
+</ProseCodeblock>
 
 
 Classes **always** store a shallow copy of their constructors' state in a public property named after the state's type (e.g. `string`, `array`, etc.).
 
 Classes also **always** have a public method you can use to assign a new value to that public property. The method follows a naming convention of `set<PropertyName>` (e.g. `setString`, `setArray`, etc.).
 
-<NiftyCodeblock>
+<ProseCodeblock>
 
 ```js
 // The Searchable class's constructor accepts an Array
@@ -143,11 +145,11 @@ instance.setArray(['tortilla', 'beans', 'egg', 'avocado']) // --> returns instan
 instance.array  // --> ['tortilla', 'beans', 'egg', 'avocado']
 ```
 
-</NiftyCodeblock>
+</ProseCodeblock>
 
 Some classes, particularly those that were designed to capture input from your end users, have additional public properties. Those classes also **always** have public methods you can use to assign a new value to the additional public properties, and those methods follow the same  `set<PropertyName>` naming convention.
 
-<NiftyCodeblock>
+<ProseCodeblock>
 
 ```js
 // The Completable class's constructor accepts a String
@@ -160,13 +162,13 @@ instance.setString('tortilla') // --> returns instance
 instance.setLocation('3') // --> returns instance
 ```
 
-</NiftyCodeblock>
+</ProseCodeblock>
 
 
 Note that public properties are writeable—it's possible to assign values to them directly. But, in some classes, certain side effects need to be performed after writing to public properties, to make sure everything keeps working properly. When this is the case, the classes' `set<PropertyName>` methods will perform **all** necessary side effects, and you won't have to think about them. Because of that, it's **always** recommended that you use the `set<PropertyName>` methods instead of writing to public properties directly.
 
 
-<NiftyCodeblock>
+<ProseCodeblock>
 
 ```js
 // The Syncable class's constructor accepts state of any type
@@ -193,7 +195,7 @@ instance.state // --> '🌮'
 instance.editableState // --> '🌮'
 ```
 
-</NiftyCodeblock>
+</ProseCodeblock>
 
 
 Outside of `set<PropertyName>` methods, classes **never** write to their own public properties.
@@ -203,7 +205,7 @@ However, some classes do have public methods that create mutated versions of one
 Instead of writing the mutated value to its own public property after you call `instance.<Method>`, the class will pass the mutated value as the first argument of your `on<Method>` function.
 
 
-<NiftyCodeblock>
+<ProseCodeblock>
 
 ```js
 let totalStringCompletions = 0
@@ -233,11 +235,11 @@ instance.string // --> 'Baleada: a toolkit for building web apps'
 totalStringCompletions // --> 1
 ```
 
-</NiftyCodeblock>
+</ProseCodeblock>
 
 These `on<Method>` functions are a great way to hook into state changes and run code just before or just after the state change actually happens. However, for ease of use, **all** classes that accept `on<Method>` functions already have sensible default functions that set state for you.
 
-<NiftyCodeblock>
+<ProseCodeblock>
 
 ```js
 const instance = new Completable('Baleada') // Completable has a default onComplete function defined for you
@@ -257,12 +259,12 @@ instance.complete('Baleada: a toolkit for building web apps')
 instance.string // --> 'Baleada: a toolkit for building web apps'
 ```
 
-</NiftyCodeblock>
+</ProseCodeblock>
 
 
 All classes also have one or more public [getters](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/get). When you access these getters, they compute and return state that is useful for building certain UI features, but is not part of the core functionality or benefit of the class.
 
-<NiftyCodeblock>
+<ProseCodeblock>
 
 ```js
 const instance = new Completable(
@@ -274,11 +276,11 @@ instance.segment // --> 'toolkit'
 instance.segment = 'Baleada' // Doesn't work, since instance.segment is a getter
 ```
 
-</NiftyCodeblock>
+</ProseCodeblock>
 
 Some classes don't have any methods that create mutated versions of the values in their public properties. These classes **always** have one or more other public methods that expose their core functionality. These methods **never** have `on<Method>` functions associated with them, because they aren't creating any mutated state, so there is nothing valuable to pass to the functions.
 
-<NiftyCodeblock>
+<ProseCodeblock>
 
 ```js
 // The Animatable class's constructor accepts a Node or NodeList
@@ -287,20 +289,33 @@ const instance = new Animatable(mySelectedElement, myAnimationOptions)
 instance.play() // -> Plays an animation and returns the instance, but does nothing else
 ```
 
-</NiftyCodeblock>
+</ProseCodeblock>
+
+Some classes accept a DOM node or node list as the first argument of their constructor and attach event listeners to the node or nodes. **All** of these classes have a public `destroy` method that you can use to remove the event listeners.
+
+<ProseCodeblock>
+
+```js
+// Touchable adds event listeners while constructing the instance
+const instance = new Touchable(mySelectedElement, myTouchEventOptions)
+
+instance.destroy() // -> Removes all event listeners
+```
+
+</ProseCodeblock>
 
 
-<NiftyHeading level="3">
+<ProseHeading level="3">
 Subclass state and methods
-</NiftyHeading>
+</ProseHeading>
 
 Baleada Logic's subclasses **never** have public state; they **always** have only one public method.
 
 ...WIP
 
 
-<NiftyHeading level="2">
+<ProseHeading level="2">
 Naming conventions
-</NiftyHeading>
+</ProseHeading>
 
 WIP

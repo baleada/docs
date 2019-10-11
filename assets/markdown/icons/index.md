@@ -7,9 +7,9 @@ order: 0
 
 Baleada Icons is a collection of components that render SVG icons.
 
-<NiftyAside type="info">
+<ProseAside type="info">
 All icons used in the Baleada docs are sourced from Baleada Icons 😎
-</NiftyAside>
+</ProseAside>
 
 Icons are sourced from the following icon sets:
 - [Simple Icons](https://simpleicons.org/)
@@ -20,24 +20,24 @@ Each icon in those sets has a corresponding component for the following framewor
 - [React](https://reactjs.org/)
 - [Svelte](https://svelte.dev) [WIP]
 
-<NiftyAside type="info">
+<ProseAside type="info">
 Didn't see your favorite icon set or framework in the list? Feel free to [raise an issue](https://gitlab.com/baleada/icons/issues) and ask for support.
-</NiftyAside>
+</ProseAside>
 
 
-<NiftyHeading level="2">
+<ProseHeading level="2">
 Install
-</NiftyHeading>
+</ProseHeading>
 
-<NiftyCodeblock>
+<ProseCodeblock>
 ```bash
 npm i @baleada/icons
 ```
-</NiftyCodeblock>
+</ProseCodeblock>
 
-<NiftyHeading level="2">
+<ProseHeading level="2">
 Available components
-</NiftyHeading>
+</ProseHeading>
 
 `@baleada/icons` includes a component for each individual icon in the Eva Icons and Simple Icons icon sets.
 
@@ -47,20 +47,20 @@ Eva icons' names are created by removing all hyphens and capitalizing the first 
 
 Eva icon component examples:
 
-<NiftyTable ariaLabel="Table of examples showing how Baleada transforms Eva icon names into component names">
+<ProseTable ariaLabel="Table of examples showing how Baleada transforms Eva icon names into component names">
 | Original icon name | Component name |
 | --- | --- |
 | bulb | `EvaBulb` |
 | hard-drive-outline | `EvaHardDriveOutline` |
 | globe-2 | `EvaGlobe2` |
-</NiftyTable>
+</ProseTable>
 
 Simple icons' names are created by:
 1. Removing all spaces, exclamation points, and apostrophes
 2. Replacing special characters as indicated in the table below
 3. Capitalizing the first letter of each word and **preserving** the original case of other letters in the word
 
-<NiftyTable ariaLabel="Table showing how Baleada replaces special characters in Simple icon names">
+<ProseTable ariaLabel="Table showing how Baleada replaces special characters in Simple icon names">
 | Special character | Replacement |
 | --- | --- |
 | `.` | Dot |
@@ -74,11 +74,11 @@ Simple icons' names are created by:
 | `ò`, `ó`, `ô`, `õ`, `ö` | o |
 | `ù`, `ú`, `û`, `ü` | u |
 | `ý`, `ÿ` | y |
-</NiftyTable>
+</ProseTable>
 
 Simple icon component examples:
 
-<NiftyTable ariaLabel="Table of examples showing how Baleada transforms Simple icon names into component names">
+<ProseTable ariaLabel="Table of examples showing how Baleada transforms Simple icon names into component names">
 | Original icon name | Component name | Notice: |
 | --- | --- | --- |
 | Geocaching | `SimpleGeocaching` | Nothing special here! |
@@ -88,25 +88,25 @@ Simple icon component examples:
 | C++ | `SimpleCPlusPlus` | `++` replaced with `PlusPlus` |
 | AT&T | `SimpleATAndT` | `&` replaced with `And`, original cases of `AT` and `T` are preserved |
 | AlloCiné | `SimpleAlloCine` | `é` replaced with `e`, original case of the `C` is preserved |
-</NiftyTable>
+</ProseTable>
 
 For a full list of available components, <NuxtLink to="#full-component-list">jump to the last section of this article</NuxtLink>.
 
 
-<NiftyHeading level="2">
+<ProseHeading level="2">
 Import and use the components
-</NiftyHeading>
+</ProseHeading>
 
 For more guidance on how to import and use the components, see one of the following framework-specific guides:
 - <NuxtLink to="/docs/icons/using-with-vue">Using icons with Vue</NuxtLink>
 - <NuxtLink to="/docs/icons/using-with-react">Use icons with React</NuxtLink>
 
 
-<NiftyHeading level="2">
+<ProseHeading level="2">
 Full component list
-</NiftyHeading>
+</ProseHeading>
 
-<NiftyTable hasMaxH isTypeToFilterable ariaLabel="Full list of Baleada Icons components">
+<ProseTable hasMaxH isTypeToFilterable ariaLabel="Full list of Baleada Icons components">
 | Component name |
 | --- |
 | EvaActivity |
@@ -1278,4 +1278,4 @@ Full component list
 | SimpleZerply |
 | SimpleZillow |
 | SimpleZorin |
-</NiftyTable>
+</ProseTable>

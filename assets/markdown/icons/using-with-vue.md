@@ -4,13 +4,13 @@ framework: Vue
 publish: true
 ---
 
-<NiftyHeading level="2">
+<ProseHeading level="2">
 Import a component (allows for tree-shaking)
-</NiftyHeading>
+</ProseHeading>
 
 All `@baleada/icons` Vue components are [functional components](https://vuejs.org/v2/guide/render-function.html#Functional-Components). They can be imported from `@baleada/icons/vue` for local or global registration.
 
-<NiftyCodeblock>
+<ProseCodeblock>
 ```js
 import { EvaGlobe2 } from '@baleada/icons/vue'
 
@@ -21,16 +21,16 @@ export default {
   ...
 }
 ```
-</NiftyCodeblock>
+</ProseCodeblock>
 
 
-<NiftyHeading level="2">
+<ProseHeading level="2">
 Use a component
-</NiftyHeading>
+</ProseHeading>
 
 All components will render an SVG of their icon. The SVG has 4 default attributes:
 
-<NiftyCodeblock>
+<ProseCodeblock>
 ```html
 <svg
   role="img"
@@ -41,11 +41,11 @@ All components will render an SVG of their icon. The SVG has 4 default attribute
   ...
 </svg>
 ```
-</NiftyCodeblock>
+</ProseCodeblock>
 
 These 4 attributes are easy to override or expand—all of the component's attributes, event listeners, and class & style bindings are passed directly to the SVG.
 
-<NiftyCodeblock>
+<ProseCodeblock>
 ```html
 <template lang="html">
   <SimpleGeocaching
@@ -60,4 +60,4 @@ These 4 attributes are easy to override or expand—all of the component's attri
 
 <script>...</script>
 ```
-</NiftyCodeblock>
+</ProseCodeblock>

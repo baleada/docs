@@ -46,10 +46,11 @@
         <EvaClose :class="'icon'"/>
       </button>
 
+      <!-- Theme toggle switch -->
       <div class="mt-3 w-full py-3">
         <div class="flex items-center">
           <button
-            class="flex items-center text-1 font-600 tracking-3"
+            class="flex items-center text-1 rounded-full font-600 tracking-3"
             :class="[
               isDarkMode ? 'text-gray-500' : 'text-gray-600'
             ]"
@@ -63,21 +64,21 @@
             @click="() => toggleDarkMode()"
             class="relative mx-2 inline-flex -shadow rounded-full h-6 w-9 cursor-pointer transition"
             :class="[
-              isDarkMode ? 'bg-gray-800' : 'bg-gray-300'
+              isDarkMode ? 'bg-primary-900' : 'bg-primary-200'
             ]"
           >
             <button
               id="toggle-dark-mode"
               name="toggle-dark-mode"
-              class="absolute rounded-full h-6 w-6 shadow transition"
+              class="absolute rounded-full h-6 w-6 shadow transition focus:shadow-outline"
               :style="isDarkMode ? { transform: 'translateX(-100%)' } : {}"
               :class="[
-                isDarkMode ? 'left-full bg-gray-700' : 'left-0 bg-white'
+                isDarkMode ? 'left-full bg-primary-gray-700' : 'left-0 bg-white'
               ]"
             />
           </div>
           <button
-            class="flex items-center text-1 font-600 tracking-3"
+            class="flex items-center text-1 rounded-full font-600 tracking-3"
             :class="[
               isDarkMode ? 'text-gray-500' : 'text-gray-600'
             ]"

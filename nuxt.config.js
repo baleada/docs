@@ -1,4 +1,4 @@
-import niftyComponents from '@baleada/nifty-loader/lib/stubs/niftyComponents'
+import proseComponents from '@baleada/prose-loader/lib/stubs/proseComponents'
 
 import pkg from './package'
 import purgecssConfig from './config/purgecss.config'
@@ -92,10 +92,10 @@ export default {
     extend: config => {
       // config.plugins.push(new GenerateMetafilesPlugin())
       const replaceDelimiters = markup => markup.replace(/({{|}})/g, '<span>$1</span>'),
-            nifty = {
-              loader: '@baleada/nifty-loader',
+            prose = {
+              loader: '@baleada/prose-loader',
               options: {
-                components: niftyComponents,
+                components: proseComponents,
                 postRender: markup => `<template lang="html"><section>${replaceDelimiters(markup)}</section></template>\n`
               }
             }
@@ -106,7 +106,7 @@ export default {
           {
             use: [
               'vue-loader',
-              nifty,
+              prose,
             ]
           }
         ]

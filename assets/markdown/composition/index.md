@@ -9,43 +9,43 @@ Baleada Composition is a collection of composition functions (a.k.a. hooks) that
 1. Retrieve **state and methods** from one or more of the <NuxtLink to="/docs/logic">Baleada Logic</NuxtLink> tools
 2. Make all of the state **reactive**, using tools from the JavaScript framework of your choice
 
-<NiftyAside type="info">
+<ProseAside type="info">
 Baleada's docs, which were built using [Nuxt.js](https://nuxtjs.org), use composition functions for touch detection, animation, navigating arrays, searching docs content, and more 🚀
-</NiftyAside>
+</ProseAside>
 
 Composition functions are supported for the following frameworks:
 - [Vue](https://vuejs.org)
 - [React](https://react.org) [WIP]
 - [Svelte](https://svelte.dev) [WIP]
 
-<NiftyAside type="info">
+<ProseAside type="info">
 Didn't see your favorite framework in the list? Feel free to [raise an issue](https://gitlab.com/baleada/composition/issues) and ask for support.
-</NiftyAside>
+</ProseAside>
 
 
-<NiftyHeading level="2">
+<ProseHeading level="2">
 Install
-</NiftyHeading>
+</ProseHeading>
 
-<NiftyCodeblock>
+<ProseCodeblock>
 ```bash
 npm i @baleada/composition
 ```
-</NiftyCodeblock>
+</ProseCodeblock>
 
 
-<NiftyHeading level="2">
+<ProseHeading level="2">
 Available composition functions
-</NiftyHeading>
+</ProseHeading>
 
 `@baleada/composition` includes a composition function for each individual class in Baleada Logic.
 
 All composition functions follow a simple naming convention: they start with `use` and end with the name of the class.
 
-<NiftyTable>
+<ProseTable>
 | Library | Composition function |
 | --- | --- |
 | Animatable | `useAnimatable` |
 | Fetchable | `useFetchable` |
 | Syncable | `useSyncable` |
-</NiftyTable>
+</ProseTable>

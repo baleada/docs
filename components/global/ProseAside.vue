@@ -29,7 +29,7 @@ import { EvaFlash } from '@baleada/icons/vue'
 import { EvaAward } from '@baleada/icons/vue'
 
 export default {
-  name: 'NiftyAside',
+  name: 'ProseAside',
   components: {
     EvaInfo,
     EvaAlertTriangle,

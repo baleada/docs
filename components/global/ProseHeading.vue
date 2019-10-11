@@ -21,6 +21,7 @@
     </a>
     <a
       ref="prose"
+      :id="slug"
       :href="`#${slug}`"
     >
       <slot />
@@ -36,7 +37,7 @@ import simpleSlugify from '~/assets/js/simpleSlugify'
 import { EvaLink } from '@baleada/icons/vue'
 
 export default {
-  name: 'NiftyHeading',
+  name: 'ProseHeading',
   components: {
     EvaLink
   },

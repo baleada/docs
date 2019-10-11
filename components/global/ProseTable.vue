@@ -40,7 +40,7 @@ import { ref, computed } from '@vue/composition-api'
 import { useGrid } from '~/assets/js/keyboardAccessibility'
 
 export default {
-  name: 'NiftyTable',
+  name: 'ProseTable',
   props: {
     hasMaxH: {
       type: Boolean,

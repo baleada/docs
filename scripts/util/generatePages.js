@@ -14,9 +14,9 @@ function generatePages (metadata) {
 function toPage ({ title, path, updatedAt }) {
   return `\
 <template lang="html">\n\
-<NiftyArticle title="${title}" updatedAt="${updatedAt}" repoLink="https://gitlab.com/baleada/docs/tree/master${path.slice(1)}">\n\
+<ProseArticle title="${title}" updatedAt="${updatedAt}" repoLink="https://gitlab.com/baleada/docs/tree/master${path.slice(1)}">\n\
   <component :is="article" />\n\
-</NiftyArticle>\n\
+</ProseArticle>\n\
 </template>\n\
 \n\
 <script>\n\

@@ -13,9 +13,9 @@ export default function scrollToHeader (fullPath, options) {
     options.container.scrollTop = 0
   } else {
     const slug = fullPath.split('#')[1].split('.')[0].toLowerCase(),
-          anchor = options.container.querySelector(`a[href="#${slug}"]`),
+          anchor = options.container.querySelector(`#${slug}`),
           heading = anchor ? anchor.parentNode : undefined
-          
+
     if (heading !== undefined) heading.scrollIntoView(options.scrollIntoView)
   }
 }

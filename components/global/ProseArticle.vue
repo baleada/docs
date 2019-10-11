@@ -3,9 +3,9 @@
     ref="prose"
     class="flex-1 prose px-7 sm:px-9 lg:pl-11 pb-12 pt-11 lg:mr-10 transition"
   >
-    <NiftyHeading level="1">
+    <ProseHeading level="1">
       {{ title }}
-    </NiftyHeading>
+    </ProseHeading>
     <UpdatedAt :timestamp="updatedAt" />
     <slot />
     <section class="mt-10 with-max-w flex justify-center sm:justify-start">
@@ -32,7 +32,7 @@ import { SimpleGitLab } from '@baleada/icons/vue'
 import AdjacentArticleLinks from '~/components/AdjacentArticleLinks.vue'
 
 export default {
-  name: 'NiftyArticle',
+  name: 'ProseArticle',
   components: {
     SimpleGitLab,
     AdjacentArticleLinks,

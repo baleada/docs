@@ -27,37 +27,37 @@ If you're planning to use Baleada Composition, you won't need to know how to ins
 If instead you think you fall outside the normal use cases, feel free to keep reading!
 
 
-<NiftyHeading level="2">
+<ProseHeading level="2">
 Install
-</NiftyHeading>
+</ProseHeading>
 
-<NiftyCodeblock>
+<ProseCodeblock>
 
 ```bash
 npm i @baleada/logic
 ```
 
-</NiftyCodeblock>
+</ProseCodeblock>
 
 
-<NiftyHeading level="2">
+<ProseHeading level="2">
 Import a class or subclass (allows for tree-shaking)
-</NiftyHeading>
+</ProseHeading>
 
 All classes and subclasses are named exports in Baleada Logic's entry file, so you can import one like so:
 
 
-<NiftyCodeblock>
+<ProseCodeblock>
 
 ```js
 import { Delayable } from '@baleada/logic'
 ```
 
-</NiftyCodeblock>
+</ProseCodeblock>
 
 
-<NiftyHeading level="2">
+<ProseHeading level="2">
 Available classes and subclasses
-</NiftyHeading>
+</ProseHeading>
 
 All available classes and subclasses are listed in this site's navigation under **LOGIC** and linked to their specific documentation.

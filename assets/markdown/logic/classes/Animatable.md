@@ -53,3 +53,9 @@ publish: false
 
   /* Private methods */
 }
+
+<ProseHeading level="2">
+Further resources
+</ProseHeading>
+
+- [Motion & Playfulness](https://vimeo.com/282452432), a talk by [Benjamin De Cock](https://twitter.com/bdc)

@@ -12,21 +12,21 @@ Each tool in the Baleada app-building toolkit falls into one of the following ca
 
 Each category of tools has its own NPM package that you can install:
 
-<NiftyTable ariaLabel="Table showing tool categories and the corresponding NPM package for each category">
+<ProseTable ariaLabel="Table showing tool categories and the corresponding NPM package for each category">
 | Tool category | NPM package |
 | --- | --- |
 | UI logic | `@baleada/logic` |
 | Composition functions | `@baleada/composition` |
 | Icon components | `@baleada/icons` |
-</NiftyTable>
+</ProseTable>
 
 If you're itching to install those packages and get started with the tools they offer, you can check out the dedicated guides for <NuxtLink to="/docs/logic">Baleada Logic</NuxtLink>, <NuxtLink to="/docs/composition">Baleada Composition</NuxtLink>, and <NuxtLink to="/docs/icons">Baleada Icons</NuxtLink>.
 
 If you're not quite sure what all these terms mean, feel free to keep reading!
 
-<NiftyHeading level="2">
+<ProseHeading level="2">
 UI logic
-</NiftyHeading>
+</ProseHeading>
 
 UI logic is JavaScript that powers **user interface behaviors**. Baleada provides UI logic for specific behaviors that are commonly needed, but can be complex to implement in a reusable way.
 
@@ -37,9 +37,9 @@ For example:
 
 To get started with Baleada's logic, check out the <NuxtLink to="/docs/logic">Baleada Logic</NuxtLink> package.
 
-<NiftyHeading level="2">
+<ProseHeading level="2">
 Composition functions (a.k.a. hooks)
-</NiftyHeading>
+</ProseHeading>
 
 "Composition function" is a term coined by the [Vue](https://vuejs.org) team to describe functions that **collocate code** related to the same logical concern. In [React](https://react.org), these functions are called "hooks", but the concept and motivations are virtually the same.
 
@@ -47,9 +47,9 @@ Baleada's composition functions collocate **reactivity** code with **UI logic** 
 
 To get started with Baleada's composition functions, check out the <NuxtLink to="/docs/composition">Baleada Composition</NuxtLink> package.
 
-<NiftyHeading level="2">
+<ProseHeading level="2">
 Icon components
-</NiftyHeading>
+</ProseHeading>
 
 There are [tons of reasons](http://www.fullstackradio.com/47) to use **true SVG icons** instead of icon fonts. But copy/pasting SVG markup all over your website or app is tedious, not readable, and not maintainable.
 

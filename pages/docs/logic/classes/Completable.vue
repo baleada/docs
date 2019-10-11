@@ -1,7 +1,7 @@
 <template lang="html">
-<NiftyArticle title="Completable" updatedAt="Mon Oct 07 2019 17:12:15 GMT-0600 (CST)" repoLink="https://gitlab.com/baleada/docs/tree/master/assets/markdown/logic/classes/Completable.md">
+<ProseArticle title="Completable" updatedAt="Wed Oct 09 2019 12:53:52 GMT-0600 (CST)" repoLink="https://gitlab.com/baleada/docs/tree/master/assets/markdown/logic/classes/Completable.md">
   <component :is="article" />
-</NiftyArticle>
+</ProseArticle>
 </template>
 
 <script>

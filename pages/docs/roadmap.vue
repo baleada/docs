@@ -1,7 +1,7 @@
 <template lang="html">
-<NiftyArticle title="Roadmap" updatedAt="Sun Oct 06 2019 20:45:52 GMT-0600 (CST)" repoLink="https://gitlab.com/baleada/docs/tree/master/assets/markdown/roadmap.md">
+<ProseArticle title="Roadmap" updatedAt="Wed Oct 09 2019 12:53:52 GMT-0600 (CST)" repoLink="https://gitlab.com/baleada/docs/tree/master/assets/markdown/roadmap.md">
   <component :is="article" />
-</NiftyArticle>
+</ProseArticle>
 </template>
 
 <script>
