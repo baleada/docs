@@ -78,7 +78,7 @@ const instance = new Example(state, {
 Subclass constructors
 </ProseHeading>
 
-Subclass constructors accept only one parameter: the piece of state whose prototype will be extended by the subclass. Given this parameter, the subclass will **always** return an object that is an instance of the prototype it's extending.
+Subclass constructors accept only one parameter: the piece of state whose prototype will be extended by the subclass. Given this parameter, the subclass will **always** return an object that is a child of the prototype it's extending.
 
 <ProseCodeblock>
 
@@ -171,15 +171,15 @@ Note that public properties are writeable—it's possible to assign values to th
 <ProseCodeblock>
 
 ```js
-// The Syncable class's constructor accepts state of any type
-const instance = new Syncable('Baleada')
+// The Editable class's constructor accepts state of any type
+const instance = new Editable('Baleada')
 
 instance.state // --> 'Baleada'
 instance.editableState // --> 'Baleada'
 
 /*
  * It's possible to write to instance.state directly.
- * However, for Syncable to work correctly, instance.editableState
+ * However, for Editable to work correctly, instance.editableState
  * should be edited at the same time to avoid unexpected behavior.
  */
 instance.state = 'Logic' // --> It works
@@ -188,7 +188,7 @@ instance.editableState // --> 'Baleada'
 
 /*
  * If you use instance.setState instead, the required side effect
- * (updating instance.editableState) is taken care of by Syncable.
+ * (updating instance.editableState) is taken care of by Editable.
  */
 instance.setState('🌮')
 instance.state // --> '🌮'
@@ -309,9 +309,29 @@ instance.destroy() // -> Removes all event listeners
 Subclass state and methods
 </ProseHeading>
 
-Baleada Logic's subclasses **never** have public state; they **always** have only one public method.
+Baleada Logic's subclasses **never** have public state; they **always** have one or more public methods.
 
-...WIP
+Subclasses' public methods **never** mutate the original state passed to their constructors. They **always** follow three main steps:
+1. Create a mutated version of the original state
+2. Pass it to their own constructor along with any options you originally passed
+3. Return the new instance
+
+Thus, subclasses always return a new instance of themselves, respecting any original options you passed.
+
+<ProseCodeblock>
+
+```js
+// Renamable is a subclass of Map that allows the map to easily rename one of its keys
+const originalMap = [['one', 'value'], ['two', 'value']],
+      instance = new Renamable(originalMap),
+      renamedMap = instance.renameKey('one', 'uno')
+
+originalMap // -> [['one', 'value'], ['two', 'value']]
+renamedMap // -> [['uno', 'value'], ['two', 'value']]
+renamedMap instanceof Renamable // -> true
+```
+
+</ProseCodeblock>
 
 
 <ProseHeading level="2">

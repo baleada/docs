@@ -1,5 +1,5 @@
 <template lang="html">
-<ProseArticle title="Roadmap" updatedAt="Wed Oct 09 2019 12:53:52 GMT-0600 (CST)" repoLink="https://gitlab.com/baleada/docs/tree/master/assets/markdown/roadmap.md">
+<ProseArticle title="Roadmap" updatedAt="Mon Oct 14 2019 16:21:56 GMT-0600 (CST)" repoLink="https://gitlab.com/baleada/docs/tree/master/assets/markdown/roadmap.md">
   <component :is="article" />
 </ProseArticle>
 </template>

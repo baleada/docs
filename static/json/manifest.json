@@ -78,14 +78,14 @@
         "href": "/docs/logic/classes/Completable"
       },
       {
+        "title": "Editable",
+        "framework": "agnostic",
+        "href": "/docs/logic/classes/Editable"
+      },
+      {
         "title": "Navigable",
         "framework": "agnostic",
         "href": "/docs/logic/classes/Navigable"
-      },
-      {
-        "title": "Syncable",
-        "framework": "agnostic",
-        "href": "/docs/logic/classes/Syncable"
       }
     ]
   },

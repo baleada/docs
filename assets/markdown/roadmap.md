@@ -11,7 +11,7 @@ Pre-1.0.0 to-do list
 
 - Baleada Logic
   - Document all Baleada Logic libraries
-  - Pursue [other library ideas](https://trello.com/b/UIRmWCOQ/baleada-logic)
+  - Pursue [other library ideas](https://www.notion.so/baleada/dea01fd9090a4bd5a8a96e84dfe6d004?v=aef7c1e8bc394535af81c8960678a13c)
 - Baleada Composition
   - Publish 0.0.0
   - Document installation, importing, and usage
