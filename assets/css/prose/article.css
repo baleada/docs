@@ -201,7 +201,7 @@
 
   :not(pre) > code,
   kbd {
-    @apply rounded py-px px-1 tracking-1;
+    @apply rounded py-px px-1 tracking-1 transition;
   }
 
   :not(pre) > code {
@@ -415,7 +415,7 @@
     }
 
     blockquote {
-      @apply pl-8 pr-6;
+      @apply pl-8 pr-6 transition;
     }
 
     h1 {
@@ -517,10 +517,6 @@
       @apply text-primary-gray-500;
     }
 
-    blockquote::before {
-      @apply text-primary-gray-800;
-    }
-
     blockquote {
       @apply bg-primary-gray-900 text-primary-gray-300;
     }
@@ -578,13 +574,13 @@
       &.prose-table-striped {
         .contents {
           [role="rowgroup"] > :nth-child(even) {
-            @apply bg-gray-700;
+            @apply bg-gray-775;
 
             [role="gridcell"] {
-              @apply border-gray-600;
+              @apply border-gray-700;
 
               code {
-                @apply bg-gray-600;
+                @apply bg-gray-700;
               }
             }
           }

@@ -1,5 +1,5 @@
 <template lang="html">
-  <aside class="prose-aside" :class="[`aside-${type}`]">
+  <aside class="prose-aside transition" :class="[`aside-${type}`]">
     <div>
       <div v-if="type === 'info'" class="aside-icon">
         <EvaInfo :class="'fill-current'"/>

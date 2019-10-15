@@ -1,5 +1,5 @@
 <template lang="html">
-  <section class="prose-table prose-table-striped w-full sm:w-auto sm:min-w-2 swiper-no-swiping">
+  <section class="prose-table prose-table-striped w-full sm:w-auto sm:min-w-2 swiper-no-swiping transition">
     <div v-if="isTypeToFilterable">
       <input
         class="filter-input inp w-full"

@@ -184,7 +184,8 @@ And here's a breakdown of how all those factors influence erase behavior:
 
 </ProseTable>
 
-<NiftyAside>
+<ProseAside type="info">
+
 When erasing arrays, objects, and maps, you can set multiple options. For example, if you pass `{ last: true, item: 'myItem' }` while erasing an array, Syncable will remove `'myItem'` AND will remove the last value in the array.
 
 Erase operations are performed in the following order (from most specific to least specific operation):
@@ -192,7 +193,8 @@ Erase operations are performed in the following order (from most specific to lea
 2. Erase a key/value pair (Objects and Maps only)
 1. Erase the last item from an Array, or the last key/value pair from an Object or Map
 1. Erase all items from an Array, or all key/value pairs from an Object or Map
-</NiftyAside>
+
+</ProseAside>
 
 
 <ProseHeading level="5">
@@ -217,4 +219,6 @@ editable.erase({
 
 <ProseAside type="info">
 If `options.item(currentItem)` returns `false` for every item in `state`, the Editable instance will not remove any items.
+
+If `options.item(currentItem)` returns `true` for more than one item in `state`, all of the matching items will be removed.
 </ProseAside>

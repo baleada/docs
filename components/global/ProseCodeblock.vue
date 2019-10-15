@@ -1,6 +1,6 @@
 <template lang="html">
   <section
-    class="relative prose-codeblock swiper-no-swiping"
+    class="relative prose-codeblock swiper-no-swiping transition"
   >
     <!-- Copy button -->
     <button

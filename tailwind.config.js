@@ -63,6 +63,10 @@ module.exports = {
       ...defaultTheme.colors,
       current: 'currentColor',
       inherit: 'inherit',
+      gray: {
+        ...defaultTheme.colors.gray,
+        '775': 'hsla(218, 22%, 26%, 1.0)',
+      },
       primary: { // horizon
         '100': 'hsla(242, 100%, 97%, 1.0)',
         '200': 'hsla(243, 94%, 90%, 1.0)',
