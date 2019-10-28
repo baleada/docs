@@ -1,5 +1,5 @@
 <template lang="html">
-<ProseArticle title="API design" updatedAt="Sat Oct 26 2019 16:00:27 GMT-0600 (CST)" repoLink="https://gitlab.com/baleada/docs/tree/master/assets/md/logic/api-design.md">
+<ProseArticle title="API design" updatedAt="Sun Oct 27 2019 22:05:49 GMT-0600 (CST)" repoLink="https://gitlab.com/baleada/docs/tree/master/assets/md/logic/api-design.md">
   <component :is="article" />
 </ProseArticle>
 </template>

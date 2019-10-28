@@ -14,23 +14,13 @@ Baleada Logic implements all kinds of UI logic for you, which is nice, but argua
 > You can construct all Baleada Logic classes and subclasses in the same way, you can customize their behavior in the same way, and you can access their state and methods in the same way.
 
 To accomplish that, Baleada Logic's classes and subclasses all follow strict rules in these specific areas:
-1. Why they provide certain state and methods
 1. How they are **constructed**
-1. Why constructors accept certain state and options
 1. How **state and methods** are made available to you
 1. How classes & subclasses, their constructor options, their state, and their methods are **named**
+1. Why classes and subclasses provide certain state and methods
+1. Why constructors accept certain state and options
 
 This guide explains all the core concepts, rules, and patterns that classes and subclasses follow. The words "all", "always", and "never" are displayed in bold, to emphasize the rules that apply to every single class and subclass in Baleada Logic.
-
-
-<ProseHeading level="2">
-Why classes & subclasses provide certain state and methods
-</ProseHeading>
-
-Baleada Logic follows a consistent process for determing which state and methods are provided by classes:
-1. Identify one action or several related actions that would be useful in a user interface. These actions become methods on the class.
-1. Identify the piece(s) of state that the action will be performed on. In other words, answer the question, "If this method were a standalone function, what would be a required argument?" Each answer to that question becomes a public, writeable property on the class.
-2. Identify the piece(s) of state that would be useful for building certain UI features with the class' methods and public properties, but shouldn't be considered part of the core functionality or benefit of the class. Each identified piece of state becomes a getter on the class.
 
 
 <ProseHeading level="2">
@@ -104,19 +94,7 @@ instance instanceof String // --> true
 </ProseCodeblock>
 
 
-<ProseHeading level="2">
-Why constructors accept certain state and options
-</ProseHeading>
 
-A `<state type>` can be `<action>`ed (by `<action arguments>`).
-
-For example, the Searchable class' core action is to search/fuzzy search an array of items. The Searchable constructor's `state` parameter is an Array, and the class has a `search` method that accepts a search query as its only argument. This fits into the sentence template nicely:
-
-An **Array** can be **searched** by a **query**.
-
-<ProseAside type="info">
-The inspiration for this sentence-based 
-</ProseAside>
 
 
 <ProseHeading level="2">
@@ -336,7 +314,7 @@ instance.destroy() // -> Removes all event listeners
 Subclass state and methods
 </ProseHeading>
 
-Baleada Logic's subclasses **never** have public state; they **always** have one or more public methods.
+Baleada Logic's subclasses **never** have public state; they **always** have one method named `invoke`.
 
 Subclasses' public methods **never** mutate the original state passed to their constructors. They **always** follow three main steps:
 1. Create a mutated version of the original state
@@ -351,7 +329,7 @@ Thus, subclasses always return a new instance of themselves, respecting any orig
 // Renamable is a subclass of Map that allows the map to easily rename one of its keys
 const originalMap = [['one', 'value'], ['two', 'value']],
       instance = new Renamable(originalMap),
-      renamedMap = instance.renameKey('one', 'uno')
+      renamedMap = instance.invoke('one', 'uno')
 
 originalMap // -> [['one', 'value'], ['two', 'value']]
 renamedMap // -> [['uno', 'value'], ['two', 'value']]
@@ -359,6 +337,70 @@ renamedMap instanceof Renamable // -> true
 ```
 
 </ProseCodeblock>
+
+
+<ProseHeading level="2">
+Why classes & subclasses provide certain state and methods
+</ProseHeading>
+
+Baleada Logic follows a consistent process for determing which state and methods are provided by classes:
+1. Identify one action or several related actions that would be useful in a user interface. These actions become methods on the class.
+1. Identify the piece(s) of state that the action will be performed on. In other words, answer the question, "If this method were a standalone function, what would be a required argument?" Each answer to that question becomes a public, writeable property on the class.
+2. Identify the piece(s) of state that would be useful for building certain UI features with the class' methods and public properties, but shouldn't be considered part of the core functionality or benefit of the class. Each identified piece of state becomes a getter on the class.
+
+
+
+<ProseHeading level="2">
+Why constructors accept certain state types and options
+</ProseHeading>
+
+<ProseHeading level="3">
+Constructors' state types
+</ProseHeading>
+
+Baleada Logic uses a sentence template to decide what state type (e.g. String, Array, HTMLElement, etc.) should be accepted by a constructor:
+
+<ProseCodeblock>
+```txt
+A `<state type>` can be `<action>`ed (by `<action arguments>`).
+```
+</ProseCodeblock>
+
+For example, the Searchable class' core action is to search/fuzzy search an array of items. The Searchable constructor's `state` parameter is an Array, and the class has a `search` method that accepts a search query as its only argument. This fits into the sentence template nicely:
+
+<ProseCodeblock>
+```txt
+An **Array** can be **searched** by a **query**.
+```
+</ProseCodeblock>
+
+Some classes and subclasses have core actions that don't take arguments—in those cases, the last part of the sentence template is omitted:
+
+<ProseCodeblock>
+```text
+**Markdown** (String) can be **marked up**.
+```
+</ProseCodeblock>
+
+This sentence template ensures that **all** classes' and subclasses' methods are affordances. In other words, methods tell you what you can do with a given type of state, rather than what that type of state can do to itself or other things.
+
+In the documentation for each individual library and subclass, you can find the filled-out sentence template, explaining why each class and subclass accepts its specific state type.
+
+
+<ProseAside type="info">
+The inspiration and motivation for this sentence template came from [Adam Wathan's "Resisting Complexity" talk](https://www.youtube.com/watch?v=dfgtKb-VpRk).
+</ProseAside>
+
+<ProseHeading level="3">
+Constructors' options
+</ProseHeading>
+
+Constructors only accept options that:
+- Initialize public properties
+- Customize the behavior of getter functions
+- Pass the `on<Method>` callback functions described earlier in this article
+
+Constructors **never** accept options that customize the behavior of public methods, they **always** allow those options to be passed to the method itself as a parameter.
 
 
 <ProseHeading level="2">
