@@ -1,4 +1,4 @@
-function useGrid (gridContainerGetter) {
+export default function useGrid (gridContainerGetter) {
   /* https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Roles/Grid_Role */
   const handlers = {
     arrowright: evt => {
@@ -148,8 +148,4 @@ function useGrid (gridContainerGetter) {
   }
 
   return handler
-}
-
-export {
-  useGrid
 }
