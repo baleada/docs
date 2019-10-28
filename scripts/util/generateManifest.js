@@ -9,8 +9,8 @@ function generateManifest (metadata) {
             name: 'overview',
             pages: getOverviewPages(published)
           },
-          ...getDirs('./assets/markdown').map(dir => {
-            const level = dir.match(/\//g).length - 2, // 2 backslashes in ./assets/markdown,
+          ...getDirs('./assets/md').map(dir => {
+            const level = dir.match(/\//g).length - 2, // 2 backslashes in ./assets/md,
                   name = dir.match(/\w+$/)[0],
                   pages = getPages(name, published)
 

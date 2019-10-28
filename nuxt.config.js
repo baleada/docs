@@ -1,6 +1,5 @@
 import proseComponents from '@baleada/prose-loader/lib/stubs/proseComponents'
 
-import pkg from './package'
 import purgecssConfig from './config/purgecss.config'
 import headConfig from './config/head.config'
 
@@ -16,9 +15,9 @@ export default {
     meta: [
       { charset: 'utf-8' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
-      { hid: 'description', name: 'description', content: pkg.description },
-      { hid: 'keywords', name: 'keywords', content: pkg.keywords },
-      { hid: 'author', name: 'author', content: pkg.author },
+      { hid: 'description', name: 'description', content: headConfig.description },
+      { hid: 'keywords', name: 'keywords', content: headConfig.keywords.join(',') },
+      { hid: 'author', name: 'author', content: headConfig.author },
       { hid: 'generator', name: 'generator', content: 'Nuxt.js' },
       { hid: 'robots', name: 'robots', content: headConfig.robots }
     ],

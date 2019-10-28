@@ -2,16 +2,6 @@
   "name": "@baleada/docs",
   "version": "0.0.0",
   "description": "Documentation for Baleada, a toolkit for building web apps.",
-  "keywords": [
-    "baleada",
-    "nuxt",
-    "netlify",
-    "tailwindcss",
-    "vue composition functions",
-    "react hooks",
-    "user interface logic",
-    "documentation"
-  ],
   "author": {
     "name": "Alex Vipond",
     "email": "hello@alexvipond.dev",

@@ -8,8 +8,8 @@ order: 0
 
 Editable is a library that enriches a piece of state by:
 - Allowing it to infer its data type
-- Allowing it to extract an editable version of itself, based on its data type
-- Giving it the methods necessary to handle different kinds of edits (write, overwrite, full delete, partial delete, cancel &amp; revert to previous value, etc.)
+- Allowing it to store and make changes to an editable version of itself, instead of mutating the original state
+- Giving it the methods necessary to handle different kinds of edits (write, overwrite, full delete, partial delete, cancel &amp; revert to original value, etc.)
 
 Editable is written in vanilla JS with no dependencies.
 
@@ -40,7 +40,6 @@ const instance = new Editable(state[, options])
 | Option | Type | Default | Description | Parameters | Return value |
 | --- | --- | --- | --- | --- | --- |
 | `type` | String | none | <p>Tells the Editable instance what data type your state is. If you don't pass this option, the Editable instance will infer the data type based on the state passed to the constructor.</p><ProseAside type="warning">You should pass the `type` option any time your original state is not the same type as the state that will be written—for example, when you're using Editable to edit a Date, a File, or a FileList, but your store's placeholder value is a String or an empty Object.</ProseAside><ProseAside type="info"><p>You can pass any String as the <code>type</code> option, or you can pick from one of the following intended types:</p><ul><li>`'array'`</li><li>`'boolean'`</li><li>`'date'`</li><li>`'file'`</li><li>`'filelist'`</li><li>`'map'`</li><li>`'number'`</li><li>`'object'`</li><li>`'string'`</li></ul></ProseAside> | N/A | N/A |
-| `editsFullArray` | Boolean | `true` | <p>Only has an effect when the state passed to the constructor is an Array.</p><p>`true` when the Editable instance will be writing/erasing the full array, `false` when the instance will be writing/erasing individual items in the array.</p><p>See the <NuxtLink to="#How-Editable-edits-state">How Editable edits state</NuxtLink> section for more guidance.</p> | N/A | N/A |
 | `onEdit(newState, instance)` | Function | <p>See the <NuxtLink to="#How-Editable-edits-state">How Editable edits state</NuxtLink> section for more guidance.</p> | <p>Called by the Editable instance after either writing or erasing state.</p><p>For more guidance, see the <NuxtLink to="#How-Editable-edits-state">How Editable edits state</NuxtLink> section.</p> | The new state (can be any type) and the Editable instance (Object) | N/A |
 | `onWrite(newState, instance)` | Function | none | <p>Called by the Editable instance after writing state.</p><p>For more guidance, see the <NuxtLink to="#How-Editable-edits-state">How Editable edits state</NuxtLink> section.</p> | The new state (can be any type) and the Editable instance (Object) | N/A |
 | `onErase(newState, instance)` | Function | none | <p>Called by the Editable instance after erasing state.</p><p>For more guidance, see the <NuxtLink to="#How-Editable-edits-state">How Editable edits state</NuxtLink> section.</p> | The new state (can be any type) and the Editable instance (Object) | N/A |
@@ -59,26 +58,15 @@ The constructed Editable instance is an Object, and state and methods can be acc
 | Property | Type | Description | Parameters | Return value |
 | --- | --- | --- | --- | --- |
 | `state` | any | A shallow copy of the state passed to the Editable constructor | N/A | N/A |
-| `editableState` | any | An editable version of `state`. See the <NuxtLink to="#How-Editable-extracts-an-editable-version-of-its-state">How Editable extracts an editable version of its state</NuxtLink> section for more information. | N/A | N/A |
+| `editableState` | any | A shallow copy of `state` that you can edit. | N/A | N/A |
 | `type` | Getter | See return value | N/A | The Editable instance's inferred data type (String) |
 | `setState(newState)` | Function | Sets the Editable instance's `state` | The new `state` (any) | The Editable instance (`this`) |
 | `setEditableState(newEditableState)` | Function | Sets the Editable instance's `editableState` | The new `editableState` (any) | The Editable instance (`this`) |
-| `cancel()` | Function | <p>Resets `editableState` to the initial value extracted from `state`.</p><ProseAside type="info">`cancel` does not trigger the Editable instance to call your `onEdit`, `onWrite`, or `onErase` functions.</ProseAside> | none | The Editable instance (`this`) |
-| `write(options)` | Function | <p>Writes `editableState` to `state`.</p><p>The exact write behavior depends on `type`, the `editsFullArray` option, and the `write` function's `options` parameter. See the <NuxtLink to="#How-Editable-writes-state">How Editable writes state</NuxtLink> section for more guidance.</p> | <p>An `options` object.</p><p>See the <NuxtLink to="#How-Editable-writes-state">How Editable writes state</NuxtLink> section for more guidance.</p> | The Editable instance (`this`) |
-| `erase(options)` | Function | <p>Erases `state`.</p><p>The exact erase behavior depends on `type`, the `editsFullArray` option, and the `erase` function's `options` parameter. See the <NuxtLink to="#How-Editable-erases-state">How Editable erases state</NuxtLink> section for more guidance.</p> | <p>An `options` object.</p><p>See the <NuxtLink to="#How-Editable-erases-state">How Editable erases state</NuxtLink> section for more guidance.</p> | The Editable instance (`this`) |
+| `cancel()` | Function | <p>Resets `editableState` to a shallow copy of `state`.</p><ProseAside type="info">`cancel` does not trigger the Editable instance to call your `onEdit`, `onWrite`, or `onErase` functions.</ProseAside> | none | The Editable instance (`this`) |
+| `write(options)` | Function | <p>Writes `editableState` to `state`.</p><p>The exact write behavior depends on `type` and the `write` function's `options` parameter. See the <NuxtLink to="#How-Editable-writes-state">How Editable writes state</NuxtLink> section for more guidance.</p> | <p>An `options` object.</p><p>See the <NuxtLink to="#How-Editable-writes-state">How Editable writes state</NuxtLink> section for more guidance.</p> | The Editable instance (`this`) |
+| `erase(options)` | Function | <p>Erases `state`.</p><p>The exact erase behavior depends on `type` and the `erase` function's `options` parameter. See the <NuxtLink to="#How-Editable-erases-state">How Editable erases state</NuxtLink> section for more guidance.</p> | <p>An `options` object.</p><p>See the <NuxtLink to="#How-Editable-erases-state">How Editable erases state</NuxtLink> section for more guidance.</p> | The Editable instance (`this`) |
 
 </ProseTable>
-
-
-<ProseHeading level="3">
-How Editable extracts an editable version of its state
-</ProseHeading>
-
-Editable follows this logic to extract an editable version of its state:
-- If `type` is not `'array'`, `editableState` is a shallow copy of `state`
-- Otherwise:
-  - If `editsFullArray` is `true`, `editableState` is a shallow copy of `state`
-  - Otherwise, `editableState` is an empty string
 
 
 <ProseHeading level="3">
@@ -109,7 +97,7 @@ The edited state is created differently depending on whether you call `write` or
 How Editable writes state
 </ProseHeading>
 
-The way Editable writes state varies based on your `editsFullArray` option, the instance's `type` property, and the `options` object passed by you as the `write` method's first argument.
+The way Editable writes state varies based on the instance's `type` property and the `options` object passed by you as the `write` method's first argument.
 
 First, here's a breakdown of what `options` can contain:
 
@@ -117,6 +105,7 @@ First, here's a breakdown of what `options` can contain:
 
 | Property | Type | Required | Description |
 | --- | --- | --- | --- |
+| `item` | any | nope | Passes an item that will be added to the end of an Array |
 | `key` | String | Only when `type` is `map` or `object` | Indicates which of the Map or Object's keys will have its value set |
 | `value` | any | nope | Passes the value that will be set as the new value for the Map or Object's key (specified by the `key` option) |
 | `rename` | String | nope | Indicates which of the Map or Object's keys will be renamed using the String passed to the `key` option |
@@ -127,20 +116,17 @@ And here's a breakdown of how all those factors influence write behavior:
 
 <ProseTable>
 
-| When `editsFullArray` is... | And `type` is... | And `options` includes | New state is... |
-| --- | --- | --- | --- |
-| `true` | `'array'` | anything | `editableState` |
-| `false` | `'array'` | anything | `state`, with `editableState` appended as the last item in the array |
-| anything | `'map'` or `'object'` | `key`, `value`, and `rename` properties | `state` with the key specified by `rename` renamed to the key specified by `key`, and the value of `state[key]` set to `value` |
-| anything | `'map'` or `'object'` | Only `key` and `rename` properties | `state` with the key specified by `rename` renamed to the key specified by `key` (value is unchanged) |
-| anything | `'map'` or `'object'` | Only `key` and `value` properties | `state` with the value of `state[key]` set to `value` |
-| anything | anything else | anything | `editableState` |
+| When `type` is... | And `options` includes | New state is... |
+| --- | --- | --- |
+| `'array'` | `item` | `state`, with `options.item` appended as the last item in the array |
+| `'array'` | nothing | `editableState` |
+| `'map'` or `'object'` | `key`, `value`, and `rename` properties | `state` with the key specified by `rename` renamed to the key specified by `key`, and the value of `state[key]` set to `value` |
+| `'map'` or `'object'` | Only `key` and `rename` properties | `state` with the key specified by `rename` renamed to the key specified by `key` (value is unchanged) |
+| `'map'` or `'object'` | Only `key` and `value` properties | `state` with the value of `state[key]` set to `value` |
+| anything else | anything | `editableState` |
 
 </ProseTable>
 
-<ProseAside type="info">
-Note that `write` does not update `state` or `editableState`, but you can do so using `setState` and `setEditableState`.
-</ProseAside>
 
 
 <ProseHeading level="4">
@@ -168,7 +154,7 @@ And here's a breakdown of how all those factors influence erase behavior:
 <ProseTable>
 
 | When `type` is... | And `options` includes | New state is... |
-| --- | --- | --- | --- |
+| --- | --- | --- |
 | `'array'` | `item` | See the <NuxtLink to="#How-to-erase-items-from-arrays">How to erase items from Arrays</NuxtLink> section for more guidance. |
 | `'array'` | `last: true` | `state`, with the last item removed |
 | `'array'` | `all: true` | `[]` |
@@ -201,7 +187,7 @@ Erase operations are performed in the following order (from most specific to lea
 How to erase items from Arrays
 </ProseHeading>
 
-When `type` is `'array'` and `editsFullArray` is `false`, the `erase` method's `item` option indicates which item in `state` should be erased.
+When `type` is `'array'`, the `erase` method's `item` option indicates which item in `state` should be erased.
 
 If `options.item` is a String, the Editable instance will find and remove all items in `state` that are strictly equal to `options.item`.
 

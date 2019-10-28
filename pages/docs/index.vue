@@ -1,11 +1,11 @@
 <template lang="html">
-<ProseArticle title="What is Baleada?" updatedAt="Wed Oct 09 2019 12:53:52 GMT-0600 (CST)" repoLink="https://gitlab.com/baleada/docs/tree/master/assets/markdown/index.md">
+<ProseArticle title="What is Baleada?" updatedAt="Tue Oct 22 2019 14:27:21 GMT-0600 (CST)" repoLink="https://gitlab.com/baleada/docs/tree/master/assets/md/index.md">
   <component :is="article" />
 </ProseArticle>
 </template>
 
 <script>
-import article from '~/assets/markdown/index.md'
+import article from '~/assets/md/index.md'
 export default {
   layout: 'article',
   setup () {

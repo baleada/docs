@@ -6,7 +6,7 @@ const fs = require('fs'),
       generateSearchable = require('./util/generateSearchable.js')
 
 function generateMetafiles () {
-  const files = getFiles('./assets/markdown'),
+  const files = getFiles('./assets/md'),
         metadata = getMetadata(files)
 
   fs.writeFileSync('./static/json/metadata.json', JSON.stringify(metadata, null, 2))
@@ -53,7 +53,7 @@ function getMetadata (files) {
 
 function toPathMetadata (path) {
   const fileName = path.match(/[A-Za-z-]+\.md$/)[0].replace(/\.md$/, ''),
-        hrefPrefix = `/docs${path.replace(/\.\/assets\/markdown/, '').replace(/\/[A-Za-z-]+\.md$/, '')}`,
+        hrefPrefix = `/docs${path.replace(/\.\/assets\/md/, '').replace(/\/[A-Za-z-]+\.md$/, '')}`,
         hrefSuffix = `${fileName === 'index' ? '' : '/' + fileName}`,
         href = `${hrefPrefix}${hrefSuffix}`
 
