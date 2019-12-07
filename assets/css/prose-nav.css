@@ -1,4 +1,4 @@
-.docs-nav {
+.prose-nav {
   @apply transition;
 
   h2::after {

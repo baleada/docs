@@ -14,15 +14,36 @@ function generatePages (metadata) {
 function toPage ({ title, path, updatedAt }) {
   return `\
 <template lang="html">\n\
-<ProseArticle title="${title}" updatedAt="${updatedAt}" repoLink="https://gitlab.com/baleada/docs/tree/master${path.slice(1)}">\n\
+<ProseArticle>\n\
+  <template v-slot:before="{ frontMatter: { title } }">\n\
+    <ProseHeading :level="1"><span>{{ title }}</span></ProseHeading>\n\
+    <DocsArticleStats />\n\
+    <DocsMeta :tags="{ title }" />\n\
+  </template>\n\
   <component :is="article" />\n\
+  <template v-slot:after="{}">\n\
+    <DocsAdjacentArticleLinks />\n\
+    <DocsArticleEdit />\n\
+  </template>\n\
 </ProseArticle>\n\
 </template>\n\
 \n\
 <script>\n\
 import article from '${path.replace(/^\./, '~')}'\n\
+\n\
+import DocsArticleStats from '~/components/DocsArticleStats'\n\
+import DocsMeta from '~/components/DocsMeta'\n\
+import DocsAdjacentArticleLinks from '~/components/DocsAdjacentArticleLinks'\n\
+import DocsArticleEdit from '~/components/DocsArticleEdit'\n\
+\n\
 export default {\n\
-  layout: 'article',\n\
+  layout: 'prose',\n\
+  components: {\n\
+    DocsArticleStats,\n\
+    DocsMeta,\n\
+    DocsAdjacentArticleLinks,\n\
+    DocsArticleEdit,\n\
+  },\n\
   setup () {\n\
     return {\n\
       article\n\

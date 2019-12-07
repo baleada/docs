@@ -13,18 +13,18 @@ Anyway, the Baleada you're here for is **a toolkit for building web apps** (and 
 - UI logic
 - Composition functions (a.k.a. hooks)
 - SVG icon components
-- More to come (<NuxtLink to="/docs/roadmap">see roadmap</NuxtLink>)
+- More to come ([see roadmap](/docs/roadmap))
 
-<ProseAside type="info">
-Feeling a little fuzzy on what these terms mean? Check out the guide on <NuxtLink to="/docs/types-of-tools">types of tools</NuxtLink> for definitions.
-</ProseAside>
+::: type="info"
+Feeling a little fuzzy on what these terms mean? Check out the guide on [types of tools](/docs/types-of-tools) for definitions.
+:::
 
 Think of these tools as the ingredients in a savory, delectable baleada. You're encouraged to take what you want and sprinkle it into the stack you're already using to build your apps and websites. You're free to take just a few things, but if you're so inclined, you can really pile on the extras!
 
 
-<ProseHeading level="2">
-Who is Baleada designed for?
-</ProseHeading>
+:::
+## Who is Baleada designed for?
+:::
 
 Baleada is designed for developers who:
 - **Do** want to add common UI features and behaviors to their app, but **don't** want to think about implementation details.

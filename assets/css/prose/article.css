@@ -1,13 +1,61 @@
 /* Markdown prose styles */
-.prose {
-  @apply text-black transition;
+.with-max-h {
+  @apply max-h-2/3-screen;
+}
+
+.prose-article {
+  @apply text-black transition px-7 pb-12 pt-11;
 
   :not(table):not([role="grid"]):not(div):not(main):not(section):not(article),
   .prose-aside,
+  .prose-blockquote,
+  .prose-heading,
   *.with-max-w,
   hr,
   img {
     @apply max-w-5;
+  }
+
+  & > .contents > address,
+  & > .contents > article,
+  & > .contents > aside,
+  & > .contents > blockquote,
+  & > .contents > details,
+  & > .contents > dialog,
+  & > .contents > dd,
+  & > .contents > div,
+  & > .contents > dl,
+  & > .contents > dt,
+  & > .contents > fieldset,
+  & > .contents > figcaption,
+  & > .contents > figure,
+  & > .contents > footer,
+  & > .contents > form,
+  & > .contents > h1,
+  & > .contents > h2,
+  & > .contents > h3,
+  & > .contents > h4,
+  & > .contents > h5,
+  & > .contents > h6,
+  & > .contents > header,
+  & > .contents > hgroup,
+  & > .contents > hr,
+  & > .contents > li,
+  & > .contents > main,
+  & > .contents > nav,
+  & > .contents > ol,
+  & > .contents > p,
+  & > .contents > pre,
+  & > .contents > section,
+  & > .contents > table,
+  & > .contents > ul,
+  & > .contents > .prose-heading,
+  & > .contents > .prose-grid,
+  & > .contents > .prose-table,
+  & > .contents > .prose-codeblock,
+  & > .contents > .prose-blockquote,
+  & > .contents > .prose-aside {
+    @apply mx-auto;
   }
 
 
@@ -192,7 +240,7 @@
   }
 
   .prose-codeblock {
-    @apply rounded p-3 overflow-x-scroll -shadow max-h-2/3-screen scrolling-touch;
+    @apply rounded p-3 overflow-x-scroll -shadow with-max-h scrolling-touch;
 
     code {
       @apply leading-1 bg-inherit;
@@ -230,7 +278,7 @@
     }
 
     .contents {
-      @apply max-h-2/3-screen;
+      @apply with-max-h;
 
       [role="grid"] {
         @apply w-full;
@@ -481,6 +529,18 @@
     th {
       @apply text-2;
     }
+  }
+}
+
+@media screen and (max-width: theme(screens.sm)) {
+  .prose {
+    @apply px-9;
+  }
+}
+
+@media screen and (max-width: theme(screens.lg)) {
+  .prose {
+    @apply px-11;
   }
 }
 

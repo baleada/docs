@@ -54,6 +54,11 @@
   },
   {
     "level": 1,
+    "name": "loader",
+    "pages": []
+  },
+  {
+    "level": 1,
     "name": "logic",
     "pages": [
       {

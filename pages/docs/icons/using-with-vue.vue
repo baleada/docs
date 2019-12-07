@@ -1,13 +1,34 @@
 <template lang="html">
-<ProseArticle title="Using with Vue" updatedAt="Wed Oct 09 2019 12:53:52 GMT-0600 (CST)" repoLink="https://gitlab.com/baleada/docs/tree/master/assets/md/icons/using-with-vue.md">
+<ProseArticle>
+  <template v-slot:before="{ frontMatter: { title } }">
+    <ProseHeading :level="1"><span>{{ title }}</span></ProseHeading>
+    <DocsArticleStats />
+    <DocsMeta :tags="{ title }" />
+  </template>
   <component :is="article" />
+  <template v-slot:after="{}">
+    <DocsAdjacentArticleLinks />
+    <DocsArticleEdit />
+  </template>
 </ProseArticle>
 </template>
 
 <script>
 import article from '~/assets/md/icons/using-with-vue.md'
+
+import DocsArticleStats from '~/components/DocsArticleStats'
+import DocsMeta from '~/components/DocsMeta'
+import DocsAdjacentArticleLinks from '~/components/DocsAdjacentArticleLinks'
+import DocsArticleEdit from '~/components/DocsArticleEdit'
+
 export default {
-  layout: 'article',
+  layout: 'prose',
+  components: {
+    DocsArticleStats,
+    DocsMeta,
+    DocsAdjacentArticleLinks,
+    DocsArticleEdit,
+  },
   setup () {
     return {
       article

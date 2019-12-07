@@ -1,5 +1,8 @@
-import proseComponents from '@baleada/prose-loader/lib/stubs/proseComponents'
-
+import getTransform from '@baleada/markdown-to-prose'
+import propsInterfaces from '@baleada/prose/vue/propsInterfaces'
+import MarkdownItSpaLinks from '@baleada/markdown-it-spa-links'
+import refractor from 'refractor'
+import rehype from 'rehype'
 import purgecssConfig from './config/purgecss.config'
 import headConfig from './config/head.config'
 
@@ -50,8 +53,9 @@ export default {
   plugins: [
     '~/plugins/global-components',
     '~/plugins/example-components',
-    '~/plugins/runtime',
+    '~/plugins/prose',
     '~/plugins/vue-composition-api',
+    '~/plugins/runtime.js',
   ],
 
   /*
@@ -89,13 +93,34 @@ export default {
       }
     },
     extend: config => {
-      // config.plugins.push(new GenerateMetafilesPlugin())
-      const replaceDelimiters = markup => markup.replace(/({{|}})/g, '<span>$1</span>'),
+      function escapeRawVueExpression (str) {
+        return str.replace(/({{|}})/g, '<span>$1</span>')
+      }
+
+      const transform = getTransform({ templateType: 'vue', propsInterfaces }, {
+        markdownIt: {
+          html: true,
+          linkify: true,
+          highlight: (code, lang) => {
+            try {
+              const children = refractor.highlight(code, lang),
+                    html = rehype()
+                      .stringify({ type: 'root', children })
+                      .toString()
+              return escapeRawVueExpression(html)
+            } catch (error) {
+              return ''
+            }
+          },
+          plugins: [
+            [MarkdownItSpaLinks, 'nuxt']
+          ],
+        },
+      }),
             prose = {
-              loader: '@baleada/prose-loader',
+              loader: '@baleada/loader/lib/webpack',
               options: {
-                components: proseComponents,
-                postRender: markup => `<template lang="html"><section>${replaceDelimiters(markup)}</section></template>\n`
+                transform: (source, { resourcePath }) => transform(source, resourcePath)
               }
             }
 

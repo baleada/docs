@@ -7,9 +7,9 @@ order: 0
 
 Baleada Icons is a collection of components that render SVG icons.
 
-<ProseAside type="info">
+::: type="info"
 All icons used in the Baleada docs are sourced from Baleada Icons 😎
-</ProseAside>
+:::
 
 Icons are sourced from the following icon sets:
 - [Simple Icons](https://simpleicons.org/)
@@ -20,24 +20,24 @@ Each icon in those sets has a corresponding component for the following framewor
 - [React](https://reactjs.org/)
 - [Svelte](https://svelte.dev) [WIP]
 
-<ProseAside type="info">
+::: type="info"
 Didn't see your favorite icon set or framework in the list? Feel free to [raise an issue](https://gitlab.com/baleada/icons/issues) and ask for support.
-</ProseAside>
+:::
 
 
-<ProseHeading level="2">
-Install
-</ProseHeading>
+:::
+## Install
+:::
 
-<ProseCodeblock>
+:::
 ```bash
 npm i @baleada/icons
 ```
-</ProseCodeblock>
+:::
 
-<ProseHeading level="2">
-Available components
-</ProseHeading>
+:::
+## Available components
+:::
 
 `@baleada/icons` includes a component for each individual icon in the Eva Icons and Simple Icons icon sets.
 
@@ -47,20 +47,20 @@ Eva icons' names are created by removing all hyphens and capitalizing the first 
 
 Eva icon component examples:
 
-<ProseTable ariaLabel="Table of examples showing how Baleada transforms Eva icon names into component names">
+::: ariaLabel="Table of examples showing how Baleada transforms Eva icon names into component names"
 | Original icon name | Component name |
 | --- | --- |
 | bulb | `EvaBulb` |
 | hard-drive-outline | `EvaHardDriveOutline` |
 | globe-2 | `EvaGlobe2` |
-</ProseTable>
+:::
 
 Simple icons' names are created by:
 1. Removing all spaces, exclamation points, and apostrophes
 2. Replacing special characters as indicated in the table below
 3. Capitalizing the first letter of each word and **preserving** the original case of other letters in the word
 
-<ProseTable ariaLabel="Table showing how Baleada replaces special characters in Simple icon names">
+::: ariaLabel="Table showing how Baleada replaces special characters in Simple icon names"
 | Special character | Replacement |
 | --- | --- |
 | `.` | Dot |
@@ -74,11 +74,11 @@ Simple icons' names are created by:
 | `ò`, `ó`, `ô`, `õ`, `ö` | o |
 | `ù`, `ú`, `û`, `ü` | u |
 | `ý`, `ÿ` | y |
-</ProseTable>
+:::
 
 Simple icon component examples:
 
-<ProseTable ariaLabel="Table of examples showing how Baleada transforms Simple icon names into component names">
+::: ariaLabel="Table of examples showing how Baleada transforms Simple icon names into component names"
 | Original icon name | Component name | Notice: |
 | --- | --- | --- |
 | Geocaching | `SimpleGeocaching` | Nothing special here! |
@@ -88,25 +88,25 @@ Simple icon component examples:
 | C++ | `SimpleCPlusPlus` | `++` replaced with `PlusPlus` |
 | AT&T | `SimpleATAndT` | `&` replaced with `And`, original cases of `AT` and `T` are preserved |
 | AlloCiné | `SimpleAlloCine` | `é` replaced with `e`, original case of the `C` is preserved |
-</ProseTable>
+:::
 
-For a full list of available components, <NuxtLink to="#full-component-list">jump to the last section of this article</NuxtLink>.
+For a full list of available components, [jump to the last section of this article](#full-component-list).
 
 
-<ProseHeading level="2">
-Import and use the components
-</ProseHeading>
+:::
+## Import and use the components
+:::
 
 For more guidance on how to import and use the components, see one of the following framework-specific guides:
-- <NuxtLink to="/docs/icons/using-with-vue">Using icons with Vue</NuxtLink>
-- <NuxtLink to="/docs/icons/using-with-react">Use icons with React</NuxtLink>
+- [Using icons with Vue](/docs/icons/using-with-vue)
+- [Use icons with React](/docs/icons/using-with-react)
 
 
-<ProseHeading level="2">
-Full component list
-</ProseHeading>
+:::
+## Full component list
+:::
 
-<ProseTable hasMaxH isTypeToFilterable ariaLabel="Full list of Baleada Icons components">
+<!-- ::: canFilterByQuery ariaLabel="Full list of Baleada Icons components"
 | Component name |
 | --- |
 | EvaActivity |
@@ -1278,4 +1278,4 @@ Full component list
 | SimpleZerply |
 | SimpleZillow |
 | SimpleZorin |
-</ProseTable>
+::: -->

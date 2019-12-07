@@ -28,11 +28,17 @@
   .translate-0 {
     transform: translate(0%);
   }
-  .-translate-x-full {
+  .-translate-x-100 {
     transform: translateX(-100%);
   }
-  .translate-x-full {
+  .translate-x-100 {
     transform: translateX(100%);
+  }
+  .-translate-x-200 {
+    transform: translateX(-200%);
+  }
+  .translate-x-200 {
+    transform: translateX(200%);
   }
   .-translate-x-50 {
     transform: translateX(-50%);

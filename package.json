@@ -8,6 +8,10 @@
     "url": "https://alexvipond.dev"
   },
   "private": false,
+  "repository": {
+    "type": "git",
+    "url": "git+https://gitlab.com/baleada/docs.git"
+  },
   "scripts": {
     "empty-pages": "node scripts/emptyDir.js 'pages/docs'",
     "gen-meta": "npm run empty-pages && node scripts/generateMetafiles.js",
@@ -25,15 +29,21 @@
   "dependencies": {
     "@babel/plugin-proposal-class-properties": "^7.4.4",
     "@babel/plugin-proposal-private-methods": "^7.4.4",
+    "@baleada/composition": "^0.2.2",
     "@baleada/icons": "^0.3.1",
-    "@baleada/logic": "0.0.0",
+    "@baleada/loader": "0.0.1",
+    "@baleada/logic": "^0.5.3",
+    "@baleada/markdown-it-prose-container": "^0.3.2",
+    "@baleada/markdown-it-spa-links": "0.0.0",
+    "@baleada/markdown-to-prose": "^0.2.3",
+    "@baleada/prose": "^0.4.1",
     "@baleada/prose-loader": "0.0.3",
     "@baleada/vue": "^0.0.2",
     "@nuxtjs/eslint-config": "0.0.1",
     "@nuxtjs/markdownit": "^1.2.4",
     "@nuxtjs/pwa": "^2.6.0",
     "@u3u/vue-hooks": "^2.0.1",
-    "@vue/composition-api": "^0.2.1",
+    "@vue/composition-api": "^0.3.4",
     "autoprefixer": "^8.6.4",
     "babel-eslint": "^10.0.1",
     "cross-env": "^5.2.0",
@@ -57,6 +67,8 @@
     "postcss-import": "^12.0.1",
     "postcss-nested": "^4.1.2",
     "raw-loader": "^3.1.0",
+    "refractor": "^2.10.0",
+    "rehype": "^9.0.1",
     "tailwindcss": "^1.1.0",
     "toml": "^3.0.0",
     "typeface-caveat": "0.0.54",

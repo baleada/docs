@@ -3,8 +3,6 @@
 @import "./preflight.css";
 
 @import "./fonts.css";
-@import "./prose/index.css";
-@import "./docs-nav.css";
 /* purgecss end ignore */
 
 @import "tailwindcss/components";

@@ -1,45 +1,33 @@
 <template>
-  <nav class="docs-nav transition">
-    <section
-      v-for="(directory, index) in directories"
-      :key="directory.name"
+  <section class="docs-table-of-contents">
+    <h2 class="transition">ON THIS PAGE</h2>
+    <NuxtLink
+      v-for="(heading, index) in headings"
+      :key="index"
+      :class="`h${heading.level}`"
+      :to="`#${heading.slug}`"
     >
-      <component :is="`h${directory.level + 1}`">{{ directory.name.toUpperCase() }}</component>
-      <transition
-        name="docs-nav"
-        v-for="page in directory.pages"
-        :key="page.href"
-      >
-        <NuxtLink :to="page.href">
-          {{ page.title }}
-        </NuxtLink>
-      </transition>
-    </section>
-  </nav>
+      {{ heading.text }}
+    </NuxtLink>
+  </section>
 </template>
 
 <script>
-import manifest from '~/static/json/manifest.json'
-
 export default {
-  name: 'DocsNav',
-  setup() {
-    const directories = manifest.filter(dir => dir.pages.length > 0)
-
-    // TODO: filter based on metadata, with enter/leave transitions
-
-    return {
-      directories,
+  name: 'DocsTableOfContents',
+  props: {
+    headings: {
+      type: Array,
+      required: true
     }
   },
 }
 </script>
 
 <style lang="postcss">
-.docs-nav {
-  * + section {
-    @apply mt-7;
-  }
+.docs-table-of-contents {
+  @apply flex flex-col;
+
   h2::after {
     content: '';
     @apply w-9 mt-3 block rounded-full h-2px bg-gray-300;
@@ -59,6 +47,27 @@ export default {
   }
   a:hover {
     @apply text-primary-600 border-primary-600 underline;
+  }
+  * + a {
+    @apply mt-2;
+  }
+  .h1 {
+    @apply ml-0 font-500;
+  }
+  .h2 {
+    @apply ml-2;
+  }
+  .h3 {
+    @apply ml-5;
+  }
+  .h4 {
+    @apply ml-7;
+  }
+  .h5 {
+    @apply ml-9;
+  }
+  .h6 {
+    @apply ml-10;
   }
 
   .dark & {
@@ -82,4 +91,5 @@ export default {
     }
   }
 }
+
 </style>

@@ -1,13 +1,34 @@
 <template lang="html">
-<ProseArticle title="What is Baleada?" updatedAt="Tue Oct 22 2019 14:27:21 GMT-0600 (CST)" repoLink="https://gitlab.com/baleada/docs/tree/master/assets/md/index.md">
+<ProseArticle>
+  <template v-slot:before="{ frontMatter: { title } }">
+    <ProseHeading :level="1"><span>{{ title }}</span></ProseHeading>
+    <DocsArticleStats />
+    <DocsMeta :tags="{ title }" />
+  </template>
   <component :is="article" />
+  <template v-slot:after="{}">
+    <DocsAdjacentArticleLinks />
+    <DocsArticleEdit />
+  </template>
 </ProseArticle>
 </template>
 
 <script>
 import article from '~/assets/md/index.md'
+
+import DocsArticleStats from '~/components/DocsArticleStats'
+import DocsMeta from '~/components/DocsMeta'
+import DocsAdjacentArticleLinks from '~/components/DocsAdjacentArticleLinks'
+import DocsArticleEdit from '~/components/DocsArticleEdit'
+
 export default {
-  layout: 'article',
+  layout: 'prose',
+  components: {
+    DocsArticleStats,
+    DocsMeta,
+    DocsAdjacentArticleLinks,
+    DocsArticleEdit,
+  },
   setup () {
     return {
       article
