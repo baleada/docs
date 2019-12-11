@@ -3,13 +3,13 @@
   @apply max-h-2/3-screen;
 }
 
-.prose-article {
+.baleada-prose-article {
   @apply text-black transition px-7 pb-12 pt-11;
 
   :not(table):not([role="grid"]):not(div):not(main):not(section):not(article),
-  .prose-aside,
-  .prose-blockquote,
-  .prose-heading,
+  .baleada-prose-aside,
+  .baleada-prose-blockquote,
+  .baleada-prose-heading,
   *.with-max-w,
   hr,
   img {
@@ -49,12 +49,12 @@
   & > .contents > section,
   & > .contents > table,
   & > .contents > ul,
-  & > .contents > .prose-heading,
-  & > .contents > .prose-grid,
-  & > .contents > .prose-table,
-  & > .contents > .prose-codeblock,
-  & > .contents > .prose-blockquote,
-  & > .contents > .prose-aside {
+  & > .contents > .baleada-prose-heading,
+  & > .contents > .baleada-prose-grid,
+  & > .contents > .baleada-prose-table,
+  & > .contents > .baleada-prose-codeblock,
+  & > .contents > .baleada-prose-blockquote,
+  & > .contents > .baleada-prose-aside {
     @apply mx-auto;
   }
 
@@ -81,13 +81,13 @@
   * + ul,
   * + ol,
   * + img,
-  * + .prose-aside,
-  * + .prose-codeblock,
+  * + .baleada-prose-aside,
+  * + .baleada-prose-codeblock,
   * + .with-mt {
     @apply mt-5;
   }
 
-  * + .prose-table {
+  * + .baleada-prose-table {
     @apply mt-7;
   }
 
@@ -141,7 +141,7 @@
     }
   }
 
-  .prose-heading:hover {
+  .baleada-prose-heading:hover {
     @apply text-primary-700;
   }
 
@@ -233,13 +233,13 @@
     }
   }
 
-  .prose-heading {
+  .baleada-prose-heading {
     a {
       @apply text-inherit no-underline;
     }
   }
 
-  .prose-codeblock {
+  .baleada-prose-codeblock {
     @apply rounded p-3 overflow-x-scroll -shadow with-max-h scrolling-touch;
 
     code {
@@ -264,7 +264,7 @@
     @apply scrolling-touch overflow-x-scroll -shadow;
   }
 
-  .prose-table {
+  .baleada-prose-table {
     @apply max-w-full mb-6 inline-block;
 
     .filter-input {
@@ -325,7 +325,7 @@
       }
     }
 
-    &.prose-table-striped {
+    &.baleada-prose-table-striped {
       .contents {
         [role="rowgroup"] > :nth-child(even) {
           @apply bg-gray-100;
@@ -342,7 +342,7 @@
     }
   }
 
-  .prose-aside {
+  .baleada-prose-aside {
     @apply relative flex items-start rounded-r-1 p-5 my-6 border-l-4;
 
     .aside-header {
@@ -457,8 +457,8 @@
 
 @media screen and (min-width: theme('screens.md')) {
   .prose {
-    .prose-codeblock,
-    .prose-table .contents {
+    .baleada-prose-codeblock,
+    .baleada-prose-table .contents {
       @apply max-h-full;
     }
 
@@ -573,7 +573,7 @@
       @apply text-gray-400;
     }
 
-    .prose-heading:hover {
+    .baleada-prose-heading:hover {
       @apply text-primary-gray-500;
     }
 
@@ -596,7 +596,7 @@
       }
     }
 
-    .prose-heading {
+    .baleada-prose-heading {
       a {
         @apply text-inherit no-underline;
       }
@@ -606,7 +606,7 @@
       @apply bg-gray-700;
     }
 
-    .prose-table {
+    .baleada-prose-table {
       .filter-input {
         @apply bg-gray-900;
       }
@@ -631,7 +631,7 @@
         }
       }
 
-      &.prose-table-striped {
+      &.baleada-prose-table-striped {
         .contents {
           [role="rowgroup"] > :nth-child(even) {
             @apply bg-gray-775;
@@ -648,7 +648,7 @@
       }
     }
 
-    .prose-aside {
+    .baleada-prose-aside {
       &.aside-info {
         @apply border-blue-800 bg-blue-900 text-blue-100;
 

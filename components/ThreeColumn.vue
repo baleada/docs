@@ -16,7 +16,7 @@
     ]"
   >
     <section
-      class="relative h-screen w-screen lg:w-17 flex-none px-7 py-3 overflow-y-scroll scrolling-touch transition"
+      class="relative h-screen w-screen lg:w-17 flex-none px-7 py-3 overflow-y-scroll scrolling-touch lg:translate-0 transition"
       :class="[
         navIsOpen ? 'translate-0' : '-translate-x-100',
       ]"
@@ -108,7 +108,7 @@
       </div>
 
       <!-- Minimalist theme toggle -->
-      <div class="mt-3 py-3 w-full">
+      <div class="hidden lg:block mt-3 py-3 w-full">
         <div class="flex items-center">
           <button
             class="flex items-center text-1 rounded-full font-600 tracking-3"
@@ -212,6 +212,16 @@
       ]"
       ref="tableOfContents"
     >
+      <button
+        class="lg:hidden absolute top-0 right-0 mt-3 mr-6 h-7 w-7 cursor-pointer transition btn-grows"
+        :class="[
+          isDarkTheme ? 'text-gray-600 hover:text-gray-400' : 'text-gray-900 hover:text-primary-600'
+        ]"
+        name="close-menu"
+        @click="toggleTableOfContents"
+      >
+        <EvaClose :class="'icon'"/>
+      </button>
       <!-- <DocsAd class="mt-auto"/> -->
       <DocsTableOfContents :headings="headings" />
     </section>
@@ -291,8 +301,8 @@ export default {
 
     onMounted(() => {
       swipe.value.listen(
-        (touch, { toDirection }) => {
-          const direction = toDirection(touch.metadata.angle.degrees)
+        (gesture, { toDirection }) => {
+          const direction = toDirection(gesture.metadata.angle.degrees)
           if (direction === 'right') {
             openNav()
           } else if (direction === 'left') {
@@ -303,8 +313,8 @@ export default {
       )
 
       swipe.value.listen(
-        (touch, { toDirection }) => {
-          const direction = toDirection(touch.metadata.angle.degrees)
+        (gesture, { toDirection }) => {
+          const direction = toDirection(gesture.metadata.angle.degrees)
           if (direction === 'left') {
             closeNav()
           }
@@ -313,8 +323,8 @@ export default {
       )
 
       swipe.value.listen(
-        (touch, { toDirection }) => {
-          const direction = toDirection(touch.metadata.angle.degrees)
+        (gesture, { toDirection }) => {
+          const direction = toDirection(gesture.metadata.angle.degrees)
           if (direction === 'right') {
             closeTableOfContents()
           }
@@ -401,3 +411,7 @@ export default {
   },
 }
 </script>
+
+<style lang="postcss">
+
+</style>
