@@ -413,5 +413,7 @@ export default {
 </script>
 
 <style lang="postcss">
-
+.baleada-prose-article {
+  /* @apply transition; */
+}
 </style>

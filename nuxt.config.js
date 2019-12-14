@@ -113,9 +113,18 @@ export default {
             }
           },
           plugins: [
-            [MarkdownItSpaLinks, 'nuxt']
+            [MarkdownItSpaLinks, { spa: 'nuxt' }]
           ],
         },
+        before: ({ frontMatter: { title }, stats }) => `\
+<ProseHeading :level="1">${title}</ProseHeading>\n\
+<DocsArticleStats />\n\
+<DocsMeta :tags="{ title: '${title}' }" />\n\
+`,
+        after: ({ filePath }) => `\
+<DocsArticleEdit />\n\
+<DocsAdjacentArticleLinks />\n\
+`
       }),
             prose = {
               loader: '@baleada/loader/lib/webpack',

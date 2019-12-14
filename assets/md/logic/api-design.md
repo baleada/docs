@@ -2,7 +2,7 @@
 title: API design
 framework: agnostic
 publish: true
-order: 1
+order: 2
 ---
 
 For any individual piece of UI logic, there are plenty of ways to implement it, and plenty of packages already published that can `npm install` your troubles away.
