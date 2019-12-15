@@ -1,0 +1,65 @@
+.baleada-prose-article .contents {
+  ul,
+  ol {
+    li {
+      @apply relative pl-8 leading-2;
+
+      p {
+        @apply mt-3;
+      }
+    }
+
+    * + li {
+      @apply mt-2;
+    }
+
+    li::before {
+      @apply absolute left-0 ml-2 text-3 text-primary-900;
+    }
+  }
+
+  * + ul,
+  * + ol {
+    ul,
+    ol {
+      @apply mt-3
+    }
+  }
+
+  ul {
+    > li::before {
+      content: '\2022';
+      @apply text-5 -mt-1;
+    }
+
+    li {
+      > ul > li::before {
+        content: '\25E6';
+        @apply text-3;
+      }
+    }
+  }
+
+  ol {
+    > li::before {
+      content: counter(item)'.';
+    }
+
+    li {
+      counter-increment: item;
+
+      > ol > li::before {
+        content: counter(item, lower-roman)'.';
+      }
+    }
+  }
+
+  .dark & {
+    ul,
+    ol {
+      li::before {
+        @apply text-primary-gray-500;
+      }
+    }
+  }
+}

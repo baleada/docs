@@ -1,0 +1,11 @@
+.with-max-h {
+  @apply max-h-2/3-screen;
+}
+
+.with-max-w {
+  @apply max-w-5;
+}
+
+.with-mt {
+  @apply mt-5;
+}

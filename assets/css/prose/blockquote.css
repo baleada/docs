@@ -1,11 +1,16 @@
-.prose {
-  .prose-blockquote {
-
+.baleada-prose-article .contents {
+  blockquote::before {
+    content: '\201C';
+    @apply absolute text-9 font-300 text-primary-900 opacity-70 top-0 left-0 -mt-1/2em;
   }
 
-  &.dark {
-    .prose-blockquote {
+  blockquote {
+    @apply relative pl-6 pr-4 py-3 rounded mb-8 text-6 bg-primary-100 shadow-1 text-primary-900;
+  }
 
+  .dark & {
+    blockquote {
+      @apply bg-primary-gray-900 text-primary-gray-300;
     }
   }
 }
