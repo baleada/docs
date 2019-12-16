@@ -1,4 +1,4 @@
-.baleada-prose-article .contents {
+.baleada-prose-article > .contents {
   & > h1::after,
   & > hr {
     content: '';
@@ -13,8 +13,16 @@
     @apply w-12 mt-6;
   }
 
+  & > h1,
+  & > h2,
+  & > h3,
+  & > h4,
+  & > h5 {
+    @apply leading-0;
+  }
+
   & > h1 {
-    @apply text-7 font-700 leading-0 text-gray-800;
+    @apply text-7 font-700 text-gray-800;
   }
 
   & > h2 {
@@ -50,9 +58,26 @@
   }
 
   .baleada-prose-heading {
+    @apply relative transition;
+
     button {
+      @apply absolute top-0 left-0 h-1em w-1em inline-flex items-center justify-center rounded-full transition;
+      transform: translate(-150%, 0%);
+
       svg {
-        @apply icon;
+        @apply inline-block h-full w-full fill-current;
+      }
+
+      &:hover {
+        transform:  scale(1.1) translate(-150%, 0%);
+      }
+
+      &:focus {
+        transform:  scale(1) translate(-150%, 0%);
+      }
+
+      &:active {
+        transform:  scale(1) translate(-150%, 0%);
       }
     }
 

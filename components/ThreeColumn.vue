@@ -335,7 +335,7 @@ export default {
 
 
     /* Dark theme */
-    const isDarkTheme = ref(false),
+    const isDarkTheme = ref(true),
           toggleDarkTheme = () => isDarkTheme.value = !isDarkTheme.value,
           enableDarkTheme = () => isDarkTheme.value = true,
           disableDarkTheme = () => isDarkTheme.value = false,

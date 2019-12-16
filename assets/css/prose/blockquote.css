@@ -8,6 +8,14 @@
     @apply relative pl-6 pr-4 py-3 rounded mb-8 text-6 bg-primary-100 shadow-1 text-primary-900;
   }
 
+  .baleada-prose-blockquote {
+    button {
+      svg {
+        
+      }
+    }
+  }
+
   .dark & {
     blockquote {
       @apply bg-primary-gray-900 text-primary-gray-300;

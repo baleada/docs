@@ -9,3 +9,7 @@
 .with-mt {
   @apply mt-5;
 }
+
+.scrollable {
+  @apply scrolling-touch overflow-x-scroll -shadow;
+}

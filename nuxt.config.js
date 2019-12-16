@@ -116,14 +116,20 @@ export default {
             [MarkdownItSpaLinks, { spa: 'nuxt' }]
           ],
         },
-        before: ({ frontMatter: { title }, stats }) => `\
-<ProseHeading :level="1">${title}</ProseHeading>\n\
+        before: ({ frontMatter: { title }, stats }) => `\n\
+:::\n\
+# ${title}\n\
+:::\n\
+\n\
 <DocsArticleStats />\n\
+\n\
 <DocsMeta :tags="{ title: '${title}' }" />\n\
+\n\
 `,
-        after: ({ filePath }) => `\
+        after: ({ filePath }) => `\n\
 <DocsArticleEdit />\n\
 <DocsAdjacentArticleLinks />\n\
+\n\
 `
       }),
             prose = {
