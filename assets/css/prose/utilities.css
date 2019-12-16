@@ -1,15 +1,17 @@
-.with-max-h {
-  @apply max-h-2/3-screen;
-}
+@variants responsive, group-hover, focus-within, hover, focus, active {
+  .with-max-h {
+    @apply max-h-2/3-screen;
+  }
 
-.with-max-w {
-  @apply max-w-5;
-}
+  .with-max-w {
+    @apply max-w-5;
+  }
 
-.with-mt {
-  @apply mt-5;
-}
+  .with-mt {
+    @apply mt-5;
+  }
 
-.scrollable {
-  @apply scrolling-touch overflow-x-scroll -shadow;
+  .scrollable {
+    @apply scrolling-touch overflow-x-scroll -shadow;
+  }
 }

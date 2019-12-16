@@ -8,7 +8,6 @@
     & > aside,
     & > blockquote,
     & > details,
-    & > div,
     & > dl,
     & > h1,
     & > h2,
@@ -19,7 +18,6 @@
     & > hr,
     & > ol,
     & > p,
-    & > section,
     & > ul,
     & > .baleada-prose-aside,
     & > .baleada-prose-blockquote,
@@ -123,87 +121,18 @@
     @apply text-1;
   }
 
-  .baleada-prose-table {
-    @apply max-w-full mb-6 inline-block;
+  input {
+    @apply py-1 px-2 rounded-full;
 
-    .filter-input {
-      @apply -shadow bg-gray-100;
-    }
-    .filter-query-is-case-sensitive-checkbock {
-
-    }
-    .filter-query-is-case-sensitive-label {
-      @apply text-1 font-500 text-gray-600;
-    }
-
-    .contents {
-      @apply with-max-h;
-
-      [role="grid"] {
-        @apply w-full;
-        display: table;
-      }
-
-      [role="rowgroup"] {
-        display: table-row-group;
-      }
-
-      [role="rowgroup"]:first-child {
-        @apply rounded-2;
-        display: table-header-group;
-      }
-
-      [role="row"] {
-        display: table-row;
-
-        &:last-child [role="gridcell"] {
-          @apply border-b-1;
-        }
-      }
-
-      [role="columnheader"] {
-        @apply py-2 text-1 font-600 uppercase tracking-1 bg-primary-100 text-primary-900;
-
-        code {
-          @apply bg-primary-200 normal-case;
-        }
-      }
-
-      [role="columnheader"],
-      [role="gridcell"] {
-        @apply text-left px-5 align-top;
-        display: table-cell;
-      }
-
-      [role="gridcell"] {
-        @apply py-4 leading-2 border-l border-gray-300;
-
-        &:last-child {
-          @apply border-r;
-        }
-      }
-    }
-
-    &.baleada-prose-table-striped {
-      .contents {
-        [role="rowgroup"] > :nth-child(even) {
-          @apply bg-gray-100;
-
-          [role="gridcell"] {
-            @apply border-gray-400;
-
-            code {
-              @apply bg-gray-300;
-            }
-          }
-        }
-      }
+    &:focus {
+      @apply shadow-outline;
     }
   }
 }
 
+
 @media screen and (min-width: theme('screens.md')) {
-  .prose {
+  .baleada-prose-article {
     .baleada-prose-codeblock,
     .baleada-prose-table .contents {
       @apply max-h-full;
@@ -211,46 +140,6 @@
 
     blockquote {
       @apply pl-8 pr-6 transition;
-    }
-
-    h1 {
-      @apply text-7;
-
-      code {
-        @apply text-6;
-      }
-    }
-
-    h2 {
-      @apply text-6;
-
-      code {
-        @apply text-5;
-      }
-    }
-
-    h3 {
-      @apply text-5;
-
-      code {
-        @apply text-4;
-      }
-    }
-
-    h4 {
-      @apply text-4;
-
-      code {
-        @apply text-3;
-      }
-    }
-
-    h5 {
-      @apply text-3;
-
-      code {
-        @apply text-2;
-      }
     }
 
     p {
@@ -273,26 +162,26 @@
       @apply text-2;
     }
 
-    th {
-      @apply text-2;
+    input {
+      @apply rounded-1;
     }
   }
 }
 
 @media screen and (max-width: theme(screens.sm)) {
-  .prose {
+  .baleada-prose-article {
     @apply px-9;
   }
 }
 
 @media screen and (max-width: theme(screens.lg)) {
-  .prose {
+  .baleada-prose-article {
     @apply px-11;
   }
 }
 
 .dark {
-  .prose {
+  .baleada-prose-article {
     @apply text-gray-200;
 
     a {
@@ -303,56 +192,8 @@
       }
     }
 
-    .baleada-prose-heading {
-      a {
-        @apply text-inherit no-underline;
-      }
-    }
-
     :not(pre) > code {
       @apply bg-gray-700;
-    }
-
-    .baleada-prose-table {
-      .filter-input {
-        @apply bg-gray-900;
-      }
-      .filter-query-is-case-sensitive-checkbock {
-
-      }
-      .filter-query-is-case-sensitive-label {
-        @apply text-gray-500;
-      }
-
-      .contents {
-        [role="columnheader"] {
-          @apply bg-primary-gray-800 text-primary-gray-200;
-
-          code {
-            @apply bg-primary-gray-700;
-          }
-        }
-
-        [role="gridcell"] {
-          @apply border-gray-700;
-        }
-      }
-
-      &.baleada-prose-table-striped {
-        .contents {
-          [role="rowgroup"] > :nth-child(even) {
-            @apply bg-gray-775;
-
-            [role="gridcell"] {
-              @apply border-gray-700;
-
-              code {
-                @apply bg-gray-700;
-              }
-            }
-          }
-        }
-      }
     }
   }
 }

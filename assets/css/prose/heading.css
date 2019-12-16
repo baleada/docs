@@ -116,8 +116,58 @@
       @apply text-gray-400;
     }
 
-    .baleada-prose-heading:hover {
-      @apply text-primary-gray-500;
+    .baleada-prose-heading {
+      a {
+        @apply text-inherit no-underline;
+      }
+
+      &:hover {
+        @apply text-primary-gray-500;
+      }
+    }
+  }
+}
+
+@media screen and (min-width: theme('screens.md')) {
+  .baleada-prose-article > .contents {
+    & > h1 {
+      @apply text-7;
+
+      code {
+        @apply text-6;
+      }
+    }
+
+    & > h2 {
+      @apply text-6;
+
+      code {
+        @apply text-5;
+      }
+    }
+
+    & > h3 {
+      @apply text-5;
+
+      code {
+        @apply text-4;
+      }
+    }
+
+    & > h4 {
+      @apply text-4;
+
+      code {
+        @apply text-3;
+      }
+    }
+
+    & > h5 {
+      @apply text-3;
+
+      code {
+        @apply text-2;
+      }
     }
   }
 }
