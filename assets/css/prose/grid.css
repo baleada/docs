@@ -100,10 +100,10 @@
 
   .dark & {
     input[name="Type to filter"] {
-      @apply bg-gray-900;
+      @apply bg-primary-gray-1000;
     }
     input[name="Change filter case sensitivity"] + label {
-      @apply text-gray-500;
+      @apply text-primary-gray-500;
     }
 
     .contents {
@@ -116,14 +116,14 @@
       }
 
       [role="gridcell"] {
-        @apply border-gray-700;
+        @apply border-primary-gray-700;
       }
 
       [role="rowgroup"] > :nth-child(even) {
-        @apply bg-gray-775;
+        @apply bg-primary-gray-800;
 
         [role="gridcell"] {
-          @apply border-gray-700;
+          @apply border-gray-900;
 
           code {
             @apply bg-gray-700;

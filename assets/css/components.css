@@ -1,7 +1,7 @@
 /* Buttons */
 @variants responsive, group-hover, focus-within, hover, focus, active {
   .btn {
-    @apply cursor-pointer inline-flex items-center justify-center px-3 py-2 rounded-full transition;
+    @apply cursor-pointer inline-flex items-center justify-center px-3 py-2 rounded-full;
 
     a& {
       @apply no-underline;

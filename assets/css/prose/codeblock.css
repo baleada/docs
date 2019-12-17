@@ -1,16 +1,45 @@
 .baleada-prose-article {
   pre {
-    @apply rounded p-3 overflow-x-scroll -shadow with-max-h scrolling-touch;
+    @apply rounded px-3 py-5 overflow-x-scroll with-max-h scrolling-touch;
 
     code {
-      @apply leading-1 bg-inherit;
+      @apply block leading-2;
     }
   }
 
   .baleada-prose-codeblock {
-    button {
+    @apply relative;
+
+    .contents {
+      @apply relative;
+    }
+
+    & > button {
+      @apply absolute top-0 right-0 h-7 w-7 flex items-center p-2 shadow-1 rounded-full bg-gray-100 text-gray-1000 transition-2;
+      transform: translate(33%, -33%);
+
       svg {
-        @apply inline-block h-full w-full fill-current;
+        @apply block h-full w-full fill-current;
+      }
+
+      &:hover {
+        transform: scale(1.1) translate(33%, -33%);
+      }
+
+      &:focus {
+        transform: scale(1) translate(33%, -33%);
+      }
+
+      &:active {
+        transform: scale(1) translate(33%, -33%);
+      }
+    }
+  }
+
+  .dark & {
+    .baleada-prose-codeblock {
+      & > button {
+        @apply bg-primary-gray-800 text-primary-gray-300;
       }
     }
   }

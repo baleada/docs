@@ -58,10 +58,10 @@
   }
 
   .baleada-prose-heading {
-    @apply relative transition;
+    @apply relative;
 
     button {
-      @apply absolute top-0 left-0 h-1em w-1em inline-flex items-center justify-center rounded-full transition;
+      @apply absolute top-0 left-0 h-1em w-1em inline-flex items-center justify-center rounded-full opacity-0;
       transform: translate(-150%, 0%);
 
       svg {
@@ -81,6 +81,12 @@
       }
     }
 
+    &:hover {
+      button {
+        @apply opacity-100;
+      }
+    }
+
     a {
       @apply text-inherit no-underline;
     }
@@ -91,38 +97,38 @@
   }
 
   .dark & {
-    h1::after,
-    hr {
+    & > h1::after,
+    & > hr {
       @apply bg-primary-gray-600;
     }
 
-    h1 {
-      @apply text-gray-400;
+    & > h1 {
+      @apply text-primary-gray-400;
     }
 
-    h2 {
-      @apply text-gray-400;
+    & > h2 {
+      @apply text-primary-gray-400;
     }
 
-    h3 {
-      @apply text-gray-400;
+    & > h3 {
+      @apply text-primary-gray-400;
     }
 
-    h4 {
-      @apply text-gray-400;
+    & > h4 {
+      @apply text-primary-gray-400;
     }
 
-    h5 {
-      @apply text-gray-400;
+    & > h5 {
+      @apply text-primary-gray-400;
     }
 
-    .baleada-prose-heading {
+    & > .baleada-prose-heading {
       a {
         @apply text-inherit no-underline;
       }
 
       &:hover {
-        @apply text-primary-gray-500;
+        @apply text-primary-gray-300;
       }
     }
   }

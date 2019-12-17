@@ -1,16 +1,19 @@
 @variants responsive, group-hover, focus-within, hover, focus, active {
   /* Transition */
-  .transition {
-    transition: all 0.2s ease;
+  .transition-0 {
+    transition: none;
   }
-  .transition-fast {
+  .transition-1 {
     transition: all 0.1s ease;
   }
-  .transition-slow {
-    transition: all 0.4s ease;
+  .transition-2 {
+    transition: all 0.2s ease;
   }
-  .transition-none {
-    transition: none;
+  .transition-3 {
+    transition: all 0.3s ease;
+  }
+  .transition-4 {
+    transition: all 0.4s ease;
   }
 
   /* Scale */

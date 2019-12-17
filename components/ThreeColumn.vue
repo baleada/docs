@@ -1,6 +1,6 @@
 <template>
   <main
-    class="relative z-10 lg:flex transition"
+    class="relative z-10 lg:flex"
     :class="[
       isDarkTheme ? 'dark' : '',
       isMinimalistTheme ? 'minimalist' : '',
@@ -9,14 +9,14 @@
         : isDarkTheme && !isMinimalistTheme
           ? 'bg-primary-gray-1000'
           : isDarkTheme && isMinimalistTheme
-            ? 'bg-primary-gray-900'
+            ? 'bg-primary-gray-950'
             : !isDarkTheme && isMinimalistTheme
               ? 'bg-white'
               : ''
     ]"
   >
     <section
-      class="relative h-screen w-screen lg:w-17 flex-none px-7 py-3 overflow-y-scroll scrolling-touch lg:translate-0 transition"
+      class="relative h-screen w-screen lg:w-17 flex-none px-7 py-3 overflow-y-scroll scrolling-touch lg:translate-0"
       :class="[
         navIsOpen ? 'translate-0' : '-translate-x-100',
       ]"
@@ -28,9 +28,9 @@
           !isDarkTheme && !isMinimalistTheme
             ? 'border-gray-300'
             : isDarkTheme && !isMinimalistTheme
-              ? 'border-primary-gray-900'
+              ? 'border-primary-gray-950'
               : isDarkTheme && isMinimalistTheme
-                ? 'border-primary-gray-900'
+                ? 'border-primary-gray-950'
                 : !isDarkTheme && isMinimalistTheme
                   ? 'border-white'
                   : ''
@@ -41,7 +41,7 @@
           aria-label="Link to home page"
           class="flex-none rounded-full h-10 w-10 p-2 -shadow transition btn-grows"
           :class="[
-            isDarkTheme ? 'bg-primary-gray-900' : 'bg-primary-600',
+            isDarkTheme ? 'bg-primary-gray-700' : 'bg-primary-600',
           ]"
         >
           <BaleadaLogo
@@ -78,10 +78,10 @@
           </button>
           <div
             @click="() => toggleDarkTheme()"
-            class="relative mx-2 inline-flex h-6 w-9 -shadow rounded-full cursor-pointer transition"
+            class="relative mx-2 inline-flex h-6 w-9 -shadow rounded-full cursor-pointer"
             :class="[
               isDarkTheme && !isMinimalistTheme
-                ? 'bg-primary-gray-900'
+                ? 'bg-primary-gray-950'
                 : isDarkTheme && isMinimalistTheme
                   ? 'bg-primary-gray-1000'
                   : 'bg-gray-300'
@@ -128,10 +128,10 @@
           </button>
           <div
             @click="() => toggleMinimalistTheme()"
-            class="relative mx-2 inline-flex h-6 w-9 -shadow rounded-full cursor-pointer transition"
+            class="relative mx-2 inline-flex h-6 w-9 -shadow rounded-full cursor-pointer"
             :class="[
               isDarkTheme && !isMinimalistTheme
-                ? 'bg-primary-gray-900'
+                ? 'bg-primary-gray-950'
                 : isDarkTheme && isMinimalistTheme
                   ? 'bg-primary-gray-1000'
                   : !isDarkTheme && isMinimalistTheme
@@ -176,11 +176,11 @@
     </section>
     <section
       ref="article"
-      class="absolute lg:relative top-0 left-0 z-20 h-screen w-screen lg:w-full flex flex-col overflow-x-hidden overflow-y-scroll scrolling-touch lg:translate-0 transition"
+      class="absolute lg:relative top-0 left-0 z-20 h-screen w-screen lg:w-full flex flex-col overflow-x-hidden overflow-y-scroll scrolling-touch lg:translate-0"
       :class="[
         navIsOpen ? 'translate-x-100' : '',
         tableOfContentsIsOpen ? '-translate-x-100' : '',
-        isDarkTheme ? 'bg-primary-gray-900' : 'bg-white',
+        isDarkTheme ? 'bg-primary-gray-950' : 'bg-white',
         isMinimalistTheme ? '' : 'shadow-3 lg:rounded-2',
       ]"
     >
@@ -217,7 +217,7 @@
       <nuxt key="content" />
     </section>
     <section
-      class="absolute lg:relative top-0 left-0 h-screen w-screen lg:w-17 flex-none px-7 py-3 overflow-y-scroll scrolling-touch lg:translate-0 transition"
+      class="absolute lg:relative top-0 left-0 h-screen w-screen lg:w-17 flex-none px-7 py-3 overflow-y-scroll scrolling-touch lg:translate-0"
       :class="[
         tableOfContentsIsOpen ? 'translate-0' : 'translate-x-100',
         isMinimalistTheme ? 'opacity-0 pointer-events-none' : '',

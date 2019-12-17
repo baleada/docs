@@ -1,5 +1,5 @@
 <template>
-  <nav class="docs-nav transition">
+  <nav class="docs-nav">
     <section
       v-for="(directory, index) in directories"
       :key="directory.name"

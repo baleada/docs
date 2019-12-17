@@ -5,15 +5,18 @@
   }
 
   blockquote {
-    @apply relative pl-6 pr-4 py-3 rounded mb-8 text-6 bg-primary-100 shadow-1 text-primary-900;
+    @apply relative pl-6 pr-4 py-3 rounded bg-primary-100 shadow-1 text-primary-900;
+
+    p {
+      @apply text-4
+    }
   }
 
   .baleada-prose-blockquote {
     @apply relative;
 
     & > a {
-      /* TODO: remove z-index after next prose version */
-      @apply z-10 absolute top-0 left-0 h-7 w-7 flex items-center p-2 shadow-1 rounded-full bg-primary-200 text-primary-900 transition;
+      @apply absolute top-0 left-0 h-7 w-7 flex items-center p-2 shadow-1 rounded-full bg-primary-200 text-primary-900 transition-2;
       transform: translate(-33%, -33%);
 
       svg {
@@ -58,15 +61,11 @@
 @media screen and (min-width: theme('screens.md')) {
   .baleada-prose-article {
     blockquote {
-      @apply pl-8 pr-6 transition;
+      @apply pl-8 pr-6;
     }
 
     blockquote::before {
       @apply text-10;
-    }
-
-    blockquote {
-      @apply text-7;
     }
   }
 }

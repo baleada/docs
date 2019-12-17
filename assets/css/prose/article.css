@@ -1,6 +1,6 @@
 /* Markdown prose styles */
 .baleada-prose-article {
-  @apply text-black transition px-7 pb-12 pt-11;
+  @apply text-gray-1000 px-7 pb-12 pt-11;
 
   /* Horizontal margin and max width */
   & > .contents {
@@ -21,6 +21,8 @@
     & > ul,
     & > .baleada-prose-aside,
     & > .baleada-prose-blockquote,
+    & > .baleada-prose-codeblock > .contents > pre > code,
+    & > pre > code,
     & > .baleada-prose-details,
     & > .baleada-prose-heading,
     & > .baleada-prose-list,
@@ -32,10 +34,10 @@
     & > pre,
     & > table,
     & > svg,
-    & > .baleada-prose-codeblock,
+    & > .baleada-prose-codeblock > .contents > pre,
     & > .baleada-prose-grid,
     & > .baleada-prose-media {
-      @apply mx-auto;
+      @apply mx-auto max-w-full scrollable;
     }
   }
 
@@ -80,11 +82,12 @@
   * + pre,
   * + table,
   * + .baleada-prose-aside,
+  * + .baleada-prose-blockquote,
   * + .baleada-prose-codeblock,
   * + .baleada-prose-details,
   * + .baleada-prose-grid,
   * + .baleada-prose-media {
-    @apply mt-7;
+    @apply my-7;
   }
 
   /* Non-prose elements */
@@ -110,7 +113,7 @@
 
   :not(pre) > code,
   kbd {
-    @apply rounded py-px px-1 tracking-1 transition;
+    @apply rounded py-px px-1 tracking-1;
   }
 
   :not(pre) > code {
@@ -168,10 +171,10 @@
     @apply text-primary-gray-400;
 
     a {
-      @apply text-gray-200;
+      @apply text-gray-100;
 
       &:visited {
-        @apply text-primary-gray-300;
+        @apply text-gray-100;
       }
     }
 
