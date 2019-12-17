@@ -41,7 +41,7 @@
           aria-label="Link to home page"
           class="flex-none rounded-full h-10 w-10 p-2 -shadow transition btn-grows"
           :class="[
-            isDarkTheme ? 'bg-primary-gray-700' : 'bg-primary-600',
+            isDarkTheme ? 'bg-primary-gray-900' : 'bg-primary-600',
           ]"
         >
           <BaleadaLogo

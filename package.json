@@ -22,7 +22,7 @@
     "generate": "nuxt generate"
   },
   "bugs": {
-    "url": "https://gitlab.com/baleada/vue/issues"
+    "url": "https://gitlab.com/baleada/docs/issues"
   },
   "homepage": "https://baleada.netlify.com",
   "license": "MIT",
@@ -32,17 +32,14 @@
     "@baleada/composition": "^0.2.3",
     "@baleada/icons": "^0.3.1",
     "@baleada/loader": "0.0.1",
-    "@baleada/logic": "^0.6.3",
+    "@baleada/logic": "^0.6.4",
     "@baleada/markdown-it-prose-container": "^0.3.3",
     "@baleada/markdown-it-spa-links": "^0.1.0",
     "@baleada/markdown-to-prose": "^0.3.1",
     "@baleada/prose": "^0.5.5",
-    "@baleada/prose-loader": "0.0.3",
-    "@baleada/vue": "^0.0.2",
     "@nuxtjs/eslint-config": "0.0.1",
     "@nuxtjs/markdownit": "^1.2.4",
     "@nuxtjs/pwa": "^2.6.0",
-    "@u3u/vue-hooks": "^2.0.1",
     "@vue/composition-api": "^0.3.4",
     "autoprefixer": "^8.6.4",
     "babel-eslint": "^10.0.1",
@@ -57,26 +54,17 @@
     "eslint-plugin-standard": "^4.0.0",
     "front-matter": "^3.0.2",
     "markdown-it": "^9.1.0",
-    "markdown-it-multimd-table": "^3.2.3",
-    "markdown-it-prism": "^2.0.3",
-    "markdownit-loader": "^2.0.0",
     "nodemon": "^1.18.9",
     "nuxt": "^2.10.2",
     "nuxt-purgecss": "^0.2.1",
-    "portal-vue": "^2.1.4",
     "postcss-import": "^12.0.1",
     "postcss-nested": "^4.1.2",
-    "raw-loader": "^3.1.0",
     "refractor": "^2.10.0",
     "rehype": "^9.0.1",
     "tailwindcss": "^1.1.0",
     "toml": "^3.0.0",
     "typeface-caveat": "0.0.54",
     "typeface-fira-mono": "0.0.72",
-    "typeface-fira-sans": "0.0.75",
-    "typeface-inter": "^3.10.0",
-    "vue-loader": "^15.7.1",
-    "vue-template-es2015-compiler": "^1.9.1",
-    "vue-template-loader": "^1.0.0"
+    "typeface-inter": "^3.10.0"
   }
 }

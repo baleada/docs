@@ -41,7 +41,7 @@ export default {
   },
   setup() {
     const logo = ref(null),
-          navigable = useNavigable(new Array(4)), // Grody hardcoded 4
+          navigable = useNavigable(new Array(1)), // Grody hardcoded 4
           configs = [
             // Wiggle
             ({ set }) => ({
@@ -55,7 +55,7 @@ export default {
                 },
               },
               timelineChildren: [
-                { rotate: '12deg', easing: 'linear', duration: 120 },
+                { rotate: '19deg', easing: 'linear', duration: 400 },
               ],
             }),
 
@@ -70,7 +70,7 @@ export default {
                 },
               },
               timelineChildren: [
-                { rotate: '360deg', duration: 1900 },
+                { rotate: '360deg', duration: 190 },
               ],
             }),
 
@@ -101,8 +101,8 @@ export default {
                 },
               },
               timelineChildren: [
-                { rotate: '-42deg', easing: 'easeInBack', duration: 400 },
-                [{ rotate: `360deg`, duration: 1250 }, '+=250'],
+                { rotate: '-42deg', easing: 'easeInBack', duration: 200 },
+                [{ rotate: `360deg`, duration: 100 }, '+=250'],
               ],
             }),
           ],
@@ -113,20 +113,20 @@ export default {
             }
           })
 
-    onMounted(() => {
-      animatables.forEach(animatable => {
-        const { config } = animatable
-        animatable.instance.value.animate(config)
-      })
-    })
+    // onMounted(() => {
+    //   animatables.forEach(animatable => {
+    //     const { config } = animatable
+    //     animatable.instance.value.animate(config)
+    //   })
+    // })
 
-    function handleMouseover () {
-      animatables[navigable.value.location].instance.value.play()
-    }
+    // function handleMouseover () {
+    //   animatables[navigable.value.location].instance.value.play()
+    // }
 
     return {
       logo,
-      handleMouseover
+      // handleMouseover
     }
   }
 }

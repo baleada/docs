@@ -63,7 +63,7 @@ export default {
   */
   modules: [
     '@nuxtjs/pwa',
-    'portal-vue/nuxt',
+    // 'portal-vue/nuxt',
     'nuxt-purgecss',
     // '@nuxtjs/markdownit'
   ],
