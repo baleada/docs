@@ -1,0 +1,232 @@
+.baleada-prose-grid {
+  @apply w-full flex flex-col mb-6;
+
+  & > div {
+    @apply with-max-w w-full mx-auto;
+
+    input[name="Type to filter"] {
+      @apply -shadow bg-gray-100;
+    }
+  }
+
+  & > div:nth-of-type(2) {
+    @apply flex mt-2;
+
+    input[name="Change filter case sensitivity"] {
+      @apply flex-grow-0;
+    }
+    label {
+      @apply ml-2 mr-auto text-1 font-500 text-gray-600;
+    }
+  }
+
+  .contents {
+    @apply mx-auto min-w-5 with-max-h inline-block;
+
+    * + & {
+      @apply mt-2;
+    }
+
+    [role="grid"] {
+      @apply w-full mr-auto;
+      display: table;
+    }
+
+    [role="rowgroup"] {
+      display: table-row-group;
+    }
+
+    [role="rowgroup"]:first-child {
+      @apply rounded-2;
+      display: table-header-group;
+    }
+
+    [role="row"] {
+      display: table-row;
+
+      &:last-child [role="gridcell"] {
+        @apply border-b-1;
+      }
+    }
+
+    [role="columnheader"] {
+      @apply py-2 text-1 font-600 uppercase tracking-1 bg-primary-100 text-primary-900;
+
+      code {
+        @apply bg-primary-200 normal-case;
+      }
+    }
+
+    [role="columnheader"],
+    [role="gridcell"] {
+      @apply text-left px-5 align-top;
+      display: table-cell;
+    }
+
+    [role="gridcell"] {
+      @apply py-4 leading-2 border-l border-gray-300;
+
+      &:last-child {
+        @apply border-r;
+      }
+    }
+
+    [role="rowgroup"] > :nth-child(even) {
+      @apply bg-gray-100;
+
+      [role="gridcell"] {
+        @apply border-gray-400;
+
+        code {
+          @apply bg-gray-300;
+        }
+      }
+    }
+
+    .baleada-prose-table-solid & {
+      [role="rowgroup"] > :nth-child(even) {
+        @apply bg-transparent;
+
+        [role="gridcell"] {
+          @apply border-gray-300;
+
+          code {
+            @apply bg-gray-200;
+          }
+        }
+      }
+    }
+  }
+
+  .dark & {
+    input[name="Type to filter"] {
+      @apply bg-primary-gray-1000;
+    }
+    input[name="Change filter case sensitivity"] + label {
+      @apply text-primary-gray-500;
+    }
+
+    .contents {
+      [role="columnheader"] {
+        @apply bg-primary-gray-850 text-primary-gray-300;
+
+        code {
+          @apply bg-primary-gray-800;
+        }
+      }
+
+      [role="gridcell"] {
+        @apply border-primary-gray-800;
+      }
+
+      [role="rowgroup"] > :nth-child(even) {
+        @apply bg-primary-gray-850;
+
+        [role="gridcell"] {
+          @apply border-primary-gray-700;
+
+          code {
+            @apply bg-primary-gray-800 text-primary-gray-300;
+          }
+        }
+      }
+
+      .baleada-prose-table-solid & {
+        [role="rowgroup"] > :nth-child(even) {
+          @apply bg-transparent;
+        }
+      }
+    }
+  }
+}
+
+@media screen and (min-width: theme('screens.md')) {
+  .baleada-prose-article .baleada-prose-grid .contents {
+    @apply max-h-full;
+  }
+}
+
+.baleada-prose-article {
+  table {
+    @apply w-full mr-auto;
+    display: table;
+  }
+
+  thead,
+  tbody {
+    display: table-row-group;
+  }
+
+  thead {
+    @apply rounded-2;
+    display: table-header-group;
+  }
+
+  tr {
+    display: table-row;
+
+    &:last-child td {
+      @apply border-b-1;
+    }
+  }
+
+  th {
+    @apply py-2 text-1 font-600 uppercase tracking-1 bg-primary-100 text-primary-900;
+
+    code {
+      @apply bg-primary-200 normal-case;
+    }
+  }
+
+  th,
+  td {
+    @apply text-left px-5 align-top;
+    display: table-cell;
+  }
+
+  td {
+    @apply py-4 leading-2 border-l border-gray-300;
+
+    &:last-child {
+      @apply border-r;
+    }
+  }
+
+  tbody > :nth-child(even) {
+    @apply bg-gray-100;
+
+    td {
+      @apply border-gray-400;
+
+      code {
+        @apply bg-gray-300;
+      }
+    }
+  }
+
+  .dark & {
+    th {
+      @apply bg-primary-gray-800 text-primary-gray-200;
+
+      code {
+        @apply bg-primary-gray-700;
+      }
+    }
+
+    td {
+      @apply border-gray-700;
+    }
+
+    tbody > :nth-child(even) {
+      @apply bg-gray-775;
+
+      td {
+        @apply border-gray-700;
+
+        code {
+          @apply bg-gray-700;
+        }
+      }
+    }
+  }
+}

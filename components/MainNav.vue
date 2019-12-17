@@ -5,7 +5,7 @@
       v-for="(page, index) in pages"
       :key="page.href"
       :to="page.href"
-      class="mt-2 hover:text-primary-100 transition"
+      class="mt-2 hover:text-primary-100"
     >
       {{ page.name }}
     </NuxtLink>

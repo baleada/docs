@@ -1,13 +1,14 @@
 <template lang="html">
-<ProseArticle title="What is Baleada Icons?" updatedAt="Wed Oct 09 2019 12:53:52 GMT-0600 (CST)" repoLink="https://gitlab.com/baleada/docs/tree/master/assets/md/icons/index.md">
+<ProseArticle>
   <component :is="article" />
 </ProseArticle>
 </template>
 
 <script>
 import article from '~/assets/md/icons/index.md'
+
 export default {
-  layout: 'article',
+  layout: 'prose',
   setup () {
     return {
       article

@@ -5,9 +5,9 @@ publish: true
 order: 2
 ---
 
-<ProseHeading level="2">
-Pre-1.0.0 to-do list
-</ProseHeading>
+:::
+## Pre-1.0.0 to-do list
+:::
 
 - Baleada Logic
   - Document all Baleada Logic libraries
@@ -20,23 +20,26 @@ Pre-1.0.0 to-do list
   - Svelte support
 
 
-<ProseHeading level="2">
-Post-1.0.0 to-do list
-</ProseHeading>
+:::
+## Post-1.0.0 to-do list
+:::
 
 - Build example to-do app using Baleada tools
 - Build example blog/static site using Baleada tools
+- Build example ecommerce site using Baleada tools
+- Pursue other tool category ideas
 
 
-<ProseHeading level="2">
-Ideas for other tool categories
-</ProseHeading>
+:::
+## Ideas for other tool categories
+:::
 
-<ProseTable>
+::: ariaLabel="List of tool ideas"
 | Name | Description |
 | --- | --- |
 | Baleada Style | Custom Tailwind config files, custom Tailwind plugins that register component classes and utility classes |
-| Baleada Prose | Components for use in prose. Each component will be WCAG compliant and will be able to render Markdown, HTML, and other components. |
+| Baleada Prose | Components that enrich prose written in markdown |
+| Baleada Shapes | Components that render useful SVGs (e.g. waves, triangles, gradients, blobs, etc.) |
 | Baleada Scaffold | CLI tool for scaffolding out Nuxt, Next, and Sapper projects with other Baleada tools pre-installed |
 | Baleada Baleadas | A gallery with photos of actual baleadas |
-</ProseTable>
+:::

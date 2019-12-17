@@ -4,27 +4,27 @@ framework: React
 publish: true
 ---
 
-<ProseHeading level="2">
-Import a component (allows for tree-shaking)
-</ProseHeading>
+:::
+## Import a component (allows for tree-shaking)
+:::
 
 React `@baleada/icons` components can be imported from `@baleada/icons/react`.
 
-<ProseCodeblock>
+:::
 ```js
 import { EvaGlobe2 } from '@baleada/icons/react'
 ```
-</ProseCodeblock>
+:::
 
 
-<ProseHeading level="2">
-Use a component
-</ProseHeading>
+:::
+## Use a component
+:::
 
 
 All components will render an SVG of their icon. The SVG has 4 default attributes:
 
-<ProseCodeblock>
+:::
 ```html
 <svg
   role="img"
@@ -35,11 +35,11 @@ All components will render an SVG of their icon. The SVG has 4 default attribute
   ...
 </svg>
 ```
-</ProseCodeblock>
+:::
 
 These 4 attributes are easy to override or expand—simply pass an object to the component's `attrs` prop. All of the `attrs` (including event listeners) are passed directly to the SVG.
 
-<ProseCodeblock>
+:::
 ```js
 export default function MyComponent() {
   ...
@@ -60,4 +60,4 @@ export default function MyComponent() {
   )
 }
 ```
-</ProseCodeblock>
+:::

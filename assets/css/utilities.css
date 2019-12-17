@@ -1,16 +1,19 @@
 @variants responsive, group-hover, focus-within, hover, focus, active {
   /* Transition */
-  .transition {
-    transition: all 0.2s ease;
+  .transition-0 {
+    transition: none;
   }
-  .transition-fast {
+  .transition-1 {
     transition: all 0.1s ease;
   }
-  .transition-slow {
-    transition: all 0.4s ease;
+  .transition-2 {
+    transition: all 0.2s ease;
   }
-  .transition-none {
-    transition: none;
+  .transition-3 {
+    transition: all 0.3s ease;
+  }
+  .transition-4 {
+    transition: all 0.4s ease;
   }
 
   /* Scale */
@@ -28,11 +31,17 @@
   .translate-0 {
     transform: translate(0%);
   }
-  .-translate-x-full {
+  .-translate-x-100 {
     transform: translateX(-100%);
   }
-  .translate-x-full {
+  .translate-x-100 {
     transform: translateX(100%);
+  }
+  .-translate-x-200 {
+    transform: translateX(-200%);
+  }
+  .translate-x-200 {
+    transform: translateX(200%);
   }
   .-translate-x-50 {
     transform: translateX(-50%);

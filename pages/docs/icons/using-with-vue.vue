@@ -1,13 +1,14 @@
 <template lang="html">
-<ProseArticle title="Using with Vue" updatedAt="Wed Oct 09 2019 12:53:52 GMT-0600 (CST)" repoLink="https://gitlab.com/baleada/docs/tree/master/assets/md/icons/using-with-vue.md">
+<ProseArticle>
   <component :is="article" />
 </ProseArticle>
 </template>
 
 <script>
 import article from '~/assets/md/icons/using-with-vue.md'
+
 export default {
-  layout: 'article',
+  layout: 'prose',
   setup () {
     return {
       article

@@ -14,15 +14,16 @@ function generatePages (metadata) {
 function toPage ({ title, path, updatedAt }) {
   return `\
 <template lang="html">\n\
-<ProseArticle title="${title}" updatedAt="${updatedAt}" repoLink="https://gitlab.com/baleada/docs/tree/master${path.slice(1)}">\n\
+<ProseArticle>\n\
   <component :is="article" />\n\
 </ProseArticle>\n\
 </template>\n\
 \n\
 <script>\n\
 import article from '${path.replace(/^\./, '~')}'\n\
+\n\
 export default {\n\
-  layout: 'article',\n\
+  layout: 'prose',\n\
   setup () {\n\
     return {\n\
       article\n\

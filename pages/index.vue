@@ -4,7 +4,7 @@
       ref="logo"
       :class="'-ml-2 h-13 w-13 sm:h-14 sm:w-14 md:h-15 md:w-15 text-primary-100'"
       :hasShadow="true"
-      @mouseover="handleLogoMouseover"
+      @mouseover="handleMouseover"
     />
 
     <h1 class="mt-6 font-display font-600 text-8 sm:text-9 md:text-10 text-center text-shadow-2 tracking-2 text-primary-100">Baleada&nbsp;</h1>
@@ -24,13 +24,11 @@
 </template>
 
 <script>
-import { ref, computed, watch, onMounted } from '@vue/composition-api'
+import { ref, onMounted } from '@vue/composition-api'
 
-import useAnimatable from '../assets/js/baleada/composition/useAnimatable'
-import useNavigable from '../assets/js/baleada/composition/useNavigable'
+import { useAnimatable, useNavigable } from '@baleada/composition/vue'
 
-import { EvaBook } from '@baleada/icons/vue'
-import { SimpleGitLab } from '@baleada/icons/vue'
+import { EvaBook, SimpleGitLab } from '@baleada/icons/vue'
 
 export default {
   layout: 'landing',
@@ -42,89 +40,93 @@ export default {
     SimpleGitLab
   },
   setup() {
-    /* Set up reactive data */
-    const logoAnimations = [
+    const logo = ref(null),
+          navigable = useNavigable(new Array(4)), // Grody hardcoded 4
+          configs = [
             // Wiggle
-            {
-              direction: 'alternate',
-              loop: 6,
-              children: [
+            ({ set }) => ({
+              animation: {
+                direction: 'alternate',
+                loop: 6,
+                complete: anim => {
+                  const target = anim.children[0].animatables[0].target
+                  set(target, { rotate: '0deg' })
+                  navigable.value.rand()
+                },
+              },
+              timelineChildren: [
                 { rotate: '12deg', easing: 'linear', duration: 120 },
               ],
-            },
+            }),
 
             // Spin
-            {
-              children: [
+            ({ set }) => ({
+              animation: {
+                autoplay: false,
+                complete: anim => {
+                  const target = anim.children[0].animatables[0].target
+                  set(target, { rotate: '0deg' })
+                  navigable.value.rand()
+                },
+              },
+              timelineChildren: [
                 { rotate: '360deg', duration: 1900 },
               ],
-            },
+            }),
 
             // Toss up and bounce
-            {
-              children: [
+            ({ set }) => ({
+              animation: {
+                autoplay: false,
+                complete: anim => {
+                  const target = anim.children[0].animatables[0].target
+                  set(target, { rotate: '0deg' })
+                  navigable.value.rand()
+                },
+              },
+              timelineChildren: [
                 { translateY: '-30%', easing: 'easeOutBack', duration: 420 },
                 { translateY: 0, easing: 'easeOutElastic(1, .3)' }
               ]
-            },
+            }),
 
             // Wind up and spin
-            {
-              children: [
+            ({ set }) => ({
+              animation: {
+                autoplay: false,
+                complete: anim => {
+                  const target = anim.children[0].animatables[0].target
+                  set(target, { rotate: '0deg' })
+                  navigable.value.rand()
+                },
+              },
+              timelineChildren: [
                 { rotate: '-42deg', easing: 'easeInBack', duration: 400 },
                 [{ rotate: `360deg`, duration: 1250 }, '+=250'],
               ],
-            },
+            }),
           ],
-          animationCount = ref(0),
-          navigable = useNavigable(logoAnimations),
-          onComplete = (anim, set) => {
-            const target = anim.children[0].animatables[0].target
-            set(target, { rotate: '0deg' })
-            navigable.next()
-            animationCount.value += 1
-          },
-          currentAnimation = computed(() => {
-            if (animationCount.value) {
-              // Workaround to make this computed react properly
+          animatables = configs.map(config => {
+            return {
+              instance: useAnimatable(logo),
+              config
             }
-            return navigable.array[navigable.location]
-          }),
-          getAnimation = ({ children, ...rest }) => ({ ...rest }),
-          animation = computed(() => ({
-            autoplay: false,
-            ...getAnimation(currentAnimation.value)
-          })),
-          timelineChildren = computed(() => currentAnimation.value.hasOwnProperty('children') ? currentAnimation.value.children : undefined),
-          options = computed(() => {
-            return ({ set }) => ({
-              speed: currentAnimation.value.speed,
-              animation: {
-                ...animation.value,
-                complete: anim => onComplete(anim, set),
-              },
-              timelineChildren: timelineChildren.value
-            })
           })
 
-    /* Create and update animatable */
-    const logo = ref(null)
-    let animatable = {}
     onMounted(() => {
-      animatable = useAnimatable(logo.value, options.value)
-    })
-    watch(() => {
-      animatable = useAnimatable(logo.value, options.value)
+      animatables.forEach(animatable => {
+        const { config } = animatable
+        animatable.instance.value.animate(config)
+      })
     })
 
-    function handleLogoMouseover () {
-      animatable.play()
+    function handleMouseover () {
+      animatables[navigable.value.location].instance.value.play()
     }
 
     return {
       logo,
-      animatable,
-      handleLogoMouseover
+      handleMouseover
     }
   }
 }
