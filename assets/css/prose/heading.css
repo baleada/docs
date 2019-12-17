@@ -61,23 +61,23 @@
     @apply relative;
 
     button {
-      @apply absolute top-0 left-0 h-1em w-1em inline-flex items-center justify-center rounded-full opacity-0;
-      transform: translate(-150%, 0%);
+      @apply absolute top-0 left-0 h-1em w-3/2em pr-1/2em inline-flex items-center justify-center rounded-full opacity-0;
+      transform: translate(-100%, 0%);
 
       svg {
         @apply block h-full w-full fill-current;
       }
 
       &:hover {
-        transform:  scale(1.1) translate(-150%, 0%);
+        transform:  scale(1.1) translate(-100%, 0%);
       }
 
       &:focus {
-        transform:  scale(1) translate(-150%, 0%);
+        transform:  scale(1) translate(-100%, 0%);
       }
 
       &:active {
-        transform:  scale(1) translate(-150%, 0%);
+        transform:  scale(1) translate(-100%, 0%);
       }
     }
 

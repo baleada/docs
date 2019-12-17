@@ -19,23 +19,23 @@
     }
 
     & > button {
-      @apply absolute top-0 right-0 h-7 w-7 flex items-center p-2 shadow-1 rounded-full bg-gray-100 text-gray-1000 transition-2;
-      transform: translate(-33%, -50%);
+      @apply absolute bottom-0 right-0 h-7 w-7 flex items-center p-2 shadow-1 rounded-full bg-gray-100 text-gray-1000 transition-2;
+      transform: translate(-33%, 33%);
 
       svg {
         @apply block h-full w-full fill-current;
       }
 
       &:hover {
-        transform: scale(1.1) translate(-33%, -50%);
+        transform: scale(1.1) translate(-33%, 33%);
       }
 
       &:focus {
-        transform: scale(1) translate(-33%, -50%);
+        transform: scale(1) translate(-33%, 33%);
       }
 
       &:active {
-        transform: scale(1) translate(-33%, -50%);
+        transform: scale(1) translate(-33%, 33%);
       }
     }
   }
@@ -83,6 +83,7 @@
       }
 
       & > button {
+        @apply top-0;
         transform: translate(33%, -33%);
 
         svg {

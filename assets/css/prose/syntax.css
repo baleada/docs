@@ -1,6 +1,6 @@
 .baleada-prose-article {
   pre {
-    @apply bg-gray-200 text-gray-900;
+    @apply bg-gray-200 text-gray-1000;
 
     & > code {
       .token.comment,
@@ -8,11 +8,11 @@
       .token.prolog,
       .token.doctype,
       .token.cdata {
-      	@apply text-gray-500;
+      	@apply text-gray-700;
       }
 
       .token.punctuation {
-      	@apply text-gray-600;
+      	@apply text-gray-800;
       }
 
       .token.property,
