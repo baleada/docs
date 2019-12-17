@@ -140,6 +140,12 @@
   }
 }
 
+@media screen and (min-width: theme('screens.md')) {
+  .baleada-prose-article .baleada-prose-grid .contents {
+    @apply max-h-full;
+  }
+}
+
 .baleada-prose-article {
   table {
     @apply w-full mr-auto;

@@ -72,22 +72,22 @@ export default {
 
   .dark & {
     h2::after {
-      @apply bg-gray-800;
+      @apply bg-primary-gray-900;
     }
     h2 {
       @apply text-primary-gray-500;
     }
     h3 {
-      @apply text-gray-500;
+      @apply text-primary-gray-500;
     }
     a {
-      @apply text-gray-400;
+      @apply text-primary-gray-400;
     }
     a.nuxt-link-exact-active {
-      @apply text-primary-gray-400 border-primary-gray-400;
+      @apply text-gray-400 border-gray-400;
     }
     a:hover {
-      @apply text-primary-gray-300 border-primary-gray-300;
+      @apply text-gray-300 border-gray-300;
     }
   }
 }

@@ -15,3 +15,11 @@
     }
   }
 }
+
+@media screen and (min-width: theme('screens.md')) {
+  .baleada-prose-article {
+    .baleada-prose-codeblock {
+      @apply max-h-full;
+    }
+  }
+}

@@ -7,9 +7,9 @@
       !isDarkTheme && !isMinimalistTheme
         ? 'bg-gray-200'
         : isDarkTheme && !isMinimalistTheme
-          ? 'bg-gray-900'
+          ? 'bg-primary-gray-1000'
           : isDarkTheme && isMinimalistTheme
-            ? 'bg-gray-800'
+            ? 'bg-primary-gray-900'
             : !isDarkTheme && isMinimalistTheme
               ? 'bg-white'
               : ''
@@ -28,9 +28,9 @@
           !isDarkTheme && !isMinimalistTheme
             ? 'border-gray-300'
             : isDarkTheme && !isMinimalistTheme
-              ? 'border-gray-800'
+              ? 'border-primary-gray-900'
               : isDarkTheme && isMinimalistTheme
-                ? 'border-gray-800'
+                ? 'border-primary-gray-900'
                 : !isDarkTheme && isMinimalistTheme
                   ? 'border-white'
                   : ''
@@ -41,11 +41,13 @@
           aria-label="Link to home page"
           class="flex-none rounded-full h-10 w-10 p-2 -shadow transition btn-grows"
           :class="[
-            isDarkTheme ? 'bg-primary-900' : 'bg-primary-600',
-            isMinimalistTheme ? 'h-8 w-8' : '',
+            isDarkTheme ? 'bg-primary-gray-900' : 'bg-primary-600',
           ]"
         >
-          <BaleadaLogo />
+          <BaleadaLogo
+            :tortillaClasses="isDarkTheme ? 'text-primary-gray-500' : undefined"
+            :burnClasses="isDarkTheme ? 'text-primary-gray-1000' : undefined"
+          />
         </NuxtLink>
       </header>
 
@@ -67,7 +69,7 @@
           <button
             class="flex items-center text-1 rounded-full font-600 tracking-3"
             :class="[
-              isDarkTheme ? 'text-gray-500' : 'text-gray-600'
+              isDarkTheme ? 'text-primary-gray-500' : 'text-gray-600'
             ]"
             name="Disable dark theme"
             @click="() => disableDarkTheme()"
@@ -78,7 +80,11 @@
             @click="() => toggleDarkTheme()"
             class="relative mx-2 inline-flex h-6 w-9 -shadow rounded-full cursor-pointer transition"
             :class="[
-              isDarkTheme ? 'bg-primary-900' : 'bg-primary-200',
+              isDarkTheme && !isMinimalistTheme
+                ? 'bg-primary-gray-900'
+                : isDarkTheme && isMinimalistTheme
+                  ? 'bg-primary-gray-1000'
+                  : 'bg-gray-300'
             ]"
           >
             <button
@@ -93,7 +99,7 @@
           <button
             class="flex items-center text-1 rounded-full font-600 tracking-3"
             :class="[
-              isDarkTheme ? 'text-gray-500' : 'text-gray-600'
+              isDarkTheme ? 'text-primary-gray-500' : 'text-gray-600'
             ]"
             name="Enable dark theme"
             @click="() => enableDarkTheme()"
@@ -102,7 +108,7 @@
           </button>
         </div>
 
-        <span class="block mt-3 text-1" :class="[isDarkTheme ? 'text-gray-500' : 'text-gray-600']">
+        <span class="block mt-3 text-1" :class="[isDarkTheme ? 'text-primary-gray-500' : 'text-gray-600']">
           Hotkey: <code class="py-px px-1 font-400">SHIFT</code> + <code class="py-px px-1 font-400">D</code>
         </span>
       </div>
@@ -113,7 +119,7 @@
           <button
             class="flex items-center text-1 rounded-full font-600 tracking-3"
             :class="[
-              isDarkTheme ? 'text-gray-500' : 'text-gray-600'
+              isDarkTheme ? 'text-primary-gray-500' : 'text-gray-600'
             ]"
             name="Disable minimalist theme"
             @click="() => disableMinimalistTheme()"
@@ -124,7 +130,13 @@
             @click="() => toggleMinimalistTheme()"
             class="relative mx-2 inline-flex h-6 w-9 -shadow rounded-full cursor-pointer transition"
             :class="[
-              isDarkTheme ? 'bg-primary-900' : 'bg-primary-200',
+              isDarkTheme && !isMinimalistTheme
+                ? 'bg-primary-gray-900'
+                : isDarkTheme && isMinimalistTheme
+                  ? 'bg-primary-gray-1000'
+                  : !isDarkTheme && isMinimalistTheme
+                    ? 'bg-primary-300'
+                    : 'bg-gray-300'
             ]"
           >
             <button
@@ -140,7 +152,7 @@
           <button
             class="flex items-center text-1 rounded-full font-600 tracking-3"
             :class="[
-              isDarkTheme ? 'text-gray-500' : 'text-gray-600'
+              isDarkTheme ? 'text-primary-gray-500' : 'text-gray-600'
             ]"
             name="Enable minimalist theme"
             @click="() => enableMinimalistTheme()"
@@ -149,7 +161,7 @@
           </button>
         </div>
 
-        <span class="block mt-3 text-1" :class="[isDarkTheme ? 'text-gray-500' : 'text-gray-600']">
+        <span class="block mt-3 text-1" :class="[isDarkTheme ? 'text-primary-gray-500' : 'text-gray-600']">
           Hotkey: <code class="py-px px-1 font-400">SHIFT</code> + <code class="py-px px-1 font-400">M</code>
         </span>
       </div>
@@ -168,7 +180,7 @@
       :class="[
         navIsOpen ? 'translate-x-100' : '',
         tableOfContentsIsOpen ? '-translate-x-100' : '',
-        isDarkTheme ? 'bg-gray-800' : 'bg-white',
+        isDarkTheme ? 'bg-primary-gray-900' : 'bg-white',
         isMinimalistTheme ? '' : 'shadow-3 lg:rounded-2',
       ]"
     >

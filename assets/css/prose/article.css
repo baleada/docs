@@ -71,8 +71,6 @@
   * + ol,
   * + p,
   * + ul,
-  * + .baleada-prose-aside,
-  * + .baleada-prose-details,
   * + .baleada-prose-list,
   * + .baleada-prose-section {
     @apply mt-5;
@@ -81,7 +79,9 @@
   * + figure,
   * + pre,
   * + table,
+  * + .baleada-prose-aside,
   * + .baleada-prose-codeblock,
+  * + .baleada-prose-details,
   * + .baleada-prose-grid,
   * + .baleada-prose-media {
     @apply mt-7;
@@ -133,25 +133,8 @@
 
 @media screen and (min-width: theme('screens.md')) {
   .baleada-prose-article {
-    .baleada-prose-codeblock,
-    .baleada-prose-table .contents {
-      @apply max-h-full;
-    }
-
-    blockquote {
-      @apply pl-8 pr-6 transition;
-    }
-
     p {
       @apply text-3;
-    }
-
-    blockquote::before {
-      @apply text-10;
-    }
-
-    blockquote {
-      @apply text-7;
     }
 
     li::before {
@@ -182,18 +165,18 @@
 
 .dark {
   .baleada-prose-article {
-    @apply text-gray-200;
+    @apply text-primary-gray-400;
 
     a {
-      @apply text-primary-200;
+      @apply text-gray-200;
 
       &:visited {
-        @apply text-primary-gray-500;
+        @apply text-primary-gray-300;
       }
     }
 
     :not(pre) > code {
-      @apply bg-gray-700;
+      @apply bg-primary-gray-800;
     }
   }
 }

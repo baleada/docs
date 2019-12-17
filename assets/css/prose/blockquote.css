@@ -9,9 +9,35 @@
   }
 
   .baleada-prose-blockquote {
-    button {
+    @apply relative;
+
+    & > a {
+      /* TODO: remove z-index after next prose version */
+      @apply z-10 absolute top-0 left-0 h-7 w-7 flex items-center p-2 shadow-1 rounded-full bg-primary-200 text-primary-900 transition;
+      transform: translate(-33%, -33%);
+
       svg {
-        
+        @apply block h-full w-full fill-current;
+      }
+
+      &:hover {
+        transform: scale(1.1) translate(-33%, -33%);
+      }
+
+      &:focus {
+        transform: scale(1) translate(-33%, -33%);
+      }
+
+      &:active {
+        transform: scale(1) translate(-33%, -33%);
+      }
+    }
+
+    .contents {
+      @apply relative;
+
+      blockquote::before {
+        @apply hidden;
       }
     }
   }
@@ -19,6 +45,28 @@
   .dark & {
     blockquote {
       @apply bg-primary-gray-900 text-primary-gray-300;
+    }
+
+    .baleada-prose-blockquote {
+      & > a {
+        @apply bg-primary-gray-800 text-primary-gray-300;
+      }
+    }
+  }
+}
+
+@media screen and (min-width: theme('screens.md')) {
+  .baleada-prose-article {
+    blockquote {
+      @apply pl-8 pr-6 transition;
+    }
+
+    blockquote::before {
+      @apply text-10;
+    }
+
+    blockquote {
+      @apply text-7;
     }
   }
 }

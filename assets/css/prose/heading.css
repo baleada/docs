@@ -65,7 +65,7 @@
       transform: translate(-150%, 0%);
 
       svg {
-        @apply inline-block h-full w-full fill-current;
+        @apply block h-full w-full fill-current;
       }
 
       &:hover {
