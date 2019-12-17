@@ -14,10 +14,10 @@ Editable is a class that enriches a piece of state by:
 Editable is written in vanilla JS with no dependencies.
 
 :::
-## Construct a Editable instance
+## Construct an Editable instance
 :::
 
-To construct a Editable instance (Object), use the Editable constructor, which takes two parameters:
+To construct an Editable instance (Object), use the Editable constructor, which takes two parameters:
 
 :::
 

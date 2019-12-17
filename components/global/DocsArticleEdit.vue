@@ -1,6 +1,6 @@
 <template lang="html">
   <p class="mt-10 text-center sm:text-left">
-    <a class="btn btn-lg p-0" :href="gitPath">
+    <a class="btn btn-lg p-0 no-underline" :href="gitPath">
       <SimpleGitLab :class="'icon'" />
       <span>Edit on GitLab</span>
     </a>

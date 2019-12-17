@@ -3,7 +3,7 @@
     <NuxtLink
       v-if="previous !== undefined"
       :to="previous.href"
-      class="btn btn-lg mx-auto sm:ml-0 p-0"
+      class="btn btn-lg mx-auto sm:ml-0 p-0 no-underline"
     >
       <EvaArrowheadLeft :class="'icon'"/>
       <span class="hover:no-underline">{{ previous.title }}</span>
@@ -11,7 +11,7 @@
     <NuxtLink
       v-if="next !== undefined"
       :to="next.href"
-      class="btn btn-lg mt-2 sm:mt-0 p-0 mx-auto sm:mr-0"
+      class="btn btn-lg mt-2 sm:mt-0 p-0 mx-auto sm:mr-0 no-underline"
     >
       <span class="hover:no-underline">{{ next.title }}</span>
       <EvaArrowheadRight :class="'icon'"/>

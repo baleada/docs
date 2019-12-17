@@ -81,7 +81,7 @@
             class="relative mx-2 inline-flex h-6 w-9 -shadow rounded-full cursor-pointer"
             :class="[
               isDarkTheme && !isMinimalistTheme
-                ? 'bg-primary-gray-950'
+                ? 'bg-primary-gray-900'
                 : isDarkTheme && isMinimalistTheme
                   ? 'bg-primary-gray-1000'
                   : 'bg-gray-300'
@@ -131,7 +131,7 @@
             class="relative mx-2 inline-flex h-6 w-9 -shadow rounded-full cursor-pointer"
             :class="[
               isDarkTheme && !isMinimalistTheme
-                ? 'bg-primary-gray-950'
+                ? 'bg-primary-gray-900'
                 : isDarkTheme && isMinimalistTheme
                   ? 'bg-primary-gray-1000'
                   : !isDarkTheme && isMinimalistTheme

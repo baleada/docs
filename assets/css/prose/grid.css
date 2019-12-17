@@ -108,25 +108,25 @@
 
     .contents {
       [role="columnheader"] {
-        @apply bg-primary-gray-800 text-primary-gray-200;
+        @apply bg-primary-gray-850 text-primary-gray-300;
 
         code {
-          @apply bg-primary-gray-700;
+          @apply bg-primary-gray-800;
         }
       }
 
       [role="gridcell"] {
-        @apply border-primary-gray-700;
+        @apply border-primary-gray-800;
       }
 
       [role="rowgroup"] > :nth-child(even) {
-        @apply bg-primary-gray-800;
+        @apply bg-primary-gray-850;
 
         [role="gridcell"] {
-          @apply border-gray-900;
+          @apply border-primary-gray-700;
 
           code {
-            @apply bg-gray-700;
+            @apply bg-primary-gray-800 text-primary-gray-300;
           }
         }
       }

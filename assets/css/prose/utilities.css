@@ -12,6 +12,6 @@
   }
 
   .scrollable {
-    @apply scrolling-touch overflow-x-scroll -shadow;
+    @apply scrolling-touch overflow-x-scroll;
   }
 }
