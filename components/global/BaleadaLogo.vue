@@ -10,6 +10,7 @@
     :ref="data.ref"
     :key="data.key"
     :slot="data.slot"
+    :style="data.style"
   >
     <g clip-path="url(#baleada-logo-clip)">
       <g :filter="props.hasShadow ? 'url(#baleada-logo-shadow)' : ''">

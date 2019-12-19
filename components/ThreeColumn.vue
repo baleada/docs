@@ -15,6 +15,7 @@
               : ''
     ]"
   >
+    <!-- Left -->
     <section
       class="relative h-screen w-screen lg:w-17 flex-none px-7 py-3 overflow-y-scroll scrolling-touch lg:translate-0"
       :class="[
@@ -177,9 +178,11 @@
         />
       </transition>
     </section>
+
+    <!-- Middle -->
     <section
       ref="article"
-      class="absolute lg:relative top-0 left-0 z-20 h-screen w-screen lg:w-full flex flex-col overflow-x-hidden overflow-y-scroll scrolling-touch lg:translate-0"
+      class="absolute lg:relative top-0 left-0 z-20 h-screen w-screen lg:w-full overflow-x-hidden overflow-y-scroll scrolling-touch lg:translate-0"
       :class="[
         navIsOpen ? 'translate-x-100' : '',
         tableOfContentsIsOpen ? '-translate-x-100' : '',
@@ -188,7 +191,19 @@
         `table-of-contents-${tableOfContentsTransitionStatus}`,
       ]"
     >
-      <header class="flex items-center z-40 absolute left-0 top-0 pt-6 px-7 sm:px-9 lg:pl-11 w-full">
+      <transition name="fade">
+        <div v-show="!isMinimalistTheme">
+          <BaleadaLogo
+            :class="'absolute h-19 w-19 top-0 right-0'"
+            :style="{ transform: 'translate(14%, -42%)' }"
+            type="outline"
+            :classes="[
+              !isDarkTheme ? 'text-primary-100' : 'text-primary-gray-800 opacity-80',
+            ]"
+          />
+        </div>
+      </transition>
+      <header class="relative flex items-center z-40 absolute left-0 top-0 pt-6 px-7 sm:px-9 lg:pl-11 w-full">
         <button
           type="button"
           name="Show navigation"
@@ -216,8 +231,10 @@
         </button>
       </header>
 
-      <nuxt key="content" />
+      <nuxt class="relative" key="content" />
     </section>
+
+    <!-- Right -->
     <transition
       name="fade"
       v-on:before-enter="onTableOfContentsBeforeEnter"
@@ -356,7 +373,7 @@ export default {
     })
 
     /* Dark theme */
-    const isDarkTheme = ref(true),
+    const isDarkTheme = ref(false),
           toggleDarkTheme = () => isDarkTheme.value = !isDarkTheme.value,
           enableDarkTheme = () => isDarkTheme.value = true,
           disableDarkTheme = () => isDarkTheme.value = false,
