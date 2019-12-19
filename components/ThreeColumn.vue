@@ -19,6 +19,9 @@
       class="relative h-screen w-screen lg:w-17 flex-none px-7 py-3 overflow-y-scroll scrolling-touch lg:translate-0"
       :class="[
         navIsOpen ? 'translate-0' : '-translate-x-100',
+        tableOfContentsTransitionStatus === 'after-leave'
+          ? 'lg:absolute lg:z-30 lg:h-auto'
+          : ''
       ]"
       ref="nav"
     >
@@ -166,13 +169,13 @@
         </span>
       </div>
 
-      <DocsNav
-        class="mt-5 pb-7"
-        :class="[
-          isMinimalistTheme ? 'opacity-0 pointer-events-none' : '',
-        ]"
-        @click.native="handleNavClick"
-      />
+      <transition name="fade">
+        <DocsNav
+          v-show="!isMinimalistTheme"
+          class="mt-5 pb-7"
+          @click.native="handleNavClick"
+        />
+      </transition>
     </section>
     <section
       ref="article"
@@ -182,6 +185,7 @@
         tableOfContentsIsOpen ? '-translate-x-100' : '',
         isDarkTheme ? 'bg-primary-gray-950' : 'bg-white',
         isMinimalistTheme ? '' : 'shadow-3 lg:rounded-2',
+        `table-of-contents-${tableOfContentsTransitionStatus}`,
       ]"
     >
       <header class="flex items-center z-40 absolute left-0 top-0 pt-6 px-7 sm:px-9 lg:pl-11 w-full">
@@ -212,31 +216,37 @@
         </button>
       </header>
 
-
-
       <nuxt key="content" />
     </section>
-    <section
-      class="absolute lg:relative top-0 left-0 h-screen w-screen lg:w-17 flex-none px-7 py-3 overflow-y-scroll scrolling-touch lg:translate-0"
-      :class="[
-        tableOfContentsIsOpen ? 'translate-0' : 'translate-x-100',
-        isMinimalistTheme ? 'opacity-0 pointer-events-none' : '',
-      ]"
-      ref="tableOfContents"
+    <transition
+      name="fade"
+      v-on:before-enter="onTableOfContentsBeforeEnter"
+      v-on:after-leave="onTableOfContentsAfterLeave"
     >
-      <button
-        class="lg:hidden absolute top-0 right-0 mt-3 mr-6 h-7 w-7 cursor-pointer transition btn-grows"
+      <section
+        v-show="!isMinimalistTheme"
+        class="absolute lg:relative top-0 left-0 h-screen w-screen lg:w-17 flex-none px-7 py-3 overflow-y-scroll scrolling-touch lg:translate-0"
         :class="[
-          isDarkTheme ? 'text-gray-600 hover:text-gray-400' : 'text-gray-900 hover:text-primary-600'
+          tableOfContentsIsOpen ? 'translate-0' : 'translate-x-100',
         ]"
-        name="close-menu"
-        @click="toggleTableOfContents"
+
+        ref="tableOfContents"
       >
-        <EvaClose :class="'icon'"/>
-      </button>
-      <!-- <DocsAd class="mt-auto"/> -->
-      <DocsTableOfContents :headings="headings" />
-    </section>
+      <!-- isMinimalistTheme ? 'opacity-0 pointer-events-none translate-x-100' : 'lg:translate-0', -->
+        <button
+          class="lg:hidden absolute top-0 right-0 mt-3 mr-6 h-7 w-7 cursor-pointer transition btn-grows"
+          :class="[
+            isDarkTheme ? 'text-gray-600 hover:text-gray-400' : 'text-gray-900 hover:text-primary-600'
+          ]"
+          name="close-menu"
+          @click="toggleTableOfContents"
+        >
+          <EvaClose :class="'icon'"/>
+        </button>
+        <!-- <DocsAd class="mt-auto"/> -->
+        <DocsTableOfContents :headings="headings" />
+      </section>
+    </transition>
   </main>
 </template>
 
@@ -346,7 +356,7 @@ export default {
     })
 
     /* Dark theme */
-    const isDarkTheme = ref(false),
+    const isDarkTheme = ref(true),
           toggleDarkTheme = () => isDarkTheme.value = !isDarkTheme.value,
           enableDarkTheme = () => isDarkTheme.value = true,
           disableDarkTheme = () => isDarkTheme.value = false,
@@ -392,6 +402,11 @@ export default {
       })
     })
 
+    /* Transition hooks for table of contents */
+    const tableOfContentsTransitionStatus = ref('after-enter'),
+          onTableOfContentsAfterLeave = () => (tableOfContentsTransitionStatus.value = 'after-leave'),
+          onTableOfContentsBeforeEnter = () => (tableOfContentsTransitionStatus.value = 'before-enter')
+
     const headings = inject(useSymbol('layout', 'headings'))
 
     return {
@@ -417,6 +432,10 @@ export default {
       enableMinimalistTheme,
       disableMinimalistTheme,
 
+      tableOfContentsTransitionStatus,
+      onTableOfContentsAfterLeave,
+      onTableOfContentsBeforeEnter,
+
       headings,
     }
   },
@@ -425,6 +444,40 @@ export default {
 
 <style lang="postcss">
 .baleada-prose-article {
-  /* @apply transition; */
+  /* Not doing all styles here because can't use @apply for non-plugin utilities. Also because this file size would be insane. */
+}
+
+@media screen and (min-width: theme(screens.lg)) {
+  .baleada-prose-article {
+    transition: none;
+
+    & > .contents {
+      transition: none;
+    }
+
+    .table-of-contents-after-leave & {
+      @apply w-full px-17;
+
+      & > .contents {
+        /* pr-11 is defined in article.css */
+        @apply px-11;
+      }
+    }
+
+    .table-of-contents-before-enter & {
+      @apply w-auto px-11;
+
+      & > .contents {
+        @apply px-0;
+      }
+    }
+  }
+}
+
+.fade-enter-active, .fade-leave-active {
+  transition: opacity .3s;
+}
+.fade-enter, .fade-leave-to {
+  opacity: 0;
 }
 </style>

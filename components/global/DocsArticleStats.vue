@@ -1,5 +1,5 @@
 <template>
-  <p class="text-1 italic">
+  <p class="mb-7 text-1 italic">
     Updated on {{ intl }}
   </p>
 </template>

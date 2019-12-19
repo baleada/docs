@@ -1,5 +1,5 @@
 <template lang="html">
-  <section class="mt-3 with-max-w mx-auto flex flex-col sm:flex-row">
+  <section class="mt-12 with-max-w mx-auto flex flex-col sm:flex-row">
     <NuxtLink
       v-if="previous !== undefined"
       :to="previous.href"

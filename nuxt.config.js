@@ -127,8 +127,8 @@ export default {
 \n\
 `,
         after: ({ filePath }) => `\n\
-<DocsArticleEdit />\n\
 <DocsAdjacentArticleLinks />\n\
+<DocsArticleEdit />\n\
 \n\
 `
       }),

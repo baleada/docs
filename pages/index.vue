@@ -120,9 +120,9 @@ export default {
     //   })
     // })
 
-    // function handleMouseover () {
-    //   animatables[navigable.value.location].instance.value.play()
-    // }
+    function handleMouseover () {
+      // animatables[navigable.value.location].instance.value.play()
+    }
 
     return {
       logo,
