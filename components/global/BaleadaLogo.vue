@@ -83,15 +83,15 @@ export default {
       default: false
     },
     tortillaClasses: {
-      type: String,
+      type: [String, Array],
       default: 'text-primary-100',
     },
     burnClasses: {
-      type: String,
+      type: [String, Array],
       default: 'text-primary-800',
     },
     classes: {
-      type: String,
+      type: [String, Array],
       default: 'text-primary-600',
     }
   }

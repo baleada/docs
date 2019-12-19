@@ -329,11 +329,11 @@ export default {
             '.baleada-prose-article .overflow-x-scroll',
             '.baleada-prose-article .overflow-x-scroll *',
 
-            '.baleada-prose-article pre',
-            '.baleada-prose-article pre *',
+            '.baleada-prose-codeblock',
+            '.baleada-prose-codeblock *',
 
-            '.baleada-prose-article .scrollable-wrapper',
-            '.baleada-prose-article .scrollable-wrapper *',
+            '.baleada-prose-grid',
+            '.baleada-prose-grid *',
 
             '.swiper-no-swiping',
           ]
@@ -373,7 +373,7 @@ export default {
     })
 
     /* Dark theme */
-    const isDarkTheme = ref(false),
+    const isDarkTheme = ref(true),
           toggleDarkTheme = () => isDarkTheme.value = !isDarkTheme.value,
           enableDarkTheme = () => isDarkTheme.value = true,
           disableDarkTheme = () => isDarkTheme.value = false,
@@ -382,6 +382,14 @@ export default {
               toggleDarkTheme()
             }
           }
+
+    onMounted(() => {
+      const mediaQueryList = window.matchMedia('(prefers-color-scheme: dark)'),
+            darkThemePreferenceListener = ({ matches }) => (isDarkTheme.value = matches)
+
+      mediaQueryList.addListener(darkThemePreferenceListener)
+      isDarkTheme.value = mediaQueryList.matches
+    })
 
     /* Minimalist theme */
     const isMinimalistTheme = ref(false),
