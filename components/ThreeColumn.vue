@@ -381,14 +381,13 @@ export default {
             if (shiftKey && key === 'D') {
               toggleDarkTheme()
             }
-          }
+          },
+          prefersDarkTheme = useListenable('(prefers-color-scheme: dark)')
+
 
     onMounted(() => {
-      const mediaQueryList = window.matchMedia('(prefers-color-scheme: dark)'),
-            darkThemePreferenceListener = ({ matches }) => (isDarkTheme.value = matches)
-
-      mediaQueryList.addListener(darkThemePreferenceListener)
-      isDarkTheme.value = mediaQueryList.matches
+      prefersDarkTheme.value.listen(({ matches }) => (isDarkTheme.value = matches))
+      isDarkTheme.value = prefersDarkTheme.value.activeListeners[0].target.matches
     })
 
     /* Minimalist theme */
