@@ -9,6 +9,8 @@ import { computed, inject } from '@vue/composition-api'
 
 import { useSymbol } from '@baleada/prose/vue'
 
+import metadata from '~/static/json/metadata.json'
+
 export default {
   // props: {
   //   stats: {
@@ -18,6 +20,9 @@ export default {
   // },
   setup () {
     const stats = inject(useSymbol('article', 'stats')) // This should work with scoped slot and props but it doesn't so I'm doing provide/inject
+    const frontMatter = inject(useSymbol('article', 'frontMatter')),
+          title = computed(() => frontMatter.value.title),
+          mtime = computed(() => metadata.find(({ title: t }) => t === title.value).updatedAt)
 
     const months = [
             'January',
@@ -33,7 +38,7 @@ export default {
             'November',
             'December',
           ],
-          date = computed(() => new Date(stats.value.mtime)),
+          date = computed(() => new Date(mtime.value)),
           intl = computed(() => `${months[date.value.getMonth()]} ${date.value.getDate()}, ${date.value.getFullYear()}`)
 
     return {

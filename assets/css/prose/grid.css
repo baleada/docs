@@ -64,7 +64,7 @@
     }
 
     [role="gridcell"] {
-      @apply py-4 leading-2 border-l border-gray-300;
+      @apply py-4 leading-2 border-l bg-white border-gray-300;
 
       &:last-child {
         @apply border-r;
@@ -72,10 +72,8 @@
     }
 
     [role="rowgroup"] > :nth-child(even) {
-      @apply bg-gray-100;
-
       [role="gridcell"] {
-        @apply border-gray-400;
+        @apply bg-gray-100 border-gray-400;
 
         code {
           @apply bg-gray-300;
@@ -83,7 +81,7 @@
       }
     }
 
-    .baleada-prose-table-solid & {
+    &.baleada-prose-grid-solid {
       [role="rowgroup"] > :nth-child(even) {
         @apply bg-transparent;
 
@@ -96,6 +94,17 @@
         }
       }
     }
+  }
+
+  &.freeze-col-1 {
+    [role="rowgroup"]:first-child {
+      @apply z-30;
+
+      [role="columnheader"]:first-child,
+      [role="gridcell"]:first-child {
+        @apply sticky left-0;
+      }
+    }    
   }
 
   .dark & {
@@ -116,14 +125,12 @@
       }
 
       [role="gridcell"] {
-        @apply border-primary-gray-800;
+        @apply bg-primary-gray-950 border-primary-gray-800;
       }
 
       [role="rowgroup"] > :nth-child(even) {
-        @apply bg-primary-gray-850;
-
         [role="gridcell"] {
-          @apply border-primary-gray-700;
+          @apply bg-primary-gray-850 border-primary-gray-700;
 
           code {
             @apply bg-primary-gray-800 text-primary-gray-300;
@@ -131,7 +138,7 @@
         }
       }
 
-      .baleada-prose-table-solid & {
+      &.baleada-prose-table-solid {
         [role="rowgroup"] > :nth-child(even) {
           @apply bg-transparent;
         }

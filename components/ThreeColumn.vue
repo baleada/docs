@@ -348,7 +348,7 @@ export default {
             openTableOfContents()
           }
         },
-        { element: article.value, blacklist }
+        { target: article.value, blacklist }
       )
 
       swipe.value.listen(
@@ -358,7 +358,7 @@ export default {
             closeNav()
           }
         },
-        { element: nav.value }
+        { target: nav.value }
       )
 
       swipe.value.listen(
@@ -368,7 +368,7 @@ export default {
             closeTableOfContents()
           }
         },
-        { element: tableOfContents.value }
+        { target: tableOfContents.value }
       )
     })
 
