@@ -1,5 +1,5 @@
 .baleada-prose-grid {
-  @apply w-full flex flex-col mb-6;
+  @apply with-max-h w-full flex flex-col mb-6;
 
   & > div {
     @apply with-max-w w-full mx-auto;
@@ -20,12 +20,12 @@
     }
   }
 
+  & > * + .contents {
+    @apply mt-2;
+  }
+
   .contents {
     @apply mx-auto min-w-5 with-max-h inline-block;
-
-    * + & {
-      @apply mt-2;
-    }
 
     [role="grid"] {
       @apply w-full mr-auto;
@@ -37,7 +37,7 @@
     }
 
     [role="rowgroup"]:first-child {
-      @apply rounded-2;
+      @apply rounded-2 sticky top-0 shadow-1;
       display: table-header-group;
     }
 

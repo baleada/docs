@@ -1,5 +1,5 @@
 ---
-title: Renamable
+title: renamable
 framework: agnostic
 publish: false
 ---

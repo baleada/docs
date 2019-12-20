@@ -31,9 +31,11 @@ If you're not quite sure what all these terms mean, feel free to keep reading!
 Broadly, UI logic is JavaScript that powers **user interface behaviors**. Baleada provides UI logic for specific behaviors that are commonly needed, but can be complex to implement in a reusable way.
 
 For example:
+:::
 - Allowing the user to enter a search term, query an array of strings or objects, and receive a list of search results based on fuzzy matches
 - Autocompleting text, replacing all or part of the original text with a completed value
 - Detecting and reacting to common gestures (pan, swipe, double-tap, drag, drag-and-drop, etc.), or even custom gestures that you define
+:::
 
 To get started with Baleada's logic, check out the [Baleada Logic](/docs/logic) package.
 

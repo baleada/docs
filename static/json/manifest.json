@@ -67,6 +67,11 @@
         "href": "/docs/logic"
       },
       {
+        "title": "Identifying UI logic",
+        "framework": "agnostic",
+        "href": "/docs/logic/identifying-ui-logic"
+      },
+      {
         "title": "API design",
         "framework": "agnostic",
         "href": "/docs/logic/api-design"
@@ -96,7 +101,7 @@
   },
   {
     "level": 2,
-    "name": "subclasses",
+    "name": "factories",
     "pages": []
   },
   {
