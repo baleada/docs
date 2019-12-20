@@ -7,29 +7,29 @@ order: 2
 
 For any individual piece of UI logic, there are plenty of ways to implement it, and plenty of packages already published that can `npm install` your troubles away.
 
-But implementing these things yourself, or learning the APIs of disparate packages, adds **complexity and mental overhead** to engineering tasks that are usually a few steps removed from the actual business logic of the app or site you're building.
+But implementing these things yourself, or learning the APIs of disparate packages, adds **complexity and mental overhead** to engineering tasks that are usually several steps removed from the actual business logic of the app or site you're building.
 
-Baleada Logic implements all kinds of UI logic for you, which is nice, but arguably more important is the fact that Baleada Logic's classes and subclasses all have **predictable, intuitive APIs**. In other words, you can construct all classes and subclasses in the same way, you can customize their behavior in the same way, and you can access their state and methods in the same way.
+Baleada Logic implements all kinds of UI logic for you, which is nice, but arguably more important is the fact that Baleada Logic's classes and factories all have **predictable, intuitive APIs**. In other words, you can construct all classes and factories in the same way, you can customize their behavior in the same way, and you can access their state and methods in the same way.
 
 ::: canTweet
-> You can construct all Baleada Logic classes and subclasses in the same way, you can customize their behavior in the same way, and you can access their state and methods in the same way.
+> Baleada Logic implements all kinds of UI logic for you, which is nice, but arguably more important is the fact that Baleada Logic's classes and factories all have **predictable, intuitive APIs**.
 :::
 
-To accomplish that, Baleada Logic's classes and subclasses all follow strict rules in these specific areas:
+To accomplish that, Baleada Logic's classes and factories all follow strict rules in these specific areas:
 1. How they are **constructed**
 1. How **state and methods** are made available to you
-1. How classes & subclasses, their constructor options, their state, and their methods are **named**
-1. Why classes and subclasses provide certain state and methods
+1. How classes & factories, their constructor options, their state, and their methods are **named**
+1. Why classes and factories provide certain state and methods
 1. Why constructors accept certain state and options
 
-This guide explains all the core concepts, rules, and patterns that classes and subclasses follow. The words "all", "always", and "never" are displayed in bold, to emphasize the rules that apply to every single class and subclass in Baleada Logic.
+This guide explains all the core concepts, rules, and patterns that classes and factories follow. The words "all", "always", and "never" are displayed in bold, to emphasize the rules that apply to every single class and subclass in Baleada Logic.
 
 
 :::
-## How to construct classes and subclasses
+## How to construct classes and factories
 :::
 
-You can access the functionality of **all** classes and subclasses by **constructing new instances** of them.
+You can access the functionality of **all** classes and factories by **constructing new instances** of them.
 
 :::
 ```js
@@ -45,11 +45,11 @@ That `...` represents the arguments you'll pass to constructor functions. The ba
 :::
 
 
-All classes' constructors accept two parameters:
+**All** class constructors accept two parameters:
 1. A piece of state (i.e. data—strings, arrays, objects, DOM elements, etc.),
 2. An `options` object.
 
-The `state` parameter is **always** required, and the `options` parameter is **always** optional. Given these parameters, the constructor **always** returns an instance of itself, which **always** takes the form of an Object.
+The `state` parameter is **always** required, and the `options` parameter is **always** optional. Given these parameters, the constructor **always** returns an instance of itself, which **always** takes the form of an Object with state and methods.
 
 :::
 ```js
@@ -73,22 +73,30 @@ const instance = new Example(state, {
 
 
 :::
-### Subclass constructors
+### Factory functions
 :::
 
-Subclass constructors accept only one parameter: the piece of state whose prototype will be extended by the subclass. Given this parameter, the subclass will **always** return an object that is a child of the prototype it's extending.
+Factory functions accept two parameters:
+1. The piece of state that will be augmented with a new method prototype will be extended by the subclass.
+2. An `options` object.
+
+The `state` parameter is **always** required, and the `options` parameter is **always** optional. Given these parameters, the constructor **always** returns the original `state` in Object form, with one new method added.
+
+For example, if you pass a String, the factory will return a String object, just like you would get if you passed your string to `new String()`.
 
 :::
 ```js
-// The Example subclass extends String in this example
-const instance = new Example(state)
+// This example factory accepts a string
+const instance = example('baleada')
 
 instance instanceof String // --> true
+typeof instance === 'string' // --> false
+
+instance // --> { 0: "b", 1: "a", 2: "l", 3: "e", 4: "a", 5: "d", 6: "a", length: 7}
+`${instance}` // -> 'baleada'
+instance.toString() // --> 'baleada'
 ```
 :::
-
-
-
 
 
 :::
@@ -272,30 +280,40 @@ instance.play() // -> Plays an animation and returns the instance, but does noth
 ```
 :::
 
-Some classes accept a DOM node or node list as the first argument of their constructor and attach event listeners to the node or nodes. **All** of these classes have a public `destroy` method that you can use to remove the event listeners.
+Some classes have side effects that need to be cleaned up in order to avoid memory leaks. **All** of these classes have a public `stop` method that you can use to clean up.
 
 :::
 ```js
-// Touchable adds event listeners while constructing the instance
-const instance = new Touchable(mySelectedElement, myTouchEventOptions)
+// Listenable can be used to listen to DOM events, media queries, Observer entries, and window idle periods.
+const instance = new Listenable(myEventType)
 
-instance.destroy() // -> Removes all event listeners
+instance.listen(myCallback) // --> Adds event listeners, connects observers, etc.
+
+instance.stop() // -> Removes all listeners, disconnects all observers, etc.
 ```
 :::
 
+::: type="info"
+If you use [Baleada Composition](/docs/composition) to bring Balaeda Logic into a React, Vue, or Svelte component, all side effects will be cleaned up for you automatically at the end of the component's lifecycle.
+
+So, when you're using Baleada Composition, you never need to call the `stop` method unless you want to clean up side effects somewhere in the middle of a component's lifecycle.
+:::
+
+
+
 
 :::
-### Subclass state and methods
+### Factory state and methods
 :::
 
-Baleada Logic's subclasses **never** have public state; they **always** have one method named `invoke`.
+Baleada Logic's factories **never** have public state; they **always** have one method.
 
-Subclasses' public methods **never** mutate the original state passed to their constructors. They **always** follow three main steps:
+Factories' public methods **never** mutate the original state passed to their constructors. They **always** follow three main steps:
 1. Create a mutated version of the original state
 2. Pass it to their own constructor along with any options you originally passed
 3. Return the new instance
 
-Thus, subclasses always return a new instance of themselves, respecting any original options you passed.
+Thus, factories always return a new instance of themselves, respecting any original options you passed.
 
 :::
 ```js
@@ -312,7 +330,7 @@ renamedMap instanceof Renamable // -> true
 
 
 :::
-## Why classes & subclasses provide certain state and methods
+## Why classes & factories provide certain state and methods
 :::
 
 Baleada Logic follows a consistent process for determing which state and methods are provided by classes:
@@ -338,7 +356,7 @@ A `<state type>` can be `<action>`ed (by `<action arguments>`).
 ```
 :::
 
-For example, the Searchable class' core action is to search/fuzzy search an array of items. The Searchable constructor's `state` parameter is an Array, and the class has a `search` method that accepts a search query as its only argument. This fits into the sentence template nicely:
+For example, the `Searchable` class' core action is to search/fuzzy search an array of items. The `Searchable` constructor's `state` parameter is an Array, and the class has a `search` method that accepts a search query as its only argument. This fits into the sentence template nicely:
 
 :::
 ```
@@ -346,7 +364,7 @@ An **Array** can be **searched** by a **query**.
 ```
 :::
 
-Some classes and subclasses have core actions that don't take arguments—in those cases, the last part of the sentence template is omitted:
+Some classes and factories have core actions that don't take arguments—in those cases, the last part of the sentence template is omitted. Take the `markupable` factory for example:
 
 :::
 ```text
@@ -354,7 +372,7 @@ Some classes and subclasses have core actions that don't take arguments—in tho
 ```
 :::
 
-This sentence template ensures that **all** classes' and subclasses' methods are affordances. In other words, methods tell you what you can do with a given type of state, rather than what that type of state can do to itself or other things.
+This sentence template ensures that **all** classes' and factories' methods are affordances. In other words, methods tell you what you can do with a given type of state, rather than what that type of state can do to itself or other things.
 
 In the documentation for each individual library and subclass, you can find the filled-out sentence template, explaining why each class and subclass accepts its specific state type.
 
