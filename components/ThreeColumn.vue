@@ -19,7 +19,7 @@
     <section
       class="relative h-screen w-screen lg:w-17 flex-none px-7 py-3 overflow-y-scroll scrolling-touch lg:translate-0"
       :class="[
-        navIsOpen ? 'translate-0' : '-translate-x-100',
+        openStatus === 'nav' ? 'translate-0' : '-translate-x-100',
         tableOfContentsTransitionStatus === 'after-leave'
           ? 'lg:absolute lg:z-30 lg:h-auto'
           : ''
@@ -61,7 +61,7 @@
           isDarkTheme ? 'text-gray-600 hover:text-gray-400' : 'text-gray-900 hover:text-primary-600'
         ]"
         name="close-menu"
-        @click="toggleNav"
+        @click="openArticle"
       >
         <EvaClose :class="'icon'"/>
       </button>
@@ -184,8 +184,11 @@
       ref="article"
       class="absolute lg:relative top-0 left-0 z-20 h-screen w-screen lg:w-full overflow-x-hidden overflow-y-scroll scrolling-touch lg:translate-0"
       :class="[
-        navIsOpen ? 'translate-x-100' : '',
-        tableOfContentsIsOpen ? '-translate-x-100' : '',
+        openStatus === 'nav'
+          ? 'translate-x-100'
+          : openStatus === 'tableOfContents'
+            ? '-translate-x-100'
+            : '',
         isDarkTheme ? 'bg-primary-gray-950' : 'bg-white',
         isMinimalistTheme ? '' : 'shadow-3 lg:rounded-2',
         `table-of-contents-${tableOfContentsTransitionStatus}`,
@@ -211,7 +214,7 @@
           :class="[
             isDarkTheme ? 'text-gray-600 hover:text-gray-400' : 'text-gray-700 hover:text-primary-600'
           ]"
-          @click="toggleNav"
+          @click="openNav"
         >
           <EvaMenu :class="'icon'" />
         </button>
@@ -225,7 +228,7 @@
           :class="[
             isDarkTheme ? 'text-gray-600 hover:text-gray-400' : 'text-gray-700 hover:text-primary-600'
           ]"
-          @click="toggleTableOfContents"
+          @click="openTableOfContents"
         >
           <EvaList :class="'icon'" />
         </button>
@@ -244,7 +247,7 @@
         v-show="!isMinimalistTheme"
         class="absolute lg:relative top-0 left-0 h-screen w-screen lg:w-17 flex-none px-7 py-3 overflow-y-scroll scrolling-touch lg:translate-0"
         :class="[
-          tableOfContentsIsOpen ? 'translate-0' : 'translate-x-100',
+          openStatus === 'tableOfContents' ? 'translate-0' : 'translate-x-100',
         ]"
 
         ref="tableOfContents"
@@ -256,7 +259,7 @@
             isDarkTheme ? 'text-gray-600 hover:text-gray-400' : 'text-gray-900 hover:text-primary-600'
           ]"
           name="close-menu"
-          @click="toggleTableOfContents"
+          @click="openArticle"
         >
           <EvaClose :class="'icon'"/>
         </button>
@@ -295,27 +298,11 @@ export default {
     DocsTableOfContents,
   },
   setup(props, context) {
-    /* Manage nav state */
-    const navIsOpen = ref(false),
-          toggleNav = () => (navIsOpen.value = !navIsOpen.value),
-          openNav = () => (navIsOpen.value = true),
-          closeNav = () => (navIsOpen.value = false),
-          handleNavClick = evt => {
-            if (evt.target.matches('a')) {
-              closeNav()
-            }
-          }
-
-    /* Manage table of contents state */
-    const tableOfContentsIsOpen = ref(false),
-          toggleTableOfContents = () => tableOfContentsIsOpen.value = !tableOfContentsIsOpen.value,
-          openTableOfContents = () => tableOfContentsIsOpen.value = true,
-          closeTableOfContents = () => tableOfContentsIsOpen.value = false,
-          handleTableOfContentsClick = evt => {
-            if (evt.target.matches('a')) {
-              closeTableOfContents()
-            }
-          }
+    /* Manage open status */
+    const openStatus = ref('article'),
+          openNav = () => openStatus.value = 'nav',
+          openArticle = () => openStatus.value = 'article',
+          openTableOfContents = () => openStatus.value = 'tableOfContents'
 
     /* Touch gestures */
     const nav = ref(null),
@@ -355,7 +342,7 @@ export default {
         (gesture, { toDirection }) => {
           const direction = toDirection(gesture.metadata.angle.degrees)
           if (direction === 'left') {
-            closeNav()
+            openArticle()
           }
         },
         { target: nav.value }
@@ -365,7 +352,7 @@ export default {
         (gesture, { toDirection }) => {
           const direction = toDirection(gesture.metadata.angle.degrees)
           if (direction === 'right') {
-            closeTableOfContents()
+            openArticle()
           }
         },
         { target: tableOfContents.value }
@@ -434,13 +421,10 @@ export default {
     const headings = inject(useSymbol('layout', 'headings'))
 
     return {
-      toggleNav,
-      handleNavClick,
-      navIsOpen,
-
-      toggleTableOfContents,
-      handleTableOfContentsClick,
-      tableOfContentsIsOpen,
+      openStatus,
+      openNav,
+      openArticle,
+      openTableOfContents,
 
       nav,
       article,
