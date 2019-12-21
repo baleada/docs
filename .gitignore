@@ -85,3 +85,6 @@ sw.*
 
 # Mac folder files
 .DS_Store
+
+# Local Netlify folder
+.netlify

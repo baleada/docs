@@ -371,7 +371,6 @@ export default {
           },
           prefersDarkTheme = useListenable('(prefers-color-scheme: dark)')
 
-
     onMounted(() => {
       prefersDarkTheme.value.listen(({ matches }) => (isDarkTheme.value = matches))
       isDarkTheme.value = prefersDarkTheme.value.activeListeners[0].target.matches
