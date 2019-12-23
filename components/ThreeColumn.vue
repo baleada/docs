@@ -174,7 +174,7 @@
         <DocsNav
           v-show="!isMinimalistTheme"
           class="mt-5 pb-7"
-          @click.native="handleNavClick"
+          @click.native="handleSidebarClick"
         />
       </transition>
     </section>
@@ -264,7 +264,10 @@
           <EvaClose :class="'icon'"/>
         </button>
         <!-- <DocsAd class="mt-auto"/> -->
-        <DocsTableOfContents :headings="headings" />
+        <DocsTableOfContents
+          :headings="headings"
+          @click.native="handleSidebarClick"
+        />
       </section>
     </transition>
   </main>
@@ -273,10 +276,9 @@
 <script>
 import { ref, onMounted, inject } from '@vue/composition-api'
 
+import { swipe as swipeGesture } from '@baleada/listenable-gestures'
 import { useListenable } from '@baleada/composition/vue'
-
 import { useSymbol } from '@baleada/prose/vue'
-
 import { EvaMenu, EvaClose, EvaList, EvaSun, EvaMoon, EvaLayout, EvaSquare } from '@baleada/icons/vue'
 
 import DocsNav from '~/components/DocsNav'
@@ -302,13 +304,18 @@ export default {
     const openStatus = ref('article'),
           openNav = () => openStatus.value = 'nav',
           openArticle = () => openStatus.value = 'article',
-          openTableOfContents = () => openStatus.value = 'tableOfContents'
+          openTableOfContents = () => openStatus.value = 'tableOfContents',
+          handleSidebarClick = ({ target }) => {
+            if (target.matches('a')) {
+              openArticle()
+            }
+          }
 
     /* Touch gestures */
     const nav = ref(null),
           article = ref(null),
           tableOfContents = ref(null),
-          swipe = useListenable('swipe'),
+          swipe = useListenable('swipe', { gesture: swipeGesture }),
           blacklist = [
             '.baleada-prose-article .overflow-y-scroll',
             '.baleada-prose-article .overflow-y-scroll *',
@@ -327,7 +334,7 @@ export default {
 
     onMounted(() => {
       swipe.value.listen(
-        (gesture, { toDirection }) => {
+        (event, gesture, { toDirection }) => {
           const direction = toDirection(gesture.metadata.angle.degrees)
           if (direction === 'right') {
             openNav()
@@ -339,7 +346,7 @@ export default {
       )
 
       swipe.value.listen(
-        (gesture, { toDirection }) => {
+        (event, gesture, { toDirection }) => {
           const direction = toDirection(gesture.metadata.angle.degrees)
           if (direction === 'left') {
             openArticle()
@@ -349,7 +356,7 @@ export default {
       )
 
       swipe.value.listen(
-        (gesture, { toDirection }) => {
+        (event, gesture, { toDirection }) => {
           const direction = toDirection(gesture.metadata.angle.degrees)
           if (direction === 'right') {
             openArticle()
@@ -424,6 +431,7 @@ export default {
       openNav,
       openArticle,
       openTableOfContents,
+      handleSidebarClick,
 
       nav,
       article,

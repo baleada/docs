@@ -2,7 +2,7 @@
 title: API design
 framework: agnostic
 publish: true
-order: 2
+order: 3
 ---
 
 For any individual piece of UI logic, there are plenty of ways to implement it, and plenty of packages already published that can `npm install` your troubles away.
@@ -131,6 +131,8 @@ instance
   .yetAnotherMethod() // -> Works 👍 and returns instance
 ```
 :::
+
+
 
 
 Classes **always** store a shallow copy of their constructors' state in a public property named after the state's type (e.g. `string`, `array`, etc.).

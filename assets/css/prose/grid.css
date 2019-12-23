@@ -1,5 +1,5 @@
 .baleada-prose-grid {
-  @apply with-max-h w-full flex flex-col mb-6;
+  @apply w-full flex flex-col mb-6;
 
   & > div {
     @apply with-max-w w-full mx-auto;
@@ -25,7 +25,7 @@
   }
 
   .contents {
-    @apply mx-auto min-w-5 with-max-h inline-block;
+    @apply mx-auto min-w-5 with-max-h inline-block scrollable;
 
     [role="grid"] {
       @apply w-full mr-auto;
@@ -104,7 +104,7 @@
       [role="gridcell"]:first-child {
         @apply sticky left-0;
       }
-    }    
+    }
   }
 
   .dark & {
@@ -144,12 +144,6 @@
         }
       }
     }
-  }
-}
-
-@media screen and (min-width: theme('screens.md')) {
-  .baleada-prose-article .baleada-prose-grid .contents {
-    @apply max-h-full;
   }
 }
 

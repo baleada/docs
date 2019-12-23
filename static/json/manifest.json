@@ -33,6 +33,17 @@
   },
   {
     "level": 1,
+    "name": "gesture",
+    "pages": [
+      {
+        "title": "What is Baleada Gesture?",
+        "framework": "agnostic",
+        "href": "/docs/gesture"
+      }
+    ]
+  },
+  {
+    "level": 1,
     "name": "icons",
     "pages": [
       {

@@ -39,6 +39,11 @@
     & > .baleada-prose-media {
       @apply mx-auto max-w-full scrollable;
     }
+
+    & > pre,
+    & > .baleada-prose-codeblock > .contents > pre {
+      @apply scrollable;
+    }
   }
 
 

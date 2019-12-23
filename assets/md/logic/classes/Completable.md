@@ -5,15 +5,6 @@ publish: true
 order: 0
 ---
 
-<!-- <BaleadaLogicLibraryIntro
-  name="Completable"
-  stateType="string"
-  allowsTo="[
-    'extract a segment of the string'
-  ]"
-  givesMethodsTo="replace the segment or the full string with a more complete string"
-/> -->
-
 Completable is a class that enriches a string by:
   - Allowing it to store a current index-based location
   - Allowing it to extract a segment of the string
