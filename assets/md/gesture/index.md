@@ -5,14 +5,16 @@ publish: true
 order: 0
 ---
 
-Baleada Gesture is a tiny [factory function](https://www.youtube.com/watch?v=ImwrezYhw4w) that provides a useful API for defining custom [gestures](#what-is-a-gesture).
+Baleada Gesture is a tiny [factory function](https://www.youtube.com/watch?v=ImwrezYhw4w) that helps you define custom [gestures](#what-is-a-gesture).
+
+The function returns an API—more specifically, a JavaScript object with useful properties and methods that will help you handle DOM events and recognize gestures.
 
 
 :::
 ## A note, before you dive in
 :::
 
-Baleada Gesture was designed and written during the development of the [`Listenable`](/docs/logic/classes/listenable) class in Baleada Logic, and [Baleada Listenable Gestures](/docs/listenable-gestures) was built on top of Baleada Gesture to help you listen for the following gestures in your project:
+Baleada Gesture was designed and written during the development of the [`Listenable`](/docs/logic/classes/listenable) class in Baleada Logic, and [Baleada Listenable Gestures](/docs/listenable-gestures) is built on top of Baleada Gesture to help you listen for the following gestures in your project:
 - clicks (for recognizing single clicks, double clicks, or any other number of clicks)
 - drag
 - dragdrop
@@ -62,24 +64,24 @@ npm i @baleada/gesture
 ### Import the factory function
 :::
 
-To get started, import the gesture factory function from Baleada Gesture's entry file:
+To get started, import the `gesture` factory function from Baleada Gesture's entry file:
 
 :::
 ```js
-import gestureFactory from '@baleada/gesture'
+import gesture from '@baleada/gesture'
 ```
 :::
 
 
 :::
-Create your factory function
+### Create your factory function
 :::
 
 After you import `gesture`, define your own factory function for your custom gesture:
 
 :::
 ```js
-import gestureFactory from '@baleada/gesture'
+import gesture from '@baleada/gesture'
 
 export default function pan () {
   ...
@@ -92,16 +94,16 @@ export default function pan () {
 ### Build your objects
 :::
 
-At the bottom of your factory function, use the `gestureFactory` function to create a gesture object with useful properties and methods ([more on this later](#gesture-object-properties-and-methods)), and create the object you'll be returning from your function. You'll be passing an options object to the `gestureFactory` function, but we'll handle that part later.
+At the bottom of your factory function, use the `gesture` function to create a gesture API with useful properties and methods ([more on this later](#gesture-object-properties-and-methods)), and create the object you'll be returning from your function. You'll be passing an options object to the `gesture` function, but we'll handle that part later.
 
 :::
 ```js
-import gestureFactory from '@baleada/gesture'
+import gesture from '@baleada/gesture'
 
 export default function pan () {
   // We'll be putting other code here
 
-  const gesture = gestureFactory({ ... }),
+  const api = gesture({ ... }),
         object = {
           // Add properties, methods, getters, setters, etc.
         }
@@ -116,13 +118,13 @@ export default function pan () {
 ### Define your event handlers
 :::
 
-With your objects defined at the bottom, start defining functions at the top. These functions will handle incoming DOM events, extract any metadata you need, and determine whether or not the full sequence of events matches the definition of your custom gesture.
+With your objects defined at the bottom, start defining functions at the top. These functions will handle incoming DOM events, extract any metadata you need, and determine whether or not the full sequence of events matches the definition of your custom recognizer.
 
-You can name these functions anything, but a best practice is to name them after the type of event they will be handling:
+You can name these functions anything, but the best practice is to name them after the type of event they will be handling:
 
 :::
 ```js
-import gestureFactory from '@baleada/gesture'
+import gesture from '@baleada/gesture'
 
 export default function pan () {
   function touchstart () {
@@ -138,40 +140,40 @@ export default function pan () {
     ...
   }
 
-  const gesture = gestureFactory({ ... }),
+  const api = gesture({ ... }),
         object = { ... }
   return object
 }
 ```
 :::
 
-From inside your functions, you can freely access your gesture object:
+From inside your functions, you can freely access your gesture API:
 
 :::
 ```js
-import gestureFactory from '@baleada/gesture'
+import gesture from '@baleada/gesture'
 
 export default function pan () {
   function touchstart () {
-     console.log(gesture.events) // This works, because in practice, the function won't run until after the gesture object has been defined
+     console.log(api.events) // This works, because in practice, the function won't run until after the gesture API has been defined
   }
 
   ...
 
-  const gesture = gestureFactory({ ... }),
+  const api = gesture({ ... }),
         object = { ... }
   return object
 }
 ```
 :::
 
-Here's a full breakdown of the properties and methods the gesture object has:
+Below is a full breakdown of the properties and methods included with the gesture API.
 
 :::
-### Gesture object properties and methods
+### Gesture API properties and methods
 :::
 
-::: ariaLabel="Gesture properties and methods" canFilterByQuery
+::: ariaLabel="Gesture API properties and methods" canFilterByQuery
 
 | Property | Type | Description | Parameters | Return value |
 | --- | --- | --- | --- | --- |
@@ -188,13 +190,13 @@ Here's a full breakdown of the properties and methods the gesture object has:
 ### Pass your event handlers to the gesture factory
 :::
 
-When you're satisfied with the functions you've defined, return to the `gestureFactory` function's options object. Add a `handlers` property to the object. The value of the `handlers` property should be an object. The keys of the object should be the names of the DOM events you'll be listening to, and the values should be the functions you wrote previously to handle the events.
+When you're satisfied with the functions you've defined, return to the `gesture` function's optional parameter, which is an object. Add a `handlers` property to the object. The value of the `handlers` property should be an object. The keys of the object should be the names of the DOM events you'll be listening to, and the values should be the functions you wrote previously to handle the events.
 
 If you named your functions after the DOM events they handle, you can easily destructure them into your `handlers` object:
 
 :::
 ```js
-import gestureFactory from '@baleada/gesture'
+import gesture from '@baleada/gesture'
 
 export default function pan () {
   function touchstart () { ... }
@@ -202,7 +204,7 @@ export default function pan () {
   function touchcancel () { ... }
   function touchend () { ... }
 
-  const gesture = gestureFactory({
+  const api = gesture({
           handlers: { touchstart, touchmove, touchcancel, touchend }
         }),
         object = { ... }
@@ -211,35 +213,35 @@ export default function pan () {
 ```
 :::
 
-Internally, your gesture object uses the `handlers` option to make sure all events are routed to the correct handler, so that your gesture-identifying logic runs properly.
+Internally, your gesture API uses the `handlers` option to make sure all events are routed to the correct handler, so that your gesture-identifying logic runs properly.
 
 
 :::
-### Connect your object to the gesture object
+### Connect your object to the gesture API
 :::
 
-Each time a DOM event comes through, your gesture object will call the appropriate function defined in your `handlers` object, passing two arguments
+Each time a DOM event comes through, your gesture API will call the appropriate function defined in your `handlers` object, passing two arguments:
 1. The DOM event that just happened
-2. The "handler API". For more info on the handler API, [jump to the handler API section](#handler-api).
+2. The "handler API". For more info on the handler API, [check out the full guide](/docs/gesture/handler-api).
 
-For all of this to work, however, you need to make sure that events are being passed to your gesture object's `handle` method when they come through. You can connect these two objects however you like, but usually, the easiest way is to define a simple `handle` method on the object you'll be returning:
+For all of this to work, however, you need to make sure that events are being passed to your gesture API's `handle` method when they come through. You can connect these two objects however you like, but usually, the easiest way is to define a simple `handle` method on the object you'll be returning:
 
 :::
 ```js
-import gestureFactory from '@baleada/gesture'
+import gesture from '@baleada/gesture'
 
 export default function pan () {
   ...
-  const gesture = gestureFactory({ ... }),
+  const api = gesture({ ... }),
         object = {
-          handle: event => gesture.handle(event)
+          handle: event => api.handle(event)
         }
   return object
 }
 ```
 :::
 
-The last thing you need to know is what other options the `gestureFactory` function accepts so that you can customize the object you receive back. Here's a full breakdown:
+The last thing you need to know is what other options the `gesture` function accepts so that you can customize the object you receive back. Here's a full breakdown:
 
 :::
 ### Gesture factory options
@@ -251,7 +253,7 @@ The last thing you need to know is what other options the `gestureFactory` funct
 | `handlers` | Object | none | Passes key/value pairs, where each key is the name of a DOM event you want to listen to, and each value is the appropriate handler function you defined for that event. |
 | `recognizesConsecutive` | Boolean | `false` | <p>Indicates whether or not `gesture` should be able to recognize the same gesture multiple times in a row without calling its `reset` method.</p> <p>Keep it as `false` for gestures like "swipe" and "drag-and-drop", which have precise starting and ending points. Set it to `true` for gestures like "pan" or "click-and-drag", which can continue to occur after they are first recognized.</p> |
 | `maxSequenceLength` | Number | `false` | <p>Defines the maximum number of events that the `gesture` class will keep track of.</p> <p>If `maxSequenceLength` is a number greater than 0, `gesture` will remove the first event in the array each time the `maxSequenceLength` is exceeded. If `maxSequenceLength` is `false`, `gesture` will never remove events from the array.</p> |
-| `onReset` | Function | none | Passes a function that your gesture object will call each time its own `reset()` method is called. Your gesture object calls its own `reset()` method when its `status` is `'recognized'` and the `recognizesConsecutive` options is `false`. You can use the `onReset` option to hook into that function call and properly reset any variables you're using to store metadata about events. |
+| `onReset` | Function | none | Passes a function that your gesture API will call each time its own `reset()` method is called. Your gesture API calls its own `reset()` method when its `status` is `'recognized'` and the `recognizesConsecutive` options is `false`. You can use the `onReset` option to hook into that function call and properly reset any variables you're using to store metadata about events. |
 :::
 
 
@@ -263,7 +265,11 @@ For inspiration and some examples of how Baleada Gesture is used in practice, ch
 
 
 :::
-## Acknowledgements
+## Language, compilation, browser support, and dependencies
 :::
 
-Baleada Gesture was inspired by [Hammer](hammerjs.github.io/) and [ZingTouch](https://zingchart.github.io/zingtouch/).
+Baleada Gesture is written in modern JavaScript and compiled by [Babel](https://babeljs.io) to work in browsers that are used by more than 0.5% of global web visitors AND have had official support or updates in the past 24 months.
+
+To allow for [tree-shaking](https://webpack.js.org/guides/tree-shaking/), Baleada Gesture's compiled code has no side effects and uses [`import`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/import) and [`export`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/export) instead of [`require()`](https://nodejs.org/api/modules.html#modules_require_id) and [`module.exports`](https://nodejs.org/api/modules.html#modules_module_exports).
+
+Baleada Gesture has no dependencies.

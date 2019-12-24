@@ -276,7 +276,7 @@
 <script>
 import { ref, onMounted, inject } from '@vue/composition-api'
 
-import { swipe as swipeGesture } from '@baleada/listenable-gestures'
+import { swipe as gesture } from '@baleada/listenable-gestures'
 import { useListenable } from '@baleada/composition/vue'
 import { useSymbol } from '@baleada/prose/vue'
 import { EvaMenu, EvaClose, EvaList, EvaSun, EvaMoon, EvaLayout, EvaSquare } from '@baleada/icons/vue'
@@ -315,7 +315,7 @@ export default {
     const nav = ref(null),
           article = ref(null),
           tableOfContents = ref(null),
-          swipe = useListenable('swipe', { gesture: swipeGesture }),
+          swipe = useListenable('swipe', { gesture }),
           blacklist = [
             '.baleada-prose-article .overflow-y-scroll',
             '.baleada-prose-article .overflow-y-scroll *',
