@@ -143,8 +143,8 @@ module.exports = {
       default: '1px',
       '1': '1.5px',
       '2': '2px',
-      '4': '4px',
-      '8': '8px'
+      '3': '4px',
+      '4': '8px'
     },
     boxShadow: {
       '0': 'none',
