@@ -8,9 +8,9 @@ order: 0
 Baleada Tailwind Linear is a function that returns configurations from [Tailwind](https://tailwindcss.com)'s [default config file](https://github.com/tailwindcss/tailwindcss/blob/master/stubs/defaultConfig.stub.js), aliasing all class names so that they use a linear numeric naming convention.
 
 By default, it produces class names like the following:
-- `.text-400` instead of `text-base`
+- `.text-400` instead of `.text-base`
 - `.font-100` instead of `.font-hairline`
-- `mt-800`, `mt-900`, and `mt-1000`, instead of `mt-10`, `mt-12`, and `mt-16`
+- `.mt-800`, `.mt-900`, and `.mt-1000`, instead of `.mt-10`, `.mt-12`, and `.mt-16`
 
 It can be customized to produce classes like `.text-4` instead of `.text-400`.
 
@@ -62,9 +62,7 @@ And finally, Tailwind's [color](https://tailwindcss.com/docs/color) utilities us
 - `.bg-blue-800`
 - `.bg-blue-900`
 
-**T-shirt**, **semantic**, **proportional**, and **linear**—all four naming conventions have pros and cons that the Tailwind community is [still exploring](https://github.com/tailwindcss/tailwindcss/issues/1277).
-
-Baleada Tailwind Linear was built to help you get in on the action and explore the pros and cons of linear numeric class names in your own projects.
+**T-shirt**, **semantic**, **proportional numeric**, and **linear numeric**—all four naming conventions have their pros and cons. Baleada Tailwind Linear will help you explore the pros and cons of linear numeric class names in your own projects.
 
 :::
 ## Installation
@@ -177,6 +175,8 @@ module.exports = {
 
 All configurations returned by `tailwindLinear` are plain JavaScript objects, so you can also spread them out alongside any additional custom values you want to add.
 
+Just remember that you'll have to tack on the property name after your function call to make sure you're spreading your desired configuration object, instead of the parent object `tailwindLinear` returns.
+
 :::
 ```js
 const tailwindLinear = require('@baleada/tailwind-linear')
@@ -185,14 +185,14 @@ module.exports = {
   theme: {
     borderWidth: {
       '550': '3px',
-      ...tailwindLinear({ only: ['borderWidth'] })
+      ...tailwindLinear({ only: ['borderWidth'] }).borderWidth,
     }
   }
 }
 ```
 :::
 
-Note that `tailwindLinear` returns a full color object for the `colors` property. If you want to access a single color, you can tack on the color name right after your function call:
+To expand on that concept: `tailwindLinear` returns a full colors object for the `colors` property. If you want to access a single color, you can tack on `.colors` and the color name right after your function call:
 
 :::
 ```js
@@ -201,9 +201,9 @@ const tailwindLinear = require('@baleada/tailwind-linear')
 module.exports = {
   theme: {
     colors: {
-      blue: tailwindLinear({ only: ['colors'], increment: 1 }).blue,
+      blue: tailwindLinear({ only: ['colors'], increment: 1 }).colors.blue,
       gray: {
-        ...tailwindLinear({ only: ['colors'] }).gray,
+        ...tailwindLinear({ only: ['colors'] }).colors.gray,
         '1000': 'hsla(217, 30%, 8%, 1.0)',
       }
     }
