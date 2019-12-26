@@ -5,7 +5,7 @@
 </template>
 
 <script>
-import article from '~/assets/md/gesture/index.md'
+import article from '~/assets/md/tailwind-linear/default-config.md'
 
 export default {
   layout: 'prose',

@@ -1,7 +1,7 @@
 ---
 title: What is Baleada Gesture?
 framework: agnostic
-publish: true
+publish: false
 order: 0
 ---
 

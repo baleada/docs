@@ -34,13 +34,7 @@
   {
     "level": 1,
     "name": "gesture",
-    "pages": [
-      {
-        "title": "What is Baleada Gesture?",
-        "framework": "agnostic",
-        "href": "/docs/gesture"
-      }
-    ]
+    "pages": []
   },
   {
     "level": 1,
@@ -62,6 +56,11 @@
         "href": "/docs/icons/using-with-vue"
       }
     ]
+  },
+  {
+    "level": 1,
+    "name": "listenable gestures",
+    "pages": []
   },
   {
     "level": 1,
@@ -124,5 +123,26 @@
     "level": 1,
     "name": "prose",
     "pages": []
+  },
+  {
+    "level": 1,
+    "name": "tailwind linear",
+    "pages": [
+      {
+        "title": "What is Baleada Tailwind Linear?",
+        "framework": "agnostic",
+        "href": "/docs/tailwind-linear"
+      },
+      {
+        "title": "Class References",
+        "framework": "agnostic",
+        "href": "/docs/tailwind-linear/class-references"
+      },
+      {
+        "title": "Default Config",
+        "framework": "agnostic",
+        "href": "/docs/tailwind-linear/default-config"
+      }
+    ]
   }
 ]

@@ -11,10 +11,11 @@ function generateManifest (metadata) {
           },
           ...getDirs('./assets/md').map(dir => {
             const level = dir.match(/\//g).length - 2, // 2 backslashes in ./assets/md,
-                  name = dir.match(/\w+$/)[0],
-                  pages = getPages(name, published)
+                  name = dir.match(/(?:\w|-)+$/)[0],
+                  pages = getPages(name, published),
+                  displayName = name.replace(/-/g, ' ').replace(/markdown it/, 'markdown-it')
 
-            return { level, name, pages }
+            return { level, name: displayName, pages }
           }),
         ]
 
