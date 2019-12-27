@@ -23,8 +23,8 @@ To construct an Editable instance (Object), use the Editable constructor, which 
 
 | Parameter | Type | Required | Description |
 | --- | --- | --- | --- |
-| `state` | any | yep | Passes the state that will be made editable. |
-| `options` | Object | nope | Passes options for the Editable instance. See the [Editable constructor options](#Editable-constructor-options) section for more guidance. |
+| `state` | any | yes | Passes the state that will be made editable. |
+| `options` | Object | no | Passes options for the Editable instance. See the [Editable constructor options](#Editable-constructor-options) section for more guidance. |
 
 :::
 
@@ -100,10 +100,10 @@ First, here's a breakdown of what `options` can contain:
 :::
 | Property | Type | Required | Description |
 | --- | --- | --- | --- |
-| `item` | any | nope | Passes an item that will be added to the end of an Array |
+| `item` | any | no | Passes an item that will be added to the end of an Array |
 | `key` | String | Only when `type` is `map` or `object` | Indicates which of the Map or Object's keys will have its value set |
-| `value` | any | nope | Passes the value that will be set as the new value for the Map or Object's key (specified by the `key` option) |
-| `rename` | String | nope | Indicates which of the Map or Object's keys will be renamed using the String passed to the `key` option |
+| `value` | any | no | Passes the value that will be set as the new value for the Map or Object's key (specified by the `key` option) |
+| `rename` | String | no | Indicates which of the Map or Object's keys will be renamed using the String passed to the `key` option |
 :::
 
 And here's a breakdown of how all those factors influence write behavior:
@@ -133,10 +133,10 @@ First, here's a breakdown of what `options` can contain:
 
 | Property | Type | Required | Description |
 | --- | --- | --- | --- |
-| `key` | String | nope | Indicates which key of a Map or Object should be deleted. |
-| `item(currentItem)` | String, Function | nope | Indicates which item in an Array should be removed. See the [How to erase items from Arrays](#How-to-erase-items-from-arrays) section for more guidance. |
-| `last` | Boolean | nope | <p>Indicates whether or not the Editable instance should remove the last item from an Array or delete the last key of a Map or Object.</p>::: type="warning"The order of keys in JavaScript Objects is not consistent. Deleting the "last" key may not produce the same results across all environments. If the order of keys is important for your use case, consider using Maps instead.::: |
-| `all` | Boolean | nope | Indicates whether or not Editable should remove all items from an Array or delete all key/value pairs from a Map or Object. |
+| `key` | String | no | Indicates which key of a Map or Object should be deleted. |
+| `item(currentItem)` | String, Function | no | Indicates which item in an Array should be removed. See the [How to erase items from Arrays](#How-to-erase-items-from-arrays) section for more guidance. |
+| `last` | Boolean | no | <p>Indicates whether or not the Editable instance should remove the last item from an Array or delete the last key of a Map or Object.</p>::: type="warning"The order of keys in JavaScript Objects is not consistent. Deleting the "last" key may not produce the same results across all environments. If the order of keys is important for your use case, consider using Maps instead.::: |
+| `all` | Boolean | no | Indicates whether or not Editable should remove all items from an Array or delete all key/value pairs from a Map or Object. |
 
 :::
 

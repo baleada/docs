@@ -1,6 +1,6 @@
 @variants responsive, group-hover, focus-within, hover, focus, active {
   .with-max-h {
-    @apply max-h-5/6-screen;
+    @apply max-h-2/3-screen;
   }
 
   .with-max-w {

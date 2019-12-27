@@ -121,6 +121,17 @@
   },
   {
     "level": 1,
+    "name": "markdown-it spa links",
+    "pages": [
+      {
+        "title": "What is Baleada Markdown-it SPA Links?",
+        "framework": "agnostic",
+        "href": "/docs/markdown-it-spa-links"
+      }
+    ]
+  },
+  {
+    "level": 1,
     "name": "prose",
     "pages": []
   },

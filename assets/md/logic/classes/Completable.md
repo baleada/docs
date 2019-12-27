@@ -23,8 +23,8 @@ To construct a Completable instance (Object), use the Completable constructor, w
 
 | Parameter | Type | Required | Description |
 | --- | --- | --- | --- |
-| `string` | String | yep | Passes the string that will be made completable. |
-| `options` | Object | nope | Passes options for the Completable instance. See the [Completable constructor options](#Completable-constructor-options) section for more guidance. |
+| `string` | String | yes | Passes the string that will be made completable. |
+| `options` | Object | no | Passes options for the Completable instance. See the [Completable constructor options](#Completable-constructor-options) section for more guidance. |
 
 :::
 

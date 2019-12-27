@@ -22,8 +22,8 @@ To construct a Navigable instance (Object), use the Navigable constructor, which
 :::
 | Parameter | Type | Required | Description |
 | --- | --- | --- | --- |
-| `array` | Array | yep | Passes the array that will be made navigable. |
-| `options` | Object | nope | Passes options for the Navigable instance. See the [Navigable constructor options](#Navigable-constructor-options) section for more guidance. |
+| `array` | Array | yes | Passes the array that will be made navigable. |
+| `options` | Object | no | Passes options for the Navigable instance. See the [Navigable constructor options](#Navigable-constructor-options) section for more guidance. |
 :::
 
 

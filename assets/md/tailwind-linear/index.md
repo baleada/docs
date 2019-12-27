@@ -102,10 +102,10 @@ The `tailwindLinear` returns configurations for the following properties of the 
 - `maxWidth`
 - `colors`
 
-The function accepts one parameter: an object with options. Here's a full breakdown of that object:
+The function accepts one parameter: an object with options (none of which are required). Here's a full breakdown of that object:
 
 ::: ariaLabel="tailwindLinear options schema"
-| Property | Value's type | Default | Description |
+| Property | Value's type | Default | Value description |
 | --- | --- | --- | --- |
 | `only` | Array of Strings | An array of all the properties listed above | Indicates which properties' configurations should be returned by `tailwindLinear`. |
 | `increment` | Number | `100` | <p>Determines how much the class name is incremented for each step up in size.</p><p>For example, if you pass `1` as the `increment`, you'll get class names like `.text-4` and `.text-5` instead of the default `.text-400` and `.text-500`.</p> |
