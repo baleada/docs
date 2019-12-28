@@ -6,13 +6,18 @@ order: 0
 ---
 
 
-Editable is a class that enriches a piece of state by:
-- Allowing it to infer its data type
-- Allowing it to store and make changes to an editable version of itself, instead of mutating the original state
-- Giving it the methods necessary to handle different kinds of edits (write, overwrite, full delete, partial delete, cancel &amp; revert to original value, etc.)
+`Editable` is a class that enriches a piece of state by allowing it to:
+- Infer its data type
+- Store and make changes to an editable version of itself, instead of mutating the original state
+- Handle different kinds of edits (write, overwrite, full delete, partial delete, cancel &amp; revert to original value, etc.)
 
-Editable is written in vanilla JS with no dependencies.
+`Editable` is written in vanilla JS with no dependencies.
 
+::: type="danger"
+Documentation for `Editable` is still in progress.
+:::
+
+<!--
 :::
 ## Construct an Editable instance
 :::
@@ -199,4 +204,4 @@ editable.erase({
 If `options.item(currentItem)` returns `false` for every item in `state`, the Editable instance will not remove any items.
 
 If `options.item(currentItem)` returns `true` for more than one item in `state`, all of the matching items will be removed.
-:::
+::: -->

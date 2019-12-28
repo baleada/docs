@@ -5,15 +5,19 @@ publish: true
 order: 0
 ---
 
-Completable is a class that enriches a string by:
-  - Allowing it to store a current index-based location
-  - Allowing it to extract a segment of the string
-  - Giving it the methods necessary to replace the segment or the full string with a more complete string
+`Completable` is a class that enriches a string by allowing it to:
+  - Store a current index-based location
+  - Extract a segment of itself
+  - Replace the segment or the full string with a more complete string
 
-Completable is written in vanilla JS with no dependencies.
+`Completable` is written in vanilla JS with no dependencies.
 
-
+::: type="danger"
+Documentation for `Completable` is still in progress.
 :::
+
+
+<!-- :::
 ## Construct a Completable instance
 :::
 
@@ -148,4 +152,4 @@ After computing the new location, the `complete` method calls your `onLocate` fu
 
 ::: type="info"
 Note that `complete` does not set `string` or `location` to the new values, but you can do so using `setString` and `setLocation`.
-:::
+::: -->

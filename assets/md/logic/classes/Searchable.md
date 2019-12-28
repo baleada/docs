@@ -1,63 +1,17 @@
 ---
 title: Searchable
-
 framework: agnostic
-publish: false
+publish: true
+order: 0
 ---
 
-/*
- * Searchable.js
- * (c) 2019 Alex Vipond
- * Released under the MIT license
- */
+`Searchable` is a class that enriches an array by allowing it to:
+- Create and store a searchable index of itself
+- Search the index for matches or fuzzy matches to a query
+- Store search results
 
-/* Dependencies */
-import Dependency from '../wrappers/SearchableLunr.js'
+`Searchable` depends on [fast-fuzzy](https://github.com/EthanRutherford/fast-fuzzy).
 
-/* Util */
-
-export default class Searchable {
-  #computedResults
-  #dependencyOptions
-  #dependency
-
-  constructor (array, options = {}) {
-    /* Options */
-    options = {
-      positionIsIncluded: false,
-      itemIsIncluded: true,
-      ...options
-    }
-
-    /* Public properties */
-    this.array = array
-
-    /* Private properties */
-    this.#computedResults = []
-
-    /* Dependency */
-    this.#dependencyOptions = options
-    this.#dependency = new Dependency(this.array, this.#dependencyOptions)
-  }
-
-  /* Public getters */
-  get results () {
-    return this.#computedResults
-  }
-  get index () {
-    return this.#dependency.index
-  }
-
-  /* Public methods */
-  setArray (array) {
-    this.array = array
-    this.#dependency = new Dependency(this.array, this.#dependencyOptions)
-    return this
-  }
-  search (query) {
-    this.#computedResults = this.#dependency.search(query)
-    return this
-  }
-
-  /* Private methods */
-}
+::: type="danger"
+Documentation for `Navigable` is still in progress.
+:::

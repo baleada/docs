@@ -53,7 +53,7 @@ import { Listenable } from '@baleada/logic'
 
 const instance = new Listenable ('swipe', { gesture: swipe })
 
-Object.keys(swipe) // --> ['factory', 'events', 'recognized']
+Object.keys(swipe) // -> ['factory', 'events', 'recognized']
 ```
 :::
 

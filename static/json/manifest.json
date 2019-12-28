@@ -93,9 +93,24 @@
     "name": "classes",
     "pages": [
       {
+        "title": "Animatable",
+        "framework": "agnostic",
+        "href": "/docs/logic/classes/Animatable"
+      },
+      {
         "title": "Completable",
         "framework": "agnostic",
         "href": "/docs/logic/classes/Completable"
+      },
+      {
+        "title": "Copiable",
+        "framework": "agnostic",
+        "href": "/docs/logic/classes/Copiable"
+      },
+      {
+        "title": "Delayable",
+        "framework": "agnostic",
+        "href": "/docs/logic/classes/Delayable"
       },
       {
         "title": "Editable",
@@ -103,9 +118,19 @@
         "href": "/docs/logic/classes/Editable"
       },
       {
+        "title": "Fetchable",
+        "framework": "agnostic",
+        "href": "/docs/logic/classes/Fetchable"
+      },
+      {
         "title": "Navigable",
         "framework": "agnostic",
         "href": "/docs/logic/classes/Navigable"
+      },
+      {
+        "title": "Searchable",
+        "framework": "agnostic",
+        "href": "/docs/logic/classes/Searchable"
       }
     ]
   },

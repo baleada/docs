@@ -6,14 +6,20 @@ order: 0
 ---
 
 
-Navigable is a class that enriches an array by:
-- Allowing it to store the index-based location of an item that has been navigated to
-- Allowing it to retrieve the item that has been navigated to
-- Giving it the methods necessary to navigate to a different item
+`Navigable` is a class that enriches an array by allowing it to:
+- Store the index-based location of an item that has been navigated to
+- Retrieve the item that has been navigated to
+- Navigate forward or backward to a different item
+- Navigate to a specific or a random item
 
-Navigable is written in vanilla JS with no dependencies.
+`Navigable` is written in vanilla JS with no dependencies.
 
+::: type="danger"
+Documentation for `Navigable` is still in progress.
 :::
+
+
+<!-- :::
 ## Construct a Navigable instance
 :::
 
@@ -109,7 +115,7 @@ const instance = new Navigable(['Baleada', 'Logic', 'Navigable'])
 
 instance.goTo(2) // The array is now located at its last item
 instance.next() // The array navigated past the end of the array, so it will return to the beginning
-instance.location // --> 0
+instance.location // -> 0
 
 instance.goTo(5) // The array's largest index is 2 (indices start at 0), so going to 5 will leave 3 steps left over.
 /*
@@ -118,7 +124,7 @@ instance.goTo(5) // The array's largest index is 2 (indices start at 0), so goin
  * It steps forward once more, looping around to 0.
  * It then makes its final two steps, landing on 2.
  */
-instance.location // --> 2
+instance.location // -> 2
 
 ```
 :::
@@ -134,7 +140,7 @@ const instance = new Navigable(['Baleada', 'Logic', 'Navigable'])
 
 instance.goTo(0) // The array is now located at its last item
 instance.prev() // The array navigated past the beginning of the array, so it will loops to the end
-instance.location // --> 2
+instance.location // -> 2
 
 instance.goTo(-3) // The array's lowest index is 0 (indices start at 0), so going to -3 will leave 3 steps left over.
 /*
@@ -143,7 +149,7 @@ instance.goTo(-3) // The array's lowest index is 0 (indices start at 0), so goin
  * It steps backward once more, looping around to 2.
  * It then makes its final two steps, landing on 0.
  */
-instance.location // --> 0
+instance.location // -> 0
 
 ```
-:::
+::: -->

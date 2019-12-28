@@ -1,85 +1,17 @@
 ---
 title: Fetchable
-
 framework: agnostic
-publish: false
+publish: true
+order: 0
 ---
 
-/*
- * Fetchable.js
- * (c) 2019 Alex Vipond
- * Released under the MIT license
- */
+`Fetchable` is a class that enriches a resource (i.e. a URL) by allowing it to:
+- Asynchronously fetch itself
+- Store the response and the response JSON
+- Store its status ("ready", "fetching", or "fetched")
 
-/* Dependencies */
+`Fetchable` is written in vanilla JS with no dependencies, except for the [`fetch`](https://developer.mozilla.org/en-US/docs/Web/API/WindowOrWorkerGlobalScope/fetch) web API.
 
-/* Util */
-
-export default class Fetchable {
-  /* Private properties */
-  #computedFetching
-  #computedResponse
-  #computedError
-  #fetchOptions
-
-  constructor (resource, options = {}) {
-    /* Options */
-
-    /* Public properties */
-    this.resource = resource
-
-    /* Private properties */
-    this.#computedFetching = false
-    this.#computedResponse = {}
-    this.#computedError = {}
-
-    /* Dependency */
-    this.#fetchOptions = options
-  }
-
-  /* Public getters */
-  get fetching () {
-    return this.#computedFetching
-  }
-  get response () {
-    return this.#computedResponse
-  }
-  get responseJson () {
-    try {
-      return this.response.json()
-    } catch {
-      return {}
-    }
-  }
-  get error () {
-    return this.#computedError
-  }
-  get errorJson () {
-    try {
-      return this.error.json()
-    } catch {
-      return {}
-    }
-  }
-
-  /* Public methods */
-  setResource (resource) {
-    this.resource = resource
-    return this
-  }
-  fetch () {
-    this.#computedFetching = true
-
-    return fetch(this.resource, this.#fetchOptions)
-      .then(response => {
-        this.#computedResponse = response
-        return this
-      })
-      .catch(error => {
-        this.#computedError = error
-        return this
-      })
-  }
-
-  /* Private methods */
-}
+::: type="danger"
+Documentation for `Fetchable` is still in progress.
+:::

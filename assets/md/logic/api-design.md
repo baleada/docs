@@ -55,7 +55,7 @@ The `state` parameter is **always** required, and the `options` parameter is **a
 ```js
 const instance = new Example(state[, options])
 
-typeof instance // --> 'object'
+typeof instance // -> 'object'
 ```
 :::
 
@@ -89,12 +89,12 @@ For example, if you pass a String, the factory will return a String object, just
 // This example factory accepts a string
 const instance = example('baleada')
 
-instance instanceof String // --> true
-typeof instance === 'string' // --> false
+instance instanceof String // -> true
+typeof instance === 'string' // -> false
 
-instance // --> { 0: "b", 1: "a", 2: "l", 3: "e", 4: "a", 5: "d", 6: "a", length: 7}
+instance // -> { 0: "b", 1: "a", 2: "l", 3: "e", 4: "a", 5: "d", 6: "a", length: 7}
 `${instance}` // -> 'baleada'
-instance.toString() // --> 'baleada'
+instance.toString() // -> 'baleada'
 ```
 :::
 
@@ -144,9 +144,9 @@ Classes also **always** have a public method you can use to assign a new value t
 // The Searchable class's constructor accepts an Array
 const instance = new Searchable(['Baleada', 'Logic', 'Composition', 'Icons'])
 
-instance.array // --> ['Baleada', 'Logic', 'Composition', 'Icons']
-instance.setArray(['tortilla', 'beans', 'egg', 'avocado']) // --> returns instance
-instance.array  // --> ['tortilla', 'beans', 'egg', 'avocado']
+instance.array // -> ['Baleada', 'Logic', 'Composition', 'Icons']
+instance.setArray(['tortilla', 'beans', 'egg', 'avocado']) // -> returns instance
+instance.array  // -> ['tortilla', 'beans', 'egg', 'avocado']
 ```
 :::
 
@@ -157,11 +157,11 @@ Some classes, particularly those that were designed to capture input from your e
 // The Completable class's constructor accepts a String
 const instance = new Completable('Baleada')
 
-instance.string // --> 'Baleada'
-instance.location // --> 0
+instance.string // -> 'Baleada'
+instance.location // -> 0
 
-instance.setString('tortilla') // --> returns instance
-instance.setLocation('3') // --> returns instance
+instance.setString('tortilla') // -> returns instance
+instance.setLocation('3') // -> returns instance
 ```
 :::
 
@@ -174,25 +174,25 @@ Note that public properties are writeable—it's possible to assign values to th
 // The Editable class's constructor accepts state of any type
 const instance = new Editable('Baleada')
 
-instance.state // --> 'Baleada'
-instance.editableState // --> 'Baleada'
+instance.state // -> 'Baleada'
+instance.editableState // -> 'Baleada'
 
 /*
  * It's possible to write to instance.state directly.
  * However, for Editable to work correctly, instance.editableState
  * should be edited at the same time to avoid unexpected behavior.
  */
-instance.state = 'Logic' // --> It works
-instance.state // --> 'Logic'
-instance.editableState // --> 'Baleada'
+instance.state = 'Logic' // -> It works
+instance.state // -> 'Logic'
+instance.editableState // -> 'Baleada'
 
 /*
  * If you use instance.setState instead, the required side effect
  * (updating instance.editableState) is taken care of by Editable.
  */
 instance.setState('🌮')
-instance.state // --> '🌮'
-instance.editableState // --> '🌮'
+instance.state // -> '🌮'
+instance.editableState // -> '🌮'
 ```
 :::
 
@@ -215,8 +215,8 @@ const instance = new Completable('Baleada', {
   }
 })
 
-instance.string // --> 'Baleada'
-totalStringCompletions // --> 0
+instance.string // -> 'Baleada'
+totalStringCompletions // -> 0
 
 /*
  * When you call instance.complete, the Completable instance will create
@@ -229,8 +229,8 @@ totalStringCompletions // --> 0
  * totalStringCompletions.
  */
 instance.complete('Baleada: a toolkit for building web apps')
-instance.string // --> 'Baleada: a toolkit for building web apps'
-totalStringCompletions // --> 1
+instance.string // -> 'Baleada: a toolkit for building web apps'
+totalStringCompletions // -> 1
 ```
 :::
 
@@ -240,7 +240,7 @@ These `on<Method>` functions are a great way to hook into state changes and run 
 ```js
 const instance = new Completable('Baleada') // Completable has a default onComplete function defined for you
 
-instance.string // --> 'Baleada'
+instance.string // -> 'Baleada'
 
 /*
  * When you call instance.complete, the Completable instance will create
@@ -252,7 +252,7 @@ instance.string // --> 'Baleada'
  * to the new value.
  */
 instance.complete('Baleada: a toolkit for building web apps')
-instance.string // --> 'Baleada: a toolkit for building web apps'
+instance.string // -> 'Baleada: a toolkit for building web apps'
 ```
 :::
 
@@ -266,7 +266,7 @@ const instance = new Completable(
   { segmentsFromDivider: true }
 )
 
-instance.segment // --> 'toolkit'
+instance.segment // -> 'toolkit'
 instance.segment = 'Baleada' // Doesn't work, since instance.segment is a getter
 ```
 :::
@@ -289,7 +289,7 @@ Some classes have side effects that need to be cleaned up in order to avoid memo
 // Listenable can be used to listen to DOM events, media queries, Observer entries, and window idle periods.
 const instance = new Listenable(myEventType)
 
-instance.listen(myCallback) // --> Adds event listeners, connects observers, etc.
+instance.listen(myCallback) // -> Adds event listeners, connects observers, etc.
 
 instance.stop() // -> Removes all listeners, disconnects all observers, etc.
 ```

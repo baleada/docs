@@ -1,58 +1,23 @@
 ---
 title: Animatable
 framework: agnostic
-publish: false
+publish: true
+order: 0
 ---
 
-`Animatable` is an action provider that allows you to animate one or more elements and control the animations (play, pause, seek, etc.). It's powered by [anime](https://animejs.com).
+`Animatable` is a class that enriches an array of keyframes by allowing it to:
+- Compute intermediate steps between keyframes at a rate of 60 frames per second
+- Store an update the current frame's data
+- Seek to a specific frame
+- Play, pause, reverse, or restart the animation
+- Store the time the animation began and ended
+- Store the animation's percentage progress toward completion (or, in the case of infinitely looping animations, the percentage progress toward the next loop)
 
+`Animatable` is written in vanilla JS with no dependencies, except for [`requestAnimationFrame`](https://developer.mozilla.org/en-US/docs/Web/API/window/requestAnimationFrame) and [`cancelAnimationFrame`](https://developer.mozilla.org/en-US/docs/Web/API/window/cancelAnimationFrame).
 
-
-  constructor(elements, options = {}) {
-    /* Options */
-
-    /* Public properties */
-    this.elements = elements
-
-    /* Dependency */
-    this.#dependencyOptions = options
-    this.#dependency = new Dependency(this.elements, this.#dependencyOptions)
-  }
-
-  /* Public getters */
-  get animation() {
-    return this.#dependency.animation
-  }
-
-  /* Public methods */
-  setElements(elements) {
-    this.elements = elements
-    this.#dependency = new Dependency(this.elements, this.#dependencyOptions)
-    return this
-  }
-  play() {
-    this.#dependency.play()
-    return this
-  }
-  pause() {
-    this.#dependency.pause()
-    return this
-  }
-  restart() {
-    this.#dependency.restart()
-    return this
-  }
-  reverse() {
-    this.#dependency.reverse()
-    return this
-  }
-  seek(timestamp) {
-    this.#dependency.seek(timestamp)
-    return this
-  }
-
-  /* Private methods */
-}
+::: type="danger"
+Documentation for `Animatable` is still in progress.
+:::
 
 :::
 ## Further resources
