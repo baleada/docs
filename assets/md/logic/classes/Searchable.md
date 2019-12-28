@@ -13,5 +13,5 @@ order: 0
 `Searchable` depends on [fast-fuzzy](https://github.com/EthanRutherford/fast-fuzzy).
 
 ::: type="danger"
-Documentation for `Navigable` is still in progress.
+Documentation for `Searchable` is still in progress.
 :::
