@@ -5,8 +5,8 @@ publish: true
 order: 0
 ---
 
-`Listenable` is a class that enriches an event type (String), allowing it to:
-- Listen for that event type
+`Listenable` is a class that enriches an event type, observation type, media query, or custom gesture, allowing it to:
+- Listen for that event type, observation type, media query, or custom gesture and execute a callback function when it happens
 - Clean up all listening activity to avoid memory leaks
 - Retrieve a list of active listeners that it has added
 
