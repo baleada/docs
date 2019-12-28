@@ -5,7 +5,7 @@ publish: true
 order: 0
 ---
 
-`Fetchable` is a class that enriches a resource (i.e. a URL) by allowing it to:
+`Fetchable` is a class that enriches a resource (i.e. a URL), allowing it to:
 - Asynchronously fetch itself
 - Store the response and the response JSON
 - Store its status ("ready", "fetching", or "fetched")

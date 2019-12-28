@@ -5,7 +5,7 @@ publish: true
 order: 0
 ---
 
-`Completable` is a class that enriches a string by allowing it to:
+`Completable` is a class that enriches a string, allowing it to:
   - Store a current index-based location
   - Extract a segment of itself
   - Replace the segment or the full string with a more complete string

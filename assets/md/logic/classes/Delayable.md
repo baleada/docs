@@ -5,7 +5,7 @@ publish: true
 order: 0
 ---
 
-`Delayable` is a class that enriches a function by allowing it to:
+`Delayable` is a class that enriches a function, allowing it to:
 - Be called after a certain number of milliseconds, either once or on an infinite loop
 - Store the number of times it has been executed
 - Store timestamps for each execution

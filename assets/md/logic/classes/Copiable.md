@@ -5,7 +5,7 @@ publish: true
 order: 0
 ---
 
-`Copiable` is a class that enriches a string by allowing it to:
+`Copiable` is a class that enriches a string, allowing it to:
 - Be copied to the clipboard
 - Store its status ("ready", "copying", or "copied")
 

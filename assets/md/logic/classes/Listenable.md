@@ -1,16 +1,16 @@
 ---
 title: Listenable
 framework: agnostic
-publish: false
+publish: true
 order: 0
 ---
 
-Listenable is a class that enriches an event type (String) by allowing it to:
+`Listenable` is a class that enriches an event type (String), allowing it to:
 - Listen for that event type
 - Clean up all listening activity to avoid memory leaks
 - Retrieve a list of active listeners that it has added
 
-Listener is written in vanilla JavaScript with no external dependencies, except for the following tools:
+`Listenable` is written in vanilla JavaScript with no external dependencies, except for the following tools:
 - [`addEventListener`](https://developer.mozilla.org/en-US/docs/Web/API/EventTarget/addEventListener) and [`removeEventListener`](https://developer.mozilla.org/en-US/docs/Web/API/EventTarget/removeEventListener)
 - [Intersection Observer](https://developer.mozilla.org/en-US/docs/Web/API/intersectionObserver), [Resize Observer](https://developer.mozilla.org/en-US/docs/Web/API/ResizeObserver), and [Mutation Observer](https://developer.mozilla.org/en-US/docs/Web/API/MutationObserver)
 - [`requestIdleCallback`](https://developer.mozilla.org/en-US/docs/Web/API/Window/requestIdleCallback) and [`cancelIdleCallback`](https://developer.mozilla.org/en-US/docs/Web/API/Window/cancelIdleCallback)

@@ -6,7 +6,7 @@ order: 0
 ---
 
 
-`Editable` is a class that enriches a piece of state by allowing it to:
+`Editable` is a class that enriches a piece of state, allowing it to:
 - Infer its data type
 - Store and make changes to an editable version of itself, instead of mutating the original state
 - Handle different kinds of edits (write, overwrite, full delete, partial delete, cancel &amp; revert to original value, etc.)

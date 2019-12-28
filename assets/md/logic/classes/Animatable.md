@@ -5,7 +5,7 @@ publish: true
 order: 0
 ---
 
-`Animatable` is a class that enriches an array of keyframes by allowing it to:
+`Animatable` is a class that enriches an array of keyframes, allowing it to:
 - Compute intermediate steps between keyframes at a rate of 60 frames per second
 - Store an update the current frame's data
 - Seek to a specific frame

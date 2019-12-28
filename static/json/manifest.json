@@ -123,6 +123,11 @@
         "href": "/docs/logic/classes/Fetchable"
       },
       {
+        "title": "Listenable",
+        "framework": "agnostic",
+        "href": "/docs/logic/classes/Listenable"
+      },
+      {
         "title": "Navigable",
         "framework": "agnostic",
         "href": "/docs/logic/classes/Navigable"

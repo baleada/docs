@@ -6,7 +6,7 @@ order: 0
 ---
 
 
-`Navigable` is a class that enriches an array by allowing it to:
+`Navigable` is a class that enriches an array, allowing it to:
 - Store the index-based location of an item that has been navigated to
 - Retrieve the item that has been navigated to
 - Navigate forward or backward to a different item
