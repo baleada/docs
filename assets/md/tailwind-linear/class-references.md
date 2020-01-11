@@ -9,39 +9,6 @@ In this article, you'll find a class reference table for each of the properties 
 
 
 :::
-## Spacing
-:::
-
-Spacing values apply to margin, padding, height, and width classes. Also, remember that each margin class has a negative equivalent in both Tailwind and Baleada Tailwind Linear.
-
-The table below uses width classes as an example.
-
-::: ariaLabel="Comparison of Spacing linear numeric names and original names"
-| Baleada | Tailwind |
-| --- | --- |
-| `w-px` | `w-px` |
-| `.w-0` | `.w-0` |
-| `.w-100` | `.w-1` |
-| `.w-200` | `.w-2` |
-| `.w-300` | `.w-3` |
-| `.w-400` | `.w-4` |
-| `.w-500` | `.w-5` |
-| `.w-600` | `.w-6` |
-| `.w-700` | `.w-8` |
-| `.w-800` | `.w-10` |
-| `.w-900` | `.w-12` |
-| `.w-1000` | `.w-16` |
-| `.w-1100` | `.w-20` |
-| `.w-1200` | `.w-24` |
-| `.w-1300` | `.w-32` |
-| `.w-1400` | `.w-40` |
-| `.w-1500` | `.w-48` |
-| `.w-1600` | `.w-56` |
-| `.w-1700` | `.w-64` |
-:::
-
-
-:::
 ## Border radius
 :::
 
@@ -50,8 +17,9 @@ The table below uses width classes as an example.
 | --- | --- |
 | `.rounded-0` | `.rounded-none` |
 | `.rounded-300` | `.rounded-sm` |
-| `.rounded-400` | `.rounded-default` |
-| `.rounded-500` | `.rounded-lg` |
+| `.rounded-400` | `.rounded` |
+| `.rounded-500` | `.rounded-md` |
+| `.rounded-600` | `.rounded-lg` |
 | `.rounded-full` | `.rounded-full` |
 :::
 
@@ -79,7 +47,8 @@ The table below uses width classes as an example.
 | Baleada | Tailwind |
 | --- | --- |
 | `.shadow-0` | `.shadow-none` |
-| `.shadow-400` | `.shadow-default` |
+| `.shadow-300` | `.shadow-sm` |
+| `.shadow-400` | `.shadow` |
 | `.shadow-500` | `.shadow-md` |
 | `.shadow-600` | `.shadow-lg` |
 | `.shadow-700` | `.shadow-xl` |
@@ -167,6 +136,7 @@ The table below uses width classes as an example.
 ::: ariaLabel="Comparison of Max width linear numeric names and original names"
 | Baleada | Tailwind |
 | --- | --- |
+| `.max-w-0` | `.max-w-none` |
 | `.max-w-100` | `.max-w-xs` |
 | `.max-w-200` | `.max-w-sm` |
 | `.max-w-300` | `.max-w-md` |
@@ -178,4 +148,69 @@ The table below uses width classes as an example.
 | `.max-w-900` | `.max-w-5xl` |
 | `.max-w-1000` | `.max-w-6xl` |
 | `.max-w-full` | `.max-w-full` |
+| `.max-w-screen-{breakpoint}` | `.max-w-screen-{breakpoint}` |
+:::
+
+
+:::
+## Spacing
+:::
+
+Spacing values apply to margin, padding, height, width, and grid gap classes. Also, remember that each margin class has a negative equivalent in both Tailwind and Baleada Tailwind Linear.
+
+The table below uses width classes as an example.
+
+::: ariaLabel="Comparison of Spacing linear numeric names and original names"
+| Baleada | Tailwind |
+| --- | --- |
+| `w-px` | `w-px` |
+| `.w-0` | `.w-0` |
+| `.w-100` | `.w-1` |
+| `.w-200` | `.w-2` |
+| `.w-300` | `.w-3` |
+| `.w-400` | `.w-4` |
+| `.w-500` | `.w-5` |
+| `.w-600` | `.w-6` |
+| `.w-700` | `.w-8` |
+| `.w-800` | `.w-10` |
+| `.w-900` | `.w-12` |
+| `.w-1000` | `.w-16` |
+| `.w-1100` | `.w-20` |
+| `.w-1200` | `.w-24` |
+| `.w-1300` | `.w-32` |
+| `.w-1400` | `.w-40` |
+| `.w-1500` | `.w-48` |
+| `.w-1600` | `.w-56` |
+| `.w-1700` | `.w-64` |
+:::
+
+
+:::
+## Stroke width
+:::
+
+::: ariaLabel="Comparison of Max width linear numeric names and original names"
+| Baleada | Tailwind |
+| --- | --- |
+| `.stroke-0` | `.stroke-0` |
+| `.stroke-100` | `.stroke-1` |
+| `.stroke-200` | `.stroke-2` |
+:::
+
+
+:::
+## Transition duration
+:::
+
+::: ariaLabel="Comparison of Transition duration linear numeric names and original names"
+| Baleada | Tailwind |
+| --- | --- |
+| `duration-100` | `duration-75` |
+| `duration-200` | `duration-100` |
+| `duration-300` | `duration-150` |
+| `duration-400` | `duration-200` |
+| `duration-500` | `duration-300` |
+| `duration-600` | `duration-500` |
+| `duration-700` | `duration-700` |
+| `duration-800` | `duration-1000` |
 :::

@@ -1,6 +1,7 @@
 <template lang="html">
   <main class="h-screen flex flex-col items-center justify-center px-10">
     <BaleadaLogo
+      id="landing-page"
       ref="logo"
       :class="'-ml-2 h-13 w-13 sm:h-14 sm:w-14 md:h-15 md:w-15 text-primary-100'"
       :hasShadow="true"

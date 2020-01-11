@@ -5,7 +5,7 @@ publish: true
 order: 0
 ---
 
-Baleada Tailwind Linear is a function that returns configurations from [Tailwind](https://tailwindcss.com)'s [default config file](https://github.com/tailwindcss/tailwindcss/blob/master/stubs/defaultConfig.stub.js), aliasing all class names so that they use a linear numeric naming convention.
+Baleada Tailwind Linear is a function that returns theme configurations from [Tailwind](https://tailwindcss.com)'s [default config file](https://github.com/tailwindcss/tailwindcss/blob/master/stubs/defaultConfig.stub.js), aliasing all class names so that they use a linear numeric naming convention.
 
 By default, it produces class names like the following:
 - `.text-400` instead of `.text-base`
@@ -20,7 +20,15 @@ If you're familiar with the concept of a linear numeric naming convention in Tai
 ## WTF is a "linear numeric naming convention"?
 :::
 
-Tailwind uses a few different naming conventions for its utility classes. Some properties use "T-shirt sizes" in their class names. For example, here are the default [font size](https://tailwindcss.com/docs/font-size) classes:
+Tailwind uses several different naming conventions for its utility classes.
+
+Some classes, like [transition duration](https://tailwindcss.com/docs/transition-duration), use literal values from the underlying design system:
+- `duration-75` for `75ms`
+- `duration-100` for `100ms`
+- `duration-150` for `150ms`
+
+
+Other classes use "T-shirt sizes" in their class names. For example, here are the default [font size](https://tailwindcss.com/docs/font-size) classes:
 - `.text-xs`
 - `.text-sm`
 - `.text-base`
@@ -43,7 +51,7 @@ Other classes, like the ones for font weight, use more semantic words:
 - `.font-extrabold`
 - `.font-black`
 
-Spacing utilities ([margin](https://tailwindcss.com/docs/margin), [padding](https://tailwindcss.com/docs/padding), [width](https://tailwindcss.com/docs/width), and [height](https://tailwindcss.com/docs/height)), use proportional numeric names. This means that the classes are suffixed with numbers that are proportional to the underlying values.
+Spacing utilities ([margin](https://tailwindcss.com/docs/margin), [padding](https://tailwindcss.com/docs/padding), [width](https://tailwindcss.com/docs/width), [height](https://tailwindcss.com/docs/height), and [gap](https://tailwindcss.com/docs/gap)), use proportional numeric names. This means that the classes are suffixed with numbers that are proportional to the underlying values.
 
 Spacing utilities multiply the underlying `rem` value by 4 to derive the class name. Here are a few examples from the padding utilities:
 - `.p-1` for `0.25rem`
@@ -62,7 +70,8 @@ And finally, Tailwind's [color](https://tailwindcss.com/docs/color) utilities us
 - `.bg-blue-800`
 - `.bg-blue-900`
 
-**T-shirt**, **semantic**, **proportional numeric**, and **linear numeric**—all four naming conventions have their pros and cons. Baleada Tailwind Linear will help you explore the pros and cons of linear numeric class names in your own projects.
+**Literal**, **T-shirt**, **semantic**, **proportional numeric**, and **linear numeric**—all of these naming conventions have their pros and cons. Baleada Tailwind Linear will help you explore the pros and cons of linear numeric class names in your own projects.
+
 
 :::
 ## Installation
@@ -101,6 +110,8 @@ The `tailwindLinear` returns configurations for the following properties of the 
 - `lineHeight`
 - `maxWidth`
 - `colors`
+- `strokeWidth`
+- `transition`
 
 The function accepts one parameter: an object with options (none of which are required). Here's a full breakdown of that object:
 
@@ -130,6 +141,7 @@ If you only want to use linear numeric naming for some properties, use the `only
 
 :::
 ```js
+// tailwind.config.js
 const tailwindLinear = require('@baleada/tailwind-linear')
 
 module.exports = {
@@ -141,13 +153,14 @@ module.exports = {
 :::
 
 ::: type="info"
-The default configurations for margin, padding, height, and width all reference your `spacing` object. Including `spacing` in your `tailwindLinear` output will adjust all of those utility classes.
+The default configurations for margin, padding, height, width, and gap all reference your `spacing` object. Including `spacing` in your `tailwindLinear` output will adjust all of those utility classes.
 :::
 
 To customize the increment that gets used in your class names, use the `increment` option.
 
 :::
 ```js
+// tailwind.config.js
 const tailwindLinear = require('@baleada/tailwind-linear')
 
 module.exports = {
@@ -162,6 +175,7 @@ You can call `tailwindLinear` as many times as you want, so feel free to use the
 
 :::
 ```js
+// tailwind.config.js
 const tailwindLinear = require('@baleada/tailwind-linear')
 
 module.exports = {
@@ -173,19 +187,20 @@ module.exports = {
 ```
 :::
 
-All configurations returned by `tailwindLinear` are plain JavaScript objects, so you can also spread them out alongside any additional custom values you want to add.
+Almost all configurations returned by `tailwindLinear` are plain JavaScript objects, so you can typically spread them out alongside any additional custom values you want to add.
 
 Just remember that you'll have to tack on the property name after your function call to make sure you're spreading your desired configuration object, instead of the parent object `tailwindLinear` returns.
 
 :::
 ```js
+// tailwind.config.js
 const tailwindLinear = require('@baleada/tailwind-linear')
 
 module.exports = {
   theme: {
     borderWidth: {
       '550': '3px',
-      ...tailwindLinear({ only: ['borderWidth'] }).borderWidth,
+      ...tailwindLinear({ only: ['borderWidth'] }).borderWidth, // Spreads in all the default borderWidth values
     }
   }
 }
@@ -196,17 +211,40 @@ To expand on that concept: `tailwindLinear` returns a full colors object for the
 
 :::
 ```js
+// tailwind.config.js
 const tailwindLinear = require('@baleada/tailwind-linear')
 
 module.exports = {
   theme: {
     colors: {
-      blue: tailwindLinear({ only: ['colors'], increment: 1 }).colors.blue,
+      blue: tailwindLinear({ only: ['colors'], increment: 1 }).colors.blue, // .bg-blue-1, .bg-blue-2, etc.
       gray: {
-        ...tailwindLinear({ only: ['colors'] }).colors.gray,
+        ...tailwindLinear({ only: ['colors'] }).colors.gray, // .bg-gray-100, .bg-gray-200, etc.
         '1000': 'hsla(217, 30%, 8%, 1.0)',
       }
     }
+  }
+}
+```
+:::
+
+
+The only property for which `tailwindLinear` *doesn't* return a plain Javascript object is `maxWidth`.
+
+For `maxWidth`, `tailwindLinear` returns a function, just like the one found in [Tailwind's default config](https://github.com/tailwindcss/tailwindcss/blob/master/stubs/defaultConfig.stub.js). To add additional values to your `maxWidth` config, you'll need to pass Tailwind's `theme` function and `configUtils` object to that function, using [Tailwind's closure syntax](https://tailwindcss.com/docs/theme#referencing-other-values) like so:
+
+
+:::
+```js
+// tailwind.config.js
+const tailwindLinear = require('@baleada/tailwind-linear')
+
+module.exports = {
+  theme: {
+    maxWidth: (theme, configUtils) => ({
+      ...tailwindLinear({ only: ['maxWidth'] }).maxWidth(theme, configUtils), // Generates and spreads in the maxWidth config object
+      '420': '420px',
+    }),
   }
 }
 ```
@@ -229,7 +267,7 @@ Baleada Tailwind Linear follows the rules below, in their exact order, to answer
     Then, Baleada Tailwind Linear increments in both directions from the `400` class. Note that this sometimes results in certain properties (e.g. `borderWidth`) having `400` classes, but not having classes for `100`, `200`, or `300`.
 
     Tailwind's `.shadow-inner` is treated as a default negative shadow, and is assigned a key of `-400` (which produces the class `.-shadow-400`).
-1. Proportions (e.g. `full: 100%`) and key words (e.g. `auto`) are left unchanged.
+1. Proportions (e.g. `full: 100%`), key words (e.g. `auto` and `outline`), and screen breakpoints (applicable for `max-width` utilities) are left unchanged.
 2. If the unit (e.g. `px`) is specified in the class, it's left unchanged.
 
 Once you get used to the naming convention, you'll find that classes become very easy to guess without visiting your config file or these docs.
@@ -237,3 +275,31 @@ Once you get used to the naming convention, you'll find that classes become very
 But, if you have any doubts, check out the [class references](/docs/tailwind-linear/class-references) to see classes are being generated for each property, and how they match up with the original Tailwind classes.
 
 Also, feel free to peruse the [full default config](/docs/tailwind-linear/default-config) that `tailwindLinear` returns.
+
+
+:::
+## Language, compilation, browser support, and dependencies
+:::
+
+Baleada Tailwind Linear is written in modern JavaScript, exported using CommonJS modules, and is not compiled. It's not designed to be used in the browser, but instead will most often be used in the Node environment where you are configuring Tailwind.
+
+Baleada Tailwind Linear has no dependencies, although it does require Tailwind as a peer dependency.
+
+
+
+:::
+## Semantic versioning conventions
+:::
+
+In Baleada Tailwind Linear, the only thing that will ever trigger a new major version is a change to the underlying naming convention outlined above.
+
+From time to time, Tailwind's default config file changes, usually to support new properties, and sometimes to expand the design system and add values for existing properties. When this happens, any necessary updates to Baleada Tailwind Linear will be released as a new minor version, even if the linear numeric naming convention gets applied in a different way.
+
+For example, Tailwind 1.2 introduced a new value for the `borderRadius` property, between two existing values, and it also added the `transitionDuration` and `strokeWidth` properties (among others). In response, Baleada Tailwind Linear was updated in the following ways:
+- Baleada Tailwind Linear's `borderRadius.500` was changed to `borderRadius.600`, and the new value was inserted as `borderRadius.500`.
+- The `transitionDuration` and `strokeWidth` properties were added to the config object returned by Baleada Tailwind Linear
+- Baleada Tailwind Linear released a new minor version
+
+After Tailwind 1.2 was released, anyone using the `.rounded-500` class generated by Baleada Tailwind Linear would have had to change all occurrences of that class to `.rounded-600` in their code. 
+
+This kind of impact is characteristic of a breaking change and a new major version. However, since it was a Tailwind design system change and not a change to the rules of the linear numeric naming convention, only a new minor version was released.

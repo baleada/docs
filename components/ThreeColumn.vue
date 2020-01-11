@@ -49,6 +49,7 @@
           ]"
         >
           <BaleadaLogo
+            id="nav-header"
             :tortillaClasses="isDarkTheme ? 'text-primary-gray-500' : undefined"
             :burnClasses="isDarkTheme ? 'text-primary-gray-1000' : undefined"
           />
@@ -60,7 +61,7 @@
         :class="[
           isDarkTheme ? 'text-gray-600 hover:text-gray-400' : 'text-gray-900 hover:text-primary-600'
         ]"
-        name="close-menu"
+        aria-label="Close menu"
         @click="openArticle"
       >
         <EvaClose :class="'icon'"/>
@@ -75,7 +76,7 @@
             :class="[
               isDarkTheme ? 'text-primary-gray-500' : 'text-gray-600'
             ]"
-            name="Disable dark theme"
+            aria-label="Disable dark theme"
             @click="() => disableDarkTheme()"
           >
             <EvaSun :class="'icon h-5 w-5 transition'"/>
@@ -92,7 +93,7 @@
             ]"
           >
             <button
-              name="Toggle dark theme"
+              aria-label="Toggle dark theme"
               class="absolute rounded-full h-6 w-6 shadow transition focus:shadow-outline"
               :style="isDarkTheme ? { transform: 'translateX(-100%)' } : {}"
               :class="[
@@ -105,7 +106,7 @@
             :class="[
               isDarkTheme ? 'text-primary-gray-500' : 'text-gray-600'
             ]"
-            name="Enable dark theme"
+            aria-label="Enable dark theme"
             @click="() => enableDarkTheme()"
           >
             <EvaMoon :class="'icon h-5 w-5 transition'"/>
@@ -125,7 +126,7 @@
             :class="[
               isDarkTheme ? 'text-primary-gray-500' : 'text-gray-600'
             ]"
-            name="Disable minimalist theme"
+            aria-label="Disable minimalist theme"
             @click="() => disableMinimalistTheme()"
           >
             <EvaLayout :class="'icon transition h-5 w-5'" />
@@ -144,7 +145,7 @@
             ]"
           >
             <button
-              name="Toggle minimalist theme"
+              aria-label="Toggle minimalist theme"
               class="absolute rounded-full h-6 w-6 shadow transition focus:shadow-outline"
               :style="isMinimalistTheme ? { transform: 'translateX(-100%)' } : {}"
               :class="[
@@ -158,7 +159,7 @@
             :class="[
               isDarkTheme ? 'text-primary-gray-500' : 'text-gray-600'
             ]"
-            name="Enable minimalist theme"
+            aria-label="Enable minimalist theme"
             @click="() => enableMinimalistTheme()"
           >
             <EvaSquare :class="'icon transition h-5 w-5'" />
@@ -197,6 +198,7 @@
       <transition name="fade">
         <div v-show="!isMinimalistTheme">
           <BaleadaLogo
+            id="article-decoration"
             :class="'absolute h-19 w-19 top-0 right-0'"
             :style="{ transform: 'translate(14%, -42%)' }"
             type="outline"
@@ -209,7 +211,7 @@
       <header class="relative flex items-center z-40 absolute left-0 top-0 pt-6 px-7 sm:px-9 lg:pl-11 w-full">
         <button
           type="button"
-          name="Show navigation"
+          aria-label="Show navigation"
           class="lg:hidden h-7 w-7 p-0 rounded-full transition btn-grows"
           :class="[
             isDarkTheme ? 'text-gray-600 hover:text-gray-400' : 'text-gray-700 hover:text-primary-600'
@@ -223,7 +225,7 @@
 
         <button
           type="button"
-          name="Show table of contents"
+          aria-label="Show table of contents"
           class="ml-auto lg:hidden h-7 w-7 p-0 rounded-full transition btn-grows"
           :class="[
             isDarkTheme ? 'text-gray-600 hover:text-gray-400' : 'text-gray-700 hover:text-primary-600'
@@ -258,7 +260,7 @@
           :class="[
             isDarkTheme ? 'text-gray-600 hover:text-gray-400' : 'text-gray-900 hover:text-primary-600'
           ]"
-          name="close-menu"
+          aria-label="close-menu"
           @click="openArticle"
         >
           <EvaClose :class="'icon'"/>
@@ -342,7 +344,7 @@ export default {
             openTableOfContents()
           }
         },
-        { target: article.value, blacklist }
+        { target: article.value, blacklist, addEventListener: { passive: true } }
       )
 
       swipe.value.listen(
@@ -352,7 +354,7 @@ export default {
             openArticle()
           }
         },
-        { target: nav.value }
+        { target: nav.value, addEventListener: { passive: true } }
       )
 
       swipe.value.listen(
@@ -362,7 +364,7 @@ export default {
             openArticle()
           }
         },
-        { target: tableOfContents.value }
+        { target: tableOfContents.value, addEventListener: { passive: true } }
       )
     })
 

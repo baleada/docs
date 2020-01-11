@@ -12,12 +12,12 @@
     :slot="data.slot"
     :style="data.style"
   >
-    <g clip-path="url(#baleada-logo-clip)">
-      <g :filter="props.hasShadow ? 'url(#baleada-logo-shadow)' : ''">
+    <g :clip-path="`url(#${props.id}-baleada-logo-clip)`">
+      <g :filter="props.hasShadow ? `url(#${props.id}-baleada-logo-shadow)` : ''">
         <mask id="baleada-logo-mask" mask-type="alpha" maskUnits="userSpaceOnUse" x="49" y="81" width="901" height="866">
           <path d="M219.155 212.558C9.3317 401.484 -7.60915 724.735 181.317 934.559C280.14 1044.31 1039.98 360.151 941.156 250.397C752.23 40.5732 428.979 23.6324 219.155 212.558Z" fill="#000"/>
         </mask>
-        <g mask="url(#baleada-logo-mask)">
+        <g :mask="`url(#${props.id}-baleada-logo-mask)`">
           <!-- Filled tortilla -->
           <path
             v-if="props.type === 'fill'"
@@ -54,7 +54,7 @@
       </g>
     </g>
     <defs>
-      <filter id="baleada-logo-shadow" x="10" y="61.2415" width="980" height="945.195" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+      <filter :id="`${id}-baleada-logo-shadow`" x="10" y="61.2415" width="980" height="945.195" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
         <feFlood flood-opacity="0" result="BackgroundImageFix"/>
         <feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0"/>
         <feOffset dy="20"/>
@@ -63,7 +63,7 @@
         <feBlend mode="normal" in2="BackgroundImageFix" result="effect1_dropShadow"/>
         <feBlend mode="normal" in="SourceGraphic" in2="effect1_dropShadow" result="shape"/>
       </filter>
-      <clipPath id="baleada-logo-clip">
+      <clipPath :id="`${id}-baleada-logo-clip`">
         <rect width="1000" height="1000" fill="white"/>
       </clipPath>
     </defs>
@@ -73,6 +73,10 @@
 <script>
 export default {
   props: {
+    id: {
+      type: String,
+      required: true,
+    },
     type: {
       type: String,
       default: 'fill',
