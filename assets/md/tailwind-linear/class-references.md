@@ -47,6 +47,7 @@ In this article, you'll find a class reference table for each of the properties 
 | Baleada | Tailwind |
 | --- | --- |
 | `.shadow-0` | `.shadow-none` |
+| `.shadow-200` | `.shadow-xs` |
 | `.shadow-300` | `.shadow-sm` |
 | `.shadow-400` | `.shadow` |
 | `.shadow-500` | `.shadow-md` |

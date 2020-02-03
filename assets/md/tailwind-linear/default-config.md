@@ -21,7 +21,8 @@ Below is the full configuration returned by the [`tailwindLinear` function](/doc
   borderWidth: { '0': '0', '400': '1px', '500': '2px', '600': '4px', '700': '8px' },
   boxShadow: {
     '0': 'none',
-    '300': '0 1px 2px 0 rgba(0, 0, 0, 0.04)',
+    '200': '0 0 0 1px rgba(0, 0, 0, 0.05)',
+    '300': '0 1px 2px 0 rgba(0, 0, 0, 0.05)',
     '400': '0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06)',
     '500': '0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06)',
     '600': '0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05)',
