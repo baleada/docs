@@ -268,13 +268,18 @@ Baleada Tailwind Linear follows the rules below, in their exact order, to answer
 
     Tailwind's `.shadow-inner` is treated as a default negative shadow, and is assigned a key of `-400` (which produces the class `.-shadow-400`).
 1. Proportions (e.g. `full: 100%`), key words (e.g. `auto` and `outline`), and screen breakpoints (applicable for `max-width` utilities) are left unchanged.
-2. If the unit (e.g. `px`) is specified in the class, it's left unchanged.
+1. If the unit (e.g. `px`) is specified in the default Tailwind class, it's left unchanged.
+2. If a default Tailwind property includes a secondary set of values with different units, the Baleada Tailwind Linear follows all the above rules to name those secondary values' classes, and finally includes the unit (and an extra hyphen) in the middle of the class name.
+
+    For example, default `lineHeight` values include both relative values (e.g. `1`, `1.25`, etc.) and fixed values using `rem` units (e.g. `1rem`, `1.25rem`, etc.). Baleada Tailwind Linear follows all the above naming rules to name the relative and fixed values, then, to avoid naming collisions, adds `-rem-` to the middle of the class name for all `rem` values.
+
+    This produces classes like `.leading-300` (relative line height of `1.375`) and `.leading-rem-300` (fixed line height of `0.75rem`).
 
 Once you get used to the naming convention, you'll find that classes become very easy to guess without visiting your config file or these docs.
 
 But, if you have any doubts, check out the [class references](/docs/tailwind-linear/class-references) to see classes are being generated for each property, and how they match up with the original Tailwind classes.
 
-Also, feel free to peruse the [full default config](/docs/tailwind-linear/default-config) that `tailwindLinear` returns.
+Also, feel free to peruse the [full default config](/docs/tailwind-linear/default-config) returned by the `tailwindLinear` function if you're curious about specific underlying values.
 
 
 :::

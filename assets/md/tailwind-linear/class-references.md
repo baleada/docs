@@ -127,6 +127,14 @@ In this article, you'll find a class reference table for each of the properties 
 | `.leading-400` | `.leading-normal` |
 | `.leading-500` | `.leading-relaxed` |
 | `.leading-600` | `.leading-loose` |
+| `.leading-rem-300` | `.leading-3` |
+| `.leading-rem-400` | `.leading-4` |
+| `.leading-rem-500` | `.leading-5` |
+| `.leading-rem-600` | `.leading-6` |
+| `.leading-rem-700` | `.leading-7` |
+| `.leading-rem-800` | `.leading-8` |
+| `.leading-rem-900` | `.leading-9` |
+| `.leading-rem-1000` | `.leading-10` |
 :::
 
 

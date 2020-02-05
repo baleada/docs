@@ -180,7 +180,15 @@ Below is the full configuration returned by the [`tailwindLinear` function](/doc
     '300': '1.375',
     '400': '1.5',
     '500': '1.625',
-    '600': '2'
+    '600': '2',
+    'rem-300': '.75rem',
+    'rem-400': '1rem',
+    'rem-500': '1.25rem',
+    'rem-600': '1.5rem',
+    'rem-700': '1.75rem',
+    'rem-800': '2rem',
+    'rem-900': '2.25rem',
+    'rem-1000': '2.5rem',
   },
   maxWidth: (theme, { breakpoints }) => ({
     '0': 'none',
