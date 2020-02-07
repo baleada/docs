@@ -55,7 +55,7 @@ export default {
     '~/plugins/example-components',
     '~/plugins/prose',
     '~/plugins/vue-composition-api',
-    '~/plugins/runtime.js',
+    // '~/plugins/icons.js',
   ],
 
   /*

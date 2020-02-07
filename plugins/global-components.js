@@ -1,4 +1,5 @@
 import Vue from 'vue'
+import ApiDesignSpecCheckmark from '~/components/global/ApiDesignSpecCheckmark.vue'
 import BaleadaLogo from '~/components/global/BaleadaLogo.vue'
 import CompositionArticle from '~/components/global/CompositionArticle.vue'
 import DocsAdjacentArticleLinks from '~/components/global/DocsAdjacentArticleLinks.vue'
@@ -9,6 +10,7 @@ import IconArticle from '~/components/global/IconArticle.vue'
 import LibraryArticle from '~/components/global/LibraryArticle.vue'
 import SubclassArticle from '~/components/global/SubclassArticle.vue'
 
+Vue.component('ApiDesignSpecCheckmark', (resolve, reject) => resolve(ApiDesignSpecCheckmark))
 Vue.component('BaleadaLogo', (resolve, reject) => resolve(BaleadaLogo))
 Vue.component('CompositionArticle', (resolve, reject) => resolve(CompositionArticle))
 Vue.component('DocsAdjacentArticleLinks', (resolve, reject) => resolve(DocsAdjacentArticleLinks))
