@@ -466,7 +466,7 @@ Given those keyframes and that frame handler, your `Animatable` instance would p
 ## API design compliance
 :::
 
-::: ariaLabel="A table showing Animatable API design compliance"
+::: ariaLabel="A table showing Animatable's API design compliance"
 | Spec | Compliance status | Notes |
 | --- | --- | --- |
 | Access functionality by constructing an instance | <ApiDesignSpecCheckmark /> |  |
