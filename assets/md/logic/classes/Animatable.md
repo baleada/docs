@@ -29,7 +29,7 @@ In other words, `Animatable` implements all the main features of [CSS `@keyframe
 
 To construct an `Animatable` instance (Object), use the `Animatable` constructor, which takes two parameters:
 
-::: ariaLabel="Animatable constructor parameters"
+::: ariaLabel="Animatable constructor parameters" classes="wide-4"
 | Parameter | Type | Required | Description |
 | --- | --- | --- | --- |
 | `keyframes` | Array | yes | Passes the keyframes that will be made animatable. See the [How to format keyframes](#how-to-format-keyframes) section for more guidance on formatting the array. |
@@ -50,7 +50,7 @@ const instance = new Animatable(keyframes[, options])
 
 `keyframes` is an Array, and each individual keyframe in the array is an Object. Keyframe objects can have the following properties:
 
-::: ariaLabel="Animatable keyframe format"
+::: ariaLabel="Animatable keyframe format" classes="wide-4"
 | Property | Type | Required | Description |
 | --- | --- | --- | --- |
 | `progress` | Number | yes | <p>A number between `0` and `1` indicating the time through the animation sequence at which the keyframe occurs.</p><p>The `progress` property is exactly like percentage progress in CSS `@keyframe` animations, except that it's between `0` and `1` instead of `0` and `100`.</p> |
@@ -140,7 +140,7 @@ You can use [easings.net by Andrey Sitnik and Ivan Solovev](https://easings.net/
 ### `Animatable` constructor options
 :::
 
-::: ariaLabel="Animatable constructor options"
+::: ariaLabel="Animatable constructor options" classes="wide-4 wide-6"
 | Option | Type | Default | Description | Parameters | Return value |
 | --- | --- | --- | --- | --- | --- |
 | `duration` | Number | `0` | Indicates the duration in milliseconds of the animation. | N/A | N/A |
@@ -157,7 +157,7 @@ You can use [easings.net by Andrey Sitnik and Ivan Solovev](https://easings.net/
 The constructed `Animatable` instance is an Object, and state and methods can be accessed via its properties:
 
 
-::: ariaLabel="Animatable state and methods"
+::: ariaLabel="Animatable state and methods" classes="wide-3 wide-5"
 | Property | Type | Description | Parameters | Return value |
 | --- | --- | --- | --- | --- |
 | `keyframes` | Array | A shallow copy of the `keyframes` array passed to the constructor | N/A | N/A |
@@ -329,7 +329,7 @@ Take these keyframes for example:
     data: { translateX: 100 }
   },
 
-  // otherProperty
+  // blueChannel (of rgb color)
   {
     progress: 0.5,
     data: { blueChannel: 0 }
@@ -466,7 +466,7 @@ Given those keyframes and that frame handler, your `Animatable` instance would p
 ## API design compliance
 :::
 
-::: ariaLabel="A table showing Animatable's API design compliance"
+::: ariaLabel="A table showing Animatable's API design compliance"  classes="wide-3"
 | Spec | Compliance status | Notes |
 | --- | --- | --- |
 | Access functionality by constructing an instance | <ApiDesignSpecCheckmark /> |  |

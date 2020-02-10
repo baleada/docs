@@ -115,7 +115,7 @@ The `tailwindLinear` returns configurations for the following properties of the 
 
 The function accepts one parameter: an object with options (none of which are required). Here's a full breakdown of that object:
 
-::: ariaLabel="tailwindLinear options schema"
+::: ariaLabel="tailwindLinear options schema" classes="wide-4"
 | Property | Value's type | Default | Value description |
 | --- | --- | --- | --- |
 | `only` | Array of Strings | An array of all the properties listed above | Indicates which properties' configurations should be returned by `tailwindLinear`. |

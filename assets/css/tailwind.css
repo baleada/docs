@@ -4,6 +4,7 @@
 
 @import "./fonts.css";
 @import "./prose/index.css";
+@import "./docs.css";
 /* purgecss end ignore */
 
 @import "tailwindcss/components";

@@ -54,8 +54,7 @@ Consider these components, which appear in all kinds of user interfaces:
 
 Visually, these components are so different that it feels clean and correct to build them all in isolation, or install isolated packages that contain them. But if you look more closely, these components share a decent number of different behaviors:
 
-::: ariaLabel="Behaviors that carousels, dropdowns, date pickers, and solitaire have in common"
-
+::: ariaLabel="Behaviors that carousels, dropdowns, date pickers, and solitaire have in common" classes="wide-1"
 | Behavior | Carousel | Dropdown | Date picker | Solitaire |
 | --- | --- | --- | --- | --- |
 | Click a button or use an arrow key to move backward or forward | yes | yes | yes | yes |
@@ -64,7 +63,6 @@ Visually, these components are so different that it feels clean and correct to b
 | Go to a specific item | yes | not usually | yes | no |
 | Move forward and back in custom increments | yes, if the carousel displays more than 1 image at a time | no | yes | yes (3-card or 1-card advance) |
 | Go to a random item | sometimes | no | sometimes | no |
-
 :::
 
 Across each of these components, the code that implements this collection of array-navigating behaviors is more or less the same. But when you're using Baleada Logic, you don't have to write or install the same array-navigating code separately for each one of those components.
@@ -92,8 +90,7 @@ For something more complex, imagine you're building the following components:
 
 These components are wildly different, but let's double-check some of the behaviors these components should have, to see if we can find similarities:
 
-::: ariaLabel="Behaviors that image components and navigation menus need"
-
+::: ariaLabel="Behaviors that image components and navigation menus need" classes="wide-1"
 | Behavior | Custom image | Sidebar nav | Inbox message | Analytics wrapper |
 | --- | --- | --- | --- | --- |
 | Don't load the resource until the element is visible | yes | no | it's possible | no |
@@ -102,7 +99,6 @@ These components are wildly different, but let's double-check some of the behavi
 | Do something when the user double taps | yes ("like" the image) | no | probably not | no |
 | Do something when the user swipes right | yes (initiate mating sequence) | yes (on mobile, open the menu) | yes (archive the message) | no |
 | Do something when the user is idle | no | no | yes (save draft reply) | yes (compute and send analytics) |
-
 :::
 
 Hmm...okay, it looks like some of these behaviors overlap, but not that closely.

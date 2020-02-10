@@ -34,7 +34,7 @@ order: 2
 ## Ideas for other tool categories
 :::
 
-::: ariaLabel="List of tool ideas"
+::: ariaLabel="List of tool ideas" classes="wide-2"
 | Name | Description |
 | --- | --- |
 | Baleada Style | Custom Tailwind config files, custom Tailwind plugins that register component classes and utility classes |
