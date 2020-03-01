@@ -93,29 +93,24 @@
     "name": "classes",
     "pages": [
       {
-        "title": "Animatable",
+        "title": "Animateable",
         "framework": "agnostic",
-        "href": "/docs/logic/classes/Animatable"
+        "href": "/docs/logic/classes/Animateable"
       },
       {
-        "title": "Completable",
+        "title": "Completeable",
         "framework": "agnostic",
-        "href": "/docs/logic/classes/Completable"
+        "href": "/docs/logic/classes/Completeable"
       },
       {
-        "title": "Copiable",
+        "title": "Copyable",
         "framework": "agnostic",
-        "href": "/docs/logic/classes/Copiable"
+        "href": "/docs/logic/classes/Copyable"
       },
       {
         "title": "Delayable",
         "framework": "agnostic",
         "href": "/docs/logic/classes/Delayable"
-      },
-      {
-        "title": "Editable",
-        "framework": "agnostic",
-        "href": "/docs/logic/classes/Editable"
       },
       {
         "title": "Fetchable",
@@ -128,9 +123,14 @@
         "href": "/docs/logic/classes/Listenable"
       },
       {
-        "title": "Navigable",
+        "title": "Navigateable",
         "framework": "agnostic",
-        "href": "/docs/logic/classes/Navigable"
+        "href": "/docs/logic/classes/Navigateable"
+      },
+      {
+        "title": "Recognizeable",
+        "framework": "agnostic",
+        "href": "/docs/logic/classes/Recognizeable"
       },
       {
         "title": "Searchable",

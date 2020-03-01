@@ -31,7 +31,7 @@ export default {
       { innerHTML: 'This website requires JavaScript.' }
     ],
     bodyAttrs: {
-      class: 'bg-gray-100 antialiased font-sans overflow-x-hidden'
+      class: 'bg-gray-100 antialiased font-sans overflow-x-hidden w-full'
     }
   },
 

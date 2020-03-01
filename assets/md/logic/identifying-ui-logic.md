@@ -11,7 +11,7 @@ order: 1
 
 The big idea behind Baleada Logic, [React Hooks](https://reactjs.org/docs/hooks-intro.html), the [Vue composition API](https://vue-composition-api-rfc.netlify.com/), and functional programming in general is that the easiest way to create large, complex UI features is to **compose** them from smaller pieces of UI logic. Learning how to identify the discrete pieces of UI logic hidden inside of bigger UI features is the key to success with Baleada Logic.
 
-::: canTweet
+:::
 > The easiest way to create large, complex UI features is to **compose** them from smaller pieces of UI logic.
 :::
 
@@ -73,7 +73,7 @@ The `Navigable` class has all the methods you need to navigate forward, backward
 
 Array navigation is on the simpler end of the UI logic spectrum, but it's a great example of logic that can easily get tangled up and repeated inside seemingly unrelated components instead of being extracted into something more reusable and feature-complete.
 
-::: canTweet
+:::
 > Array navigation is a great example of logic that can easily get tangled up and repeated inside seemingly unrelated components instead of being extracted into something more reusable and feature-complete.
 :::
 
@@ -141,7 +141,7 @@ These tools, as nifty as they are, are implementation details in their truest fo
 
 The purpose of Baleada Logic is to abstract repetitive but relatively complex UI logic into something more reusable, so that you can focus on the aesthetics and business logic of your project instead of fiddling with web APIs, doing algebra, performing basic state management, getting into the weeds with `this`, remembering where and how to use all the methods of native prototypes, etc.
 
-::: canTweet
+:::
 > The purpose of Baleada Logic is to abstract repetitive but relatively complex UI logic into something more reusable, so that you can focus on the aesthetics and business logic of your project.
 :::
 

@@ -5,7 +5,7 @@
 </template>
 
 <script>
-import article from '~/assets/md/logic/classes/Completable.md'
+import article from '~/assets/md/logic/classes/Copyable.md'
 
 export default {
   layout: 'prose',

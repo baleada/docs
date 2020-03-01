@@ -1,6 +1,6 @@
 <template>
   <main
-    class="relative z-10 lg:flex"
+    class="relative z-10 lg:flex w-full overflow-x-hidden"
     :class="[
       isDarkTheme ? 'dark' : '',
       isMinimalistTheme ? 'minimalist' : '',
@@ -278,7 +278,7 @@
 <script>
 import { ref, onMounted, inject } from '@vue/composition-api'
 
-import { swipe as gesture } from '@baleada/listenable-gestures'
+import { swipe } from '@baleada/listenable-gestures'
 import { useListenable } from '@baleada/composition/vue'
 import { useSymbol } from '@baleada/prose/vue'
 import { EvaMenu, EvaClose, EvaList, EvaSun, EvaMoon, EvaLayout, EvaSquare } from '@baleada/icons/vue'
@@ -298,15 +298,15 @@ export default {
     EvaLayout,
     EvaSquare,
     DocsNav,
-    DocsSearch,
+    // DocsSearch,
     DocsTableOfContents,
   },
-  setup(props, context) {
+  setup (props, context) {
     /* Manage open status */
     const openStatus = ref('article'),
-          openNav = () => openStatus.value = 'nav',
-          openArticle = () => openStatus.value = 'article',
-          openTableOfContents = () => openStatus.value = 'tableOfContents',
+          openNav = () => (openStatus.value = 'nav'),
+          openArticle = () => (openStatus.value = 'article'),
+          openTableOfContents = () => (openStatus.value = 'tableOfContents'),
           handleSidebarClick = ({ target }) => {
             if (target.matches('a')) {
               openArticle()
@@ -317,7 +317,15 @@ export default {
     const nav = ref(null),
           article = ref(null),
           tableOfContents = ref(null),
-          swipe = useListenable('swipe', { gesture }),
+          articleSwipe = useListenable('swipe', {
+            recognizeable: { handlers: swipe() }
+          }),
+          navSwipe = useListenable('swipe', {
+            recognizeable: { handlers: swipe() }
+          }),
+          tableOfContentsSwipe = useListenable('swipe', {
+            recognizeable: { handlers: swipe() }
+          }),
           blacklist = [
             '.baleada-prose-article .overflow-y-scroll',
             '.baleada-prose-article .overflow-y-scroll *',
@@ -335,9 +343,9 @@ export default {
           ]
 
     onMounted(() => {
-      swipe.value.listen(
-        (event, gesture, { toDirection }) => {
-          const direction = toDirection(gesture.metadata.angle.degrees)
+      articleSwipe.value.listen(
+        (event, { toDirection }) => {
+          const direction = toDirection(articleSwipe.value.recognizeable.metadata.angle.fromStart.degrees)
           if (direction === 'right') {
             openNav()
           } else if (direction === 'left') {
@@ -347,9 +355,9 @@ export default {
         { target: article.value, blacklist, addEventListener: { passive: true } }
       )
 
-      swipe.value.listen(
-        (event, gesture, { toDirection }) => {
-          const direction = toDirection(gesture.metadata.angle.degrees)
+      navSwipe.value.listen(
+        (event, { toDirection }) => {
+          const direction = toDirection(navSwipe.value.recognizeable.metadata.angle.fromStart.degrees)
           if (direction === 'left') {
             openArticle()
           }
@@ -357,9 +365,9 @@ export default {
         { target: nav.value, addEventListener: { passive: true } }
       )
 
-      swipe.value.listen(
-        (event, gesture, { toDirection }) => {
-          const direction = toDirection(gesture.metadata.angle.degrees)
+      tableOfContentsSwipe.value.listen(
+        (event, { toDirection }) => {
+          const direction = toDirection(tableOfContentsSwipe.value.recognizeable.metadata.angle.fromStart.degrees)
           if (direction === 'right') {
             openArticle()
           }
@@ -370,9 +378,9 @@ export default {
 
     /* Dark theme */
     const isDarkTheme = ref(true),
-          toggleDarkTheme = () => isDarkTheme.value = !isDarkTheme.value,
-          enableDarkTheme = () => isDarkTheme.value = true,
-          disableDarkTheme = () => isDarkTheme.value = false,
+          toggleDarkTheme = () => (isDarkTheme.value = !isDarkTheme.value),
+          enableDarkTheme = () => (isDarkTheme.value = true),
+          disableDarkTheme = () => (isDarkTheme.value = false),
           darkThemeShortcutListener = ({ key, shiftKey }) => {
             if (shiftKey && key === 'D') {
               toggleDarkTheme()
@@ -387,9 +395,9 @@ export default {
 
     /* Minimalist theme */
     const isMinimalistTheme = ref(false),
-          toggleMinimalistTheme = () => isMinimalistTheme.value = !isMinimalistTheme.value,
-          enableMinimalistTheme = () => isMinimalistTheme.value = true,
-          disableMinimalistTheme = () => isMinimalistTheme.value = false,
+          toggleMinimalistTheme = () => (isMinimalistTheme.value = !isMinimalistTheme.value),
+          enableMinimalistTheme = () => (isMinimalistTheme.value = true),
+          disableMinimalistTheme = () => (isMinimalistTheme.value = false),
           minimalistThemeShortcutListener = ({ key, shiftKey }) => {
             if (shiftKey && key === 'M') {
               toggleMinimalistTheme()
@@ -426,6 +434,7 @@ export default {
           onTableOfContentsAfterLeave = () => (tableOfContentsTransitionStatus.value = 'after-leave'),
           onTableOfContentsBeforeEnter = () => (tableOfContentsTransitionStatus.value = 'before-enter')
 
+    /* Get headings for table of contents */
     const headings = inject(useSymbol('layout', 'headings'))
 
     return {

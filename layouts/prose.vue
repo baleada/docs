@@ -1,5 +1,5 @@
 <template lang="html">
-  <ProseLayout v-bind="{ fullPathInjectKey }">
+  <ProseLayout :fullPathInjectKey="fullPathInjectKey" :defaultPropsInjectKey="defaultPropsInjectKey">
     <ThreeColumn />
   </ProseLayout>
 </template>
@@ -15,15 +15,33 @@ export default {
   components: {
     ThreeColumn
   },
-  setup() {
+  setup () {
     const { route } = useRouter(),
-          fullPath = computed(() => route.value.fullPath),
-          fullPathInjectKey = Symbol('fullPath')
+          fullPathInjectKey = Symbol('fullPath'),
+          fullPath = computed(() => route.value.fullPath)
 
     provide(fullPathInjectKey, fullPath)
 
+    const defaultPropsInjectKey = Symbol('defaultProps'),
+          defaultProps = {
+            blockquote: {
+              canTweet: true,
+              tweetVia: '@BaleadaToolkit',
+            },
+            codeblock: {
+              canCopy: true,
+            },
+            heading: {
+              classes: '',
+              canCopy: true,
+            },
+          }
+
+    provide(defaultPropsInjectKey, defaultProps)
+
     return {
-      fullPathInjectKey
+      fullPathInjectKey,
+      defaultPropsInjectKey
     }
   },
 }

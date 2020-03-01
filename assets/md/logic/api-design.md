@@ -9,18 +9,18 @@ For any individual piece of UI logic, there are plenty of ways to implement it, 
 
 But implementing these things yourself, or learning the APIs of disparate packages, adds **complexity and mental overhead** to engineering tasks that are usually several steps removed from the actual business logic of the app or site you're building.
 
-Baleada Logic implements all kinds of UI logic for you, which is nice, but arguably more important is the fact that Baleada Logic's classes and factories all have **predictable, intuitive APIs**. In other words, you can construct all classes and factories in the same way, you can customize their behavior in the same way, and you can access their state and methods in the same way.
+Baleada Logic implements all kinds of UI logic for you, which is nice! But arguably more important is the fact that Baleada Logic's classes and factories all have **predictable, intuitive APIs**. In other words, you can construct all classes and factories in the same way, you can customize their behavior in the same way, and you can access their state and methods in the same way.
 
-::: canTweet
-> Baleada Logic implements all kinds of UI logic for you, which is nice, but arguably more important is the fact that Baleada Logic's classes and factories all have **predictable, intuitive APIs**.
+:::
+> Baleada Logic implements all kinds of UI logic for you, which is nice! But arguably more important is the fact that Baleada Logic's classes and factories all have **predictable, intuitive APIs**.
 :::
 
 To accomplish that, Baleada Logic's classes and factories all follow strict rules in these specific areas:
 1. How they are **constructed**
-1. How **state and methods** are made available to you
-1. How classes & factories, their constructor options, their state, and their methods are **named**
-1. Why classes and factories provide certain state and methods
-1. Why constructors accept certain state and options
+2. How **state and methods** are made available to you
+3. How classes & factories, their constructor options, their state, and their methods are **named**
+4. Why classes and factories provide certain state and methods
+5. Why constructors accept certain state and options
 
 This guide explains all the core concepts, rules, and patterns that classes and factories follow. The words "all", "always", and "never" are displayed in bold, to emphasize the rules that apply to every single class and subclass in Baleada Logic.
 
@@ -154,8 +154,8 @@ Some classes, particularly those that were designed to capture input from your e
 
 :::
 ```js
-// The Completable class's constructor accepts a String
-const instance = new Completable('Baleada')
+// The Completeable class's constructor accepts a String
+const instance = new Completeable('Baleada')
 
 instance.string // -> 'Baleada'
 instance.location // -> 0
@@ -171,28 +171,27 @@ Note that public properties are writeable—it's possible to assign values to th
 
 :::
 ```js
-// The Editable class's constructor accepts state of any type
-const instance = new Editable('Baleada')
+// The Searchable class's constructor accepts an array of search candidates
+const instance = new Searchable(['Baleada', 'toolkit'])
 
-instance.state // -> 'Baleada'
-instance.editableState // -> 'Baleada'
-
-/*
- * It's possible to write to instance.state directly.
- * However, for Editable to work correctly, instance.editableState
- * should be edited at the same time to avoid unexpected behavior.
- */
-instance.state = 'Logic' // -> It works
-instance.state // -> 'Logic'
-instance.editableState // -> 'Baleada'
+instance.candidates // -> ['Baleada', 'toolkit']
+instance.trie // -> an object representing the search trie
 
 /*
- * If you use instance.setState instead, the required side effect
- * (updating instance.editableState) is taken care of by Editable.
+ * It's possible to write to instance.candidates directly.
+ * However, if you pass a new array of candidates this way, Searchable
+ * will be stuck using the old trie:
  */
-instance.setState('🌮')
-instance.state // -> '🌮'
-instance.editableState // -> '🌮'
+instance.candidates = ['tortilla', 'beans'] // -> It won't throw any errors
+instance.trie // -> The old trie representing ['Baleada', 'toolkit']
+
+/*
+ * If you use instance.setCandidates instead, the appropriate side effect
+ * (updating instance.trie) is taken care of by Searchable.
+ */
+instance.setCandidates(['tortilla', 'beans'])
+instance.candidates // -> ['tortilla', 'beans']
+instance.trie // -> a new trie representing ['tortilla', 'beans']
 ```
 :::
 
@@ -208,7 +207,7 @@ Instead of writing the mutated value to its own public property after you call `
 ```js
 let totalStringCompletions = 0
 
-const instance = new Completable('Baleada', {
+const instance = new Completeable('Baleada', {
   onComplete: (completedString, instance) {
     instance.setString(completedString)
     totalStringCompletions++
@@ -219,7 +218,7 @@ instance.string // -> 'Baleada'
 totalStringCompletions // -> 0
 
 /*
- * When you call instance.complete, the Completable instance will create
+ * When you call instance.complete, the Completeable instance will create
  * a mutated version of instance.string. Then, it will call your
  * onComplete function, passing the mutated version of instance.string
  * AND itself as the two arguments.
@@ -238,17 +237,17 @@ These `on<Method>` functions are a great way to hook into state changes and run 
 
 :::
 ```js
-const instance = new Completable('Baleada') // Completable has a default onComplete function defined for you
+const instance = new Completeable('Baleada') // Completeable has a default onComplete function defined for you
 
 instance.string // -> 'Baleada'
 
 /*
- * When you call instance.complete, the Completable instance will create
+ * When you call instance.complete, the Completeable instance will create
  * a mutated version of instance.string. Then, it will call its default
  * onComplete function, passing the mutated version of instance.string
  * AND itself as the two arguments.
  *
- * Completable's default onComplete function will set instance.string
+ * Completeable's default onComplete function will set instance.string
  * to the new value.
  */
 instance.complete('Baleada: a toolkit for building web apps')
@@ -261,9 +260,9 @@ All classes also have one or more public [getters](https://developer.mozilla.org
 
 :::
 ```js
-const instance = new Completable(
+const instance = new Completeable(
   'Baleada: a toolkit',
-  { segmentsFromDivider: true }
+  { segmentsFromDivider: true } // An option customizing how the getter works
 )
 
 instance.segment // -> 'toolkit'
@@ -275,8 +274,8 @@ Some classes don't have any methods that create mutated versions of the values i
 
 :::
 ```js
-// The Animatable class's constructor accepts a Node or NodeList
-const instance = new Animatable(mySelectedElement, myAnimationOptions)
+// The Animateable class's constructor accepts an array of keyframes
+const instance = new Animateable(myKeyframes, myAnimationOptions)
 
 instance.play() // -> Plays an animation and returns the instance, but does nothing else
 ```
@@ -358,11 +357,11 @@ A `<state type>` can be `<action>`ed (by `<action arguments>`).
 ```
 :::
 
-For example, the `Searchable` class' core action is to search/fuzzy search an array of items. The `Searchable` constructor's `state` parameter is an Array, and the class has a `search` method that accepts a search query as its only argument. This fits into the sentence template nicely:
+For example, the `Searchable` class' core action is to search/fuzzy search an array of search candidates. The `Searchable` constructor's `state` parameter is the array of candidates, and the class has a `search` method that accepts a search query as its only argument. This fits into the sentence template nicely:
 
 :::
 ```
-An **Array** can be **searched** by a **query**.
+**Search candidates** can be **searched** by a **query**.
 ```
 :::
 
@@ -373,6 +372,18 @@ Some classes and factories have core actions that don't take arguments—in thos
 **Markdown** (String) can be **marked up**.
 ```
 :::
+
+And some classes have core actions that are actually private methods on the class, with more specific public methods that call the core private method under the hood. The `Animateable` class is a great example—it's constructor accepts an array of keyframes, and in order to animate those keyframes, it internally calls a private `animate` method when you call one of its more specific public methods: `play`, `reverse`, `seek`, or `restart`.
+
+These types of classes still use that core action in their sentence template, even though it's accessed via a private method that you'll never use:
+
+:::
+```text
+**Keyframes** (Array) can be **animated**.
+```
+:::
+
+
 
 This sentence template ensures that **all** classes' and factories' methods are affordances. In other words, methods tell you what you can do with a given type of state, rather than what that type of state can do to itself or other things.
 
@@ -399,4 +410,43 @@ Constructors **never** accept options that customize the behavior of public meth
 ## Naming conventions
 :::
 
-WIP
+Classes and factories are named after their core action, followed by `able`. Class names have an uppercased first letter, and factory names are all lowercase.
+
+Here are a few examples:
+
+::: ariaLabel="Comparison of classes' and factories' core actions and names"
+| Core action | Type | Name |
+| --- | --- | --- |
+| search | class | `Searchable` |
+| listen | class | `Listenable` |
+| navigate | class | `Navigateable` |
+| copy | class | `Copyable` |
+| reorder | factory | `reorderable` |
+| delete | factory | `deleteable` |
+:::
+
+Note that in correct English grammar, the `-able` form of a word is not always this simple. There are a number of ways the grammar can be more complex:
+- Often (but not always), when a word ends in `e`, the `e` is ommitted before adding `able`
+- Words that end in `y` usually change the `y` to an `i` before adding `able`
+- Some words omit several letters from the end of the word before adding `able`
+
+Instead of relying on you to know all these rules of English grammar, Baleada Logic simply breaks them in favor of consistency and predictability. In Baleada Logic classes and factories, the name is **always** just the core action followed by `able`—no strange word modification, no guessing about whether or not the `e` is excluded before `able`, no replacing `y` with `i`, etc.
+
+In the table below, you can explore some examples of core actions, class/factory names, and their proper English counterparts:
+
+::: ariaLabel="Comparison of classes' and factories' core actions, names, and proper English counterparts" classes="wide-4"
+| Core action | Class/factory name | Proper English name | Notes |
+| --- | --- | --- | --- |
+| search | `Searchable` | Searchable | Easy one! The proper English version is the same. |
+| copy | `Copyable` | Copiable | Proper English changes `y` to `i` before `able` 🤢 |
+| delete | `deleteable` | deletable | Proper English removes the `e` before `able` 😠 |
+| rename | `renameable` | renameable | Oh, this one ends in `e` too? Proper English says "f*ck it, leave it in" 🤬 |
+| navigate | `Navigateable` | Navigable | Proper English removes `ate` and just uses the stem `Navig` before adding `able` 🤮 |
+| reorder | `reorderable` | reorderable | Phew, another easy one! Proper English plays nice here. |
+:::
+
+In conclusion, English grammar is annoying, so Baleada Logic ignores it and names everything using the `<core action>able` convention.
+
+:::
+> Proper English grammar is annoying. Baleada Logic's naming convention breaks its rules in favor of simplicity, consistency, and predictability.
+:::

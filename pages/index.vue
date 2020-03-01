@@ -25,9 +25,9 @@
 </template>
 
 <script>
-import { ref, onMounted } from '@vue/composition-api'
+import { ref } from '@vue/composition-api'
 
-import { useAnimatable, useNavigable } from '@baleada/composition/vue'
+import { useAnimateable, useNavigateable } from '@baleada/composition/vue'
 
 import { EvaBook, SimpleGitLab } from '@baleada/icons/vue'
 
@@ -42,17 +42,58 @@ export default {
   },
   setup() {
     const logo = ref(null),
-          navigable = useNavigable(new Array(1)), // Grody hardcoded 4
-          configs = [
+          navigateable = useNavigateable(new Array(4)), // Grody hardcoded 4
+          wiggle = useAnimateable(
+            [
+              {
+                progress: 0,
+                data: { rotate: 0 }
+              },
+              {
+                progress: 1,
+                data: { rotate: 19 }
+              }
+            ],
+            {
+              duration: 120,
+              iterations: 3,
+              alternates: true,
+            }
+          )
+
+    function handleMouseover () {
+      wiggle.value.play(frame => {
+        const { data: { rotate } } = frame
+
+        console.log(wiggle.value.iterations)
+
+        logo.value.style.transform = `rotate(${rotate}deg)`
+
+        if (wiggle.value.iterations === 3) {
+          logo.value.style.transform = `rotate(0deg)`
+        }
+      })
+    }
+
+    return {
+      logo,
+      handleMouseover
+    }
+  }
+}
+</script>
+
+<!--
+configs = [
             // Wiggle
             ({ set }) => ({
               animation: {
                 direction: 'alternate',
                 loop: 6,
                 complete: anim => {
-                  const target = anim.children[0].animatables[0].target
+                  const target = anim.children[0].animateables[0].target
                   set(target, { rotate: '0deg' })
-                  navigable.value.rand()
+                  navigateable.value.rand()
                 },
               },
               timelineChildren: [
@@ -65,9 +106,9 @@ export default {
               animation: {
                 autoplay: false,
                 complete: anim => {
-                  const target = anim.children[0].animatables[0].target
+                  const target = anim.children[0].animateables[0].target
                   set(target, { rotate: '0deg' })
-                  navigable.value.rand()
+                  navigateable.value.rand()
                 },
               },
               timelineChildren: [
@@ -80,9 +121,9 @@ export default {
               animation: {
                 autoplay: false,
                 complete: anim => {
-                  const target = anim.children[0].animatables[0].target
+                  const target = anim.children[0].animateables[0].target
                   set(target, { rotate: '0deg' })
-                  navigable.value.rand()
+                  navigateable.value.rand()
                 },
               },
               timelineChildren: [
@@ -96,9 +137,9 @@ export default {
               animation: {
                 autoplay: false,
                 complete: anim => {
-                  const target = anim.children[0].animatables[0].target
+                  const target = anim.children[0].animateables[0].target
                   set(target, { rotate: '0deg' })
-                  navigable.value.rand()
+                  navigateable.value.rand()
                 },
               },
               timelineChildren: [
@@ -106,29 +147,5 @@ export default {
                 [{ rotate: `360deg`, duration: 100 }, '+=250'],
               ],
             }),
-          ],
-          animatables = configs.map(config => {
-            return {
-              instance: useAnimatable(logo),
-              config
-            }
-          })
-
-    // onMounted(() => {
-    //   animatables.forEach(animatable => {
-    //     const { config } = animatable
-    //     animatable.instance.value.animate(config)
-    //   })
-    // })
-
-    function handleMouseover () {
-      // animatables[navigable.value.location].instance.value.play()
-    }
-
-    return {
-      logo,
-      // handleMouseover
-    }
-  }
-}
-</script>
+          ]
+          -->

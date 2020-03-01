@@ -1,11 +1,11 @@
 ---
-title: Animatable
+title: Animateable
 framework: agnostic
 publish: true
 order: 0
 ---
 
-`Animatable` is a class that enriches an array of keyframes, allowing it to:
+`Animateable` is a class that enriches an array of keyframes, allowing it to:
 - Compute intermediate frames between keyframes at a rate of 60 frames per second, passing frame data to a callback function specified by you
 - Customize the animation by giving it a duration, a timing function, and a number of iterations it should repeat, and indicating whether it should alternate or just progress in one direction
 - Store the number of completed iterations
@@ -15,31 +15,31 @@ order: 0
 - Store the status of the animation (e.g. `'playing'`, `'reversing'`, `'paused'`, etc.)
 - Store the elapsed time, remaining time, and time progress of the animation
 
-In other words, `Animatable` implements all the main features of [CSS `@keyframes` animations](https://developer.mozilla.org/en-US/docs/Web/CSS/@keyframes) in JavaScript, then adds lots of methods to help you control the animation itself.
+In other words, `Animateable` implements all the main features of [CSS `@keyframes` animations](https://developer.mozilla.org/en-US/docs/Web/CSS/@keyframes) in JavaScript, then adds lots of methods to help you control the animation itself.
 
-`Animatable` depends on:
+`Animateable` depends on:
 - [`requestAnimationFrame`](https://developer.mozilla.org/en-US/docs/Web/API/window/requestAnimationFrame) and [`cancelAnimationFrame`](https://developer.mozilla.org/en-US/docs/Web/API/window/cancelAnimationFrame)
 - [BezierEasing](https://github.com/gre/bezier-easing)
 - [The chroma.js `mix` method](https://vis4.net/chromajs/#chroma-mix) (imported from the light version of chroma.js, so it has a lower impact on bundle size.)
 
 
 :::
-## Construct an `Animatable` instance
+## Construct an `Animateable` instance
 :::
 
-To construct an `Animatable` instance (Object), use the `Animatable` constructor, which takes two parameters:
+To construct an `Animateable` instance (Object), use the `Animateable` constructor, which takes two parameters:
 
-::: ariaLabel="Animatable constructor parameters" classes="wide-4"
+::: ariaLabel="Animateable constructor parameters" classes="wide-4"
 | Parameter | Type | Required | Description |
 | --- | --- | --- | --- |
 | `keyframes` | Array | yes | Passes the keyframes that will be made animatable. See the [How to format keyframes](#how-to-format-keyframes) section for more guidance on formatting the array. |
-| `options` | Object | no | Passes options for the `Animatable` instance. See the [`Animatable` constructor options](#Animatable-constructor-options) section for more guidance. |
+| `options` | Object | no | Passes options for the `Animateable` instance. See the [`Animateable` constructor options](#Animateable-constructor-options) section for more guidance. |
 :::
 
 
 :::
 ```js
-const instance = new Animatable(keyframes[, options])
+const instance = new Animateable(keyframes[, options])
 ```
 :::
 
@@ -50,12 +50,12 @@ const instance = new Animatable(keyframes[, options])
 
 `keyframes` is an Array, and each individual keyframe in the array is an Object. Keyframe objects can have the following properties:
 
-::: ariaLabel="Animatable keyframe format" classes="wide-4"
+::: ariaLabel="Animateable keyframe format" classes="wide-4"
 | Property | Type | Required | Description |
 | --- | --- | --- | --- |
 | `progress` | Number | yes | <p>A number between `0` and `1` indicating the time through the animation sequence at which the keyframe occurs.</p><p>The `progress` property is exactly like percentage progress in CSS `@keyframe` animations, except that it's between `0` and `1` instead of `0` and `100`.</p> |
-| `data` | Object | yes | <p>Specifies properties and values for the keyframe, which `Animatable` will reference when computing frames between keyframes.</p><p>Each property can be any valid Object property. Properties are **not** required to be valid CSS properties.</p><p>Values can be Numbers, Strings, or Arrays. See the [How data types are animated](#How-data-types-are-animated) section for more guidance on how to format your values so that they get animated properly.</p> |
-| `timing` | Array | no | <p>Customizes the timing function used to compute frame data as progress is made toward the next keyframe.</p><p>See the [How to format timing](#how-to-format-timing) section for more guidance on formatting the `timing` array.</p><p>Just like the [`animation-timing-function` CSS property](https://developer.mozilla.org/en-US/docs/Web/CSS/animation-timing-function), any `timing` specified on the last keyframe will have no effect.</p><p>If `timing` is not specified on the keyframe itself, `Animatable` will use the default timing function, which can be customized using the `timing` option in the constructor. See the [`Animatable` constructor options](#Animatable-constructor-options) section for more info about the global timing function.</p> |
+| `data` | Object | yes | <p>Specifies properties and values for the keyframe, which `Animateable` will reference when computing frames between keyframes.</p><p>Each property can be any valid Object property. Properties are **not** required to be valid CSS properties.</p><p>Values can be Numbers, Strings, or Arrays. See the [How data types are animated](#How-data-types-are-animated) section for more guidance on how to format your values so that they get animated properly.</p> |
+| `timing` | Array | no | <p>Customizes the timing function used to compute frame data as progress is made toward the next keyframe.</p><p>See the [How to format timing](#how-to-format-timing) section for more guidance on formatting the `timing` array.</p><p>Just like the [`animation-timing-function` CSS property](https://developer.mozilla.org/en-US/docs/Web/CSS/animation-timing-function), any `timing` specified on the last keyframe will have no effect.</p><p>If `timing` is not specified on the keyframe itself, `Animateable` will use the default timing function, which can be customized using the `timing` option in the constructor. See the [`Animateable` constructor options](#Animateable-constructor-options) section for more info about the global timing function.</p> |
 :::
 
 ::: type="info"
@@ -63,7 +63,7 @@ You don't have to order `keyframes` by `progress`. For example, you can list all
 
 It's also perfectly fine if the same `progress` value appears in multiple different keyframes in the array.
 
-Internally, `Animatable` sorts and analyze all keyframes to extract individual keyframe-to-keyframe property transitions, so feel free to organize keyframes in a way that makes sense to you!
+Internally, `Animateable` sorts and analyze all keyframes to extract individual keyframe-to-keyframe property transitions, so feel free to organize keyframes in a way that makes sense to you!
 :::
 
 
@@ -71,17 +71,17 @@ Internally, `Animatable` sorts and analyze all keyframes to extract individual k
 #### How data types are animated
 :::
 
-Values inside the `data` object of each keyframe can be Numbers, Strings, or Arrays. See the table below for more guidance on how each data type is handled when `Animatable` computes animation frames.
+Values inside the `data` object of each keyframe can be Numbers, Strings, or Arrays. See the table below for more guidance on how each data type is handled when `Animateable` computes animation frames.
 
 ::: ariaLabel="How data values are animated"
-| When the value is a... | `Animatable`... |
+| When the value is a... | `Animateable`... |
 | --- | --- |
 | Number | Computes a number between the numbers of two consecutive keyframes, proportional to the time progress of the animation. |
-| String | <p>Strings are assumed to be colors in [hex](https://en.wikipedia.org/wiki/Web_colors#Hex_triplet), [hsl](https://en.wikipedia.org/wiki/HSL_and_HSV), [rgb](https://en.wikipedia.org/wiki/RGB_color_model), or [lab](https://en.wikipedia.org/wiki/CIELAB_color_space) format (you can use different formats across keyframes, even if it's the same property on your `data` object).</p><p>`Animatable` uses [the chroma.js `mix` method](https://vis4.net/chromajs/#chroma-mix) with `lrgb` color interpolation to compute a color between the colors of two consecutive keyframes. Just like with numbers, the computed color is proportional to the time progress of the animation.</p> |
-| Array | <p>Determines the lengths of the arrays in two consecutive keyframes, then computes a new length between those two lengths (exactly like it would compute any other number). Finally, `Animatable` [slices](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/slice) the array, starting from the `0` index and stopping at the computed index.</p><p>Just like with numbers and colors, the new length of the array is proportional to the time progress of the animation.</p> |
+| String | <p>Strings are assumed to be colors in [hex](https://en.wikipedia.org/wiki/Web_colors#Hex_triplet), [hsl](https://en.wikipedia.org/wiki/HSL_and_HSV), [rgb](https://en.wikipedia.org/wiki/RGB_color_model), or [lab](https://en.wikipedia.org/wiki/CIELAB_color_space) format (you can use different formats across keyframes, even if it's the same property on your `data` object).</p><p>`Animateable` uses [the chroma.js `mix` method](https://vis4.net/chromajs/#chroma-mix) with `lrgb` color interpolation to compute a color between the colors of two consecutive keyframes. Just like with numbers, the computed color is proportional to the time progress of the animation.</p> |
+| Array | <p>Determines the lengths of the arrays in two consecutive keyframes, then computes a new length between those two lengths (exactly like it would compute any other number). Finally, `Animateable` [slices](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/slice) the array, starting from the `0` index and stopping at the computed index.</p><p>Just like with numbers and colors, the new length of the array is proportional to the time progress of the animation.</p> |
 :::
 
-To ensure that all of these computations are proportional to the time progress of the animation, `Animatable` uses [BezierEasing](https://github.com/gre/bezier-easing) to compute the actual animation progress for any given time progress.
+To ensure that all of these computations are proportional to the time progress of the animation, `Animateable` uses [BezierEasing](https://github.com/gre/bezier-easing) to compute the actual animation progress for any given time progress.
 
 
 ::: type="warning"
@@ -98,7 +98,7 @@ Array animations are designed to be an easy way to achieve the "typewriter" effe
 
 Simply pass an empty array to the first keyframe (usually at progress `0`), and in subsequent keyframes, pass a string [split](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/split) by empty quotes.
 
-`Animatable` will progressively lengthen your array throughout the animation, adding more characters onto the end of it. In each frame of the animation, you can [join](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/join) the array to rebuild the string, and set it as the `textContent` of a DOM element, and it will look like your string is being typed out across the screen.
+`Animateable` will progressively lengthen your array throughout the animation, adding more characters onto the end of it. In each frame of the animation, you can [join](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/join) the array to rebuild the string, and set it as the `textContent` of a DOM element, and it will look like your string is being typed out across the screen.
 
 Add custom timing functions as you see fit to make the "typewriter" feel more natural. 
 :::
@@ -109,7 +109,7 @@ Add custom timing functions as you see fit to make the "typewriter" feel more na
 #### How to format timing
 :::
 
-In individual keyframes and in the `Animatable` constructor's `options` object, the `timing` property's value should be an Array of two Objects.
+In individual keyframes and in the `Animateable` constructor's `options` object, the `timing` property's value should be an Array of two Objects.
 
 Both objects must have an `x` and a `y` property whose value must be a number greater than or equal to `0` and less than or equal to `1`.
 
@@ -137,14 +137,14 @@ You can use [easings.net by Andrey Sitnik and Ivan Solovev](https://easings.net/
 
 
 :::
-### `Animatable` constructor options
+### `Animateable` constructor options
 :::
 
-::: ariaLabel="Animatable constructor options" classes="wide-4 wide-6"
+::: ariaLabel="Animateable constructor options" classes="wide-4 wide-6"
 | Option | Type | Default | Description | Parameters | Return value |
 | --- | --- | --- | --- | --- | --- |
 | `duration` | Number | `0` | Indicates the duration in milliseconds of the animation. | N/A | N/A |
-| `timing` | Array | `[{x:0,y:0},{x:1,y:1}]` | <p>Customizes the global timing function used by `Animatable` to compute values between frames. The default timing function is linear.</p><p>See the [How to format timing](#how-to-format-timing) section for more guidance on formatting the `timing` array.</p> | N/A | N/A |
+| `timing` | Array | `[{x:0,y:0},{x:1,y:1}]` | <p>Customizes the global timing function used by `Animateable` to compute values between frames. The default timing function is linear.</p><p>See the [How to format timing](#how-to-format-timing) section for more guidance on formatting the `timing` array.</p> | N/A | N/A |
 | `iterations` | Number, Boolean | `1` | <p>Indicates the number of iterations the animation will repeat when playing or reversing.</p><p>The minimum is `1`, and you can pass `true` to make the animation iterate infinitely.</p> | N/A | N/A |
 | `alternates` | Boolean | `false` | <p>Indicates whether or not the animation will alternate back and forth, or only proceed in one direction.</p><p>When `alternates` is `true`, each full back-and-forth cycle is considered 1 iteration.</p> | N/A | N/A |
 :::
@@ -154,25 +154,25 @@ You can use [easings.net by Andrey Sitnik and Ivan Solovev](https://easings.net/
 ## Access state and methods
 :::
 
-The constructed `Animatable` instance is an Object, and state and methods can be accessed via its properties:
+The constructed `Animateable` instance is an Object, and state and methods can be accessed via its properties:
 
 
-::: ariaLabel="Animatable state and methods" classes="wide-3 wide-5"
+::: ariaLabel="Animateable state and methods" classes="wide-3 wide-5"
 | Property | Type | Description | Parameters | Return value |
 | --- | --- | --- | --- | --- |
 | `keyframes` | Array | A shallow copy of the `keyframes` array passed to the constructor | N/A | N/A |
-| `status` | Getter | See return value | N/A | Indicates the current status (String) of the `Animatable` instance. See the [How methods affect status, and vice-versa](#how-methods-affect-status-and-vice-versa) section for more information. |
+| `status` | Getter | See return value | N/A | Indicates the current status (String) of the `Animateable` instance. See the [How methods affect status, and vice-versa](#how-methods-affect-status-and-vice-versa) section for more information. |
 | `iterations` | Getter | See return value | N/A | The number of iterations (Number) that the animation has completed. |
 | `request` | Getter | See return value | N/A | The request ID (`long` integer) returned by [`requestAnimationFrame`](https://developer.mozilla.org/en-US/docs/Web/API/window/requestAnimationFrame). |
 | `time` | Getter | See return value | N/A | An Object with two keys: `elapsed` and `remaining`. Both keys' values are numbers indicating the time elapsed and time remaining in milliseconds. |
 | `progress` | Getter | See return value | N/A | <p>An Object with two keys: `time` and `animation`. Both keys' values are numbers between `0` and `1` indicating the time progress and animation progress of the animation.</p><p>In other words, `progress.time` and `progress.animation` are the x and y coordinates of the current point on the global timing function's easing curve.</p> |
-| `setKeyframes(keyframes)` | Function | Sets the `Animatable` instance's `keyframes` | The new `keyframes` (Array) | The `Animatable` instance |
-| `play(callback)` | Function | Starts the animation, progressing forward. | <p>`play` accepts a callback function to handle individual frames. Your callback will be called 60 times per second and will receive the current frame as its only argument.</p><p>See the [How to handle frames](#how-to-handle-frames) section for more guidance.</p> | The `Animatable` instance. |
-| `reverse(callback)` | Function | Starts the animation, progressing backward. | <p>`reverse` accepts a callback function to handle individual frames. Your callback will be called 60 times per second and will receive the current frame as its only argument.</p><p>See the [How to handle frames](#how-to-handle-frames) section for more guidance.</p> | The `Animatable` instance. |
-| `pause()` | Function | Pauses the animation. | None | The `Animatable` instance. |
-| `seek(progress, callback)` | Function | Starts the animation, progressing forward. | <p>`seek` Accepts two parameters: a time progress to seek to, and a callback function to handle the frame(s) that will be computed.</p><p>The `progress` parameter is always required, but the `callback` is only required if the animation is not currently playing or reversing.</p> | The `Animatable` instance. |
-| `restart()` | Function | <p>Restarts the animation, using the same `callback` that was previously passed to `play` or `reverse` to handle frames.</p><p>`restart` only has an effect if the animation is currently playing or reversing.</p> | Callback function. | The `Animatable` instance. |
-| `stop()` | Function | Cancels the animation, stopping it in its tracks. | None | The `Animatable` instance. |
+| `setKeyframes(keyframes)` | Function | Sets the `Animateable` instance's `keyframes` | The new `keyframes` (Array) | The `Animateable` instance |
+| `play(callback)` | Function | Starts the animation, progressing forward. | <p>`play` accepts a callback function to handle individual frames. Your callback will be called 60 times per second and will receive the current frame as its only argument.</p><p>See the [How to handle frames](#how-to-handle-frames) section for more guidance.</p> | The `Animateable` instance. |
+| `reverse(callback)` | Function | Starts the animation, progressing backward. | <p>`reverse` accepts a callback function to handle individual frames. Your callback will be called 60 times per second and will receive the current frame as its only argument.</p><p>See the [How to handle frames](#how-to-handle-frames) section for more guidance.</p> | The `Animateable` instance. |
+| `pause()` | Function | Pauses the animation. | None | The `Animateable` instance. |
+| `seek(progress, callback)` | Function | Starts the animation, progressing forward. | <p>`seek` Accepts two parameters: a time progress to seek to, and a callback function to handle the frame(s) that will be computed.</p><p>The `progress` parameter is always required, but the `callback` is only required if the animation is not currently playing or reversing.</p> | The `Animateable` instance. |
+| `restart()` | Function | <p>Restarts the animation, using the same `callback` that was previously passed to `play` or `reverse` to handle frames.</p><p>`restart` only has an effect if the animation is currently playing or reversing.</p> | Callback function. | The `Animateable` instance. |
+| `stop()` | Function | Cancels the animation, stopping it in its tracks. | None | The `Animateable` instance. |
 :::
 
 
@@ -180,7 +180,7 @@ The constructed `Animatable` instance is an Object, and state and methods can be
 ### How methods affect status, and vice-versa
 :::
 
-Each `Animatable` instance maintains a `status` property that allows it to take appropriate action based on the methods you call, in what order you call them, and when you call them.
+Each `Animateable` instance maintains a `status` property that allows it to take appropriate action based on the methods you call, in what order you call them, and when you call them.
 
 At any given time, `status` will always be one (and only one) of the following values:
 - `'ready'`
@@ -220,7 +220,7 @@ If you call a method when it's not supposed to be called, it won't cause any err
 :::
 
 ::: type="info"
-All methods always return the `Animatable` instance (i.e. `this`), regardless of `status`.
+All methods always return the `Animateable` instance (i.e. `this`), regardless of `status`.
 :::
 
 
@@ -230,7 +230,7 @@ All methods always return the `Animatable` instance (i.e. `this`), regardless of
 
 Finally, the good stuff!
 
-The first step to handling frames is to pass a callback function to the `play`, `reverse` or `seek` methods when you call them. `Animatable` will call that function at a rate of 60 frames per second, passing the current frame as the first argument.
+The first step to handling frames is to pass a callback function to the `play`, `reverse` or `seek` methods when you call them. `Animateable` will call that function at a rate of 60 frames per second, passing the current frame as the first argument.
 
 Each frame is simply an Object with a `data` property. The `data` property's value is also an Object, containing all the properties from your `keyframes` alongside their current value in the animation.
 
@@ -451,7 +451,7 @@ function handleFrame ({ data: { word } }) {
 ```
 :::
 
-Given those keyframes and that frame handler, your `Animatable` instance would progressively change the text content of your element, making it look like the word "Baleada" is being typed across the screen.
+Given those keyframes and that frame handler, your `Animateable` instance would progressively change the text content of your element, making it look like the word "Baleada" is being typed across the screen.
 
 
 
@@ -466,7 +466,7 @@ Given those keyframes and that frame handler, your `Animatable` instance would p
 ## API design compliance
 :::
 
-::: ariaLabel="A table showing Animatable's API design compliance"  classes="wide-3"
+::: ariaLabel="A table showing Animateable's API design compliance"  classes="wide-1 wide-3"
 | Spec | Compliance status | Notes |
 | --- | --- | --- |
 | Access functionality by constructing an instance | <ApiDesignSpecCheckmark /> |  |
@@ -479,8 +479,8 @@ Given those keyframes and that frame handler, your `Animatable` instance would p
 | Outside of the methods listed above, it never writes to its own public properties. | <ApiDesignSpecCheckmark /> |  |
 | Has one or more public getters | <ApiDesignSpecCheckmark /> | `status`, `iterations`, `request`, `time`, `progress` |
 | Has one or more public methods that expose core functionality | <ApiDesignSpecCheckmark /> | `play`, `reverse`, `pause`, `seek`, `restart`, `stop` |
-| These methods don't create mutated state and don't have `on<Method>` functions | <ApiDesignSpecCheckmark /> |  |
-| Has side effects that can be cleaned up with a `stop` method | <ApiDesignSpecCheckmark /> |  |
+| These methods either don't create mutated state or emit mutated state through an `on<Method>` function | <ApiDesignSpecCheckmark /> |  |
+|  Either has no side effects or has side effects that can be cleaned up with a `stop` method | <ApiDesignSpecCheckmark /> |  |
 | Uses the sentence template to decide what state type should be accepted by a constructor | <ApiDesignSpecCheckmark /> | "Keyframes can be animated." |
 | Constructor does not accept options that only customize the behavior of public methods, it allows those options to be passed to the method itself as a parameter. | <ApiDesignSpecCheckmark /> | |
 :::

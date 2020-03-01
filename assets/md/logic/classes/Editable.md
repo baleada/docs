@@ -1,7 +1,7 @@
 ---
 title: Editable
 framework: agnostic
-publish: true
+publish: false
 order: 0
 ---
 
@@ -11,7 +11,7 @@ order: 0
 - Store and make changes to an editable version of itself, instead of mutating the original state
 - Handle different kinds of edits (write, overwrite, full delete, partial delete, cancel &amp; revert to original value, etc.)
 
-`Editable` is written in vanilla JS with no dependencies.
+`Editable`'s only dependency is [`clone-deep`](https://www.npmjs.com/package/clone-deep) (used internally when editing objects and [Maps](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Map)).
 
 ::: type="danger"
 Documentation for `Editable` is still in progress.
@@ -61,8 +61,8 @@ The constructed Editable instance is an Object, and state and methods can be acc
 :::
 | Property | Type | Description | Parameters | Return value |
 | --- | --- | --- | --- | --- |
-| `state` | any | A shallow copy of the state passed to the Editable constructor | N/A | N/A |
-| `editableState` | any | A shallow copy of `state` that you can edit. | N/A | N/A |
+| `state` | any | A deep copy of the state passed to the Editable constructor | N/A | N/A |
+| `editableState` | any | A deep copy of `state` that you can edit. | N/A | N/A |
 | `type` | Getter | See return value | N/A | The Editable instance's inferred data type (String) |
 | `setState(newState)` | Function | Sets the Editable instance's `state` | The new `state` (any) | The Editable instance (`this`) |
 | `setEditableState(newEditableState)` | Function | Sets the Editable instance's `editableState` | The new `editableState` (any) | The Editable instance (`this`) |
