@@ -9,7 +9,7 @@ import headConfig from './config/head.config'
 //  import GenerateMetafilesPlugin from './scripts/webpack-plugins/generateMetafiles'
 
 export default {
-  mode: 'spa',
+  mode: 'universal',
 
   /*
   ** Headers of the page
