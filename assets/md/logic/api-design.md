@@ -22,7 +22,7 @@ To accomplish that, Baleada Logic's classes and factories all follow strict rule
 4. Why classes and factories provide certain state and methods
 5. Why constructors accept certain state and options
 
-This guide explains all the core concepts, rules, and patterns that classes and factories follow. The words "all", "always", and "never" are displayed in bold, to emphasize the rules that apply to every single class and subclass in Baleada Logic.
+This guide explains all the core concepts, rules, and patterns that classes and factories follow. The words "all", "always", "any", and "never" are displayed in bold, to emphasize the rules that apply to every single class and subclass in Baleada Logic.
 
 
 :::
@@ -107,7 +107,7 @@ instance.toString() // -> 'baleada'
 ### Class state and methods
 :::
 
-Classes take the form of JavaScript Objects, and **all** state and methods are accessible through the properties of those objects.
+Instances of classes take the form of JavaScript Objects, and **all** state and methods are accessible through the properties of those objects.
 
 :::
 ```js
@@ -118,7 +118,7 @@ instance.exampleMethod() // Access methods through properties
 ```
 :::
 
-Classes methods **always** return the instance through which they were called. The benefit of this is that you can use method chaining if needed.
+Class instances' methods **always** return the instance itself. The main benefit of this is that you can use method chaining if needed.
 
 :::
 ```js
@@ -133,24 +133,41 @@ instance
 :::
 
 
+Class instances **always** store a shallow copy of their constructors' state in a public [getters](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/get) named after the state's type (e.g. `string`, `array`, `keyframes`, etc.).
 
+Class instances **always** have a public method you can use to set a new value for that public getter. The method follows a naming convention of `set<PropertyName>` (e.g. `setString`, `setArray`, `setKeyframes`, etc.).
 
-Classes **always** store a shallow copy of their constructors' state in a public property named after the state's type (e.g. `string`, `array`, etc.).
-
-Classes also **always** have a public method you can use to assign a new value to that public property. The method follows a naming convention of `set<PropertyName>` (e.g. `setString`, `setArray`, etc.).
+The `set<PropertyName>` methods have two benefits:
+1. Since they return the instance itself, you can method chain after updating your state
+2. Internally, they perform **any** and **all** side effects and validation that should happen before or after updating state, so that you don't have to be concerned with those things.
 
 :::
 ```js
 // The Searchable class's constructor accepts an Array
 const instance = new Searchable(['Baleada', 'Logic', 'Composition', 'Icons'])
 
-instance.array // -> ['Baleada', 'Logic', 'Composition', 'Icons']
-instance.setArray(['tortilla', 'beans', 'egg', 'avocado']) // -> returns instance
-instance.array  // -> ['tortilla', 'beans', 'egg', 'avocado']
+instance.candidates // -> ['Baleada', 'Logic', 'Composition', 'Icons']
+instance.setCandidates(['tortilla', 'beans', 'egg', 'avocado']) // updates the Searchable instance's candidates and its `trie` property, and returns the Searchable instance
+instance.candidates  // -> ['tortilla', 'beans', 'egg', 'avocado']
 ```
 :::
 
-Some classes, particularly those that were designed to capture input from your end users, have additional public properties. Those classes also **always** have public methods you can use to assign a new value to the additional public properties, and those methods follow the same  `set<PropertyName>` naming convention.
+If you _don't_ need to method chain after updated your state, but you _do_ want to feel confident that side effects are performed correctly, you can simply assign a new value directly to the getter property. These getter properties also have their own [setters](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/set) that pass your new value the `set<PropertyName>` method, ensuring that side effects and validation are performed.
+
+:::
+```js
+const instance = new Searchable(['Baleada', 'Logic', 'Composition', 'Icons'])
+instance.candidates = ['tortilla', 'beans', 'egg', 'avocado'] // Internally, the setter updates candidates performs the side effect of updating the `trie` property
+instance.candidates // -> ['tortilla', 'beans', 'egg', 'avocado']
+```
+:::
+
+Some classes, particularly those that were designed to capture text input from your end users, create additional public getters that you'll frequently need to update.
+
+Those public getters follow **all** of the same rules:
+- They each have a public method you can use to assign a new value to the property and perform necessary side effects and validation
+- Those methods follow the same  `set<PropertyName>` naming convention
+- If you assign a value to the property directly, its setter will still perform necessary side effects
 
 :::
 ```js
@@ -160,137 +177,45 @@ const instance = new Completeable('Baleada')
 instance.string // -> 'Baleada'
 instance.location // -> 0
 
-instance.setString('tortilla') // -> returns instance
-instance.setLocation('3') // -> returns instance
+instance.setString('tortilla') // --> returns instance
+// OR
+instance.string = 'tortilla' // Works just fine 👍
+
+
+instance.setLocation('3') // --> returns instance
+// OR
+instance.location = 3 // Works just fine 👍
 ```
 :::
 
 
-Note that public properties are writeable—it's possible to assign values to them directly. But, in some classes, certain side effects need to be performed after writing to public properties, to make sure everything keeps working properly. When this is the case, the classes' `set<PropertyName>` methods will perform **all** necessary side effects, and you won't have to think about them. Because of that, it's **always** recommended that you use the `set<PropertyName>` methods instead of writing to public properties directly.
-
-
-:::
-```js
-// The Searchable class's constructor accepts an array of search candidates
-const instance = new Searchable(['Baleada', 'toolkit'])
-
-instance.candidates // -> ['Baleada', 'toolkit']
-instance.trie // -> an object representing the search trie
-
-/*
- * It's possible to write to instance.candidates directly.
- * However, if you pass a new array of candidates this way, Searchable
- * will be stuck using the old trie:
- */
-instance.candidates = ['tortilla', 'beans'] // -> It won't throw any errors
-instance.trie // -> The old trie representing ['Baleada', 'toolkit']
-
-/*
- * If you use instance.setCandidates instead, the appropriate side effect
- * (updating instance.trie) is taken care of by Searchable.
- */
-instance.setCandidates(['tortilla', 'beans'])
-instance.candidates // -> ['tortilla', 'beans']
-instance.trie // -> a new trie representing ['tortilla', 'beans']
-```
-:::
-
-
-Outside of `set<PropertyName>` methods, classes **never** write to their own public properties.
-
-However, some classes do have public methods that create mutated versions of one or more public properties' values. These classes **always** accept an `on<Method>` option, where `<Method>` is the name of the public method that mutates the values. The `on<Method>` option is **always** a function gets called after you call `instance.<Method>`, and `on<Method>` **always** accepts two parameters: the mutated value, and the instance itself (i.e. `this`).
-
-Instead of writing the mutated value to its own public property after you call `instance.<Method>`, the class will pass the mutated value as the first argument of your `on<Method>` function.
-
-
-:::
-```js
-let totalStringCompletions = 0
-
-const instance = new Completeable('Baleada', {
-  onComplete: (completedString, instance) {
-    instance.setString(completedString)
-    totalStringCompletions++
-  }
-})
-
-instance.string // -> 'Baleada'
-totalStringCompletions // -> 0
-
-/*
- * When you call instance.complete, the Completeable instance will create
- * a mutated version of instance.string. Then, it will call your
- * onComplete function, passing the mutated version of instance.string
- * AND itself as the two arguments.
- *
- * In this example, your onComplete function will set instance.string
- * to the new value and will mutate the external variable,
- * totalStringCompletions.
- */
-instance.complete('Baleada: a toolkit for building web apps')
-instance.string // -> 'Baleada: a toolkit for building web apps'
-totalStringCompletions // -> 1
-```
-:::
-
-These `on<Method>` functions are a great way to hook into state changes and run code just before or just after the state change actually happens. However, for ease of use, **all** classes that accept `on<Method>` functions already have sensible default functions that set state for you.
-
-:::
-```js
-const instance = new Completeable('Baleada') // Completeable has a default onComplete function defined for you
-
-instance.string // -> 'Baleada'
-
-/*
- * When you call instance.complete, the Completeable instance will create
- * a mutated version of instance.string. Then, it will call its default
- * onComplete function, passing the mutated version of instance.string
- * AND itself as the two arguments.
- *
- * Completeable's default onComplete function will set instance.string
- * to the new value.
- */
-instance.complete('Baleada: a toolkit for building web apps')
-instance.string // -> 'Baleada: a toolkit for building web apps'
-```
-:::
-
-
-All classes also have one or more public [getters](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/get). When you access these getters, they compute and return state that is useful for building certain UI features, but is not part of the core functionality or benefit of the class.
-
-:::
-```js
-const instance = new Completeable(
-  'Baleada: a toolkit',
-  { segmentsFromDivider: true } // An option customizing how the getter works
-)
-
-instance.segment // -> 'toolkit'
-instance.segment = 'Baleada' // Doesn't work, since instance.segment is a getter
-```
-:::
-
-Some classes don't have any methods that create mutated versions of the values in their public properties. These classes **always** have one or more other public methods that expose their core functionality. These methods **never** have `on<Method>` functions associated with them, because they aren't creating any mutated state, so there is nothing valuable to pass to the functions.
+**All** class instances also have one or more non-editable public getters. These getter properties share the following important characteristics:
+1. They allow you to access state that is useful for building certain UI features, but is not part of the core functionality or benefit of the class.
+2. **All** updates to the getter properties are considered side effects of other public methods.
+3. You'll **never** find a situation where it would make sense for you to edit the property directly. You'll **always** rely on the instance to manage the properties' values, updating it after other methods are called.
+4. When applicable, getter functions' behavior can be customized using properties in the `options` object that gets passed to the class constructor.
 
 :::
 ```js
 // The Animateable class's constructor accepts an array of keyframes
-const instance = new Animateable(myKeyframes, myAnimationOptions)
+const instance = new Animateable(myKeyframes, myOptions)
 
-instance.play() // -> Plays an animation and returns the instance, but does nothing else
+instance.play() // Plays the animation (and returns the instance)
+instance.progress.time // -> A number between 0 and 1 indicating the time progress of the animation. Updated at 60fps.
+instance.progress.time = 3 // Doesn't work (and shouldn't work!)
 ```
 :::
 
-Some classes have side effects that need to be cleaned up in order to avoid memory leaks. **All** of these classes have a public `stop` method that you can use to clean up.
+Some classes have side effects in the DOM that need to be cleaned up in order to avoid memory leaks. **All** of these classes have a public `stop` method that you can use to clean up.
 
 :::
 ```js
 // Listenable can be used to listen to DOM events, media queries, Observer entries, and window idle periods.
 const instance = new Listenable(myEventType)
 
-instance.listen(myCallback) // -> Adds event listeners, connects observers, etc.
+instance.listen(myCallback) // Adds event listeners, connects observers, etc.
 
-instance.stop() // -> Removes all listeners, disconnects all observers, etc.
+instance.stop() // Removes all listeners, disconnects all observers, etc.
 ```
 :::
 
@@ -307,25 +232,28 @@ So, when you're using Baleada Composition, you never need to call the `stop` met
 ### Factory state and methods
 :::
 
-Baleada Logic's factories **never** have public state; they **always** have one method.
+Objects returned by Baleada Logic's factories **never** have public state; they **always** have one method.
 
-Factories' public methods **never** mutate the original state passed to their constructors. They **always** follow three main steps:
-1. Create a mutated version of the original state
-2. Pass it to their own constructor along with any options you originally passed
-3. Return the new instance
+Factory functions **never** directly mutate the original state they receive. They **always** follow three main steps:
+1. Create a copy of the original state (it's a deep copy of everything except objects inside Arrays or Maps)
+2. Add a new method onto the copy
+3. Return the copy
 
-Thus, factories always return a new instance of themselves, respecting any original options you passed.
+Furthermore, the method added by factory functions always has the following characteristics:
+1. It **never** mutates the original object it was called on
+2. It **always** creates a new, mutated copy of the object it was called on
+3. It **always** passes the mutated copy back to the factory function and returns that value
 
 :::
 ```js
-// Renamable is a subclass of Map that allows the map to easily rename one of its keys
-const originalMap = [['one', 'value'], ['two', 'value']],
-      instance = new Renamable(originalMap),
-      renamedMap = instance.invoke('one', 'uno')
+// renameable is a factory function that allows a Map to easily rename one of its keys
+const originalMap = new Map([['one', 'value'], ['two', 'value']]),
+      renameableMap = renameable(originalMap),
+      renamedMap = renameableMap.rename({ from: 'one', to: 'uno' })
 
 originalMap // -> [['one', 'value'], ['two', 'value']]
 renamedMap // -> [['uno', 'value'], ['two', 'value']]
-renamedMap instanceof Renamable // -> true
+typeof result.rename === 'function' // -> true
 ```
 :::
 
