@@ -21,6 +21,7 @@ In other words, `Animateable` implements all the main features of [CSS `@keyfram
 - [`requestAnimationFrame`](https://developer.mozilla.org/en-US/docs/Web/API/window/requestAnimationFrame) and [`cancelAnimationFrame`](https://developer.mozilla.org/en-US/docs/Web/API/window/cancelAnimationFrame)
 - [BezierEasing](https://github.com/gre/bezier-easing)
 - [The chroma.js `mix` method](https://vis4.net/chromajs/#chroma-mix) (imported from the light version of chroma.js, so it has a lower impact on bundle size.)
+- [`Listenable`](/docs/logic/classes/Listenable)
 
 
 :::
