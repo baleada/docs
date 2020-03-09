@@ -17,7 +17,6 @@ order: 0
 :::
 
 
-
 :::
 ## Construct a `Searchable` instance
 :::
@@ -43,13 +42,7 @@ const instance = new Searchable(candidates[, options])
 ### `Searchable` constructor options
 :::
 
-In addition to the options listed below, `Searchable`'s `options` object accepts any key/value pair that you can pass to fast-fuzzy. See the [fast-fuzzy docs](https://github.com/EthanRutherford/fast-fuzzy#options) for more guidance.
-
-::: ariaLabel="Searchable constructor options" classes="wide-3 wide-4 wide-5 wide-6"
-| Option | Type | Default | Description | Parameters | Return value |
-| --- | --- | --- | --- | --- | --- |
-| `onSearch(newResults, instance)` | Function | See the [How `Searchable` searches](#How-Searchable-searches) section for more info. | <p>Called by the `Searchable` instance after searching.</p><p>See the [How `Searchable` searches](#How-Searchable-searches) section for more info.</p> | The new search results (Array) and the `Searchable` instance (Object) | N/A |
-:::
+`Searchable`'s `options` object accepts any key/value pair that you can pass to fast-fuzzy. See the [fast-fuzzy docs](https://github.com/EthanRutherford/fast-fuzzy#options) for more guidance.
 
 
 :::
@@ -62,27 +55,12 @@ The constructed `Searchable` instance is an Object, and state and methods can be
 ::: ariaLabel="Searchable state and methods" classes="wide-3 wide-4 wide-5"
 | Property | Type | Description | Parameters | Return value |
 | --- | --- | --- | --- | --- |
-| `candidates` | Array | A shallow copy of the `candidates` array passed to the constructor | N/A | N/A |
-| `results` | Array | <p>A convenient place to store search results.</p><p>Immediately after the `Searchable` instance is constructed, `results` is an empty array (`[]`).</p>  | N/A | N/A |
+| `candidates` | Getter | See return value | N/A | A shallow copy (Array) of the `candidates` array passed to the constructor |
+| `status` | Getter | See return value | N/A | The status (String) of the `Searchable` instance. `status` is `ready` after the instance is constructed, and changes to `searched` after the `candidates` are searched for the first time. |
+| `results` | Getter | See return value | N/A | <p>The place where search results (Array) are stored.</p><p>Immediately after the `Searchable` instance is constructed, `results` is simply an empty array (`[]`).</p> |
 | `trie` | Getter | See return value | N/A | The searchable trie (Object) created by the `Searcher` class (Array) |
 | `setCandidates(newCandidates)` | Function |  | The new `candidates` (Array) | The `Searchable` instance |
-| `setResults(newResults)` | Function |  | The new `results` (Array) | The `Searchable` instance |
 | `search(query, options)` | Function |  | <p>A search query (String) and search options (Object).</p><p>To learn more about what search options are available, [visit the docs for the `Searcher` class' `search` method](https://github.com/EthanRutherford/fast-fuzzy#options).</p> | The `Searchable` instance |
-:::
-
-:::
-### How `Searchable` searches
-:::
-
-Whenever the `search` method is called, the `Searchable` instance computes a new array of search results (using the `search` method on the `Searcher` class), then calls your `onSearch` function, passing the new results as the first argument and itself (i.e. `this`) as the second argument.
-
-The default `onSearch` function, shown below, sets `results` to the new results each time you call `search`:
-
-:::
-```js
-// Default onSearch function for Searchable
-(newResults, instance) => instance.setResults(newResults)
-```
 :::
 
 
@@ -90,21 +68,22 @@ The default `onSearch` function, shown below, sets `results` to the new results 
 ## API design compliance
 :::
 
-::: ariaLabel="A table showing Searchable's API design compliance" classes="wide-1 wide-3"
+::: ariaLabel="A table showing Searchable's API design compliance"  classes="wide-1 wide-3"
 | Spec | Compliance status | Notes |
 | --- | --- | --- |
 | Access functionality by constructing an instance | <ApiDesignSpecCheckmark /> |  |
 | Constructor accepts two parameters: a piece of state,and an `options` object. | <ApiDesignSpecCheckmark /> |  |
 | Takes the form of a JavaScript Object | <ApiDesignSpecCheckmark /> |  |
-| State and methods are accessible through properties | <ApiDesignSpecCheckmark /> |  |
+| State and methods are accessible through properties of the object | <ApiDesignSpecCheckmark /> |  |
 | Methods always return the instance | <ApiDesignSpecCheckmark /> |  |
-| Stores a shallow copy of the constructor's state in a public property named after the state's type | <ApiDesignSpecCheckmark /> | `candidates`  |
-| Has a public method you can use to assign a new value to each public property | <ApiDesignSpecCheckmark /> | `setCandidates`, `setResults` |
-| Outside of the methods listed above, it never writes to its own public properties. | <ApiDesignSpecCheckmark /> |  |
-| Has one or more public getters | <ApiDesignSpecCheckmark /> | `trie` |
+| Stores the constructor's state in a public getter named after the state's type | <ApiDesignSpecCheckmark /> | `candidates`  |
+| Has a public method you can use to set a new value for that public getter | <ApiDesignSpecCheckmark /> | `setCandidates` |
+| Has a setter for that getter so you can assign a new value directly | <ApiDesignSpecCheckmark /> |  |
+| Any other public getters that should be set by you in some cases also have setters and `set<Property>` methods | <ApiDesignSpecCheckmark /> | none |
+| Has at least one additional getter property that you can't (and shouldn't) set directly | <ApiDesignSpecCheckmark /> | `status`, `results`, `trie` |
 | Has one or more public methods that expose core functionality | <ApiDesignSpecCheckmark /> | `search` |
-| These methods either don't create mutated state or emit mutated state through an `on<Method>` function | <ApiDesignSpecCheckmark /> | `onSearch` |
-| Either has no side effects or has side effects that can be cleaned up with a `stop` method | <ApiDesignSpecCheckmark /> | |
+| Either has no side effects or has side effects that can be cleaned up with a `stop` method | <ApiDesignSpecCheckmark /> |  |
 | Uses the sentence template to decide what state type should be accepted by a constructor | <ApiDesignSpecCheckmark /> | "Candidates can be searched." |
-| Constructor does not accept options that only customize the behavior of public methods, it allows those options to be passed to the method itself as a parameter. | <ApiDesignSpecCheckmark /> | `Searchable`'s constructor accepts options for the `Searcher` class, but those can be overridden when calling the `search` function. |
+| Constructor does not accept options that only customize the behavior of public methods, it allows those options to be passed to the method itself as a parameter. | <ApiDesignSpecCheckmark /> | |
+| Named after its core action, proper-cased and suffixed with `able` | <ApiDesignSpecCheckmark /> | |
 :::
