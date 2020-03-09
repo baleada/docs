@@ -161,19 +161,21 @@ The constructed `Animateable` instance is an Object, and state and methods can b
 ::: ariaLabel="Animateable state and methods" classes="wide-3 wide-5"
 | Property | Type | Description | Parameters | Return value |
 | --- | --- | --- | --- | --- |
-| `keyframes` | Array | A shallow copy of the `keyframes` array passed to the constructor | N/A | N/A |
+| `keyframes` | Getter | See return value | N/A | A shallow copy (Array) of the `keyframes` array passed to the constructor |
+| `playbackRate` | Getter | See return value | N/A | A number indicating the playback rate of the animation. Defaults to `1`, and to change it, you can assign a new value directly or call the `setPlaybackRate` method. |
 | `status` | Getter | See return value | N/A | Indicates the current status (String) of the `Animateable` instance. See the [How methods affect status, and vice-versa](#how-methods-affect-status-and-vice-versa) section for more information. |
 | `iterations` | Getter | See return value | N/A | The number of iterations (Number) that the animation has completed. |
 | `request` | Getter | See return value | N/A | The request ID (`long` integer) returned by [`requestAnimationFrame`](https://developer.mozilla.org/en-US/docs/Web/API/window/requestAnimationFrame). |
 | `time` | Getter | See return value | N/A | An Object with two keys: `elapsed` and `remaining`. Both keys' values are numbers indicating the time elapsed and time remaining in milliseconds. |
 | `progress` | Getter | See return value | N/A | <p>An Object with two keys: `time` and `animation`. Both keys' values are numbers between `0` and `1` indicating the time progress and animation progress of the animation.</p><p>In other words, `progress.time` and `progress.animation` are the x and y coordinates of the current point on the global timing function's easing curve.</p> |
 | `setKeyframes(keyframes)` | Function | Sets the `Animateable` instance's `keyframes` | The new `keyframes` (Array) | The `Animateable` instance |
+| `setPlaybackRate` | Function | Sets the playback rate for the animation. | The playback rate: a Number greater than `0`. | The `Animateable` instance |
 | `play(callback)` | Function | Starts the animation, progressing forward. | <p>`play` accepts a callback function to handle individual frames. Your callback will be called 60 times per second and will receive the current frame as its only argument.</p><p>See the [How to handle frames](#how-to-handle-frames) section for more guidance.</p> | The `Animateable` instance. |
 | `reverse(callback)` | Function | Starts the animation, progressing backward. | <p>`reverse` accepts a callback function to handle individual frames. Your callback will be called 60 times per second and will receive the current frame as its only argument.</p><p>See the [How to handle frames](#how-to-handle-frames) section for more guidance.</p> | The `Animateable` instance. |
 | `pause()` | Function | Pauses the animation. | None | The `Animateable` instance. |
-| `seek(progress, callback)` | Function | Starts the animation, progressing forward. | <p>`seek` Accepts two parameters: a time progress to seek to, and a callback function to handle the frame(s) that will be computed.</p><p>The `progress` parameter is always required, but the `callback` is only required if the animation is not currently playing or reversing.</p> | The `Animateable` instance. |
+| `seek(progress, callback)` | Function | <p>Seeks to a specific time progress in the animation. If `status` is `'playing'` or `'reversing'`, the animation will continue progressing in the same direction after seeking to the time progress.</p><p>If your animation is supposed to repeat for more than one iteration, you can pass a time progress that is greater than `1` to seek to a specific iteration. For example, to seek halfway through the third iteration, you can call `seek(2.5)`.</p> | <p>`seek` Accepts two parameters: a time progress to seek to, and a callback function to handle the frame(s) that will be computed.</p><p>The `progress` parameter is always required, but the `callback` is only required if the animation is not currently playing or reversing.</p> | The `Animateable` instance. |
 | `restart()` | Function | <p>Restarts the animation, using the same `callback` that was previously passed to `play` or `reverse` to handle frames.</p><p>`restart` only has an effect if the animation is currently playing or reversing.</p> | Callback function. | The `Animateable` instance. |
-| `stop()` | Function | Cancels the animation, stopping it in its tracks. | None | The `Animateable` instance. |
+| `stop()` | Function | Cancels the animation, stopping it in its tracks and cleaning up side effects. | None | The `Animateable` instance. |
 :::
 
 
@@ -214,7 +216,7 @@ The table below has a full breakdown:
 Or, just remember:
 - You can't `play` while the animation is already playing, and likewise, you can't `reverse` while the animation is already reversing.
 - You can only `pause` and `restart` while the animation is playing or reversing
-- You can `setKeyframes`, `seek`, and `stop` at any time. Just remember that `setKeyframes` will always `stop` the animation, and if you call `seek` while an animation is progressing, the animation will continue progressing after it seeks to the timestamp you specified.
+- You can `setKeyframes`, `seek`, and `stop` at any time. Just remember that `setKeyframes` will always `stop` the animation, and if you call `seek` while an animation is progressing, the animation will continue progressing after it seeks to the time progress you specified.
 
 ::: type="info"
 If you call a method when it's not supposed to be called, it won't cause any errors, it will simply have no effect on the animation.
@@ -473,15 +475,16 @@ Given those keyframes and that frame handler, your `Animateable` instance would 
 | Access functionality by constructing an instance | <ApiDesignSpecCheckmark /> |  |
 | Constructor accepts two parameters: a piece of state,and an `options` object. | <ApiDesignSpecCheckmark /> |  |
 | Takes the form of a JavaScript Object | <ApiDesignSpecCheckmark /> |  |
-| State and methods are accessible through properties | <ApiDesignSpecCheckmark /> |  |
+| State and methods are accessible through properties of the object | <ApiDesignSpecCheckmark /> |  |
 | Methods always return the instance | <ApiDesignSpecCheckmark /> |  |
-| Stores a shallow copy of the constructor's state in a public property named after the state's type | <ApiDesignSpecCheckmark /> | `keyframes`  |
-| Has a public method you can use to assign a new value to each public property | <ApiDesignSpecCheckmark /> | `setKeyframes` |
-| Outside of the methods listed above, it never writes to its own public properties. | <ApiDesignSpecCheckmark /> |  |
-| Has one or more public getters | <ApiDesignSpecCheckmark /> | `status`, `iterations`, `request`, `time`, `progress` |
+| Stores the constructor's state in a public getter named after the state's type | <ApiDesignSpecCheckmark /> | `keyframes`  |
+| Has a public method you can use to set a new value for that public getter | <ApiDesignSpecCheckmark /> | `setKeyframes` |
+| Has a setter for that getter so you can assign a new value directly | <ApiDesignSpecCheckmark /> |  |
+| Any other public getters that should be set by you in some cases also have setters and `set<Property>` methods | <ApiDesignSpecCheckmark /> | `playbackRate`, `setPlaybackRate` |
+| Has at least one additional getter property that you can't (and shouldn't) set directly | <ApiDesignSpecCheckmark /> | `status`, `request`, `iterations`, `time`, `progress` |
 | Has one or more public methods that expose core functionality | <ApiDesignSpecCheckmark /> | `play`, `reverse`, `pause`, `seek`, `restart`, `stop` |
-| These methods either don't create mutated state or emit mutated state through an `on<Method>` function | <ApiDesignSpecCheckmark /> |  |
-|  Either has no side effects or has side effects that can be cleaned up with a `stop` method | <ApiDesignSpecCheckmark /> |  |
+| Either has no side effects or has side effects that can be cleaned up with a `stop` method | <ApiDesignSpecCheckmark /> |  |
 | Uses the sentence template to decide what state type should be accepted by a constructor | <ApiDesignSpecCheckmark /> | "Keyframes can be animated." |
 | Constructor does not accept options that only customize the behavior of public methods, it allows those options to be passed to the method itself as a parameter. | <ApiDesignSpecCheckmark /> | |
+| Named after its core action, proper-cased and suffixed with `able` | <ApiDesignSpecCheckmark /> | `animate` (private method) |
 :::

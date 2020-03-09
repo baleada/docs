@@ -133,7 +133,7 @@ instance
 :::
 
 
-Class instances **always** store a shallow copy of their constructors' state in a public [getters](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/get) named after the state's type (e.g. `string`, `array`, `keyframes`, etc.).
+Class instances **always** store a version of their constructors' state in a public [getter](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/get) named after the state's type (e.g. `string`, `array`, `keyframes`, etc.).
 
 Class instances **always** have a public method you can use to set a new value for that public getter. The method follows a naming convention of `set<PropertyName>` (e.g. `setString`, `setArray`, `setKeyframes`, etc.).
 
@@ -338,7 +338,7 @@ Constructors **never** accept options that customize the behavior of public meth
 ## Naming conventions
 :::
 
-Classes and factories are named after their core action, followed by `able`. Class names have an uppercased first letter, and factory names are all lowercase.
+Classes and factories are named after their core action, suffixed with `able`. Class names are proper-cased, and factory names are all lowercase.
 
 Here are a few examples:
 
