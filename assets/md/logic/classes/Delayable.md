@@ -56,11 +56,11 @@ const instance = new Delayable(callback[, options])
 :::
 
 
-::: ariaLabel="Delayable constructor options" classes="wide-3 wide-4 wide-5 wide-6"
-| Option | Type | Default | Description | Parameters | Return value |
-| --- | --- | --- | --- | --- | --- |
-| `delay` | Number | `0` | The number of milliseconds that should pass before each execution of the `callback` | N/A | N/A |
-| `executions` | Number, Boolean | `1` | <p>Indicates the number of times the callback function will be delayed and executed.</p><p>Set `executions` to `1` to make it behave like `setTimeout`, set it to any number greater than `1` to make it delay and execute a specific number of times, and set it to `true` to make it behave like `setInterval` (i.e. delay and execute on an infinite loop).</p> | N/A | N/A |
+::: ariaLabel="Delayable constructor options" classes="wide-4"
+| Option | Type | Default | Description |
+| --- | --- | --- | --- |
+| `delay` | Number | `0` | The number of milliseconds that should pass before each execution of the `callback` |
+| `executions` | Number, Boolean | `1` | <p>Indicates the number of times the callback function will be delayed and executed.</p><p>Set `executions` to `1` to make it behave like `setTimeout`, set it to any number greater than `1` to make it delay and execute a specific number of times, and set it to `true` to make it behave like `setInterval` (i.e. delay and execute on an infinite loop).</p> |
 :::
 
 
@@ -74,12 +74,12 @@ The constructed `Delayable` instance is an Object, and state and methods can be 
 ::: ariaLabel="Delayable state and methods" classes="wide-3 wide-5"
 | Property | Type | Description | Parameters | Return value |
 | --- | --- | --- | --- | --- |
-| `callback` | Getter | See return value | N/A | A slightly altered version of the `callback` you passed to the Delayable constructor. The altered `callback` will execute repeatedly at a rate of 60fps, and it won't call your original function until your number of milliseconds (specified in the `delay` option) have passed. |
+| `callback` | Getter/Setter | See return value | N/A | <p>A slightly altered version of the `callback` you passed to the Delayable constructor. The altered `callback` will execute repeatedly at a rate of 60fps, and it won't call your original function until your number of milliseconds (specified in the `delay` option) have passed.</p><p>If you assign a value directly to `callback`, a setter will pass the new value to `setCallback`.</p> |
 | `status` | Getter | See return value | N/A | Indicates the current status (String) of the `Delayable` instance. See the [How methods affect status, and vice-versa](#how-methods-affect-status-and-vice-versa) section for more information. |
 | `executions` | Getter | See return value | N/A | The number (Number) of times your original `callback` has been executed. |
 | `time` | Getter | See return value | N/A | An Object with two keys: `elapsed` and `remaining`. Both keys' values are millsecond values (Number), and they indicate the time elapsed since the last execution of the `callback` and the time remaining until the next execution. |
 | `progress` | Getter | See return value | N/A | A number (Number) between `0` and `1` indicating the time progress toward the next execution of the `callback`. |
-| `setCallback` | Function | Sets the `callback` | A callback function, which itself can accept the `timestamp` parameter (see the [Construct a Delayable instance](#construct-a-delayable-instance) section for a refresher on that parameter). | The `Delayable` instance |
+| `setCallback(callback)` | Function | Sets the `callback` | A callback function, which itself can accept the `timestamp` parameter (see the [Construct a Delayable instance](#construct-a-delayable-instance) section for a refresher on that parameter). | The `Delayable` instance |
 | `delay()` | Function | <p>Delays the execution(s) of the `callback`.</p><p>If you call `delay` while the `callback` is currently being delayed, it will start over from the beginning (and reset `executions`, `time.elapsed`, and `progress` to `0`).</p> | none | The `Delayable` instance |
 | `pause()` | Function | Pauses the delay | none | The `Delayable` instance |
 | `seek(progress)` | Function | <p>Seeks to a specific time progress in the delay. If `status` is `'playing'` or `'reversing'`, the animation will continue progressing in the same direction after seeking to the time progress.</p><p>If your `callback` is supposed to execute more than one time, you can pass a time progress that is greater than `1` to seek to a specific execution. For example, to seek halfway through the third delay, you can call `seek(2.5)`. Your `callback` will instantly be executed twice, and will be halfway toward the third execution.</p> | `seek` Accepts one parameter: a time progress to seek to | The `Animateable` instance. |

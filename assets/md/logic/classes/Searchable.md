@@ -9,11 +9,12 @@ order: 0
 - Create and store a searchable trie of itself
 - Search the trie for matches or fuzzy matches to a query
 - Store search results
+- Store a status (`ready` or `searched`)
 
 `Searchable` depends on the `Searcher` class from the [fast-fuzzy](https://github.com/EthanRutherford/fast-fuzzy) package.
 
 ::: type="info"
-`Searchable` adds virtually no extra functionality to the fast-fuzzy `Searcher` class. It's mostly intended to be a thin wrapper, simply ensuring that the `Searcher` class conforms to all of Baleada Logic's API design specs and naming conventions.
+`Searchable` adds very little extra functionality to the fast-fuzzy `Searcher` class. It's mostly intended to be a thin wrapper, simply ensuring that the `Searcher` class conforms to all of Baleada Logic's API design specs and naming conventions.
 :::
 
 
@@ -55,7 +56,7 @@ The constructed `Searchable` instance is an Object, and state and methods can be
 ::: ariaLabel="Searchable state and methods" classes="wide-3 wide-4 wide-5"
 | Property | Type | Description | Parameters | Return value |
 | --- | --- | --- | --- | --- |
-| `candidates` | Getter | See return value | N/A | A shallow copy (Array) of the `candidates` array passed to the constructor |
+| `candidates` | Getter/Setter | See return value | N/A | <p>A shallow copy (Array) of the `candidates` array passed to the constructor.</p><p>If you assign a value directly to `candidates`, a setter will pass the new value to `setCandidates`.</p> |
 | `status` | Getter | See return value | N/A | The status (String) of the `Searchable` instance. `status` is `ready` after the instance is constructed, and changes to `searched` after the `candidates` are searched for the first time. |
 | `results` | Getter | See return value | N/A | <p>The place where search results (Array) are stored.</p><p>Immediately after the `Searchable` instance is constructed, `results` is simply an empty array (`[]`).</p> |
 | `trie` | Getter | See return value | N/A | The searchable trie (Object) created by the `Searcher` class (Array) |

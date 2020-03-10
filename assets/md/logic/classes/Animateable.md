@@ -141,13 +141,13 @@ You can use [easings.net by Andrey Sitnik and Ivan Solovev](https://easings.net/
 ### `Animateable` constructor options
 :::
 
-::: ariaLabel="Animateable constructor options" classes="wide-4 wide-6"
-| Option | Type | Default | Description | Parameters | Return value |
-| --- | --- | --- | --- | --- | --- |
-| `duration` | Number | `0` | Indicates the duration in milliseconds of the animation. | N/A | N/A |
-| `timing` | Array | `[{x:0,y:0},{x:1,y:1}]` | <p>Customizes the global timing function used by `Animateable` to compute values between frames. The default timing function is linear.</p><p>See the [How to format timing](#how-to-format-timing) section for more guidance on formatting the `timing` array.</p> | N/A | N/A |
-| `iterations` | Number, Boolean | `1` | <p>Indicates the number of iterations the animation will repeat when playing or reversing.</p><p>The minimum is `1`, and you can pass `true` to make the animation iterate infinitely.</p> | N/A | N/A |
-| `alternates` | Boolean | `false` | <p>Indicates whether or not the animation will alternate back and forth, or only proceed in one direction.</p><p>When `alternates` is `true`, each full back-and-forth cycle is considered 1 iteration.</p> | N/A | N/A |
+::: ariaLabel="Animateable constructor options" classes="wide-4"
+| Option | Type | Default | Description |
+| --- | --- | --- | --- |
+| `duration` | Number | `0` | Indicates the duration in milliseconds of the animation. |
+| `timing` | Array | `[{x:0,y:0},{x:1,y:1}]` | <p>Customizes the global timing function used by `Animateable` to compute values between frames. The default timing function is linear.</p><p>See the [How to format timing](#how-to-format-timing) section for more guidance on formatting the `timing` array.</p> |
+| `iterations` | Number, Boolean | `1` | <p>Indicates the number of iterations the animation will repeat when playing or reversing.</p><p>The minimum is `1`, and you can pass `true` to make the animation iterate infinitely.</p> |
+| `alternates` | Boolean | `false` | <p>Indicates whether or not the animation will alternate back and forth, or only proceed in one direction.</p><p>When `alternates` is `true`, each full back-and-forth cycle is considered 1 iteration.</p> |
 :::
 
 
@@ -161,15 +161,15 @@ The constructed `Animateable` instance is an Object, and state and methods can b
 ::: ariaLabel="Animateable state and methods" classes="wide-3 wide-5"
 | Property | Type | Description | Parameters | Return value |
 | --- | --- | --- | --- | --- |
-| `keyframes` | Getter | See return value | N/A | A shallow copy (Array) of the `keyframes` array passed to the constructor |
-| `playbackRate` | Getter | See return value | N/A | A number indicating the playback rate of the animation. Defaults to `1`, and to change it, you can assign a new value directly or call the `setPlaybackRate` method. |
+| `keyframes` | Getter/Setter | See return value | N/A | <p>A shallow copy (Array) of the `keyframes` array passed to the constructor.</p><p>If you assign a value directly to `keyframes`, a setter will pass the new value to `setKeyframes`.</p> |
+| `playbackRate` | Getter/Setter | See return value | N/A | <p>A number indicating the playback rate of the animation. Defaults to `1`.</p><p>If you assign a value directly to `playbackRate`, a setter will pass the new value to `setPlaybackRate`.</p> |
 | `status` | Getter | See return value | N/A | Indicates the current status (String) of the `Animateable` instance. See the [How methods affect status, and vice-versa](#how-methods-affect-status-and-vice-versa) section for more information. |
 | `iterations` | Getter | See return value | N/A | The number of iterations (Number) that the animation has completed. |
 | `request` | Getter | See return value | N/A | The request ID (`long` integer) returned by [`requestAnimationFrame`](https://developer.mozilla.org/en-US/docs/Web/API/window/requestAnimationFrame). |
 | `time` | Getter | See return value | N/A | An Object with two keys: `elapsed` and `remaining`. Both keys' values are numbers indicating the time elapsed and time remaining in milliseconds. |
 | `progress` | Getter | See return value | N/A | <p>An Object with two keys: `time` and `animation`. Both keys' values are numbers between `0` and `1` indicating the time progress and animation progress of the animation.</p><p>In other words, `progress.time` and `progress.animation` are the x and y coordinates of the current point on the global timing function's easing curve.</p> |
 | `setKeyframes(keyframes)` | Function | Sets the `Animateable` instance's `keyframes` | The new `keyframes` (Array) | The `Animateable` instance |
-| `setPlaybackRate` | Function | Sets the playback rate for the animation. | The playback rate: a Number greater than `0`. | The `Animateable` instance |
+| `setPlaybackRate(playbackRate)` | Function | Sets the playback rate for the animation. | The playback rate: a Number greater than `0`. | The `Animateable` instance |
 | `play(callback)` | Function | Starts the animation, progressing forward. | <p>`play` accepts a callback function to handle individual frames. Your callback will be called 60 times per second and will receive the current frame as its only argument.</p><p>See the [How to handle frames](#how-to-handle-frames) section for more guidance.</p> | The `Animateable` instance. |
 | `reverse(callback)` | Function | Starts the animation, progressing backward. | <p>`reverse` accepts a callback function to handle individual frames. Your callback will be called 60 times per second and will receive the current frame as its only argument.</p><p>See the [How to handle frames](#how-to-handle-frames) section for more guidance.</p> | The `Animateable` instance. |
 | `pause()` | Function | Pauses the animation. | None | The `Animateable` instance. |
