@@ -172,7 +172,7 @@ The table below uses width classes as an example.
 ::: ariaLabel="Comparison of Spacing linear numeric names and original names"
 | Baleada | Tailwind |
 | --- | --- |
-| `w-px` | `w-px` |
+| `.w-px` | `.w-px` |
 | `.w-0` | `.w-0` |
 | `.w-100` | `.w-1` |
 | `.w-200` | `.w-2` |
@@ -214,12 +214,12 @@ The table below uses width classes as an example.
 ::: ariaLabel="Comparison of Transition duration linear numeric names and original names"
 | Baleada | Tailwind |
 | --- | --- |
-| `duration-100` | `duration-75` |
-| `duration-200` | `duration-100` |
-| `duration-300` | `duration-150` |
-| `duration-400` | `duration-200` |
-| `duration-500` | `duration-300` |
-| `duration-600` | `duration-500` |
-| `duration-700` | `duration-700` |
-| `duration-800` | `duration-1000` |
+| `.duration-100` | `.duration-75` |
+| `.duration-200` | `.duration-100` |
+| `.duration-300` | `.duration-150` |
+| `.duration-400` | `.duration-200` |
+| `.duration-500` | `.duration-300` |
+| `.duration-600` | `.duration-500` |
+| `.duration-700` | `.duration-700` |
+| `.duration-800` | `.duration-1000` |
 :::
