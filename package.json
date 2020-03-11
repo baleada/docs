@@ -37,7 +37,7 @@
     "@baleada/markdown-it-prose-container": "^0.4.0",
     "@baleada/markdown-it-spa-links": "^0.1.0",
     "@baleada/markdown-to-prose": "^0.3.2",
-    "@baleada/prose": "^0.6.1",
+    "@baleada/prose": "^0.6.5",
     "@nuxtjs/eslint-config": "0.0.1",
     "@nuxtjs/markdownit": "^1.2.4",
     "@nuxtjs/pwa": "^2.6.0",

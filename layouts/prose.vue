@@ -1,11 +1,11 @@
 <template lang="html">
-  <ProseLayout :fullPathInjectKey="fullPathInjectKey" :defaultPropsInjectKey="defaultPropsInjectKey">
-    <ThreeColumn />
+  <ProseLayout v-bind="{ fullPathInjectKey, defaultPropsInjectKey }">
+    <ThreeColumn ref="threeColumn"/>
   </ProseLayout>
 </template>
 
 <script>
-import { computed, provide } from '@vue/composition-api'
+import { ref, computed, provide, onMounted } from '@vue/composition-api'
 
 import useRouter from '~/assets/js/useRouter.js'
 
@@ -22,8 +22,12 @@ export default {
 
     provide(fullPathInjectKey, fullPath)
 
-    const defaultPropsInjectKey = Symbol('defaultProps'),
+    const threeColumn = ref(null),
+          defaultPropsInjectKey = Symbol('defaultProps'),
           defaultProps = {
+            article: {
+              scrollableContainerGetter: () => threeColumn.value === null ? document : threeColumn.value.$refs.article
+            },
             blockquote: {
               canTweet: true,
               tweetVia: '@BaleadaToolkit',
@@ -40,6 +44,7 @@ export default {
     provide(defaultPropsInjectKey, defaultProps)
 
     return {
+      threeColumn,
       fullPathInjectKey,
       defaultPropsInjectKey
     }

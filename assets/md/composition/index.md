@@ -42,10 +42,10 @@ npm i @baleada/composition
 
 All composition functions follow a simple naming convention: they start with `use` and end with the name of the class.
 
-:::
-| Library | Composition function |
+::: ariaLabel="Examples of composition function names"
+| Class | Composition function |
 | --- | --- |
-| Animatable | `useAnimatable` |
+| Animateable | `useAnimateable` |
 | Fetchable | `useFetchable` |
-| Syncable | `useSyncable` |
+| Searchable | `useSearchable` |
 :::

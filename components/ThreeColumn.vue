@@ -311,10 +311,10 @@ export default {
             if (target.matches('a')) {
               openArticle()
             }
-          }
+          },
 
-    /* Touch gestures */
-    const nav = ref(null),
+          /* Touch gestures */
+          nav = ref(null),
           article = ref(null),
           tableOfContents = ref(null),
           articleSwipe = useListenable('swipe', {
@@ -381,16 +381,13 @@ export default {
           toggleDarkTheme = () => (isDarkTheme.value = !isDarkTheme.value),
           enableDarkTheme = () => (isDarkTheme.value = true),
           disableDarkTheme = () => (isDarkTheme.value = false),
-          darkThemeShortcutListener = ({ key, shiftKey }) => {
-            if (shiftKey && key === 'D') {
-              toggleDarkTheme()
-            }
-          },
+          darkThemeShortcut = useListenable('shift+d'),
           prefersDarkTheme = useListenable('(prefers-color-scheme: dark)')
 
     onMounted(() => {
+      darkThemeShortcut.value.listen(() => toggleDarkTheme())
       prefersDarkTheme.value.listen(({ matches }) => (isDarkTheme.value = matches))
-      isDarkTheme.value = prefersDarkTheme.value.activeListeners[0].target.matches
+      isDarkTheme.value = prefersDarkTheme.value.activeListeners[0].target.matches // Necessary because listener doesn't run once on load
     })
 
     /* Minimalist theme */
@@ -398,41 +395,17 @@ export default {
           toggleMinimalistTheme = () => (isMinimalistTheme.value = !isMinimalistTheme.value),
           enableMinimalistTheme = () => (isMinimalistTheme.value = true),
           disableMinimalistTheme = () => (isMinimalistTheme.value = false),
-          minimalistThemeShortcutListener = ({ key, shiftKey }) => {
-            if (shiftKey && key === 'M') {
-              toggleMinimalistTheme()
-            }
-          }
-
-
-    /* Keyboard shortcuts */
-    const shortcuts = [
-            {
-              fn: toggleMinimalistTheme,
-              condition: ({ key, shiftKey }) => (shiftKey && key === 'M')
-            },
-            {
-              fn: toggleDarkTheme,
-              condition: ({ key, shiftKey }) => (shiftKey && key === 'D')
-            },
-          ],
-          keydown = useListenable('keydown')
+          minimalistThemeShortcut = useListenable('shift+m')
 
     onMounted(() => {
-      shortcuts.forEach(({ fn, condition }) => {
-        const listener = evt => {
-          if (condition(evt)) {
-            fn()
-          }
-        }
-        keydown.value.listen(listener)
-      })
+      minimalistThemeShortcut.value.listen(() => toggleMinimalistTheme())
     })
 
     /* Transition hooks for table of contents */
     const tableOfContentsTransitionStatus = ref('after-enter'),
           onTableOfContentsAfterLeave = () => (tableOfContentsTransitionStatus.value = 'after-leave'),
           onTableOfContentsBeforeEnter = () => (tableOfContentsTransitionStatus.value = 'before-enter')
+
 
     /* Get headings for table of contents */
     const headings = inject(useSymbol('layout', 'headings'))
