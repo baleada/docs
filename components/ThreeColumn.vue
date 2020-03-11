@@ -406,7 +406,6 @@ export default {
           onTableOfContentsAfterLeave = () => (tableOfContentsTransitionStatus.value = 'after-leave'),
           onTableOfContentsBeforeEnter = () => (tableOfContentsTransitionStatus.value = 'before-enter')
 
-
     /* Get headings for table of contents */
     const headings = inject(useSymbol('layout', 'headings'))
 
