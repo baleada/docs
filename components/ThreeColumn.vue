@@ -326,7 +326,7 @@ export default {
           tableOfContentsSwipe = useListenable('swipe', {
             recognizeable: { handlers: swipe() }
           }),
-          blacklist = [
+          except = [
             '.baleada-prose-article .overflow-y-scroll',
             '.baleada-prose-article .overflow-y-scroll *',
 
@@ -352,7 +352,7 @@ export default {
             openTableOfContents()
           }
         },
-        { target: article.value, blacklist, addEventListener: { passive: true } }
+        { target: article.value, except, addEventListener: { passive: true } }
       )
 
       navSwipe.value.listen(
