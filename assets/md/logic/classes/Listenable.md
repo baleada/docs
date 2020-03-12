@@ -30,6 +30,23 @@ To construct a `Listenable` instance (Object), use the `Listenable` constructor,
 | --- | --- | --- | --- |
 | `eventName` | String | yes | The name of the event that will be made listenable. See the [Valid event names](#valid-event-names) section for more guidance. |
 | `options` | Object | no | Passes options for the `Listenable` instance. See the [`Listenable` constructor options](#Listenable-constructor-options) section for more guidance. |
+:::
+
+:::
+```js
+const instance = new Listenable(eventName[, options])
+```
+:::
+
+Or, if you're using [Baleada Composition](/docs/compositon):
+
+:::
+```js
+const instance = useListenable(eventName[, options])
+```
+:::
+
+
 
 
 :::
@@ -46,15 +63,15 @@ The table below has a breakdown of valid event names, the corresponding web APIs
 ::: ariaLabel="Listenable event names and web APIs"
 | Event name | Web APIs | Purpose |
 | --- | --- | --- |
-| All the basics, like `click`, `keydown`, `mousemove`, etc. | [`addEventListener`](https://developer.mozilla.org/en-US/docs/Web/API/EventTarget/addEventListener) and [`removeEventListener`](https://developer.mozilla.org/en-US/docs/Web/API/EventTarget/removeEventListener) | Detect basic events |
-| `intersect` | [Intersection Observer](https://developer.mozilla.org/en-US/docs/Web/API/) | Detect when a DOM element intersects with an ancestor element or with the top-level document's viewport. |
-| `resize` | [Resize Observer](https://developer.mozilla.org/en-US/docs/Web/API/ResizeObserver) | Detect when a DOM element is resized |
-| `mutate` | [Mutation Observer](https://developer.mozilla.org/en-US/docs/Web/API/MutationObserver) | Detect when a DOM element is mutated (e.g. children added or removed) |
-| Media queries (i.e. any valid first argument for the [matchMedia](https://developer.mozilla.org/en-US/docs/Web/API/Window/matchMedia) method) | [matchMedia](https://developer.mozilla.org/en-US/docs/Web/API/Window/matchMedia) and [`removeListener`](https://developer.mozilla.org/en-US/docs/Web/API/MediaQueryList/removeListener) | Detect changes to browser metadata (e.g. screen size, or color scheme preference) |
-| `idle` | [`requestIdleCallback`](https://developer.mozilla.org/en-US/docs/Web/API/Window/requestIdleCallback) and [`cancelIdleCallback`](https://developer.mozilla.org/en-US/docs/Web/API/Window/cancelIdleCallback) | Detect when the end user is idle |
-| `visibilitychange` | [Page Visibility API](https://developer.mozilla.org/en-US/docs/Web/API/Page_Visibility_API?redirectlocale=en-US&redirectslug=DOM%2FUsing_the_Page_Visibility_API) | Detect when the end user switches to a different tab, or returns to your tab |
-| Key combos and click combos (see the [How to format key combos and click combos](#how-to-format-key-combos-and-click-combos) section for more guidance) | [`addEventListener`](https://developer.mozilla.org/en-US/docs/Web/API/EventTarget/addEventListener) and [`removeEventListener`](https://developer.mozilla.org/en-US/docs/Web/API/EventTarget/removeEventListener) | Detect when keys are pressed or clicks are performed, optionally in combination with modifier keys |
-| `recognizeable` | [`addEventListener`](https://developer.mozilla.org/en-US/docs/Web/API/EventTarget/addEventListener) and [`removeEventListener`](https://developer.mozilla.org/en-US/docs/Web/API/EventTarget/removeEventListener) | <p>Detects custom gestures, powered by [`Recognizeable`](/docs/logic/classes/recognizeable).</p><p>See the [How to detect and handle custom gestures](#how-to-detect-and-handle-custom-gestures) section for more guidance.</p> |
+| All the basics, like `click`, `keydown`, `mousemove`, etc. | [`addEventListener`](https://developer.mozilla.org/en-US/docs/Web/API/EventTarget/addEventListener) and [`removeEventListener`](https://developer.mozilla.org/en-US/docs/Web/API/EventTarget/removeEventListener) | Listens for basic events |
+| `intersect` | [Intersection Observer](https://developer.mozilla.org/en-US/docs/Web/API/) | Listens for DOM elements intersecting with an ancestor element or with the top-level document's viewport. |
+| `resize` | [Resize Observer](https://developer.mozilla.org/en-US/docs/Web/API/ResizeObserver) | Listens for DOM elements being resized |
+| `mutate` | [Mutation Observer](https://developer.mozilla.org/en-US/docs/Web/API/MutationObserver) | Listens for DOM element being mutated (e.g. children added or removed) |
+| Media queries (i.e. any valid first argument for the [matchMedia](https://developer.mozilla.org/en-US/docs/Web/API/Window/matchMedia) method) | [matchMedia](https://developer.mozilla.org/en-US/docs/Web/API/Window/matchMedia) and [`removeListener`](https://developer.mozilla.org/en-US/docs/Web/API/MediaQueryList/removeListener) | Listens for changes to browser metadata (e.g. screen size, or color scheme preference) |
+| `idle` | [`requestIdleCallback`](https://developer.mozilla.org/en-US/docs/Web/API/Window/requestIdleCallback) and [`cancelIdleCallback`](https://developer.mozilla.org/en-US/docs/Web/API/Window/cancelIdleCallback) | Listens for the end user going idle |
+| `visibilitychange` | [Page Visibility API](https://developer.mozilla.org/en-US/docs/Web/API/Page_Visibility_API?redirectlocale=en-US&redirectslug=DOM%2FUsing_the_Page_Visibility_API) | Listens for the end user switching to a different tab, or returning to your tab |
+| Key combos and click combos (see the [How to format key combos and click combos](#how-to-format-key-combos-and-click-combos) section for more guidance) | [`addEventListener`](https://developer.mozilla.org/en-US/docs/Web/API/EventTarget/addEventListener) and [`removeEventListener`](https://developer.mozilla.org/en-US/docs/Web/API/EventTarget/removeEventListener) | Listens for keys being are pressed or clicks being performed, optionally in combination with modifier keys |
+| `recognizeable` | [`addEventListener`](https://developer.mozilla.org/en-US/docs/Web/API/EventTarget/addEventListener) and [`removeEventListener`](https://developer.mozilla.org/en-US/docs/Web/API/EventTarget/removeEventListener) | <p>Listens for custom gestures, powered by [`Recognizeable`](/docs/logic/classes/recognizeable).</p><p>See the [How to listen for custom gestures](#how-to-listen-for-custom-gestures) section for more guidance.</p> |
 :::
 
 
@@ -77,7 +94,9 @@ To achieve this or something similar, you just need to format your `eventName` p
    - `backspace`
    - `tab`
    - Any arrow direction—`up`, `right`, `down`, or `left`
-3. Join your modifiers and your key (or click) choice with `+`
+   - `click`
+   - `rightclick`
+3. Join your modifiers and your key or click choice with `+`
 
 Here are some more specific examples:
 
@@ -89,6 +108,7 @@ Here are some more specific examples:
 | Shift + Command + Enter | `shift+cmd+enter` |
 | Shift + Control + Option + Click | `shift+ctrl+opt+click` or `shift+ctrl+alt+click`|
 | Shift + Control + Option + Command + Up Arrow | `shift+ctrl+opt+cmd+up` or `shift+ctrl+alt+cmd+up` |
+| Shift + Right click | `shift+rightclick` |
 :::
 
 
@@ -100,7 +120,7 @@ Here are some more specific examples:
 ::: ariaLabel="Listenable constructor options" classes="wide-4"
 | Option | Type | Default | Description |
 | --- | --- | --- | --- |
-| `recognizeable` | Object | none | Passes options for a new instance of the [`Recognizeable`](/docs/logic/classes/recognizeable) class. See the [How to detect and handle custom gestures](#how-to-detect-and-handle-custom-gestures) section for more guidance. |
+| `recognizeable` | Object | none | Passes options for a new instance of the [`Recognizeable`](/docs/logic/classes/recognizeable) class. See the [How to listen for custom gestures](#how-to-listen-for-custom-gestures) section for more guidance. |
 :::
 
 
@@ -118,9 +138,9 @@ The constructed `Listenable` instance is an Object, and state and methods can be
 | `eventName` | Getter/Setter | See return value | N/A | <p>The event name you passed to the `Listenable` constructor.</p><p>If you assign a value directly to `eventName`, a setter will pass the new value to `setEventName`.</p> |
 | `status` | Getter | See return value | N/A | <p>The status (String) of the `Listenable` instance.</p><p>`status` is `ready` after the instance is constructed, and changes to `listening` after the `listen` method is called for the first time, and change to `stopped` after all web API activity has been stopped and cleaned up.</p> |
 | `activeListeners` | Getter | See return value | N/A | An array (Array) of objects that describe all the currently active listeners, observers, etc. |
-| `recognizeable` | Getter | See return value | N/A | <p>The `Recognizeable` instance constructed using the object you passed to `options.recognizeable`.</p><p>If you didn't pass that option, the `recognizeable` property will be `undefined`.</p><p>See the [How to detect and handle custom gestures](#how-to-detect-and-handle-custom-gestures) section for more guidance. |
+| `recognizeable` | Getter | See return value | N/A | <p>The `Recognizeable` instance constructed using the object you passed to `options.recognizeable`.</p><p>If you didn't pass that option, the `recognizeable` property will be `undefined`.</p><p>See the [How to listen for custom gestures](#how-to-listen-for-custom-gestures) section for more guidance.</p> |
 | `setEventName(eventName)` | Function | Sets a new `eventName`, after stopping and cleaning up all web API activity. | The new eventName (String). | The `Listenable` instance |
-| `listen(callback, options)` | Function | Detects the events specified by your `eventName`, and executes a callback function when the events happen. | <p>A callback (Function, required) that will be executed when the events are detected, and an optional `options` object.</p><p>To learn more about handling events with your callback, see the </p> | The `Listenable` instance |
+| `listen(callback, options)` | Function | Listens for the events specified by your `eventName`, and executes a callback function when the events happen. | <p>A callback (Function, required) that will be executed when the events are detected, and an optional `options` object.</p><p>To learn more about handling events with your callback, see the </p> | The `Listenable` instance |
 | `stop(target)` | Function | Stops and cleans up all web API activity. | <p>An optional target (a DOM element or `document`).</p><p>If a target is passed, only activity related to that target will be stopped, and if no target is passed, all activity is stopped.</p> | The `Listenable` instance |
 
 :::
@@ -145,7 +165,7 @@ The table below has a full breakdown of what the `listen` method passes to your 
 | `idle` | One argument: an [IdleDeadline](https://developer.mozilla.org/en-US/docs/Web/API/IdleDeadline) object |
 | `visibilitychange` | One argument: an [Event](https://developer.mozilla.org/en-US/docs/Web/API/Event) object |
 | Key combos and click combos | One argument: an [Event](https://developer.mozilla.org/en-US/docs/Web/API/Event) object |
-| `recognizeable` | <p>Three arguments, in the following order:</p><ol><li>An [Event](https://developer.mozilla.org/en-US/docs/Web/API/Event) object for the latest event in the event sequence you are recognizing</li><li>The `Listenable` instance's `recognizeable` instance (which you can also access via `myListenable.recognizeable`)</li><li>The `recognizeableListenerApi`</li></ol><p>See the [How to detect and handle custom gestures](#how-to-detect-and-handle-custom-gestures) section for more guidance on the `recognizeableListenerApi`.</p> |
+| `recognizeable` | <p>Three arguments, in the following order:</p><ol><li>An [Event](https://developer.mozilla.org/en-US/docs/Web/API/Event) object for the latest event in the event sequence you are recognizing</li><li>The `Listenable` instance's `recognizeable` instance (which you can also access via your `Listenable` instance's `recognizeable` property)</li><li>The `recognizeableListenerApi`</li></ol><p>See the [How to listen for custom gestures](#how-to-listen-for-custom-gestures) section for more guidance on the `recognizeableListenerApi`.</p> |
 
 :::
 
@@ -200,6 +220,8 @@ The default value for the `listen` method's `target` option depends on your `eve
 :::
 #### Available options for each `eventName`
 :::
+
+::: ariaLabel="Available options for each eventName"
 | `eventName` | Available options |
 | --- | --- |
 | All the basics, like `click`, `keydown`, `mousemove`, etc. | <ul><li>`target`</li><li>`addEventListener`</li><li>`useCapture`</li><li>`wantsUntrusted`</li><li>`except`</li><li>`only`</li></ul> |
@@ -216,10 +238,84 @@ The default value for the `listen` method's `target` option depends on your `eve
 
 
 :::
-### How to detect custom gestures
+### How to listen for custom gestures
 :::
 
-WIP
+`Listenable` allows you to listen for custom gestures defined by Baleada Logic's `Recognizeable` class. For full information on how to use the `Recognizeable` class, [visit the `Recognizeable` docs](/docs/logic/classes/Recognizeable), but keep reading here to learn the overall workflow.
+
+To get started, construct a new instance of `Listenable`, using `'recognizeable'` as the `eventName`, and passing the `Recognizeable` options object to the `recognizeable` option:
+
+:::
+```js
+const instance = new Listenable('recognizeable', {
+  recognizeable: {...} // See the Recognizeable docs for all available options
+})
+```
+:::
+
+Using that, `Listenable` will construct a new instance of `Recognizeable`, passing an empty array as the first argument (where `Recognizeable` stores the event sequence) and your `recognizeable` object as the second argument (the `options` argument).
+
+`Listenable` will store your constructed `Recognizeable` instance in its `recognizeable` property:
+
+:::
+```js
+const instance = new Listenable('recognizeable', { recognizeable: {...} })
+
+instance.recognizeable instanceof Recognizeable // -> true
+```
+:::
+
+At this time, `Listenable` will also extract a list of all the properties in `options.recognizeable.handlers` and store it internally.
+
+:::
+```js
+const instance = new Listenable('recognizeable', {
+  recognizeable: {
+    handlers: {...}
+  }
+})
+
+// The properties of options.recognizeable.handlers
+// are the names of events that Listenable should be 
+// listening for. Listenable stores them internally
+// for use later on (when you call the listen method).
+```
+:::
+
+::: type="info"
+Not sure what to pass to `options.recognizeable.handlers`?
+
+Don't sweat it—check out the [Baleada Listenable Gestures](/docs/listenable-gestures) package, which gives you access to pre-built `handlers` objects for commonly needed gestures:
+- `clicks` (i.e. double-clicks, triple-clicks, etc.)
+- `drag`
+- `dragdrop`
+- `pan`
+- `pinch`
+- `press`
+- `rotate`
+- `swipe`
+- `taps`
+:::
+
+When you call the `listen` method, passing your `callback` function, `Listenable` will add an event listener for each of the properties/events in `options.recognizeable.handlers`.
+
+As events occur, `Listenable` will pass them through to your `Recognizeable` instance's `recognize` method, which in turn will pass the events to your event handlers.
+
+When your `Recognizeable` instance recognizes a gesture, Listenable will execute your callback. Your callback will receive three arguments in the following order:
+1. An [Event](https://developer.mozilla.org/en-US/docs/Web/API/Event) object for the latest event in the event sequence you are recognizing
+2. The `Listenable` instance's `recognizeable` instance (which you can also access via your `Listenable` instance's `recognizeable` property)</li><li>
+3. The `recognizeableListenerApi`
+
+The `recognizeableListenerApi` is an object whose properties give you access to useful functions. Currently, it only contains one function—here's a full breakdown:
+
+
+::: ariaLabel="recognizeableListenerApi properties" classes="wide-1 wide-3 wide-4 wide-5"
+| Property | Type | Description | Parameters | Return value |
+| --- | --- | --- | --- | --- |
+| `toDirection(angle, unit)` | Function | Converts an angle in degrees or radians to a simple direction (String) | <p>Two parameters, in the following order:</p><ol><li>An angle in degrees or radians</li><li>A string, either `'degrees'` or `'radians'`, indicating the angle's unit. Defaults to `'degrees'`.</li></ol> | <p>One of the following camelCased directions (String):</p><ul><li>`'up'`</li><li>`'upRight'`</li><li>`'right'`</li><li>`'downRight'`</li><li>`'down'`</li><li>`'downLeft'`</li><li>`'left'`</li><li>`'upLeft'`</li></ul> |
+:::
+
+<!-- TODO: swipe right example -->
 
 
 :::

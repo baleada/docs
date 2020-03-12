@@ -38,6 +38,14 @@ const instance = new Searchable(candidates[, options])
 ```
 :::
 
+Or, if you're using [Baleada Composition](/docs/compositon):
+
+:::
+```js
+const instance = useSearchable(candidates[, options])
+```
+:::
+
 
 :::
 ### `Searchable` constructor options

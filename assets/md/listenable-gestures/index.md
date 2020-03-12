@@ -7,7 +7,7 @@ order: 0
 
 Baleada Listenable Gestures is a collection of [factory functions](https://www.youtube.com/watch?v=ImwrezYhw4w) that return "gesture recognizers".
 
-These recognizers are simply JavaScript objects with properties and methods that handle sequences of DOM events and recognize whether or not the events form a [gesture](/docs/gesture#what-is-a-gesture).
+These recognizers are simply JavaScript objects with properties that handle DOM events and recognize whether or not the events form a [gesture](/docs/gesture#what-is-a-gesture).
 
 Under the hood, each function in Baleada Listenable Gestures is composed using [Baleada Gesture](/docs/gesture)'s `gesture` function and can
 Each Baleada Listenable Gestures are designed to be passed to Baleada Logic's [`Listenable`](/docs/logic/classes/Listenable) class.

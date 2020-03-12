@@ -44,6 +44,14 @@ const instance = new Animateable(keyframes[, options])
 ```
 :::
 
+Or, if you're using [Baleada Composition](/docs/compositon):
+
+:::
+```js
+const instance = useAnimateable(keyframes[, options])
+```
+:::
+
 
 :::
 ### How to format keyframes

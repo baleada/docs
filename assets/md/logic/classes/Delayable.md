@@ -50,6 +50,14 @@ const instance = new Delayable(callback[, options])
 ```
 :::
 
+Or, if you're using [Baleada Composition](/docs/compositon):
+
+:::
+```js
+const instance = useDelayable(callback[, options])
+```
+:::
+
 
 :::
 ### `Delayable` constructor options
