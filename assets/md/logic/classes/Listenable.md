@@ -5,13 +5,13 @@ publish: true
 order: 0
 ---
 
-`Listenable` is a class that enriches an event type (including observation types, media queries, and custom gestures), allowing it to:
+`Listenable` is a class that enriches an event type (including observation types, media queries, custom gestures, and more), allowing it to:
 - Listen for that event type and execute a callback function when it occurs
 - Retrieve a list of active listeners that it has added
 - Store a status (`ready`, `listening`, or `stopped`)
 - Easily clean up all listening activity to avoid memory leaks
 
-`Listenable` is depends on [`Recognizeable`](/docs/logic/classes/Recognizeable), and uses the following web APIs under the hood:
+`Listenable` depends on [`Recognizeable`](/docs/logic/classes/Recognizeable) (for custom gestures only, but not tree-shakeable), and uses the following web APIs under the hood:
 - [`addEventListener`](https://developer.mozilla.org/en-US/docs/Web/API/EventTarget/addEventListener) and [`removeEventListener`](https://developer.mozilla.org/en-US/docs/Web/API/EventTarget/removeEventListener)
 - [Intersection Observer](https://developer.mozilla.org/en-US/docs/Web/API/intersectionObserver), [Resize Observer](https://developer.mozilla.org/en-US/docs/Web/API/ResizeObserver), and [Mutation Observer](https://developer.mozilla.org/en-US/docs/Web/API/MutationObserver)
 - [`requestIdleCallback`](https://developer.mozilla.org/en-US/docs/Web/API/Window/requestIdleCallback) and [`cancelIdleCallback`](https://developer.mozilla.org/en-US/docs/Web/API/Window/cancelIdleCallback)
@@ -28,13 +28,13 @@ To construct a `Listenable` instance (Object), use the `Listenable` constructor,
 ::: ariaLabel="Listenable constructor parameters" classes="wide-4"
 | Parameter | Type | Required | Description |
 | --- | --- | --- | --- |
-| `eventName` | String | yes | The name of the event that will be made listenable. See the [Valid event names](#valid-event-names) section for more guidance. |
+| `eventType` | String | yes | The name of the event that will be made listenable. See the [Valid event types](#valid-event-names) section for more guidance. |
 | `options` | Object | no | Passes options for the `Listenable` instance. See the [`Listenable` constructor options](#Listenable-constructor-options) section for more guidance. |
 :::
 
 :::
 ```js
-const instance = new Listenable(eventName[, options])
+const instance = new Listenable(eventType[, options])
 ```
 :::
 
@@ -42,7 +42,7 @@ Or, if you're using [Baleada Composition](/docs/compositon):
 
 :::
 ```js
-const instance = useListenable(eventName[, options])
+const instance = useListenable(eventType[, options])
 ```
 :::
 
@@ -50,17 +50,17 @@ const instance = useListenable(eventName[, options])
 
 
 :::
-### Valid event names
+### Valid event types
 :::
 
-`Listenable` supports a ton of different event names and is able to deduce which web APIs to use based on the `eventName` you pass. 
+`Listenable` supports a ton of different event types and is able to deduce which web APIs to use based on the `eventType` you pass. 
 
 
 Most of the time, you don't need to be concerned with exactly which web API is being used, and you can think of it as an implementation detail. But in cases where you want to customize the way a certain web API behaves, you'll need to know which API is being used in order to know what customization options are available. You'll find more guidance down below, in the [How to customize `listen` behavior](#how-to-customize-listen-behavior) section.
 
-The table below has a breakdown of valid event names, the corresponding web APIs that `Listenable` uses under the hood, and the main purpose of the API.
+The table below has a breakdown of valid event types, the corresponding web APIs that `Listenable` uses under the hood, and the main purpose of the API.
 
-::: ariaLabel="Listenable event names and web APIs"
+::: ariaLabel="Listenable event types and web APIs"
 | Event name | Web APIs | Purpose |
 | --- | --- | --- |
 | All the basics, like `click`, `keydown`, `mousemove`, etc. | [`addEventListener`](https://developer.mozilla.org/en-US/docs/Web/API/EventTarget/addEventListener) and [`removeEventListener`](https://developer.mozilla.org/en-US/docs/Web/API/EventTarget/removeEventListener) | Listens for basic events |
@@ -81,7 +81,7 @@ The table below has a breakdown of valid event names, the corresponding web APIs
 
 `Listenable` makes it easy to listen for key combos and click combos—keys or clicks combined with modifier keys. The Baleada docs, for example, use `Listenable` to listen for `Shift + D` (toggle dark theme) and `Shift + M` (toggle minimalist theme).
 
-To achieve this or something similar, you just need to format your `eventName` properly when passing it to the `Listenable` constructor. Here are the steps you can follow:
+To achieve this or something similar, you just need to format your `eventType` properly when passing it to the `Listenable` constructor. Here are the steps you can follow:
 1. Optionally, choose up to four modifiers from the options below:
    - `shift`
    - `ctrl`
@@ -100,8 +100,8 @@ To achieve this or something similar, you just need to format your `eventName` p
 
 Here are some more specific examples:
 
-::: ariaLabel="Examples of key combo and click combo event names"
-| Desired combo | `eventName` |
+::: ariaLabel="Examples of key combo and click combo event types"
+| Desired combo | `eventType` |
 | --- | --- |
 | B | `b` |
 | Command + 1 | `cmd+1` |
@@ -135,12 +135,12 @@ The constructed `Listenable` instance is an Object, and state and methods can be
 ::: ariaLabel="Listenable state and methods" classes="wide-3 wide-5"
 | Property | Type | Description | Parameters | Return value |
 | --- | --- | --- | --- | --- |
-| `eventName` | Getter/Setter | See return value | N/A | <p>The event name you passed to the `Listenable` constructor.</p><p>If you assign a value directly to `eventName`, a setter will pass the new value to `setEventName`.</p> |
+| `eventType` | Getter/Setter | See return value | N/A | <p>The event type you passed to the `Listenable` constructor.</p><p>If you assign a value directly to `eventType`, a setter will pass the new value to `setEventType`.</p> |
 | `status` | Getter | See return value | N/A | <p>The status (String) of the `Listenable` instance.</p><p>`status` is `ready` after the instance is constructed, and changes to `listening` after the `listen` method is called for the first time, and change to `stopped` after all web API activity has been stopped and cleaned up.</p> |
 | `activeListeners` | Getter | See return value | N/A | An array (Array) of objects that describe all the currently active listeners, observers, etc. |
 | `recognizeable` | Getter | See return value | N/A | <p>The `Recognizeable` instance constructed using the object you passed to `options.recognizeable`.</p><p>If you didn't pass that option, the `recognizeable` property will be `undefined`.</p><p>See the [How to listen for custom gestures](#how-to-listen-for-custom-gestures) section for more guidance.</p> |
-| `setEventName(eventName)` | Function | Sets a new `eventName`, after stopping and cleaning up all web API activity. | The new eventName (String). | The `Listenable` instance |
-| `listen(callback, options)` | Function | Listens for the events specified by your `eventName`, and executes a callback function when the events happen. | <p>A callback (Function, required) that will be executed when the events are detected, and an optional `options` object.</p><p>To learn more about handling events with your callback, see the </p> | The `Listenable` instance |
+| `setEventType(eventType)` | Function | Sets a new `eventType`, after stopping and cleaning up all existing web API activity. | The new eventType (String). | The `Listenable` instance |
+| `listen(callback, options)` | Function | Listens for the events specified by your `eventType`, and executes a callback function when the events happen. | <p>A callback (Function, required) that will be executed when the events are detected, and an optional `options` object.</p><p>To learn more about handling events with your callback, see the </p> | The `Listenable` instance |
 | `stop(target)` | Function | Stops and cleans up all web API activity. | <p>An optional target (a DOM element or `document`).</p><p>If a target is passed, only activity related to that target will be stopped, and if no target is passed, all activity is stopped.</p> | The `Listenable` instance |
 
 :::
@@ -150,12 +150,12 @@ The constructed `Listenable` instance is an Object, and state and methods can be
 ### How to handle events
 :::
 
-Depending on your `eventName`, your `callback`—passed as the required first argument of the `listen` method—will receive different parameters.
+Depending on your `eventType`, your `callback`—passed as the required first argument of the `listen` method—will receive different parameters.
 
-The table below has a full breakdown of what the `listen` method passes to your callback for each specific event name:
+The table below has a full breakdown of what the `listen` method passes to your callback for each specific event type:
 
-::: ariaLabel="List of event names and the arguments your callback will receive" class="wide-2"
-| `eventName` | What your `callback` receives |
+::: ariaLabel="List of event types and the arguments your callback will receive" class="wide-2"
+| `eventType` | What your `callback` receives |
 | --- | --- |
 | All the basics, like `click`, `keydown`, `mousemove`, etc. | One argument: an [Event](https://developer.mozilla.org/en-US/docs/Web/API/Event) object |
 | `intersect` | One argument: an array of [IntersectionObserverEntry](IntersectionObserverEntry) objects |
@@ -176,14 +176,14 @@ The table below has a full breakdown of what the `listen` method passes to your 
 
 The `listen` method accepts an optional second argument, which is an `object` whose properties customize the behavior of the web APIs `Listenable` uses under the hood.
 
-Depending on your `eventName` only certain properties will have an effect.
+Depending on your `eventType` only certain properties will have an effect.
 
-First, here's a breakdown of what each `options` property does, and below that, in the [Available options for each `eventName`](#available-options-for-each-eventname) section, you'll find a table of which properties can be used for each `eventName`:
+First, here's a breakdown of what each `options` property does, and below that, in the [Available options for each `eventType`](#available-options-for-each-eventname) section, you'll find a table of which properties can be used for each `eventType`:
 
 ::: ariaLabel="listen method options" class="wide-4"
 | Option | Type | Default | Description |
 | --- | --- | --- | --- |
-| `target` | HTMLElement, Document | See [Default values for `target` based on `eventName`](#default-values-for-target-based-on-eventname) | The target that will be listened to in order to detect events |
+| `target` | HTMLElement, Document | See [Default values for `target` based on `eventType`](#default-values-for-target-based-on-eventname) | The target that will be listened to in order to detect events |
 | `addEventListener` | Object | none | The `options` parameter of [`addEventListener`](https://developer.mozilla.org/en-US/docs/Web/API/EventTarget/addEventListener) |
 | `useCapture` | Boolean | none | A value for the standalone `useCapture` parameter of [`addEventListener`](https://developer.mozilla.org/en-US/docs/Web/API/EventTarget/addEventListener) |
 | `wantsUntrusted` | Boolean | none | A value for the standalone `wantsUntrusted` parameter of [`addEventListener`](https://developer.mozilla.org/en-US/docs/Web/API/EventTarget/addEventListener) |
@@ -197,13 +197,13 @@ First, here's a breakdown of what each `options` property does, and below that, 
 
 
 :::
-#### Default values for `target` based on `eventName`
+#### Default values for `target` based on `eventType`
 :::
 
-The default value for the `listen` method's `target` option depends on your `eventName`. The table below has a full breakdown.
+The default value for the `listen` method's `target` option depends on your `eventType`. The table below has a full breakdown.
 
-::: ariaLabel="Default values for target based on eventName"
-| `eventName` | Default `target` |
+::: ariaLabel="Default values for target based on eventType"
+| `eventType` | Default `target` |
 | --- | --- |
 | All the basics, like `click`, `keydown`, `mousemove`, etc. | `document` |
 | `intersect` | `document.querySelector('html')` |
@@ -218,11 +218,11 @@ The default value for the `listen` method's `target` option depends on your `eve
 
 
 :::
-#### Available options for each `eventName`
+#### Available options for each `eventType`
 :::
 
-::: ariaLabel="Available options for each eventName"
-| `eventName` | Available options |
+::: ariaLabel="Available options for each eventType"
+| `eventType` | Available options |
 | --- | --- |
 | All the basics, like `click`, `keydown`, `mousemove`, etc. | <ul><li>`target`</li><li>`addEventListener`</li><li>`useCapture`</li><li>`wantsUntrusted`</li><li>`except`</li><li>`only`</li></ul> |
 | `intersect` | `observer` |
@@ -243,7 +243,7 @@ The default value for the `listen` method's `target` option depends on your `eve
 
 `Listenable` allows you to listen for custom gestures defined by Baleada Logic's `Recognizeable` class. For full information on how to use the `Recognizeable` class, [visit the `Recognizeable` docs](/docs/logic/classes/Recognizeable), but keep reading here to learn the overall workflow.
 
-To get started, construct a new instance of `Listenable`, using `'recognizeable'` as the `eventName`, and passing the `Recognizeable` options object to the `recognizeable` option:
+To get started, construct a new instance of `Listenable`, using `'recognizeable'` as the `eventType`, and passing the `Recognizeable` options object to the `recognizeable` option:
 
 :::
 ```js
@@ -330,14 +330,14 @@ The `recognizeableListenerApi` is an object whose properties give you access to 
 | Takes the form of a JavaScript Object | <ApiDesignSpecCheckmark /> |  |
 | State and methods are accessible through properties of the object | <ApiDesignSpecCheckmark /> |  |
 | Methods always return the instance | <ApiDesignSpecCheckmark /> |  |
-| Stores the constructor's state in a public getter named after the state's type | <ApiDesignSpecCheckmark /> | `eventName`  |
-| Has a public method you can use to set a new value for that public getter | <ApiDesignSpecCheckmark /> | `setEventName` |
+| Stores the constructor's state in a public getter named after the state's type | <ApiDesignSpecCheckmark /> | `eventType`  |
+| Has a public method you can use to set a new value for that public getter | <ApiDesignSpecCheckmark /> | `setEventType` |
 | Has a setter for that getter so you can assign a new value directly | <ApiDesignSpecCheckmark /> |  |
 | Any other public getters that should be set by you in some cases also have setters and `set<Property>` methods | <ApiDesignSpecCheckmark /> | none |
 | Has at least one additional getter property that you can't (and shouldn't) set directly | <ApiDesignSpecCheckmark /> | `status`, `activeListeners`, `recognizeable` |
 | Has one or more public methods that expose core functionality | <ApiDesignSpecCheckmark /> | `listen`, `stop` |
 | Either has no side effects or has side effects that can be cleaned up with a `stop` method | <ApiDesignSpecCheckmark /> | `stop` |
-| Uses the sentence template to decide what state type should be accepted by a constructor | <ApiDesignSpecCheckmark /> | "An event name can be listened for." |
+| Uses the sentence template to decide what state type should be accepted by a constructor | <ApiDesignSpecCheckmark /> | "A type of event can be listened for." |
 | Constructor does not accept options that only customize the behavior of public methods, it allows those options to be passed to the method itself as a parameter. | <ApiDesignSpecCheckmark /> | |
 | Named after its core action, proper-cased and suffixed with `able` | <ApiDesignSpecCheckmark /> | |
 :::
