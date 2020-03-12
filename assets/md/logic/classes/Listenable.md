@@ -20,6 +20,17 @@ order: 0
 
 
 :::
+## Example
+:::
+
+Baleada's docs use `Listenable` to:
+- Toggle the dark theme when you press `Shift` + `D`
+- Toggle the minimalist theme when you press `Shift` + `M`
+- Set your default theme (dark or light) based on your device's [color theme preference](https://developer.mozilla.org/en-US/docs/Web/CSS/@media/prefers-color-scheme)
+- On mobile, open and close the sidebar nav and table of contents when you swipe right or left
+
+
+:::
 ## Construct a `Listenable` instance
 :::
 
@@ -165,7 +176,7 @@ The table below has a full breakdown of what the `listen` method passes to your 
 | `idle` | One argument: an [IdleDeadline](https://developer.mozilla.org/en-US/docs/Web/API/IdleDeadline) object |
 | `visibilitychange` | One argument: an [Event](https://developer.mozilla.org/en-US/docs/Web/API/Event) object |
 | Key combos and click combos | One argument: an [Event](https://developer.mozilla.org/en-US/docs/Web/API/Event) object |
-| `recognizeable` | <p>Three arguments, in the following order:</p><ol><li>An [Event](https://developer.mozilla.org/en-US/docs/Web/API/Event) object for the latest event in the event sequence you are recognizing</li><li>The `Listenable` instance's `recognizeable` instance (which you can also access via your `Listenable` instance's `recognizeable` property)</li><li>The `recognizeableListenerApi`</li></ol><p>See the [How to listen for custom gestures](#how-to-listen-for-custom-gestures) section for more guidance on the `recognizeableListenerApi`.</p> |
+| `recognizeable` | <p>One argument: an object with three properties:</p><ul><li>`event`: An [Event](https://developer.mozilla.org/en-US/docs/Web/API/Event) object for the latest event in the event sequence you are recognizing</li><li>`recognizeable`: The `Listenable` instance's `recognizeable` instance (which you can also access via your `Listenable` instance's `recognizeable` property)</li><li>`api`: An object whose properties give you access to useful functions.</li></ul><p>See the [How to listen for custom gestures](#how-to-listen-for-custom-gestures) section for more guidance on the `recognizeableListenerApi`.</p> |
 
 :::
 
@@ -301,13 +312,15 @@ When you call the `listen` method, passing your `callback` function, `Listenable
 
 As events occur, `Listenable` will pass them through to your `Recognizeable` instance's `recognize` method, which in turn will pass the events to your event handlers.
 
-When your `Recognizeable` instance recognizes a gesture, Listenable will execute your callback. Your callback will receive three arguments in the following order:
-1. An [Event](https://developer.mozilla.org/en-US/docs/Web/API/Event) object for the latest event in the event sequence you are recognizing
-2. The `Listenable` instance's `recognizeable` instance (which you can also access via your `Listenable` instance's `recognizeable` property)</li><li>
-3. The `recognizeableListenerApi`
+When your `Recognizeable` instance recognizes a gesture, Listenable will execute your callback. Your callback will receive an object with three properties:
 
-The `recognizeableListenerApi` is an object whose properties give you access to useful functions. Currently, it only contains one function—here's a full breakdown:
-
+::: ariaLabel=""
+| Property | Type | Description |
+| --- | --- | --- |
+| `event` | Event | An [Event](https://developer.mozilla.org/en-US/docs/Web/API/Event) object for the latest event in the event sequence you are recognizing |
+| `recognizeable` | Object | The `Listenable` instance's `recognizeable` instance (which you can also access via your `Listenable` instance's `recognizeable` property) |
+| `api` | Object | An object whose properties give you access to useful functions. Currently, it only contains one function—see the table below for a full breakdown. |
+:::
 
 ::: ariaLabel="recognizeableListenerApi properties" classes="wide-1 wide-3 wide-4 wide-5"
 | Property | Type | Description | Parameters | Return value |

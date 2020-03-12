@@ -344,8 +344,8 @@ export default {
 
     onMounted(() => {
       articleSwipe.value.listen(
-        (event, { toDirection }) => {
-          const direction = toDirection(articleSwipe.value.recognizeable.metadata.angle.fromStart.degrees)
+        ({ recognizeable, api: { toDirection } }) => {
+          const direction = toDirection(recognizeable.metadata.angle.fromStart.degrees)
           if (direction === 'right') {
             openNav()
           } else if (direction === 'left') {
@@ -356,8 +356,8 @@ export default {
       )
 
       navSwipe.value.listen(
-        (event, { toDirection }) => {
-          const direction = toDirection(navSwipe.value.recognizeable.metadata.angle.fromStart.degrees)
+        ({ recognizeable, api: { toDirection } }) => {
+          const direction = toDirection(recognizeable.metadata.angle.fromStart.degrees)
           if (direction === 'left') {
             openArticle()
           }
@@ -366,8 +366,8 @@ export default {
       )
 
       tableOfContentsSwipe.value.listen(
-        (event, { toDirection }) => {
-          const direction = toDirection(tableOfContentsSwipe.value.recognizeable.metadata.angle.fromStart.degrees)
+        ({ recognizeable, api: { toDirection } }) => {
+          const direction = toDirection(recognizeable.metadata.angle.fromStart.degrees)
           if (direction === 'right') {
             openArticle()
           }
