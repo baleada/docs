@@ -39,7 +39,7 @@ To construct a `Listenable` instance (Object), use the `Listenable` constructor,
 ::: ariaLabel="Listenable constructor parameters" classes="wide-4"
 | Parameter | Type | Required | Description |
 | --- | --- | --- | --- |
-| `eventType` | String | yes | The name of the event that will be made listenable. See the [Valid event types](#valid-event-names) section for more guidance. |
+| `eventType` | String | yes | The type of event that will be made listenable. See the [Valid event types](#valid-event-types) section for more guidance. |
 | `options` | Object | no | Passes options for the `Listenable` instance. See the [`Listenable` constructor options](#Listenable-constructor-options) section for more guidance. |
 :::
 
@@ -66,12 +66,11 @@ const instance = useListenable(eventType[, options])
 
 `Listenable` supports a ton of different event types and is able to deduce which web APIs to use based on the `eventType` you pass. 
 
-
 Most of the time, you don't need to be concerned with exactly which web API is being used, and you can think of it as an implementation detail. But in cases where you want to customize the way a certain web API behaves, you'll need to know which API is being used in order to know what customization options are available. You'll find more guidance down below, in the [How to customize `listen` behavior](#how-to-customize-listen-behavior) section.
 
 The table below has a breakdown of valid event types, the corresponding web APIs that `Listenable` uses under the hood, and the main purpose of the API.
 
-::: ariaLabel="Listenable event types and web APIs"
+::: ariaLabel="Listenable event types and web APIs" classes="wide-3"
 | Event name | Web APIs | Purpose |
 | --- | --- | --- |
 | All the basics, like `click`, `keydown`, `mousemove`, etc. | [`addEventListener`](https://developer.mozilla.org/en-US/docs/Web/API/EventTarget/addEventListener) and [`removeEventListener`](https://developer.mozilla.org/en-US/docs/Web/API/EventTarget/removeEventListener) | Listens for basic events |
@@ -93,21 +92,22 @@ The table below has a breakdown of valid event types, the corresponding web APIs
 `Listenable` makes it easy to listen for key combos and click combos—keys or clicks combined with modifier keys. The Baleada docs, for example, use `Listenable` to listen for `Shift + D` (toggle dark theme) and `Shift + M` (toggle minimalist theme).
 
 To achieve this or something similar, you just need to format your `eventType` properly when passing it to the `Listenable` constructor. Here are the steps you can follow:
+
 1. Optionally, choose up to four modifiers from the options below:
-   - `shift`
-   - `ctrl`
-   - `cmd`
-   - `alt` a.k.a. `opt`
-2. Choose one of the following things:
-   - Any number
-   - Any letter
-   - `enter`
-   - `backspace`
-   - `tab`
-   - Any arrow direction—`up`, `right`, `down`, or `left`
-   - `click`
-   - `rightclick`
-3. Join your modifiers and your key or click choice with `+`
+    - `shift`
+    - `ctrl`
+    - `cmd`
+    - `alt` a.k.a. `opt`
+1. Choose one of the following things:
+    - Any number
+    - Any letter
+    - `enter`
+    - `backspace`
+    - `tab`
+    - Any arrow direction—`up`, `right`, `down`, or `left`
+    - `click`
+    - `rightclick`
+1. Join your modifiers and your key or click choice with `+`
 
 Here are some more specific examples:
 
@@ -143,7 +143,7 @@ Here are some more specific examples:
 The constructed `Listenable` instance is an Object, and state and methods can be accessed via its properties:
 
 
-::: ariaLabel="Listenable state and methods" classes="wide-3 wide-5"
+::: ariaLabel="Listenable state and methods" classes="wide-3 wide-4 wide-5"
 | Property | Type | Description | Parameters | Return value |
 | --- | --- | --- | --- | --- |
 | `eventType` | Getter/Setter | See return value | N/A | <p>The event type you passed to the `Listenable` constructor.</p><p>If you assign a value directly to `eventType`, a setter will pass the new value to `setEventType`.</p> |

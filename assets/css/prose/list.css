@@ -1,6 +1,8 @@
 .baleada-prose-article .contents {
   ul,
   ol {
+    counter-reset: item;
+    
     li {
       @apply relative pl-8 leading-2;
 
