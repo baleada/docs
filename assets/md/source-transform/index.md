@@ -12,7 +12,7 @@ It handles the most basic implementation details of [Webpack](https://webpack.js
 In other words, Baleada Source Transform abstracts build tool boilerplate so you can write more reusable build code.
 
 :::
-Baleada Source Transform abstracts build tool boilerplate so you can write more reusable build code.
+> Baleada Source Transform abstracts build tool boilerplate so you can write more reusable build code.
 :::
 
 ::: type="info"
