@@ -135,7 +135,7 @@ export default {
             prose = {
               loader: '@baleada/source-transform/webpack',
               options: {
-                transform: ({ source, resourcePath }) => transform(source, resourcePath)
+                transform: ({ source, id }) => transform(source, id)
               }
             }
 
