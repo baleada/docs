@@ -64,11 +64,6 @@
   },
   {
     "level": 1,
-    "name": "loader",
-    "pages": []
-  },
-  {
-    "level": 1,
     "name": "logic",
     "pages": [
       {
@@ -164,6 +159,27 @@
     "level": 1,
     "name": "prose",
     "pages": []
+  },
+  {
+    "level": 1,
+    "name": "source transform",
+    "pages": [
+      {
+        "title": "What is Baleada Source Transform?",
+        "framework": "agnostic",
+        "href": "/docs/source-transform"
+      },
+      {
+        "title": "Using with Rollup",
+        "framework": "agnostic",
+        "href": "/docs/source-transform/using-with-rollup"
+      },
+      {
+        "title": "Using with Webpack",
+        "framework": "agnostic",
+        "href": "/docs/source-transform/using-with-webpack"
+      }
+    ]
   },
   {
     "level": 1,
