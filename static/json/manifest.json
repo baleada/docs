@@ -52,6 +52,24 @@
   },
   {
     "level": 1,
+    "name": "linear numeric",
+    "pages": [
+      {
+        "title": "What is Baleada Linear Numeric?",
+        "href": "/docs/linear-numeric"
+      },
+      {
+        "title": "Class References",
+        "href": "/docs/linear-numeric/class-references"
+      },
+      {
+        "title": "Default Config",
+        "href": "/docs/linear-numeric/default-config"
+      }
+    ]
+  },
+  {
+    "level": 1,
     "name": "listenable gestures",
     "pages": []
   },
@@ -160,24 +178,6 @@
       {
         "title": "What is Baleada SPA Links?",
         "href": "/docs/spa-links"
-      }
-    ]
-  },
-  {
-    "level": 1,
-    "name": "tailwind linear",
-    "pages": [
-      {
-        "title": "What is Baleada Tailwind Linear?",
-        "href": "/docs/tailwind-linear"
-      },
-      {
-        "title": "Class References",
-        "href": "/docs/tailwind-linear/class-references"
-      },
-      {
-        "title": "Default Config",
-        "href": "/docs/tailwind-linear/default-config"
       }
     ]
   }

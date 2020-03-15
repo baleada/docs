@@ -19,7 +19,7 @@ Each category of tools has its own NPM package that you can install:
 | UI logic | [`@baleada/logic`](/docs/logic) |
 | Composition functions | [`@baleada/composition`](/docs/composition) |
 | Components | <p>[`@baleada/icons`](/docs/icons)</p><p>`@baleada/prose`</p> |
-| Configuration utilities | <p>[`@baleada/source-transform`](/docs/source-transform)</p><p>[`@baleada/tailwind-linear`](/docs/tailwind-linear)</p> |
+| Configuration utilities | <p>[`@baleada/source-transform`](/docs/source-transform)</p><p>[`@baleada/linear-numeric`](/docs/linear-numeric)</p> |
 :::
 
 If you're itching to install those packages and get started with the tools they offer, you can check out the dedicated guides in the sidebar navigation.
@@ -80,4 +80,4 @@ Baleada's configuration utilities are functions that you can use to generate con
 To get started with Baleada's configuration utilities, check out these packages:
 - [Baleada Source Transform](/docs/source-transform)
 - [Baleada SPA Links](/docs/spa-links)
-- [Baleada Tailwind Linear](/docs/tailwind-linear)
+- [Baleada Linear Numeric](/docs/linear-numeric)

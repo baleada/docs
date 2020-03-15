@@ -5,7 +5,7 @@
 </template>
 
 <script>
-import article from '~/assets/md/tailwind-linear/class-references.md'
+import article from '~/assets/md/linear-numeric/index.md'
 
 export default {
   layout: 'prose',
