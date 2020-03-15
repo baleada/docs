@@ -1,6 +1,6 @@
 ---
 title: Listenable
-framework: agnostic
+tags: UI logic
 publish: true
 order: 0
 ---

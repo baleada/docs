@@ -1,6 +1,6 @@
 ---
 title: Using with Webpack
-framework: agnostic
+tags: agnostic
 publish: true
 order: 0
 ---

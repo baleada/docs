@@ -1,6 +1,6 @@
 ---
 title: What is Baleada Tailwind Linear?
-framework: agnostic
+tags: Configuration utilities, Tailwind CSS
 publish: true
 order: 0
 ---

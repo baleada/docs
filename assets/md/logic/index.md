@@ -1,6 +1,6 @@
 ---
 title: What is Baleada Logic?
-framework: agnostic
+tags: UI logic
 publish: true
 order: 0
 ---

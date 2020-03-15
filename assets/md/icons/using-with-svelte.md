@@ -1,5 +1,5 @@
 ---
 title: Using with Svelte
-framework: Svelte
+tags: Components, Svelte
 publish: false
 ---

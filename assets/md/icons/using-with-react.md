@@ -1,6 +1,6 @@
 ---
 title: Using with React
-framework: React
+tags: Components, React
 publish: true
 ---
 

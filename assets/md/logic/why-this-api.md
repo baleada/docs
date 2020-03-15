@@ -1,6 +1,6 @@
 ---
 title: Why this API?
-framework: agnostic
+tags: UI logic
 publish: false
 order: 4
 ---

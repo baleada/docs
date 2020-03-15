@@ -1,6 +1,6 @@
 ---
 title: Using with Vue
-framework: Vue
+tags: Components, Vue
 publish: true
 ---
 

@@ -1,6 +1,6 @@
 ---
 title: API design
-framework: agnostic
+tags: UI logic
 publish: true
 order: 3
 ---

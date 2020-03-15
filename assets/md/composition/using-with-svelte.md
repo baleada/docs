@@ -1,5 +1,5 @@
 ---
 title: Using Baleada Composition with Svelte
-framework: Svelte
+tags: Composition functions, Svelte
 publish: false
 ---

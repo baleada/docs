@@ -1,5 +1,5 @@
 ---
 title: markupable
-framework: agnostic
+tags: UI logic
 publish: false
 ---

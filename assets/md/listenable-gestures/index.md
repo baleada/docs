@@ -1,6 +1,6 @@
 ---
 title: What is Baleada Listenable Gestures?
-framework: agnostic
+tags: UI logic
 publish: false
 order: 0
 ---

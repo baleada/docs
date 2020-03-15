@@ -1,6 +1,6 @@
 ---
 title: Default Config
-framework: agnostic
+tags: Configuration utilities, Tailwind CSS
 publish: true
 order: 2
 ---

@@ -5,7 +5,7 @@
 </template>
 
 <script>
-import article from '~/assets/md/markdown-it-spa-links/index.md'
+import article from '~/assets/md/spa-links/index.md'
 
 export default {
   layout: 'prose',

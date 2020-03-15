@@ -1,6 +1,6 @@
 ---
 title: Composing UI Logic
-framework: agnostic
+tags: UI logic
 publish: false
 order: 2
 ---

@@ -1,6 +1,6 @@
 ---
 title: What is Baleada?
-framework: agnostic
+tags: 
 publish: true
 order: 0
 ---

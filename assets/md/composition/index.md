@@ -1,6 +1,6 @@
 ---
 title: What is Baleada Composition?
-framework: agnostic
+tags: Composition functions, Vue, React, Svelte
 publish: true
 order: 0
 ---

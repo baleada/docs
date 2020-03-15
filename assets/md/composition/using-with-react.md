@@ -1,5 +1,5 @@
 ---
 title: Using Baleada Composition with React
-framework: React
+tags: Composition functions, React
 publish: false
 ---

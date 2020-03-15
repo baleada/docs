@@ -1,6 +1,6 @@
 ---
 title: Identifying UI logic
-framework: agnostic
+tags: UI logic
 publish: true
 order: 1
 ---

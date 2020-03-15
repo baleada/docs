@@ -1,6 +1,6 @@
 ---
 title: Handler API
-framework: agnostic
+tags: agnostic
 publish: false
 order: 1
 ---

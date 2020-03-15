@@ -1,6 +1,6 @@
 ---
 title: What is Baleada Icons?
-framework: agnostic
+tags: Components, Vue, React, Svelte
 publish: true
 order: 0
 ---

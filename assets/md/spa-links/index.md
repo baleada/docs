@@ -1,21 +1,21 @@
 ---
-title: What is Baleada Markdown-it SPA Links?
-framework: agnostic
+title: What is Baleada SPA Links?
+tags: Configuration utilities, Inertia, Next, Nuxt, Sapper, React, Vue, Svelte
 publish: true
 order: 0
 ---
 
-Baleada Markdown-it SPA Links is a [Markdown-it](https://markdown-it.github.io/) plugin that uses the correct link component to render links to other pages in your single-page app.
+Baleada SPA Links is a [Markdown-it](https://markdown-it.github.io/) plugin that replaces the default link markup with markup that tells your single-page application to handle the routing (i.e. navigate to the route without doing a full page refresh).
 
 For example, if you're using [Nuxt](https://nuxtjs.org), you can write the following Markdown:
 
 :::
-```
+```md
 [My other page](/my-other-page)
 ```
 :::
 
-And it will be rendered as:
+And Baleada SPA Links will render this:
 
 :::
 ```html
@@ -39,7 +39,7 @@ The plugin supports link components for the following tools:
 ## Installation
 :::
 
-You can install Baleada Markdown-it SPA Links from NPM.
+You can install Baleada SPA Links from NPM.
 
 :::
 ```bash
@@ -65,7 +65,7 @@ const md = new MarkdownIt()
 
 Use the `use` method of your Markdown-it instance to register the plugin. Pass the plugin as the first argument, and for the second argument, you can pass a configuration object. That object can have two properties:
 
-::: ariaLabel="Baleada Markdown-it SPA Links configuration schema" classes="wide-5"
+::: ariaLabel="Baleada SPA Links configuration schema" classes="wide-5"
 | Property | Value's type | Required? | Default | Value description |
 | --- | --- | --- | --- | --- |
 | `spa` | String | yes | none | <p>Indicates which tool you are using to build your SPA, so that the plugin can identify the correct link component.</p><p>See the [Link components by tool](#Link-components-by-tool) reference table to see valid values for the `spa` option and which link components get rendered.</p> |

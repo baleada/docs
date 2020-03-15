@@ -1,6 +1,6 @@
 ---
 title: Types of tools
-framework: agnostic
+tags: agnostic
 publish: true
 order: 1
 ---
@@ -79,4 +79,5 @@ Baleada's configuration utilities are functions that you can use to generate con
 
 To get started with Baleada's configuration utilities, check out these packages:
 - [Baleada Source Transform](/docs/source-transform)
+- [Baleada SPA Links](/docs/spa-links)
 - [Baleada Tailwind Linear](/docs/tailwind-linear)

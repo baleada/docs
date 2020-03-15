@@ -1,6 +1,6 @@
 ---
 title: Class References
-framework: agnostic
+tags: Configuration utilities, Tailwind CSS
 publish: true
 order: 1
 ---

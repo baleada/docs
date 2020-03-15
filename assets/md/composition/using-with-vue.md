@@ -1,5 +1,5 @@
 ---
 title: Using Baleada Composition with Vue
-framework: Vue
+tags: Composition functions, Vue
 publish: false
 ---
