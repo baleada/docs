@@ -30,7 +30,7 @@ export default {
             },
             blockquote: {
               canTweet: true,
-              tweetVia: '@BaleadaToolkit',
+              tweetVia: 'BaleadaToolkit',
             },
             codeblock: {
               canCopy: true,

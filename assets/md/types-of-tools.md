@@ -8,36 +8,40 @@ order: 1
 Each tool in the Baleada app-building toolkit falls into one of the following categories:
 - [UI logic](#ui-logic)
 - [Composition functions (a.k.a. hooks)](#composition-functions-a-k-a-hooks)
-- [Icon components](#icon-components)
+- [Components](#components)
+- [Configuration utilities](#configuration-utilities)
 
 Each category of tools has its own NPM package that you can install:
 
 ::: ariaLabel="Table showing tool categories and the corresponding NPM package for each category"
-| Tool category | NPM package |
+| Tool category | NPM packages |
 | --- | --- |
-| UI logic | `@baleada/logic` |
-| Composition functions | `@baleada/composition` |
-| Icon components | `@baleada/icons` |
+| UI logic | [`@baleada/logic`](/docs/logic) |
+| Composition functions | [`@baleada/composition`](/docs/composition) |
+| Components | <p>[`@baleada/icons`](/docs/icons)</p><p>`@baleada/prose`</p> |
+| Configuration utilities | <p>[`@baleada/source-transform`](/docs/source-transform)</p><p>[`@baleada/tailwind-linear`](/docs/tailwind-linear)</p> |
 :::
 
-If you're itching to install those packages and get started with the tools they offer, you can check out the dedicated guides for [Baleada Logic](/docs/logic), [Baleada Composition](/docs/composition), and [Baleada Icons](/docs/icons).
+If you're itching to install those packages and get started with the tools they offer, you can check out the dedicated guides in the sidebar navigation.
 
 If you're not quite sure what all these terms mean, feel free to keep reading!
+
 
 :::
 ## UI logic
 :::
 
-Broadly, UI logic is JavaScript that powers **user interface behaviors**. Baleada provides UI logic for specific behaviors that are commonly needed, but can be complex to implement in a reusable way.
+Broadly, UI logic is JavaScript that powers **user interface behaviors**. Baleada provides UI logic for small, specific behaviors that are commonly needed, but can be complex to implement in a reusable way.
 
 For example:
-:::
 - Allowing the user to enter a search term, query an array of strings or objects, and receive a list of search results based on fuzzy matches
 - Autocompleting text, replacing all or part of the original text with a completed value
-- Detecting and reacting to common gestures (pan, swipe, double-tap, drag, drag-and-drop, etc.), or even custom gestures that you define
-:::
+- Detecting and reacting to gestures (pan, swipe, double-tap, drag, drag-and-drop, etc.)
 
-To get started with Baleada's logic, check out the [Baleada Logic](/docs/logic) package.
+UI logic like this is not only useful in its own right, but also when it gets composed into larger, more complicated UI features, which are way easier to build when you're working with the right tools!
+
+To get started with Baleada's UI logic, check out the [Baleada Logic](/docs/logic) package.
+
 
 :::
 ## Composition functions (a.k.a. hooks)
@@ -49,12 +53,30 @@ Baleada's composition functions collocate **reactivity** code with **UI logic** 
 
 To get started with Baleada's composition functions, check out the [Baleada Composition](/docs/composition) package.
 
+
 :::
-## Icon components
+## Components
 :::
 
-There are [tons of reasons](http://www.fullstackradio.com/47) to use **true SVG icons** instead of icon fonts. But copy/pasting SVG markup all over your website or app is tedious, not readable, and not maintainable.
+In their docs, the [Svelte](https://svelte.dev) team include a fantastic definition of components: "A component is a reusable self-contained block of code that encapsulates HTML, CSS and JavaScript that belong together."
 
-If you're using a component framework like Vue, React, or Svelte, the clear solution is to wrap up your SVG icons in reusable components, so that you get all the benefits of SVGs while writing efficient code.
+The only thing Svelte's definition is missing (other than an Oxford comma 🤓) is a clarification that not all components need to have HTML, CSS, _and_ JavaScript, all together, all of the time. Baleada's components in particular always include HTML, but they omit all CSS so that you can style the component yourself. Some Baleada Components contain JavaScript, but some just contain HTML.
 
-Baleada's icon components do just that! To get started with them, check out the [Baleada Icons](/docs/icons) package.
+Regardless of what they actually contain, all of Baleada's components are easy to import into any JavaScript-driven site or app, and they add value in different ways.
+
+To get started with Baleada's components, check out these packages:
+- [Baleada Icons](/docs/icons)
+- [Baleada Prose](/docs/prose)
+
+
+:::
+## Configuration utilities
+:::
+
+The build process for JavaScript-driven sites and apps is notoriously complex. Configuration files for build tools like Webpack, Rollup, Tailwind CSS, etc. make things much easier, but, when you're feeling picky about your developer experience, it can still be pretty difficult to get your configuration _just_ right.
+
+Baleada's configuration utilities are functions that you can use to generate configurations and abstract away certain parts of the configuration process. They're opinionated enough to steer you toward a particular developer experience, but still offer customization options of their own.
+
+To get started with Baleada's configuration utilities, check out these packages:
+- [Baleada Source Transform](/docs/source-transform)
+- [Baleada Tailwind Linear](/docs/tailwind-linear)

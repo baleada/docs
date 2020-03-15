@@ -5,7 +5,11 @@ publish: true
 order: 0
 ---
 
-Baleada Icons is a collection of components that render SVG icons.
+There are [tons of reasons](http://www.fullstackradio.com/47) to use **true SVG icons** instead of icon fonts. But copy/pasting SVG markup all over your website or app is tedious, not readable, and not maintainable.
+
+If you're using a component framework like Vue, React, or Svelte, the clear solution is to wrap up your SVG icons in reusable components, so that you get all the benefits of SVGs while writing efficient code.
+
+Baleada's icon components do just that! Baleada Icons is a collection of lightweight components that render SVG icons.
 
 ::: type="info"
 All icons used in the Baleada docs are sourced from Baleada Icons 😎
@@ -90,7 +94,7 @@ Simple icon component examples:
 | AlloCiné | `SimpleAlloCine` | `é` replaced with `e`, original case of the `C` is preserved |
 :::
 
-For a full list of available components, [jump to the last section of this article](#full-component-list).
+<!-- For a full list of available components, [jump to the last section of this article](#full-component-list). -->
 
 
 :::
@@ -102,11 +106,12 @@ For more guidance on how to import and use the components, see one of the follow
 - [Use icons with React](/docs/icons/using-with-react)
 
 
+<!--
 :::
 ## Full component list
 :::
 
-<!-- ::: canFilterByQuery ariaLabel="Full list of Baleada Icons components"
+:: canFilterByQuery ariaLabel="Full list of Baleada Icons components"
 | Component name |
 | --- |
 | EvaActivity |

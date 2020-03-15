@@ -29,7 +29,7 @@ The `sourceTransform` plugin's only parameter is an `options` object. Here's a f
 ::: ariaLabel="Options for the Rollup Source Transform plugin" classes="wide-3 wide-4"
 | Property | Type | Default | Description |
 | --- | --- | --- | --- |
-| `transform` | Function | `({ source }) => source` | A function that transforms the source file contents (String) and must return its transformed contents (String). See the [`transform` function parameters](#How-to-use-the-transform-function) section for more guidance. |
+| `transform` | Function | `({ source }) => source` | The transform function, as explained in the [Baleada Source Transform overview](/docs/source-transform#workflow). Read the rest of this article for additional Rollup-specific guidance. |
 | `include` | String, Array | none | <p>A minimatch pattern (String) or an array of minimatch patterns (Array) describing files to be included.</p><p>If `include` is omitted or of zero length, files will be included by default; otherwise they will only be included if the ID matches one of the patterns.</p> |
 | `exclude` | String, Array | none | <p>A minimatch pattern (String) or an array of minimatch patterns (Array) describing files to be excluded.</p> |
 :::

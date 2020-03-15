@@ -251,7 +251,6 @@
         :class="[
           openStatus === 'tableOfContents' ? 'translate-0' : 'translate-x-100',
         ]"
-
         ref="tableOfContents"
       >
       <!-- isMinimalistTheme ? 'opacity-0 pointer-events-none translate-x-100' : 'lg:translate-0', -->

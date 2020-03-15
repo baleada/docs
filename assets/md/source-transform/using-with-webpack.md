@@ -28,6 +28,14 @@ module.exports = {
 ```
 :::
 
+Here's a full breakdown of the `options` object for the Webpack loader:
+
+::: ariaLabel="Options for the Rollup Source Transform plugin" classes="wide-3 wide-4"
+| Property | Type | Default | Description |
+| --- | --- | --- | --- |
+| `transform` | Function | `({ source }) => source` | The transform function, as explained in the [Baleada Source Transform overview](/docs/source-transform#workflow). Read the rest of this article for additional Webpack-specific guidance. |
+:::
+
 
 :::
 ## `context` and `utils` in the `transform` function's first argument
