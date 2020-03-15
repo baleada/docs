@@ -290,8 +290,6 @@ Baleada Linear Numeric is written in modern JavaScript, exported using CommonJS 
 
 Baleada Linear Numeric has no dependencies, although it does require Tailwind as a peer dependency.
 
-G
-
 :::
 ## Semantic versioning conventions
 :::

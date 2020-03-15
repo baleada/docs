@@ -1,6 +1,6 @@
 ---
 title: What is Baleada SPA Links?
-tags: Configuration utilities, Inertia, Next, Nuxt, Sapper, React, Vue, Svelte
+tags: Configuration utilities, Markdown-it, Inertia, Next, Nuxt, Sapper, React, Vue, Svelte
 publish: true
 order: 0
 ---
@@ -43,7 +43,7 @@ You can install Baleada SPA Links from NPM.
 
 :::
 ```bash
-npm i @baleada/markdown-it-spa-links
+npm i @baleada/spa-links
 ```
 :::
 
@@ -52,11 +52,11 @@ npm i @baleada/markdown-it-spa-links
 ## Usage
 :::
 
-To get started, import the plugin from the entry file of `@baleada/markdown-it-spa-links`, and create a Markdown-it instance.
+To get started, import the plugin from the entry file of `@baleada/spa-links`, and create a Markdown-it instance.
 
 :::
 ```js
-import MarkdownItSpaLinks from '@baleada/markdown-it-spa-links'
+import MarkdownItSpaLinks from '@baleada/spa-links/markdown-it'
 import MarkdownIt from 'markdown-it'
 
 const md = new MarkdownIt()
@@ -76,7 +76,7 @@ For example, here's how you would configure the plugin to work with Nuxt:
 
 :::
 ```js
-import MarkdownItSpaLinks from '@baleada/markdown-it-spa-links'
+import MarkdownItSpaLinks from '@baleada/spa-links/markdown-it'
 import MarkdownIt from 'markdown-it'
 
 const md = new MarkdownIt()
@@ -89,7 +89,7 @@ And here's how you would pass the optional base URL:
 
 :::
 ```js
-import MarkdownItSpaLinks from '@baleada/markdown-it-spa-links'
+import MarkdownItSpaLinks from '@baleada/spa-links/markdown-it'
 import MarkdownIt from 'markdown-it'
 
 const md = new MarkdownIt()

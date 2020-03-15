@@ -78,6 +78,7 @@ The build process for JavaScript-driven sites and apps is notoriously complex. C
 Baleada's configuration utilities are functions that you can use to generate configurations and abstract away certain parts of the configuration process. They're opinionated enough to steer you toward a particular developer experience, but still offer customization options of their own.
 
 To get started with Baleada's configuration utilities, check out these packages:
+- [Baleada Linear Numeric](/docs/linear-numeric)
 - [Baleada Source Transform](/docs/source-transform)
 - [Baleada SPA Links](/docs/spa-links)
-- [Baleada Linear Numeric](/docs/linear-numeric)
+
