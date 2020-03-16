@@ -31,6 +31,7 @@ export default {
             blockquote: {
               canTweet: true,
               tweetVia: 'BaleadaToolkit',
+              tweetUrl: 'current',
             },
             codeblock: {
               canCopy: true,

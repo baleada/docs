@@ -154,6 +154,24 @@
     ]
   },
   {
+    "level": 2,
+    "name": "components",
+    "pages": [
+      {
+        "title": "ProseAside",
+        "href": "/docs/prose/components/aside"
+      },
+      {
+        "title": "ProseBlockquote",
+        "href": "/docs/prose/components/blockquote"
+      },
+      {
+        "title": "ProseSection",
+        "href": "/docs/prose/components/section"
+      }
+    ]
+  },
+  {
     "level": 1,
     "name": "source transform",
     "pages": [

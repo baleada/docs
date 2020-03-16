@@ -341,6 +341,116 @@
     "href": "/docs/logic/why-this-api"
   },
   {
+    "title": "ProseArticle",
+    "publish": false,
+    "order": 0,
+    "body": "",
+    "updatedAt": "2020-03-15T18:17:35.551Z",
+    "path": "./assets/md/prose/components/article.md",
+    "fileName": "article",
+    "href": "/docs/prose/components/article"
+  },
+  {
+    "title": "ProseAside",
+    "publish": true,
+    "order": 0,
+    "body": "`ProseAside` is perfect when you want to insert additional information into an article outside the normal flow of writing. It renders a satisfyingly semantic `aside` element and can render an icon as well.\n\n:::\n## Example\n:::\n\n:::\n### Markdown\n:::\n\n:::\n```md\n||| type=\"info\"\nNote: by the _way_, in case you were **wondering**,\nthis is some `info`, for your information.\n|||\n\n||| type=\"warning\"\nIf you don't read this, you'll probably mess something up,\nbut it's not the end of the world.\n|||\n\n||| type=\"danger\"\nInconceivable!\n|||\n\n||| type=\"success\"\nYou go, Glen Coco!\n|||\n\n||| type=\"anything-else\"\nBehold, your blank canvas.\n|||\n```\n:::\n\n:::\n### Rendered\n:::\n\n\n::: type=\"info\"\nNote: by the _way_, in case you were **wondering**, this is some `info`, for your information.\n:::\n\n::: type=\"warning\"\nIf you don't read this, you'll probably mess something up, but it's not the end of the world.\n:::\n\n::: type=\"danger\"\nInconceivable!\n:::\n\n::: type=\"success\"\nYou go, Glen Coco!\n:::\n\n::: type=\"anything-else\"\nBehold, your blank canvas.\n:::\n\n\n:::\n## Props\n:::\n\n::: ariaLabel=\"ProseAside props\" classes=\"wide-5\"\n| Prop | Type | Required? | Default | Description |\n| --- | --- | --- | --- | --- |\n| `type` | String | no | `'info'` | Determines which icon gets rendered. Any string is valid, but only `'info'`, `'warning'`, `'success'`, and `'danger'` will cause `ProseAside` to render an icon. |\n| `classes` | String | no | none | Adds additional classes to the component's root element. |\n:::\n\n::: type=\"warning\"\nWhen you're writing in Markdown, the `type` prop is required—that's the only way [Baleada Prose Container](/docs/prose-container) will know that it's a `ProseAside` and not a [`ProseSection`](/docs/prose/components/section).\n:::\n\n\n:::\n## API design compliance\n:::\n\n[WIP]\n\n<!-- ::: ariaLabel=\"A table showing ProseAside's API design compliance\"  classes=\"wide-1 wide-3\"\n| Spec | Compliance status | Notes |\n| --- | --- | --- |\n::: -->",
+    "updatedAt": "2020-03-16T05:50:32.391Z",
+    "path": "./assets/md/prose/components/aside.md",
+    "fileName": "aside",
+    "href": "/docs/prose/components/aside"
+  },
+  {
+    "title": "ProseBlockquote",
+    "publish": true,
+    "order": 0,
+    "body": "`ProseBlockquote` is a dream come true for all you Twitter fiends out there! It comes with a full-featured tweet button that supports\n\n`ProseBlockquote` renders a `section` as its root element, and its slot renders your actual `blockquote` element.\n\n:::\n## Example\n:::\n\n:::\n### Markdown\n:::\n\n:::\n```md\n||| canTweet tweetHashtags=[twitterfiends,memers,okboomer,NeverTrump] tweetVia=\"BaleadaToolkit\" tweetUrl=\"https://baleada/netlify.com/docs/prose/components/blockquote\"\n> `ProseBlockquote` is a dream come true for all you Twitter fiends out there!\n|||\n```\n:::\n\n:::\n### Rendered\n:::\n\n::: tweetHashtags=[twitterfiends,memers,okboomer,NeverTrump] tweetUrl=\"https://baleada/netlify.com/docs/prose/components/blockquote\"\n> `ProseBlockquote` is a dream come true for all you Twitter fiends out there!\n:::\n\n\n::: type=\"info\"\nNote: by the _way_, in case you were **wondering**, this is some `info`, for your information.\n:::\n\n::: type=\"warning\"\nIf you don't read this, you'll probably mess something up, but it's not the end of the world.\n:::\n\n::: type=\"danger\"\nInconceivable!\n:::\n\n::: type=\"success\"\nYou go, Glen Coco!\n:::\n\n::: type=\"anything-else\"\nBehold, your blank canvas.\n:::\n\n\n:::\n## Props\n:::\n\n::: ariaLabel=\"ProseAside props\" classes=\"wide-5\"\n| Prop | Type | Required? | Default | Description |\n| --- | --- | --- | --- | --- |\n| `type` | String | no | `'info'` | Determines which icon gets rendered. Any string is valid, but only `'info'`, `'warning'`, `'success'`, and `'danger'` will cause `ProseAside` to render an icon. |\n| `classes` | String | no | none | Adds additional classes to the component's root element. |\n:::\n\n::: type=\"warning\"\nWhen you're writing in Markdown, the `type` prop is required—that's the only way [Baleada Prose Container](/docs/prose-container) will know that it's a `ProseAside` and not a [`ProseSection`](/docs/prose/components/section).\n:::\n\n\n:::\n## API design compliance\n:::\n\n[WIP]\n\n<!-- ::: ariaLabel=\"A table showing ProseAside's API design compliance\"  classes=\"wide-1 wide-3\"\n| Spec | Compliance status | Notes |\n| --- | --- | --- |\n::: -->",
+    "updatedAt": "2020-03-16T06:28:48.757Z",
+    "path": "./assets/md/prose/components/blockquote.md",
+    "fileName": "blockquote",
+    "href": "/docs/prose/components/blockquote"
+  },
+  {
+    "title": "ProseCodeblock",
+    "publish": false,
+    "order": 0,
+    "body": "",
+    "updatedAt": "2020-03-15T18:17:49.204Z",
+    "path": "./assets/md/prose/components/codeblock.md",
+    "fileName": "codeblock",
+    "href": "/docs/prose/components/codeblock"
+  },
+  {
+    "title": "ProseDetails",
+    "publish": false,
+    "order": 0,
+    "body": "",
+    "updatedAt": "2020-03-15T18:17:39.648Z",
+    "path": "./assets/md/prose/components/details.md",
+    "fileName": "details",
+    "href": "/docs/prose/components/details"
+  },
+  {
+    "title": "ProseGrid",
+    "publish": false,
+    "order": 0,
+    "body": "",
+    "updatedAt": "2020-03-15T18:17:43.818Z",
+    "path": "./assets/md/prose/components/grid.md",
+    "fileName": "grid",
+    "href": "/docs/prose/components/grid"
+  },
+  {
+    "title": "ProseHeading",
+    "publish": false,
+    "order": 0,
+    "body": "",
+    "updatedAt": "2020-03-15T18:17:00.875Z",
+    "path": "./assets/md/prose/components/heading.md",
+    "fileName": "heading",
+    "href": "/docs/prose/components/heading"
+  },
+  {
+    "title": "ProseLayout",
+    "publish": false,
+    "order": 0,
+    "body": "",
+    "updatedAt": "2020-03-15T18:17:30.829Z",
+    "path": "./assets/md/prose/components/layout.md",
+    "fileName": "layout",
+    "href": "/docs/prose/components/layout"
+  },
+  {
+    "title": "ProseList",
+    "publish": false,
+    "order": 0,
+    "body": "",
+    "updatedAt": "2020-03-15T18:17:25.747Z",
+    "path": "./assets/md/prose/components/list.md",
+    "fileName": "list",
+    "href": "/docs/prose/components/list"
+  },
+  {
+    "title": "ProseMedia",
+    "publish": false,
+    "order": 0,
+    "body": "",
+    "updatedAt": "2020-03-15T18:17:18.379Z",
+    "path": "./assets/md/prose/components/media.md",
+    "fileName": "media",
+    "href": "/docs/prose/components/media"
+  },
+  {
+    "title": "ProseSection",
+    "publish": true,
+    "order": 0,
+    "body": "`ProseSection`'s root element is just a generic `section`—nothing more, nothing less. It comes in handy when you just need to contain a few things in a block-level element, maybe with a few CSS classes tacked on so you can add specific styling.\n\n:::\n## Example\n:::\n\n:::\n### Markdown:\n:::\n\n:::\n```md\n|||\nInspect me! I'm contained in a `section`.\n|||\n```\n:::\n\n:::\n### Rendered: \n:::\n\n:::\nInspect me! I'm contained in a `.baleada-prose-section`.\n:::\n\n\n:::\n## Props\n:::\n\n::: ariaLabel=\"ProseSection props\"\n| Prop | Type | Required? | Default | Description |\n| --- | --- | --- | --- | --- |\n| `classes` | String | no | none | Adds additional classes to the component's root element. |\n:::\n\n\n:::\n## API design compliance\n:::\n\n[WIP]\n\n::: ariaLabel=\"A table showing ProseSection's API design compliance\"  classes=\"wide-1 wide-3\"\n| Spec | Compliance status | Notes |\n| --- | --- | --- |\n:::",
+    "updatedAt": "2020-03-16T05:47:46.360Z",
+    "path": "./assets/md/prose/components/section.md",
+    "fileName": "section",
+    "href": "/docs/prose/components/section"
+  },
+  {
     "title": "What is Baleada Prose?",
     "publish": true,
     "order": 0,

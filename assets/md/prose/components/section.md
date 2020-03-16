@@ -1,6 +1,55 @@
 ---
 title: ProseSection
 tags: Components, Vue, React, Svelte
-publish: false
+publish: true
 order: 0
 ---
+
+`ProseSection`'s root element is just a generic `section`—nothing more, nothing less. It comes in handy when you just need to contain a few things in a block-level element, maybe with a few CSS classes tacked on so you can add specific styling.
+
+:::
+## Example
+:::
+
+:::
+### Markdown:
+:::
+
+:::
+```md
+|||
+Inspect me! I'm contained in a `section`.
+|||
+```
+:::
+
+:::
+### Rendered: 
+:::
+
+:::
+Inspect me! I'm contained in a `.baleada-prose-section`.
+:::
+
+
+:::
+## Props
+:::
+
+::: ariaLabel="ProseSection props"
+| Prop | Type | Required? | Default | Description |
+| --- | --- | --- | --- | --- |
+| `classes` | String | no | none | Adds additional classes to the component's root element. |
+:::
+
+
+:::
+## API design compliance
+:::
+
+[WIP]
+
+::: ariaLabel="A table showing ProseSection's API design compliance"  classes="wide-1 wide-3"
+| Spec | Compliance status | Notes |
+| --- | --- | --- |
+:::
