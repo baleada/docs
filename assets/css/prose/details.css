@@ -1,3 +1,30 @@
-.baleada-prose-details {
-  
+.baleada-prose-details {  
+  summary {
+    @apply cursor-pointer inline-flex items-center rounded-1 list-none;
+
+    svg {
+      @apply h-1em w-1em fill-current;
+      transform-origin: center;
+    }
+
+    &:hover {
+      @apply text-primary-700;
+    }
+  }
+
+  .contents {
+    @apply ml-2;
+  }
+
+  &[open] {
+    svg {
+      transform: rotate(90deg);
+    }
+  }
+
+  .dark & {
+    &:hover {
+      @apply text-primary-gray-300;
+    }
+  }
 }

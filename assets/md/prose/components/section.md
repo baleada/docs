@@ -44,6 +44,22 @@ Inspect me! I'm contained in a `.baleada-prose-section`.
 
 
 :::
+## Structure
+:::
+
+Here's the structure of `ProseSection`'s markup, written in [Pug](https://github.com/pugjs/pug#syntax) for simplicity:
+
+:::
+```pug
+section.baleada-prose-section
+  section.contents
+    slot // <- Your blockquote slots in here
+```
+:::
+
+
+
+:::
 ## API design compliance
 :::
 

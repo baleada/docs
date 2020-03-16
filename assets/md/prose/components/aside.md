@@ -84,6 +84,22 @@ When you're writing in Markdown, the `type` prop is required—that's the only w
 
 
 :::
+## Structure
+:::
+
+Here's the structure of `ProseAside`'s markup, written in [Pug](https://github.com/pugjs/pug#syntax) for simplicity:
+
+:::
+```pug
+aside.baleada-prose-aside.baleada-prose-aside-info // <- Replace info with warning, danger, success, or simple
+  svg // <-- Icon
+  section.contents
+    slot // <- Your content slots in here
+```
+:::
+
+
+:::
 ## API design compliance
 :::
 

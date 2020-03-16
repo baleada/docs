@@ -7,8 +7,6 @@ order: 0
 
 `ProseBlockquote` is a dream come true for all you Twitter fiends out there! It comes with a full-featured tweet button that supports custom hashtags, shortened URLs, and mentions.
 
-`ProseBlockquote` renders a `section` as its root element, and its slot renders your actual `blockquote` element.
-
 :::
 ## Example
 :::
@@ -48,6 +46,24 @@ order: 0
 | `tweetUrl` | String | no | none | <p>A URL that Twitter should shorten and append to the tweet.</p><p>You can also pass the keyword `'current'` to make `ProseBlockquote` use the URL of the page your blockquote is on.</p> |
 | `classes` | String | no | none | Adds additional classes to the component's root element. |
 :::
+
+
+:::
+## Structure
+:::
+
+Here's the structure of `ProseBlockquote`'s markup, written in [Pug](https://github.com/pugjs/pug#syntax) for simplicity:
+
+:::
+```pug
+section.baleada-prose-blockquote
+  section.contents
+    slot // <- Your blockquote slots in here
+  a
+    svg // <-- Twitter icon
+```
+:::
+
 
 
 :::
