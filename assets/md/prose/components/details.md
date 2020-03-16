@@ -16,11 +16,9 @@ order: 0
 :::
 
 :::
-```md
-||| summary="There's some really interesting stuff in here..."
-Syke!
-|||
-```
+    ::: summary="There's some really interesting stuff in here..."
+    Syke!
+    :::
 :::
 
 :::

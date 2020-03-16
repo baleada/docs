@@ -5,7 +5,7 @@ publish: true
 order: 0
 ---
 
-`ProseSection`'s root element is just a generic `section`—nothing more, nothing less. It comes in handy when you just need to contain a few things in a block-level element, maybe with a few CSS classes tacked on so you can add specific styling.
+`ProseSection`'s root element is just a generic `section`. It comes in handy when you need to contain a few things in a block-level element, maybe with a few CSS classes tacked on so you can add specific styling.
 
 :::
 ## Example
@@ -16,11 +16,9 @@ order: 0
 :::
 
 :::
-```md
-|||
-Inspect me! I'm contained in a `section`.
-|||
-```
+    :::
+    Inspect me! I'm contained in a `section`.
+    :::
 :::
 
 :::
@@ -28,7 +26,7 @@ Inspect me! I'm contained in a `section`.
 :::
 
 :::
-Inspect me! I'm contained in a `.baleada-prose-section`.
+Inspect me! I'm contained in a `section`.
 :::
 
 

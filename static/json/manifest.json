@@ -166,6 +166,10 @@
         "href": "/docs/prose/components/blockquote"
       },
       {
+        "title": "ProseCodeblock",
+        "href": "/docs/prose/components/codeblock"
+      },
+      {
         "title": "ProseDetails",
         "href": "/docs/prose/components/details"
       },
