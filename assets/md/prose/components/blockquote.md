@@ -56,9 +56,9 @@ Here's the structure of `ProseBlockquote`'s markup, written in [Pug](https://git
 ```pug
 section.baleada-prose-blockquote
   section.contents
-    slot // <- Your blockquote slots in here
+    slot // Your blockquote slots in here
   a
-    svg // <-- Twitter icon
+    svg // Twitter icon
 ```
 :::
 

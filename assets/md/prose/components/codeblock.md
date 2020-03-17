@@ -49,8 +49,8 @@ The codeblocks in the Baleada docs are highlighted using [refractor](https://git
 ::: ariaLabel="ProseAside props" classes="wide-5"
 | Prop | Type | Required? | Default | Description |
 | --- | --- | --- | --- | --- |
-| `canCopy` | Boolean | no | `false` | Indicates whether `ProseCodeblock` should render the copy-to-clipboard button and icon. |
-| `hasLineNumbers` | Boolean | no | `false` | Indicates whether `ProseCodeblock` should render line numbers. |
+| `canCopy` | Boolean | no | `false` | Indicates whether or not `ProseCodeblock` should render the copy-to-clipboard button and icon. |
+| `hasLineNumbers` | Boolean | no | `false` | Indicates whether or not `ProseCodeblock` should render line numbers. |
 | `classes` | String | no | none | Adds additional classes to the component's root element. |
 :::
 
@@ -66,10 +66,10 @@ Here's the structure of `ProseCodeblock`'s markup, written in [Pug](https://gith
 section.baleada-prose-codeblock
   section.contents
     pre
-      code // <- This pre>code contains line numbers
+      code // This pre>code contains line numbers
     slot <- Your pre>code slots in here
   button // Copy-to-clipboard button
-    svg // <- Copy-to-clipboard icon
+    svg // Copy-to-clipboard icon
 ```
 :::
 

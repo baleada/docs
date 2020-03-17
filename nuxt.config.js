@@ -123,7 +123,7 @@ export default {
 \n\
 <DocsArticleStats />\n\
 \n\
-<DocsMeta :tags="{ title: '${title}' }" />\n\
+<DocsMeta />\n\
 \n\
 `,
         after: ({ filePath }) => `\n\

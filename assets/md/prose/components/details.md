@@ -50,12 +50,12 @@ Here's the structure of `ProseDetails`'s markup, written in [Pug](https://github
 
 :::
 ```pug
-details.baleada-prose-details open // <- open is the boolean attribute that determines whether or not the details are open
+details.baleada-prose-details open // open is the boolean attribute that determines whether or not the details are open
   summary
-    svg // <- Chevron icon
-    span // <- Contains the text from the summary prop
+    svg // Chevron icon
+    span // Contains the text from the summary prop
   section.contents
-    slot // <- Your content slots in here
+    slot // Your content slots in here
 ```
 :::
 

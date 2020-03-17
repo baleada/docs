@@ -1,20 +1,16 @@
-<template>
-
-</template>
+<template></template>
 
 <script>
-import { getCurrentInstance, onMounted } from '@vue/composition-api'
+import { onMounted, computed, inject } from '@vue/composition-api'
+
+import { useSymbol } from '@baleada/prose/vue'
 
 export default {
-  props: {
-    tags: {
-      type: Object,
-      required: true,
-    }
-  },
-  setup(props) {
-    const vm = getCurrentInstance()
-      vm.head = () => { title: 'What is Baleada?' }
+  setup (props) {
+    const frontMatter = inject(useSymbol('article', 'frontMatter')),
+          title = computed(() => frontMatter.value.title)
+
+    onMounted(() => (document.title = title.value))
   },
 }
 </script>

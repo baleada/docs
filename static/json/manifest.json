@@ -158,6 +158,10 @@
     "name": "components",
     "pages": [
       {
+        "title": "ProseArticle",
+        "href": "/docs/prose/components/article"
+      },
+      {
         "title": "ProseAside",
         "href": "/docs/prose/components/aside"
       },
@@ -172,6 +176,22 @@
       {
         "title": "ProseDetails",
         "href": "/docs/prose/components/details"
+      },
+      {
+        "title": "ProseGrid",
+        "href": "/docs/prose/components/grid"
+      },
+      {
+        "title": "ProseHeading",
+        "href": "/docs/prose/components/heading"
+      },
+      {
+        "title": "ProseLayout",
+        "href": "/docs/prose/components/layout"
+      },
+      {
+        "title": "ProseList",
+        "href": "/docs/prose/components/list"
       },
       {
         "title": "ProseSection",
