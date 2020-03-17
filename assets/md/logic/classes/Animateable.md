@@ -24,6 +24,11 @@ In other words, `Animateable` implements all the main features of [CSS `@keyfram
 - [`Listenable`](/docs/logic/classes/Listenable)
 
 
+::: type="info"
+Need some animation theory before you put it into practice? Check out [Motion & Playfulness](https://vimeo.com/282452432), a talk by [Benjamin De Cock](https://twitter.com/bdc)
+:::
+
+
 :::
 ## Construct an `Animateable` instance
 :::
@@ -243,7 +248,38 @@ Finally, the good stuff!
 
 The first step to handling frames is to pass a callback function to the `play`, `reverse` or `seek` methods when you call them. `Animateable` will call that function at a rate of 60 frames per second, passing the current frame as the first argument.
 
-Each frame is simply an Object with a `data` property. The `data` property's value is also an Object, containing all the properties from your `keyframes` alongside their current value in the animation.
+Each frame is an Object with a `data` property and a `progress` property. The value of each of those properties is also an Object, and they keys in both objects are all the properties from your `keyframes`.
+
+In the `frame.data` object, the value of each property is the actual computed value for the property at that point in the animation.
+
+:::
+```js
+// frame.data
+{
+  data: {
+    myProperty: 10,
+  },
+  progress: {...},
+}
+```
+:::
+
+In the `frame.progress` object, the value of each property is an object with a `time` property and an `animation` property, which each contain a number between `0` and `1` representing the time progress and animation progress between the previous and next keyframes for that property.
+
+:::
+```js
+// frame.progress
+{
+  data: {...},
+  progress: {
+    myProperty: {
+      time: 0.25,
+      animation: 0.5,
+    },
+  },
+}
+```
+:::
 
 For a simple example, imagine you passed these keyframes:
 
@@ -277,7 +313,13 @@ Assuming you're using the default linear timing function, this is the frame your
 :::
 ```js
 {
-  data: { myProperty: 50 }
+  data: { myProperty: 50 },
+  progress: {
+    myProperty: {
+      time: 0.5,
+      animation: 0.5,
+    },
+  }
 }
 ```
 :::
@@ -287,12 +329,105 @@ And this is the last frame your callback would receive:
 :::
 ```js
 {
-  data: { myProperty: 100 }
+  data: { myProperty: 100 },
+  progress: {
+    myProperty: {
+      time: 1,
+      animation: 1,
+    },
+  }
 }
 ```
 :::
 
-So what should you do with that frame inside your callback function? The intention is that you'll assign styles to an element, given the frame data.
+Things get slightly more complex when your keyframes don't just start at `progress: 0` and end at `progress: 1`. Consider the following keyframes:
+
+:::
+```js
+[
+  {
+    progress: 0,
+    data: { myProperty: 0 }
+  },
+  {
+    progress: .5,
+    data: { myProperty: 25 }
+  },
+  {
+    progress: 1,
+    data: { myProperty: 100 }
+  }
+]
+```
+:::
+
+Assuming you're using the default linear timing function, this is the frame your callback function would receive exactly one quarter of the way through the animation, when the Animateable instance's `progress.time` is `0.25`:
+
+:::
+```js
+{
+  data: { myProperty: 12.5 },
+  progress: {
+    myProperty: {
+      time: 0.5, // Halfway between the previous and next keyframes
+      animation: 0.5, // With linear timing, animation progress equals time progress
+    },
+  }
+}
+```
+:::
+
+This is the frame your callback function would receive exactly halfway through the animation, when the Animateable instance's `progress.time` is `0.5`:
+
+:::
+```js
+{
+  data: { myProperty: 25 },
+  progress: {
+    myProperty: {
+      time: 0, // Time progress resets to 0 when you get to next keyframe
+      animation: 0,
+    },
+  }
+}
+```
+:::
+
+
+Here's the frame at three quarters progress, when the Animateable instance's `progress.time` is `0.75`:
+
+:::
+```js
+{
+  data: { myProperty: 62.5 },
+  progress: {
+    myProperty: {
+      time: 0.5,
+      animation: 0.5,
+    },
+  }
+}
+```
+:::
+
+And this is the last frame your callback would receive, when the Animateable instance's `progress.time` is `1`:
+
+:::
+```js
+{
+  data: { myProperty: 100 },
+  progress: {
+    myProperty: {
+      time: 1,
+      animation: 1,
+    },
+  }
+}
+```
+:::
+
+
+So what should you do with that frame inside your callback function? The intention behind `Animateable` is that you'll use `frame.data` to assign styles to an element.
 
 Take this callback function for example:
 
@@ -322,6 +457,8 @@ function handleFrame (frame) {
 :::
 
 That callback function would move the element to the right and steadily change its background color at the same time.
+
+`frame.progress` is less useful, but is exactly what you will need if you ever want to visualize the progress of individual keyframe-to-keyframe transitions (`time` and `animation` progress are the `x` and `y` coordinates of the current point on an easing curve).
 
 Note that if you have multiple unique properties in your `keyframes`, every property will be included in every frame's data.
 
@@ -353,7 +490,7 @@ Take these keyframes for example:
 ```
 :::
 
-Given those keyframes, and assuming you're still using the default linear timing function, here's the frame you would receive when the animation is 1/4 of the way through:
+Given those keyframes, and assuming you're still using the default linear timing function, here's the frame you would receive when the `Animateable` instance's `progress.time` is `0.25`:
 
 :::
 ```js
@@ -361,12 +498,16 @@ Given those keyframes, and assuming you're still using the default linear timing
   data: {
     translateX: 25,
     blueChannel: 0,
+  },
+  progress: {
+    translateX: { time: 0.25, animation: 0.25 },
+    blueChannel: { time: 0.5, animation: 0.5 }, // Halfway from the animation start to the start of its first keyframe
   }
 }
 ```
 :::
 
-Here's what you would get when the animation is halfway through:
+Here's what you would get when the `Animateable` instance's `progress.time` is `0.5`:
 
 :::
 ```js
@@ -374,12 +515,16 @@ Here's what you would get when the animation is halfway through:
   data: {
     translateX: 50,
     blueChannel: 0,
+  },
+  progress: {
+    translateX: { time: 0.5, animation: 0.5 },
+    blueChannel: { time: 0, animation: 0 }, // Starting its first keyframe transition
   }
 }
 ```
 :::
 
-And here's what you would get when the animation is 3/4 of the way through:
+And here's what you would get when the `Animateable` instance's `progress.time` is `0.75`:
 
 :::
 ```js
@@ -387,6 +532,10 @@ And here's what you would get when the animation is 3/4 of the way through:
   data: {
     translateX: 75,
     blueChannel: 127.5,
+  },
+  progress: {
+    translateX: { time: 0.75, animation: 0.75 },
+    blueChannel: { time: 0.5, animation: 0.5 }, // Halfway through its keyframe transition
   }
 }
 ```
@@ -464,13 +613,6 @@ function handleFrame ({ data: { word } }) {
 
 Given those keyframes and that frame handler, your `Animateable` instance would progressively change the text content of your element, making it look like the word "Baleada" is being typed across the screen.
 
-
-
-:::
-## Further resources
-:::
-
-- [Motion & Playfulness](https://vimeo.com/282452432), a talk by [Benjamin De Cock](https://twitter.com/bdc)
 
 
 :::
