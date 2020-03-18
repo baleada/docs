@@ -123,9 +123,13 @@ Add custom timing functions as you see fit to make the "typewriter" feel more na
 #### How to format timing
 :::
 
-In individual keyframes and in the `Animateable` constructor's `options` object, the `timing` property's value should be an Array of two Objects.
+In individual keyframes and in the `Animateable` constructor's `options` object, the `timing` property's value should be an Array of four Numbers. In order, those numbers should be:
+1. The `x` coordinate of the first control point
+2. The `y` coordinate of the first control point
+3. The `x` coordinate of the second control point
+4. The `y` coordinate of the second control point
 
-Both objects must have an `x` and a `y` property whose value must be a number greater than or equal to `0` and less than or equal to `1`.
+In other words, the array should contain exactly what you would normally pass to the [`cubic-bezier()` function in CSS](https://developer.mozilla.org/en-US/docs/Web/CSS/easing-function).
 
 For example:
 
@@ -134,20 +138,68 @@ For example:
 // This timing array produces the easeInOutQuad curve 
 // from easings.net
 [
-  { x: 0.455, y: 0.03 },
-  { x: 0.515, y: 0.955 },
+  0.455, 0.030, // Point 1
+  0.515, 0.955, // Point 2
 ]
 
 ```
 :::
 
-Those two objects specify the x and y coordinates for the two control points on an easing curve. 
+`cubic-bezier()` examples abound on the internet, so it should be relatively easy to find and copy/paste control points. But for an even smoother experience, you can install the Baleada Animateable Timings package, which simply exports arrays of control points as variables.
 
-
-::: type="info"
-You can use [easings.net by Andrey Sitnik and Ivan Solovev](https://easings.net/en) to find control point coordinates for popular easing curves, or use [cubic-bezier by Lea Verou](https://cubic-bezier.com/) to design control points for your own custom easing curve.
+:::
+```bash
+npm i @baleada/animateable-timings
+```
 :::
 
+:::
+```js
+import { materialStandard } from '@baleada/animateable-timings'
+
+const instance = new Animateable(
+  myKeyframes, 
+  { timing: materialStandard }
+)
+```
+:::
+
+Here's a list of the available `timing` arrays in the package:
+
+::: ariaLabel="List of timings in Baleada Animateable Timings" classes="wide-3"
+| Variable | Source | Coordinates |
+| --- | --- | --- |
+| `linear` | none | `0.00, 0.00, 1.00, 1.00`
+| `materialStandard` | [Material Design](https://material.io/design/motion/speed.html#easing) | `0.40, 0.00, 0.20, 1.00`
+| `materialDecelerated` | [Material Design](https://material.io/design/motion/speed.html#easing) | `0.00, 0.00, 0.20, 1.00`
+| `materialAccelerated` | [Material Design](https://material.io/design/motion/speed.html#easing) | `0.40, 0.00, 1.00, 1.00`
+| `verouEase` | [cubic-bezier.com](https://cubic-bezier.com/) | `0.25, 0.10, 0.25, 1.00`
+| `verouEaseIn` | [cubic-bezier.com](https://cubic-bezier.com/) | `0.42, 0.00, 1.00, 1.00`
+| `verouEaseOut` | [cubic-bezier.com](https://cubic-bezier.com/) | `0.00, 0.00, 0.58, 1.00`
+| `verouEaseInOut` | [cubic-bezier.com](https://cubic-bezier.com/) | `0.42, 0.00, 0.58, 1.00`
+| `easingsNetInSine` | [easings.net](https://easings.net) | `0.12, 0.00, 0.39, 0.00`
+| `easingsNetOutSine` | [easings.net](https://easings.net) | `0.61, 1.00, 0.88, 1.00`
+| `easingsNetInOutSine` | [easings.net](https://easings.net) | `0.37, 0.00, 0.63, 1.00`
+| `easingsNetInQuad` | [easings.net](https://easings.net) | `0.11, 0.00, 0.50, 0.00`
+| `easingsNetOutQuad` | [easings.net](https://easings.net) | `0.50, 1.00, 0.89, 1.00`
+| `easingsNetInOutQuad` | [easings.net](https://easings.net) | `0.45, 0.00, 0.55, 1.00`
+| `easingsNetInCubic` | [easings.net](https://easings.net) | `0.32, 0.00, 0.67, 0.00`
+| `easingsNetOutCubic` | [easings.net](https://easings.net) | `0.33, 1.00, 0.68, 1.00`
+| `easingsNetInOutCubic` | [easings.net](https://easings.net) | `0.65, 0.00, 0.35, 1.00`
+| `easingsNetInQuart` | [easings.net](https://easings.net) | `0.50, 0.00, 0.75, 0.00`
+| `easingsNetInQuint` | [easings.net](https://easings.net) | `0.64, 0.00, 0.78, 0.00`
+| `easingsNetOutQuint` | [easings.net](https://easings.net) | `0.22, 1.00, 0.36, 1.00`
+| `easingsNetInOutQuint` | [easings.net](https://easings.net) | `0.83, 0.00, 0.17, 1.00`
+| `easingsNetInExpo` | [easings.net](https://easings.net) | `0.70, 0.00, 0.84, 0.00`
+| `easingsNetOutExpo` | [easings.net](https://easings.net) | `0.16, 1.00, 0.30, 1.00`
+| `easingsNetInOutExpo` | [easings.net](https://easings.net) | `0.87, 0.00, 0.13, 1.00`
+| `easingsNetInCirc` | [easings.net](https://easings.net) | `0.55, 0.00, 1.00, 0.45`
+| `easingsNetOutCirc` | [easings.net](https://easings.net) | `0.00, 0.55, 0.45, 1.00`
+| `easingsNetInOutCirc` | [easings.net](https://easings.net) | `0.85, 0.00, 0.15, 1.00`
+| `easingsNetInBack` | [easings.net](https://easings.net) | `0.36, 0.00, 0.66,-0.56`
+| `easingsNetOutBack` | [easings.net](https://easings.net) | `0.34, 1.56, 0.64, 1.00`
+| `easingsNetInOutBack` | [easings.net](https://easings.net) | `0.68,-0.60, 0.32, 1.6 `
+:::
 
 
 :::
@@ -257,7 +309,7 @@ In the `frame.data` object, the value of each property is the actual computed va
 // frame.data
 {
   data: {
-    myProperty: 10,
+ myProperty: 10,
   },
   progress: {...},
 }
