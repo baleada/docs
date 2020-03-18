@@ -13,13 +13,13 @@ Each tool in the Baleada app-building toolkit falls into one of the following ca
 
 Each category of tools has its own NPM package that you can install:
 
-::: ariaLabel="Table showing tool categories and the corresponding NPM package for each category"
+::: ariaLabel="Table showing tool categories and the corresponding NPM package for each category" classes="wide-2"
 | Tool category | NPM packages |
 | --- | --- |
-| UI logic | [`@baleada/logic`](/docs/logic) |
+| UI logic | <p>[`@baleada/logic`](/docs/logic)</p><p>`@baleada/listenable-gestures`</p><p>[`@baleada/animateable-timings`](/docs/logic/classes/animateable#how-to-format-timing)</p> |
 | Composition functions | [`@baleada/composition`](/docs/composition) |
-| Components | <p>[`@baleada/icons`](/docs/icons)</p><p>`@baleada/prose`</p> |
-| Configuration utilities | <p>[`@baleada/source-transform`](/docs/source-transform)</p><p>[`@baleada/linear-numeric`](/docs/linear-numeric)</p> |
+| Components | <p>[`@baleada/icons`](/docs/icons)</p><p>[`@baleada/prose`](/docs/prose)</p><p>`@baleada/interface`</p> |
+| Configuration utilities | <p>[`@baleada/linear-numeric`](/docs/linear-numeric)</p><p>[`@baleada/source-transform`](/docs/source-transform)</p><p>[`@baleada/spa-links`](/docs/spa-links)</p> |
 :::
 
 If you're itching to install those packages and get started with the tools they offer, you can check out the dedicated guides in the sidebar navigation.
