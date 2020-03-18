@@ -210,7 +210,7 @@ Here's a list of the available `timing` arrays in the package:
 | Option | Type | Default | Description |
 | --- | --- | --- | --- |
 | `duration` | Number | `0` | Indicates the duration in milliseconds of the animation. |
-| `timing` | Array | `[{x:0,y:0},{x:1,y:1}]` | <p>Customizes the global timing function used by `Animateable` to compute values between frames. The default timing function is linear.</p><p>See the [How to format timing](#how-to-format-timing) section for more guidance on formatting the `timing` array.</p> |
+| `timing` | Array | `[0,0,1,1]` | <p>Customizes the global timing function used by `Animateable` to compute values between frames. The default timing function is linear.</p><p>See the [How to format timing](#how-to-format-timing) section for more guidance on formatting the `timing` array.</p> |
 | `iterations` | Number, Boolean | `1` | <p>Indicates the number of iterations the animation will repeat when playing or reversing.</p><p>The minimum is `1`, and you can pass `true` to make the animation iterate infinitely.</p> |
 | `alternates` | Boolean | `false` | <p>Indicates whether or not the animation will alternate back and forth, or only proceed in one direction.</p><p>When `alternates` is `true`, each full back-and-forth cycle is considered 1 iteration.</p> |
 :::
