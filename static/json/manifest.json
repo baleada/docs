@@ -122,7 +122,12 @@
   {
     "level": 1,
     "name": "listenable gestures",
-    "pages": []
+    "pages": [
+      {
+        "title": "What is Baleada Listenable Gestures?",
+        "href": "/docs/listenable-gestures"
+      }
+    ]
   },
   {
     "level": 1,

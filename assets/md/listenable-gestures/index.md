@@ -1,11 +1,13 @@
 ---
 title: What is Baleada Listenable Gestures?
 tags: UI logic
-publish: false
+publish: true
 order: 0
 ---
 
-Baleada Listenable Gestures is a collection of [factory functions](https://www.youtube.com/watch?v=ImwrezYhw4w) that return "gesture recognizers".
+[WIP]
+
+<!-- Baleada Listenable Gestures is a collection of [factory functions](https://www.youtube.com/watch?v=ImwrezYhw4w) that return "gesture recognizers".
 
 These recognizers are simply JavaScript objects with properties that handle DOM events and recognize whether or not the events form a [gesture](/docs/gesture#what-is-a-gesture).
 
@@ -88,7 +90,7 @@ taps.listen(myListener, {
   gesture: { minTaps: 2 },
 })
 ```
-:::
+::: -->
 
 <!-- A good way to increase code clarity is to name the `Listenable` instance after the event type you're listening for. If you want to do that, simply use your import statement to change the name of the import.
 
@@ -111,7 +113,7 @@ swipe.listen(...)
 
 
 
-:::
+<!-- :::
 ## Language, compilation, browser support, and dependencies
 :::
 
@@ -119,4 +121,4 @@ Baleada Listenable Gestures are written in modern JavaScript and compiled by [Ba
 
 To allow for [tree-shaking](https://webpack.js.org/guides/tree-shaking/), Baleada Listenable Gesture's compiled code has no side effects and uses [`import`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/import) and [`export`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/export) instead of [`require()`](https://nodejs.org/api/modules.html#modules_require_id) and [`module.exports`](https://nodejs.org/api/modules.html#modules_module_exports).
 
-Baleada Listenable Gesture's only dependency is Baleada Gesture.
+Baleada Listenable Gesture's only dependency is Baleada Gesture. -->
