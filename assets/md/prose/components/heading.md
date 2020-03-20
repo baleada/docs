@@ -5,7 +5,7 @@ publish: true
 order: 0
 ---
 
-`ProseHeading` is Baleada Prose's response to Markdown headings. It does three things that you typically want from a heading:
+`ProseHeading` is Baleada Prose's version of Markdown headings. It does three things that you typically want from a heading:
 1. It communicates with the top-level layout ([`ProseLayout`](/docs/prose/components/layout), to be specific) to add itself to a table of contents.
 2. It renders its text inside an `a`, so that the entire heading becomes a clickable link.
 3. It renders a copy-to-clipboard button so the end user can easily copy the link directly to that heading.

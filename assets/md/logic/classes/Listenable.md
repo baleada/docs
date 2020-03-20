@@ -252,7 +252,7 @@ The default value for the `listen` method's `target` option depends on your `eve
 ### How to listen for custom gestures
 :::
 
-`Listenable` allows you to listen for custom gestures defined by Baleada Logic's `Recognizeable` class. For full information on how to use the `Recognizeable` class, [visit the `Recognizeable` docs](/docs/logic/classes/Recognizeable), but keep reading here to learn the overall workflow.
+`Listenable` allows you to listen for custom gestures defined by Baleada Logic's `Recognizeable` class. For full information on how to use the `Recognizeable` class, [visit the `Recognizeable` docs](/docs/logic/classes/Recognizeable) (especially the [section on constructor options](//docs/logic/classes/Recognizeable#recognizeable-constructor-options) and the [section on accessing state and methods]([section on constructor options](//docs/logic/classes/Recognizeable#access-state-and-methods))), but keep reading here to learn the overall workflow.
 
 To get started, construct a new instance of `Listenable`, using `'recognizeable'` as the `eventType`, and passing the `Recognizeable` options object to the `recognizeable` option:
 
