@@ -40,7 +40,7 @@ Or, if you're using [Baleada Composition](/docs/compositon):
 
 :::
 ```js
-const instance = useNavigateable(array[, options])
+const reactiveInstance = useNavigateable(array[, options])
 ```
 :::
 

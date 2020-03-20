@@ -2,7 +2,7 @@
   <nav class="docs-nav">
     <section
       v-for="(directory, index) in directories"
-      :key="directory.name"
+      :key="index"
     >
       <component :is="`h${directory.level + 1}`">{{ directory.name.toUpperCase() }}</component>
       <transition

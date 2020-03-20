@@ -53,7 +53,7 @@ Or, if you're using [Baleada Composition](/docs/compositon):
 
 :::
 ```js
-const instance = useAnimateable(keyframes[, options])
+const reactiveInstance = useAnimateable(keyframes[, options])
 ```
 :::
 

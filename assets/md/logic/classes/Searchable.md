@@ -42,7 +42,7 @@ Or, if you're using [Baleada Composition](/docs/compositon):
 
 :::
 ```js
-const instance = useSearchable(candidates[, options])
+const reactiveInstance = useSearchable(candidates[, options])
 ```
 :::
 
@@ -66,11 +66,42 @@ The constructed `Searchable` instance is an Object, and state and methods can be
 | --- | --- | --- | --- | --- |
 | `candidates` | Getter/Setter | See return value | N/A | <p>A shallow copy (Array) of the `candidates` array passed to the constructor.</p><p>If you assign a value directly to `candidates`, a setter will pass the new value to `setCandidates`.</p> |
 | `status` | Getter | See return value | N/A | The status (String) of the `Searchable` instance. `status` is `ready` after the instance is constructed, and changes to `searched` after the `candidates` are searched for the first time. |
-| `results` | Getter | See return value | N/A | <p>The place where search results (Array) are stored.</p><p>Immediately after the `Searchable` instance is constructed, `results` is simply an empty array (`[]`).</p> |
+| `results` | Getter | See return value | N/A | <p>The place where search results (Array) are stored.</p><p>Immediately after the `Searchable` instance is constructed, `results` is simply an empty array (`[]`).</p><p>See the [How `results` are formatted](#how-results-are-formatted) section for more guidance.</p> |
 | `trie` | Getter | See return value | N/A | The searchable trie (Object) created by the `Searcher` class (Array) |
-| `setCandidates(newCandidates)` | Function |  | The new `candidates` (Array) | The `Searchable` instance |
-| `search(query, options)` | Function |  | <p>A search query (String) and search options (Object).</p><p>To learn more about what search options are available, [visit the docs for the `Searcher` class' `search` method](https://github.com/EthanRutherford/fast-fuzzy#options).</p> | The `Searchable` instance |
+| `setCandidates(newCandidates)` | Function | Sets the `candidates` and updates `trie`. | The new `candidates` (Array) | The `Searchable` instance |
+| `search(query, options)` | Function | Searches the `candidates` to find matches and fuzzy matches for your query. | <p>A search query (String) and search options (Object).</p><p>To learn more about what search options are available, [visit the docs for the `Searcher` class' `search` method](https://github.com/EthanRutherford/fast-fuzzy#options).</p> | The `Searchable` instance |
 :::
+
+
+:::
+### How `results` are formatted
+:::
+
+The `results` returned from the `search` method are stored in an array of objects. Here's an example pulled from the `fast-fuzzy` docs to show you what those objects look like:
+
+:::
+```js
+[
+  {
+    item: 'abc',
+    original: 'abc',
+    key: 'abc',
+    score: 1,
+    match: { index: 0, length: 3 },
+  },
+  { 
+    item: 'bcd',
+    original: 'bcd',
+    key: 'bcd',
+    score: 0.6666666666666667,
+    match: { index: 0, length: 2 },
+  }
+  ...
+]
+```
+:::
+
+
 
 
 :::

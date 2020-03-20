@@ -47,7 +47,7 @@ Or, if you're using [Baleada Composition](/docs/compositon):
 
 :::
 ```js
-const instance = useRecognizeable(sequence[, options])
+const reactiveInstance = useRecognizeable(sequence[, options])
 ```
 :::
 
@@ -102,7 +102,7 @@ The constructed `Recognizeable` instance is an Object, and state and methods can
 | Property | Type | Description | Parameters | Return value |
 | --- | --- | --- | --- | --- |
 | `sequence` | Getter/Setter | See return value | N/A | <p>A shallow copy (Array) of the `sequence` array passed to the constructor.</p><p>If you assign a value directly to `sequence`, a setter will pass the new value to `setSequence`.</p> |
-| `status` | Getter | See return value | N/A | Indicates the current status (String) of the `Recognizeable` instance. See the [How methods affect status, and vice-versa](#how-methods-affect-status-and-vice-versa) section for more information. |
+| `status` | Getter | See return value | N/A | Indicates the current status (String) of the `Recognizeable` instance. See the [How methods affect status](#how-methods-affect-status) section for more information. |
 | `metadata` | Getter | See return value | N/A | <p>An object where you can access any metadata stored by the event handler functions passed to the `handlers` option.</p><p>Data gets added to the `metadata` object when event handlers call the `setMetadata`, `pushMetadata`, or `insertMetadata` functions in the [Handler API](#how-to-format-handlers).</p> |
 | `setSequence(sequence)` | Function | Sets the `sequence` | The new sequence | The `Recognizeable` instance |
 | `recognize(event)` | Function |  | A DOM event | The `Recognizeable` instance |
@@ -111,7 +111,7 @@ The constructed `Recognizeable` instance is an Object, and state and methods can
 
 
 :::
-### How methods affect status, and vice-versa
+### How methods affect status
 :::
 
 Each `Recognizeable` instance maintains a `status` property that allows it to take appropriate action after after your `handlers` process a new event received by the `recognize` method.

@@ -54,7 +54,7 @@ Or, if you're using [Baleada Composition](/docs/compositon):
 
 :::
 ```js
-const instance = useDelayable(callback[, options])
+const reactiveInstance = useDelayable(callback[, options])
 ```
 :::
 

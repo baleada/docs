@@ -53,7 +53,7 @@ Or, if you're using [Baleada Composition](/docs/compositon):
 
 :::
 ```js
-const instance = useListenable(eventType[, options])
+const reactiveInstance = useListenable(eventType[, options])
 ```
 :::
 
