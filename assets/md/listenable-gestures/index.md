@@ -9,53 +9,6 @@ Baleada Listenable Gestures is a collection of functions that can help you recog
 
 More specifically, each function in the Baleada Listenable Gestures collection returns an object that you can pass to the `handlers` option of Baleada Logic's [`Recognizeable` class](/docs/logic/classes/Recognizeable), or more commonly, to the `recognizeable.handlers` option of the [`Listenable` class](/docs/logic/classes/listenable).
 
-:::
-## Workflow
-:::
-
-The best way to get a sense of the Baleada Listenable Gestures workflow is to see it in action:
-
-:::
-```js
-// The intention is that you'll be using Listenable to listen for custom gestures
-import { useListenable } from '@baleada/composition' 
-
-// Import one of the gestures from Baleada Listenable Gestures
-import { swipe } from '@baleada/listenable-gestures'
-
-// Set up your Listenable instance
-const reactiveListenableInstance = useListenable(
-  'recognizeable',
-  { // Your options object for the Listenable constructor will have a `recognizeable` property 
-    recognizeable: {
-      handlers: swipe() // Call the Baleada Listenable Gestures function to generate the event handlers
-    }
-  }
-)
-```
-:::
-
-
-
-- Pick a gesture from the Baleada Listenable Gestures collection that you want to recognize.
-- Import the corresponding function into your site or app.
-- Set up an instance of the `Listenable` class. In the 
-
-<!-- Baleada Listenable Gestures is a collection of [factory functions](https://www.youtube.com/watch?v=ImwrezYhw4w) that return "gesture recognizers".
-
-These recognizers are simply JavaScript objects with properties that handle DOM events and recognize whether or not the events form a [gesture](/docs/gesture#what-is-a-gesture).
-
-Under the hood, each function in Baleada Listenable Gestures is composed using [Baleada Gesture](/docs/gesture)'s `gesture` function and can
-Each Baleada Listenable Gestures are designed to be passed to Baleada Logic's [`Listenable`](/docs/logic/classes/Listenable) class.
-
-:::
-## A note, before you dive in
-:::
-
-Baleada Listenable Gestures was designed and written during the development of the [`Listenable`](/docs/logic/classes/listenable) class in Baleada Logic
-
-
-
 
 :::
 ## Installation
@@ -69,90 +22,107 @@ npm i @baleada/listenable-gestures
 
 
 :::
-## Usage
+## Workflow
 :::
 
-To get started, you'll import one of the Baleada Listenable Gestures from the entry file:
+The best way to get a sense of the Baleada Listenable Gestures workflow is to see some code examples.
 
-:::
-```js
-import { swipe } from '@baleada/listenable-gestures'
-```
-:::
-
-The asset you import is actually not the gesture recognizer iteself, but is actually an object that you should pass directly to the `gesture` option of the `Listenable` constructor:
+First, import one of the gestures from Baleada Listenable Gestures:
 
 :::
 ```js
 import { swipe } from '@baleada/listenable-gestures'
-import { Listenable } from '@baleada/logic'
-
-const instance = new Listenable ('swipe', { gesture: swipe })
-
-Object.keys(swipe) // -> ['factory', 'events', 'recognized']
 ```
 :::
 
-If there's ever a scenario where you want to import one of the factory functions directly, you can access them as named exports from the `factories.js` file at the root of `@baleada/listenable-gestures`:
+The gestures are designed to work seamlessly with the `Listenable` class from Baleada Logic. 
+
+In the example below, an instance of the `Listenable` class is  constructed using the `useListenable` composition function from [Baleada Composition](/docs/composition).
+
+Note that the `options` object for the `Listenable` constructor should have a `recognizeable` property, whose value is an object with a `handlers` key. Call your Baleada Listenable Gestures function, passing the result to that key.
 
 :::
 ```js
-import { swipe } from '@baleada/listenable-gestures/factories'
+import { swipe } from '@baleada/listenable-gestures'
+
+const instance = useListenable(
+  'recognizeable', // The Listenable event type will be 'recognizeable'
+  {
+    // Options object has a `recognizeable` property 
+    recognizeable: { 
+      // Pass the function's result to options.recognizeable.handlers
+      handlers: swipe()
+    }
+  }
+)
 ```
 :::
 
-Each factory function accepts one optional parameter: an object whose key/value pairs customize the behavior of the recognizer that the function returns.
+When you call the instance's `listen` method, `Listenable` will set up all the appropriate event listeners and will execute your callback when the gesture is recognized.
+
+As explained in the [How to listen for gestures](/docs/logic/classes/listenable#how-to-listen-for-gestures) section of the `Listenable` docs, your callback's first parameter is an object with an `event` property and a `recognizeable` property.
+
+All of the Baleada Listenable Gestures functions store their metadata in `recognizeable.metadata`:
 
 :::
 ```js
-import { taps } from '@baleada/listenable-gestures/factories'
+instance.listen(({ event, recognizeable }) => {
+  console.log(recognizeable.status) // 'recognized'
 
-const recognizer = taps({ minTaps: 2 }) // Recognizes a double tap
-```
-:::
-
-When you're using `Listenable`, pass your options object to the `gesture` property of the `listen` method's second argument.
-
-:::
-```js
-import { taps as gesture } from '@baleada/listenable-gestures'
-import { Listenable } from '@baleada/logic'
-
-const taps = new Listenable ('taps', { gesture })
-
-taps.listen(myListener, {
-  gesture: { minTaps: 2 },
+  // Log the swipe direction:
+  console.log(recognizeable.metadata.direction.fromStart)
 })
 ```
-::: -->
+:::
 
-<!-- A good way to increase code clarity is to name the `Listenable` instance after the event type you're listening for. If you want to do that, simply use your import statement to change the name of the import.
-
-This example changes `swipe` to `gesture` and uses destructuring to pass it to the `Listenable` constructor:
+Calling `Listenable`'s stop method will remove _all_ active event listeners for the gesture.
 
 :::
 ```js
-import { swipe as gesture } from '@baleada/listenable-gestures'
-import { Listenable } from '@baleada/logic'
-
-const swipe = new Listenable ('swipe', { gesture })
-
-// Your other code will be more explicit:
-swipe.listen(...)
+instance.stop() // Easy!
 ```
-::: -->
+:::
 
 
+:::
+## Available gestures
+:::
+
+Baleada Listenable Gestures currently has functions available for the following gestures:
+
+- [`clicks`](/docs/listenable-gestures/functions/clicks) (i.e. double-clicks, triple-clicks, etc.)
+- [`drag`](/docs/listenable-gestures/functions/drag)
+- [`dragdrop`](/docs/listenable-gestures/functions/dragdrop)
+- [`pan`](/docs/listenable-gestures/functions/pan)
+- [`swipe`](/docs/listenable-gestures/functions/swipe)
+- [`taps`](/docs/listenable-gestures/functions/taps) (including double-taps, triple-taps, etc.)
+
+And these gestures are on the to-do list:
+- `pinch`
+- `press`
+- `rotate`
 
 
-
-
-<!-- :::
+:::
 ## Language, compilation, browser support, and dependencies
 :::
 
-Baleada Listenable Gestures are written in modern JavaScript and compiled by [Babel](https://babeljs.io) to work in browsers that are used by more than 0.5% of global web visitors AND have had official support or updates in the past 24 months.
+The functions in Baleada Listenable Gestures are written in modern JavaScript, and the package has no dependencies ([Baleada Logic](/docs/logic) is a peer dependency).
 
-To allow for [tree-shaking](https://webpack.js.org/guides/tree-shaking/), Baleada Listenable Gesture's compiled code has no side effects and uses [`import`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/import) and [`export`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/export) instead of [`require()`](https://nodejs.org/api/modules.html#modules_require_id) and [`module.exports`](https://nodejs.org/api/modules.html#modules_module_exports).
+Functions are compiled by [Babel](https://babeljs.io) to work in browsers that are used by more than 0.5% of global web visitors AND have had official support or updates in the past 24 months.
 
-Baleada Listenable Gesture's only dependency is Baleada Gesture. -->
+To allow for [tree-shaking](https://webpack.js.org/guides/tree-shaking/), Baleada Logic's compiled code has no side effects and uses [`import`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/import) and [`export`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/export) instead of [`require()`](https://nodejs.org/api/modules.html#modules_require_id) and [`module.exports`](https://nodejs.org/api/modules.html#modules_module_exports).
+
+
+:::
+## Semantic versioning conventions
+:::
+
+The following things will trigger a new major release of Baleada Listenable Gestures:
+- Any changes to the existing options accepted by any of the Baleada Listenable Gestures functons
+- Any changes to the existing metadata stored by the functions
+
+The following things will trigger a new minor release:
+- Tha addition of functions for new gestures
+- Added options for the functions
+- Additional metadata stored by the functions
