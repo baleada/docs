@@ -130,6 +130,28 @@
     ]
   },
   {
+    "level": 2,
+    "name": "functions",
+    "pages": [
+      {
+        "title": "drag",
+        "href": "/docs/listenable-gestures/functions/drag"
+      },
+      {
+        "title": "dragdrop",
+        "href": "/docs/listenable-gestures/functions/dragdrop"
+      },
+      {
+        "title": "pan",
+        "href": "/docs/listenable-gestures/functions/pan"
+      },
+      {
+        "title": "swipe",
+        "href": "/docs/listenable-gestures/functions/swipe"
+      }
+    ]
+  },
+  {
     "level": 1,
     "name": "logic",
     "pages": [

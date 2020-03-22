@@ -1,11 +1,45 @@
 ---
 title: What is Baleada Listenable Gestures?
-tags: UI logic
+tags: UI logic, Vue, React, Svelte
 publish: true
 order: 0
 ---
 
-[WIP]
+Baleada Listenable Gestures is a collection of functions that can help you recognize gestures.
+
+More specifically, each function in the Baleada Listenable Gestures collection returns an object that you can pass to the `handlers` option of Baleada Logic's [`Recognizeable` class](/docs/logic/classes/Recognizeable), or more commonly, to the `recognizeable.handlers` option of the [`Listenable` class](/docs/logic/classes/listenable).
+
+:::
+## Workflow
+:::
+
+The best way to get a sense of the Baleada Listenable Gestures workflow is to see it in action:
+
+:::
+```js
+// The intention is that you'll be using Listenable to listen for custom gestures
+import { useListenable } from '@baleada/composition' 
+
+// Import one of the gestures from Baleada Listenable Gestures
+import { swipe } from '@baleada/listenable-gestures'
+
+// Set up your Listenable instance
+const reactiveListenableInstance = useListenable(
+  'recognizeable',
+  { // Your options object for the Listenable constructor will have a `recognizeable` property 
+    recognizeable: {
+      handlers: swipe() // Call the Baleada Listenable Gestures function to generate the event handlers
+    }
+  }
+)
+```
+:::
+
+
+
+- Pick a gesture from the Baleada Listenable Gestures collection that you want to recognize.
+- Import the corresponding function into your site or app.
+- Set up an instance of the `Listenable` class. In the 
 
 <!-- Baleada Listenable Gestures is a collection of [factory functions](https://www.youtube.com/watch?v=ImwrezYhw4w) that return "gesture recognizers".
 

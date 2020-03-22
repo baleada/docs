@@ -1,6 +1,6 @@
 ---
 title: Listenable
-tags: UI logic
+tags: UI logic, Vue, React, Svelte
 publish: true
 order: 0
 ---
@@ -176,7 +176,7 @@ The table below has a full breakdown of what the `listen` method passes to your 
 | `idle` | One argument: an [IdleDeadline](https://developer.mozilla.org/en-US/docs/Web/API/IdleDeadline) object |
 | `visibilitychange` | One argument: an [Event](https://developer.mozilla.org/en-US/docs/Web/API/Event) object |
 | Key combos and click combos | One argument: an [Event](https://developer.mozilla.org/en-US/docs/Web/API/Event) object |
-| `recognizeable` | <p>One argument: an object with three properties:</p><ul><li>`event`: An [Event](https://developer.mozilla.org/en-US/docs/Web/API/Event) object for the latest event in the event sequence you are recognizing</li><li>`recognizeable`: The `Listenable` instance's `recognizeable` instance (which you can also access via your `Listenable` instance's `recognizeable` property)</li><li>`api`: An object whose properties give you access to useful functions.</li></ul><p>See the [How to listen for custom gestures](#how-to-listen-for-custom-gestures) section for more guidance on the `recognizeableListenerApi`.</p> |
+| `recognizeable` | <p>One argument: an object with two properties: `event` and `recognizeable`.</p><p>See the [How to listen for custom gestures](#how-to-listen-for-custom-gestures) section for more information about this object.</p> |
 
 :::
 
@@ -252,7 +252,7 @@ The default value for the `listen` method's `target` option depends on your `eve
 ### How to listen for custom gestures
 :::
 
-`Listenable` allows you to listen for custom gestures defined by Baleada Logic's `Recognizeable` class. For full information on how to use the `Recognizeable` class, [visit the `Recognizeable` docs](/docs/logic/classes/Recognizeable) (especially the [section on constructor options](//docs/logic/classes/Recognizeable#recognizeable-constructor-options) and the [section on accessing state and methods]([section on constructor options](//docs/logic/classes/Recognizeable#access-state-and-methods))), but keep reading here to learn the overall workflow.
+`Listenable` allows you to listen for custom gestures defined by Baleada Logic's `Recognizeable` class. For full information on how to use the `Recognizeable` class, [visit the `Recognizeable` docs](/docs/logic/classes/Recognizeable) (especially the [section on constructor options](/docs/logic/classes/Recognizeable#recognizeable-constructor-options) and the [section on accessing state and methods](/docs/logic/classes/Recognizeable#access-state-and-methods)), but keep reading here to learn the overall workflow.
 
 To get started, construct a new instance of `Listenable`, using `'recognizeable'` as the `eventType`, and passing the `Recognizeable` options object to the `recognizeable` option:
 
@@ -312,21 +312,15 @@ When you call the `listen` method, passing your `callback` function, `Listenable
 
 As events occur, `Listenable` will pass them through to your `Recognizeable` instance's `recognize` method, which in turn will pass the events to your event handlers.
 
-When your `Recognizeable` instance recognizes a gesture, Listenable will execute your callback. Your callback will receive an object with three properties:
+When your `Recognizeable` instance recognizes a gesture, Listenable will execute your callback. Your callback will receive an object with the following properties:
 
 ::: ariaLabel=""
 | Property | Type | Description |
 | --- | --- | --- |
 | `event` | Event | An [Event](https://developer.mozilla.org/en-US/docs/Web/API/Event) object for the latest event in the event sequence you are recognizing |
 | `recognizeable` | Object | The `Listenable` instance's `recognizeable` instance (which you can also access via your `Listenable` instance's `recognizeable` property) |
-| `api` | Object | An object whose properties give you access to useful functions. Currently, it only contains one function—see the table below for a full breakdown. |
 :::
 
-::: ariaLabel="recognizeableListenerApi properties" classes="wide-1 wide-3 wide-4 wide-5"
-| Property | Type | Description | Parameters | Return value |
-| --- | --- | --- | --- | --- |
-| `toDirection(angle, unit)` | Function | Converts an angle in degrees or radians to a simple direction (String) | <p>Two parameters, in the following order:</p><ol><li>An angle in degrees or radians</li><li>A string, either `'degrees'` or `'radians'`, indicating the angle's unit. Defaults to `'degrees'`.</li></ol> | <p>One of the following camelCased directions (String):</p><ul><li>`'up'`</li><li>`'upRight'`</li><li>`'right'`</li><li>`'downRight'`</li><li>`'down'`</li><li>`'downLeft'`</li><li>`'left'`</li><li>`'upLeft'`</li></ul> |
-:::
 
 <!-- TODO: swipe right example -->
 

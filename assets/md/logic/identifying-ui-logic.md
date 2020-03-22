@@ -1,6 +1,6 @@
 ---
 title: Identifying UI logic
-tags: UI logic
+tags: UI logic, Vue, React, Svelte
 publish: true
 order: 1
 ---
