@@ -134,6 +134,10 @@
     "name": "functions",
     "pages": [
       {
+        "title": "clicks",
+        "href": "/docs/listenable-gestures/functions/clicks"
+      },
+      {
         "title": "drag",
         "href": "/docs/listenable-gestures/functions/drag"
       },
@@ -148,6 +152,10 @@
       {
         "title": "swipe",
         "href": "/docs/listenable-gestures/functions/swipe"
+      },
+      {
+        "title": "taps",
+        "href": "/docs/listenable-gestures/functions/taps"
       }
     ]
   },
