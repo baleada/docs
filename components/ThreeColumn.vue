@@ -64,7 +64,7 @@
         aria-label="Close menu"
         @click="openArticle"
       >
-        <EvaClose :class="'icon'"/>
+        <HeroiconsX :class="'icon'"/>
       </button>
 
       <!-- TODO: use toggle component -->
@@ -79,7 +79,7 @@
             aria-label="Disable dark theme"
             @click="() => disableDarkTheme()"
           >
-            <EvaSun :class="'icon h-5 w-5 transition'"/>
+            <HeroiconsSun :class="'icon h-5 w-5 transition'"/>
           </button>
           <div
             @click="() => toggleDarkTheme()"
@@ -109,7 +109,7 @@
             aria-label="Enable dark theme"
             @click="() => enableDarkTheme()"
           >
-            <EvaMoon :class="'icon h-5 w-5 transition'"/>
+            <HeroiconsMoon :class="'icon h-5 w-5 transition'"/>
           </button>
         </div>
 
@@ -129,7 +129,7 @@
             aria-label="Disable minimalist theme"
             @click="() => disableMinimalistTheme()"
           >
-            <EvaLayout :class="'icon transition h-5 w-5'" />
+            <HeroiconsTemplate :class="'icon transition h-5 w-5'" />
           </button>
           <div
             @click="() => toggleMinimalistTheme()"
@@ -218,7 +218,7 @@
           ]"
           @click="openNav"
         >
-          <EvaMenu :class="'icon'" />
+          <HeroiconsMenu :class="'icon'" />
         </button>
 
         <!-- <DocsSearch class="ml-2 lg:ml-0 w-full max-w-6" /> -->
@@ -232,7 +232,7 @@
           ]"
           @click="openTableOfContents"
         >
-          <EvaList :class="'icon'" />
+          <HeroiconsMenuAlt1 :class="'icon'" />
         </button>
       </header>
 
@@ -262,7 +262,7 @@
           aria-label="close-menu"
           @click="openArticle"
         >
-          <EvaClose :class="'icon'"/>
+          <HeroiconsX :class="'icon'"/>
         </button>
         <!-- <DocsAd class="mt-auto"/> -->
         <DocsTableOfContents
@@ -278,9 +278,9 @@
 import { ref, onMounted, inject } from '@vue/composition-api'
 
 import { swipe } from '@baleada/listenable-gestures'
-import { useListenable } from '@baleada/composition/vue'
-import { useSymbol } from '@baleada/prose/vue'
-import { EvaMenu, EvaClose, EvaList, EvaSun, EvaMoon, EvaLayout, EvaSquare } from '@baleada/icons/vue'
+import { useListenable } from '@baleada/composition-vue'
+import { useSymbol } from '@baleada/prose-vue'
+import { HeroiconsMenu, HeroiconsX, HeroiconsMenuAlt1, HeroiconsSun, HeroiconsMoon, HeroiconsTemplate, EvaSquare } from '@baleada/icons-vue'
 
 import DocsNav from '~/components/DocsNav'
 import DocsSearch from '~/components/DocsSearch'
@@ -289,12 +289,12 @@ import DocsTableOfContents from '~/components/DocsTableOfContents'
 export default {
   name: 'ThreeColumn',
   components: {
-    EvaMenu,
-    EvaClose,
-    EvaList,
-    EvaSun,
-    EvaMoon,
-    EvaLayout,
+    HeroiconsMenu,
+    HeroiconsX,
+    HeroiconsMenuAlt1,
+    HeroiconsSun,
+    HeroiconsMoon,
+    HeroiconsTemplate,
     EvaSquare,
     DocsNav,
     // DocsSearch,

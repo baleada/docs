@@ -27,9 +27,9 @@
 <script>
 import { ref } from '@vue/composition-api'
 
-import { useAnimateable, useNavigateable } from '@baleada/composition/vue'
+import { useAnimateable, useNavigateable } from '@baleada/composition-vue'
 
-import { EvaBook, SimpleGitLab } from '@baleada/icons/vue'
+import { EvaBook, SimpleGitLab } from '@baleada/icons-vue'
 
 export default {
   layout: 'landing',

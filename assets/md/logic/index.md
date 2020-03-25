@@ -42,20 +42,15 @@ npm i @baleada/logic
 ## Import a class or factory
 :::
 
-All classes are named exports in Baleada Logic's entry file, so you can import one like so:
-
+All classes and factories are named exports in Baleada Logic's entry file, so you can import them like so:
 
 :::
 ```js
+// Import a class
 import { Delayable } from '@baleada/logic'
-```
-:::
 
-Factories are named exports in a `factories.js` file at the root of Baleada Logic, so you can import one like so:
-
-:::
-```js
-import { markupable } from '@baleada/logic/factories'
+// Import a factory
+import { markupable } from '@baleada/logic'
 ```
 :::
 
@@ -73,7 +68,7 @@ All available classes and factories are listed in this site's navigation under *
 
 Classes and factories are written in modern JavaScript, and almost all of them have no dependencies of their own. They are compiled by [Babel](https://babeljs.io) to work in browsers that are used by more than 0.5% of global web visitors AND have had official support or updates in the past 24 months.
 
-To allow for [tree-shaking](https://webpack.js.org/guides/tree-shaking/), Baleada Logic's compiled code has no side effects and uses [`import`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/import) and [`export`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/export) instead of [`require()`](https://nodejs.org/api/modules.html#modules_require_id) and [`module.exports`](https://nodejs.org/api/modules.html#modules_module_exports).
+To allow for [tree-shaking](https://webpack.js.org/guides/tree-shaking/), Baleada Logic has no side effects and is bundled by [Rollup](https://rollupjs.org/), outputting [ES modules](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Modules).
 
 Dependencies, when they exist, were chosen with the following desirable characteristics in mind (in no particular order):
 - Framework agnostic

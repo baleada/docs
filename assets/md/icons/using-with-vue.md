@@ -4,22 +4,44 @@ tags: Components, Vue
 publish: true
 ---
 
+
 :::
-## Import a component (allows for tree-shaking)
+## Install
 :::
 
-All `@baleada/icons` Vue components are [functional components](https://vuejs.org/v2/guide/render-function.html#Functional-Components). They can be imported from `@baleada/icons/vue` for local or global registration.
+:::
+```bash
+npm i @baleada/icons-vue
+```
+:::
+
+
+:::
+## Import a component
+:::
+
+All Baleada Icons Vue components are [functional components](https://vuejs.org/v2/guide/render-function.html#Functional-Components). They can be imported from `@baleada/icons-vue` for local or global registration.
 
 :::
 ```js
-import { EvaGlobe2 } from '@baleada/icons/vue'
+import { HeroiconsEmojiHappy } from '@baleada/icons-vue'
 
 export default {
   components: {
-    EvaGlobe2,
+    HeroiconsEmojiHappy,
   },
   ...
 }
+```
+:::
+
+If you prefer, you can also import icons from their specific icon set:
+
+:::
+```js
+import { EvaGlobe2 } from '@baleada/icons-vue/eva-icons'
+import { SimpleGeocaching } from '@baleada/icons-vue/simple-icons'
+import { HeroiconsEmojiHappy } from '@baleada/icons-vue/heroicons'
 ```
 :::
 
@@ -36,7 +58,7 @@ All components will render an SVG of their icon. The SVG has 4 default attribute
   role="img"
   xmlns="http://www.w3.org/2000/svg"
   viewBox="0 0 24 24"
-  preserveAspectRatio="xMinYMin meet"
+  preserveAspectRatio="xMidYMid meet"
 >
   ...
 </svg>

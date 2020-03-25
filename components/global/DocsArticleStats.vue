@@ -7,7 +7,7 @@
 <script>
 import { computed, inject } from '@vue/composition-api'
 
-import { useSymbol } from '@baleada/prose/vue'
+import { useSymbol } from '@baleada/prose-vue'
 
 import metadata from '~/static/json/metadata.json'
 

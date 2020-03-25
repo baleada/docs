@@ -5,7 +5,7 @@
 </template>
 
 <script>
-import { ref, computed, provide, onMounted } from '@vue/composition-api'
+import { ref, computed, provide } from '@vue/composition-api'
 
 import useRouter from '~/assets/js/useRouter.js'
 

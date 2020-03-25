@@ -1,11 +1,11 @@
 ---
 title: Using with React
 tags: Components, React
-publish: true
+publish: false
 ---
 
 :::
-## Import a component (allows for tree-shaking)
+## Import a component
 :::
 
 React `@baleada/icons` components can be imported from `@baleada/icons/react`.

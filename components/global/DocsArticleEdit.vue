@@ -10,9 +10,9 @@
 <script>
 import { ref, computed, inject } from '@vue/composition-api'
 
-import { useSymbol } from '@baleada/prose/vue'
+import { useSymbol } from '@baleada/prose-vue'
 
-import { SimpleGitLab } from '@baleada/icons/vue'
+import { SimpleGitLab } from '@baleada/icons-vue'
 
 export default {
   components: {

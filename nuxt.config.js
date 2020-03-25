@@ -1,5 +1,5 @@
 import getTransform from '@baleada/markdown-to-prose'
-import propsInterfaces from '@baleada/prose/vue/propsInterfaces'
+import propsInterfaces from '@baleada/prose-vue/lib/propsInterfaces'
 import MarkdownItSpaLinks from '@baleada/spa-links/markdown-it'
 import refractor from 'refractor'
 import rehype from 'rehype'

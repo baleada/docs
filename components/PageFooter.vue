@@ -47,8 +47,8 @@
 </template>
 
 <script>
-import { SimpleGitLab } from '@baleada/icons/vue'
-import { SimpleTwitter } from '@baleada/icons/vue'
+import { SimpleGitLab } from '@baleada/icons-vue'
+import { SimpleTwitter } from '@baleada/icons-vue'
 
 export default {
   components: {

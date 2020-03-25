@@ -3,7 +3,7 @@
 </template>
 
 <script>
-import { EvaCheckmark } from '@baleada/icons/vue'
+import { EvaCheckmark } from '@baleada/icons-vue'
 
 export default {
   components: {
