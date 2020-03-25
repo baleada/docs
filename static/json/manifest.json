@@ -24,6 +24,10 @@
       {
         "title": "What is Baleada Composition?",
         "href": "/docs/composition"
+      },
+      {
+        "title": "Using Baleada Composition with Vue",
+        "href": "/docs/composition/using-with-vue"
       }
     ]
   },

@@ -24,21 +24,10 @@ Didn't see your favorite framework in the list? Feel free to [raise an issue](ht
 
 
 :::
-## Install
-:::
-
-:::
-```bash
-npm i @baleada/composition
-```
-:::
-
-
-:::
 ## Available composition functions
 :::
 
-`@baleada/composition` includes a composition function for each individual class in Baleada Logic.
+Baleada Composition includes a composition function for each individual class in Baleada Logic.
 
 All composition functions follow a simple naming convention: they start with `use` and end with the name of the class.
 
@@ -61,7 +50,7 @@ The functions in Baleada Composition are written in modern JavaScript. [Baleada 
 ::: ariaLabel="Peer dependencies by framework"
 | Framework | Peer dependencies |
 | --- | --- |
-| Vue | <p>['vue'](https://github.com/vuejs/vue)</p><p>[`@vue/composition-api](https://github.com/vuejs/composition-api)</p> |
+| Vue | <p>[`vue`](https://github.com/vuejs/vue)</p><p>[`@vue/composition-api`](https://github.com/vuejs/composition-api)</p> |
 | React | WIP |
 | Svelte | WIP |
 :::
