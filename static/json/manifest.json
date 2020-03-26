@@ -26,7 +26,7 @@
         "href": "/docs/composition"
       },
       {
-        "title": "Using Baleada Composition with Vue",
+        "title": "Using with Vue",
         "href": "/docs/composition/using-with-vue"
       }
     ]
@@ -200,6 +200,10 @@
       {
         "title": "Fetchable",
         "href": "/docs/logic/classes/Fetchable"
+      },
+      {
+        "title": "Fullscreenable",
+        "href": "/docs/logic/classes/Fullscreenable"
       },
       {
         "title": "Listenable",

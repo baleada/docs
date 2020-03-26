@@ -1,5 +1,5 @@
 ---
-title: Using Baleada Composition with Vue
+title: Using with Vue
 tags: Composition functions, Vue
 publish: true
 ---
@@ -110,9 +110,36 @@ export default {
 ```
 :::
 
-The last thing to be aware of is that Baleada Composition functions clean up after themselves. More specifically: every Baleada Logic class that has side effects (e.g. adding event listeners) _also_ has a `stop` method that cleans up all side effects.
+Certain state and methods on Baleada Logic classes can't be used until the DOM is available, and the Baleada Logic docs always let you know when that's the case for a given property or method.
 
-For those classes, Baleada Composition calls the `stop` method automatically on Vue's [`onBeforeUnmount` lifecycle hook](https://vue-composition-api-rfc.netlify.com/api.html#lifecycle-hooks), ensuring that all side effects are cleaned up before the component gets torn down.
+When you're using Baleada Composition with Vue, just know that you need to access those properties and call those methods from within the `onMounted` lifecycle hook:
+
+:::
+```html
+<template>...</template>
+
+<script>
+import { onMounted } from '@vue/composition-api'
+import { useListenable } from '@baleada/composition-vue'
+
+export default {
+  setup () {
+    const listenable = useListenable('cmd+shift+b')
+
+    onMounted(() => {
+      // Listenable's 'listen' method requires DOM access,
+      // so you need to call it inside onMounted.
+      listenable.value.listem(event => console.log(event))
+    })
+  }
+}
+</script>
+```
+:::
+
+And finally, the last thing to be aware of is that Baleada Composition functions always clean up after themselves.
+
+More specifically: every Baleada Logic class that has side effects (e.g. adding event listeners) _also_ has a `stop` method that cleans up all side effects. For those classes, Baleada Composition calls the `stop` method automatically on Vue's [`onBeforeUnmount` lifecycle hook](https://vue-composition-api-rfc.netlify.com/api.html#lifecycle-hooks), ensuring that all side effects are cleaned up before the component gets torn down.
 
 :::
 ```html
@@ -127,8 +154,6 @@ export default {
     const listenable = useListenable('cmd+shift+b')
 
     onMounted(() => {
-      // Listenable's 'listen' method requires DOM access,
-      // so you need to call it inside onMounted.
       listenable.value.listem(event => console.log(event))
     })
 

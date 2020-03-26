@@ -71,6 +71,8 @@ const instance = new Example(state, {
 ```
 :::
 
+Class constructors **never** access the DOM internally. This ensures that you can construct any class in a server environment, or on the client side before your JavaScript has access to the DOM.
+
 
 :::
 ### Factory functions
@@ -97,6 +99,8 @@ instance // -> { 0: "b", 1: "a", 2: "l", 3: "e", 4: "a", 5: "d", 6: "a", length:
 instance.toString() // -> 'baleada'
 ```
 :::
+
+Factory functions **never** access the DOM internally. This ensures that you can call any factory function in a server environment, or on the client side before your JavaScript has access to the DOM.
 
 
 :::
@@ -311,11 +315,9 @@ These types of classes still use that core action in their sentence template, ev
 ```
 :::
 
-
-
 This sentence template ensures that **all** classes' and factories' methods are affordances. In other words, methods tell you what you can do with a given type of state, rather than what that type of state can do to itself or other things.
 
-In the documentation for each individual library and subclass, you can find the filled-out sentence template, explaining why each class and subclass accepts its specific state type.
+In the "API design compliance" section in the documentation for each individual library and subclass, you can find the filled-out sentence template, explaining why each class and subclass accepts its specific state type.
 
 
 ::: type="info"

@@ -66,9 +66,9 @@ The constructed `Fetchable` instance is an Object, and state and methods can be 
 | `resource` | Getter/Setter | See return value | N/A | <p>The `resource` string passed to the constructor.</p><p>If you assign a value directly to `resource`, a setter will pass the new value to `setResource`.</p> |
 | `status` | Getter | See return value | N/A | <p>An object with two properties: `response` and `responseJson`.</p><p>The value of `status.response` is the status (String) of the response-fetching process, and the value of `status.responseJson` is the status (String) of the updating process for the `responseJson` property.</p><p>See the [How methods affect status](#how-methods-affect-status) section for more information.</p> |
 | `response` | Getter | See return value | N/A | An empty object `{}` before calling the `fetch` method, and a [`Response`](https://developer.mozilla.org/en-US/docs/Web/API/Response) object after calling the `fetch` method. |
-| `responseJson` | Getter | See return value | N/A | An empty object `{}` before calling the `fetch` method, and a JSON representation of the body of the `response` after calling the `fetch` method (assuming the resource was fetched successfully).  |
+| `responseJson` | Getter | See return value | N/A | An empty object `{}` before calling the `fetch` method, and a JSON representation (retrieved asynchronously) of the body of the `response` after calling the `fetch` method (assuming the resource was fetched successfully).  |
 | `setResource(newResource)` | Function | Sets the `resource` | The new `resource` (Array) | The `Fetchable` instance |
-| `fetch(options)` | Function | Fetches the resource using the [`fetch`](https://developer.mozilla.org/en-US/docs/Web/API/WindowOrWorkerGlobalScope/fetch) web API. | <p>An options object.</p><p>Valid options include anything you would pass to the [`fetch` function's `init` object](https://developer.mozilla.org/en-US/docs/Web/API/WindowOrWorkerGlobalScope/fetch), e.g. `method` and `headers`.</p> | The `Fetchable` instance |
+| `fetch(options)` | Function | Asynchronously fetches the resource using the [`fetch`](https://developer.mozilla.org/en-US/docs/Web/API/WindowOrWorkerGlobalScope/fetch) web API. Can't be called until the DOM is available. | <p>An options object.</p><p>Valid options include anything you would pass to the [`fetch` function's `init` object](https://developer.mozilla.org/en-US/docs/Web/API/WindowOrWorkerGlobalScope/fetch), e.g. `method` and `headers`.</p> | The `Fetchable` instance |
 :::
 
 
@@ -100,7 +100,8 @@ All methods always return the `Fetchable` instance (i.e. `this`), regardless of 
 | Spec | Compliance status | Notes |
 | --- | --- | --- |
 | Access functionality by constructing an instance | <ApiDesignSpecCheckmark /> |  |
-| Constructor accepts two parameters: a piece of state,and an `options` object. | <ApiDesignSpecCheckmark /> | The `options` object doesn't currently have any valid properties. But it still technically exists, so it totally counts! |
+| Constructor accepts two parameters: a piece of state,and an `options` object. | <ApiDesignSpecCheckmark /> | The `options` object doesn't currently have any valid properties. |
+| Constructor does not access the DOM | <ApiDesignSpecCheckmark /> |  |
 | Takes the form of a JavaScript Object | <ApiDesignSpecCheckmark /> |  |
 | State and methods are accessible through properties of the object | <ApiDesignSpecCheckmark /> |  |
 | Methods always return the instance | <ApiDesignSpecCheckmark /> |  |

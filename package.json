@@ -29,20 +29,20 @@
   "dependencies": {
     "@babel/plugin-proposal-class-properties": "^7.4.4",
     "@babel/plugin-proposal-private-methods": "^7.4.4",
-    "@baleada/composition-vue": "^0.5.1",
+    "@baleada/composition-vue": "^0.5.2",
     "@baleada/icons-vue": "^0.5.0",
     "@baleada/interface-vue": "^0.1.0",
     "@baleada/listenable-gestures": "^0.4.2",
-    "@baleada/logic": "^0.12.0",
+    "@baleada/logic": "^0.13.1",
     "@baleada/markdown-to-prose": "^0.4.0",
-    "@baleada/prose-container": "^0.5.3",
+    "@baleada/prose-container": "^0.5.4",
     "@baleada/prose-vue": "^0.7.2",
     "@baleada/source-transform": "^0.3.0",
     "@baleada/spa-links": "^0.3.1",
     "@nuxtjs/eslint-config": "0.0.1",
     "@nuxtjs/markdownit": "^1.2.4",
     "@nuxtjs/pwa": "^2.6.0",
-    "@vue/composition-api": "^0.3.4",
+    "@vue/composition-api": "^0.5.0",
     "autoprefixer": "^8.6.4",
     "babel-eslint": "^10.0.1",
     "cross-env": "^5.2.0",
@@ -67,6 +67,9 @@
     "toml": "^3.0.0",
     "typeface-caveat": "0.0.54",
     "typeface-fira-mono": "0.0.72",
-    "typeface-inter": "^3.10.0"
+    "typeface-inter": "^3.10.0",
+    "vue": "^2.6.11",
+    "vue-server-renderer": "^2.6.11",
+    "vue-template-compiler": "^2.6.11"
   }
 }

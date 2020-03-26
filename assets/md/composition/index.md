@@ -65,10 +65,9 @@ To allow for [tree-shaking](https://webpack.js.org/guides/tree-shaking/), Balead
 :::
 
 The following things will trigger a new major release of Baleada Composition:
-- Any changes to the existing options accepted by any of the Baleada Composition functons
-- Any changes to the existing metadata stored by the functions
+- Changes to the overall framework-specific API, import paths, or general workflow
 
 The following things will trigger a new minor release:
-- Tha addition of functions for new gestures
-- Added options for the functions
-- Additional metadata stored by the functions
+- Any changes to reactivity behavior in Baleada Composition's supported frameworks
+- Additions of new Baleada Logic classes
+- Any changes to Baleada Logic classes or factories that result in changes to the internal structure of Baleada Composition (e.g. if a Baleada Logic class changes and now creates side effects that need to be cleaned up)

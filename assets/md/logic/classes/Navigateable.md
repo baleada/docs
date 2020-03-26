@@ -165,6 +165,7 @@ instance.location // -> 0
 | --- | --- | --- |
 | Access functionality by constructing an instance | <ApiDesignSpecCheckmark /> |  |
 | Constructor accepts two parameters: a piece of state,and an `options` object. | <ApiDesignSpecCheckmark /> |  |
+| Constructor does not access the DOM | <ApiDesignSpecCheckmark /> |  |
 | Takes the form of a JavaScript Object | <ApiDesignSpecCheckmark /> |  |
 | State and methods are accessible through properties of the object | <ApiDesignSpecCheckmark /> |  |
 | Methods always return the instance | <ApiDesignSpecCheckmark /> |  |

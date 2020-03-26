@@ -88,11 +88,11 @@ The constructed `Delayable` instance is an Object, and state and methods can be 
 | `time` | Getter | See return value | N/A | An Object with two keys: `elapsed` and `remaining`. Both keys' values are millsecond values (Number), and they indicate the time elapsed since the last execution of the `callback` and the time remaining until the next execution. |
 | `progress` | Getter | See return value | N/A | A number (Number) between `0` and `1` indicating the time progress toward the next execution of the `callback`. |
 | `setCallback(callback)` | Function | Sets the `callback` | A callback function, which itself can accept the `timestamp` parameter (see the [Construct a Delayable instance](#construct-a-delayable-instance) section for a refresher on that parameter). | The `Delayable` instance |
-| `delay()` | Function | <p>Delays the execution(s) of the `callback`.</p><p>If you call `delay` while the `callback` is currently being delayed, it will start over from the beginning (and reset `executions`, `time.elapsed`, and `progress` to `0`).</p> | none | The `Delayable` instance |
-| `pause()` | Function | Pauses the delay | none | The `Delayable` instance |
-| `seek(progress)` | Function | <p>Seeks to a specific time progress in the delay. If `status` is `'playing'` or `'reversing'`, the animation will continue progressing in the same direction after seeking to the time progress.</p><p>If your `callback` is supposed to execute more than one time, you can pass a time progress that is greater than `1` to seek to a specific execution. For example, to seek halfway through the third delay, you can call `seek(2.5)`. Your `callback` will instantly be executed twice, and will be halfway toward the third execution.</p> | `seek` Accepts one parameter: a time progress to seek to | The `Animateable` instance. |
-| `resume()` | Function | After pausing or seeking, resumes the delay from the current time progress. Has no effect if `status` is anything other than `'paused'` or `'sought'`. | none | The `Delayable` instance |
-| `stop()` | Function | Cancels the delay, stopping it in its tracks and cleaning up side effects. | None | The `Delayable` instance. |
+| `delay()` | Function | <p>Delays the execution(s) of the `callback`.</p><p>If you call `delay` while the `callback` is currently being delayed, it will start over from the beginning (and reset `executions`, `time.elapsed`, and `progress` to `0`).</p><p>Can't be called until the DOM is available.</p> | none | The `Delayable` instance |
+| `pause()` | Function | Pauses the delay Can't be called until the DOM is available. | none | The `Delayable` instance |
+| `seek(progress)` | Function | <p>Seeks to a specific time progress in the delay. If `status` is `'playing'` or `'reversing'`, the animation will continue progressing in the same direction after seeking to the time progress.</p><p>If your `callback` is supposed to execute more than one time, you can pass a time progress that is greater than `1` to seek to a specific execution. For example, to seek halfway through the third delay, you can call `seek(2.5)`. Your `callback` will instantly be executed twice, and will be halfway toward the third execution.</p><p>Can't be called until the DOM is available.</p> | `seek` Accepts one parameter: a time progress to seek to | The `Animateable` instance. |
+| `resume()` | Function | After pausing or seeking, resumes the delay from the current time progress. Has no effect if `status` is anything other than `'paused'` or `'sought'`. Can't be called until the DOM is available. | none | The `Delayable` instance |
+| `stop()` | Function | Cancels the delay, stopping it in its tracks and cleaning up side effects. Can't be called until the DOM is available. | None | The `Delayable` instance. |
 :::
 
 
@@ -151,6 +151,7 @@ All methods always return the `Delayable` instance (i.e. `this`), regardless of 
 | --- | --- | --- |
 | Access functionality by constructing an instance | <ApiDesignSpecCheckmark /> |  |
 | Constructor accepts two parameters: a piece of state,and an `options` object. | <ApiDesignSpecCheckmark /> |  |
+| Constructor does not access the DOM | <ApiDesignSpecCheckmark /> |  |
 | Takes the form of a JavaScript Object | <ApiDesignSpecCheckmark /> |  |
 | State and methods are accessible through properties of the object | <ApiDesignSpecCheckmark /> |  |
 | Methods always return the instance | <ApiDesignSpecCheckmark /> |  |

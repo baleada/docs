@@ -151,8 +151,8 @@ The constructed `Listenable` instance is an Object, and state and methods can be
 | `activeListeners` | Getter | See return value | N/A | An array (Array) of objects that describe all the currently active listeners, observers, etc. |
 | `recognizeable` | Getter | See return value | N/A | <p>The `Recognizeable` instance constructed using the object you passed to `options.recognizeable`.</p><p>If you didn't pass that option, the `recognizeable` property will be `undefined`.</p><p>See the [How to listen for custom gestures](#how-to-listen-for-custom-gestures) section for more guidance.</p> |
 | `setEventType(eventType)` | Function | Sets a new `eventType`, after stopping and cleaning up all existing web API activity. | The new eventType (String). | The `Listenable` instance |
-| `listen(callback, options)` | Function | Listens for the events specified by your `eventType`, and executes a callback function when the events happen. | <p>A callback (Function, required) that will be executed when the events are detected, and an optional `options` object.</p><p>To learn more about handling events with your callback, see the </p> | The `Listenable` instance |
-| `stop(target)` | Function | Stops and cleans up all web API activity. | <p>An optional target (a DOM element or `document`).</p><p>If a target is passed, only activity related to that target will be stopped, and if no target is passed, all activity is stopped.</p> | The `Listenable` instance |
+| `listen(callback, options)` | Function | Listens for the events specified by your `eventType`, and executes a callback function when the events happen. Can't be called until the DOM is available. | <p>A callback (Function, required) that will be executed when the events are detected, and an optional `options` object.</p><p>To learn more about handling events with your callback, see the </p> | The `Listenable` instance |
+| `stop(target)` | Function | Stops and cleans up all web API activity. Can't be called until the DOM is available. | <p>An optional target (a DOM element or `document`).</p><p>If a target is passed, only activity related to that target will be stopped, and if no target is passed, all activity is stopped.</p> | The `Listenable` instance |
 
 :::
 
@@ -334,6 +334,7 @@ When your `Recognizeable` instance recognizes a gesture, Listenable will execute
 | --- | --- | --- |
 | Access functionality by constructing an instance | <ApiDesignSpecCheckmark /> |  |
 | Constructor accepts two parameters: a piece of state,and an `options` object. | <ApiDesignSpecCheckmark /> |  |
+| Constructor does not access the DOM | <ApiDesignSpecCheckmark /> |  |
 | Takes the form of a JavaScript Object | <ApiDesignSpecCheckmark /> |  |
 | State and methods are accessible through properties of the object | <ApiDesignSpecCheckmark /> |  |
 | Methods always return the instance | <ApiDesignSpecCheckmark /> |  |
