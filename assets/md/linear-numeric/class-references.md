@@ -139,6 +139,18 @@ In this article, you'll find a class reference table for each of the properties 
 
 
 :::
+## Min width
+:::
+
+::: ariaLabel="Comparison of Min width linear numeric names and original names"
+| Baleada | Tailwind |
+| --- | --- |
+| `.min-w-0` | `.min-w-0` |
+| `.min-w-full` | `.min-w-full` |
+:::
+
+
+:::
 ## Max width
 :::
 
@@ -162,6 +174,31 @@ In this article, you'll find a class reference table for each of the properties 
 
 
 :::
+## Min height
+:::
+
+::: ariaLabel="Comparison of Min height linear numeric names and original names"
+| Baleada | Tailwind |
+| --- | --- |
+| `.min-h-0` | `.min-h-0` |
+| `.min-h-full` | `.min-h-full` | 
+| `.min-h-screen` | `.min-h-screen` |
+:::
+
+
+:::
+## Max height
+:::
+
+::: ariaLabel="Comparison of Max height linear numeric names and original names"
+| Baleada | Tailwind |
+| --- | --- |
+| `.max-h-full` | `.max-h-full` | 
+| `.max-h-screen` | `.max-h-screen` |
+:::
+
+
+:::
 ## Spacing
 :::
 
@@ -172,7 +209,7 @@ The table below uses width classes as an example.
 ::: ariaLabel="Comparison of Spacing linear numeric names and original names"
 | Baleada | Tailwind |
 | --- | --- |
-| `.w-px` | `.w-px` |
+| `.w-px-1` | `.w-px-1` |
 | `.w-0` | `.w-0` |
 | `.w-100` | `.w-1` |
 | `.w-200` | `.w-2` |

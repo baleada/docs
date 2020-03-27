@@ -109,9 +109,12 @@ The `linearNumeric` returns configurations for the following properties of the `
 - `letterSpacing`
 - `lineHeight`
 - `maxWidth`
-- `colors`
+- `minWidth`
+- `maxHeight`
+- `minHeight`
 - `strokeWidth`
 - `transition`
+- `colors`
 
 The function accepts one parameter: an object with options (none of which are required). Here's a full breakdown of that object:
 
@@ -267,13 +270,14 @@ Baleada Linear Numeric follows the rules below, in their exact order, to answer 
     Then, Baleada Linear Numeric increments in both directions from the `400` class. Note that this sometimes results in certain properties (e.g. `borderWidth`) having `400` classes, but not having classes for `100`, `200`, or `300`.
 
     Tailwind's `.shadow-inner` is treated as a default negative shadow, and is assigned a key of `-400` (which produces the class `.-shadow-400`).
-1. Proportions (e.g. `full: 100%`), key words (e.g. `auto` and `outline`), and screen breakpoints (applicable for `max-width` utilities) are left unchanged.
-1. If the unit (e.g. `px`) is specified in the default Tailwind class, it's left unchanged.
+1. Proportions (e.g. `full: 100%`, `screen: 100vh`), key words (e.g. `auto` and `outline`), and screen breakpoints (applicable for `max-width` utilities) are left unchanged.
 2. If a default Tailwind property includes a secondary set of values with different units, the Baleada Linear Numeric follows all the above rules to name those secondary values' classes, and finally includes the unit (and an extra hyphen) in the middle of the class name.
 
     For example, default `lineHeight` values include both relative values (e.g. `1`, `1.25`, etc.) and fixed values using `rem` units (e.g. `1rem`, `1.25rem`, etc.). Baleada Linear Numeric follows all the above naming rules to name the relative and fixed values, then, to avoid naming collisions, adds `-rem-` to the middle of the class name for all `rem` values.
 
     This produces classes like `.leading-300` (relative line height of `1.375`) and `.leading-rem-300` (fixed line height of `0.75rem`).
+
+    Note that this also happens with `spacing` which produces classes like `w-px` using Tailwind's default config. In Baleada Linear Numeric, that class becomes `w-px-100`.
 
 Once you get used to the naming convention, you'll find that classes become very easy to guess without visiting your config file or these docs.
 
