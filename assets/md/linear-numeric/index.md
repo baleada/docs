@@ -121,7 +121,7 @@ The function accepts one parameter: an object with options (none of which are re
 ::: ariaLabel="linearNumeric options schema" classes="wide-4"
 | Property | Value's type | Default | Value description |
 | --- | --- | --- | --- |
-| `only` | Array of Strings | An array of all the properties listed above | Indicates which properties' configurations should be returned by `linearNumeric`. |
+| `only` | String, Array of Strings | An array of all the properties listed above | <p>Indicates which properties' configurations should be returned by `linearNumeric`.</p><p>When `only` is an Array, `linearNumeric` will return a config object with a key for each item in the array.</p><p>When `only` is a String, `linearNumeric` will directly return the config object for that property.</p> |
 | `increment` | Number | `100` | <p>Determines how much the class name is incremented for each step up in size.</p><p>For example, if you pass `1` as the `increment`, you'll get class names like `.text-4` and `.text-5` instead of the default `.text-400` and `.text-500`.</p> |
 :::
 
@@ -149,7 +149,7 @@ const linearNumeric = require('@baleada/linear-numeric/tailwind')
 
 module.exports = {
   theme: {
-    ...linearNumeric({ only: ['spacing'] }) // Overrides the default theme's spacing values, but you'll still get default classes (e.g. .shadow-md) for other properties
+    ...linearNumeric({ only: ['spacing', 'minHeight'] }) // Overrides the default theme's spacing and minHeight values, but you'll still get default classes (e.g. .shadow-md) for other properties
   }
 }
 ```
@@ -192,7 +192,7 @@ module.exports = {
 
 Almost all configurations returned by `linearNumeric` are plain JavaScript objects, so you can typically spread them out alongside any additional custom values you want to add.
 
-Just remember that you'll have to tack on the property name after your function call to make sure you're spreading your desired configuration object, instead of the parent object `linearNumeric` returns.
+If you're using `linearNumeric` to add new values inside of one existing property, you can pass a String to the `only` property to make sure that it directly returns the config object for that property:
 
 :::
 ```js
@@ -203,14 +203,14 @@ module.exports = {
   theme: {
     borderWidth: {
       '550': '3px',
-      ...linearNumeric({ only: ['borderWidth'] }).borderWidth, // Spreads in all the default borderWidth values
+      ...linearNumeric({ only: 'borderWidth' }), // Spreads in all the default borderWidth values
     }
   }
 }
 ```
 :::
 
-To expand on that concept: `linearNumeric` returns a full colors object for the `colors` property. If you want to access a single color, you can tack on `.colors` and the color name right after your function call:
+To expand on that concept: `linearNumeric` returns a full colors object for the `colors` property. If you want to access a single color, you can pass `'colors'` to the `only` option, and tack on the color name right after your function call:
 
 :::
 ```js
@@ -220,9 +220,9 @@ const linearNumeric = require('@baleada/linear-numeric/tailwind')
 module.exports = {
   theme: {
     colors: {
-      blue: linearNumeric({ only: ['colors'], increment: 1 }).colors.blue, // .bg-blue-1, .bg-blue-2, etc.
+      blue: linearNumeric({ only: 'colors', increment: 1 }).blue, // .bg-blue-1, .bg-blue-2, etc.
       gray: {
-        ...linearNumeric({ only: ['colors'] }).colors.gray, // .bg-gray-100, .bg-gray-200, etc.
+        ...linearNumeric({ only: 'colors' }).gray, // .bg-gray-100, .bg-gray-200, etc.
         '1000': 'hsla(217, 30%, 8%, 1.0)',
       }
     }
@@ -245,7 +245,7 @@ const linearNumeric = require('@baleada/linear-numeric/tailwind')
 module.exports = {
   theme: {
     maxWidth: (theme, configUtils) => ({
-      ...linearNumeric({ only: ['maxWidth'] }).maxWidth(theme, configUtils), // Generates and spreads in the maxWidth config object
+      ...linearNumeric({ only: 'maxWidth' })(theme, configUtils), // Generates and spreads in the maxWidth config object
       '420': '420px',
     }),
   }
