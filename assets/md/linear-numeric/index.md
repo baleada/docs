@@ -100,21 +100,24 @@ const linearNumeric = require('@baleada/linear-numeric/tailwind')
 :::
 
 The `linearNumeric` returns configurations for the following properties of the `theme` object in your config file:
+- `colors`
 - `spacing`
 - `borderRadius`
 - `borderWidth`
 - `boxShadow`
+- `flexGrow`
+- `flexShrink`
 - `fontSize`
 - `fontWeight`
 - `letterSpacing`
 - `lineHeight`
-- `maxWidth`
-- `minWidth`
 - `maxHeight`
+- `maxWidth`
 - `minHeight`
+- `minWidth`
 - `strokeWidth`
-- `transition`
-- `colors`
+- `transitionDuration`
+
 
 The function accepts one parameter: an object with options (none of which are required). Here's a full breakdown of that object:
 

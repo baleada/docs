@@ -7,6 +7,59 @@ order: 1
 
 In this article, you'll find a class reference table for each of the properties customized by Baleada Tailwind Linear, matching up their linear numeric class names with the original Tailwind names.
 
+:::
+## Colors
+:::
+
+All colors classes are unchanged by `linearNumeric`. The table below uses `purple` font color as an example:
+
+::: ariaLabel="Comparison of Colors linear numeric names and original names"
+| Baleada | Tailwind |
+| --- | --- |
+| `.text-purple-100` | `.text-purple-100` |
+| `.text-purple-200` | `.text-purple-200` |
+| `.text-purple-300` | `.text-purple-300` |
+| `.text-purple-400` | `.text-purple-400` |
+| `.text-purple-500` | `.text-purple-500` |
+| `.text-purple-600` | `.text-purple-600` |
+| `.text-purple-700` | `.text-purple-700` |
+| `.text-purple-800` | `.text-purple-800` |
+| `.text-purple-900` | `.text-purple-900` |
+:::
+
+
+:::
+## Spacing
+:::
+
+Spacing values apply to margin, padding, height, width, and grid gap classes. Also, remember that each margin class has a negative equivalent in both Tailwind and Baleada Tailwind Linear.
+
+The table below uses width classes as an example.
+
+::: ariaLabel="Comparison of Spacing linear numeric names and original names"
+| Baleada | Tailwind |
+| --- | --- |
+| `.w-px-1` | `.w-px-1` |
+| `.w-0` | `.w-0` |
+| `.w-100` | `.w-1` |
+| `.w-200` | `.w-2` |
+| `.w-300` | `.w-3` |
+| `.w-400` | `.w-4` |
+| `.w-500` | `.w-5` |
+| `.w-600` | `.w-6` |
+| `.w-700` | `.w-8` |
+| `.w-800` | `.w-10` |
+| `.w-900` | `.w-12` |
+| `.w-1000` | `.w-16` |
+| `.w-1100` | `.w-20` |
+| `.w-1200` | `.w-24` |
+| `.w-1300` | `.w-32` |
+| `.w-1400` | `.w-40` |
+| `.w-1500` | `.w-48` |
+| `.w-1600` | `.w-56` |
+| `.w-1700` | `.w-64` |
+:::
+
 
 :::
 ## Border radius
@@ -56,6 +109,30 @@ In this article, you'll find a class reference table for each of the properties 
 | `.shadow-800` | `.shadow-2xl` |
 | `.-shadow-400` | `.shadow-inner` |
 | `.shadow-outline` | `.shadow-outline` |
+:::
+
+
+:::
+## Flex grow
+:::
+
+::: ariaLabel="Comparison of Flex grow linear numeric names and original names"
+| Baleada | Tailwind |
+| --- | --- |
+| `.flex-grow-0` | `.flex-grow-0` |
+| `.flex-grow-400` | `.flex-grow` |
+:::
+
+
+:::
+## Flex shrink
+:::
+
+::: ariaLabel="Comparison of Flex grow linear numeric names and original names"
+| Baleada | Tailwind |
+| --- | --- |
+| `.flex-shrink-0` | `.flex-shrink-0` |
+| `.flex-shrink-400` | `.flex-shrink` |
 :::
 
 
@@ -149,6 +226,18 @@ In this article, you'll find a class reference table for each of the properties 
 | `.min-w-full` | `.min-w-full` |
 :::
 
+:::
+## Min height
+:::
+
+::: ariaLabel="Comparison of Min height linear numeric names and original names"
+| Baleada | Tailwind |
+| --- | --- |
+| `.min-h-0` | `.min-h-0` |
+| `.min-h-full` | `.min-h-full` | 
+| `.min-h-screen` | `.min-h-screen` |
+:::
+
 
 :::
 ## Max width
@@ -174,19 +263,6 @@ In this article, you'll find a class reference table for each of the properties 
 
 
 :::
-## Min height
-:::
-
-::: ariaLabel="Comparison of Min height linear numeric names and original names"
-| Baleada | Tailwind |
-| --- | --- |
-| `.min-h-0` | `.min-h-0` |
-| `.min-h-full` | `.min-h-full` | 
-| `.min-h-screen` | `.min-h-screen` |
-:::
-
-
-:::
 ## Max height
 :::
 
@@ -195,39 +271,6 @@ In this article, you'll find a class reference table for each of the properties 
 | --- | --- |
 | `.max-h-full` | `.max-h-full` | 
 | `.max-h-screen` | `.max-h-screen` |
-:::
-
-
-:::
-## Spacing
-:::
-
-Spacing values apply to margin, padding, height, width, and grid gap classes. Also, remember that each margin class has a negative equivalent in both Tailwind and Baleada Tailwind Linear.
-
-The table below uses width classes as an example.
-
-::: ariaLabel="Comparison of Spacing linear numeric names and original names"
-| Baleada | Tailwind |
-| --- | --- |
-| `.w-px-1` | `.w-px-1` |
-| `.w-0` | `.w-0` |
-| `.w-100` | `.w-1` |
-| `.w-200` | `.w-2` |
-| `.w-300` | `.w-3` |
-| `.w-400` | `.w-4` |
-| `.w-500` | `.w-5` |
-| `.w-600` | `.w-6` |
-| `.w-700` | `.w-8` |
-| `.w-800` | `.w-10` |
-| `.w-900` | `.w-12` |
-| `.w-1000` | `.w-16` |
-| `.w-1100` | `.w-20` |
-| `.w-1200` | `.w-24` |
-| `.w-1300` | `.w-32` |
-| `.w-1400` | `.w-40` |
-| `.w-1500` | `.w-48` |
-| `.w-1600` | `.w-56` |
-| `.w-1700` | `.w-64` |
 :::
 
 
