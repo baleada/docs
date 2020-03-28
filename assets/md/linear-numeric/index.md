@@ -8,11 +8,11 @@ order: 0
 Baleada Linear Numeric is a function that returns theme configurations from [Tailwind](https://tailwindcss.com)'s [default config file](https://github.com/tailwindcss/tailwindcss/blob/master/stubs/defaultConfig.stub.js), aliasing all class names so that they use a linear numeric naming convention.
 
 By default, it produces class names like the following:
-- `.text-400` instead of `.text-base`
-- `.font-100` instead of `.font-hairline`
-- `.mt-800`, `.mt-900`, and `.mt-1000`, instead of `.mt-10`, `.mt-12`, and `.mt-16`
+- `.text-4` instead of `.text-base`
+- `.font-1` instead of `.font-hairline`
+- `.mt-8`, `.mt-9`, and `.mt-10`, instead of `.mt-10`, `.mt-12`, and `.mt-16`
 
-It can be customized to produce classes like `.text-4` instead of `.text-400`.
+It can be customized to produce classes like `.text-40` or `.text-400` instead of `.text-4`.
 
 If you're familiar with the concept of a linear numeric naming convention in Tailwind, you can [jump to the Installation section](#installation). Otherwise, the next section has some helpful background info
 
@@ -171,7 +171,7 @@ const linearNumeric = require('@baleada/linear-numeric/tailwind')
 
 module.exports = {
   theme: {
-    ...linearNumeric({ increment: 1 }) // Produces classes like .text-4 and .text-5 instead of the default .text-400 and .text-500
+    ...linearNumeric({ increment: 10 }) // Produces classes like .text-40 and .text-50 instead of the default .text-4 and .text-5
   }
 }
 ```
@@ -186,8 +186,8 @@ const linearNumeric = require('@baleada/linear-numeric/tailwind')
 
 module.exports = {
   theme: {
-    ...linearNumeric({ only: ['fontSize'], increment: 1 }), // .text-4, .text-5, etc.
-    ...linearNumeric({ only: ['fontWeight'] }) // .font-400, .font-500, etc.
+    ...linearNumeric({ only: ['fontSize'] }), // .text-4, .text-5, etc.
+    ...linearNumeric({ only: ['fontWeight'], increment: 100 }) // .font-400, .font-500, etc.
   }
 }
 ```
@@ -205,8 +205,8 @@ const linearNumeric = require('@baleada/linear-numeric/tailwind')
 module.exports = {
   theme: {
     borderWidth: {
-      '550': '3px',
-      ...linearNumeric({ only: 'borderWidth' }), // Spreads in all the default borderWidth values
+      '55': '3px',
+      ...linearNumeric({ only: 'borderWidth', increment: '10' }), // Spreads in all the default borderWidth values
     }
   }
 }
@@ -223,10 +223,10 @@ const linearNumeric = require('@baleada/linear-numeric/tailwind')
 module.exports = {
   theme: {
     colors: {
-      blue: linearNumeric({ only: 'colors', increment: 1 }).blue, // .bg-blue-1, .bg-blue-2, etc.
+      blue: linearNumeric({ only: 'colors', increment: 100 }).blue, // .bg-blue-100, .bg-blue-200, etc.
       gray: {
-        ...linearNumeric({ only: 'colors' }).gray, // .bg-gray-100, .bg-gray-200, etc.
-        '1000': 'hsla(217, 30%, 8%, 1.0)',
+        ...linearNumeric({ only: 'colors' }).gray, // .bg-gray-1, .bg-gray-2, etc.
+        '10': 'hsla(217, 30%, 8%, 1.0)',
       }
     }
   }
@@ -248,7 +248,7 @@ const linearNumeric = require('@baleada/linear-numeric/tailwind')
 module.exports = {
   theme: {
     maxWidth: (theme, configUtils) => ({
-      ...linearNumeric({ only: 'maxWidth' })(theme, configUtils), // Generates and spreads in the maxWidth config object
+      ...linearNumeric({ only: 'maxWidth', increment: '100' })(theme, configUtils), // Generates and spreads in the maxWidth config object
       '420': '420px',
     }),
   }
@@ -267,20 +267,20 @@ Baleada Linear Numeric follows the rules below, in their exact order, to answer 
 1. Properties that already have linear numeric names (just color, at the moment) are not changed from their original naming scheme, except to support different increments using `linearNumeric`'s `increment` option.
 1. Anything with an underlying value of `0` or `none` (e.g. `.tracking-normal` and `shadow-none`) is named with the number `0`.
 
-    Then, starting at the `0` class, Baleada Linear Numeric increments in both directions, both negative and positive. Note that keys like `-100` in the config file will create classes like `.-tracking-100`.
-1. If there is no `0` value for the property, but there is a value assigned to a `default`, `normal`, or `base` key, Baleada Linear Numeric renames default/normal/base with `400`. This follows the CSS convention of using `400` for normal font weight.
+    Then, starting at the `0` class, Baleada Linear Numeric increments in both directions, both negative and positive. Note that keys like `-1` in the config file will create classes like `.-tracking-1`.
+2. If there is no `0` value for the property, but there is a value assigned to a `default`, `normal`, or `base` key, Baleada Linear Numeric renames default/normal/base with `4`. This follows the CSS convention of using `400` for normal font weight.
 
-    Then, Baleada Linear Numeric increments in both directions from the `400` class. Note that this sometimes results in certain properties (e.g. `borderWidth`) having `400` classes, but not having classes for `100`, `200`, or `300`.
+    Then, Baleada Linear Numeric increments in both directions from the `4` class. Note that this sometimes results in certain properties (e.g. `borderWidth`) having `4` classes, but not having classes for `1`, `2`, or `3`.
 
-    Tailwind's `.shadow-inner` is treated as a default negative shadow, and is assigned a key of `-400` (which produces the class `.-shadow-400`).
-1. Proportions (e.g. `full: 100%`, `screen: 100vh`), key words (e.g. `auto` and `outline`), and screen breakpoints (applicable for `max-width` utilities) are left unchanged.
-2. If a default Tailwind property includes a secondary set of values with different units, the Baleada Linear Numeric follows all the above rules to name those secondary values' classes, and finally includes the unit (and an extra hyphen) in the middle of the class name.
+    Tailwind's `.shadow-inner` is treated as a default negative shadow, and is assigned a key of `-4` (which produces the class `.-shadow-4`).
+3. Proportions (e.g. `full: 100%`, `screen: 100vh`), key words (e.g. `auto` and `outline`), and screen breakpoints (applicable for `max-width` utilities) are left unchanged.
+4. If a default Tailwind property includes a secondary set of values with different units, the Baleada Linear Numeric follows all the above rules to name those secondary values' classes, and finally includes the unit (and an extra hyphen) in the middle of the class name.
 
     For example, default `lineHeight` values include both relative values (e.g. `1`, `1.25`, etc.) and fixed values using `rem` units (e.g. `1rem`, `1.25rem`, etc.). Baleada Linear Numeric follows all the above naming rules to name the relative and fixed values, then, to avoid naming collisions, adds `-rem-` to the middle of the class name for all `rem` values.
 
-    This produces classes like `.leading-300` (relative line height of `1.375`) and `.leading-rem-300` (fixed line height of `0.75rem`).
+    This produces classes like `.leading-3` (relative line height of `1.375`) and `.leading-rem-3` (fixed line height of `0.75rem`).
 
-    Note that this also happens with `spacing` which produces classes like `w-px` using Tailwind's default config. In Baleada Linear Numeric, that class becomes `w-px-100`.
+    Note that this also happens with `spacing` which produces classes like `w-px` using Tailwind's default config. In Baleada Linear Numeric, that class becomes `w-px-1`.
 
 Once you get used to the naming convention, you'll find that classes become very easy to guess without visiting your config file or these docs.
 
@@ -306,10 +306,10 @@ In Baleada Linear Numeric, the only thing that will ever trigger a new major ver
 From time to time, Tailwind's default config file changes, usually to support new properties, and sometimes to expand the design system and add values for existing properties. When this happens, any necessary updates to Baleada Linear Numeric will be released as a new minor version, even if the linear numeric naming convention gets applied in a different way.
 
 For example, Tailwind 1.2 introduced a new value for the `borderRadius` property, between two existing values, and it also added the `transitionDuration` and `strokeWidth` properties (among others). In response, Baleada Linear Numeric was updated in the following ways:
-- Baleada Linear Numeric's `borderRadius.500` was changed to `borderRadius.600`, and the new value was inserted as `borderRadius.500`.
+- Baleada Linear Numeric's `borderRadius.5` was changed to `borderRadius.6`, and the new value was inserted as `borderRadius.5`.
 - The `transitionDuration` and `strokeWidth` properties were added to the config object returned by Baleada Linear Numeric
 - Baleada Linear Numeric released a new minor version
 
-After Tailwind 1.2 was released, anyone using the `.rounded-500` class generated by Baleada Linear Numeric would have had to change all occurrences of that class to `.rounded-600` in their code. 
+After Tailwind 1.2 was released, anyone using the `.rounded-5` class generated by Baleada Linear Numeric would have had to change all occurrences of that class to `.rounded-6` in their code. 
 
 This kind of impact is characteristic of a breaking change and a new major version. However, since it was a Tailwind design system change and not a change to the rules of the linear numeric naming convention, only a new minor version was released.
