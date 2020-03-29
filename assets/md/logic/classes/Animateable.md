@@ -45,6 +45,8 @@ To construct an `Animateable` instance (Object), use the `Animateable` construct
 
 :::
 ```js
+import { Animateable } from '@baleada/logic'
+
 const instance = new Animateable(keyframes[, options])
 ```
 :::
@@ -53,6 +55,8 @@ Or, if you're using [Baleada Composition](/docs/compositon):
 
 :::
 ```js
+import { useAnimateable } from '@baleada/composition-vue'
+
 const reactiveInstance = useAnimateable(keyframes[, options])
 ```
 :::
