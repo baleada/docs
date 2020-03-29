@@ -118,6 +118,9 @@ The `linearNumeric` returns configurations for the following properties of the `
 - `strokeWidth`
 - `transitionDuration`
 
+::: type="warning"
+`linearNumeric` only provides configurations for Tailwind's full color palettes; it doesn't configure `black`, `white`, or `transparent`.
+:::
 
 The function accepts one parameter: an object with options (none of which are required). Here's a full breakdown of that object:
 
@@ -227,7 +230,8 @@ module.exports = {
       gray: {
         ...linearNumeric({ only: 'colors' }).gray, // .bg-gray-1, .bg-gray-2, etc.
         '10': 'hsla(217, 30%, 8%, 1.0)',
-      }
+      },
+      // Also, don't forget to add black, white, and transparent, if you need them!
     }
   }
 }
