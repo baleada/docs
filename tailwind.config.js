@@ -48,5 +48,4 @@ module.exports = {
       },
     },
   },
-  variants: defaultConfig.variants
 }

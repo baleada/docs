@@ -26,11 +26,11 @@
   }
 
   .btn-raised {
-    @apply shadow-5;
+    @apply shadow-4;
   }
 
   .btn-lg {
-    @apply px-4 py-3 text-3;
+    @apply px-4 py-3 text-5;
 
     * + * {
       @apply ml-2;
@@ -38,7 +38,7 @@
   }
 
   .btn-sm {
-    @apply px-2 py-px-1 text-2;
+    @apply px-2 py-px-1 text-3;
 
     &.btn-bordered {
       @apply border-4;
@@ -57,11 +57,11 @@
 
 .btn-raised {
   &:hover {
-    @apply shadow-3;
+    @apply shadow-6;
   }
 
   &:active {
-    @apply shadow-5;
+    @apply shadow-4;
   }
 }
 
@@ -81,11 +81,7 @@
 
 @screen md {
   .btn {
-    @apply rounded-3;
-  }
-
-  .btn-lg {
-    @apply text-4;
+    @apply rounded-4;
   }
 }
 

@@ -8,15 +8,15 @@
       @mouseover="handleMouseover"
     />
 
-    <h1 class="mt-6 font-display font-600 text-8 sm:text-9 md:text-10 text-center text-shadow-2 tracking-2 text-primary-100">Baleada&nbsp;</h1>
-    <p class="mt-2 font-display text-6 sm:text-7 md:text-8 text-center text-shadow-2 tracking-2 text-primary-100">A toolkit for building web apps.</p>
+    <h1 class="mt-6 font-display font-6 text-9 sm:text-10 md:text-11 text-center text-shadow-2 tracking-2 text-primary-100">Baleada&nbsp;</h1>
+    <p class="mt-2 font-display text-7 sm:text-8 md:text-9 text-center text-shadow-2 tracking-2 text-primary-100">A toolkit for building web apps.</p>
 
     <div class="flex flex-col sm:flex-row mt-5 sm:mt-10">
       <NuxtLink to="/docs" class="btn md:btn-lg btn-raised btn-grows bg-primary-100 text-primary-800">
         <EvaBook :class="'icon'" />
         <span>Read the docs</span>
       </NuxtLink>
-      <a href="https://gitlab.com/baleada/" class="mt-3 sm:mt-0 sm:ml-4 btn md:btn-lg btn-grows border-2 border-primary-100 text-primary-100">
+      <a href="https://gitlab.com/baleada/" class="mt-3 sm:mt-0 sm:ml-4 btn md:btn-lg btn-grows border-5 border-primary-100 text-primary-100">
         <SimpleGitLab :class="'icon'" />
         <span>View on GitLab</span>
       </a>

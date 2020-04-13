@@ -914,11 +914,81 @@
     "href": "/docs/theme"
   },
   {
-    "title": "What is Baleada Them Utils?",
-    "publish": false,
+    "title": "em",
+    "publish": true,
     "order": 0,
     "body": "",
-    "updatedAt": "2020-04-13T03:05:50.892Z",
+    "updatedAt": "2020-04-13T20:57:45.232Z",
+    "path": "./assets/md/theme-utils/functions/em.md",
+    "fileName": "em",
+    "href": "/docs/theme-utils/functions/em"
+  },
+  {
+    "title": "fractions",
+    "publish": true,
+    "order": 0,
+    "body": "",
+    "updatedAt": "2020-04-13T20:57:25.994Z",
+    "path": "./assets/md/theme-utils/functions/fractions.md",
+    "fileName": "fractions",
+    "href": "/docs/theme-utils/functions/fractions"
+  },
+  {
+    "title": "px",
+    "publish": true,
+    "order": 0,
+    "body": "",
+    "updatedAt": "2020-04-13T20:57:30.092Z",
+    "path": "./assets/md/theme-utils/functions/px.md",
+    "fileName": "px",
+    "href": "/docs/theme-utils/functions/px"
+  },
+  {
+    "title": "rem",
+    "publish": true,
+    "order": 0,
+    "body": "`rem` is a function designed to produce classes like the following: \n- `.leading-rem-3`\n- `.leading-rem-4`\n- `.leading-rem-5`\n\nIt adds the word `rem` to the middle of the class, and it's designed to clarify that a subset of classes for a given property use `rem` units, while Tailwind's standard classes for that property use a different unit of measurement.\n\n::: type=\"info\"\n[Baleada Linear Numeric](/docs/linear-numeric) use the `rem` function to create `rem`-based line height utilities, since Tailwind's standard line-height classes are unitless.\n:::\n\n\n:::\n## Parameters\n:::\n\n`rem` accepts one parameter: a Tailwind config object with class suffixes that you want to add `rem` to. Here's an example:\n\n:::\n```js\n// tailwind.config.js\nmodule.exports = {\n  theme: {\n    lineHeight: {\n\n    }\n  }\n}\n```\n:::",
+    "updatedAt": "2020-04-13T20:56:55.468Z",
+    "path": "./assets/md/theme-utils/functions/rem.md",
+    "fileName": "rem",
+    "href": "/docs/theme-utils/functions/rem"
+  },
+  {
+    "title": "screen",
+    "publish": true,
+    "order": 0,
+    "body": "",
+    "updatedAt": "2020-04-13T20:57:47.774Z",
+    "path": "./assets/md/theme-utils/functions/screen.md",
+    "fileName": "screen",
+    "href": "/docs/theme-utils/functions/screen"
+  },
+  {
+    "title": "withoutColorPalettes",
+    "publish": true,
+    "order": 0,
+    "body": "",
+    "updatedAt": "2020-04-13T20:57:42.216Z",
+    "path": "./assets/md/theme-utils/functions/withoutColorPalettes.md",
+    "fileName": "withoutColorPalettes",
+    "href": "/docs/theme-utils/functions/withoutColorPalettes"
+  },
+  {
+    "title": "withoutTailwindFractions",
+    "publish": true,
+    "order": 0,
+    "body": "",
+    "updatedAt": "2020-04-13T20:57:36.036Z",
+    "path": "./assets/md/theme-utils/functions/withoutTailwindFractions.md",
+    "fileName": "withoutTailwindFractions",
+    "href": "/docs/theme-utils/functions/withoutTailwindFractions"
+  },
+  {
+    "title": "What is Baleada Theme Utils?",
+    "publish": true,
+    "order": 0,
+    "body": "Baleada Theme Utils is a collection of functions that are useful inside Tailwind theme configurations.\n\n\n:::\n## Installation\n:::\n\n:::\n```bash\nnpm i @baleada/tailwind-theme-utils --save-dev\n```\n:::\n\n\n:::\n## Usage\n:::\n\nTheme utils are exported as Common JS modules from the package's entry file:\n\n:::\n```js\n// tailwind.config.js\nconst { rem, screen, fractions } = require('@baleada/tailwind-theme-utils')\n```\n:::\n\nCheck out the docs for each individual function to learn more about how to use it. You can find documentation for all Baleada Theme Utils functions in the left sidebar.\n\n",
+    "updatedAt": "2020-04-13T20:49:00.281Z",
     "path": "./assets/md/theme-utils/index.md",
     "fileName": "index",
     "href": "/docs/theme-utils"
