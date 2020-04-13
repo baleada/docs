@@ -72,7 +72,7 @@
       <div class="mt-3 py-3 w-full'">
         <div class="flex items-center">
           <button
-            class="flex items-center text-1 rounded-full font-600 tracking-3"
+            class="flex items-center text-2 rounded-full font-6 tracking-3"
             :class="[
               isDarkTheme ? 'text-primary-gray-500' : 'text-gray-600'
             ]"
@@ -94,7 +94,7 @@
           >
             <button
               aria-label="Toggle dark theme"
-              class="absolute rounded-full h-6 w-6 shadow transition focus:shadow-outline"
+              class="absolute rounded-full h-6 w-6 shadow transition-all focus:shadow-outline"
               :style="isDarkTheme ? { transform: 'translateX(-100%)' } : {}"
               :class="[
                 isDarkTheme ? 'left-full bg-primary-gray-700' : 'left-0 bg-white',
@@ -102,7 +102,7 @@
             />
           </div>
           <button
-            class="flex items-center text-1 rounded-full font-600 tracking-3"
+            class="flex items-center text-2 rounded-full font-6 tracking-3"
             :class="[
               isDarkTheme ? 'text-primary-gray-500' : 'text-gray-600'
             ]"
@@ -113,7 +113,7 @@
           </button>
         </div>
 
-        <span class="block mt-3 text-1" :class="[isDarkTheme ? 'text-primary-gray-500' : 'text-gray-600']">
+        <span class="block mt-3 text-2" :class="[isDarkTheme ? 'text-primary-gray-500' : 'text-gray-600']">
           Hotkey: <code class="py-px px-1 font-400">SHIFT</code> + <code class="py-px px-1 font-400">D</code>
         </span>
       </div>
@@ -122,7 +122,7 @@
       <div class="hidden lg:block mt-3 py-3 w-full">
         <div class="flex items-center">
           <button
-            class="flex items-center text-1 rounded-full font-600 tracking-3"
+            class="flex items-center text-3 rounded-full font-6 tracking-3"
             :class="[
               isDarkTheme ? 'text-primary-gray-500' : 'text-gray-600'
             ]"
@@ -146,7 +146,7 @@
           >
             <button
               aria-label="Toggle minimalist theme"
-              class="absolute rounded-full h-6 w-6 shadow transition focus:shadow-outline"
+              class="absolute rounded-full h-6 w-6 shadow transition-all focus:shadow-outline"
               :style="isMinimalistTheme ? { transform: 'translateX(-100%)' } : {}"
               :class="[
                 isDarkTheme ? 'bg-primary-gray-700' : 'bg-white',
@@ -155,7 +155,7 @@
             />
           </div>
           <button
-            class="flex items-center text-1 rounded-full font-600 tracking-3"
+            class="flex items-center text-2 rounded-full font-6 tracking-3"
             :class="[
               isDarkTheme ? 'text-primary-gray-500' : 'text-gray-600'
             ]"
@@ -166,7 +166,7 @@
           </button>
         </div>
 
-        <span class="block mt-3 text-1" :class="[isDarkTheme ? 'text-primary-gray-500' : 'text-gray-600']">
+        <span class="block mt-3 text-2" :class="[isDarkTheme ? 'text-primary-gray-500' : 'text-gray-600']">
           Hotkey: <code class="py-px px-1 font-400">SHIFT</code> + <code class="py-px px-1 font-400">M</code>
         </span>
       </div>
@@ -199,7 +199,7 @@
         <div v-show="!isMinimalistTheme">
           <BaleadaLogo
             id="article-decoration"
-            :class="'absolute h-19 w-19 top-0 right-0'"
+            :class="'absolute h-auto w-full sm:w-3/4 max-w-screen-sm top-0 right-0'"
             :style="{ transform: 'translate(14%, -42%)' }"
             type="outline"
             :classes="[
@@ -278,9 +278,9 @@
 import { ref, onMounted, inject } from '@vue/composition-api'
 
 import { swipe } from '@baleada/listenable-gestures'
-import { useListenable } from '@baleada/composition-vue'
-import { useSymbol } from '@baleada/prose-vue'
-import { HeroiconsMenu, HeroiconsX, HeroiconsMenuAlt1, HeroiconsSun, HeroiconsMoon, HeroiconsTemplate, EvaSquare } from '@baleada/icons-vue'
+import { useListenable, useStoreable } from '@baleada/vue-composition'
+import { useSymbol } from '@baleada/vue-prose'
+import { HeroiconsMenu, HeroiconsX, HeroiconsMenuAlt1, HeroiconsSun, HeroiconsMoon, HeroiconsTemplate, EvaSquare } from '@baleada/vue-icons'
 
 import DocsNav from '~/components/DocsNav'
 import DocsSearch from '~/components/DocsSearch'

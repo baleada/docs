@@ -5,7 +5,7 @@
     @apply with-max-w w-full mx-auto;
 
     input[name="Type to filter"] {
-      @apply -shadow bg-gray-100;
+      @apply -shadow-4 bg-gray-100;
     }
   }
 
@@ -16,7 +16,7 @@
       @apply flex-grow-0;
     }
     label {
-      @apply ml-2 mr-auto text-1 font-500 text-gray-600;
+      @apply ml-2 mr-auto text-2 font-5 text-gray-600;
     }
   }
 
@@ -37,7 +37,7 @@
     }
 
     [role="rowgroup"]:first-child {
-      @apply rounded-2 sticky top-0 shadow-1;
+      @apply rounded-4 sticky top-0 shadow-5;
       display: table-header-group;
     }
 
@@ -45,12 +45,12 @@
       display: table-row;
 
       &:last-child [role="gridcell"] {
-        @apply border-b-1;
+        @apply border-b-4;
       }
     }
 
     [role="columnheader"] {
-      @apply py-2 text-1 font-600 uppercase tracking-1 bg-primary-100 text-primary-900;
+      @apply py-2 text-2 font-6 uppercase tracking-1 bg-primary-100 text-primary-900;
 
       code {
         @apply bg-primary-200 normal-case;
@@ -64,10 +64,10 @@
     }
 
     [role="gridcell"] {
-      @apply py-4 leading-2 border-l bg-white border-gray-300;
+      @apply py-4 leading-2 border-l-4 bg-white border-gray-300;
 
       &:last-child {
-        @apply border-r;
+        @apply border-r-4;
       }
     }
 
@@ -159,7 +159,7 @@
   }
 
   thead {
-    @apply rounded-2;
+    @apply rounded-4;
     display: table-header-group;
   }
 
@@ -167,12 +167,12 @@
     display: table-row;
 
     &:last-child td {
-      @apply border-b-1;
+      @apply border-b-4;
     }
   }
 
   th {
-    @apply py-2 text-1 font-600 uppercase tracking-1 bg-primary-100 text-primary-900;
+    @apply py-2 text-2 font-6 uppercase tracking-1 bg-primary-100 text-primary-900;
 
     code {
       @apply bg-primary-200 normal-case;
@@ -186,10 +186,10 @@
   }
 
   td {
-    @apply py-4 leading-2 border-l border-gray-300;
+    @apply py-4 leading-2 border-l-4 border-gray-300;
 
     &:last-child {
-      @apply border-r;
+      @apply border-r-4;
     }
   }
 

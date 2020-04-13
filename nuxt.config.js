@@ -1,6 +1,6 @@
 import getTransform from '@baleada/markdown-to-prose'
-import propsInterfaces from '@baleada/prose-vue/lib/propsInterfaces'
-import MarkdownItSpaLinks from '@baleada/spa-links/markdown-it'
+import propsInterfaces from '@baleada/vue-prose/lib/propsInterfaces'
+import MarkdownItSpaLinks from '@baleada/markdown-it-spa-links'
 import refractor from 'refractor'
 import rehype from 'rehype'
 import purgecssConfig from './config/purgecss.config'
@@ -133,7 +133,7 @@ export default {
 `
       }),
             prose = {
-              loader: '@baleada/source-transform/webpack',
+              loader: '@baleada/webpack-source-transform',
               options: {
                 transform: ({ source, id }) => transform(source, id)
               }

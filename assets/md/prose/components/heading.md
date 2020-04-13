@@ -54,10 +54,10 @@ Here's the structure of `ProseHeading`'s markup, written in [Pug](https://github
 :::
 ```pug
 h1.baleada-prose-heading // h1 gets replaced with whatever heading level you actually use
-  a.contents href="..." // The anchor's href is a slug of the heading's text
+  a.contents.descendant1Classes href="..." // The anchor's href is a slug of the heading's text
     slot // Your content slots in here
-  button name="Copy link to heading" // Only gets rendered when canCopy is true
-    svg // Link icon
+  InterfaceButton.descendant2Classes name="Copy link to heading" // Only gets rendered when canCopy is true
+    svg.descendant3Classes // Link icon
 ```
 :::
 

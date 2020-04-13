@@ -111,7 +111,7 @@
       },
       {
         "title": "Class References",
-        "href": "/docs/linear-numeric/class-references"
+        "href": "/docs/linear-numeric/class-reference"
       },
       {
         "title": "Default Config",
@@ -316,5 +316,126 @@
         "href": "/docs/spa-links"
       }
     ]
+  },
+  {
+    "level": 1,
+    "name": "theme",
+    "pages": [
+      {
+        "title": "What is Baleada Theme?",
+        "href": "/docs/theme"
+      }
+    ]
+  },
+  {
+    "level": 2,
+    "name": "class references",
+    "pages": [
+      {
+        "title": "Border radius",
+        "href": "/docs/theme/class-references/border-radius"
+      },
+      {
+        "title": "Border width",
+        "href": "/docs/theme/class-references/border-width"
+      },
+      {
+        "title": "Box shadow",
+        "href": "/docs/theme/class-references/box-shadow"
+      },
+      {
+        "title": "Colors",
+        "href": "/docs/theme/class-references/colors"
+      },
+      {
+        "title": "Flex grow",
+        "href": "/docs/theme/class-references/flex-grow"
+      },
+      {
+        "title": "Flex shrink",
+        "href": "/docs/theme/class-references/flex-shrink"
+      },
+      {
+        "title": "Font size",
+        "href": "/docs/theme/class-references/font-size"
+      },
+      {
+        "title": "Font weight",
+        "href": "/docs/theme/class-references/font-weight"
+      },
+      {
+        "title": "Height",
+        "href": "/docs/theme/class-references/height"
+      },
+      {
+        "title": "Inset",
+        "href": "/docs/theme/class-references/inset"
+      },
+      {
+        "title": "Letter spacing",
+        "href": "/docs/theme/class-references/letter-spacing"
+      },
+      {
+        "title": "Line height",
+        "href": "/docs/theme/class-references/line-height"
+      },
+      {
+        "title": "Margin",
+        "href": "/docs/theme/class-references/margin"
+      },
+      {
+        "title": "Max height",
+        "href": "/docs/theme/class-references/max-height"
+      },
+      {
+        "title": "Max width",
+        "href": "/docs/theme/class-references/max-width"
+      },
+      {
+        "title": "Min height",
+        "href": "/docs/theme/class-references/min-height"
+      },
+      {
+        "title": "Min width",
+        "href": "/docs/theme/class-references/min-width"
+      },
+      {
+        "title": "Object position",
+        "href": "/docs/theme/class-references/object-position"
+      },
+      {
+        "title": "Opacity",
+        "href": "/docs/theme/class-references/opacity"
+      },
+      {
+        "title": "Padding",
+        "href": "/docs/theme/class-references/padding"
+      },
+      {
+        "title": "Screens",
+        "href": "/docs/theme/class-references/screens"
+      },
+      {
+        "title": "Stroke width",
+        "href": "/docs/theme/class-references/stroke-width"
+      },
+      {
+        "title": "Transition duration",
+        "href": "/docs/theme/class-references/transition-duration"
+      },
+      {
+        "title": "Width",
+        "href": "/docs/theme/class-references/width"
+      },
+      {
+        "title": "Z-index",
+        "href": "/docs/theme/class-references/z-index"
+      }
+    ]
+  },
+  {
+    "level": 1,
+    "name": "theme utils",
+    "pages": []
   }
 ]

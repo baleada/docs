@@ -95,7 +95,8 @@ Here's the structure of `InterfaceButton`'s markup, written in [Pug](https://git
 button.baleada-interface-button
   svg // Haptic shape
     circle
-  slot // Your content slots in here
+  section.contents
+    slot // Your content slots in here
 ```
 :::
 

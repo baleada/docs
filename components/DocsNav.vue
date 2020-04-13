@@ -42,20 +42,20 @@ export default {
   }
   h2::after {
     content: '';
-    @apply w-9 mt-3 block rounded-full h-2px bg-gray-300;
+    @apply w-9 mt-3 block rounded-full h-px-2 bg-gray-300;
   }
   h2 {
-    @apply text-2 font-600 tracking-3 text-primary-700;
+    @apply text-3 font-6 tracking-3 text-primary-700;
   }
   h3 {
-    @apply mt-6 text-1 font-600 tracking-3 text-gray-700;
+    @apply mt-6 text-2 font-6 tracking-3 text-gray-700;
   }
   a {
-    @apply block mt-3 pl-2 text-2 text-gray-900 no-underline;
+    @apply block mt-3 pl-2 text-3 text-gray-900 no-underline;
     transition: all 0.1s ease;
   }
   a.nuxt-link-exact-active {
-    @apply border-l-2 text-primary-700 border-primary-700 -ml-2px;
+    @apply border-l-5 text-primary-700 border-primary-700 -ml-px-2;
   }
   a:hover {
     @apply text-primary-600 border-primary-600 underline;

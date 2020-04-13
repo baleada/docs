@@ -6,7 +6,7 @@
   }
 
   .h1 {
-    @apply ml-0 font-500;
+    @apply ml-0 font-5;
   }
   .h2 {
     @apply ml-2;

@@ -97,7 +97,7 @@
 
   /* Non-prose elements */
   p {
-    @apply text-3 leading-2;
+    @apply text-4 leading-5;
   }
 
   em {
@@ -118,7 +118,7 @@
 
   :not(pre) > code,
   kbd {
-    @apply rounded py-px px-1 tracking-1;
+    @apply rounded-4 py-px-1 px-1 tracking-1;
   }
 
   :not(pre) > code {
@@ -126,7 +126,7 @@
   }
 
   :not(h1):not(h2):not(h3):not(h4):not(h5):not(h5) > code {
-    @apply text-1;
+    @apply text-3;
   }
 
   input {
@@ -139,33 +139,33 @@
 }
 
 
-@media screen and (min-width: theme('screens.md')) {
+@screen md {
   .baleada-prose-article {
     p {
-      @apply text-3;
-    }
-
-    li::before {
       @apply text-4;
     }
 
+    li::before {
+      @apply text-6;
+    }
+
     :not(h1):not(h2):not(h3):not(h4):not(h5):not(h5) > code {
-      @apply text-2;
+      @apply text-3;
     }
 
     input {
-      @apply rounded-1;
+      @apply rounded-3;
     }
   }
 }
 
-@media screen and (min-width: theme(screens.sm)) {
+@screen sm {
   .baleada-prose-article {
     @apply px-9;
   }
 }
 
-@media screen and (min-width: theme(screens.lg)) {
+@screen lg {
   .baleada-prose-article {
     @apply px-11;
   }

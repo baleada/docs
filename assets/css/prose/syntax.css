@@ -61,11 +61,11 @@
       }
 
       .token.important {
-      	@apply font-400;
+      	@apply font-4;
       }
 
       .token.bold {
-      	@apply font-600;
+      	@apply font-6;
       }
       .token.italic {
       	@apply italic;
@@ -140,11 +140,11 @@
         }
 
         .token.important {
-        	@apply font-500;
+        	@apply font-5;
         }
 
         .token.bold {
-        	@apply font-500;
+        	@apply font-5;
         }
         .token.italic {
         	@apply italic;

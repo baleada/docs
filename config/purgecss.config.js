@@ -1,4 +1,5 @@
 const config = {
+  mode: () => 'postcss',
   paths: [],
   whitelist: [
     'bg-gray-100',

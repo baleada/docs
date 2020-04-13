@@ -5,7 +5,7 @@
 </template>
 
 <script>
-import article from '~/assets/md/linear-numeric/class-references.md'
+import article from '~/assets/md/theme/class-references/font-size.md'
 
 export default {
   layout: 'prose',

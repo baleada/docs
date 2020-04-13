@@ -2,7 +2,7 @@
   & > h1::after,
   & > hr {
     content: '';
-    @apply block rounded-full h-2px bg-primary-700;
+    @apply block rounded-full h-px-2 bg-primary-700;
   }
 
   & > hr {
@@ -22,38 +22,38 @@
   }
 
   & > h1 {
-    @apply text-7 font-700 text-gray-800;
+    @apply text-8 font-7 text-gray-800;
   }
 
   & > h2 {
-    @apply text-5 mb-6 font-500 text-gray-900;
+    @apply text-6 mb-6 font-5 text-gray-900;
+
+    code {
+      @apply text-5;
+    }
+  }
+
+  & > h3 {
+    @apply text-5 mb-5 font-3 text-gray-900;
 
     code {
       @apply text-4;
     }
   }
 
-  & > h3 {
-    @apply text-4 mb-5 font-300 text-gray-900;
+  & > h4 {
+    @apply text-4 mb-5 font-6 tracking-1 text-gray-900;
 
     code {
       @apply text-3;
     }
   }
 
-  & > h4 {
-    @apply text-3 mb-5 font-600 tracking-1 text-gray-900;
+  & > h5 {
+    @apply text-3 mb-3 font-6 tracking-1 text-gray-900;
 
     code {
       @apply text-2;
-    }
-  }
-
-  & > h5 {
-    @apply text-2 mb-3 font-600 tracking-1 text-gray-900;
-
-    code {
-      @apply text-1;
     }
   }
 
@@ -61,7 +61,7 @@
     @apply relative;
 
     button {
-      @apply absolute top-0 left-0 h-1em w-3/2em pr-1/2em inline-flex items-center justify-center rounded-full opacity-0;
+      @apply absolute top-0 left-0 h-em-1 w-em-3/2 pr-em-1/2 inline-flex items-center justify-center rounded-full opacity-0;
       transform: translate(-100%, 0%);
 
       svg {
@@ -135,9 +135,17 @@
   }
 }
 
-@media screen and (min-width: theme('screens.md')) {
+@screen md {
   .baleada-prose-article > .contents {
     & > h1 {
+      @apply text-8;
+
+      code {
+        @apply text-7;
+      }
+    }
+
+    & > h2 {
       @apply text-7;
 
       code {
@@ -145,7 +153,7 @@
       }
     }
 
-    & > h2 {
+    & > h3 {
       @apply text-6;
 
       code {
@@ -153,7 +161,7 @@
       }
     }
 
-    & > h3 {
+    & > h4 {
       @apply text-5;
 
       code {
@@ -161,19 +169,11 @@
       }
     }
 
-    & > h4 {
+    & > h5 {
       @apply text-4;
 
       code {
         @apply text-3;
-      }
-    }
-
-    & > h5 {
-      @apply text-3;
-
-      code {
-        @apply text-2;
       }
     }
   }

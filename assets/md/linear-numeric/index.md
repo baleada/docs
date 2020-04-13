@@ -81,7 +81,15 @@ Baleada Linear Numeric can be installed from NPM:
 
 :::
 ```bash
-npm i @baleada/linear-numeric/tailwind --save-dev
+npm i @baleada/tailwind-linear-numeric --save-dev
+```
+:::
+
+Baleada Linear Numeric lists [Baleada Theme Utils](/docs/theme-utils) as a peer dependency. Here's a snippet to install both:
+
+:::
+```bash
+npm i @baleada/tailwind-linear-numeric @baleada/tailwind-theme-utils --save-dev
 ```
 :::
 
@@ -90,12 +98,12 @@ npm i @baleada/linear-numeric/tailwind --save-dev
 ## Usage
 :::
 
-To get started, require `@baleada/linear-numeric/tailwind` in your [Tailwind config file](https://tailwindcss.com/docs/configuration). The default export is a function, which we'll call `linearNumeric` in this example.
+To get started, require `@baleada/tailwind-linear-numeric` in your [Tailwind config file](https://tailwindcss.com/docs/configuration). The default export is a function, which we'll call `linearNumeric` in this example.
 
 :::
 ```js
 // tailwind.config.js
-const linearNumeric = require('@baleada/linear-numeric/tailwind')
+const linearNumeric = require('@baleada/tailwind-linear-numeric')
 ```
 :::
 
@@ -136,7 +144,7 @@ If you want to use linear numeric naming for all of these properties, simply spr
 :::
 ```js
 // tailwind.config.js
-const linearNumeric = require('@baleada/linear-numeric/tailwind')
+const linearNumeric = require('@baleada/tailwind-linear-numeric')
 
 module.exports = {
   theme: {
@@ -151,7 +159,7 @@ If you only want to use linear numeric naming for some properties, use the `only
 :::
 ```js
 // tailwind.config.js
-const linearNumeric = require('@baleada/linear-numeric/tailwind')
+const linearNumeric = require('@baleada/tailwind-linear-numeric')
 
 module.exports = {
   theme: {
@@ -170,7 +178,7 @@ To customize the increment that gets used in your class names, use the `incremen
 :::
 ```js
 // tailwind.config.js
-const linearNumeric = require('@baleada/linear-numeric/tailwind')
+const linearNumeric = require('@baleada/tailwind-linear-numeric')
 
 module.exports = {
   theme: {
@@ -185,7 +193,7 @@ You can call `linearNumeric` as many times as you want, so feel free to use the 
 :::
 ```js
 // tailwind.config.js
-const linearNumeric = require('@baleada/linear-numeric/tailwind')
+const linearNumeric = require('@baleada/tailwind-linear-numeric')
 
 module.exports = {
   theme: {
@@ -203,7 +211,7 @@ If you're using `linearNumeric` to add new values inside of one existing propert
 :::
 ```js
 // tailwind.config.js
-const linearNumeric = require('@baleada/linear-numeric/tailwind')
+const linearNumeric = require('@baleada/tailwind-linear-numeric')
 
 module.exports = {
   theme: {
@@ -221,7 +229,7 @@ To expand on that concept: `linearNumeric` returns a full colors object for the 
 :::
 ```js
 // tailwind.config.js
-const linearNumeric = require('@baleada/linear-numeric/tailwind')
+const linearNumeric = require('@baleada/tailwind-linear-numeric')
 
 module.exports = {
   theme: {
@@ -238,23 +246,21 @@ module.exports = {
 ```
 :::
 
-
-The only property for which `linearNumeric` *doesn't* return a plain Javascript object is `maxWidth`.
-
-For `maxWidth`, `linearNumeric` returns a function, just like the one found in [Tailwind's default config](https://github.com/tailwindcss/tailwindcss/blob/master/stubs/defaultConfig.stub.js). To add additional values to your `maxWidth` config, you'll need to pass Tailwind's `theme` function and `configUtils` object to that function, using [Tailwind's closure syntax](https://tailwindcss.com/docs/theme#referencing-other-values) like so:
-
+Also, be aware that Baleada Linear Numeric _does_ include Tailwind's default standalone colors, `black`, `white`, and `transparent`:
 
 :::
 ```js
 // tailwind.config.js
-const linearNumeric = require('@baleada/linear-numeric/tailwind')
+const linearNumeric = require('@baleada/tailwind-linear-numeric')
 
 module.exports = {
   theme: {
-    maxWidth: (theme, configUtils) => ({
-      ...linearNumeric({ only: 'maxWidth', increment: '100' })(theme, configUtils), // Generates and spreads in the maxWidth config object
-      '420': '420px',
-    }),
+    colors: {
+      // These colors don't increment, so they are unaffected by the increment option
+      black: linearNumeric({ only: 'colors' }).black,
+      white: linearNumeric({ only: 'colors' }).white,
+      transparent: linearNumeric({ only: 'colors' }).transparent,
+    }
   }
 }
 ```

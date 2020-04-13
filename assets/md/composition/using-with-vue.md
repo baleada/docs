@@ -4,6 +4,7 @@ tags: Composition functions, Vue
 publish: true
 ---
 
+Baleada Vue Composition is the Vue-compatible version of Baleada Composition
 
 :::
 ## Install
@@ -11,7 +12,15 @@ publish: true
 
 :::
 ```bash
-npm i @baleada/composition-vue
+npm i @baleada/vue-composition
+```
+:::
+
+Baleada Vue Composition lists [Baleada Logic](/docs/logic) as a peer dependency. Here's a snippet to install both:
+
+:::
+```bash
+npm i @baleada/vue-composition @baleada/logic
 ```
 :::
 
@@ -20,15 +29,15 @@ npm i @baleada/composition-vue
 ## Import a composition function
 :::
 
-All Baleada Composition functions be imported from `@baleada/composition-vue`:
+All Baleada Composition functions be imported from `@baleada/vue-composition`:
 
 :::
 ```js
 // Import a class
-import { useAnimateable } from '@baleada/icons-vue'
+import { useAnimateable } from '@baleada/vue-icons'
 
 // Import a factory
-import { useDeleteable } from '@baleada/icons-vue'
+import { useDeleteable } from '@baleada/vue-icons'
 ```
 :::
 
@@ -48,7 +57,7 @@ Internally, Baleada Composition functions use Vue 3 for reactivity and lifecycle
 
 :::
 ```js
-import { useAnimateable } from '@baleada/icons-vue'
+import { useAnimateable } from '@baleada/vue-icons'
 
 export default {
   setup () {
@@ -63,7 +72,7 @@ Each Baleada Composition function returns a reactive ref, i.e. an object with a 
 :::
 ```js
 import { isRef } from '@vue/composition-api'
-import { useSearchable } from '@baleada/icons-vue'
+import { useSearchable } from '@baleada/vue-icons'
 
 export default {
   setup () {
@@ -97,7 +106,7 @@ The major benefit of this is that you can render state from Baleada Logic classe
 </template>
 
 <script>
-import { useNavigateable } from '@baleada/composition-vue'
+import { useNavigateable } from '@baleada/vue-composition'
 import myArray from 'path/to/some/data'
 
 export default {
@@ -120,7 +129,7 @@ When you're using Baleada Composition with Vue, just know that you need to acces
 
 <script>
 import { onMounted } from '@vue/composition-api'
-import { useListenable } from '@baleada/composition-vue'
+import { useListenable } from '@baleada/vue-composition'
 
 export default {
   setup () {
@@ -147,7 +156,7 @@ More specifically: every Baleada Logic class that has side effects (e.g. adding 
 
 <script>
 import { onMounted, onBeforeUnmount } from '@vue/composition-api'
-import { useListenable } from '@baleada/composition-vue'
+import { useListenable } from '@baleada/vue-composition'
 
 export default {
   setup () {

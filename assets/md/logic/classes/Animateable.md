@@ -55,7 +55,7 @@ Or, if you're using [Baleada Composition](/docs/compositon):
 
 :::
 ```js
-import { useAnimateable } from '@baleada/composition-vue'
+import { useAnimateable } from '@baleada/vue-composition'
 
 const reactiveInstance = useAnimateable(keyframes[, options])
 ```

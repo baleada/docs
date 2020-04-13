@@ -1,5 +1,5 @@
 <template>
-  <p class="mb-7 text-1 italic">
+  <p class="mb-7 text-3 italic">
     Updated on {{ intl }}
   </p>
 </template>
@@ -7,7 +7,7 @@
 <script>
 import { computed, inject } from '@vue/composition-api'
 
-import { useSymbol } from '@baleada/prose-vue'
+import { useSymbol } from '@baleada/vue-prose'
 
 import metadata from '~/static/json/metadata.json'
 

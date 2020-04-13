@@ -32,6 +32,8 @@ To construct a `Navigateable` instance (Object), use the `Navigateable` construc
 
 :::
 ```js
+import { Navigateable } from '@baleada/logic'
+
 const instance = new Navigateable(array[, options])
 ```
 :::
@@ -40,6 +42,8 @@ Or, if you're using [Baleada Composition](/docs/compositon):
 
 :::
 ```js
+import { useNavigateable } from '@baleada/vue-composition'
+
 const reactiveInstance = useNavigateable(array[, options])
 ```
 :::

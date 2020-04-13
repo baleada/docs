@@ -52,6 +52,7 @@ function getMetadata (files) {
 }
 
 function toPathMetadata (path) {
+  console.log(path)
   const fileName = path.match(/[A-Za-z-]+\.md$/)[0].replace(/\.md$/, ''),
         hrefPrefix = `/docs${path.replace(/\.\/assets\/md/, '').replace(/\/[A-Za-z-]+\.md$/, '')}`,
         hrefSuffix = `${fileName === 'index' ? '' : '/' + fileName}`,

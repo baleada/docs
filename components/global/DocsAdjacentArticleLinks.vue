@@ -22,11 +22,11 @@
 <script>
 import { computed, watch, inject } from '@vue/composition-api'
 
-import { useSymbol } from '@baleada/prose-vue'
+import { useSymbol } from '@baleada/vue-prose'
 
 import manifest from '~/static/json/manifest.json'
 
-import { EvaArrowheadLeft, EvaArrowheadRight } from '@baleada/icons-vue'
+import { EvaArrowheadLeft, EvaArrowheadRight } from '@baleada/vue-icons'
 
 export default {
   name: 'DocsAdjacentArticleLinks',

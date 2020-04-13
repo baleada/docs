@@ -1,11 +1,11 @@
 .baleada-prose-article {
   blockquote::before {
     content: '\201C';
-    @apply absolute text-9 font-300 text-primary-900 opacity-70 top-0 left-0 -mt-1/2em;
+    @apply absolute text-9 font-3 text-primary-900 opacity-70 top-0 left-0 -mt-em-1/2;
   }
 
   blockquote {
-    @apply relative pl-6 pr-4 py-3 font-display rounded bg-primary-100 shadow-1 text-primary-900;
+    @apply relative pl-6 pr-4 py-3 font-display rounded-4 bg-primary-100 shadow-3 text-primary-900;
 
     p {
       @apply text-6
@@ -16,7 +16,7 @@
     @apply relative;
 
     & > a {
-      @apply absolute bottom-0 right-0 h-7 w-7 flex items-center p-2 shadow-1 rounded-full bg-primary-200 text-primary-900 transition-2;
+      @apply absolute bottom-0 right-0 h-7 w-7 flex items-center p-2 shadow-3 rounded-full bg-primary-200 text-primary-900 transition-2;
       transform: translate(33%, 33%);
 
       svg {
@@ -58,19 +58,19 @@
   }
 }
 
-@media screen and (min-width: theme('screens.md')) {
+@screen md {
   .baleada-prose-article {
     blockquote {
       @apply pl-8 pr-6;
     }
 
     blockquote::before {
-      @apply text-10;
+      @apply text-11;
     }
   }
 }
 
-@media screen and (min-width: theme('screens.lg')) {
+@screen lg {
   .baleada-prose-article {
     .baleada-prose-blockquote {
       & > a {

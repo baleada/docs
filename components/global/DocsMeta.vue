@@ -3,7 +3,7 @@
 <script>
 import { onMounted, computed, inject } from '@vue/composition-api'
 
-import { useSymbol } from '@baleada/prose-vue'
+import { useSymbol } from '@baleada/vue-prose'
 
 export default {
   setup (props) {

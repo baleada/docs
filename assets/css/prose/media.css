@@ -2,6 +2,6 @@
   img,
   video,
   audio {
-    @apply w-full rounded-1 shadow-2;
+    @apply w-full rounded-3 shadow-4;
   }
 }

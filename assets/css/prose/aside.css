@@ -1,8 +1,8 @@
 .baleada-prose-aside {
-  @apply relative flex items-start rounded-r-1 p-5 my-6 border-l-4;
+  @apply relative flex items-start rounded-r-3 p-5 my-6 border-l-6;
 
   & > svg {
-    @apply absolute -left-4px -translate-x-50 h-7 w-7 rounded-full p-1 fill-current;
+    @apply absolute left-0 -ml-px-2 -translate-x-50 h-7 w-7 rounded-full p-1 fill-current;
   }
 
   &.baleada-prose-aside-info {
@@ -22,7 +22,7 @@
     }
 
     a {
-      @apply text-blue-700 font-600;
+      @apply text-blue-700 font-6;
     }
 
     li::before {
@@ -47,7 +47,7 @@
     }
 
     a {
-      @apply text-yellow-700 font-600;
+      @apply text-yellow-700 font-6;
     }
 
     li::before {
@@ -72,7 +72,7 @@
     }
 
     a {
-      @apply text-red-700 font-600;
+      @apply text-red-700 font-6;
     }
 
     li::before {
@@ -97,7 +97,7 @@
     }
 
     a {
-      @apply text-green-700 font-600;
+      @apply text-green-700 font-6;
     }
 
     li::before {
@@ -122,7 +122,7 @@
     }
 
     a {
-      @apply text-gray-700 font-600;
+      @apply text-gray-700 font-6;
     }
 
     li::before {

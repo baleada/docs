@@ -10,7 +10,6 @@
     :class="data.class"
     :ref="data.ref"
     :key="data.key"
-    :slot="data.slot"
     :style="data.style"
   >
     <g :clip-path="`url(#${props.id}-baleada-logo-clip)`">

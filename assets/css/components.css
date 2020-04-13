@@ -21,12 +21,12 @@
     }
 
     &.btn-bordered {
-      @apply border-2;
+      @apply border-5;
     }
   }
 
   .btn-raised {
-    @apply shadow-1;
+    @apply shadow-5;
   }
 
   .btn-lg {
@@ -38,10 +38,10 @@
   }
 
   .btn-sm {
-    @apply px-2 py-px text-1;
+    @apply px-2 py-px-1 text-2;
 
     &.btn-bordered {
-      @apply border;
+      @apply border-4;
     }
   }
 
@@ -61,7 +61,7 @@
   }
 
   &:active {
-    @apply shadow-1;
+    @apply shadow-5;
   }
 }
 
@@ -79,9 +79,9 @@
   }
 }
 
-@media screen and (min-width: theme('screens.md')) {
+@screen md {
   .btn {
-    @apply rounded-1;
+    @apply rounded-3;
   }
 
   .btn-lg {
@@ -96,7 +96,7 @@
     @apply py-1 px-2;
 
     &.inp-bordered {
-      @apply border;
+      @apply border-4;
     }
   }
 
@@ -105,7 +105,7 @@
   }
 
   textarea.inp {
-    @apply rounded-1;
+    @apply rounded-3;
   }
 
   .inp-bordered {
@@ -117,10 +117,10 @@
   @apply shadow-outline;
 }
 
-@media screen and (min-width: theme('screens.md')) {
+@screen md {
   .inp,
   .inp:not(textarea) {
-    @apply rounded-1;
+    @apply rounded-3;
   }
 }
 
@@ -128,7 +128,7 @@
 /* Decorations */
 @variants responsive, group-hover, focus-within, hover, focus, active {
   .avatar {
-    @apply rounded-full -shadow;
+    @apply rounded-full -shadow-4;
   }
 
   .icon {

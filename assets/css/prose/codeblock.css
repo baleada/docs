@@ -1,6 +1,6 @@
 .baleada-prose-article {
   pre {
-    @apply rounded px-3 py-5 overflow-x-scroll with-max-h scrolling-touch;
+    @apply rounded-4 py-5 overflow-x-scroll with-max-h scrolling-touch;
 
     code {
       @apply block leading-2;
@@ -8,7 +8,7 @@
   }
 
   .baleada-prose-codeblock {
-    @apply relative -left-7 w-screen;
+    @apply relative left-0 -ml-7 w-screen;
 
     .contents {
       @apply relative;
@@ -19,7 +19,7 @@
     }
 
     & > button {
-      @apply absolute bottom-0 right-0 h-7 w-7 flex items-center p-2 shadow-1 rounded-full bg-gray-100 text-gray-1000 transition-2;
+      @apply absolute bottom-0 right-0 h-7 w-7 flex items-center p-2 shadow-3 rounded-full bg-gray-100 text-gray-1000 transition-2;
       transform: translate(-33%, 33%);
 
       svg {
@@ -49,10 +49,10 @@
   }
 }
 
-@media screen and (min-width: theme('screens.sm')) {
+@screen sm {
   .baleada-prose-article {
     .baleada-prose-codeblock {
-      @apply -left-9;
+      @apply left-0 -ml-9;
 
       .contents {
         pre {
@@ -63,7 +63,7 @@
   }
 }
 
-@media screen and (min-width: theme('screens.md')) {
+@screen md {
   .baleada-prose-article {
     .baleada-prose-codeblock {
       @apply max-h-full;
@@ -71,10 +71,10 @@
   }
 }
 
-@media screen and (min-width: theme('screens.lg')) {
+@screen lg {
   .baleada-prose-article {
     .baleada-prose-codeblock {
-      @apply left-0 w-auto;
+      @apply left-0 mx-auto w-auto;
 
       .contents {
         pre {

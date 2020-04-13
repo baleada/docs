@@ -99,7 +99,8 @@ All methods always return the `Copyable` instance (i.e. `this`), regardless of `
 | Spec | Compliance status | Notes |
 | --- | --- | --- |
 | Access functionality by constructing an instance | <ApiDesignSpecCheckmark /> |  |
-| Constructor accepts two parameters: a piece of state,and an `options` object. | <ApiDesignSpecCheckmark /> | The `options` object doesn't currently have any valid properties. But it still technically exists, so it totally counts! |
+| Constructor accepts two parameters: a piece of state,and an `options` object. | <ApiDesignSpecCheckmark /> | The `options` object doesn't currently have any valid properties. |
+| Constructor does not access the DOM | <ApiDesignSpecCheckmark /> |  |
 | Takes the form of a JavaScript Object | <ApiDesignSpecCheckmark /> |  |
 | State and methods are accessible through properties of the object | <ApiDesignSpecCheckmark /> |  |
 | Methods always return the instance | <ApiDesignSpecCheckmark /> |  |

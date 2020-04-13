@@ -11,7 +11,7 @@ publish: true
 
 :::
 ```bash
-npm i @baleada/icons-vue
+npm i @baleada/vue-icons
 ```
 :::
 
@@ -20,11 +20,11 @@ npm i @baleada/icons-vue
 ## Import a component
 :::
 
-All Baleada Icons Vue components are [functional components](https://vuejs.org/v2/guide/render-function.html#Functional-Components). They can be imported from `@baleada/icons-vue` for local or global registration.
+All Baleada Icons Vue components are [functional components](https://vuejs.org/v2/guide/render-function.html#Functional-Components). They can be imported from `@baleada/vue-icons` for local or global registration.
 
 :::
 ```js
-import { HeroiconsEmojiHappy } from '@baleada/icons-vue'
+import { HeroiconsEmojiHappy } from '@baleada/vue-icons'
 
 export default {
   components: {
@@ -39,9 +39,9 @@ If you prefer, you can also import icons from their specific icon set:
 
 :::
 ```js
-import { EvaGlobe2 } from '@baleada/icons-vue/eva-icons'
-import { SimpleGeocaching } from '@baleada/icons-vue/simple-icons'
-import { HeroiconsEmojiHappy } from '@baleada/icons-vue/heroicons'
+import { EvaGlobe2 } from '@baleada/vue-icons/eva-icons'
+import { SimpleGeocaching } from '@baleada/vue-icons/simple-icons'
+import { HeroiconsEmojiHappy } from '@baleada/vue-icons/heroicons'
 ```
 :::
 
