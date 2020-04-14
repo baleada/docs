@@ -58,48 +58,7 @@
   {
     "level": 2,
     "name": "components",
-    "pages": [
-      {
-        "title": "ProseArticle",
-        "href": "/docs/prose/components/article"
-      },
-      {
-        "title": "ProseAside",
-        "href": "/docs/prose/components/aside"
-      },
-      {
-        "title": "ProseBlockquote",
-        "href": "/docs/prose/components/blockquote"
-      },
-      {
-        "title": "ProseCodeblock",
-        "href": "/docs/prose/components/codeblock"
-      },
-      {
-        "title": "ProseDetails",
-        "href": "/docs/prose/components/details"
-      },
-      {
-        "title": "ProseGrid",
-        "href": "/docs/prose/components/grid"
-      },
-      {
-        "title": "ProseHeading",
-        "href": "/docs/prose/components/heading"
-      },
-      {
-        "title": "ProseLayout",
-        "href": "/docs/prose/components/layout"
-      },
-      {
-        "title": "ProseList",
-        "href": "/docs/prose/components/list"
-      },
-      {
-        "title": "ProseSection",
-        "href": "/docs/prose/components/section"
-      }
-    ]
+    "pages": []
   },
   {
     "level": 1,
@@ -156,30 +115,6 @@
       {
         "title": "taps",
         "href": "/docs/listenable-gestures/functions/taps"
-      },
-      {
-        "title": "fractions",
-        "href": "/docs/theme-utils/functions/fractions"
-      },
-      {
-        "title": "px",
-        "href": "/docs/theme-utils/functions/px"
-      },
-      {
-        "title": "rem",
-        "href": "/docs/theme-utils/functions/rem"
-      },
-      {
-        "title": "screen",
-        "href": "/docs/theme-utils/functions/screen"
-      },
-      {
-        "title": "withoutColorPalettes",
-        "href": "/docs/theme-utils/functions/withoutColorPalettes"
-      },
-      {
-        "title": "withoutTailwindFractions",
-        "href": "/docs/theme-utils/functions/withoutTailwindFractions"
       }
     ]
   },
@@ -471,30 +406,6 @@
     "level": 2,
     "name": "functions",
     "pages": [
-      {
-        "title": "clicks",
-        "href": "/docs/listenable-gestures/functions/clicks"
-      },
-      {
-        "title": "drag",
-        "href": "/docs/listenable-gestures/functions/drag"
-      },
-      {
-        "title": "dragdrop",
-        "href": "/docs/listenable-gestures/functions/dragdrop"
-      },
-      {
-        "title": "pan",
-        "href": "/docs/listenable-gestures/functions/pan"
-      },
-      {
-        "title": "swipe",
-        "href": "/docs/listenable-gestures/functions/swipe"
-      },
-      {
-        "title": "taps",
-        "href": "/docs/listenable-gestures/functions/taps"
-      },
       {
         "title": "fractions",
         "href": "/docs/theme-utils/functions/fractions"
