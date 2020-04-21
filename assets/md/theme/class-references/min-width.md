@@ -35,7 +35,6 @@ order: 0
 | `.min-w-4/3` | none | `calc(4/3 * 100%)` |
 | `.min-w-5/3` | none | `calc(5/3 * 100%)` |
 | `.min-w-1/4` | none | `calc(1/4 * 100%)` |
-| `.min-w-2/4` | none | `calc(2/4 * 100%)` |
 | `.min-w-3/4` | none | `calc(3/4 * 100%)` |
 | `.min-w-5/4` | none | `calc(5/4 * 100%)` |
 | `.min-w-7/4` | none | `calc(7/4 * 100%)` |
@@ -48,9 +47,6 @@ order: 0
 | `.min-w-8/5` | none | `calc(8/5 * 100%)` |
 | `.min-w-9/5` | none | `calc(9/5 * 100%)` |
 | `.min-w-1/6` | none | `calc(1/6 * 100%)` |
-| `.min-w-2/6` | none | `calc(2/6 * 100%)` |
-| `.min-w-3/6` | none | `calc(3/6 * 100%)` |
-| `.min-w-4/6` | none | `calc(4/6 * 100%)` |
 | `.min-w-5/6` | none | `calc(5/6 * 100%)` |
 | `.min-w-7/6` | none | `calc(7/6 * 100%)` |
 | `.min-w-11/6` | none | `calc(11/6 * 100%)` |
@@ -62,7 +58,6 @@ order: 0
 | `.min-w-screen-4/3` | none | `calc(4/3 * 100vh)` |
 | `.min-w-screen-5/3` | none | `calc(5/3 * 100vh)` |
 | `.min-w-screen-1/4` | none | `calc(1/4 * 100vh)` |
-| `.min-w-screen-2/4` | none | `calc(2/4 * 100vh)` |
 | `.min-w-screen-3/4` | none | `calc(3/4 * 100vh)` |
 | `.min-w-screen-5/4` | none | `calc(5/4 * 100vh)` |
 | `.min-w-screen-7/4` | none | `calc(7/4 * 100vh)` |
@@ -75,9 +70,6 @@ order: 0
 | `.min-w-screen-8/5` | none | `calc(8/5 * 100vh)` |
 | `.min-w-screen-9/5` | none | `calc(9/5 * 100vh)` |
 | `.min-w-screen-1/6` | none | `calc(1/6 * 100vh)` |
-| `.min-w-screen-2/6` | none | `calc(2/6 * 100vh)` |
-| `.min-w-screen-3/6` | none | `calc(3/6 * 100vh)` |
-| `.min-w-screen-4/6` | none | `calc(4/6 * 100vh)` |
 | `.min-w-screen-5/6` | none | `calc(5/6 * 100vh)` |
 | `.min-w-screen-7/6` | none | `calc(7/6 * 100vh)` |
 | `.min-w-screen-11/6` | none | `calc(11/6 * 100vh)` |

@@ -7,6 +7,8 @@ order: 0
 
 
 
+`.p` is shown here, but the same configuration applies for `.pt`, `.pr`, `.pb`, `.pl`, `.px`, and `.py`.
+
 ::: ariaLabel="Padding class reference"
 | Class | Tailwind equivalent | Value |
 | --- | --- | --- |

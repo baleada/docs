@@ -125,10 +125,7 @@ The `linearNumeric` returns configurations for the following properties of the `
 - `minWidth`
 - `strokeWidth`
 - `transitionDuration`
-
-::: type="warning"
-`linearNumeric` only provides configurations for Tailwind's full color palettes; it doesn't configure `black`, `white`, or `transparent`.
-:::
+- `transitionDelay`
 
 The function accepts one parameter: an object with options (none of which are required). Here's a full breakdown of that object:
 
@@ -170,7 +167,7 @@ module.exports = {
 :::
 
 ::: type="info"
-The default configurations for margin, padding, height, width, and gap all reference your `spacing` object. Including `spacing` in your `linearNumeric` output will adjust all of those utility classes.
+The default configurations for `height`, `width`, `margin`, `padding`, `translate`, `gap`, `space`, and `divide` all reference your `spacing` object. `linearNumeric`'s `spacing` configuration will adjust all of those utility classes.
 :::
 
 To customize the increment that gets used in your class names, use the `increment` option.

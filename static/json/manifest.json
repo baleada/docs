@@ -69,8 +69,8 @@
         "href": "/docs/linear-numeric"
       },
       {
-        "title": "Class References",
-        "href": "/docs/linear-numeric/class-reference"
+        "title": "Class references",
+        "href": "/docs/linear-numeric/class-references"
       },
       {
         "title": "Default Config",
@@ -307,6 +307,10 @@
         "href": "/docs/theme/class-references/colors"
       },
       {
+        "title": "Divide width",
+        "href": "/docs/theme/class-references/divide-width"
+      },
+      {
         "title": "Flex grow",
         "href": "/docs/theme/class-references/flex-grow"
       },
@@ -321,6 +325,10 @@
       {
         "title": "Font weight",
         "href": "/docs/theme/class-references/font-weight"
+      },
+      {
+        "title": "Gap",
+        "href": "/docs/theme/class-references/gap"
       },
       {
         "title": "Height",
@@ -375,12 +383,24 @@
         "href": "/docs/theme/class-references/screens"
       },
       {
+        "title": "Space",
+        "href": "/docs/theme/class-references/space"
+      },
+      {
         "title": "Stroke width",
         "href": "/docs/theme/class-references/stroke-width"
       },
       {
+        "title": "Transition delay",
+        "href": "/docs/theme/class-references/transition-delay"
+      },
+      {
         "title": "Transition duration",
         "href": "/docs/theme/class-references/transition-duration"
+      },
+      {
+        "title": "Translate",
+        "href": "/docs/theme/class-references/translate"
       },
       {
         "title": "Width",

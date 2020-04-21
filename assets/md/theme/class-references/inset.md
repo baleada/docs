@@ -7,7 +7,7 @@ order: 0
 
 
 
-Top is shown here as an example, but the same configuration applies for `right`, `bottom`, and `left`.
+`.top` is shown here as an example, but the same configuration applies for `.right`, `.bottom`, and `.left`.
 
 ::: ariaLabel="Inset class reference"
 | Class | Tailwind equivalent | Value |
@@ -51,7 +51,6 @@ Top is shown here as an example, but the same configuration applies for `right`,
 | `.top-4/3` | none | `calc(4/3 * 100%)` |
 | `.top-5/3` | none | `calc(5/3 * 100%)` |
 | `.top-1/4` | none | `calc(1/4 * 100%)` |
-| `.top-2/4` | none | `calc(2/4 * 100%)` |
 | `.top-3/4` | none | `calc(3/4 * 100%)` |
 | `.top-5/4` | none | `calc(5/4 * 100%)` |
 | `.top-7/4` | none | `calc(7/4 * 100%)` |
@@ -64,9 +63,6 @@ Top is shown here as an example, but the same configuration applies for `right`,
 | `.top-8/5` | none | `calc(8/5 * 100%)` |
 | `.top-9/5` | none | `calc(9/5 * 100%)` |
 | `.top-1/6` | none | `calc(1/6 * 100%)` |
-| `.top-2/6` | none | `calc(2/6 * 100%)` |
-| `.top-3/6` | none | `calc(3/6 * 100%)` |
-| `.top-4/6` | none | `calc(4/6 * 100%)` |
 | `.top-5/6` | none | `calc(5/6 * 100%)` |
 | `.top-7/6` | none | `calc(7/6 * 100%)` |
 | `.top-11/6` | none | `calc(11/6 * 100%)` |

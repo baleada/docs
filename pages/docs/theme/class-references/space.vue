@@ -5,7 +5,7 @@
 </template>
 
 <script>
-import article from '~/assets/md/linear-numeric/class-reference.md'
+import article from '~/assets/md/theme/class-references/space.md'
 
 export default {
   layout: 'prose',

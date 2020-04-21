@@ -1,5 +1,5 @@
 ---
-title: Class References
+title: Class references
 tags: Configuration utilities, Tailwind CSS
 publish: true
 order: 1
@@ -11,10 +11,14 @@ In this article, you'll find a class reference table for each of the properties 
 
 
 :::
-## Colors (blue, for example)
+## Colors
 :::
 
-::: ariaLabel="Colors (blue, for example) class reference"
+Blue is shown here as an example, but Baleada Linear Numeric includes all of the default Tailwind colors.
+
+Baleada Linear Numeric also includes Tailwind's default standalone colors `black`, `white`, and `transparent`.
+
+::: ariaLabel="Colors class reference"
 | Class | Tailwind equivalent | Value |
 | --- | --- | --- |
 | `.bg-blue-1` | `.bg-blue-100` | `#ebf8ff` |
@@ -30,10 +34,12 @@ In this article, you'll find a class reference table for each of the properties 
 
 
 :::
-## Spacing (affects height, width, margin, padding, and translate)
+## Spacing
 :::
 
-::: ariaLabel="Spacing (affects height, width, margin, padding, and translate) class reference"
+`height` is shown here as an example, but spacing also affects `width`, `margin`, `padding`, `translate`, `gap`, `space`, and `divide` utilities.
+
+::: ariaLabel="Spacing class reference"
 | Class | Tailwind equivalent | Value |
 | --- | --- | --- |
 | `.h-0` | `.h-0` | `0` |
@@ -303,4 +309,22 @@ In this article, you'll find a class reference table for each of the properties 
 | `.duration-6` | `.duration-500` | `500ms` |
 | `.duration-7` | `.duration-700` | `700ms` |
 | `.duration-8` | `.duration-1000` | `1000ms` |
+:::
+
+
+:::
+## Transition delay
+:::
+
+::: ariaLabel="Transition delay class reference"
+| Class | Tailwind equivalent | Value |
+| --- | --- | --- |
+| `.delay-1` | `.delay-75` | `75ms` |
+| `.delay-2` | `.delay-100` | `100ms` |
+| `.delay-3` | `.delay-150` | `150ms` |
+| `.delay-4` | `.delay-200` | `200ms` |
+| `.delay-5` | `.delay-300` | `300ms` |
+| `.delay-6` | `.delay-500` | `500ms` |
+| `.delay-7` | `.delay-700` | `700ms` |
+| `.delay-8` | `.delay-1000` | `1000ms` |
 :::

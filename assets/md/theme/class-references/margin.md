@@ -7,6 +7,8 @@ order: 0
 
 
 
+`.m` is shown here, but the same configuration applies for `.mt`, `.mr`, `.mb`, `.ml`, `.mx`, and `.my`.
+
 ::: ariaLabel="Margin class reference"
 | Class | Tailwind equivalent | Value |
 | --- | --- | --- |
