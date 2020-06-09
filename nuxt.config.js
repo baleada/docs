@@ -1,6 +1,7 @@
 import getTransform from '@baleada/markdown-to-prose'
 import propsInterfaces from '@baleada/vue-prose/lib/propsInterfaces'
 import MarkdownItSpaLinks from '@baleada/markdown-it-spa-links'
+import MarkdownItLinkAttributes from 'markdown-it-link-attributes'
 import refractor from 'refractor'
 import rehype from 'rehype'
 import purgecssConfig from './config/purgecss.config'
@@ -113,7 +114,8 @@ export default {
             }
           },
           plugins: [
-            [MarkdownItSpaLinks, { spa: 'nuxt' }]
+            [MarkdownItSpaLinks, { spa: 'nuxt' }],
+            [MarkdownItLinkAttributes, { attrs: { rel: 'noopener' } }],
           ],
         },
         before: ({ frontMatter: { title }, stats }) => `\n\
@@ -140,7 +142,7 @@ export default {
             }
 
       config.module.rules.push({
-        test: /\.md$/,
+        test: /\.prose$/,
         oneOf: [
           {
             use: [

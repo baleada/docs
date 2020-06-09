@@ -5,7 +5,7 @@
 </template>
 
 <script>
-import article from '~/assets/md/theme-utils/functions/screen.md'
+import article from '~/assets/prose/theme-utils/functions/screen.prose'
 
 export default {
   layout: 'prose',

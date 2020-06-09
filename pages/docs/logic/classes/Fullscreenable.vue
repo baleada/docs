@@ -5,7 +5,7 @@
 </template>
 
 <script>
-import article from '~/assets/md/logic/classes/Fullscreenable.md'
+import article from '~/assets/prose/logic/classes/Fullscreenable.prose'
 
 export default {
   layout: 'prose',

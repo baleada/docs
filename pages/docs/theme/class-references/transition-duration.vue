@@ -5,7 +5,7 @@
 </template>
 
 <script>
-import article from '~/assets/md/theme/class-references/transition-duration.md'
+import article from '~/assets/prose/theme/class-references/transition-duration.prose'
 
 export default {
   layout: 'prose',

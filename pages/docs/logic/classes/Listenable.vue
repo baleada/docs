@@ -5,7 +5,7 @@
 </template>
 
 <script>
-import article from '~/assets/md/logic/classes/Listenable.md'
+import article from '~/assets/prose/logic/classes/Listenable.prose'
 
 export default {
   layout: 'prose',

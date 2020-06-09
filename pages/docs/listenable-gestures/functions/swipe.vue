@@ -5,7 +5,7 @@
 </template>
 
 <script>
-import article from '~/assets/md/listenable-gestures/functions/swipe.md'
+import article from '~/assets/prose/listenable-gestures/functions/swipe.prose'
 
 export default {
   layout: 'prose',

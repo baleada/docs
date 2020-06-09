@@ -5,7 +5,7 @@
 </template>
 
 <script>
-import article from '~/assets/md/theme/class-references/opacity.md'
+import article from '~/assets/prose/theme/class-references/opacity.prose'
 
 export default {
   layout: 'prose',

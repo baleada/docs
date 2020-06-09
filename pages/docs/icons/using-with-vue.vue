@@ -5,7 +5,7 @@
 </template>
 
 <script>
-import article from '~/assets/md/icons/using-with-vue.md'
+import article from '~/assets/prose/icons/using-with-vue.prose'
 
 export default {
   layout: 'prose',

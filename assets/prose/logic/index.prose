@@ -68,7 +68,7 @@ All available classes and factories are listed in this site's navigation under *
 
 Classes and factories are written in modern JavaScript, and almost all of them have no dependencies of their own. They are compiled by [Babel](https://babeljs.io) to work in browsers that are used by more than 0.5% of global web visitors AND have had official support or updates in the past 24 months.
 
-To allow for [tree-shaking](https://webpack.js.org/guides/tree-shaking/), Baleada Logic has no side effects and is bundled by [Rollup](https://rollupjs.org/), outputting [ES modules](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Modules).
+To allow for [tree-shaking](https://webpack.js.org/guides/tree-shaking/), Baleada Logic has no side effects and is bundled as ES modules by [Rollup](https://rollupjs.org/), outputting [ES modules](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Modules).
 
 Dependencies, when they exist, were chosen with the following desirable characteristics in mind (in no particular order):
 - Framework agnostic

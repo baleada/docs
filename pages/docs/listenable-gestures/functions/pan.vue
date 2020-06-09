@@ -5,7 +5,7 @@
 </template>
 
 <script>
-import article from '~/assets/md/listenable-gestures/functions/pan.md'
+import article from '~/assets/prose/listenable-gestures/functions/pan.prose'
 
 export default {
   layout: 'prose',

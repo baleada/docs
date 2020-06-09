@@ -5,7 +5,7 @@
 </template>
 
 <script>
-import article from '~/assets/md/theme/class-references/flex-grow.md'
+import article from '~/assets/prose/theme/class-references/flex-grow.prose'
 
 export default {
   layout: 'prose',

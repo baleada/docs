@@ -5,7 +5,7 @@
 </template>
 
 <script>
-import article from '~/assets/md/theme/class-references/z-index.md'
+import article from '~/assets/prose/theme/class-references/z-index.prose'
 
 export default {
   layout: 'prose',

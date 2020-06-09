@@ -13,7 +13,7 @@ order: 0
 `Fetchable` is written in vanilla JS with no dependencies.
 
 ::: type="info"
-`Fetchable` adds very little extra functionality to the [`fetch`](https://developer.mozilla.org/en-US/docs/Web/API/WindowOrWorkerGlobalScope/fetch) web API. It's mostly intended to be a thin wrapper, simply ensuring that the `fetch` API conforms to all of Baleada Logic's API design specs and naming conventions.
+`Fetchable` adds very little extra functionality to the [`fetch`](https://developer.mozilla.org/en-US/docs/Web/API/WindowOrWorkerGlobalScope/fetch) web API. It's intended to be a thin wrapper, simply ensuring that the `fetch` API conforms to all of Baleada Logic's API design specs and naming conventions.
 :::
 
 

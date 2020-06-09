@@ -5,7 +5,7 @@
 </template>
 
 <script>
-import article from '~/assets/md/theme/class-references/flex-shrink.md'
+import article from '~/assets/prose/theme/class-references/flex-shrink.prose'
 
 export default {
   layout: 'prose',

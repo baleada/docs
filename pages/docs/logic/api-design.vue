@@ -5,7 +5,7 @@
 </template>
 
 <script>
-import article from '~/assets/md/logic/api-design.md'
+import article from '~/assets/prose/logic/api-design.prose'
 
 export default {
   layout: 'prose',

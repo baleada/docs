@@ -5,7 +5,7 @@
 </template>
 
 <script>
-import article from '~/assets/md/theme/class-references/padding.md'
+import article from '~/assets/prose/theme/class-references/padding.prose'
 
 export default {
   layout: 'prose',

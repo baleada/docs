@@ -5,7 +5,7 @@
 </template>
 
 <script>
-import article from '~/assets/md/linear-numeric/default-config.md'
+import article from '~/assets/prose/linear-numeric/default-config.prose'
 
 export default {
   layout: 'prose',

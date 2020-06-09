@@ -9,8 +9,8 @@ function generateManifest (metadata) {
             name: 'overview',
             pages: getOverviewPages(published)
           },
-          ...getDirs('./assets/md').map(dir => {
-            const level = dir.match(/\//g).length - 2, // 2 backslashes in ./assets/md,
+          ...getDirs('./assets/prose').map(dir => {
+            const level = dir.match(/\//g).length - 2, // 2 backslashes in ./assets/prose,
                   name = dir.match(/(?:\w|-)+$/)[0],
                   pages = getPages(dir, name, published),
                   displayName = name.replace(/-/g, ' ').replace(/markdown it/, 'markdown-it')
@@ -32,8 +32,8 @@ function getOverviewPages (metadata) {
 }
 
 function getPages (dirPath, dirName, metadata) {
-  const dirRegExp = new RegExp(`${dirPath.replace(/\.\/assets\/md\//, '')}/$`)
-  console.log(dirPath.replace(/\.\/assets\/md\//, ''))
+  const dirRegExp = new RegExp(`${dirPath.replace(/\.\/assets\/prose\//, '')}/$`)
+  console.log(dirPath.replace(/\.\/assets\/prose\//, ''))
   return toPages(
     metadata.filter(({ fileName, href }) => dirRegExp.test(href.replace(/\/docs\//, '').replace(fileName, '')) || href === `/docs/${dirName}`)
   )

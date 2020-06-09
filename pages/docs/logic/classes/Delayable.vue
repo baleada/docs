@@ -5,7 +5,7 @@
 </template>
 
 <script>
-import article from '~/assets/md/logic/classes/Delayable.md'
+import article from '~/assets/prose/logic/classes/Delayable.prose'
 
 export default {
   layout: 'prose',

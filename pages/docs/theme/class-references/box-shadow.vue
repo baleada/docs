@@ -5,7 +5,7 @@
 </template>
 
 <script>
-import article from '~/assets/md/theme/class-references/box-shadow.md'
+import article from '~/assets/prose/theme/class-references/box-shadow.prose'
 
 export default {
   layout: 'prose',

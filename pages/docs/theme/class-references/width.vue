@@ -5,7 +5,7 @@
 </template>
 
 <script>
-import article from '~/assets/md/theme/class-references/width.md'
+import article from '~/assets/prose/theme/class-references/width.prose'
 
 export default {
   layout: 'prose',

@@ -5,7 +5,7 @@
 </template>
 
 <script>
-import article from '~/assets/md/theme/class-references/translate.md'
+import article from '~/assets/prose/theme/class-references/translate.prose'
 
 export default {
   layout: 'prose',

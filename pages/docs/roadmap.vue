@@ -5,7 +5,7 @@
 </template>
 
 <script>
-import article from '~/assets/md/roadmap.md'
+import article from '~/assets/prose/roadmap.prose'
 
 export default {
   layout: 'prose',

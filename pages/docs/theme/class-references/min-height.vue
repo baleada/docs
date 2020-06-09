@@ -5,7 +5,7 @@
 </template>
 
 <script>
-import article from '~/assets/md/theme/class-references/min-height.md'
+import article from '~/assets/prose/theme/class-references/min-height.prose'
 
 export default {
   layout: 'prose',

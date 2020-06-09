@@ -5,7 +5,7 @@
 </template>
 
 <script>
-import article from '~/assets/md/theme-utils/functions/fractions.md'
+import article from '~/assets/prose/theme-utils/functions/fractions.prose'
 
 export default {
   layout: 'prose',

@@ -5,7 +5,7 @@
 </template>
 
 <script>
-import article from '~/assets/md/theme/class-references/margin.md'
+import article from '~/assets/prose/theme/class-references/margin.prose'
 
 export default {
   layout: 'prose',

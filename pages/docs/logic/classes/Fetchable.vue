@@ -5,7 +5,7 @@
 </template>
 
 <script>
-import article from '~/assets/md/logic/classes/Fetchable.md'
+import article from '~/assets/prose/logic/classes/Fetchable.prose'
 
 export default {
   layout: 'prose',

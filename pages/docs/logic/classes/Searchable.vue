@@ -5,7 +5,7 @@
 </template>
 
 <script>
-import article from '~/assets/md/logic/classes/Searchable.md'
+import article from '~/assets/prose/logic/classes/Searchable.prose'
 
 export default {
   layout: 'prose',

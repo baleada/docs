@@ -5,7 +5,7 @@
 </template>
 
 <script>
-import article from '~/assets/md/prose/components/blockquote.md'
+import article from '~/assets/prose/prose/components/blockquote.prose'
 
 export default {
   layout: 'prose',

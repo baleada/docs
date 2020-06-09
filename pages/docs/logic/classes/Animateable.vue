@@ -5,7 +5,7 @@
 </template>
 
 <script>
-import article from '~/assets/md/logic/classes/Animateable.md'
+import article from '~/assets/prose/logic/classes/Animateable.prose'
 
 export default {
   layout: 'prose',

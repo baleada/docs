@@ -5,7 +5,7 @@
 </template>
 
 <script>
-import article from '~/assets/md/source-transform/using-with-webpack.md'
+import article from '~/assets/prose/source-transform/using-with-webpack.prose'
 
 export default {
   layout: 'prose',

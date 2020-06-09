@@ -5,7 +5,7 @@
 </template>
 
 <script>
-import article from '~/assets/md/linear-numeric/index.md'
+import article from '~/assets/prose/linear-numeric/index.prose'
 
 export default {
   layout: 'prose',

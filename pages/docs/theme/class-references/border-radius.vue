@@ -5,7 +5,7 @@
 </template>
 
 <script>
-import article from '~/assets/md/theme/class-references/border-radius.md'
+import article from '~/assets/prose/theme/class-references/border-radius.prose'
 
 export default {
   layout: 'prose',

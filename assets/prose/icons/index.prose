@@ -115,4 +115,4 @@ Baleada Icons is written in modern JavaScript. The icons never have dependencies
 
 Baleada Icons is compiled by [Babel](https://babeljs.io) to work in browsers that are used by more than 0.5% of global web visitors AND have had official support or updates in the past 24 months.
 
-To allow for [tree-shaking](https://webpack.js.org/guides/tree-shaking/), Baleada Icons has no side effects and is bundled by [Rollup](https://rollupjs.org/), outputting [ES modules](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Modules).
+To allow for [tree-shaking](https://webpack.js.org/guides/tree-shaking/), Baleada Icons has no side effects and is bundled as ES modules by [Rollup](https://rollupjs.org/), outputting [ES modules](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Modules).

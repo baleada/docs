@@ -21,7 +21,7 @@ export default {
   setup() {
     const filePath = inject(useSymbol('article', 'filePath')),
           gitPath = computed(() => {
-            const path = filePath.value.match(/\/assets\/md\/.+$/)
+            const path = filePath.value.match(/\/assets\/prose\/.+$/)
             return path[0] && `https://gitlab.com/baleada/docs/tree/master${path[0]}`
           })
 

@@ -177,6 +177,10 @@
         "href": "/docs/logic/classes/Recognizeable"
       },
       {
+        "title": "Resolveable",
+        "href": "/docs/logic/classes/Resolveable"
+      },
+      {
         "title": "Searchable",
         "href": "/docs/logic/classes/Searchable"
       }

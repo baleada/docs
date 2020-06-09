@@ -5,7 +5,7 @@
 </template>
 
 <script>
-import article from '~/assets/md/theme-utils/index.md'
+import article from '~/assets/prose/theme-utils/index.prose'
 
 export default {
   layout: 'prose',

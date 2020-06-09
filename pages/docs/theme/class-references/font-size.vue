@@ -5,7 +5,7 @@
 </template>
 
 <script>
-import article from '~/assets/md/theme/class-references/font-size.md'
+import article from '~/assets/prose/theme/class-references/font-size.prose'
 
 export default {
   layout: 'prose',

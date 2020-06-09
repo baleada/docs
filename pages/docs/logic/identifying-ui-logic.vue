@@ -5,7 +5,7 @@
 </template>
 
 <script>
-import article from '~/assets/md/logic/identifying-ui-logic.md'
+import article from '~/assets/prose/logic/identifying-ui-logic.prose'
 
 export default {
   layout: 'prose',

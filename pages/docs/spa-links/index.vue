@@ -5,7 +5,7 @@
 </template>
 
 <script>
-import article from '~/assets/md/spa-links/index.md'
+import article from '~/assets/prose/spa-links/index.prose'
 
 export default {
   layout: 'prose',

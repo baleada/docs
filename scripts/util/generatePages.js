@@ -36,8 +36,8 @@ export default {\n\
 
 function write (article, { path }) {
   const pagesPath = path
-    .replace(/assets\/md/, 'pages/docs')
-    .replace(/\.md$/, '.vue')
+    .replace(/assets\/prose/, 'pages/docs')
+    .replace(/\.prose$/, '.vue')
 
   fs.writeFileSync(pagesPath, article)
 }

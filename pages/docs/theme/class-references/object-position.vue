@@ -5,7 +5,7 @@
 </template>
 
 <script>
-import article from '~/assets/md/theme/class-references/object-position.md'
+import article from '~/assets/prose/theme/class-references/object-position.prose'
 
 export default {
   layout: 'prose',

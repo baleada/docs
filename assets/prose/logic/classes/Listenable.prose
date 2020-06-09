@@ -45,6 +45,7 @@ To construct a `Listenable` instance (Object), use the `Listenable` constructor,
 
 :::
 ```js
+import { Listenable } from '@baleada/logic'
 const instance = new Listenable(eventType[, options])
 ```
 :::
@@ -53,11 +54,10 @@ Or, if you're using [Baleada Composition](/docs/compositon):
 
 :::
 ```js
+import { useListenable } from '@baleada/vue-composition'
 const reactiveInstance = useListenable(eventType[, options])
 ```
 :::
-
-
 
 
 :::
@@ -93,21 +93,24 @@ The table below has a breakdown of valid event types, the corresponding web APIs
 
 To achieve this or something similar, you just need to format your `eventType` properly when passing it to the `Listenable` constructor. Here are the steps you can follow:
 
-1. Optionally, choose up to four modifiers from the options below:
-    - `shift`
-    - `ctrl`
-    - `cmd`
-    - `alt` a.k.a. `opt`
-1. Choose one of the following things:
+1. Optionally, choose modifiers from the options below. You can also add `!` before any modifier to assert that it wasn't pressed during the event:
+    - `shift`/`!shift`
+    - `ctrl`/`!ctrl`
+    - `cmd`/`!cmd`
+    - `alt`/`!alt` a.k.a. `opt`/`!opt`
+2. Choose one of the following things. You can also add `!` before any of these options to assert that it wasn't pressed during the event:
     - Any number
     - Any letter
     - `enter`
     - `backspace`
     - `tab`
-    - Any arrow direction—`up`, `right`, `down`, or `left`
+    - Any arrow direction—`up`, `right`, `down`, `left`, `vertical` (to listen for both `up` and `down`), `horizontal` (to listen for both `right` and `left`), or `arrow` (to listen for any arrow key)
+    - Any of the following punctuation: `,` `.` `<` `>` `/` `?` `;` `:` `'` `"` `[` `]` `{` `}` `}` `\` `|` `\` `~` `!` `@` `#` `$` `%` `^` `&` `*` `(` `)` `-` `_` `=` `+` <code>`</code>
     - `click`
+    - `mousedown`
+    - `mouseup`
     - `rightclick`
-1. Join your modifiers and your key or click choice with `+`
+3. Join your modifiers and your key or click choice with `+`
 
 Here are some more specific examples:
 
@@ -115,13 +118,16 @@ Here are some more specific examples:
 | Desired combo | `eventType` |
 | --- | --- |
 | B | `b` |
+| B + / | `b+/` |
 | Command + 1 | `cmd+1` |
 | Shift + Command + Enter | `shift+cmd+enter` |
-| Shift + Control + Option + Click | `shift+ctrl+opt+click` or `shift+ctrl+alt+click`|
-| Shift + Control + Option + Command + Up Arrow | `shift+ctrl+opt+cmd+up` or `shift+ctrl+alt+cmd+up` |
+| Shift wasn't pressed + Control + Option + Click | `!shift+ctrl+opt+click` or `!shift+ctrl+alt+click`|
+| Command + Shift + Up Arrow | `cmd+shift+up` or `cmd+shift+up` |
 | Shift + Right click | `shift+rightclick` |
+| C + Plus | `c++` |
+| Exclamation mark wasn't pressed | `!!` |
+| Command | `cmd` |
 :::
-
 
 
 :::
@@ -131,9 +137,9 @@ Here are some more specific examples:
 ::: ariaLabel="Listenable constructor options" classes="wide-4"
 | Option | Type | Default | Description |
 | --- | --- | --- | --- |
-| `recognizeable` | Object | none | Passes options for a new instance of the [`Recognizeable`](/docs/logic/classes/recognizeable) class. See the [How to listen for custom gestures](#how-to-listen-for-custom-gestures) section for more guidance. |
+| `recognizeable` | Object | none | <p>Passes options for a new instance of the [`Recognizeable`](/docs/logic/classes/recognizeable) class. See the [How to listen for custom gestures](#how-to-listen-for-custom-gestures) section for more guidance.</p><p>The `recognizeable` option only has an effect when your `eventType` is `recognizeable`.</p> |
+| `keycombo` | String | `'down'` | <p>Indicates which keyboard event should be listened to when detecting keycombos. Valid options are `down`, `up`, and `press`.</p><p>The `keycombo` option only has an effect when your `eventType` is a keycombo, as described the [How to format keycombos and clickcombos](#how-to-format-key-combos-and-click-combos).</p> |
 :::
-
 
 
 :::
@@ -151,7 +157,7 @@ The constructed `Listenable` instance is an Object, and state and methods can be
 | `activeListeners` | Getter | See return value | N/A | An array (Array) of objects that describe all the currently active listeners, observers, etc. |
 | `recognizeable` | Getter | See return value | N/A | <p>The `Recognizeable` instance constructed using the object you passed to `options.recognizeable`.</p><p>If you didn't pass that option, the `recognizeable` property will be `undefined`.</p><p>See the [How to listen for custom gestures](#how-to-listen-for-custom-gestures) section for more guidance.</p> |
 | `setEventType(eventType)` | Function | Sets a new `eventType`, after stopping and cleaning up all existing web API activity. | The new eventType (String). | The `Listenable` instance |
-| `listen(callback, options)` | Function | Listens for the events specified by your `eventType`, and executes a callback function when the events happen. Can't be called until the DOM is available. | <p>A callback (Function, required) that will be executed when the events are detected, and an optional `options` object.</p><p>To learn more about handling events with your callback, see the </p> | The `Listenable` instance |
+| `listen(callback, options)` | Function | Listens for the events specified by your `eventType`, and executes a callback function when the events happen. Can't be called until the DOM is available. | <p>A callback (Function, required) that will be executed when the events are detected, and an optional `options` object.</p><p>To learn more about handling events with your callback, see the [How to handle events](#how-to-handle-events) and [How to customize `listen` behavior](#how-to-customize-listen-behavior) sections.</p> | The `Listenable` instance |
 | `stop(target)` | Function | Stops and cleans up all web API activity. Can't be called until the DOM is available. | <p>An optional target (a DOM element or `document`).</p><p>If a target is passed, only activity related to that target will be stopped, and if no target is passed, all activity is stopped.</p> | The `Listenable` instance |
 
 :::
@@ -177,7 +183,6 @@ The table below has a full breakdown of what the `listen` method passes to your 
 | `visibilitychange` | One argument: an [Event](https://developer.mozilla.org/en-US/docs/Web/API/Event) object |
 | Key combos and click combos | One argument: an [Event](https://developer.mozilla.org/en-US/docs/Web/API/Event) object |
 | `recognizeable` | <p>One argument: an object with two properties: `event` and `recognizeable`.</p><p>See the [How to listen for custom gestures](#how-to-listen-for-custom-gestures) section for more information about this object.</p> |
-
 :::
 
 

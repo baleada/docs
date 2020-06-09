@@ -5,7 +5,7 @@
 </template>
 
 <script>
-import article from '~/assets/md/theme/class-references/letter-spacing.md'
+import article from '~/assets/prose/theme/class-references/letter-spacing.prose'
 
 export default {
   layout: 'prose',

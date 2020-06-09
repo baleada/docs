@@ -5,7 +5,7 @@
 </template>
 
 <script>
-import article from '~/assets/md/theme/class-references/max-height.md'
+import article from '~/assets/prose/theme/class-references/max-height.prose'
 
 export default {
   layout: 'prose',

@@ -5,7 +5,7 @@
 </template>
 
 <script>
-import article from '~/assets/md/theme/class-references/colors.md'
+import article from '~/assets/prose/theme/class-references/colors.prose'
 
 export default {
   layout: 'prose',

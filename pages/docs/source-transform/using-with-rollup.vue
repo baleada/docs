@@ -5,7 +5,7 @@
 </template>
 
 <script>
-import article from '~/assets/md/source-transform/using-with-rollup.md'
+import article from '~/assets/prose/source-transform/using-with-rollup.prose'
 
 export default {
   layout: 'prose',

@@ -5,7 +5,7 @@
 </template>
 
 <script>
-import article from '~/assets/md/listenable-gestures/functions/dragdrop.md'
+import article from '~/assets/prose/listenable-gestures/functions/dragdrop.prose'
 
 export default {
   layout: 'prose',

@@ -3,7 +3,7 @@
     <BaleadaLogo
       id="landing-page"
       ref="logo"
-      :class="'-ml-2 h-13 w-13 sm:h-14 sm:w-14 md:h-15 md:w-15 text-primary-100'"
+      :class="'-ml-2 h-13 w-13 sm:h-14 sm:w-14 md:h-15 md:w-15 text-primary-100 transition-none'"
       :hasShadow="true"
       @mouseover="handleMouseover"
     />
@@ -51,28 +51,34 @@ export default {
               },
               {
                 progress: 1,
-                data: { rotate: 19 }
+                data: { rotate: 8 }
               }
             ],
             {
-              duration: 120,
+              duration: 130,
               iterations: 3,
               alternates: true,
             }
           )
 
     function handleMouseover () {
-      wiggle.value.play(frame => {
-        const { data: { rotate } } = frame
+      switch (wiggle.value.status) {
+      case 'playing':
+      case 'reversing':
+        // do nothing
+        break
+      default:
+        wiggle.value.play(frame => {
+          const { data: { rotate } } = frame
 
-        console.log(wiggle.value.iterations)
+          logo.value.style.transform = `rotate(${rotate}deg)`
 
-        logo.value.style.transform = `rotate(${rotate}deg)`
-
-        if (wiggle.value.iterations === 3) {
-          logo.value.style.transform = `rotate(0deg)`
-        }
-      })
+          if (wiggle.value.iterations === 3) {
+            logo.value.style.transform = `rotate(0deg)`
+          }
+        })
+        break
+      } 
     }
 
     return {

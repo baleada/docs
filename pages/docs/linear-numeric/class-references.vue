@@ -5,7 +5,7 @@
 </template>
 
 <script>
-import article from '~/assets/md/linear-numeric/class-references.md'
+import article from '~/assets/prose/linear-numeric/class-references.prose'
 
 export default {
   layout: 'prose',

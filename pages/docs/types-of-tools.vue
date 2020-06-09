@@ -5,7 +5,7 @@
 </template>
 
 <script>
-import article from '~/assets/md/types-of-tools.md'
+import article from '~/assets/prose/types-of-tools.prose'
 
 export default {
   layout: 'prose',

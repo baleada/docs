@@ -5,7 +5,7 @@
 </template>
 
 <script>
-import article from '~/assets/md/listenable-gestures/functions/clicks.md'
+import article from '~/assets/prose/listenable-gestures/functions/clicks.prose'
 
 export default {
   layout: 'prose',

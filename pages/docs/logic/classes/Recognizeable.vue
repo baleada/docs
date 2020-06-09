@@ -5,7 +5,7 @@
 </template>
 
 <script>
-import article from '~/assets/md/logic/classes/Recognizeable.md'
+import article from '~/assets/prose/logic/classes/Recognizeable.prose'
 
 export default {
   layout: 'prose',

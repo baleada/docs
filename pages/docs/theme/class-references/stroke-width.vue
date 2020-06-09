@@ -5,7 +5,7 @@
 </template>
 
 <script>
-import article from '~/assets/md/theme/class-references/stroke-width.md'
+import article from '~/assets/prose/theme/class-references/stroke-width.prose'
 
 export default {
   layout: 'prose',

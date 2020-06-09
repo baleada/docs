@@ -5,7 +5,7 @@
 </template>
 
 <script>
-import article from '~/assets/md/listenable-gestures/index.md'
+import article from '~/assets/prose/listenable-gestures/index.prose'
 
 export default {
   layout: 'prose',

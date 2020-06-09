@@ -5,7 +5,7 @@
 </template>
 
 <script>
-import article from '~/assets/md/prose/components/codeblock.md'
+import article from '~/assets/prose/prose/components/codeblock.prose'
 
 export default {
   layout: 'prose',

@@ -5,7 +5,7 @@
 </template>
 
 <script>
-import article from '~/assets/md/theme-utils/functions/withoutTailwindFractions.md'
+import article from '~/assets/prose/theme-utils/functions/withoutTailwindFractions.prose'
 
 export default {
   layout: 'prose',

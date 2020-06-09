@@ -57,7 +57,7 @@ The functions in Baleada Composition are written in modern JavaScript. [Baleada 
 
 Baleada Composition functions are compiled by [Babel](https://babeljs.io) to work in browsers that are used by more than 0.5% of global web visitors AND have had official support or updates in the past 24 months.
 
-To allow for [tree-shaking](https://webpack.js.org/guides/tree-shaking/), Baleada Composition has no side effects and is bundled by [Rollup](https://rollupjs.org/), outputting [ES modules](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Modules).
+To allow for [tree-shaking](https://webpack.js.org/guides/tree-shaking/), Baleada Composition has no side effects and is bundled as ES modules by [Rollup](https://rollupjs.org/), outputting [ES modules](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Modules).
 
 
 :::

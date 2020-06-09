@@ -5,7 +5,7 @@
 </template>
 
 <script>
-import article from '~/assets/md/theme/class-references/space.md'
+import article from '~/assets/prose/theme/class-references/space.prose'
 
 export default {
   layout: 'prose',
