@@ -1,0 +1,111 @@
+---
+title: Storeable
+tags: UI logic, Vue, React, Svelte
+publish: true
+order: 0
+---
+
+`Storeable` is a class that enriches a storage key (String), allowing it to:
+- Store state in [`localStorage`](https://developer.mozilla.org/en-US/docs/Web/API/Window/localStorage) or [`sessionStorage`](https://developer.mozilla.org/en-US/docs/Web/API/Window/sessionStorage)
+- Remove itself from `localStorage` or `sessionStorage`
+- Store a status (`ready`, `stored`, or `removed`) in `localStorage` or `sessionStorage`
+- Remove its status from `localStorage` or `sessionStorage`
+
+::: type="info"
+`Storeable` adds very little extra functionality to the `localStorage` and `sessionStorage` APIs. It's intended to be a thin wrapper, simply ensuring that those APIs conform to all of Baleada Logic's API design specs and naming conventions.
+:::
+
+
+:::
+## Construct a `Storeable` instance
+:::
+
+To construct a `Storeable` instance (Object), use the `Storeable` constructor, which takes two parameters:
+
+::: ariaLabel="Storeable constructor parameters" classes="wide-4"
+| Parameter | Type | Required | Description |
+| --- | --- | --- | --- |
+| `key` | String | yes | The key (from a key/value pair) that will be made storable. |
+| `options` | Object | no | Options for the `Storeable` instance. See the [`Storeable` constructor options](#Storeable-constructor-options) section for more guidance. |
+:::
+
+
+:::
+```js
+const instance = new Storeable(key[, options])
+```
+:::
+
+Or, if you're using [Baleada Composition](/docs/compositon):
+
+:::
+```js
+const reactiveInstance = useStoreable(key[, options])
+```
+:::
+
+
+:::
+### `Storeable` constructor options
+:::
+
+::: ariaLabel="Storeable constructor options" classes="wide-4"
+| Option | Type | Default | Description |
+| --- | --- | --- | --- |
+| `type` | String | `'local'` | Indicates the type of storage that your `Storeable` instance should use. Valid values are `local` and `session`. |
+:::
+
+
+:::
+## Access state and methods
+:::
+
+The constructed `Storeable` instance is an Object, and state and methods can be accessed via its properties:
+
+
+::: ariaLabel="Storeable state and methods" classes="wide-3 wide-4 wide-5"
+| Property | Type | Description | Parameters | Return value |
+| --- | --- | --- | --- | --- |
+| `key` | Getter/Setter | See return value | N/A | <p>The `key` (String) passed to the constructor.</p><p>If you assign a value directly to `key`, a setter will pass the new value to `setKey`.</p> |
+| `status` | Getter | See return value | N/A | <p>The status (String) of the `Storeable` instance.</p><p>`status` is `constructing` while the instance is constructing and `ready` after it's constructed. It changes to `stored` after a value has been stored for your `key`, and it changes to `removed` after your key/value pair has been removed from storage.</p><p>`status` also gets stored in `localStorage` or `sessionStorage`. See the [How to use persistent status](#how-to-use-persistent-status) section for more guidance on this.</p> |
+| `storage` | Getter | See return value | N/A | `localStorage` or `sessionStorage`, depending on what options were passed to the `Storeable` constructor. |
+| `string` | Getter | See return value | N/A | The value (String) stored under your `key` in `localStorage` or `sessionStorage`. |
+| `error` | Getter | See return value | N/A | An empty object `{}` before any storage has been attempted The value (String) stored under your `key` in `localStorage` or `sessionStorage`. |
+| `setKey(newKey)` | Function | Sets the `key` and updates `trie`. | The new `key` (Array) | The `Storeable` instance |
+| `search(query, options)` | Function | Searches the `key` to find matches and fuzzy matches for your query. | <p>A search query (String) and search options (Object).</p><p>To learn more about what search options are available, [visit the docs for the `Searcher` class' `search` method](https://github.com/EthanRutherford/fast-fuzzy#options).</p> | The `Storeable` instance |
+:::
+
+
+:::
+### How to use persistent status
+:::
+
+
+
+
+
+
+:::
+## API design compliance
+:::
+
+::: ariaLabel="A table showing Storeable's API design compliance"  classes="wide-1 wide-3"
+| Spec | Compliance status | Notes |
+| --- | --- | --- |
+| Access functionality by constructing an instance | <ApiDesignSpecCheckmark /> |  |
+| Constructor accepts two parameters: a piece of state,and an `options` object. | <ApiDesignSpecCheckmark /> |  |
+| Constructor does not access the DOM | <ApiDesignSpecCheckmark /> |  |
+| Takes the form of a JavaScript Object | <ApiDesignSpecCheckmark /> |  |
+| State and methods are accessible through properties of the object | <ApiDesignSpecCheckmark /> |  |
+| Methods always return the instance | <ApiDesignSpecCheckmark /> |  |
+| Stores the constructor's state in a public getter named after the state's type | <ApiDesignSpecCheckmark /> | `key`  |
+| Has a public method you can use to set a new value for that public getter | <ApiDesignSpecCheckmark /> | `setKey` |
+| Has a setter for that getter so you can assign a new value directly | <ApiDesignSpecCheckmark /> |  |
+| Any other public getters that should be set by you in some cases also have setters and `set<Property>` methods | <ApiDesignSpecCheckmark /> | none |
+| Has at least one additional getter property that you can't (and shouldn't) set directly | <ApiDesignSpecCheckmark /> | `status`, `results`, `trie` |
+| Has one or more public methods that expose core functionality | <ApiDesignSpecCheckmark /> | `search` |
+| Either has no side effects or has side effects that can be cleaned up with a `stop` method | <ApiDesignSpecCheckmark /> |  |
+| Uses the sentence template to decide what state type should be accepted by a constructor | <ApiDesignSpecCheckmark /> | "Key can be searched." |
+| Constructor does not accept options that only customize the behavior of public methods, it allows those options to be passed to the method itself as a parameter. | <ApiDesignSpecCheckmark /> | |
+| Named after its core action, proper-cased and suffixed with `able` | <ApiDesignSpecCheckmark /> | |
+:::
