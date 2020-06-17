@@ -31,7 +31,7 @@
     "@babel/plugin-proposal-private-methods": "^7.4.4",
     "@baleada/composition": "^0.4.0",
     "@baleada/listenable-gestures": "^0.4.2",
-    "@baleada/logic": "^0.15.9",
+    "@baleada/logic": "^0.15.13",
     "@baleada/markdown-it-prose-container": "^0.6.1",
     "@baleada/markdown-it-spa-links": "^0.5.1",
     "@baleada/markdown-to-prose": "^0.5.9",
