@@ -183,6 +183,10 @@
       {
         "title": "Searchable",
         "href": "/docs/logic/classes/Searchable"
+      },
+      {
+        "title": "Storeable",
+        "href": "/docs/logic/classes/Storeable"
       }
     ]
   },

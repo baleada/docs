@@ -26,14 +26,14 @@ To construct a `Fullscreenable` instance (Object), use the `Fullscreenable` cons
 ::: ariaLabel="Fullscreenable constructor parameters" classes="wide-4"
 | Parameter | Type | Required | Description |
 | --- | --- | --- | --- |
-| `elementGetter` | Function | yes | A function that, when called, will return the element that will be made fullscreenable. |
+| `getElement` | Function | yes | A function that, when called, will return the element that will be made fullscreenable. |
 | `options` | Object | no | Passes options for the `Fullscreenable` instance. See the [`Fullscreenable` constructor options](#Fullscreenable-constructor-options) section for more guidance. |
 :::
 
 
 :::
 ```js
-const instance = new Fullscreenable(elementGetter[, options])
+const instance = new Fullscreenable(getElement[, options])
 ```
 :::
 
@@ -41,7 +41,7 @@ Or, if you're using [Baleada Composition](/docs/compositon):
 
 :::
 ```js
-const reactiveInstance = useFullscreenable(elementGetter[, options])
+const reactiveInstance = useFullscreenable(getElement[, options])
 ```
 :::
 
@@ -63,11 +63,11 @@ The constructed `Fullscreenable` instance is an Object, and state and methods ca
 ::: ariaLabel="Fullscreenable state and methods" classes="wide-3 wide-4 wide-5"
 | Property | Type | Description | Parameters | Return value |
 | --- | --- | --- | --- | --- |
-| `elementGetter` | Getter/Setter | See return value | N/A | <p>A copy of the `elementGetter` function passed to the constructor.</p><p>If you assign a value directly to `elementGetter`, a setter will pass the new value to `setElementGetter`.</p> |
+| `getElement` | Getter/Setter | See return value | N/A | <p>A copy of the `getElement` function passed to the constructor.</p><p>If you assign a value directly to `getElement`, a setter will pass the new value to `setGetElement`.</p> |
 | `status` | Getter | See return value | N/A | Indicates the current status (String) of the `Fullscreenable` instance. See the [How methods affect status](#how-methods-affect-status) section for more information. |
-| `element` | Getter | See return value | N/A | The element returned by the `elementGetter`. Can't be accessed until the DOM is available. |
+| `element` | Getter | See return value | N/A | The element returned by the `getElement`. Can't be accessed until the DOM is available. |
 | `error` | Getter | See return value | N/A | An empty object `{}` before the `fullscreen` or `exit` methods throw an error, and the error (Error) after any error is thrown.  |
-| `setElementGetter(newElementGetter)` | Function | Sets the `elementGetter` | The new `elementGetter` (Array) | The `Fullscreenable` instance |
+| `setGetElement(newGetElement)` | Function | Sets the `getElement` | The new `getElement` (Array) | The `Fullscreenable` instance |
 | `fullscreen()` | Function | Asynchronously fullscreens the `element`. | none | The `Fullscreenable` instance |
 | `enter()` | Function | An alias for `fullscreen`. | none | The `Fullscreenable` instance |
 | `exit()` | Function | Asynchronously exits fullscreen. | none | The `Fullscreenable` instance |
@@ -103,8 +103,8 @@ Each `Fullscreenable` instance maintains a `status` property that keeps you info
 | Takes the form of a JavaScript Object | <ApiDesignSpecCheckmark /> |  |
 | State and methods are accessible through properties of the object | <ApiDesignSpecCheckmark /> |  |
 | Methods always return the instance | <ApiDesignSpecCheckmark /> |  |
-| Stores the constructor's state in a public getter named after the state's type | <ApiDesignSpecCheckmark /> | `elementGetter`  |
-| Has a public method you can use to set a new value for that public getter | <ApiDesignSpecCheckmark /> | `setElementGetter` |
+| Stores the constructor's state in a public getter named after the state's type | <ApiDesignSpecCheckmark /> | `getElement`  |
+| Has a public method you can use to set a new value for that public getter | <ApiDesignSpecCheckmark /> | `setGetElement` |
 | Has a setter for that getter so you can assign a new value directly | <ApiDesignSpecCheckmark /> |  |
 | Any other public getters that should be set by you in some cases also have setters and `set<Property>` methods | <ApiDesignSpecCheckmark /> | none |
 | Has at least one additional getter property that you can't (and shouldn't) set directly | <ApiDesignSpecCheckmark /> | `status`, `element`, `error` |
