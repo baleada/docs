@@ -19,6 +19,7 @@ Icons are sourced from the following icon sets:
 - [Simple Icons](https://simpleicons.org/)
 - [Eva Icons](https://akveo.github.io/eva-icons/)
 - [Heroicons](https://heroicons.dev/)
+- [Octicons](https://primer.style/octicons/)
 
 Each icon in those sets has a corresponding component for the following frameworks:
 - [Vue](https://vuejs.org/)
@@ -36,13 +37,13 @@ Didn't see your favorite icon set or framework in the list? Feel free to [raise 
 
 Baleada Icons includes a component for each individual icon in the Eva Icons and Simple Icons icon sets.
 
-All components follow a simple naming convention: they start with `Eva`, `Simple`, or `Heroicons` depending on which set they are from, and end with the name of the icon.
+All components follow a simple naming convention: they start with `Eva`, `Simple`, `Heroicons`, or `Octicons` depending on which set they are from, and end with the name of the icon.
 
-Eva icons' names and Heroicons' names are created by removing all hyphens and capitalizing the first letter of each word.
+The names of Eva icons and Heroicons are created by removing all hyphens and capitalizing the first letter of each word.
 
 Here are a few examples:
 
-::: ariaLabel="Table of examples showing how Baleada transforms Eva icon names into component names"
+::: ariaLabel="Table of examples showing how Baleada transforms Eva icon and Heroicons names into component names"
 | Original icon name | Icon set | Component name |
 | --- | --- | --- |
 | bulb | Eva | `EvaBulb` |
@@ -51,6 +52,17 @@ Here are a few examples:
 | globe | Heroicons | `HeroiconsGlobe` |
 | emoji-happy | Heroicons | `HeroiconsEmojiHappy` |
 | menu-alt-4 | Heroicons | `HeroiconsMenuAlt4` |
+:::
+
+The names of Octicons are created in almost exactly the same way, except that they are suffixed with `16` or `24` depending on the icon size (each Octicon has a 16x16 and a 24x24 variant):
+
+::: ariaLabel="Table of examples showing how Baleada transforms Octicon names into component names"
+| Original icon name | Variant | Component name |
+| --- | --- | --- |
+| alert | 16x16 | `OcticonsAlert16` |
+| alert | 24x24 | `OcticonsAlert24` |
+| arrow-up-left | 16x16 | `OcticonsArrowUpLeft16` |
+| arrow-up-left | 24x24 | `OcticonsArrowUpLeft24` |
 :::
 
 Simple icons' names are created by:
