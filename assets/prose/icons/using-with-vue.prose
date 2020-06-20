@@ -42,6 +42,7 @@ If you prefer, you can also import icons from their specific icon set:
 import { EvaGlobe2 } from '@baleada/vue-icons/eva-icons'
 import { SimpleGeocaching } from '@baleada/vue-icons/simple-icons'
 import { HeroiconsEmojiHappy } from '@baleada/vue-icons/heroicons'
+import { OcticonsBold24 } from '@baleada/vue-icons/octicons
 ```
 :::
 
@@ -50,20 +51,21 @@ import { HeroiconsEmojiHappy } from '@baleada/vue-icons/heroicons'
 ## Use a component
 :::
 
-All components will render an SVG of their icon. The SVG has 4 default attributes:
+All components will render an SVG of their icon. The SVG has 3 default attributes:
 
 :::
 ```html
 <svg
   role="img"
   xmlns="http://www.w3.org/2000/svg"
-  viewBox="0 0 24 24"
   preserveAspectRatio="xMidYMid meet"
 >
   ...
 </svg>
 ```
 :::
+
+Each SVG also has a pre-set `viewBox` attribute to match the original icons `viewBox`.
 
 These 4 attributes are easy to override or expand—all of the component's attributes, event listeners, and class & style bindings are passed directly to the SVG.
 
@@ -82,4 +84,8 @@ These 4 attributes are easy to override or expand—all of the component's attri
 
 <script>...</script>
 ```
+:::
+
+::: type="warning"
+Since Baleada uses functional Vue components, class and style bindings don't pass through automatically. You need to explicitly bind those attribute using `:class` and `:style`.
 :::
