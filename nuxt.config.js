@@ -1,4 +1,4 @@
-import getTransform from '@baleada/markdown-to-prose'
+import getTransform from '@baleada/source-transform-markdown-to-prose'
 import propsInterfaces from '@baleada/vue-prose/lib/propsInterfaces'
 import MarkdownItSpaLinks from '@baleada/markdown-it-spa-links'
 import MarkdownItLinkAttributes from 'markdown-it-link-attributes'

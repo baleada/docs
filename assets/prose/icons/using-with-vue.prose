@@ -54,7 +54,7 @@ import { HeroiconsEmojiHappy } from '@baleada/vue-heroicons'
 import { EvaGlobe2 } from '@baleada/vue-eva-icons'
 import { SimpleGeocaching } from '@baleada/vue-simple-icons'
 import { TeenyiconsGlobeAfrica } from '@baleada/vue-teenyicons'
-import { OcticonsBold24 } from '@baleada/vue-octicons
+import { OcticonsBold24 } from '@baleada/vue-octicons'
 
 export default {
   components: {
