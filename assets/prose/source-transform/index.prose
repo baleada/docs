@@ -27,10 +27,11 @@ Didn't see your favorite build tool in the list? Feel free to [raise an issue](h
 
 Install from npm:
 
+:::
 ```bash
 npm i @baleada/source-transform
 ```
-
+:::
 
 :::
 ## Workflow

@@ -34,7 +34,7 @@
     "@baleada/logic": "^0.15.15",
     "@baleada/markdown-it-prose-container": "^0.6.1",
     "@baleada/markdown-it-spa-links": "^0.5.1",
-    "@baleada/markdown-to-prose": "^0.5.9",
+    "@baleada/source-transform-markdown-to-prose": "^0.5.10",
     "@baleada/tailwind-linear-numeric": "^0.8.8",
     "@baleada/tailwind-theme": "^0.1.7",
     "@baleada/tailwind-theme-utils": "^0.4.2",

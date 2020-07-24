@@ -20,6 +20,7 @@ Icons are sourced from the following icon sets:
 - [Eva Icons](https://akveo.github.io/eva-icons/)
 - [Heroicons](https://heroicons.dev/)
 - [Octicons](https://primer.style/octicons/)
+- [Teenyicons](https://teenyicons.com/)
 
 Each icon in those sets has a corresponding component for the following frameworks:
 - [Vue](https://vuejs.org/)
@@ -27,7 +28,7 @@ Each icon in those sets has a corresponding component for the following framewor
 - [Svelte](https://svelte.dev) [WIP]
 
 ::: type="info"
-Didn't see your favorite icon set or framework in the list? Feel free to [raise an issue](https://gitlab.com/baleada/icons/issues) and ask for support.
+Didn't see your favorite icon set or framework in the list? Feel free to [raise an issue](https://gitlab.com/baleada/docs/issues) and ask for support.
 :::
 
 
@@ -35,23 +36,27 @@ Didn't see your favorite icon set or framework in the list? Feel free to [raise 
 ## Available components
 :::
 
-Baleada Icons includes a component for each individual icon in the Eva Icons and Simple Icons icon sets.
+Baleada Icons includes a component for each individual icon in the sets listed above.
 
-All components follow a simple naming convention: they start with `Eva`, `Simple`, `Heroicons`, or `Octicons` depending on which set they are from, and end with the name of the icon.
+All components follow a simple naming convention: they start with `Eva`, `Simple`, `Heroicons`, `Octicons`, or `Teenyicons`, depending on which set they are from, and end with the name of the icon.
 
-The names of Eva icons and Heroicons are created by removing all hyphens and capitalizing the first letter of each word.
+The names of Eva icons, Heroicons, and Teenyicons are created by:
+1. Removing all hyphens
+2. Capitalizing the first letter of each word
+3. Adding `Outline` to any icons with an outline style (icons with solid style have no suffix). All of these icon sets have both solid and outline variants for each icon.
 
 Here are a few examples:
 
 ::: ariaLabel="Table of examples showing how Baleada transforms Eva icon and Heroicons names into component names"
-| Original icon name | Icon set | Component name |
-| --- | --- | --- |
-| bulb | Eva | `EvaBulb` |
-| hard-drive-outline | Eva | `EvaHardDriveOutline` |
-| globe-2 | Eva | `EvaGlobe2` |
-| globe | Heroicons | `HeroiconsGlobe` |
-| emoji-happy | Heroicons | `HeroiconsEmojiHappy` |
-| menu-alt-4 | Heroicons | `HeroiconsMenuAlt4` |
+| Original icon name | Variant | Icon set | Component name |
+| --- | --- | --- | --- |
+| bulb | solid | Eva | `EvaBulb` |
+| hard-drive-outline | outline | Eva | `EvaHardDriveOutline` |
+| globe-2 | solid | Eva | `EvaGlobe2` |
+| globe | solid | Heroicons | `HeroiconsGlobe` |
+| emoji-happy | solid | Heroicons | `HeroiconsEmojiHappy` |
+| menu-alt-4 | outline | Heroicons | `HeroiconsMenuAlt4Outline` |
+| globe-africa | outline | Teenyicons | `TeenyiconsGlobeAfricaOutline` |
 :::
 
 The names of Octicons are created in almost exactly the same way, except that they are suffixed with `16` or `24` depending on the icon size (each Octicon has a 16x16 and a 24x24 variant):
@@ -120,11 +125,11 @@ Baleada Icons is written in modern JavaScript. The icons never have dependencies
 ::: ariaLabel="Peer dependencies by framework"
 | Framework | Peer dependencies |
 | --- | --- |
-| Vue | <p>['vue'](https://github.com/vuejs/vue)</p> |
+| Vue | <p>[vue](https://github.com/vuejs/vue)</p> |
 | React | WIP |
 | Svelte | WIP |
 :::
 
 Baleada Icons is compiled by [Babel](https://babeljs.io) to work in browsers that are used by more than 0.5% of global web visitors AND have had official support or updates in the past 24 months.
 
-To allow for [tree-shaking](https://webpack.js.org/guides/tree-shaking/), Baleada Icons has no side effects and is bundled as ES modules by [Rollup](https://rollupjs.org/), outputting [ES modules](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Modules).
+To allow for [tree-shaking](https://webpack.js.org/guides/tree-shaking/), Baleada Icons has no side effects and is bundled by [Rollup](https://rollupjs.org/), outputting [ES modules](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Modules).

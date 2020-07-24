@@ -104,6 +104,7 @@ To achieve this or something similar, you just need to format your `eventType` p
     - `enter`
     - `backspace`
     - `tab`
+    - `space`
     - Any arrow direction—`up`, `right`, `down`, `left`, `vertical` (to listen for both `up` and `down`), `horizontal` (to listen for both `right` and `left`), or `arrow` (to listen for any arrow key)
     - Any of the following punctuation: `,` `.` `<` `>` `/` `?` `;` `:` `'` `"` `[` `]` `{` `}` `}` `\` `|` `\` `~` `!` `@` `#` `$` `%` `^` `&` `*` `(` `)` `-` `_` `=` `+` <code>`</code>
     - `click`

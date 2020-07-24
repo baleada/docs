@@ -9,9 +9,35 @@ publish: true
 ## Install
 :::
 
+Each icon set has its own package, prefixed with `@baleada/vue-`:
+
 :::
 ```bash
-npm i @baleada/vue-icons
+npm i @baleada/vue-heroicons
+```
+:::
+
+:::
+```bash
+npm i @baleada/vue-teenyicons
+```
+:::
+
+:::
+```bash
+npm i @baleada/vue-octicons
+```
+:::
+
+:::
+```bash
+npm i @baleada/vue-eva-icons
+```
+:::
+
+:::
+```bash
+npm i @baleada/vue-simple-icons
 ```
 :::
 
@@ -20,29 +46,26 @@ npm i @baleada/vue-icons
 ## Import a component
 :::
 
-All Baleada Icons Vue components are [functional components](https://vuejs.org/v2/guide/render-function.html#Functional-Components). They can be imported from `@baleada/vue-icons` for local or global registration.
+All Baleada Icons Vue components can be imported as ES modules:
 
 :::
 ```js
-import { HeroiconsEmojiHappy } from '@baleada/vue-icons'
+import { HeroiconsEmojiHappy } from '@baleada/vue-heroicons'
+import { EvaGlobe2 } from '@baleada/vue-eva-icons'
+import { SimpleGeocaching } from '@baleada/vue-simple-icons'
+import { TeenyiconsGlobeAfrica } from '@baleada/vue-teenyicons'
+import { OcticonsBold24 } from '@baleada/vue-octicons
 
 export default {
   components: {
     HeroiconsEmojiHappy,
+    EvaGlobe2,
+    SimpleGeocaching,
+    TeenyiconsGlobeAfrica,
+    OcticonsBold24,
   },
   ...
 }
-```
-:::
-
-If you prefer, you can also import icons from their specific icon set:
-
-:::
-```js
-import { EvaGlobe2 } from '@baleada/vue-icons/eva-icons'
-import { SimpleGeocaching } from '@baleada/vue-icons/simple-icons'
-import { HeroiconsEmojiHappy } from '@baleada/vue-icons/heroicons'
-import { OcticonsBold24 } from '@baleada/vue-icons/octicons
 ```
 :::
 
@@ -74,7 +97,7 @@ These 4 attributes are easy to override or expand—all of the component's attri
 <template lang="html">
   <SimpleGeocaching
     preserveAspectRatio="none"
-    :class="'h-4 w-4 fill-current inline-block text-blue-600'"
+    class="h-4 w-4 fill-czurrent inline-block text-blue-600"
   />
   <EvaGlobe2
     aria-label="A nifty globe icon"
@@ -86,6 +109,3 @@ These 4 attributes are easy to override or expand—all of the component's attri
 ```
 :::
 
-::: type="warning"
-Since Baleada uses functional Vue components, class and style bindings don't pass through automatically. You need to explicitly bind those attribute using `:class` and `:style`.
-:::
