@@ -33,6 +33,11 @@
   },
   {
     "level": 1,
+    "name": "files to routes",
+    "pages": []
+  },
+  {
+    "level": 1,
     "name": "gesture",
     "pages": []
   },
@@ -457,6 +462,16 @@
       {
         "title": "withoutTailwindFractions",
         "href": "/docs/theme-utils/functions/withoutTailwindFractions"
+      }
+    ]
+  },
+  {
+    "level": 1,
+    "name": "vite serve as vue",
+    "pages": [
+      {
+        "title": "What is Baleada Vite Serve as Vue?",
+        "href": "/docs/vite-serve-as-vue"
       }
     ]
   }
