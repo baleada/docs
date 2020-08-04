@@ -94,11 +94,17 @@ The only required property of the object you pass to `getServeAsVue` is `toVue`,
 ### Specifying which files get served as Vue components
 :::
 
-If you don't pass a `test` function or any Picomatch patterns to `include` or `exclude`, Baleada Vite Serve as Vue will serve every single file as if it were a Vue components.
+If you don't pass a `test` function or any Picomatch patterns to `include` or `exclude`, Baleada Vite Serve as Vue will serve every single file as if it were a Vue component.
 
 This is almost definitely not your desired behavior. Instead, you'll likely want to tell Vite Serve as Vue to only serve certain files as Vue components (e.g. `.md` files).
 
 In most cases, you can pass a [Picomatch](https://github.com/micromatch/picomatch#globbing-features) pattern (String) or array of Picomatch patterns to `include` or `exclude` to specify which files get served as Vue components.
+
+::: type="info"
+Picomatch patterns are very similar to the more widely recognized [`minimatch`](https://github.com/isaacs/minimatch#readme) patterns, and in most use cases, they are interchangeable.
+
+If you have more specific pattern matching needs, you can view [this comparison table](https://github.com/micromatch/picomatch#library-comparisons) to learn more about where the libraries differ.
+:::
 
 For example, here's how you would configure Vite to serve all `.md` files as if they were Vue components, unless those files are located in a folder called `blog-drafts`.
 
