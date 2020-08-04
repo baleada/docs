@@ -5,9 +5,13 @@ publish: true
 order: 0
 ---
 
-Baleada Vite Serve as Vue is a middleware for [Vite](https://github.com/vuejs/vite)'s development server, which runs on [Koa]([Koa](https://koajs.com/)). It wraps up the boilerplate code you need to serve any file as a Vue component, watch that file for changes, and hot reload your Vue component when a change is detected.
+Baleada Vite Serve as Vue is a middleware for [Vite](https://github.com/vuejs/vite)'s development server, which runs on [Koa]([Koa](https://koajs.com/)). It wraps up the boilerplate code you need to serve any file as a Vue component, watch that file for changes, and hot reload the corresponding Vue component when a change is detected.
 
-It also gives you complete control over what non-`.vue` files are treated as Vue components and how the contents of those files get transformed into valid Vue components.
+Baleada Vite Serve as Vue lets you specify exactly which non-`.vue` files Vite should treat as Vue components, and it gives you complete control over how the contents of those files gets transformed into valid Vue components.
+
+Common use cases:
+- Serve Markdown files as if they were Vue components. Includes full support for Vue components in your Markdown!
+- Serve SVG files as if they were Vue components. With this in your toolkit, every single open source SVG-based icon library doubles as a Vue component library for you, with no extra effort on the icon designers' part 🤯
 
 
 :::

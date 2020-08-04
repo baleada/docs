@@ -29,7 +29,7 @@ The `sourceTransform` plugin's only parameter is an `options` object. Here's a f
 ::: ariaLabel="Options for the Rollup Source Transform plugin" classes="wide-3 wide-4"
 | Property | Type | Default | Description |
 | --- | --- | --- | --- |
-| `transform` | Function | `({ source }) => source` | The transform function, as explained in the [Baleada Source Transform overview](/docs/source-transform#workflow). Read the rest of this article for additional Rollup-specific guidance. |
+| `transform` | Function | `({ source }) => source` | The transform function, as explained in the [Baleada Source Transform overview](/docs/source-transform#workflow). Your `transform` function can be asynchronous—the plugin will `await` its results. Read the rest of this article for additional Rollup-specific guidance. |
 | `include` | String, Array | none | <p>A minimatch pattern (String) or an array of minimatch patterns (Array) describing files to be included.</p><p>If `include` is omitted or of zero length, files will be included by default; otherwise they will only be included if the ID matches one of the patterns.</p> |
 | `exclude` | String, Array | none | <p>A minimatch pattern (String) or an array of minimatch patterns (Array) describing files to be excluded.</p> |
 :::
@@ -47,4 +47,4 @@ When using Baleada Source Transform with Rollup, `context` is the [plugin conte
 ## `transform` function return value
 :::
 
-In most cases, you'll probably return a String from your `transform` function, but to learn more about what else you can return, [visit the Rollup docs](https://rollupjs.org/guide/en/#transform).
+In most cases, you'll probably return a String from your `transform` function, but to learn more about what else you can return (including custom ASTs and sourcemaps), [visit the Rollup docs](https://rollupjs.org/guide/en/#transform).
