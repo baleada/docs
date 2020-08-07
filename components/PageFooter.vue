@@ -20,10 +20,10 @@
         <div class="mt-4 md:mt-0 flex-1 flex items-center justify-center md:border-r border-gray-600">
           <a
             class="hover:text-primary-gray-200"
-            href="https://gitlab.com/baleada"
+            href="https://github.com/baleada"
           >
-            <span class="hidden">View on GitLab</span>
-            <SimpleGitLab :class="'icon h-7 w-7'" />
+            <span class="hidden">View on GitHub</span>
+            <SimpleGitHub :class="'icon h-7 w-7'" />
           </a>
           <a
             class="ml-4 hover:text-primary-gray-200"
@@ -47,12 +47,12 @@
 </template>
 
 <script>
-import { SimpleGitLab } from '@baleada/vue-icons'
+import { SimpleGitHub } from '@baleada/vue-icons'
 import { SimpleTwitter } from '@baleada/vue-icons'
 
 export default {
   components: {
-    SimpleGitLab,
+    SimpleGitHub,
     SimpleTwitter,
   },
   setup() {
