@@ -154,7 +154,7 @@ Here's what the workflow looks like:
     - Final option: did something happen that makes your custom gesture impossible (e.g. a `mouseup` event when you're trying to recognize a drag/pan gesture)? If so, call the `denied` function to deny the event, trigger a full reset, and start the workflow from the beginning.
 
 ::: type="info"
-Still not sure how to use this workflow to recognize your custom gestures? If you're up for a source dive, you can [check out the Baleada Listenable Gestures source code](https://gitlab.com/baleada/listenable-gestures/-/tree/master/src%2Fhandler-getters) for inspiration.
+Still not sure how to use this workflow to recognize your custom gestures? If you're up for a source dive, you can [check out the Baleada Listenable Gestures source code](https://github.com/baleada/listenable-gestures) for inspiration.
 :::
 
 

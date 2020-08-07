@@ -19,7 +19,7 @@ Composition functions are supported for the following frameworks:
 - [Svelte](https://svelte.dev) [WIP]
 
 ::: type="info"
-Didn't see your favorite framework in the list? Feel free to [raise an issue](https://gitlab.com/baleada/composition/issues) and ask for support.
+Didn't see your favorite framework in the list? Feel free to [raise an issue](https://github.com/baleada/vue-composition/issues) and ask for support.
 :::
 
 

@@ -38,7 +38,7 @@ const thing = new Stuff()
 
 
 ::: type="info"
-The codeblocks in the Baleada docs are highlighted using [refractor](https://github.com/wooorm/refractor), [rehype](https://github.com/rehypejs/rehype), and a [Tailwind-powered custom syntax theme](https://gitlab.com/baleada/docs/-/blob/master/assets/css/prose/syntax.css).
+The codeblocks in the Baleada docs are highlighted using [refractor](https://github.com/wooorm/refractor), [rehype](https://github.com/rehypejs/rehype), and a [Tailwind-powered custom syntax theme](https://github.com/baleada/docs/blob/main/assets/css/prose/syntax.csstre).
 :::
 
 

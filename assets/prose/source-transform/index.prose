@@ -16,7 +16,7 @@ In other words, Baleada Source Transform abstracts build tool boilerplate so you
 :::
 
 ::: type="info"
-Didn't see your favorite build tool in the list? Feel free to [raise an issue](https://gitlab.com/baleada/source-transform/issues) and ask for support.
+Didn't see your favorite build tool in the list? Feel free to [raise an issue](https://github.com/baleada/source-transform/issues) and ask for support.
 :::
 
 <!-- To see a practical application of Baleada Source Transform, [check out how Baleada Prose uses it to load Markdown files](/docs/prose/using-with-markdown), replacing standard HTML elements with feature-rich components. -->

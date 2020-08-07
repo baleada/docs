@@ -16,9 +16,9 @@
         <EvaBook :class="'icon'" />
         <span>Read the docs</span>
       </NuxtLink>
-      <a href="https://gitlab.com/baleada/" class="mt-3 sm:mt-0 sm:ml-4 btn md:btn-lg btn-grows border-5 border-primary-100 text-primary-100">
-        <SimpleGitLab :class="'icon'" />
-        <span>View on GitLab</span>
+      <a href="https://github.com/baleada/" class="mt-3 sm:mt-0 sm:ml-4 btn md:btn-lg btn-grows border-5 border-primary-100 text-primary-100">
+        <SimpleGitHub :class="'icon'" />
+        <span>View on GitHub</span>
       </a>
     </div>
   </main>
@@ -29,7 +29,7 @@ import { ref } from '@vue/composition-api'
 
 import { useAnimateable, useNavigateable } from '@baleada/vue-composition'
 
-import { EvaBook, SimpleGitLab } from '@baleada/vue-icons'
+import { EvaBook, SimpleGitHub } from '@baleada/vue-icons'
 
 export default {
   layout: 'landing',
@@ -38,7 +38,7 @@ export default {
   }),
   components: {
     EvaBook,
-    SimpleGitLab
+    SimpleGitHub
   },
   setup() {
     const logo = ref(null),
