@@ -10,7 +10,7 @@
   "private": false,
   "repository": {
     "type": "git",
-    "url": "git+https://gitlab.com/baleada/docs.git"
+    "url": "git+https://github.com/baleada/docs.git"
   },
   "scripts": {
     "empty-pages": "node scripts/emptyDir.js 'pages/docs'",
@@ -22,7 +22,7 @@
     "generate": "nuxt generate"
   },
   "bugs": {
-    "url": "https://gitlab.com/baleada/docs/issues"
+    "url": "https://github.com/baleada/docs/issues"
   },
   "homepage": "https://baleada.netlify.com",
   "license": "MIT",
