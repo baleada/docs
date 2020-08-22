@@ -38,11 +38,6 @@
   },
   {
     "level": 1,
-    "name": "gesture",
-    "pages": []
-  },
-  {
-    "level": 1,
     "name": "icons",
     "pages": [
       {
@@ -472,6 +467,16 @@
       {
         "title": "What is Baleada Vite Serve as Vue?",
         "href": "/docs/vite-serve-as-vue"
+      }
+    ]
+  },
+  {
+    "level": 1,
+    "name": "vite serve virtual",
+    "pages": [
+      {
+        "title": "What is Baleada Vite Serve Virtual?",
+        "href": "/docs/vite-serve-virtual"
       }
     ]
   }
