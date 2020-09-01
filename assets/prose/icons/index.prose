@@ -21,6 +21,7 @@ Icons are sourced from the following icon sets:
 - [Heroicons](https://heroicons.dev/)
 - [Octicons](https://primer.style/octicons/)
 - [Teenyicons](https://teenyicons.com/)
+- [Radix icons](https://github.com/modulz/radix-icons)
 
 Each icon in those sets has a corresponding component for the following frameworks:
 - [Vue](https://vuejs.org/)
@@ -47,7 +48,7 @@ The names of Eva icons, Heroicons, and Teenyicons are created by:
 
 Here are a few examples:
 
-::: ariaLabel="Table of examples showing how Baleada transforms Eva icon and Heroicons names into component names"
+::: ariaLabel="Table of examples showing how Baleada transforms Eva icon, Heroicons, and Teenyicons names into component names"
 | Original icon name | Variant | Icon set | Component name |
 | --- | --- | --- | --- |
 | bulb | solid | Eva | `EvaBulb` |
@@ -68,6 +69,17 @@ The names of Octicons are created in almost exactly the same way, except that th
 | alert | 24x24 | `OcticonsAlert24` |
 | arrow-up-left | 16x16 | `OcticonsArrowUpLeft16` |
 | arrow-up-left | 24x24 | `OcticonsArrowUpLeft24` |
+:::
+
+Radix icons are also very similar, but they come in normal and two-tone variants. Normal icons are not suffixed, and two-tone icons are suffixed with TwoTone:
+
+::: ariaLabel="Table of examples showing how Baleada transforms Octicon names into component names"
+| Original icon name | Variant | Component name |
+| --- | --- | --- |
+| rocket | normal | `RadixRocket` |
+| rocket | two-tone | `RadixRocketTwoTone` |
+| slider | normal | `RadixSlider` |
+| slider | two-tone | `RadixSliderTwoTone` |
 :::
 
 Simple icons' names are created by:

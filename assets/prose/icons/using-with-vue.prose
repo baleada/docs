@@ -41,6 +41,12 @@ npm i @baleada/vue-simple-icons
 ```
 :::
 
+:::
+```bash
+npm i @baleada/vue-radix-icons
+```
+:::
+
 
 :::
 ## Import a component
@@ -55,6 +61,7 @@ import { EvaGlobe2 } from '@baleada/vue-eva-icons'
 import { SimpleGeocaching } from '@baleada/vue-simple-icons'
 import { TeenyiconsGlobeAfrica } from '@baleada/vue-teenyicons'
 import { OcticonsBold24 } from '@baleada/vue-octicons'
+import { RadixRocket } from '@baleada/vue-radix-icons'
 
 export default {
   components: {
@@ -63,6 +70,7 @@ export default {
     SimpleGeocaching,
     TeenyiconsGlobeAfrica,
     OcticonsBold24,
+    RadixRocket,
   },
   ...
 }
