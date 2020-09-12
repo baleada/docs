@@ -1,13 +1,13 @@
 ---
-title: What is Baleada Vite Serve Virtual?
+title: What is Baleada Serve Virtual?
 tags: Configuration utilities, Vite, Vue
 publish: true
 order: 0
 ---
 
-Baleada Vite Serve Virtual is a middleware for [Vite](https://github.com/vuejs/vite)'s development server, which runs on [Koa]([Koa](https://koajs.com/)). It wraps up the boilerplate code you need to serve virtual files.
+Baleada Serve Virtual is a middleware for [Vite](https://github.com/vuejs/vite)'s development server, which runs on [Koa]([Koa](https://koajs.com/)). It wraps up the boilerplate code you need to serve virtual files.
 
-Baleada Vite Serve Virtual lets you specify exactly which non-existent files Vite should treat as virtual files, and it gives you complete control over what content Vite serves from those files.
+Baleada Serve Virtual lets you specify exactly which non-existent files Vite should treat as virtual files, and it gives you complete control over what content Vite serves from those files.
 
 Example use cases:
 - File-based routing. Routes can be generated at build time and "exported" from your virtual file.
@@ -18,7 +18,7 @@ Example use cases:
 ## Installation
 :::
 
-You can install Baleada Vite Serve Virtual from NPM—be sure to save it as a dev dependency in your Vite app.
+You can install Baleada Serve Virtual from NPM—be sure to save it as a dev dependency in your Vite app.
 
 :::
 ```bash
@@ -31,7 +31,7 @@ npm i @baleada/vite-serve-virtual --save-dev
 ## Usage
 :::
 
-To get started, open up your `vite.config.js` file, and import the `getServeVirtual` function from Baleada Vite Serve Virtual.
+To get started, open up your `vite.config.js` file, and import the `getServeVirtual` function from Baleada Serve Virtual.
 
 :::
 ```js
@@ -42,7 +42,7 @@ const getServeVirtual = require('@baleada/vite-serve-virtual')
 
 `getServeVirtual` requires one parameter: an object, whose properties and values are outlined below.
 
-::: ariaLabel="Baleada Vite Serve Virtual configuration schema" classes="wide-5"
+::: ariaLabel="Baleada Serve Virtual configuration schema" classes="wide-5"
 | Property | Value's type | Required? | Default | Value description |
 | --- | --- | --- | --- | --- |
 | `transform` | Function | yes | none | <p>Transforms the empty contents the virtual file into something useful to you.</p><p>See the [Writing a `transform` function](#writing-a-transform-function) section for more guidance.</p> |
@@ -92,16 +92,16 @@ The only required property of the object you pass to `getServeVirtual` is `trans
 | `type` | String | Indicates the [MIME type](https://developer.mozilla.org/en-US/docs/Web/HTTP/Basics_of_HTTP/MIME_types/Common_types) or virtual file extension of your `source` content. You can also pass `'vue'` as the type if you want Vue to pass your `source` through its Vue Single File Component compiler pipeline. |
 :::
 
-For simpler use cases, you can actually return a plain String from your `transform` function, and Baleada Vite Serve Virtual will use `'js'` as the default `type`.
+For simpler use cases, you can actually return a plain String from your `transform` function, and Baleada Serve Virtual will use `'js'` as the default `type`.
 
 
 :::
 ### Specifying which files get served with virtual content
 :::
 
-If you don't pass a `test` function or any Picomatch patterns to `include` or `exclude`, Baleada Vite Serve Virtual will serve every single file as if it were a virtual file.
+If you don't pass a `test` function or any Picomatch patterns to `include` or `exclude`, Baleada Serve Virtual will serve every single file as if it were a virtual file.
 
-This is almost definitely not your desired behavior. Instead, you'll likely want to tell Vite Serve Virtual to only serve certain files as virtual files.
+This is almost definitely not your desired behavior. Instead, you'll likely want to tell Serve Virtual to only serve certain files as virtual files.
 
 In most cases, you can pass a [Picomatch](https://github.com/micromatch/picomatch#globbing-features) pattern (String) or array of Picomatch patterns to `include` or `exclude` to specify which files get served with virtual content.
 
@@ -140,7 +140,7 @@ The `test` function receives one argument: an object whose properties and values
 | Property | Type | Description |
 | --- | --- | --- | --- | --- |
 | `id` | String | The absolute file path to the file (i.e. starting from the system root, _not_ the root of your Vite project) |
-| `createFilter` | Function | <p>The [`createFilter` function from `@rollup/pluginutils`](https://github.com/rollup/plugins/tree/master/packages/pluginutils#createfilter).</p><p>`createFilter` works even outside of [Rollup](https://rollupjs.org)—it's a great general-purpose tool for matching files with [Picomatch](https://github.com/micromatch/picomatch#globbing-features) patterns, and is what Vite Serve Virtual uses under the hood when you pass the `include` and `exclude` options.</p> |
+| `createFilter` | Function | <p>The [`createFilter` function from `@rollup/pluginutils`](https://github.com/rollup/plugins/tree/master/packages/pluginutils#createfilter).</p><p>`createFilter` works even outside of [Rollup](https://rollupjs.org)—it's a great general-purpose tool for matching files with [Picomatch](https://github.com/micromatch/picomatch#globbing-features) patterns, and is what Serve Virtual uses under the hood when you pass the `include` and `exclude` options.</p> |
 :::
 
 `test` should return `true` if the file should be served as a virtual file, and `false` if it shouldn't.
@@ -154,4 +154,4 @@ Use the `test` function instead of `include` and `exclude` anytime you need to p
 ## Metadata
 :::
 
-Baleada Vite Serve Virtual is written in modern JavaScript, transpiled by [Babel](https://babeljs.io) to work in Node, and bundled by [Rollup](https://rollupjs.org), outputting separate Common JS and ES Module bundles.
+Baleada Serve Virtual is written in modern JavaScript, transpiled by [Babel](https://babeljs.io) to work in Node, and bundled by [Rollup](https://rollupjs.org), outputting separate Common JS and ES Module bundles.

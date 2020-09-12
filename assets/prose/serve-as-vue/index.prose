@@ -1,13 +1,13 @@
 ---
-title: What is Baleada Vite Serve as Vue?
+title: What is Baleada Serve as Vue?
 tags: Configuration utilities, Vite, Vue
 publish: true
 order: 0
 ---
 
-Baleada Vite Serve as Vue is a middleware for [Vite](https://github.com/vuejs/vite)'s development server, which runs on [Koa]([Koa](https://koajs.com/)). It wraps up the boilerplate code you need to serve any file as a Vue component, watch that file for changes, and hot reload the corresponding Vue component when a change is detected.
+Baleada Serve as Vue is a middleware for [Vite](https://github.com/vuejs/vite)'s development server, which runs on [Koa]([Koa](https://koajs.com/)). It wraps up the boilerplate code you need to serve any file as a Vue component, watch that file for changes, and hot reload the corresponding Vue component when a change is detected.
 
-Baleada Vite Serve as Vue lets you specify exactly which non-`.vue` files Vite should treat as Vue components, and it gives you complete control over how the contents of those files gets transformed into valid Vue components.
+Baleada Serve as Vue lets you specify exactly which non-`.vue` files Vite should treat as Vue components, and it gives you complete control over how the contents of those files gets transformed into valid Vue components.
 
 Common use cases:
 - Serve Markdown files as if they were Vue components. Includes full support for Vue components in your Markdown!
@@ -18,7 +18,7 @@ Common use cases:
 ## Installation
 :::
 
-You can install Baleada Vite Serve as Vue from NPM—be sure to save it as a dev dependency in your Vite app.
+You can install Balead Serve as Vue from NPM—be sure to save it as a dev dependency in your Vite app.
 
 :::
 ```bash
@@ -31,7 +31,7 @@ npm i @baleada/vite-serve-as-vue --save-dev
 ## Usage
 :::
 
-To get started, open up your `vite.config.js` file, and import the `getServeAsVue` function from Baleada Vite Serve as Vue.
+To get started, open up your `vite.config.js` file, and import the `getServeAsVue` function from Baleada Serve as Vue.
 
 :::
 ```js
@@ -42,7 +42,7 @@ const getServeAsVue = require('@baleada/vite-serve-as-vue')
 
 `getServeAsVue` requires one parameter: an object, whose properties and values are outlined below.
 
-::: ariaLabel="Baleada Vite Serve as Vue configuration schema" classes="wide-5"
+::: ariaLabel="Baleada Serve as Vue configuration schema" classes="wide-5"
 | Property | Value's type | Required? | Default | Value description |
 | --- | --- | --- | --- | --- |
 | `toVue` | Function | yes | none | <p>Transforms the contents of a file into a valid Vue single file component.</p><p>See the [Writing a `toVue` function](#writing-a-tovue-function) section for more guidance.</p> |
@@ -94,9 +94,9 @@ The only required property of the object you pass to `getServeAsVue` is `toVue`,
 ### Specifying which files get served as Vue components
 :::
 
-If you don't pass a `test` function or any Picomatch patterns to `include` or `exclude`, Baleada Vite Serve as Vue will serve every single file as if it were a Vue component.
+If you don't pass a `test` function or any Picomatch patterns to `include` or `exclude`, Baleada Serve as Vue will serve every single file as if it were a Vue component.
 
-This is almost definitely not your desired behavior. Instead, you'll likely want to tell Vite Serve as Vue to only serve certain files as Vue components (e.g. `.md` files).
+This is almost definitely not your desired behavior. Instead, you'll likely want to tell Serve as Vue to only serve certain files as Vue components (e.g. `.md` files).
 
 In most cases, you can pass a [Picomatch](https://github.com/micromatch/picomatch#globbing-features) pattern (String) or array of Picomatch patterns to `include` or `exclude` to specify which files get served as Vue components.
 
@@ -151,4 +151,4 @@ Use the `test` function instead of `include` and `exclude` anytime you need to p
 ## Metadata
 :::
 
-Baleada Vite Serve as Vue is written in modern JavaScript, transpiled by [Babel](https://babeljs.io) to work in Node, and bundled by [Rollup](https://rollupjs.org), outputting separate Common JS and ES Module bundles.
+Baleada Serve as Vue is written in modern JavaScript, transpiled by [Babel](https://babeljs.io) to work in Node, and bundled by [Rollup](https://rollupjs.org), outputting separate Common JS and ES Module bundles.

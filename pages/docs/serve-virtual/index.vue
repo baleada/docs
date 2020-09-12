@@ -5,7 +5,7 @@
 </template>
 
 <script>
-import article from '~/assets/prose/vite-serve-as-vue/index.prose'
+import article from '~/assets/prose/serve-virtual/index.prose'
 
 export default {
   layout: 'prose',

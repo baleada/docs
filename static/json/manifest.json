@@ -19,6 +19,21 @@
   },
   {
     "level": 1,
+    "name": "alias babel runtime",
+    "pages": [
+      {
+        "title": "Baleada Alias Babel Runtime",
+        "href": "/docs/alias-babel-runtime"
+      }
+    ]
+  },
+  {
+    "level": 1,
+    "name": "articles",
+    "pages": []
+  },
+  {
+    "level": 1,
     "name": "composition",
     "pages": [
       {
@@ -258,6 +273,26 @@
   },
   {
     "level": 1,
+    "name": "serve as vue",
+    "pages": [
+      {
+        "title": "What is Baleada Serve as Vue?",
+        "href": "/docs/serve-as-vue"
+      }
+    ]
+  },
+  {
+    "level": 1,
+    "name": "serve virtual",
+    "pages": [
+      {
+        "title": "What is Baleada Serve Virtual?",
+        "href": "/docs/serve-virtual"
+      }
+    ]
+  },
+  {
+    "level": 1,
     "name": "source transform",
     "pages": [
       {
@@ -457,26 +492,6 @@
       {
         "title": "withoutTailwindFractions",
         "href": "/docs/theme-utils/functions/withoutTailwindFractions"
-      }
-    ]
-  },
-  {
-    "level": 1,
-    "name": "vite serve as vue",
-    "pages": [
-      {
-        "title": "What is Baleada Vite Serve as Vue?",
-        "href": "/docs/vite-serve-as-vue"
-      }
-    ]
-  },
-  {
-    "level": 1,
-    "name": "vite serve virtual",
-    "pages": [
-      {
-        "title": "What is Baleada Vite Serve Virtual?",
-        "href": "/docs/vite-serve-virtual"
       }
     ]
   }
