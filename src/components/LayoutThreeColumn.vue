@@ -48,7 +48,7 @@
             darkThemeStatus === 'enabled' ? 'bg-primary-gray-900' : 'bg-primary-600',
           ]"
         >
-          <BaleadaLogo
+          <BrandLogo
             id="nav-header"
             :tortillaClasses="darkThemeStatus === 'enabled' ? 'text-primary-gray-500' : undefined"
             :burnClasses="darkThemeStatus === 'enabled' ? 'text-primary-gray-1000' : undefined"
@@ -197,7 +197,7 @@
     >
       <transition name="fade">
         <div v-show="minimalistThemeStatus === 'disabled'">
-          <BaleadaLogo
+          <BrandLogo
             id="article-decoration"
             :class="'absolute h-auto w-full sm:w-3/4 max-w-screen-sm top-0 right-0'"
             :style="{ transform: 'translate(14%, -42%)' }"
@@ -275,7 +275,7 @@
 </template>
 
 <script>
-import { ref, computed, onMounted, inject } from '@vue/composition-api'
+import { ref, computed, onMounted, inject } from 'vue'
 
 import { swipe } from '@baleada/listenable-gestures'
 import { useListenable, useStoreable } from '@baleada/vue-composition'

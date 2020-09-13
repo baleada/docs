@@ -1,48 +1,64 @@
 <template lang="html">
-  <main class="h-screen flex flex-col items-center justify-center px-10">
-    <BaleadaLogo
-      id="landing-page"
-      ref="logo"
-      :class="'-ml-2 h-13 w-13 sm:h-14 sm:w-14 md:h-15 md:w-15 text-primary-100 transition-none'"
-      :hasShadow="true"
-      @mouseover="handleMouseover"
+  <main>
+    <RectangleGradient
+      :class="'absolute pin-t pin-l z-10 w-screen h-screen'"
+      gradient-id="landing-page"
+      :x="{ 1: 0, 2: 1 }"
+      :y="{ 1: 0, 2: 1 }"
+      :stops="[
+        { offset: 0, classes: 'text-primary-40' },
+        { offset: 40, classes: 'text-primary-60' },
+        { offset: 95, classes: 'text-primary-70' },
+      ]"
     />
+    <section class="relative z-20 h-screen flex flex-col items-center justify-center px-10">
+      <BrandLogo
+        id="landing-page"
+        ref="logo"
+        :class="'-ml-2 h-13 w-13 sm:h-14 sm:w-14 md:h-15 md:w-15 text-primary-10 transition-none'"
+        :hasShadow="true"
+        @mouseenter="mouseenterHandle"
+      />
 
-    <h1 class="mt-6 font-display font-6 text-9 sm:text-10 md:text-11 text-center text-shadow-2 tracking-2 text-primary-100">Baleada&nbsp;</h1>
-    <p class="mt-2 font-display text-7 sm:text-8 md:text-9 text-center text-shadow-2 tracking-2 text-primary-100">A toolkit for building web apps.</p>
+      <h1 class="mt-6 font-display font-6 text-9 sm:text-10 md:text-11 text-center text-shadow-2 tracking-2 text-primary-10">Baleada&nbsp;</h1>
+      <p class="mt-2 font-display text-7 sm:text-8 md:text-9 text-center text-shadow-2 tracking-2 text-primary-10">A toolkit for building web apps.</p>
 
-    <div class="flex flex-col sm:flex-row mt-5 sm:mt-10">
-      <NuxtLink to="/docs" class="btn md:btn-lg btn-raised btn-grows bg-primary-100 text-primary-800">
-        <EvaBook :class="'icon'" />
-        <span>Read the docs</span>
-      </NuxtLink>
-      <a href="https://github.com/baleada/" class="mt-3 sm:mt-0 sm:ml-4 btn md:btn-lg btn-grows border-5 border-primary-100 text-primary-100">
-        <SimpleGitHub :class="'icon'" />
-        <span>View on GitHub</span>
-      </a>
-    </div>
+      <div class="flex flex-col sm:flex-row mt-5 sm:mt-10">
+        <NuxtLink
+          to="/docs"
+          class="btn md:btn-lg btn-raised btn-grows bg-primary-10 text-primary-80"
+        >
+          <HeroiconsBookOpenSolid :class="'icon'" />
+          <span>Read the docs</span>
+        </NuxtLink>
+        <a
+          href="https://github.com/baleada/"
+          class="mt-3 sm:mt-0 sm:ml-4 btn md:btn-lg btn-grows border-5 border-primary-10 text-primary-10"
+        >
+          <SimpleGitHub :class="'icon'" />
+          <span>View on GitHub</span>
+        </a>
+      </div>
+    </section>
+
+    <LayoutFooter />
   </main>
 </template>
 
 <script>
-import { ref } from '@vue/composition-api'
-
+import { ref } from 'vue'
 import { useAnimateable, useNavigateable } from '@baleada/vue-composition'
-
-import { EvaBook, SimpleGitHub } from '@baleada/vue-icons'
+import { SimpleGitHub } from '@baleada/vue-simple-icons'
+import { HeroiconsBookOpenSolid } from '@baleada/vue-heroicons'
 
 export default {
-  layout: 'landing',
-  head: () => ({
-    title: 'Baleada'
-  }),
   components: {
-    EvaBook,
+    HeroiconsBookOpenSolid,
     SimpleGitHub
   },
-  setup() {
+  setup () {
     const logo = ref(null),
-          navigateable = useNavigateable(new Array(4)), // Grody hardcoded 4
+          animations = useNavigateable((new Array(4)).fill()), // Grody hardcoded 4
           wiggle = useAnimateable(
             [
               {
@@ -61,7 +77,7 @@ export default {
             }
           )
 
-    function handleMouseover () {
+    function mouseenterHandle () {
       switch (wiggle.value.status) {
       case 'playing':
       case 'reversing':
@@ -71,19 +87,20 @@ export default {
         wiggle.value.play(frame => {
           const { data: { rotate } } = frame
 
-          logo.value.style.transform = `rotate(${rotate}deg)`
-
           if (wiggle.value.iterations === 3) {
             logo.value.style.transform = `rotate(0deg)`
+            return
           }
+
+          logo.value.style.transform = `rotate(${rotate}deg)`
         })
         break
-      } 
+      }
     }
 
     return {
       logo,
-      handleMouseover
+      mouseenterHandle
     }
   }
 }

@@ -4,15 +4,11 @@ import './styles/index.css'
 import 'typeface-inter'
 import 'typeface-inconsolata'
 import 'typeface-caveat'
-import router from './router'
-import { MarkdownComponent } from './components'
-import { plugin as prosePlugin } from '@baleada/vue-prose'
+import { globalComponents, plugins } from './state'
 
 const app = createApp(App)
 
-app.use(router)
-app.use(prosePlugin)
+globalComponents.forEach(component => app.component(component.name, component))
+plugins.forEach(plugin => app.use(...plugin))
 
 app.mount('#app')
-
-app.component(MarkdownComponent.name, MarkdownComponent)

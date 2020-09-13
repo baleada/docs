@@ -1,7 +1,7 @@
 <template></template>
 
 <script>
-import { onMounted, computed, inject } from '@vue/composition-api'
+import { onMounted, computed, inject } from 'vue'
 
 import { useSymbol } from '@baleada/vue-prose'
 

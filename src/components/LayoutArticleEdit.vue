@@ -8,7 +8,7 @@
 </template>
 
 <script>
-import { ref, computed, inject } from '@vue/composition-api'
+import { ref, computed, inject } from 'vue'
 
 import { useSymbol } from '@baleada/vue-prose'
 
