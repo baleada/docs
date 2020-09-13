@@ -8,8 +8,8 @@ module.exports = {
     parser: 'babel-eslint'
   },
   extends: [
-    '@nuxtjs',
-    'plugin:nuxt/recommended'
+    'eslint:recommended',
+    'plugin:vue/vue3-recommended',
   ],
   // add your custom rules here
   rules: {
@@ -29,5 +29,6 @@ module.exports = {
     'no-trailing-spaces': ['error', {
       'skipBlankLines': true,
     }],
+    'vue/no-unused-vars': 'error',
   }
 }

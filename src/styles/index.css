@@ -1,0 +1,11 @@
+/* purgecss start ignore */
+@import "tailwindcss/base";
+@import "./preflight.css";
+
+@import "./prose/index.css";
+@import "./docs-table-utilities.css";
+/* purgecss end ignore */
+
+@import "tailwindcss/components";
+
+@import "tailwindcss/utilities";

@@ -1,0 +1,7 @@
+.baleada-prose-media {
+  img,
+  video,
+  audio {
+    @apply block w-full max-h-full rounded-3 shadow-4;
+  }
+}

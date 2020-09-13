@@ -1,0 +1,102 @@
+:::
+# Prose tests
+:::
+
+
+:::
+## Aside
+:::
+
+::: type="info"
+This is an info aside
+::: 
+
+
+:::
+## Blockquote
+:::
+
+::: readerCanTweet=false
+> Quote me
+:::
+
+
+:::
+## Codeblock
+:::
+
+::: hasLineNumbers hasLang
+```js
+console.log('Baleada')
+```
+:::
+
+
+:::
+## Details
+:::
+
+::: summary="I have details"
+They're interesting
+:::
+
+
+:::
+## Heading
+:::
+
+:::
+### heading 3 with `code`
+:::
+
+
+:::
+## List
+:::
+
+::: readerCanSearch
+1. Baleada
+2. Toolkit
+3. Vue
+4. Prose
+:::
+
+
+:::
+## Media
+:::
+
+
+::: type=image src="https://res.cloudinary.com/duib7ae0a/image/upload/q_auto,f_auto,w_1500/alex-vipond/panama-cortado.jpg"
+:::
+
+::: type=embed src="https://www.youtube.com/embed/KpelkMBAD2o"
+:::
+
+:::
+## Table
+:::
+
+::: ariaLabel="example table"
+| Package | Type |
+| --- | --- |
+| Logic | UI Logic |
+| Interface | Components |
+| Theme | Configuration utility |
+:::
+
+
+:::
+## Section
+:::
+
+::: classes="bg-blue-10"
+Section
+:::
+
+
+
+
+
+
+
