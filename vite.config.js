@@ -16,9 +16,9 @@ const sourceTransform = require('@baleada/rollup-plugin-source-transform'),
       filesToIndex = getFilesToIndexTransform(),
       relativeFromRootFilesToIndex = getFilesToIndexTransform({ importType: 'relativeFromRoot' }),
       // Generate virtual manifest
-      proseFilesToManifest = require('./util/proseFilesToManifest'),
+      proseFilesToManifest = require('./source-transforms/proseFilesToManifest'),
       // Generate virtual search candidates
-      proseFilesToSearchableCandidates = require('./util/proseFilesToSearchableCandidates'),
+      proseFilesToSearchableCandidates = require('./source-transforms/proseFilesToSearchableCandidates'),
       // Alias babel runtime
       aliasBabelRuntime = require('@baleada/vite-alias-babel-runtime')
 

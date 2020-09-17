@@ -63,10 +63,12 @@
     "@baleada/listenable-gestures": "^0.4.2",
     "@baleada/logic": "^0.15.19",
     "@baleada/vue-composition": "^0.8.2",
+    "@baleada/vue-eva-icons": "^1.0.0",
     "@baleada/vue-features": "^0.4.0",
     "@baleada/vue-heroicons": "0.0.2",
     "@baleada/vue-interface": "^0.6.3",
     "@baleada/vue-prose": "^0.9.2",
+    "@baleada/vue-simple-icons": "0.0.0",
     "vue": "^3.0.0-rc.10",
     "vue-router": "^4.0.0-beta.9"
   }
