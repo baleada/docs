@@ -15,6 +15,10 @@ const sourceTransform = require('@baleada/rollup-plugin-source-transform'),
       getFilesToIndexTransform = require('@baleada/source-transform-files-to-index'),
       filesToIndex = getFilesToIndexTransform(),
       relativeFromRootFilesToIndex = getFilesToIndexTransform({ importType: 'relativeFromRoot' }),
+      // Generate virtual manifest
+      proseFilesToManifest = require('./util/proseFilesToManifest'),
+      // Generate virtual search candidates
+      proseFilesToSearchableCandidates = require('./util/proseFilesToSearchableCandidates'),
       // Alias babel runtime
       aliasBabelRuntime = require('@baleada/vite-alias-babel-runtime')
 
@@ -46,6 +50,20 @@ module.exports = {
         source: relativeFromRootFilesToRoutes({ id }),
       })
     }),
+    getServeVirtual({
+      test: ({ id }) => id.endsWith('/src/state/manifest'),
+      transform: () => ({
+        type: 'js',
+        source: proseFilesToManifest(),
+      })
+    }),
+    getServeVirtual({
+      test: ({ id }) => id.endsWith('/src/state/searchableCandidates'),
+      transform: () => ({
+        type: 'js',
+        source: proseFilesToSearchableCandidates(),
+      })
+    }),
   ],
   rollupInputOptions: {
     plugins: [
@@ -64,6 +82,14 @@ module.exports = {
       virtual({
         include: '**/docs/routes',
         transform: ({ id }) => filesToRoutes({ id }),
+      }),
+      virtual({
+        include: '**/state/manifest',
+        transform: () => proseFilesToManifest(),
+      }),
+      virtual({
+        include: '**/state/searchableCandidates',
+        transform: () => proseFilesToSearchableCandidates(),
       }),
     ]
   },

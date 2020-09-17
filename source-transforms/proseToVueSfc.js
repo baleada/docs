@@ -1,36 +1,40 @@
-const MarkdownIt = require('markdown-it'),
-      MarkdownItProseContainer = require('@baleada/markdown-it-prose-container'),
-      MarkdownItSpaLinks = require('@baleada/markdown-it-spa-links'),
-      MarkdownItLinkAttributes = require('markdown-it-link-attributes'),
-      refractor = require('refractor'),
-      rehype = require('rehype'),
-      markdownItOptions = {
-        html: false,
-        linkify: true,
-        highlight: (code, lang) => {
-          try {
-            const children = refractor.highlight(code, lang),
-                  html = rehype()
-                    .stringify({ type: 'root', children })
-                    .toString()
-            return escapeRawVueExpression(html)
-          } catch (error) {
-            return ''
-          }
-        },
-      },
-      md = new MarkdownIt(markdownItOptions)
-
-md.use(MarkdownItProseContainer, { template: 'vue' })
-md.use(MarkdownItSpaLinks, { spa: 'vue' })
-md.use(MarkdownItLinkAttributes, { attrs: { rel: 'noopener' } })
+const matter = require('gray-matter'),
+      { resolve } = require('path'),
+      { default: gitlog } = require('gitlog'),
+      { clipable } = require('@baleada/logic'),
+      md = require('./util/md')
 
 
 // TODO: include article metadata
-const transform = ({ source: markdown }) => `<template>${md.render(markdown)}</template>`
+const transform = ({ source, id }) => {
+  const { content: markdown, data: frontMatter } = matter(source),
+        stats = toStats(id),
+        { files: { 0: relativePath } } = stats
+
+  return `\
+  <template>${md.render(markdown)}</template>\n\
+  <script>\n\
+  import { useContext } from '@baleada/vue-prose'\n\
+  \n\
+  export default {\n\
+    setup () {\n\
+      useContext(context => {\n\
+        context.article.frontMatter = ${JSON.stringify(JSON.stringify(frontMatter))}\n\
+        context.article.stats = ${JSON.stringify(JSON.stringify(stats))}\n\
+        context.article.relativePath = ${JSON.stringify(JSON.stringify(relativePath))}\n\
+      })\n\
+    }\n\
+  }\n\
+  </script>\
+  `
+}
 
 module.exports = transform
 
-function escapeRawVueExpression (str) {
-  return str.replace(/({{|}})/g, '<span>$1</span>')
+function toStats (id) {
+  const basePath = resolve(''),
+        relativePath = `${clipable(id).clip(basePath).clip(/^\//)}`,
+        { 0: stats } = gitlog({ repo: basePath, file: relativePath, number: 1 })
+  
+  return stats
 }

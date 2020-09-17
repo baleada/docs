@@ -22,18 +22,16 @@ At first glance, you might think of "autocomplete" as the piece of UI logic you 
 1. As the user is typing, you need to extract the segment of their text that can be completed. In a simple text input, this is the entire value, but in a large text area, it's more likely to be just the current word the user is typing.
 2. You need to search a list of autocomplete options, using your segment of text as a search query. The search should fuzzy match, in case the user makes a typo.
 3. You need to display the search results in a dropdown menu on the screen. For the best user experience, the dropdown menu should reposition itself automatically, making sure that options are still visible if the user scrolls and changes the amount of available screen space.
-4. The dropdown menu should be keyboard accessible. Up and down arros keys should move options into focus. If the user is at the bottom of the list and presses the down arrow again, you should move focus back to the top of the list.
+4. The dropdown menu should be keyboard accessible. Up and down arrow keys should move options into focus. If the user is at the bottom of the list and presses the down arrow again, you should move focus back to the top of the list.
 5. When the user selects an option, you need to replace the original segment of text with the completed version.
 :::
 
 Using tools from Baleada Logic, you would approach this list of logic like so:
-:::
 1. [`Completable`](/docs/logic/classes/completable) extracts the segment of text
 2. [`Searchable`](/docs/logic/classes/searchable) searches a list of options for the segment (fuzzy matching is optional)
 3. [`Listenable`](/docs/logic/classes/listenable) detects when the dropdown menu starts leaving the viewport, and gives you some information so that you can simply apply a CSS `transform: translate` to move the menu into a visible spot.
 4. [`Navigable`](/docs/logic/classes/navigable) tracks which option should be in focus, and can loop around to the beginning or end of the list as needed.
 5. `Completable` completes the segment of text with a completed value chosen by the user.
-:::
 
 It might seem strange to break this feature down and implement it with so many separate tools, but this approach is what allows logic to become abstract enough to be reusable. An autocomplete feature is only useful in situations where you need to autocomplete, but a fuzzy-matching search feature is useful in all kinds of different places.
 
@@ -106,29 +104,25 @@ Hmm...okay, it looks like some of these behaviors overlap, but not that closely.
 Notice, however, that every single one of these behaviors has a similar structure: when something specific happens, take an action. To be more precise: when an event or combination of events is fired, execute a callback function.
 
 If you were writing all of this behavior yourself across each of these components, you would most likely use:
-:::
 - An [Intersection Observer](https://developer.mozilla.org/en-US/docs/Web/API/intersectionObserver)
 - A third-party [gesture recognition library](https://zingchart.github.io/zingtouch/) that supports "swipe right" and "double tap"
 - [`addEventListener`](https://developer.mozilla.org/en-US/docs/Web/API/EventTarget/addEventListener)
 - [`requestIdleCallback`](https://developer.mozilla.org/en-US/docs/Web/API/Window/requestIdleCallback) (to keep your analytics work off the main thread so that it doesn't slow down other processes)
-:::
 
 You would also need to make sure that, when the components reach the end of their lifecycle:
-:::
 - The Intersection Observer disconnects from the images
 - The gesture recognizer is properly destroyed (hopefully the third party library has that option)
 - You execute [`removeEventListener`](https://developer.mozilla.org/en-US/docs/Web/API/EventTarget/removeEventListener) for each corresponding `addEventListener`
 - You execute [`cancelIdleCallback`](https://developer.mozilla.org/en-US/docs/Web/API/Window/cancelIdleCallback) for each corresponding `requestIdleCallback`
-:::
 
 All that work and all of those APIs...just to make your app do something after something else happens!
 
 With Baleada Logic, you would instead follow a straightforward process:
 1. Identify the name of the "something" that you're waiting for. For the components above, the "somethings" would be `'keydown'` `'intersect'`, `'tap'`, `'swipe'`, and `'idle'`.
-1. Pass the name of each "something" to a `Listenable` constructor to create instances of the `Listenable` class.
-1. Call your `Listenable` instances' `listen` methods, passing a callback function to each one that will triggers the appropriate action when its "something" happens. (You can also pass options to `listen`, for example, to make sure that you are only listening for an event on a specific element instead of the whole page.)
-1. Wait for your events to happen, and rest easy knowing that your callbacks will all run at the appropriate time!
-1. At the end of the components' lifecycles, call the `stop` method on your instances to stop all listening and observing (therefore avoiding memory leaks).
+2. Pass the name of each "something" to a `Listenable` constructor to create instances of the `Listenable` class.
+3. Call your `Listenable` instances' `listen` methods, passing a callback function to each one that will triggers the appropriate action when its "something" happens. (You can also pass options to `listen`, for example, to make sure that you are only listening for an event on a specific element instead of the whole page.)
+4. Wait for your events to happen, and rest easy knowing that your callbacks will all run at the appropriate time!
+5. At the end of the components' lifecycles, call the `stop` method on your instances to stop all listening and observing (therefore avoiding memory leaks).
 
 The idea behind `Listenable` is, that, at the end of the day, you shouldn't have to know or care whether the right tool to listen for any given "something" is an Observer, a magical gesture recognition library, the somewhat obscure `requestIdleCallback`, or good old `addEventListener`, and you _definitely_ shouldn't have to know or care about how to clean up side effects and avoid memory leaks with each tool.
 
@@ -146,8 +140,9 @@ The purpose of Baleada Logic is to abstract repetitive but relatively complex UI
 :::
 
 Baleada's abstractions take the form of **JavaScript classes** and **factory functions**. These classes and factories do several important things:
+
 :::
-- They expose a consistent, unified, intuitive API, regardless of what behaviors and feature you're trying to add to your poject
+- They expose a consistent, unified, intuitive API, regardless of what behaviors and feature you're trying to add to your project
 - They avoid side effects in the DOM whenever possible, and when not possible, they offer a consistent API for cleaning up afterward
 - The _only_ assumption they make about your DOM is that you have one. And sometimes, they don't even assume that!
 - They offer an intentionally limited set of features and functionality. In your project, any component worth its salt won't be powered by a single Baleada Logic class or factory—instead, your components will compose features using more than one class or factory, sometimes even feeding state from one class into the methods of another.
