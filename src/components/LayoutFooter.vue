@@ -1,44 +1,44 @@
 <template lang="html">
-  <footer class="px-3 py-8 bg-primary-1000 text-primary-gray-500 text-2">
+  <footer class="px-3 py-8 bg-primary-100 text-primary-gray-50 text-2">
     <div class="flex flex-col">
       <!-- Spacer -->
-      <div class="md:hidden mt-7 mx-auto w-11 h-px rounded-full bg-primary-gray-600"></div>
+      <div class="md:hidden mt-7 mx-auto w-11 h-px rounded-full bg-primary-gray-60" />
       <div class="mt-4 md:mt-0 flex flex-col md:flex-row">
-        <nav class="flex-1 flex flex-col items-center justify-center md:items-end md:border-r border-gray-600 md:pr-5">
-          <NuxtLink
+        <nav class="flex-1 flex flex-col items-center justify-center md:items-end md:border-r border-gray-60 md:pr-5">
+          <RouterLink
             v-for="(page, index) in pages"
             :key="page.href"
             :to="page.href"
-            class="hover:text-primary-gray-200"
+            class="hover:text-primary-gray-20"
             :class="[index > 0 ? 'mt-1 ' : '']"
           >
             {{ page.name }}
-          </NuxtLink>
+          </RouterLink>
         </nav>
         <!-- Spacer -->
-        <div class="md:hidden mt-4 mx-auto w-11 h-px rounded-full bg-primary-gray-600"></div>
-        <div class="mt-4 md:mt-0 flex-1 flex items-center justify-center md:border-r border-gray-600">
+        <div class="md:hidden mt-4 mx-auto w-11 h-px rounded-full bg-primary-gray-60" />
+        <div class="mt-4 md:mt-0 flex-1 flex items-center justify-center md:border-r border-gray-60">
           <a
-            class="hover:text-primary-gray-200"
+            class="hover:text-primary-gray-20"
             href="https://github.com/baleada"
           >
-            <span class="hidden">View on GitHub</span>
+            <span class="sr-only">View on GitHub</span>
             <SimpleGitHub :class="'icon h-7 w-7'" />
           </a>
           <a
-            class="ml-4 hover:text-primary-gray-200"
-            href="https://twitter.com/baleadajs"
+            class="ml-4 hover:text-primary-gray-20"
+            href="https://twitter.com/BaleadaToolkit"
           >
-            <span class="hidden">View Twitter profile</span>
+            <span class="sr-only">View Twitter profile</span>
             <SimpleTwitter :class="'icon h-7 w-7'" />
           </a>
         </div>
         <!-- Spacer -->
-        <div class="md:hidden mt-4 mx-auto w-11 h-px rounded-full bg-primary-gray-600"></div>
+        <div class="md:hidden mt-4 mx-auto w-11 h-px rounded-full bg-primary-gray-60" />
         <div class="mt-7 md:mt-0 flex-1 flex flex-col items-center justify-center md:items-start md:pl-5">
           <span class="">&copy; {{ new Date().getFullYear() }} Alex Vipond</span>
           <span class="mt-7 md:mt-1">
-            Created by <a class="underline hover:text-primary-gray-200" href="https://alexvipond.dev">Alex Vipond</a> 🌱
+            Created by <a class="underline hover:text-primary-gray-20" href="https://alexvipond.dev">Alex Vipond</a> 🌱
           </span>
         </div>
       </div>
@@ -47,15 +47,14 @@
 </template>
 
 <script>
-import { SimpleGitHub } from '@baleada/vue-icons'
-import { SimpleTwitter } from '@baleada/vue-icons'
+import { SimpleGitHub, SimpleTwitter } from '@baleada/vue-simple-icons'
 
 export default {
   components: {
     SimpleGitHub,
     SimpleTwitter,
   },
-  setup() {
+  setup () {
     const pages = [
       {
         name: 'Home',

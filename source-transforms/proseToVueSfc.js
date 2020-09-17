@@ -5,7 +5,7 @@ const matter = require('gray-matter'),
       md = require('./util/md')
 
 
-// TODO: include article metadata
+// TODO: set meta tags and head from data
 const transform = ({ source, id }) => {
   const { content: markdown, data: frontMatter } = matter(source),
         stats = toStats(id),

@@ -1,48 +1,35 @@
 <template>
-  <nav class="docs-nav">
-    <section
-      v-for="({ level, name, articles }, index) in directories"
+  <section class="docs-table-of-contents">
+    <h2 class="transition">ON THIS PAGE</h2>
+    <NuxtLink
+      v-for="({ level, slug, text }, index) in headings"
       :key="index"
+      :class="`h${level}`"
+      :to="`#${slug}`"
     >
-      <component
-        :is="`h${level + 2}`"
-        class="uppercase"
-      >
-        {{ name }}
-      </component>
-      <transition
-        v-for="{ href, title } in articles"
-        :key="href"
-        name="docs-nav"
-      >
-        <NuxtLink :to="href">
-          {{ title }}
-        </NuxtLink>
-      </transition>
-    </section>
-  </nav>
+      {{ text }}
+    </NuxtLink>
+  </section>
 </template>
 
 <script>
-import manifest from '../state/manifest'
+import { computed } from 'vue'
+import { useContext } from '@baleada/vue-prose'
 
 export default {
-  name: 'LayoutNav',
+  name: 'LayoutTableOfContents',
   setup () {
-    // TODO: filter based on metadata, with enter/leave transitions
+    const headings = computed(() => useContext().article.headings)
 
-    return {
-      directories: manifest,
-    }
-  },
+    return { headings }
+  }
 }
 </script>
 
 <style lang="postcss">
-.docs-nav {
-  * + section {
-    @apply mt-7;
-  }
+.docs-table-of-contents {
+  @apply flex flex-col;
+
   h2::after {
     content: '';
     @apply w-9 mt-3 block rounded-full h-px-2 bg-gray-30;
@@ -62,6 +49,27 @@ export default {
   }
   a:hover {
     @apply text-primary-60 border-primary-60 underline;
+  }
+  * + a {
+    @apply mt-2;
+  }
+  .h1 {
+    @apply ml-0 font-5;
+  }
+  .h2 {
+    @apply ml-2;
+  }
+  .h3 {
+    @apply ml-5;
+  }
+  .h4 {
+    @apply ml-7;
+  }
+  .h5 {
+    @apply ml-9;
+  }
+  .h6 {
+    @apply ml-10;
   }
 
   .dark & {
@@ -85,4 +93,5 @@ export default {
     }
   }
 }
+
 </style>

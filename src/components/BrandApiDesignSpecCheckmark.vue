@@ -1,5 +1,5 @@
 <template>
-  <HeroiconsCheck :class="'h-4 w-4 fill-current inline-block text-color-inherit'" />
+  <HeroiconsCheck class="h-4 w-4 fill-current inline-block text-color-inherit" />
 </template>
 
 <script>

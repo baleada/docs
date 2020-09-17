@@ -1,60 +1,60 @@
 <template lang="html">
   <section class="mt-12 with-max-w mx-auto flex flex-col sm:flex-row">
-    <NuxtLink
+    <RouterLink
       v-if="previous !== undefined"
       :to="previous.href"
       class="btn btn-lg mx-auto sm:ml-0 p-0 no-underline"
     >
-      <EvaArrowheadLeft :class="'icon'"/>
+      <HeroiconsChevronDoubleLeft class="icon" />
       <span class="hover:no-underline">{{ previous.title }}</span>
-    </NuxtLink>
-    <NuxtLink
+    </RouterLink>
+    <RouterLink
       v-if="next !== undefined"
       :to="next.href"
       class="btn btn-lg mt-2 sm:mt-0 p-0 mx-auto sm:mr-0 no-underline"
     >
       <span class="hover:no-underline">{{ next.title }}</span>
-      <EvaArrowheadRight :class="'icon'"/>
-    </NuxtLink>
+      <HeroiconsChevronDoubleRight class="icon" />
+    </RouterLink>
   </section>
 </template>
 
 <script>
-import { computed, watch, inject } from 'vue'
+import { computed } from 'vue'
+import { useContext } from '@baleada/vue-prose'
+import { clipable } from '@baleada/logic'
+import { HeroiconsChevronDoubleLeft, HeroiconsChevronDoubleRight } from '@baleada/vue-heroicons'
+import manifest from '../state/manifest'
 
-import { useSymbol } from '@baleada/vue-prose'
-
-import manifest from '~/static/json/manifest.json'
-
-import { EvaArrowheadLeft, EvaArrowheadRight } from '@baleada/vue-icons'
+const articles = manifest.reduce((articles, entry) => [...articles, ...entry.articles], [])
 
 export default {
-  name: 'DocsAdjacentArticleLinks',
+  name: 'LayoutAdjacentArticleLinks',
   components: {
-    EvaArrowheadLeft,
-    EvaArrowheadRight
+    HeroiconsChevronDoubleLeft,
+    HeroiconsChevronDoubleRight
   },
-  setup() {
-    const pages = manifest.reduce((pages, entry) => pages.concat(entry.pages), []),
-          routeMatches = (pageHref, basePath) => {
-            return (
-              pageHref === basePath ||
-              pageHref === basePath.replace(/\/$/,'') ||
-              pageHref === `${basePath}/`.replace(/\/+$/,'/')
-            )
-          },
-          fullPath = inject(useSymbol('layout', 'fullPath')),
+  setup () {
+    const fullPath = computed(() => useContext().fullPath),
           currentIndex = computed(() => {
-            const basePath = fullPath.value.split('#')[0]
-            return pages.findIndex(page => routeMatches(page.href, basePath))
+            const basePath = `${clipable(fullPath.value).clip(/#.+$/)}`
+            return articles.findIndex(article => routeMatches(article.href, basePath))
           }),
-          previous = computed(() => currentIndex.value - 1 === -1 ? undefined : pages[currentIndex.value - 1]),
-          next = computed(() => currentIndex.value + 1 > pages.length ? undefined : pages[currentIndex.value + 1])
+          previous = computed(() => currentIndex.value - 1 === -1 ? undefined : articles[currentIndex.value - 1]),
+          next = computed(() => currentIndex.value + 1 > articles.length ? undefined : articles[currentIndex.value + 1])
 
     return {
       previous,
       next,
     }
   }
+}
+
+function routeMatches (articleHref, basePath) {
+  return (
+    articleHref === basePath ||
+    articleHref === `${clipable(basePath).clip(/\/$/)}` ||
+    articleHref === `${basePath}/`.replace(/\/+$/,'/')
+  )
 }
 </script>

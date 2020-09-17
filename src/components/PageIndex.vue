@@ -15,7 +15,7 @@
       <BrandLogo
         id="landing-page"
         ref="logo"
-        :class="'-ml-2 h-13 w-13 sm:h-14 sm:w-14 md:h-15 md:w-15 text-primary-10 transition-none'"
+        class="-ml-2 h-13 w-13 sm:h-14 sm:w-14 md:h-15 md:w-15 text-primary-10 transition-none"
         :hasShadow="true"
         @mouseenter="mouseenterHandle"
       />
@@ -28,14 +28,14 @@
           to="/docs"
           class="btn md:btn-lg btn-raised btn-grows bg-primary-10 text-primary-80"
         >
-          <HeroiconsBookOpenSolid :class="'icon'" />
+          <HeroiconsBookOpenSolid class="icon" />
           <span>Read the docs</span>
         </NuxtLink>
         <a
           href="https://github.com/baleada/"
           class="mt-3 sm:mt-0 sm:ml-4 btn md:btn-lg btn-grows border-5 border-primary-10 text-primary-10"
         >
-          <SimpleGitHub :class="'icon'" />
+          <SimpleGitHub class="icon" />
           <span>View on GitHub</span>
         </a>
       </div>

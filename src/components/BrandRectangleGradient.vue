@@ -1,4 +1,4 @@
-<template functional>
+<template>
   <svg
     version="1.1"
     role="img"
@@ -7,34 +7,38 @@
     preserveAspectRatio="none"
     v-bind="data.attrs"
     v-on="listeners"
-    :class="data.class"
-    :ref="data.ref"
-    :key="data.key"
-    :slot="data.slot"
   >
     <defs>
-      <linearGradient :id="props.gradientId" :x1="props.x[1]" :x2="props.x[2]" :y1="props.y[1]" :y2="props.y[2]">
+      <linearGradient
+        :id="gradientId"
+        :x1="x[1]"
+        :x2="x[2]"
+        :y1="y[1]"
+        :y2="y[2]"
+      >
         <stop
-          v-for="(stop, index) in props.stops"
+          v-for="(stop, index) in stops"
           :key="index"
           :offset="`${stop.offset}%`"
           :class="stop.classes"
           :style="stop.styles"
           :stop-opacity="stop.opacity"
-          stop-color="currentColor" />
+          stop-color="currentColor"
+        />
       </linearGradient>
     </defs>
 
-    <rect x="0" y="0" width="100%" height="100%" :fill="`url(#${props.gradientId})`"/>
+    <rect
+      x="0"
+      y="0"
+      width="100%"
+      height="100%"
+      :fill="`url(#${gradientId})`"
+    />
   </svg>
 </template>
 
 <script>
-
-function isValidCoordinate(value) {
-  return typeof value === 'number' || value === undefined || value === null
-}
-
 export default {
   props: {
     gradientId: {
@@ -53,12 +57,10 @@ export default {
     x: {
       type: Object,
       default: () => { return { 1: 0, 2: 1 } },
-      validator: (value) => isValidCoordinate(value[1]) && isValidCoordinate(value[2])
     },
     y: {
       type: Object,
       default: () => { return { 1: 0, 2: 1 } },
-      validator: (value) => isValidCoordinate(value[1]) && isValidCoordinate(value[2])
     }
   },
 }

@@ -19,9 +19,9 @@ module.exports = function proseFilesToManifest () {
             name: parse(id).name.replace(/-/g, ' '),
             articles: toManifested(id),
           }))
-        ]
+        ].filter(({ articles }) => articles.length > 0)
 
-  console.log(manifest[24])
+  console.log(manifest[0])
   return `export default ${JSON.stringify(manifest)}`
 }
 
@@ -35,17 +35,17 @@ function toManifested (id) {
             tags = rawTags ? rawTags.split(',').map(tag => tag.trim()) : [],
             fileName = parse(`${id}/${file}`).name,
             href = `/docs${clipable(id).clip(basePath).clip('/src/prose')}/${clipable(fileName).clip(/^index$/)}`,
-            updatedAt = toStats(`${id}/${file}`).authorDate
+            authorDate = toStats(`${id}/${file}`).authorDate
       
       return {
         title,
         tags,
         href,
-        updatedAt,
+        authorDate,
         order,
       }
     })
-    .slice().sort(byOrder)
+    .sort(byOrder)
 }
 
 function toStats (id) {

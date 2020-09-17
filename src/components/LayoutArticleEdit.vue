@@ -1,33 +1,28 @@
 <template lang="html">
   <p class="mt-8 text-center">
-    <a class="btn btn-sm p-0 no-underline" :href="gitPath">
-      <SimpleGitHub :class="'icon'" />
+    <a
+      class="btn btn-sm p-0 no-underline"
+      :href="gitRepoPath"
+    >
+      <SimpleGitHub class="icon" />
       <span>Edit on GitHub</span>
     </a>
   </p>
 </template>
 
 <script>
-import { ref, computed, inject } from 'vue'
-
-import { useSymbol } from '@baleada/vue-prose'
-
-import { SimpleGitHub } from '@baleada/vue-icons'
+import { computed } from 'vue'
+import { useContext } from '@baleada/vue-prose'
+import { SimpleGitHub } from '@baleada/vue-simple-icons'
 
 export default {
   components: {
     SimpleGitHub,
   },
   setup () {
-    const filePath = inject(useSymbol('article', 'filePath')),
-          gitPath = computed(() => {
-            const path = filePath.value.match(/\/assets\/prose\/.+$/)
-            return path[0] && `https://github.com/baleada/docs/blob/main${path[0]}`
-          })
+    const gitRepoPath = computed(() => `https://github.com/baleada/docs/blob/main${useContext().article.relativePath}`)
 
-    return {
-      gitPath
-    }
+    return { gitRepoPath }
   },
 }
 </script>

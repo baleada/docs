@@ -5,11 +5,11 @@
       darkThemeStatus === 'enabled' ? 'dark' : '',
       minimalistThemeStatus === 'enabled' ? 'minimalist' : '',
       darkThemeStatus === 'disabled' && minimalistThemeStatus === 'disabled'
-        ? 'bg-gray-200'
+        ? 'bg-gray-20'
         : darkThemeStatus === 'enabled' && minimalistThemeStatus === 'disabled'
-          ? 'bg-primary-gray-1000'
+          ? 'bg-primary-gray-100'
           : darkThemeStatus === 'enabled' && minimalistThemeStatus === 'enabled'
-            ? 'bg-primary-gray-950'
+            ? 'bg-primary-gray-95'
             : darkThemeStatus === 'disabled' && minimalistThemeStatus === 'enabled'
               ? 'bg-white'
               : ''
@@ -17,54 +17,54 @@
   >
     <!-- Left -->
     <section
-      class="relative h-screen w-screen lg:w-17 flex-none px-7 py-3 overflow-y-scroll scrolling-touch lg:translate-0"
+      ref="nav"
+      class="relative h-screen w-screen lg:w-17 flex-none px-7 py-3 overflow-y-scroll scrolling-touch lg:translate-0 transform"
       :class="[
-        openStatus === 'nav' ? 'translate-0' : '-translate-x-100',
+        openStatus === 'nav' ? 'translate-0' : '-translate-x-10',
         tableOfContentsTransitionStatus === 'after-leave'
           ? 'lg:absolute lg:z-30 lg:h-auto'
           : ''
       ]"
-      ref="nav"
     >
       <header
         class="flex items-center pb-3 border-b-2"
         :class="[
           darkThemeStatus === 'disabled' && minimalistThemeStatus === 'disabled'
-            ? 'border-gray-300'
+            ? 'border-gray-30'
             : darkThemeStatus === 'enabled' && minimalistThemeStatus === 'disabled'
-              ? 'border-primary-gray-950'
+              ? 'border-primary-gray-95'
               : darkThemeStatus === 'enabled' && minimalistThemeStatus === 'enabled'
-                ? 'border-primary-gray-950'
+                ? 'border-primary-gray-95'
                 : darkThemeStatus === 'disabled' && minimalistThemeStatus === 'enabled'
                   ? 'border-white'
                   : ''
         ]"
       >
-        <NuxtLink
+        <RouterLink
           to="/"
           aria-label="Link to home page"
           class="flex-none rounded-full h-10 w-10 p-2 -shadow transition btn-grows"
           :class="[
-            darkThemeStatus === 'enabled' ? 'bg-primary-gray-900' : 'bg-primary-600',
+            darkThemeStatus === 'enabled' ? 'bg-primary-gray-90' : 'bg-primary-60',
           ]"
         >
           <BrandLogo
             id="nav-header"
-            :tortillaClasses="darkThemeStatus === 'enabled' ? 'text-primary-gray-500' : undefined"
-            :burnClasses="darkThemeStatus === 'enabled' ? 'text-primary-gray-1000' : undefined"
+            :tortillaClasses="darkThemeStatus === 'enabled' ? 'text-primary-gray-50' : undefined"
+            :burnClasses="darkThemeStatus === 'enabled' ? 'text-primary-gray-100' : undefined"
           />
-        </NuxtLink>
+        </RouterLink>
       </header>
 
       <button
         class="lg:hidden absolute top-0 right-0 mt-3 mr-6 h-7 w-7 cursor-pointer transition btn-grows"
         :class="[
-          darkThemeStatus === 'enabled' ? 'text-gray-600 hover:text-gray-400' : 'text-gray-900 hover:text-primary-600'
+          darkThemeStatus === 'enabled' ? 'text-gray-60 hover:text-gray-40' : 'text-gray-90 hover:text-primary-60'
         ]"
         aria-label="Close menu"
         @click="openArticle"
       >
-        <HeroiconsX :class="'icon'"/>
+        <HeroiconsX class="icon" />
       </button>
 
       <!-- TODO: use toggle component -->
@@ -74,47 +74,50 @@
           <button
             class="flex items-center text-2 rounded-full font-6 tracking-3"
             :class="[
-              darkThemeStatus === 'enabled' ? 'text-primary-gray-500' : 'text-gray-600'
+              darkThemeStatus === 'enabled' ? 'text-primary-gray-50' : 'text-gray-60'
             ]"
             aria-label="Disable dark theme"
             @click="() => disableDarkTheme()"
           >
-            <HeroiconsSun :class="'icon h-5 w-5 transition'"/>
+            <HeroiconsSun class="icon h-5 w-5 transition" />
           </button>
           <div
-            @click="() => toggleDarkTheme()"
             class="relative mx-2 inline-flex h-6 w-9 -shadow rounded-full cursor-pointer"
             :class="[
               darkThemeStatus === 'enabled' && minimalistThemeStatus === 'disabled'
-                ? 'bg-primary-gray-900'
+                ? 'bg-primary-gray-90'
                 : darkThemeStatus === 'enabled' && minimalistThemeStatus === 'enabled'
-                  ? 'bg-primary-gray-1000'
-                  : 'bg-gray-300'
+                  ? 'bg-primary-gray-100'
+                  : 'bg-gray-30'
             ]"
+            @click="() => toggleDarkTheme()"
           >
             <button
               aria-label="Toggle dark theme"
               class="absolute rounded-full h-6 w-6 shadow transition-all focus:shadow-outline"
-              :style="darkThemeStatus === 'enabled' ? { transform: 'translateX(-100%)' } : {}"
+              :style="darkThemeStatus === 'enabled' ? { transform: 'translateX(-10%)' } : {}"
               :class="[
-                darkThemeStatus === 'enabled' ? 'left-full bg-primary-gray-700' : 'left-0 bg-white',
+                darkThemeStatus === 'enabled' ? 'left-full bg-primary-gray-70' : 'left-0 bg-white',
               ]"
             />
           </div>
           <button
             class="flex items-center text-2 rounded-full font-6 tracking-3"
             :class="[
-              darkThemeStatus === 'enabled' ? 'text-primary-gray-500' : 'text-gray-600'
+              darkThemeStatus === 'enabled' ? 'text-primary-gray-50' : 'text-gray-60'
             ]"
             aria-label="Enable dark theme"
             @click="() => enableDarkTheme()"
           >
-            <HeroiconsMoon :class="'icon h-5 w-5 transition'"/>
+            <HeroiconsMoon class="icon h-5 w-5 transition" />
           </button>
         </div>
 
-        <span class="block mt-3 text-2" :class="[darkThemeStatus === 'enabled' ? 'text-primary-gray-500' : 'text-gray-600']">
-          Hotkey: <code class="py-px px-1 font-400">SHIFT</code> + <code class="py-px px-1 font-400">D</code>
+        <span
+          class="block mt-3 text-2"
+          :class="[darkThemeStatus === 'enabled' ? 'text-primary-gray-50' : 'text-gray-60']"
+        >
+          <code class="py-px px-1 font-40">SHIFT</code> + <code class="py-px px-1 font-40">D</code>
         </span>
       </div>
 
@@ -124,32 +127,32 @@
           <button
             class="flex items-center text-3 rounded-full font-6 tracking-3"
             :class="[
-              darkThemeStatus === 'enabled' ? 'text-primary-gray-500' : 'text-gray-600'
+              darkThemeStatus === 'enabled' ? 'text-primary-gray-50' : 'text-gray-60'
             ]"
             aria-label="Disable minimalist theme"
             @click="() => disableMinimalistTheme()"
           >
-            <HeroiconsTemplate :class="'icon transition h-5 w-5'" />
+            <HeroiconsTemplate class="icon transition h-5 w-5" />
           </button>
           <div
-            @click="() => toggleMinimalistTheme()"
             class="relative mx-2 inline-flex h-6 w-9 -shadow rounded-full cursor-pointer"
             :class="[
               darkThemeStatus === 'enabled' && minimalistThemeStatus === 'disabled'
-                ? 'bg-primary-gray-900'
+                ? 'bg-primary-gray-90'
                 : darkThemeStatus === 'enabled' && minimalistThemeStatus === 'enabled'
-                  ? 'bg-primary-gray-1000'
+                  ? 'bg-primary-gray-100'
                   : darkThemeStatus === 'disabled' && minimalistThemeStatus === 'enabled'
-                    ? 'bg-primary-300'
-                    : 'bg-gray-300'
+                    ? 'bg-primary-30'
+                    : 'bg-gray-30'
             ]"
+            @click="() => toggleMinimalistTheme()"
           >
             <button
               aria-label="Toggle minimalist theme"
               class="absolute rounded-full h-6 w-6 shadow transition-all focus:shadow-outline"
-              :style="minimalistThemeStatus === 'enabled' ? { transform: 'translateX(-100%)' } : {}"
+              :style="minimalistThemeStatus === 'enabled' ? { transform: 'translateX(-10%)' } : {}"
               :class="[
-                darkThemeStatus === 'enabled' ? 'bg-primary-gray-700' : 'bg-white',
+                darkThemeStatus === 'enabled' ? 'bg-primary-gray-70' : 'bg-white',
                 minimalistThemeStatus === 'enabled' ? 'left-full' : 'left-0',
               ]"
             />
@@ -157,25 +160,28 @@
           <button
             class="flex items-center text-2 rounded-full font-6 tracking-3"
             :class="[
-              darkThemeStatus === 'enabled' ? 'text-primary-gray-500' : 'text-gray-600'
+              darkThemeStatus === 'enabled' ? 'text-primary-gray-50' : 'text-gray-60'
             ]"
             aria-label="Enable minimalist theme"
             @click="() => enableMinimalistTheme()"
           >
-            <EvaSquare :class="'icon transition h-5 w-5'" />
+            <EvaSquare class="icon transition h-5 w-5" />
           </button>
         </div>
 
-        <span class="block mt-3 text-2" :class="[darkThemeStatus === 'enabled' ? 'text-primary-gray-500' : 'text-gray-600']">
-          Hotkey: <code class="py-px px-1 font-400">SHIFT</code> + <code class="py-px px-1 font-400">M</code>
+        <span
+          class="block mt-3 text-2"
+          :class="[darkThemeStatus === 'enabled' ? 'text-primary-gray-50' : 'text-gray-60']"
+        >
+          <code class="py-px px-1 font-40">SHIFT</code> + <code class="py-px px-1 font-40">M</code>
         </span>
       </div>
 
       <transition name="fade">
-        <DocsNav
+        <LayoutNav
           v-show="minimalistThemeStatus === 'disabled'"
           class="mt-5 pb-7"
-          @click.native="handleSidebarClick"
+          @click="handleSidebarClick"
         />
       </transition>
     </section>
@@ -183,14 +189,14 @@
     <!-- Middle -->
     <section
       ref="article"
-      class="absolute lg:relative top-0 left-0 z-20 h-screen w-screen lg:w-full overflow-x-hidden overflow-y-scroll scrolling-touch lg:translate-0"
+      class="absolute lg:relative top-0 left-0 z-20 h-screen w-screen lg:w-full overflow-x-hidden overflow-y-scroll scrolling-touch lg:translate-0 transform"
       :class="[
         openStatus === 'nav'
-          ? 'translate-x-100'
+          ? 'translate-x-10'
           : openStatus === 'tableOfContents'
-            ? '-translate-x-100'
+            ? '-translate-x-10'
             : '',
-        darkThemeStatus === 'enabled' ? 'bg-primary-gray-950' : 'bg-white',
+        darkThemeStatus === 'enabled' ? 'bg-primary-gray-95' : 'bg-white',
         minimalistThemeStatus === 'enabled' ? '' : 'shadow-3 lg:rounded-2',
         `table-of-contents-${tableOfContentsTransitionStatus}`,
       ]"
@@ -199,108 +205,116 @@
         <div v-show="minimalistThemeStatus === 'disabled'">
           <BrandLogo
             id="article-decoration"
-            :class="'absolute h-auto w-full sm:w-3/4 max-w-screen-sm top-0 right-0'"
+            class="absolute h-auto w-full sm:w-3/4 max-w-screen-sm top-0 right-0"
             :style="{ transform: 'translate(14%, -42%)' }"
             type="outline"
             :classes="[
-              darkThemeStatus === 'disabled' ? 'text-primary-100' : 'text-primary-gray-800 opacity-80',
+              darkThemeStatus === 'disabled' ? 'text-primary-10' : 'text-primary-gray-80 opacity-80',
             ]"
           />
         </div>
       </transition>
-      <header class="relative flex items-center z-40 absolute left-0 top-0 pt-6 px-7 sm:px-9 lg:pl-11 w-full">
+      <header class="flex items-center z-40 absolute left-0 top-0 pt-6 px-7 sm:px-9 lg:pl-11 w-full">
         <button
           type="button"
           aria-label="Show navigation"
           class="lg:hidden h-7 w-7 p-0 rounded-full transition btn-grows"
           :class="[
-            darkThemeStatus === 'enabled' ? 'text-gray-600 hover:text-gray-400' : 'text-gray-700 hover:text-primary-600'
+            darkThemeStatus === 'enabled' ? 'text-gray-60 hover:text-gray-40' : 'text-gray-70 hover:text-primary-60'
           ]"
           @click="openNav"
         >
-          <HeroiconsMenu :class="'icon'" />
+          <HeroiconsMenuAlt2 class="icon" />
         </button>
 
-        <!-- <DocsSearch class="ml-2 lg:ml-0 w-full max-w-6" /> -->
+        <!-- <LayoutSearch class="ml-2 lg:ml-0 w-full max-w-6" /> -->
 
         <button
           type="button"
           aria-label="Show table of contents"
           class="ml-auto lg:hidden h-7 w-7 p-0 rounded-full transition btn-grows"
           :class="[
-            darkThemeStatus === 'enabled' ? 'text-gray-600 hover:text-gray-400' : 'text-gray-700 hover:text-primary-600'
+            darkThemeStatus === 'enabled' ? 'text-gray-60 hover:text-gray-40' : 'text-gray-70 hover:text-primary-60'
           ]"
           @click="openTableOfContents"
         >
-          <HeroiconsMenuAlt1 :class="'icon'" />
+          <HeroiconsMenuAlt3 class="icon" />
         </button>
       </header>
 
-      <nuxt class="relative" key="content" />
+      <RouterView
+        key="content"
+        class="relative"
+      />
     </section>
 
     <!-- Right -->
     <transition
       name="fade"
-      v-on:before-enter="onTableOfContentsBeforeEnter"
-      v-on:after-leave="onTableOfContentsAfterLeave"
+      @before-enter="onTableOfContentsBeforeEnter"
+      @after-leave="onTableOfContentsAfterLeave"
     >
       <section
         v-show="minimalistThemeStatus === 'disabled'"
-        class="absolute lg:relative top-0 left-0 h-screen w-screen lg:w-17 flex-none px-7 py-3 overflow-y-scroll scrolling-touch lg:translate-0"
-        :class="[
-          openStatus === 'tableOfContents' ? 'translate-0' : 'translate-x-100',
-        ]"
         ref="tableOfContents"
+        class="absolute lg:relative top-0 left-0 h-screen w-screen lg:w-17 flex-none px-7 py-3 overflow-y-scroll scrolling-touch lg:translate-0 transform"
+        :class="[
+          openStatus === 'tableOfContents' ? 'translate-0' : 'translate-x-10',
+        ]"
       >
-      <!-- minimalistThemeStatus === 'enabled' ? 'opacity-0 pointer-events-none translate-x-100' : 'lg:translate-0', -->
+        <!-- minimalistThemeStatus === 'enabled' ? 'opacity-0 pointer-events-none translate-x-10' : 'lg:translate-0', -->
         <button
           class="lg:hidden absolute top-0 right-0 mt-3 mr-6 h-7 w-7 cursor-pointer transition btn-grows"
           :class="[
-            darkThemeStatus === 'enabled' ? 'text-gray-600 hover:text-gray-400' : 'text-gray-900 hover:text-primary-600'
+            darkThemeStatus === 'enabled' ? 'text-gray-60 hover:text-gray-40' : 'text-gray-90 hover:text-primary-60'
           ]"
           aria-label="close-menu"
           @click="openArticle"
         >
-          <HeroiconsX :class="'icon'"/>
+          <HeroiconsX class="icon" />
         </button>
-        <!-- <DocsAd class="mt-auto"/> -->
-        <DocsTableOfContents
-          :headings="headings"
-          @click.native="handleSidebarClick"
-        />
+        <!-- <LayoutAd class="mt-auto" /> -->
+        <LayoutTableOfContents @click="handleSidebarClick" />
       </section>
     </transition>
   </main>
 </template>
 
 <script>
-import { ref, computed, onMounted, inject } from 'vue'
-
+import { ref, onMounted } from 'vue'
 import { swipe } from '@baleada/listenable-gestures'
 import { useListenable, useStoreable } from '@baleada/vue-composition'
-import { useSymbol } from '@baleada/vue-prose'
-import { HeroiconsMenu, HeroiconsX, HeroiconsMenuAlt1, HeroiconsSun, HeroiconsMoon, HeroiconsTemplate, EvaSquare } from '@baleada/vue-icons'
+import {
+  HeroiconsMenuAlt2,
+  HeroiconsX,
+  HeroiconsMenuAlt3,
+  HeroiconsSun,
+  HeroiconsMoon,
+  HeroiconsTemplate,
+} from '@baleada/vue-heroicons'
+import { EvaSquare } from '@baleada/vue-eva-icons'
 
-import DocsNav from '~/components/DocsNav'
-import DocsSearch from '~/components/DocsSearch'
-import DocsTableOfContents from '~/components/DocsTableOfContents'
+import LayoutNav from './LayoutNav.vue'
+// import LayoutSearch from './LayoutSearch.vue'
+import LayoutTableOfContents from './LayoutTableOfContents.vue'
+
+import { createProseContext } from '../functions'
 
 export default {
   name: 'ThreeColumn',
   components: {
-    HeroiconsMenu,
+    HeroiconsMenuAlt2,
     HeroiconsX,
-    HeroiconsMenuAlt1,
+    HeroiconsMenuAlt3,
     HeroiconsSun,
     HeroiconsMoon,
     HeroiconsTemplate,
     EvaSquare,
-    DocsNav,
-    // DocsSearch,
-    DocsTableOfContents,
+    LayoutNav,
+    // LayoutSearch,
+    LayoutTableOfContents,
   },
-  setup (props, context) {
+  setup () {
     /* Manage open status */
     const openStatus = ref('article'),
           openNav = () => (openStatus.value = 'nav'),
@@ -464,8 +478,8 @@ export default {
       }
     })
 
-    /* Get headings for table of contents */
-    const headings = inject(useSymbol('layout', 'headings'))
+    // Create Prose context
+    createProseContext(article)
 
     return {
       openStatus,
@@ -491,8 +505,6 @@ export default {
       tableOfContentsTransitionStatus,
       onTableOfContentsAfterLeave,
       onTableOfContentsBeforeEnter,
-
-      headings,
     }
   },
 }
