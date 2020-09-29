@@ -5,8 +5,6 @@
     xmlns="http://www.w3.org/2000/svg"
     viewBox="0 0 24 24"
     preserveAspectRatio="none"
-    v-bind="data.attrs"
-    v-on="listeners"
   >
     <defs>
       <linearGradient
@@ -40,6 +38,7 @@
 
 <script>
 export default {
+  name: 'BrandRectangleGradient',
   props: {
     gradientId: {
       type: String,

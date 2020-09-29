@@ -19,7 +19,7 @@ And Baleada SPA Links will render this:
 
 :::
 ```html
-<p><NuxtLink to="/my-other-page">My other page</NuxtLink></p>
+<p><RouterLink to="/my-other-page">My other page</RouterLink></p>
 ```
 :::
 
@@ -108,7 +108,7 @@ md.use(MarkdownItSpaLinks, { spa: 'nuxt', base: 'https://example.com' })
 | --- | --- |
 | `'inertia'` | [`inertia-link`](https://inertiajs.com/links#top) |
 | `'next'` | [`Link` > `a`](https://nextjs.org/docs#with-link) |
-| `'nuxt'` | [`NuxtLink`](https://nuxtjs.org/api/components-nuxt-link#the-lt-nuxt-link-gt-component) |
+| `'nuxt'` | [`RouterLink`](https://nuxtjs.org/api/components-nuxt-link#the-lt-nuxt-link-gt-component) |
 | `'react'` | [`Link`](https://reacttraining.com/react-router/web/api/Link) |
 | `'vue'` | [`RouterLink`](https://router.vuejs.org/api/#router-link) |
 :::

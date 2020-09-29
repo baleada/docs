@@ -17,19 +17,18 @@ Documentation for `Completeable` is still in progress.
 :::
 
 
-<!-- :::
+<!-- 
+:::
 ## Construct a Completeable instance
 :::
 
 To construct a Completeable instance (Object), use the Completeable constructor, which takes two parameters:
 
 :::
-
 | Parameter | Type | Required | Description |
 | --- | --- | --- | --- |
 | `string` | String | yes | Passes the string that will be made completable. |
 | `options` | Object | no | Passes options for the Completeable instance. See the [Completeable constructor options](#Completeable-constructor-options) section for more guidance. |
-
 :::
 
 
@@ -114,7 +113,6 @@ In general, whenever the `complete` method is called, the Completeable instance 
 The default `onComplete` and `onLocate` functions, shown below, set `string` to the completed string and `location` to the new location each time you call `complete`:
 
 :::
-
 ```js
 /*
  * Default onComplete function for Completeable
@@ -126,7 +124,6 @@ The default `onComplete` and `onLocate` functions, shown below, set `string` to 
  */
 (newLocation, instance) => instance.setLocation(newLocation)
 ```
-
 :::
 
 
@@ -137,11 +134,9 @@ The completed string is a new version of the instance's `string`, with its `segm
 The new value for `location` is computed based on the `locatesAfterCompletion` option, passed using the `complete` function's `options` argument:
 
 :::
-
 ```js
 completable.complete('my completion', { locatesAfterCompletion: true })
 ```
-
 :::
 
 `locatesAfterCompletion` defaults to `true`.
@@ -152,4 +147,5 @@ After computing the new location, the `complete` method calls your `onLocate` fu
 
 ::: type="info"
 Note that `complete` does not set `string` or `location` to the new values, but you can do so using `setString` and `setLocation`.
-::: -->
+::: 
+-->

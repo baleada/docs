@@ -29,7 +29,7 @@ module.exports = {
     colors: {
       ...baleada.colors,
       gray: {
-        ...linearNumeric({ only: 'colors' }).gray,
+        ...linearNumeric({ only: 'colors', increment: '10' }).gray,
         '100': 'hsla(217, 30%, 8%, 1.0)',
         '75': 'hsla(218, 22%, 26%, 1.0)',
       },

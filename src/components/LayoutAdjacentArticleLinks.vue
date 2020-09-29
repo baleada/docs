@@ -1,4 +1,4 @@
-<template lang="html">
+<template>
   <section class="mt-12 with-max-w mx-auto flex flex-col sm:flex-row">
     <RouterLink
       v-if="previous !== undefined"

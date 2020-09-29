@@ -1,4 +1,4 @@
-<template lang="html">
+<template>
   <p class="mt-8 text-center">
     <a
       class="btn btn-sm p-0 no-underline"
@@ -16,6 +16,7 @@ import { useContext } from '@baleada/vue-prose'
 import { SimpleGitHub } from '@baleada/vue-simple-icons'
 
 export default {
+  name: 'LayoutArticleEdit',
   components: {
     SimpleGitHub,
   },

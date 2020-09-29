@@ -9,6 +9,7 @@ import { computed } from 'vue'
 import { useContext } from '@baleada/vue-prose'
 
 export default {
+  name: 'LayoutArticleStats',
   setup () {
     const authorDate = computed(() => useContext().article.stats.authorDate), // Date of last git commit
           intl = computed(() =>

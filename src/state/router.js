@@ -34,3 +34,4 @@ router.beforeEach((to, from, next) => {
 //   set document title from proseContext.article.frontmatter
 // })
 
+export default router

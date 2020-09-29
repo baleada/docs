@@ -1,6 +1,6 @@
 import { createApp } from 'vue'
 import App from './App.vue'
-import './styles/index.css'
+import './index.css'
 import 'typeface-inter'
 import 'typeface-inconsolata'
 import 'typeface-caveat'

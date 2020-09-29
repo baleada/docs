@@ -9,8 +9,31 @@ const sourceTransform = require('@baleada/rollup-plugin-source-transform'),
       getServeVirtual = require('@baleada/vite-serve-virtual'),
       // Transform virtual routes
       getFilesToRoutesTransform = require('@baleada/source-transform-files-to-routes'),
-      filesToRoutes = getFilesToRoutesTransform('vue', { exclude: ['**/.**', '**/*routes.js'], transformPath: path => `${clipable(path).clip(/^\//)}` }),
-      relativeFromRootFilesToRoutes = getFilesToRoutesTransform('vue', { exclude: ['**/.**', '**/*routes.js'], importType: 'relativeFromRoot', transformPath: path => `${clipable(path).clip(/^\//)}` }),
+      testRoute = ({ source, id, createFilter }) => {
+        // Exclude dotfiles
+        if (createFilter('**/.**')(id)) {
+          return false
+        }
+
+        const { data: { publish } } = matter(source)
+        return publish
+      },
+      matter = require('gray-matter'),
+      filesToRoutes = getFilesToRoutesTransform(
+        'vue', 
+        {
+          test: testRoute,
+          transformPath: path => `${clipable(path).clip(/^\//)}`
+        }
+      ),
+      relativeFromRootFilesToRoutes = getFilesToRoutesTransform(
+        'vue',
+        {
+          test: testRoute,
+          importType: 'relativeFromRoot',
+          transformPath: path => `${clipable(path).clip(/^\//)}`
+        }
+      ),
       // Transform virtual indices
       getFilesToIndexTransform = require('@baleada/source-transform-files-to-index'),
       filesToIndex = getFilesToIndexTransform(),
@@ -21,7 +44,7 @@ const sourceTransform = require('@baleada/rollup-plugin-source-transform'),
       proseFilesToSearchableCandidates = require('./source-transforms/proseFilesToSearchableCandidates'),
       // Alias babel runtime
       aliasBabelRuntime = require('@baleada/vite-alias-babel-runtime')
-
+      
 module.exports = {
   alias: aliasBabelRuntime(),
   configureServer: [
@@ -30,39 +53,46 @@ module.exports = {
       include: '**/*.prose',
     }),
     getServeVirtual({
-      test: ({ id }) => id.endsWith('/src/assets/js'),
-      transform: ({ id }) => ({
-        type: 'js',
-        source: relativeFromRootFilesToIndex({ id }),
-      })
-    }),
-    getServeVirtual({
       test: ({ id }) => id.endsWith('/src/components'),
       transform: ({ id }) => ({
         type: 'js',
         source: relativeFromRootFilesToIndex({ id }),
-      })
+      }),
     }),
     getServeVirtual({
-      test: ({ id }) => id.endsWith('/src/docs/routes'),
+      test: ({ id }) => id.endsWith('/src/functions'),
+      transform: ({ id }) => ({
+        type: 'js',
+        source: relativeFromRootFilesToIndex({ id }),
+      }),
+    }),
+    getServeVirtual({
+      test: ({ id }) => id.endsWith('/src/state'),
+      transform: ({ id }) => ({
+        type: 'js',
+        source: relativeFromRootFilesToIndex({ id }),
+      }),
+    }),
+    getServeVirtual({
+      test: ({ id }) => id.endsWith('/src/prose/routes'),
       transform: ({ id }) => ({
         type: 'js',
         source: relativeFromRootFilesToRoutes({ id }),
-      })
+      }),
     }),
     getServeVirtual({
       test: ({ id }) => id.endsWith('/src/state/manifest'),
       transform: () => ({
         type: 'js',
         source: proseFilesToManifest(),
-      })
+      }),
     }),
     getServeVirtual({
       test: ({ id }) => id.endsWith('/src/state/searchableCandidates'),
       transform: () => ({
         type: 'js',
         source: proseFilesToSearchableCandidates(),
-      })
+      }),
     }),
   ],
   rollupInputOptions: {
@@ -72,15 +102,19 @@ module.exports = {
         transform: ({ source }) => sourceTransformProseToVueSfc({ source }),
       }),
       virtual({
-        include: '**/assets/js',
-        transform: ({ id }) => filesToIndex({ id }),
-      }),
-      virtual({
         include: '**/components',
         transform: ({ id }) => filesToIndex({ id }),
       }),
       virtual({
-        include: '**/docs/routes',
+        include: '**/functions',
+        transform: ({ id }) => filesToIndex({ id }),
+      }),
+      virtual({
+        include: '**/state',
+        transform: ({ id }) => filesToIndex({ id }),
+      }),
+      virtual({
+        include: '**/prose/routes',
         transform: ({ id }) => filesToRoutes({ id }),
       }),
       virtual({

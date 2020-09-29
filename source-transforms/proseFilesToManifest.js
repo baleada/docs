@@ -21,7 +21,7 @@ module.exports = function proseFilesToManifest () {
           }))
         ].filter(({ articles }) => articles.length > 0)
 
-  console.log(manifest[0])
+  console.log(`${manifest.length} directories added to the manifest`)
   return `export default ${JSON.stringify(manifest)}`
 }
 

@@ -4,7 +4,7 @@ tags: Composition functions, Vue
 publish: true
 ---
 
-Baleada Vue Composition is the Vue-compatible version of Baleada Composition
+Baleada Vue Composition is the Vue-compatible version of Baleada Composition.
 
 :::
 ## Install
@@ -29,15 +29,15 @@ npm i @baleada/vue-composition @baleada/logic
 ## Import a composition function
 :::
 
-All Baleada Composition functions be imported from `@baleada/vue-composition`:
+All Baleada Composition functions can be imported from `@baleada/vue-composition`:
 
 :::
 ```js
 // Import a class
-import { useAnimateable } from '@baleada/vue-icons'
+import { useAnimateable } from '@baleada/vue-composition'
 
 // Import a factory
-import { useDeleteable } from '@baleada/vue-icons'
+import { useDeleteable } from '@baleada/vue-composition'
 ```
 :::
 
@@ -46,18 +46,12 @@ import { useDeleteable } from '@baleada/vue-icons'
 ## Use a component
 :::
 
-::: type="danger"
-Baleada Composition functions are designed to be used with the upcoming Vue 3. If you want to start using them now, be sure to install the [`@vue/composition-api`](https://github.com/vuejs/composition-api) plugin and [`Vue.use`](https://github.com/vuejs/composition-api#usage) the plugin in your app.
-
-Note that `@vue/composition-api`, while awesome, is not yet considered production-ready (but it powers this website, so take it or leave it).
-:::
-
 
 Internally, Baleada Composition functions use Vue 3 for reactivity and lifecycle hooks, so they always need to be called from inside your component's `setup` function:
 
 :::
 ```js
-import { useAnimateable } from '@baleada/vue-icons'
+import { useAnimateable } from '@baleada/vue-composition'
 
 export default {
   setup () {
@@ -71,8 +65,8 @@ Each Baleada Composition function returns a reactive ref, i.e. an object with a 
 
 :::
 ```js
-import { isRef } from '@vue/composition-api'
-import { useSearchable } from '@baleada/vue-icons'
+import { isRef } from 'vue'
+import { useSearchable } from '@baleada/vue-composition'
 
 export default {
   setup () {
@@ -92,17 +86,15 @@ The major benefit of this is that you can render state from Baleada Logic classe
 
 :::
 ```html
-<template lang="html">
-  <section>
-    <!-- 
-      Vue 3 unwraps refs in the template, so you can omit the 'value' property 
-      when accessing state and methods here.
-    -->
-    <button @click="() => navigateable.next()">Next</button>
-    <button @click="() => navigateable.previous()">Previous</button>
-    <button @click="() => navigateable.random()">Random</button>
-    <pre><code>{{ navigateable.location }}</code></pre>
-  </section>
+<template>
+  <!-- 
+    Vue unwraps refs in the template, so you can omit the 'value' property 
+    when accessing state and methods here.
+  -->
+  <button @click="() => navigateable.next()">Next</button>
+  <button @click="() => navigateable.previous()">Previous</button>
+  <button @click="() => navigateable.random()">Random</button>
+  
 </template>
 
 <script>
@@ -128,7 +120,7 @@ When you're using Baleada Composition with Vue, just know that you need to acces
 <template>...</template>
 
 <script>
-import { onMounted } from '@vue/composition-api'
+import { onMounted } from 'vue'
 import { useListenable } from '@baleada/vue-composition'
 
 export default {
@@ -138,7 +130,7 @@ export default {
     onMounted(() => {
       // Listenable's 'listen' method requires DOM access,
       // so you need to call it inside onMounted.
-      listenable.value.listem(event => console.log(event))
+      listenable.value.listen(event => console.log(event))
     })
   }
 }
@@ -148,14 +140,14 @@ export default {
 
 And finally, the last thing to be aware of is that Baleada Composition functions always clean up after themselves.
 
-More specifically: every Baleada Logic class that has side effects (e.g. adding event listeners) _also_ has a `stop` method that cleans up all side effects. For those classes, Baleada Composition calls the `stop` method automatically on Vue's [`onBeforeUnmount` lifecycle hook](https://vue-composition-api-rfc.netlify.com/api.html#lifecycle-hooks), ensuring that all side effects are cleaned up before the component gets torn down.
+More specifically: every Baleada Logic class that has side effects (e.g. adding event listeners) _also_ has a `stop` method that cleans up all side effects. For those classes, Baleada Composition calls the `stop` method automatically on Vue's [`onBeforeUnmount` lifecycle hook](https://v3.vuejs.org/api/composition-api.html#lifecycle-hooks), ensuring that all side effects are cleaned up before the component gets torn down.
 
 :::
 ```html
 <template>...</template>
 
 <script>
-import { onMounted, onBeforeUnmount } from '@vue/composition-api'
+import { onMounted, onBeforeUnmount } from 'vue'
 import { useListenable } from '@baleada/vue-composition'
 
 export default {
@@ -163,10 +155,10 @@ export default {
     const listenable = useListenable('cmd+shift+b')
 
     onMounted(() => {
-      listenable.value.listem(event => console.log(event))
+      listenable.value.listen(event => console.log(event))
     })
 
-    // No need to call 'stop' on onBeforeUnmount—useListenable
+    // No need to call 'stop' on onBeforeUnmount. useListenable
     // takes care of it for you. Cut out this boilerplate
     // and work on bigger and better things!
     //

@@ -120,6 +120,7 @@
 
 <script>
 export default {
+  name: 'BrandLogo',
   props: {
     id: {
       type: String,

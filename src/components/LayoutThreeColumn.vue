@@ -294,14 +294,10 @@ import {
 } from '@baleada/vue-heroicons'
 import { EvaSquare } from '@baleada/vue-eva-icons'
 
-import LayoutNav from './LayoutNav.vue'
-// import LayoutSearch from './LayoutSearch.vue'
-import LayoutTableOfContents from './LayoutTableOfContents.vue'
-
 import { createProseContext } from '../functions'
 
 export default {
-  name: 'ThreeColumn',
+  name: 'LayoutThreeColumn',
   components: {
     HeroiconsMenuAlt2,
     HeroiconsX,
@@ -310,9 +306,6 @@ export default {
     HeroiconsMoon,
     HeroiconsTemplate,
     EvaSquare,
-    LayoutNav,
-    // LayoutSearch,
-    LayoutTableOfContents,
   },
   setup () {
     /* Manage open status */

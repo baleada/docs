@@ -1,14 +1,14 @@
 <template>
   <section class="docs-table-of-contents">
     <h2 class="transition">ON THIS PAGE</h2>
-    <NuxtLink
+    <RouterLink
       v-for="({ level, slug, text }, index) in headings"
       :key="index"
       :class="`h${level}`"
       :to="`#${slug}`"
     >
       {{ text }}
-    </NuxtLink>
+    </RouterLink>
   </section>
 </template>
 

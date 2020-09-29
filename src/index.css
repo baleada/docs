@@ -1,9 +1,9 @@
 /* purgecss start ignore */
 @import "tailwindcss/base";
-@import "./preflight.css";
+/* @import "./styles/preflight.css"; */
 
-@import "./prose/index.css";
-@import "./docs-table-utilities.css";
+/* @import "./styles/prose/index.css"; */
+/* @import "./styles/docs-table-utilities.css"; */
 /* purgecss end ignore */
 
 @import "tailwindcss/components";

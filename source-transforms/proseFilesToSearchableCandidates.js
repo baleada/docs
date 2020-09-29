@@ -9,6 +9,7 @@ const { readFileSync } = require('fs'),
       MarkdownItTextContent = require('@baleada/markdown-it-text-content')
 
 module.exports = function proseFilesToSearchableCandidates () {
+  console.log('here')
   const ids = toFileIds(`${basePath}/src/prose`),
         candidates = ids
           .filter(id => matter(readFileSync(id, 'utf8')).data.publish === true)
@@ -26,7 +27,8 @@ module.exports = function proseFilesToSearchableCandidates () {
             }
           })
 
-  return `export default [${JSON.stringify(candidates)}]`
+  console.log(`${candidates.length} articles added to searchable candidates`)
+  return `export default ${JSON.stringify(candidates)}`
 }
 
 const postrender = (new MarkdownIt({ html: true })).use(MarkdownItTextContent)

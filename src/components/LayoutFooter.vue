@@ -1,4 +1,4 @@
-<template lang="html">
+<template>
   <footer class="px-3 py-8 bg-primary-100 text-primary-gray-50 text-2">
     <div class="flex flex-col">
       <!-- Spacer -->
@@ -50,6 +50,7 @@
 import { SimpleGitHub, SimpleTwitter } from '@baleada/vue-simple-icons'
 
 export default {
+  name: 'LayoutFooter',
   components: {
     SimpleGitHub,
     SimpleTwitter,

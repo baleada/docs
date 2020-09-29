@@ -10,7 +10,7 @@ const transform = ({ source, id }) => {
   const { content: markdown, data: frontMatter } = matter(source),
         stats = toStats(id),
         { files: { 0: relativePath } } = stats
-
+        
   return `\
   <template>${md.render(markdown)}</template>\n\
   <script>\n\
@@ -19,8 +19,8 @@ const transform = ({ source, id }) => {
   export default {\n\
     setup () {\n\
       useContext(context => {\n\
-        context.article.frontMatter = ${JSON.stringify(JSON.stringify(frontMatter))}\n\
-        context.article.stats = ${JSON.stringify(JSON.stringify(stats))}\n\
+        context.article.frontMatter = ${JSON.stringify(frontMatter)}\n\
+        context.article.stats = ${JSON.stringify(stats)}\n\
         context.article.relativePath = ${JSON.stringify(JSON.stringify(relativePath))}\n\
       })\n\
     }\n\

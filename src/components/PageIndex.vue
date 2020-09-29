@@ -1,7 +1,7 @@
-<template lang="html">
+<template>
   <main>
-    <RectangleGradient
-      :class="'absolute pin-t pin-l z-10 w-screen h-screen'"
+    <BrandRectangleGradient
+      class="absolute pin-t pin-l z-10 w-screen h-screen"
       gradient-id="landing-page"
       :x="{ 1: 0, 2: 1 }"
       :y="{ 1: 0, 2: 1 }"
@@ -24,13 +24,13 @@
       <p class="mt-2 font-display text-7 sm:text-8 md:text-9 text-center text-shadow-2 tracking-2 text-primary-10">A toolkit for building web apps.</p>
 
       <div class="flex flex-col sm:flex-row mt-5 sm:mt-10">
-        <NuxtLink
+        <RouterLink
           to="/docs"
           class="btn md:btn-lg btn-raised btn-grows bg-primary-10 text-primary-80"
         >
-          <HeroiconsBookOpenSolid class="icon" />
+          <HeroiconsBookOpen class="icon" />
           <span>Read the docs</span>
-        </NuxtLink>
+        </RouterLink>
         <a
           href="https://github.com/baleada/"
           class="mt-3 sm:mt-0 sm:ml-4 btn md:btn-lg btn-grows border-5 border-primary-10 text-primary-10"
@@ -49,11 +49,12 @@
 import { ref } from 'vue'
 import { useAnimateable, useNavigateable } from '@baleada/vue-composition'
 import { SimpleGitHub } from '@baleada/vue-simple-icons'
-import { HeroiconsBookOpenSolid } from '@baleada/vue-heroicons'
+import { HeroiconsBookOpen } from '@baleada/vue-heroicons'
 
 export default {
+  name: 'PageIndex',
   components: {
-    HeroiconsBookOpenSolid,
+    HeroiconsBookOpen,
     SimpleGitHub
   },
   setup () {

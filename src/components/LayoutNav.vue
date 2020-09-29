@@ -15,9 +15,9 @@
         :key="href"
         name="docs-nav"
       >
-        <NuxtLink :to="href">
+        <RouterLink :to="href">
           {{ title }}
-        </NuxtLink>
+        </RouterLink>
       </transition>
     </section>
   </nav>

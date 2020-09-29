@@ -6,8 +6,9 @@
 import { HeroiconsCheck } from '@baleada/vue-heroicons'
 
 export default {
+  name: 'BrandApiDesignSpecCheckmark',
   components: {
     HeroiconsCheck,
-  }
+  },
 }
 </script>
