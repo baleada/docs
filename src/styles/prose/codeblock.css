@@ -19,7 +19,7 @@
     }
 
     & > button {
-      @apply absolute bottom-0 right-0 h-7 w-7 flex items-center p-2 shadow-3 rounded-full bg-gray-10 text-gray-100 transition-2;
+      @apply absolute bottom-0 right-0 h-7 w-7 flex items-center p-2 shadow-3 rounded-full bg-gray-10 text-gray-100 transition duration-2;
       transform: translate(-33%, 33%);
 
       svg {

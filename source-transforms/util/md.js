@@ -5,7 +5,7 @@ const MarkdownIt = require('markdown-it'),
       refractor = require('refractor'),
       rehype = require('rehype'),
       markdownItOptions = {
-        html: false,
+        html: true,
         linkify: true,
         highlight: (code, lang) => {
           try {

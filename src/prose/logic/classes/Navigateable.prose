@@ -167,20 +167,20 @@ instance.location // -> 0
 ::: ariaLabel="A table showing Navigateable's API design compliance"  classes="wide-1 wide-3"
 | Spec | Compliance status | Notes |
 | --- | --- | --- |
-| Access functionality by constructing an instance | <ApiDesignSpecCheckmark /> |  |
-| Constructor accepts two parameters: a piece of state,and an `options` object. | <ApiDesignSpecCheckmark /> |  |
-| Constructor does not access the DOM | <ApiDesignSpecCheckmark /> |  |
-| Takes the form of a JavaScript Object | <ApiDesignSpecCheckmark /> |  |
-| State and methods are accessible through properties of the object | <ApiDesignSpecCheckmark /> |  |
-| Methods always return the instance | <ApiDesignSpecCheckmark /> |  |
-| Stores the constructor's state in a public getter named after the state's type | <ApiDesignSpecCheckmark /> | `array`  |
-| Has a public method you can use to set a new value for that public getter | <ApiDesignSpecCheckmark /> | `setArray` |
-| Has a setter for that getter so you can assign a new value directly | <ApiDesignSpecCheckmark /> |  |
-| Any other public getters that should be set by you in some cases also have setters and `set<Property>` methods | <ApiDesignSpecCheckmark /> | `location`, `setLocation` |
-| Has at least one additional getter property that you can't (and shouldn't) set directly | <ApiDesignSpecCheckmark /> | `status`, `item` |
-| Has one or more public methods that expose core functionality | <ApiDesignSpecCheckmark /> | `navigate`, `next`, `previous`, `random` |
-| Either has no side effects or has side effects that can be cleaned up with a `stop` method | <ApiDesignSpecCheckmark /> | no side effects |
-| Uses the sentence template to decide what state type should be accepted by a constructor | <ApiDesignSpecCheckmark /> | "An array can be navigated." |
-| Constructor does not accept options that only customize the behavior of public methods, it allows those options to be passed to the method itself as a parameter. | <ApiDesignSpecCheckmark /> | `next(options)`, `previous(options)` |
-| Named after its core action, proper-cased and suffixed with `able` | <ApiDesignSpecCheckmark /> | |
+| Access functionality by constructing an instance | <BrandApiDesignSpecCheckmark /> |  |
+| Constructor accepts two parameters: a piece of state,and an `options` object. | <BrandApiDesignSpecCheckmark /> |  |
+| Constructor does not access the DOM | <BrandApiDesignSpecCheckmark /> |  |
+| Takes the form of a JavaScript Object | <BrandApiDesignSpecCheckmark /> |  |
+| State and methods are accessible through properties of the object | <BrandApiDesignSpecCheckmark /> |  |
+| Methods always return the instance | <BrandApiDesignSpecCheckmark /> |  |
+| Stores the constructor's state in a public getter named after the state's type | <BrandApiDesignSpecCheckmark /> | `array`  |
+| Has a public method you can use to set a new value for that public getter | <BrandApiDesignSpecCheckmark /> | `setArray` |
+| Has a setter for that getter so you can assign a new value directly | <BrandApiDesignSpecCheckmark /> |  |
+| Any other public getters that should be set by you in some cases also have setters and `set<Property>` methods | <BrandApiDesignSpecCheckmark /> | `location`, `setLocation` |
+| Has at least one additional getter property that you can't (and shouldn't) set directly | <BrandApiDesignSpecCheckmark /> | `status`, `item` |
+| Has one or more public methods that expose core functionality | <BrandApiDesignSpecCheckmark /> | `navigate`, `next`, `previous`, `random` |
+| Either has no side effects or has side effects that can be cleaned up with a `stop` method | <BrandApiDesignSpecCheckmark /> | no side effects |
+| Uses the sentence template to decide what state type should be accepted by a constructor | <BrandApiDesignSpecCheckmark /> | "An array can be navigated." |
+| Constructor does not accept options that only customize the behavior of public methods, it allows those options to be passed to the method itself as a parameter. | <BrandApiDesignSpecCheckmark /> | `next(options)`, `previous(options)` |
+| Named after its core action, proper-cased and suffixed with `able` | <BrandApiDesignSpecCheckmark /> | |
 :::

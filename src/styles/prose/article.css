@@ -3,47 +3,45 @@
   @apply text-gray-100 px-7 pb-12 pt-11;
 
   /* Horizontal margin and max width */
-  & > .baleada-prose-contents {
-    & > address,
-    & > aside,
-    & > blockquote,
-    & > details,
-    & > dl,
-    & > h1,
-    & > h2,
-    & > h3,
-    & > h4,
-    & > h5,
-    & > h6,
-    & > hr,
-    & > ol,
-    & > p,
-    & > ul,
-    & > .baleada-prose-aside,
-    & > .baleada-prose-blockquote,
-    & > .baleada-prose-codeblock > .baleada-prose-contents > pre > code,
-    & > pre > code,
-    & > .baleada-prose-details,
-    & > .baleada-prose-heading,
-    & > .baleada-prose-list,
-    & > .baleada-prose-section {
-      @apply mx-auto with-max-w;
-    }
+  & > address,
+  & > aside,
+  & > blockquote,
+  & > details,
+  & > dl,
+  & > h1,
+  & > h2,
+  & > h3,
+  & > h4,
+  & > h5,
+  & > h6,
+  & > hr,
+  & > ol,
+  & > p,
+  & > ul,
+  & > .baleada-prose-aside,
+  & > .baleada-prose-blockquote,
+  & > .baleada-prose-codeblock > .baleada-prose-contents > pre > code,
+  & > pre > code,
+  & > .baleada-prose-details,
+  & > .baleada-prose-heading,
+  & > .baleada-prose-list,
+  & > .baleada-prose-section {
+    @apply mx-auto with-max-w;
+  }
 
-    & > figure,
-    & > pre,
-    & > table,
-    & > svg,
-    & > .baleada-prose-codeblock > .baleada-prose-contents > pre,
-    & > .baleada-prose-table,
-    & > .baleada-prose-media {
-      @apply mx-auto max-w-full scrollable;
-    }
+  & > figure,
+  & > pre,
+  & > table,
+  & > svg,
+  & > .baleada-prose-codeblock > .baleada-prose-contents > pre,
+  & > .baleada-prose-table,
+  & > .baleada-prose-media {
+    @apply mx-auto max-w-full scrollable;
+  }
 
-    & > pre,
-    & > .baleada-prose-codeblock > .baleada-prose-contents > pre {
-      @apply scrollable;
-    }
+  & > pre,
+  & > .baleada-prose-codeblock > .baleada-prose-contents > pre {
+    @apply scrollable;
   }
 
 

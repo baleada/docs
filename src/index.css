@@ -1,10 +1,23 @@
 /* purgecss start ignore */
 @import "tailwindcss/base";
-/* @import "./styles/preflight.css"; */
+@import "./styles/preflight.css";
 
-/* @import "./styles/prose/index.css"; */
-/* @import "./styles/docs-table-utilities.css"; */
+@import "./styles/prose/utilities.css";
+@import "./styles/prose/article.css";
+@import "./styles/prose/aside.css";
+@import "./styles/prose/blockquote.css";
+@import "./styles/prose/codeblock.css";
+@import "./styles/prose/syntax.css";
+@import "./styles/prose/details.css";
+@import "./styles/prose/table.css";
+@import "./styles/prose/heading.css";
+@import "./styles/prose/list.css";
+@import "./styles/prose/media.css";
 /* purgecss end ignore */
+
+@import "./styles/docs-table-utilities.css";
+
+@import "./styles/components.css";
 
 @import "tailwindcss/components";
 

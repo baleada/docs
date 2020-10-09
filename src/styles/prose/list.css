@@ -1,4 +1,4 @@
-.baleada-prose-article .baleada-prose-contents {
+.baleada-prose-article {
   ul,
   ol {
     counter-reset: item;

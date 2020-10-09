@@ -21,7 +21,10 @@ module.exports = function proseFilesToManifest () {
           }))
         ].filter(({ articles }) => articles.length > 0)
 
-  console.log(`${manifest.length} directories added to the manifest`)
+  // Log
+  const totalArticles = manifest.reduce((totalArticles, { articles }) => totalArticles + articles.length, 0)
+  console.log(`${totalArticles} articles from ${manifest.length} directories added to the manifest`)
+
   return `export default ${JSON.stringify(manifest)}`
 }
 
@@ -34,7 +37,7 @@ function toManifested (id) {
       const { data: { title, tags: rawTags, order } } = matter(readFileSync(`${id}/${file}`, 'utf8')),
             tags = rawTags ? rawTags.split(',').map(tag => tag.trim()) : [],
             fileName = parse(`${id}/${file}`).name,
-            href = `/docs${clipable(id).clip(basePath).clip('/src/prose')}/${clipable(fileName).clip(/^index$/)}`,
+            href = `/docs${clipable(id).clip(basePath).clip('/src/prose')}${clipable(`/${fileName}`).clip(/^\/index$/)}`,
             authorDate = toStats(`${id}/${file}`).authorDate
       
       return {

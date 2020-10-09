@@ -1,4 +1,4 @@
-.baleada-prose-article > .baleada-prose-contents {
+.baleada-prose-article {
   & > h1::after,
   & > hr {
     content: '';
@@ -136,7 +136,7 @@
 }
 
 @screen md {
-  .baleada-prose-article > .baleada-prose-contents {
+ {
     & > h1 {
       @apply text-8;
 

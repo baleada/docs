@@ -1,9 +1,9 @@
 import { computed } from 'vue'
-import { useRoute } from 'vue-router'
+import { useRouter } from 'vue-router'
 import { createContext } from '@baleada/vue-prose'
 
 export default function createProseContext (articleRef) {
-  const fullPath = computed(() => useRoute().fullPath),
+  const fullPath = computed(() => useRouter().currentRoute.fullPath),
         defaultProps = {
           article: {
             getScrollableContainer: () => articleRef.value === null ? document : articleRef.value

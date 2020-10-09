@@ -67,8 +67,11 @@
       .token.bold {
       	@apply font-6;
       }
+
       .token.italic {
-      	@apply italic;
+        /* Not applying italic here because it's a circular reference */
+        /* italic class added by refractor/rehype should cover it */
+      	/* @apply italic; */
       }
 
       .namespace {
@@ -146,8 +149,11 @@
         .token.bold {
         	@apply font-5;
         }
+
         .token.italic {
-        	@apply italic;
+          /* Not applying italic here because it's a circular reference */
+          /* italic class added by refractor/rehype should cover it */
+        	/* @apply italic; */
         }
 
         .namespace {

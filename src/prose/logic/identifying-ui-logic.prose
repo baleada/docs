@@ -27,10 +27,10 @@ At first glance, you might think of "autocomplete" as the piece of UI logic you 
 :::
 
 Using tools from Baleada Logic, you would approach this list of logic like so:
-1. [`Completable`](/docs/logic/classes/completable) extracts the segment of text
+1. [`Completable`](/docs/logic/classes/completeable) extracts the segment of text
 2. [`Searchable`](/docs/logic/classes/searchable) searches a list of options for the segment (fuzzy matching is optional)
 3. [`Listenable`](/docs/logic/classes/listenable) detects when the dropdown menu starts leaving the viewport, and gives you some information so that you can simply apply a CSS `transform: translate` to move the menu into a visible spot.
-4. [`Navigable`](/docs/logic/classes/navigable) tracks which option should be in focus, and can loop around to the beginning or end of the list as needed.
+4. [`Navigable`](/docs/logic/classes/navigateable) tracks which option should be in focus, and can loop around to the beginning or end of the list as needed.
 5. `Completable` completes the segment of text with a completed value chosen by the user.
 
 It might seem strange to break this feature down and implement it with so many separate tools, but this approach is what allows logic to become abstract enough to be reusable. An autocomplete feature is only useful in situations where you need to autocomplete, but a fuzzy-matching search feature is useful in all kinds of different places.

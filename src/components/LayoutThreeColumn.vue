@@ -20,7 +20,7 @@
       ref="nav"
       class="relative h-screen w-screen lg:w-17 flex-none px-7 py-3 overflow-y-scroll scrolling-touch lg:translate-0 transform"
       :class="[
-        openStatus === 'nav' ? 'translate-0' : '-translate-x-10',
+        openStatus === 'nav' ? 'translate-0' : '-translate-x-100',
         tableOfContentsTransitionStatus === 'after-leave'
           ? 'lg:absolute lg:z-30 lg:h-auto'
           : ''
@@ -192,9 +192,9 @@
       class="absolute lg:relative top-0 left-0 z-20 h-screen w-screen lg:w-full overflow-x-hidden overflow-y-scroll scrolling-touch lg:translate-0 transform"
       :class="[
         openStatus === 'nav'
-          ? 'translate-x-10'
+          ? 'translate-x-100'
           : openStatus === 'tableOfContents'
-            ? '-translate-x-10'
+            ? '-translate-x-100'
             : '',
         darkThemeStatus === 'enabled' ? 'bg-primary-gray-95' : 'bg-white',
         minimalistThemeStatus === 'enabled' ? '' : 'shadow-3 lg:rounded-2',
@@ -259,10 +259,10 @@
         ref="tableOfContents"
         class="absolute lg:relative top-0 left-0 h-screen w-screen lg:w-17 flex-none px-7 py-3 overflow-y-scroll scrolling-touch lg:translate-0 transform"
         :class="[
-          openStatus === 'tableOfContents' ? 'translate-0' : 'translate-x-10',
+          openStatus === 'tableOfContents' ? 'translate-0' : 'translate-x-100',
         ]"
       >
-        <!-- minimalistThemeStatus === 'enabled' ? 'opacity-0 pointer-events-none translate-x-10' : 'lg:translate-0', -->
+        <!-- minimalistThemeStatus === 'enabled' ? 'opacity-0 pointer-events-none translate-x-100' : 'lg:translate-0', -->
         <button
           class="lg:hidden absolute top-0 right-0 mt-3 mr-6 h-7 w-7 cursor-pointer transition btn-grows"
           :class="[

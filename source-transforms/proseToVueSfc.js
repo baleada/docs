@@ -7,21 +7,37 @@ const matter = require('gray-matter'),
 
 // TODO: set meta tags and head from data
 const transform = ({ source, id }) => {
-  const { content: markdown, data: frontMatter } = matter(source),
-        stats = toStats(id),
-        { files: { 0: relativePath } } = stats
+  const { content: prose, data: frontMatter } = matter(source),
+        log = toLog(id),
+        { 0: { files: { 0: relativePath } } } = log,
+        withBaleadaDocsCustomizations = `\
+:::\n\
+# ${frontMatter.title}\n\
+:::\n\
+\n\
+<LayoutArticleLog />\n\
+\n\
+${prose}\n\
+<LayoutAdjacentArticleLinks />\n\
+<LayoutArticleEdit />\n\
+\n\
+`
         
   return `\
-  <template>${md.render(markdown)}</template>\n\
+  <template>\
+  <ProseArticle>\
+  ${md.render(withBaleadaDocsCustomizations)}\
+  </ProseArticle>\
+  </template>\n\
   <script>\n\
   import { useContext } from '@baleada/vue-prose'\n\
   \n\
   export default {\n\
     setup () {\n\
       useContext(context => {\n\
-        context.article.frontMatter = ${JSON.stringify(frontMatter)}\n\
-        context.article.stats = ${JSON.stringify(stats)}\n\
-        context.article.relativePath = ${JSON.stringify(JSON.stringify(relativePath))}\n\
+        context.article.file.frontMatter = ${JSON.stringify(frontMatter)}\n\
+        context.article.file.log = ${JSON.stringify(log)}\n\
+        context.article.file.relativePath = ${JSON.stringify(JSON.stringify(relativePath))}\n\
       })\n\
     }\n\
   }\n\
@@ -31,10 +47,10 @@ const transform = ({ source, id }) => {
 
 module.exports = transform
 
-function toStats (id) {
+function toLog (id) {
   const basePath = resolve(''),
         relativePath = `${clipable(id).clip(basePath).clip(/^\//)}`,
-        { 0: stats } = gitlog({ repo: basePath, file: relativePath, number: 1 })
+        log = gitlog({ repo: basePath, file: relativePath, number: 1 })
   
-  return stats
+  return log
 }

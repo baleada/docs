@@ -149,21 +149,21 @@ const fetchable = new Fetchable('https://example.com'),
 ::: ariaLabel="A table showing Fetchable's API design compliance"  classes="wide-1 wide-3"
 | Spec | Compliance status | Notes |
 | --- | --- | --- |
-| Access functionality by constructing an instance | <ApiDesignSpecCheckmark /> |  |
-| Constructor accepts two parameters: a piece of state,and an `options` object. | <ApiDesignSpecCheckmark /> | The `options` object doesn't currently have any valid properties. |
-| Constructor does not access the DOM | <ApiDesignSpecCheckmark /> |  |
-| Takes the form of a JavaScript Object | <ApiDesignSpecCheckmark /> |  |
-| State and methods are accessible through properties of the object | <ApiDesignSpecCheckmark /> |  |
-| Methods always return the instance | <ApiDesignSpecCheckmark /> |  |
-| Stores the constructor's state in a public getter named after the state's type | <ApiDesignSpecCheckmark /> | `resource`  |
-| Has a public method you can use to set a new value for that public getter | <ApiDesignSpecCheckmark /> | `setResource` |
-| Has a setter for that getter so you can assign a new value directly | <ApiDesignSpecCheckmark /> |  |
-| Any other public getters that should be set by you in some cases also have setters and `set<Property>` methods | <ApiDesignSpecCheckmark /> | none |
-| Has at least one additional getter property that you can't (and shouldn't) set directly | <ApiDesignSpecCheckmark /> | `status`, `response`, `arrayBuffer`, `blob`, `formData`, `json`, `text` |
-| Has one or more public methods that expose core functionality | <ApiDesignSpecCheckmark /> | `fetch`, `get`, `patch`, `post`, `put`, `delete`, `abort` |
-| Either has no side effects or has side effects that can be cleaned up with a `stop` method | <ApiDesignSpecCheckmark /> |  |
-| Uses the sentence template to decide what state type should be accepted by a constructor | <ApiDesignSpecCheckmark /> | "A resource can be fetched." |
-| Constructor does not accept options that only customize the behavior of public methods, it allows those options to be passed to the method itself as a parameter. | <ApiDesignSpecCheckmark /> | |
-| Named after its core action, proper-cased and suffixed with `able` | <ApiDesignSpecCheckmark /> | |
+| Access functionality by constructing an instance | <BrandApiDesignSpecCheckmark /> |  |
+| Constructor accepts two parameters: a piece of state,and an `options` object. | <BrandApiDesignSpecCheckmark /> | The `options` object doesn't currently have any valid properties. |
+| Constructor does not access the DOM | <BrandApiDesignSpecCheckmark /> |  |
+| Takes the form of a JavaScript Object | <BrandApiDesignSpecCheckmark /> |  |
+| State and methods are accessible through properties of the object | <BrandApiDesignSpecCheckmark /> |  |
+| Methods always return the instance | <BrandApiDesignSpecCheckmark /> |  |
+| Stores the constructor's state in a public getter named after the state's type | <BrandApiDesignSpecCheckmark /> | `resource`  |
+| Has a public method you can use to set a new value for that public getter | <BrandApiDesignSpecCheckmark /> | `setResource` |
+| Has a setter for that getter so you can assign a new value directly | <BrandApiDesignSpecCheckmark /> |  |
+| Any other public getters that should be set by you in some cases also have setters and `set<Property>` methods | <BrandApiDesignSpecCheckmark /> | none |
+| Has at least one additional getter property that you can't (and shouldn't) set directly | <BrandApiDesignSpecCheckmark /> | `status`, `response`, `arrayBuffer`, `blob`, `formData`, `json`, `text` |
+| Has one or more public methods that expose core functionality | <BrandApiDesignSpecCheckmark /> | `fetch`, `get`, `patch`, `post`, `put`, `delete`, `abort` |
+| Either has no side effects or has side effects that can be cleaned up with a `stop` method | <BrandApiDesignSpecCheckmark /> |  |
+| Uses the sentence template to decide what state type should be accepted by a constructor | <BrandApiDesignSpecCheckmark /> | "A resource can be fetched." |
+| Constructor does not accept options that only customize the behavior of public methods, it allows those options to be passed to the method itself as a parameter. | <BrandApiDesignSpecCheckmark /> | |
+| Named after its core action, proper-cased and suffixed with `able` | <BrandApiDesignSpecCheckmark /> | |
 :::
 

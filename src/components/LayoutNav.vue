@@ -57,7 +57,7 @@ export default {
     @apply block mt-3 pl-2 text-3 text-gray-90 no-underline;
     transition: all 0.1s ease;
   }
-  a.nuxt-link-exact-active {
+  a.router-link-exact-active {
     @apply border-l-5 text-primary-70 border-primary-70 -ml-px-2;
   }
   a:hover {
@@ -77,7 +77,7 @@ export default {
     a {
       @apply text-primary-gray-40;
     }
-    a.nuxt-link-exact-active {
+    a.router-link-exact-active {
       @apply text-gray-40 border-gray-40;
     }
     a:hover {

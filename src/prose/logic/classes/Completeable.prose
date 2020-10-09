@@ -135,7 +135,7 @@ The new value for `location` is computed based on the `locatesAfterCompletion` o
 
 :::
 ```js
-completable.complete('my completion', { locatesAfterCompletion: true })
+completeable.complete('my completion', { locatesAfterCompletion: true })
 ```
 :::
 
