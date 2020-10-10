@@ -30,14 +30,14 @@ ${prose}\n\
   </ProseArticle>\
   </template>\n\
   <script>\n\
-  import { useContext } from '@baleada/vue-prose'\n\
+  import { useContext } from '@functions'\n\
   \n\
   export default {\n\
     setup () {\n\
       useContext(context => {\n\
-        context.article.file.frontMatter = ${JSON.stringify(frontMatter)}\n\
-        context.article.file.log = ${JSON.stringify(log)}\n\
-        context.article.file.relativePath = ${JSON.stringify(JSON.stringify(relativePath))}\n\
+        context.article.log = ${JSON.stringify(log)}\n\
+        context.article.frontMatter = ${JSON.stringify(frontMatter)}\n\
+        context.article.relativePath = '${relativePath}'\n\
       })\n\
     }\n\
   }\n\

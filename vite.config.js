@@ -46,7 +46,12 @@ const sourceTransform = require('@baleada/rollup-plugin-source-transform'),
       aliasBabelRuntime = require('@baleada/vite-alias-babel-runtime')
       
 module.exports = {
-  alias: aliasBabelRuntime(),
+  alias: {
+    ...aliasBabelRuntime(),
+    '@components': '/src/components',
+    '@functions': '/src/functions',
+    '@state': '/src/state',
+  },
   configureServer: [
     getServeAsVue({
       toVue: sourceTransformProseToVueSfc,

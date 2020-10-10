@@ -1,7 +1,7 @@
 import { nextTick } from 'vue'
 import { createRouter, createWebHistory } from 'vue-router'
 import { clipable } from '@baleada/logic'
-import { useContext as useProseContext } from '@baleada/vue-prose'
+import { useContext } from '../functions'
 import routes from './routes'
 
 const history = createWebHistory(),
@@ -33,9 +33,8 @@ router.beforeEach((to, from) => {
 })
 
 router.afterEach((to, from, failure) => {
-  // set document title from proseContext.article.frontmatter
-  nextTick(() => nextTick(() => (document.title = useProseContext()?.article?.file?.frontMatter?.title || 'Baleada')))
-  nextTick(() => nextTick(() => console.log(JSON.parse(JSON.stringify(useProseContext().article)))))
+  // set document title from frontMatter
+  nextTick(() => nextTick(() => (document.title = useContext()?.article?.frontMatter?.title || 'Baleada')))
 })
 
 export default router

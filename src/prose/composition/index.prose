@@ -50,7 +50,7 @@ The functions in Baleada Composition are written in modern JavaScript. [Baleada 
 ::: ariaLabel="Peer dependencies by framework"
 | Framework | Peer dependencies |
 | --- | --- |
-| Vue | <p>[`vue`](https://github.com/vuejs/vue)</p><p>[`@vue/composition-api`](https://github.com/vuejs/composition-api)</p> |
+| Vue | [Vue 3](https://github.com/vuejs/vue-next) |
 | React | WIP |
 | Svelte | WIP |
 :::

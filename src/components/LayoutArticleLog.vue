@@ -6,12 +6,12 @@
 
 <script>
 import { computed } from 'vue'
-import { useContext } from '@baleada/vue-prose'
+import { useContext } from '../functions'
 
 export default {
   name: 'LayoutArticleLog',
   setup () {
-    const authorDate = computed(() => useContext()?.article?.file?.log?.[0]?.authorDate || ''), // Date of last git commit
+    const authorDate = computed(() => useContext()?.article?.log[0]?.authorDate || ''), // Date of last git commit
           intl = computed(() => {
             const intl = new Intl.DateTimeFormat('en-us', { dateStyle: 'long' })
               

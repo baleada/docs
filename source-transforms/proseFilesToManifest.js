@@ -7,6 +7,8 @@ const { readdirSync, statSync, readFileSync } = require('fs'),
       basePath = resolve('')
 
 module.exports = function proseFilesToManifest () {
+  console.log('Creating manifest...')
+  
   const dirIds = toDirIds(`${basePath}/src/prose`),
         manifest = [
           {

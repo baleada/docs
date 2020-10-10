@@ -9,7 +9,7 @@ const { readFileSync } = require('fs'),
       MarkdownItTextContent = require('@baleada/markdown-it-text-content')
 
 module.exports = function proseFilesToSearchableCandidates () {
-  console.log('here')
+  console.log('Creating searchable candidates...')
   const ids = toFileIds(`${basePath}/src/prose`),
         candidates = ids
           .filter(id => matter(readFileSync(id, 'utf8')).data.publish === true)
