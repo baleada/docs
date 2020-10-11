@@ -95,7 +95,7 @@
             <button
               aria-label="Toggle dark theme"
               class="absolute rounded-full h-6 w-6 shadow transition-all focus:shadow-outline"
-              :style="darkThemeStatus === 'enabled' ? { transform: 'translateX(-10%)' } : {}"
+              :style="darkThemeStatus === 'enabled' ? { transform: 'translateX(-100%)' } : {}"
               :class="[
                 darkThemeStatus === 'enabled' ? 'left-full bg-primary-gray-70' : 'left-0 bg-white',
               ]"
@@ -150,7 +150,7 @@
             <button
               aria-label="Toggle minimalist theme"
               class="absolute rounded-full h-6 w-6 shadow transition-all focus:shadow-outline"
-              :style="minimalistThemeStatus === 'enabled' ? { transform: 'translateX(-10%)' } : {}"
+              :style="minimalistThemeStatus === 'enabled' ? { transform: 'translateX(-100%)' } : {}"
               :class="[
                 darkThemeStatus === 'enabled' ? 'bg-primary-gray-70' : 'bg-white',
                 minimalistThemeStatus === 'enabled' ? 'left-full' : 'left-0',

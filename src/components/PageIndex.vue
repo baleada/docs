@@ -1,5 +1,5 @@
 <template>
-  <main>
+  <main class="min-h-screen-md">
     <BrandRectangleGradient
       class="absolute pin-t pin-l z-10 w-screen h-screen"
       gradient-id="landing-page"
@@ -15,7 +15,7 @@
       <BrandLogo
         id="landing-page"
         ref="logo"
-        class="-ml-2 h-13 w-13 sm:h-14 sm:w-14 md:h-15 md:w-15 text-primary-10 transition-none"
+        class="-ml-2 h-13 w-13 sm:h-14 sm:w-14 md:h-15 md:w-15 flex-shrink-0 text-primary-10 transition-none"
         :hasShadow="true"
         @mouseenter="mouseenterHandle"
       />
@@ -59,7 +59,7 @@ export default {
   },
   setup () {
     const logo = ref(null),
-          animations = useNavigateable((new Array(4)).fill()), // Grody hardcoded 4
+          animations = useNavigateable((new Array(4)).fill()),
           wiggle = useAnimateable(
             [
               {
@@ -89,11 +89,11 @@ export default {
           const { data: { rotate } } = frame
 
           if (wiggle.value.iterations === 3) {
-            logo.value.style.transform = `rotate(0deg)`
+            logo.value.$el.style.transform = `rotate(0deg)`
             return
           }
 
-          logo.value.style.transform = `rotate(${rotate}deg)`
+          logo.value.$el.style.transform = `rotate(${rotate}deg)`
         })
         break
       }

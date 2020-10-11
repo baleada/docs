@@ -4,7 +4,10 @@
     <RouterLink
       v-for="({ level, slug, text }, index) in headings"
       :key="index"
-      :class="`h${level}`"
+      :class="[
+        `h${level}`,
+        `#${slug}` === hash ? 'workaround-exact-active' : '',
+      ]"
       :to="`#${slug}`"
     >
       {{ text }}
@@ -14,14 +17,17 @@
 
 <script>
 import { computed } from 'vue'
+import { useRoute } from 'vue-router'
 import { useContext } from '@baleada/vue-prose'
 
 export default {
   name: 'LayoutTableOfContents',
   setup () {
-    const headings = computed(() => useContext().article.headings)
+    const headings = computed(() => useContext().article.headings),
+          route = useRoute(),
+          hash = computed(() => route.hash)
 
-    return { headings }
+    return { headings, hash }
   }
 }
 </script>
@@ -44,7 +50,7 @@ export default {
     @apply block mt-3 pl-2 text-3 text-gray-90 no-underline;
     transition: all 0.1s ease;
   }
-  a.router-link-exact-active {
+  a.workaround-exact-active {
     @apply border-l-5 text-primary-70 border-primary-70 -ml-px-2;
   }
   a:hover {
@@ -85,7 +91,7 @@ export default {
     a {
       @apply text-primary-gray-40;
     }
-    a.router-link-exact-active {
+    a.workaround-exact-active {
       @apply text-gray-40 border-gray-40;
     }
     a:hover {
