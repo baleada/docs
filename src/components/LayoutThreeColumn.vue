@@ -510,27 +510,16 @@ export default {
 
 @media screen and (min-width: theme(screens.lg)) {
   .baleada-prose-article {
-    transition: none;
-
-    & > .contents {
-      transition: none;
-    }
+    @apply transition-none;
 
     .table-of-contents-after-leave & {
-      @apply w-full px-17;
-
-      & > .contents {
-        /* pr-11 is defined in article.css */
-        @apply px-11;
-      }
+      @apply w-full;
+      padding-left: 21rem;
+      padding-right: 21rem;
     }
 
     .table-of-contents-before-enter & {
       @apply w-auto px-11;
-
-      & > .contents {
-        @apply px-0;
-      }
     }
   }
 }
