@@ -104,7 +104,7 @@ module.exports = {
     plugins: [
       sourceTransform({
         include: '**/*.prose',
-        transform: ({ source }) => sourceTransformProseToVueSfc({ source }),
+        transform: sourceTransformProseToVueSfc,
       }),
       virtual({
         include: '**/components',
