@@ -8,8 +8,8 @@ module.exports = {
     parser: 'babel-eslint'
   },
   extends: [
-    '@nuxtjs',
-    'plugin:nuxt/recommended'
+    'eslint:recommended',
+    'plugin:vue/vue3-recommended',
   ],
   // add your custom rules here
   rules: {
@@ -18,9 +18,9 @@ module.exports = {
     'arrow-parens': 'off',
     'one-var': ['error', 'consecutive'],
     'space-before-function-paren': ['error', {
-        'anonymous': 'never',
-        'named': 'always',
-        'asyncArrow': 'always'
+      'anonymous': 'never',
+      'named': 'always',
+      'asyncArrow': 'always'
     }],
     'indent': ['error', 2, {
       'VariableDeclarator': 'first',
@@ -29,5 +29,7 @@ module.exports = {
     'no-trailing-spaces': ['error', {
       'skipBlankLines': true,
     }],
+    'vue/no-unused-vars': 'error',
+    'vue/attribute-hyphenation': 'off',
   }
 }

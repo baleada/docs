@@ -1,0 +1,21 @@
+.baleada-prose-table {
+  &.wide-1 .baleada-prose-contents .baleada-prose-cell:nth-child(1) {
+    @apply min-w-1;
+  }
+
+  &.wide-2 .baleada-prose-contents .baleada-prose-cell:nth-child(2) {
+    @apply min-w-1;
+  }
+
+  &.wide-3 .baleada-prose-contents .baleada-prose-cell:nth-child(3) {
+    @apply min-w-1;
+  }
+
+  &.wide-4 .baleada-prose-contents .baleada-prose-cell:nth-child(4) {
+    @apply min-w-1;
+  }
+
+  &.wide-5 .baleada-prose-contents .baleada-prose-cell:nth-child(5) {
+    @apply min-w-1;
+  }
+}

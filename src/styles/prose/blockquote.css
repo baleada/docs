@@ -1,0 +1,92 @@
+.baleada-prose-article {
+  blockquote::before {
+    content: '\201C';
+    @apply absolute text-9 font-3 text-primary-90 opacity-70 top-0 left-0 -mt-em-1/2;
+  }
+
+  blockquote {
+    @apply relative pl-6 pr-4 py-3 font-display rounded-4 bg-primary-10 shadow-3 text-primary-90;
+
+    p {
+      @apply text-6
+    }
+  }
+
+  .baleada-prose-blockquote {
+    @apply relative;
+
+    & > a {
+      @apply absolute bottom-0 right-0 h-7 w-7 flex items-center p-2 shadow-3 rounded-full bg-primary-20 text-primary-90 transition duration-2;
+      transform: translate(33%, 33%);
+
+      svg {
+        @apply block h-full w-full fill-current;
+      }
+
+      &:hover {
+        transform: scale(1.1) translate(33%, 33%);
+      }
+
+      &:focus {
+        transform: scale(1) translate(33%, 33%);
+      }
+
+      &:active {
+        transform: scale(1) translate(33%, 33%);
+      }
+    }
+
+    .baleada-prose-contents {
+      @apply relative;
+
+      blockquote::before {
+        @apply hidden;
+      }
+    }
+  }
+
+  .dark & {
+    blockquote {
+      @apply bg-primary-gray-85 text-primary-gray-30;
+    }
+
+    .baleada-prose-blockquote {
+      & > a {
+        @apply bg-primary-gray-80 text-primary-gray-30;
+      }
+    }
+  }
+}
+
+@screen md {
+  .baleada-prose-article {
+    blockquote {
+      @apply pl-8 pr-6;
+    }
+
+    blockquote::before {
+      @apply text-11;
+    }
+  }
+}
+
+@screen lg {
+  .baleada-prose-blockquote {
+    & > a {
+      @apply top-0 left-0;
+      transform: translate(-33%, -33%);
+
+      &:hover {
+        transform: scale(1.1) translate(-33%, -33%);
+      }
+
+      &:focus {
+        transform: scale(1) translate(-33%, -33%);
+      }
+
+      &:active {
+        transform: scale(1) translate(-33%, -33%);
+      }
+    }
+  }
+}

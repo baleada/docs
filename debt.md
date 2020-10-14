@@ -1,0 +1,17 @@
+- [ ] typescript
+- [ ] upgrade to `@rollup/plugin-babel`
+- [ ] Fix peer dependency syntax
+- [ ] publish with new repo links
+- [ ] Vue 3 upgrade
+  - [x] vue-features
+  - [x] vue-prose
+    - [x] core
+    - [x] markdown-it-prose-container
+  - [x] vue-interface
+  - [x] icons
+    - [x] hero
+    - [x] simple
+    - [x] eva
+    - [x] tiny
+    - [x] oct
+    - [x] radix

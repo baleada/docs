@@ -1,24 +1,31 @@
 # Baleada
 
-> A toolkit for building web apps.
+A toolkit for building web apps.
 
 [Learn more](https://baleada.netlify.com)
 
-<!-- ## Build Setup
+Baleada uses [Vite](https://github.com/vuejs/vite) for its documentation. Here's how you can run the docs locally:
 
-``` bash
-# install dependencies
-$ npm install
+Go to your locally downloaded Baleada docs folder:
 
-# serve with hot reload at localhost:3000
-$ npm run dev
-
-# build for production and launch server
-$ npm run build
-$ npm start
-
-# generate static project
-$ npm run generate
+```bash
+cd docs
 ```
 
-For detailed explanation on how things work, checkout [Nuxt.js docs](https://nuxtjs.org). -->
+Install dependencies:
+
+```bash
+npm install
+```
+
+Start the dev server:
+
+```bash
+npm run dev
+```
+
+Or, you can generate a static build of the site, which will output to the `dist` folder:
+
+```bash
+npm run build
+```

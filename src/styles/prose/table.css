@@ -1,0 +1,233 @@
+.baleada-prose-table {
+  @apply w-full flex flex-col mb-6;
+
+  & > div {
+    @apply with-max-w w-full mx-auto;
+
+    input[name="Search by query"] {
+      @apply -shadow-4 bg-gray-10;
+    }
+  }
+
+  & > div:nth-of-type(2) {
+    @apply flex mt-2;
+
+    input[name="Change search case sensitivity"] {
+      @apply flex-grow-0;
+    }
+    label {
+      @apply ml-2 mr-auto text-2 font-5 text-gray-60;
+    }
+  }
+
+  & > * + .baleada-prose-contents {
+    @apply mt-2;
+  }
+
+  .baleada-prose-contents {
+    @apply mx-auto min-w-5 with-max-h inline-block scrollable;
+
+    [role="table"] {
+      @apply w-full mr-auto;
+      display: table;
+    }
+
+    [role="rowgroup"] {
+      display: table-row-group;
+    }
+
+    [role="rowgroup"]:first-child {
+      @apply rounded-4 sticky top-0 shadow-5;
+      display: table-header-group;
+    }
+
+    [role="row"] {
+      display: table-row;
+
+      &:last-child [role="cell"] {
+        @apply border-b-4;
+      }
+    }
+
+    [role="columnheader"] {
+      @apply py-2 text-2 font-6 uppercase tracking-1 bg-primary-10 text-primary-90;
+
+      code {
+        @apply bg-primary-20 normal-case;
+      }
+    }
+
+    [role="columnheader"],
+    [role="cell"] {
+      @apply text-left px-5 align-top;
+      display: table-cell;
+    }
+
+    [role="cell"] {
+      @apply py-4 leading-2 border-l-4 bg-white border-gray-30;
+
+      &:last-child {
+        @apply border-r-4;
+      }
+    }
+
+    [role="rowgroup"] > :nth-child(even) {
+      [role="cell"] {
+        @apply bg-gray-10 border-gray-40;
+
+        code {
+          @apply bg-gray-30;
+        }
+      }
+    }
+
+    &.baleada-prose-table-solid {
+      [role="rowgroup"] > :nth-child(even) {
+        @apply bg-transparent;
+
+        [role="cell"] {
+          @apply border-gray-30;
+
+          code {
+            @apply bg-gray-20;
+          }
+        }
+      }
+    }
+  }
+
+  &.freeze-col-1 {
+    [role="rowgroup"]:first-child {
+      @apply z-30;
+
+      [role="columnheader"]:first-child,
+      [role="cell"]:first-child {
+        @apply sticky left-0;
+      }
+    }
+  }
+
+  .dark & {
+    input[name="Type to filter"] {
+      @apply bg-primary-gray-100;
+    }
+    input[name="Change filter case sensitivity"] + label {
+      @apply text-primary-gray-50;
+    }
+
+    .baleada-prose-contents {
+      [role="columnheader"] {
+        @apply bg-primary-gray-85 text-primary-gray-30;
+
+        code {
+          @apply bg-primary-gray-80;
+        }
+      }
+
+      [role="cell"] {
+        @apply bg-primary-gray-95 border-primary-gray-80;
+      }
+
+      [role="rowgroup"] > :nth-child(even) {
+        [role="cell"] {
+          @apply bg-primary-gray-85 border-primary-gray-70;
+
+          code {
+            @apply bg-primary-gray-80 text-primary-gray-30;
+          }
+        }
+      }
+
+      &.baleada-prose-table-solid {
+        [role="rowgroup"] > :nth-child(even) {
+          @apply bg-transparent;
+        }
+      }
+    }
+  }
+}
+
+.baleada-prose-article {
+  table {
+    @apply w-full mr-auto;
+    display: table;
+  }
+
+  thead,
+  tbody {
+    display: table-row-group;
+  }
+
+  thead {
+    @apply rounded-4;
+    display: table-header-group;
+  }
+
+  tr {
+    display: table-row;
+
+    &:last-child td {
+      @apply border-b-4;
+    }
+  }
+
+  th {
+    @apply py-2 text-2 font-6 uppercase tracking-1 bg-primary-10 text-primary-90;
+
+    code {
+      @apply bg-primary-20 normal-case;
+    }
+  }
+
+  th,
+  td {
+    @apply text-left px-5 align-top;
+    display: table-cell;
+  }
+
+  td {
+    @apply py-4 leading-2 border-l-4 border-gray-30;
+
+    &:last-child {
+      @apply border-r-4;
+    }
+  }
+
+  tbody > :nth-child(even) {
+    @apply bg-gray-10;
+
+    td {
+      @apply border-gray-40;
+
+      code {
+        @apply bg-gray-30;
+      }
+    }
+  }
+
+  .dark & {
+    th {
+      @apply bg-primary-gray-80 text-primary-gray-20;
+
+      code {
+        @apply bg-primary-gray-70;
+      }
+    }
+
+    td {
+      @apply border-gray-70;
+    }
+
+    tbody > :nth-child(even) {
+      @apply bg-gray-75;
+
+      td {
+        @apply border-gray-70;
+
+        code {
+          @apply bg-gray-70;
+        }
+      }
+    }
+  }
+}
