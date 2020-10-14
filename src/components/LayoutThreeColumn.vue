@@ -18,9 +18,9 @@
     <!-- Left -->
     <section
       ref="nav"
-      class="relative h-screen w-screen lg:w-17 flex-none px-7 py-3 overflow-y-scroll scrolling-touch lg:translate-0 transform"
+      class="relative h-screen w-screen lg:w-17 flex-none px-7 py-3 overflow-y-scroll scrolling-touch lg:translate-x-0 transform"
       :class="[
-        openStatus === 'nav' ? 'translate-0' : '-translate-x-full',
+        openStatus === 'nav' ? 'translate-x-0' : '-translate-x-full',
         tableOfContentsTransitionStatus === 'after-leave'
           ? 'lg:absolute lg:z-30 lg:h-auto'
           : ''
@@ -189,7 +189,7 @@
     <!-- Middle -->
     <section
       ref="article"
-      class="absolute lg:relative top-0 left-0 z-20 h-screen w-screen lg:w-full overflow-x-hidden overflow-y-scroll scrolling-touch lg:translate-0 transform"
+      class="absolute lg:relative top-0 left-0 z-20 h-screen w-screen lg:w-full overflow-x-hidden overflow-y-scroll scrolling-touch lg:translate-x-0 transform"
       :class="[
         openStatus === 'nav'
           ? 'translate-x-full'
@@ -257,12 +257,12 @@
       <section
         v-show="minimalistThemeStatus === 'disabled'"
         ref="tableOfContents"
-        class="absolute lg:relative top-0 left-0 h-screen w-screen lg:w-17 flex-none px-7 py-3 overflow-y-scroll scrolling-touch lg:translate-0 transform"
+        class="absolute lg:relative top-0 left-0 h-screen w-screen lg:w-17 flex-none px-7 py-3 overflow-y-scroll scrolling-touch lg:translate-x-0 transform"
         :class="[
-          openStatus === 'tableOfContents' ? 'translate-0' : 'translate-x-full',
+          openStatus === 'tableOfContents' ? 'translate-x-0' : 'translate-x-full',
         ]"
       >
-        <!-- minimalistThemeStatus === 'enabled' ? 'opacity-0 pointer-events-none translate-x-full' : 'lg:translate-0', -->
+        <!-- minimalistThemeStatus === 'enabled' ? 'opacity-0 pointer-events-none translate-x-full' : 'lg:translate-x-0', -->
         <button
           class="lg:hidden absolute top-0 right-0 mt-3 mr-6 h-7 w-7 cursor-pointer transition btn-grows"
           :class="[
