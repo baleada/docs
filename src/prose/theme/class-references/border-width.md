@@ -11,7 +11,7 @@ order: 0
 | Class | Tailwind equivalent | Value |
 | --- | --- | --- |
 | `.border-0` | `.border-0` | `0` |
-| `.border-4` | `.border-default` | `1px` |
+| `.border-4` | `.border-DEFAULT` | `1px` |
 | `.border-5` | `.border-2` | `2px` |
 | `.border-6` | `.border-4` | `4px` |
 | `.border-7` | `.border-8` | `8px` |

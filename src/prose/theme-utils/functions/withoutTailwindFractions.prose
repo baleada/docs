@@ -18,7 +18,7 @@ You can see a list of Tailwind's standard fractions and Baleada's fractions in t
 ## Parameters
 :::
 
-`withoutTailwindFractions` accepts one parameter: a Tailwind config object with Tailwind fractions suffixes that you want to remove to. Here's an example:
+`withoutTailwindFractions` accepts one parameter: a Tailwind config object with Tailwind fractions that you want to remove. Here's an example:
 
 :::
 ```js

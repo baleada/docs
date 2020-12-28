@@ -16,6 +16,7 @@ Baleada Theme's `all:` screen is configured so that it shows up last in your cas
 | `md:` | `md:` | `768px` |
 | `lg:` | `lg:` | `1024px` |
 | `xl:` | `xl:` | `1280px` |
+| `2xl:` | `2xl:` | `1536px` |
 | `all:` | none | `0` |
 :::
 

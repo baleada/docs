@@ -10,8 +10,6 @@ order: 0
 ::: ariaLabel="Max height class reference"
 | Class | Tailwind equivalent | Value |
 | --- | --- | --- |
-| `.max-h-full` | `.max-h-full` | `100%` |
-| `.max-h-screen` | `.max-h-screen` | `100vh` |
 | `.max-h-2/1` | none | `calc(2/1 * 100%)` |
 | `.max-h-1/2` | none | `calc(1/2 * 100%)` |
 | `.max-h-3/2` | none | `calc(3/2 * 100%)` |
@@ -35,6 +33,7 @@ order: 0
 | `.max-h-5/6` | none | `calc(5/6 * 100%)` |
 | `.max-h-7/6` | none | `calc(7/6 * 100%)` |
 | `.max-h-11/6` | none | `calc(11/6 * 100%)` |
+| `.max-h-full` | `.max-h-full` | `100%` |
 | `.max-h-screen-2/1` | none | `calc(2/1 * 100vh)` |
 | `.max-h-screen-1/2` | none | `calc(1/2 * 100vh)` |
 | `.max-h-screen-3/2` | none | `calc(3/2 * 100vh)` |
@@ -58,5 +57,6 @@ order: 0
 | `.max-h-screen-5/6` | none | `calc(5/6 * 100vh)` |
 | `.max-h-screen-7/6` | none | `calc(7/6 * 100vh)` |
 | `.max-h-screen-11/6` | none | `calc(11/6 * 100vh)` |
+| `.max-h-screen` | `.max-h-screen` | `100vh` |
 :::
 

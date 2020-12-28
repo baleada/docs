@@ -10,8 +10,8 @@ order: 0
 ::: ariaLabel="Font weight class reference"
 | Class | Tailwind equivalent | Value |
 | --- | --- | --- |
-| `.font-1` | `.font-hairline` | `100` |
-| `.font-2` | `.font-thin` | `200` |
+| `.font-1` | `.font-thin` | `100` |
+| `.font-2` | `.font-extralight` | `200` |
 | `.font-3` | `.font-light` | `300` |
 | `.font-4` | `.font-normal` | `400` |
 | `.font-5` | `.font-medium` | `500` |

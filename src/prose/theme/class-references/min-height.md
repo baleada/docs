@@ -17,6 +17,7 @@ order: 0
 | `.min-h-screen-md` | none | `768px` |
 | `.min-h-screen-lg` | none | `1024px` |
 | `.min-h-screen-xl` | none | `1280px` |
+| `.min-h-screen-2xl` | none | `1536px` |
 | `.min-h-screen-all` | none | `0` |
 | `.min-h-2/1` | none | `calc(2/1 * 100%)` |
 | `.min-h-1/2` | none | `calc(1/2 * 100%)` |

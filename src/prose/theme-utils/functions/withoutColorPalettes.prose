@@ -5,7 +5,7 @@ publish: true
 order: 0
 ---
 
-`withoutColorPalettes` is a function that removes color palettes from the `colors` object in a Tailwind config. It returns an object that only includes hues whose values are Strings—all the object-based color palettes (e.g. `blue` in the default Tailwind config) are removed.
+`withoutColorPalettes` is a function that removes color palettes from the `colors` object in a Tailwind config. It returns an object that only includes keys whose values are strings, e.g. `current` and `transparent`. All the object-based color palettes (`blue`, `red`, etc.) are removed.
 
 ::: type="info"
 [Baleada Theme](/docs/theme) uses the `withoutColorPalettes` function to extract standalone colors from Tailwind's default theme.

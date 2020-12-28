@@ -10,22 +10,15 @@ order: 0
 ::: ariaLabel="Min width class reference"
 | Class | Tailwind equivalent | Value |
 | --- | --- | --- |
-| `.min-w-0` | none | `none` |
-| `.min-w-1` | none | `20rem` |
-| `.min-w-2` | none | `24rem` |
-| `.min-w-3` | none | `28rem` |
-| `.min-w-4` | none | `32rem` |
-| `.min-w-5` | none | `36rem` |
-| `.min-w-6` | none | `42rem` |
-| `.min-w-7` | none | `48rem` |
-| `.min-w-8` | none | `56rem` |
-| `.min-w-9` | none | `64rem` |
-| `.min-w-10` | none | `72rem` |
+| `.min-w-0` | `.min-w-0` | `0` |
 | `.min-w-full` | `.min-w-full` | `100%` |
+| `.min-w-min` | `.min-w-min` | `min-content` |
+| `.min-w-max` | `.min-w-max` | `max-content` |
 | `.min-w-screen-sm` | none | `640px` |
 | `.min-w-screen-md` | none | `768px` |
 | `.min-w-screen-lg` | none | `1024px` |
 | `.min-w-screen-xl` | none | `1280px` |
+| `.min-w-screen-2xl` | none | `1536px` |
 | `.min-w-screen-all` | none | `0` |
 | `.min-w-2/1` | none | `calc(2/1 * 100%)` |
 | `.min-w-1/2` | none | `calc(1/2 * 100%)` |

@@ -21,15 +21,16 @@ Baleada Linear Numeric also includes Tailwind's default standalone colors `black
 ::: ariaLabel="Colors class reference"
 | Class | Tailwind equivalent | Value |
 | --- | --- | --- |
-| `.bg-blue-1` | `.bg-blue-100` | `#ebf8ff` |
-| `.bg-blue-2` | `.bg-blue-200` | `#bee3f8` |
-| `.bg-blue-3` | `.bg-blue-300` | `#90cdf4` |
-| `.bg-blue-4` | `.bg-blue-400` | `#63b3ed` |
-| `.bg-blue-5` | `.bg-blue-500` | `#4299e1` |
-| `.bg-blue-6` | `.bg-blue-600` | `#3182ce` |
-| `.bg-blue-7` | `.bg-blue-700` | `#2b6cb0` |
-| `.bg-blue-8` | `.bg-blue-800` | `#2c5282` |
-| `.bg-blue-9` | `.bg-blue-900` | `#2a4365` |
+| `.bg-blue-1` | `.bg-blue-100` | `#dbeafe` |
+| `.bg-blue-2` | `.bg-blue-200` | `#bfdbfe` |
+| `.bg-blue-3` | `.bg-blue-300` | `#93c5fd` |
+| `.bg-blue-4` | `.bg-blue-400` | `#60a5fa` |
+| `.bg-blue-5` | `.bg-blue-500` | `#3b82f6` |
+| `.bg-blue-6` | `.bg-blue-600` | `#2563eb` |
+| `.bg-blue-7` | `.bg-blue-700` | `#1d4ed8` |
+| `.bg-blue-8` | `.bg-blue-800` | `#1e40af` |
+| `.bg-blue-9` | `.bg-blue-900` | `#1e3a8a` |
+| `.bg-blue-0.5` | `.bg-blue-50` | `#eff6ff` |
 :::
 
 
@@ -51,16 +52,24 @@ Baleada Linear Numeric also includes Tailwind's default standalone colors `black
 | `.h-6` | `.h-6` | `1.5rem` |
 | `.h-7` | `.h-8` | `2rem` |
 | `.h-8` | `.h-10` | `2.5rem` |
-| `.h-9` | `.h-12` | `3rem` |
-| `.h-10` | `.h-16` | `4rem` |
-| `.h-11` | `.h-20` | `5rem` |
-| `.h-12` | `.h-24` | `6rem` |
-| `.h-13` | `.h-32` | `8rem` |
-| `.h-14` | `.h-40` | `10rem` |
-| `.h-15` | `.h-48` | `12rem` |
-| `.h-16` | `.h-56` | `14rem` |
-| `.h-17` | `.h-64` | `16rem` |
+| `.h-9` | `.h-11` | `2.75rem` |
+| `.h-10` | `.h-12` | `3rem` |
+| `.h-11` | `.h-16` | `4rem` |
+| `.h-12` | `.h-20` | `5rem` |
+| `.h-13` | `.h-24` | `6rem` |
+| `.h-14` | `.h-32` | `8rem` |
+| `.h-15` | `.h-40` | `10rem` |
+| `.h-16` | `.h-48` | `12rem` |
+| `.h-17` | `.h-56` | `14rem` |
+| `.h-18` | `.h-64` | `16rem` |
+| `.h-19` | `.h-72` | `18rem` |
+| `.h-20` | `.h-80` | `20rem` |
+| `.h-21` | `.h-96` | `24rem` |
 | `.h-px-1` | `.h-px` | `1px` |
+| `.h-0.5` | `.h-0.5` | `0.125rem` |
+| `.h-1.5` | `.h-1.5` | `0.375rem` |
+| `.h-2.5` | `.h-2.5` | `0.625rem` |
+| `.h-3.5` | `.h-3.5` | `0.875rem` |
 :::
 
 
@@ -73,9 +82,12 @@ Baleada Linear Numeric also includes Tailwind's default standalone colors `black
 | --- | --- | --- |
 | `.rounded-0` | `.rounded-none` | `0` |
 | `.rounded-3` | `.rounded-sm` | `0.125rem` |
-| `.rounded-4` | `.rounded-default` | `0.25rem` |
+| `.rounded-4` | `.rounded-DEFAULT` | `0.25rem` |
 | `.rounded-5` | `.rounded-md` | `0.375rem` |
 | `.rounded-6` | `.rounded-lg` | `0.5rem` |
+| `.rounded-7` | `.rounded-xl` | `0.75rem` |
+| `.rounded-8` | `.rounded-2xl` | `1rem` |
+| `.rounded-9` | `.rounded-3xl` | `1.5rem` |
 | `.rounded-full` | `.rounded-full` | `9999px` |
 :::
 
@@ -88,7 +100,7 @@ Baleada Linear Numeric also includes Tailwind's default standalone colors `black
 | Class | Tailwind equivalent | Value |
 | --- | --- | --- |
 | `.border-0` | `.border-0` | `0` |
-| `.border-4` | `.border-default` | `1px` |
+| `.border-4` | `.border-DEFAULT` | `1px` |
 | `.border-5` | `.border-2` | `2px` |
 | `.border-6` | `.border-4` | `4px` |
 | `.border-7` | `.border-8` | `8px` |
@@ -105,7 +117,7 @@ Baleada Linear Numeric also includes Tailwind's default standalone colors `black
 | `.shadow-0` | `.shadow-none` | `none` |
 | `.shadow-2` | `.shadow-xs` | `0 0 0 1px rgba(0, 0, 0, 0.05)` |
 | `.shadow-3` | `.shadow-sm` | `0 1px 2px 0 rgba(0, 0, 0, 0.05)` |
-| `.shadow-4` | `.shadow-default` | `0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06)` |
+| `.shadow-4` | `.shadow-DEFAULT` | `0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06)` |
 | `.shadow-5` | `.shadow-md` | `0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06)` |
 | `.shadow-6` | `.shadow-lg` | `0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05)` |
 | `.shadow-7` | `.shadow-xl` | `0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04)` |
@@ -123,7 +135,7 @@ Baleada Linear Numeric also includes Tailwind's default standalone colors `black
 | Class | Tailwind equivalent | Value |
 | --- | --- | --- |
 | `.flex-grow-0` | `.flex-grow-0` | `0` |
-| `.flex-grow-4` | `.flex-grow-default` | `1` |
+| `.flex-grow-4` | `.flex-grow-DEFAULT` | `1` |
 :::
 
 
@@ -135,7 +147,7 @@ Baleada Linear Numeric also includes Tailwind's default standalone colors `black
 | Class | Tailwind equivalent | Value |
 | --- | --- | --- |
 | `.flex-shrink-0` | `.flex-shrink-0` | `0` |
-| `.flex-shrink-4` | `.flex-shrink-default` | `1` |
+| `.flex-shrink-4` | `.flex-shrink-DEFAULT` | `1` |
 :::
 
 
@@ -146,16 +158,19 @@ Baleada Linear Numeric also includes Tailwind's default standalone colors `black
 ::: ariaLabel="Font size class reference"
 | Class | Tailwind equivalent | Value |
 | --- | --- | --- |
-| `.text-2` | `.text-xs` | `0.75rem` |
-| `.text-3` | `.text-sm` | `0.875rem` |
-| `.text-4` | `.text-base` | `1rem` |
-| `.text-5` | `.text-lg` | `1.125rem` |
-| `.text-6` | `.text-xl` | `1.25rem` |
-| `.text-7` | `.text-2xl` | `1.5rem` |
-| `.text-8` | `.text-3xl` | `1.875rem` |
-| `.text-9` | `.text-4xl` | `2.25rem` |
-| `.text-10` | `.text-5xl` | `3rem` |
-| `.text-11` | `.text-6xl` | `4rem` |
+| `.text-2` | `.text-xs` | `0.75rem,[object Object]` |
+| `.text-3` | `.text-sm` | `0.875rem,[object Object]` |
+| `.text-4` | `.text-base` | `1rem,[object Object]` |
+| `.text-5` | `.text-lg` | `1.125rem,[object Object]` |
+| `.text-6` | `.text-xl` | `1.25rem,[object Object]` |
+| `.text-7` | `.text-2xl` | `1.5rem,[object Object]` |
+| `.text-8` | `.text-3xl` | `1.875rem,[object Object]` |
+| `.text-9` | `.text-4xl` | `2.25rem,[object Object]` |
+| `.text-10` | `.text-5xl` | `3rem,[object Object]` |
+| `.text-11` | `.text-6xl` | `3.75rem,[object Object]` |
+| `.text-12` | `.text-7xl` | `4.5rem,[object Object]` |
+| `.text-13` | `.text-8xl` | `6rem,[object Object]` |
+| `.text-14` | `.text-9xl` | `8rem,[object Object]` |
 :::
 
 
@@ -166,8 +181,8 @@ Baleada Linear Numeric also includes Tailwind's default standalone colors `black
 ::: ariaLabel="Font weight class reference"
 | Class | Tailwind equivalent | Value |
 | --- | --- | --- |
-| `.font-1` | `.font-hairline` | `100` |
-| `.font-2` | `.font-thin` | `200` |
+| `.font-1` | `.font-thin` | `100` |
+| `.font-2` | `.font-extralight` | `200` |
 | `.font-3` | `.font-light` | `300` |
 | `.font-4` | `.font-normal` | `400` |
 | `.font-5` | `.font-medium` | `500` |
@@ -219,18 +234,6 @@ Baleada Linear Numeric also includes Tailwind's default standalone colors `black
 
 
 :::
-## Max height
-:::
-
-::: ariaLabel="Max height class reference"
-| Class | Tailwind equivalent | Value |
-| --- | --- | --- |
-| `.max-h-full` | `.max-h-full` | `100%` |
-| `.max-h-screen` | `.max-h-screen` | `100vh` |
-:::
-
-
-:::
 ## Max width
 :::
 
@@ -248,36 +251,16 @@ Baleada Linear Numeric also includes Tailwind's default standalone colors `black
 | `.max-w-8` | `.max-w-4xl` | `56rem` |
 | `.max-w-9` | `.max-w-5xl` | `64rem` |
 | `.max-w-10` | `.max-w-6xl` | `72rem` |
+| `.max-w-11` | `.max-w-7xl` | `80rem` |
 | `.max-w-full` | `.max-w-full` | `100%` |
+| `.max-w-min` | `.max-w-min` | `min-content` |
+| `.max-w-max` | `.max-w-max` | `max-content` |
+| `.max-w-prose` | `.max-w-prose` | `65ch` |
 | `.max-w-screen-sm` | `.max-w-screen-sm` | `640px` |
 | `.max-w-screen-md` | `.max-w-screen-md` | `768px` |
 | `.max-w-screen-lg` | `.max-w-screen-lg` | `1024px` |
 | `.max-w-screen-xl` | `.max-w-screen-xl` | `1280px` |
-:::
-
-
-:::
-## Min height
-:::
-
-::: ariaLabel="Min height class reference"
-| Class | Tailwind equivalent | Value |
-| --- | --- | --- |
-| `.min-h-0` | `.min-h-0` | `0` |
-| `.min-h-full` | `.min-h-full` | `100%` |
-| `.min-h-screen` | `.min-h-screen` | `100vh` |
-:::
-
-
-:::
-## Min width
-:::
-
-::: ariaLabel="Min width class reference"
-| Class | Tailwind equivalent | Value |
-| --- | --- | --- |
-| `.min-w-0` | `.min-w-0` | `0` |
-| `.min-w-full` | `.min-w-full` | `100%` |
+| `.max-w-screen-2xl` | `.max-w-screen-2xl` | `1536px` |
 :::
 
 

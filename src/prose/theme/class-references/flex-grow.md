@@ -11,6 +11,6 @@ order: 0
 | Class | Tailwind equivalent | Value |
 | --- | --- | --- |
 | `.flex-grow-0` | `.flex-grow-0` | `0` |
-| `.flex-grow-4` | `.flex-grow-default` | `1` |
+| `.flex-grow-4` | `.flex-grow-DEFAULT` | `1` |
 :::
 

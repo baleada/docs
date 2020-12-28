@@ -21,11 +21,16 @@ order: 0
 | `.max-w-8` | `.max-w-4xl` | `56rem` |
 | `.max-w-9` | `.max-w-5xl` | `64rem` |
 | `.max-w-10` | `.max-w-6xl` | `72rem` |
+| `.max-w-11` | `.max-w-7xl` | `80rem` |
 | `.max-w-full` | `.max-w-full` | `100%` |
+| `.max-w-min` | `.max-w-min` | `min-content` |
+| `.max-w-max` | `.max-w-max` | `max-content` |
+| `.max-w-prose` | `.max-w-prose` | `65ch` |
 | `.max-w-screen-sm` | `.max-w-screen-sm` | `640px` |
 | `.max-w-screen-md` | `.max-w-screen-md` | `768px` |
 | `.max-w-screen-lg` | `.max-w-screen-lg` | `1024px` |
 | `.max-w-screen-xl` | `.max-w-screen-xl` | `1280px` |
+| `.max-w-screen-2xl` | `.max-w-screen-2xl` | `1536px` |
 | `.max-w-screen-all` | none | `0` |
 | `.max-w-2/1` | none | `calc(2/1 * 100%)` |
 | `.max-w-1/2` | none | `calc(1/2 * 100%)` |

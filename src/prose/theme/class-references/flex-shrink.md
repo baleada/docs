@@ -11,6 +11,6 @@ order: 0
 | Class | Tailwind equivalent | Value |
 | --- | --- | --- |
 | `.flex-shrink-0` | `.flex-shrink-0` | `0` |
-| `.flex-shrink-4` | `.flex-shrink-default` | `1` |
+| `.flex-shrink-4` | `.flex-shrink-DEFAULT` | `1` |
 :::
 
