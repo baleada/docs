@@ -22,6 +22,7 @@
   "homepage": "https://baleada.netlify.com",
   "license": "MIT",
   "devDependencies": {
+    "@babel/core": "^7.12.10",
     "@baleada/prepare": "^0.4.32",
     "@baleada/source-transform-utils": "^0.1.0",
     "@vue/compiler-sfc": "^3.0.4",
