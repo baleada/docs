@@ -28,14 +28,14 @@
           to="/docs"
           class="btn md:btn-lg btn-raised btn-grows bg-primary-10 text-primary-80"
         >
-          <HeroiconsBookOpen class="icon" />
+          <HeroiconsBookOpen class="icon icon-btn" />
           <span>Read the docs</span>
         </RouterLink>
         <a
           href="https://github.com/baleada/"
           class="mt-3 sm:mt-0 sm:ml-4 btn md:btn-lg btn-grows border-5 border-primary-10 text-primary-10"
         >
-          <SimpleGitHub class="icon" />
+          <SimpleGitHub class="icon icon-btn" />
           <span>View on GitHub</span>
         </a>
       </div>
