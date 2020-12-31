@@ -2,19 +2,6 @@ html {
   font-size: 16.5px;
 }
 
-*,
-.shadow-0,
-.shadow-2,
-.shadow-3,
-.shadow-4,
-.shadow-5,
-.shadow-6,
-.shadow-7,
-.shadow-8,
-.-shadow-4 {
-  @apply focus:shadow-outline;
-}
-
 em {
   @apply not-italic;
 }

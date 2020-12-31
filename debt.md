@@ -1,8 +1,8 @@
 - [ ] typescript
-- [ ] upgrade to `@rollup/plugin-babel`
-- [ ] Fix peer dependency syntax
+- [X] upgrade to `@rollup/plugin-babel`
+- [X] Fix peer dependency syntax
 - [ ] publish with new repo links
-- [ ] Vue 3 upgrade
+- [X] Vue 3 upgrade
   - [x] vue-features
   - [x] vue-prose
     - [x] core

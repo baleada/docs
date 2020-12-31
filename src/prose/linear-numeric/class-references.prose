@@ -43,7 +43,7 @@ Baleada Linear Numeric also includes Tailwind's default standalone colors `black
 ::: ariaLabel="Spacing class reference"
 | Class | Tailwind equivalent | Value |
 | --- | --- | --- |
-| `.h-0` | `.h-0` | `0` |
+| `.h-0` | `.h-0` | `0px` |
 | `.h-1` | `.h-1` | `0.25rem` |
 | `.h-2` | `.h-2` | `0.5rem` |
 | `.h-3` | `.h-3` | `0.75rem` |
@@ -80,7 +80,7 @@ Baleada Linear Numeric also includes Tailwind's default standalone colors `black
 ::: ariaLabel="Border radius class reference"
 | Class | Tailwind equivalent | Value |
 | --- | --- | --- |
-| `.rounded-0` | `.rounded-none` | `0` |
+| `.rounded-0` | `.rounded-none` | `0px` |
 | `.rounded-3` | `.rounded-sm` | `0.125rem` |
 | `.rounded-4` | `.rounded-DEFAULT` | `0.25rem` |
 | `.rounded-5` | `.rounded-md` | `0.375rem` |
@@ -99,7 +99,7 @@ Baleada Linear Numeric also includes Tailwind's default standalone colors `black
 ::: ariaLabel="Border width class reference"
 | Class | Tailwind equivalent | Value |
 | --- | --- | --- |
-| `.border-0` | `.border-0` | `0` |
+| `.border-0` | `.border-0` | `0px` |
 | `.border-4` | `.border-DEFAULT` | `1px` |
 | `.border-5` | `.border-2` | `2px` |
 | `.border-6` | `.border-4` | `4px` |
@@ -115,7 +115,6 @@ Baleada Linear Numeric also includes Tailwind's default standalone colors `black
 | Class | Tailwind equivalent | Value |
 | --- | --- | --- |
 | `.shadow-0` | `.shadow-none` | `none` |
-| `.shadow-2` | `.shadow-xs` | `0 0 0 1px rgba(0, 0, 0, 0.05)` |
 | `.shadow-3` | `.shadow-sm` | `0 1px 2px 0 rgba(0, 0, 0, 0.05)` |
 | `.shadow-4` | `.shadow-DEFAULT` | `0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06)` |
 | `.shadow-5` | `.shadow-md` | `0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06)` |
@@ -123,7 +122,6 @@ Baleada Linear Numeric also includes Tailwind's default standalone colors `black
 | `.shadow-7` | `.shadow-xl` | `0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04)` |
 | `.shadow-8` | `.shadow-2xl` | `0 25px 50px -12px rgba(0, 0, 0, 0.25)` |
 | `.-shadow-4` | `.shadow-inner` | `inset 0 2px 4px 0 rgba(0, 0, 0, 0.06)` |
-| `.shadow-outline` | `.shadow-outline` | `0 0 0 3px rgba(66, 153, 225, 0.5)` |
 :::
 
 
@@ -200,7 +198,7 @@ Baleada Linear Numeric also includes Tailwind's default standalone colors `black
 ::: ariaLabel="Letter spacing class reference"
 | Class | Tailwind equivalent | Value |
 | --- | --- | --- |
-| `.tracking-0` | `.tracking-normal` | `0` |
+| `.tracking-0` | `.tracking-normal` | `0em` |
 | `.tracking-1` | `.tracking-wide` | `0.025em` |
 | `.tracking-2` | `.tracking-wider` | `0.05em` |
 | `.tracking-3` | `.tracking-widest` | `0.1em` |
@@ -274,6 +272,37 @@ Baleada Linear Numeric also includes Tailwind's default standalone colors `black
 | `.stroke-0` | `.stroke-0` | `0` |
 | `.stroke-1` | `.stroke-1` | `1` |
 | `.stroke-2` | `.stroke-2` | `2` |
+:::
+
+
+:::
+## Ring offset width
+:::
+
+::: ariaLabel="Ring offset width class reference"
+| Class | Tailwind equivalent | Value |
+| --- | --- | --- |
+| `.ring-offset-0` | `.ring-offset-0` | `0px` |
+| `.ring-offset-1` | `.ring-offset-1` | `1px` |
+| `.ring-offset-2` | `.ring-offset-2` | `2px` |
+| `.ring-offset-3` | `.ring-offset-4` | `4px` |
+| `.ring-offset-4` | `.ring-offset-8` | `8px` |
+:::
+
+
+:::
+## Ring width
+:::
+
+::: ariaLabel="Ring width class reference"
+| Class | Tailwind equivalent | Value |
+| --- | --- | --- |
+| `.ring-0` | `.ring-0` | `0px` |
+| `.ring-2` | `.ring-1` | `1px` |
+| `.ring-3` | `.ring-2` | `2px` |
+| `.ring-4` | `.ring-DEFAULT` | `3px` |
+| `.ring-5` | `.ring-4` | `4px` |
+| `.ring-6` | `.ring-8` | `8px` |
 :::
 
 

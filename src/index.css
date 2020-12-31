@@ -17,8 +17,6 @@
 
 @import "./styles/docs-table-utilities.css";
 
-@import "./styles/components.css";
-
 @import "tailwindcss/components";
 
 @import "tailwindcss/utilities";

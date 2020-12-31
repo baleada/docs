@@ -1,35 +1,25 @@
-const baleada = require('@baleada/tailwind-theme'),
-      linearNumeric = require('@baleada/tailwind-linear-numeric'),
-      defaultTheme = require('tailwindcss/defaultTheme')
+const { configureable } = require('@baleada/prepare')
 
-module.exports = {
-  important: true,
-  purge: {
-    content: [
-      'index.html',
-      'src/App.vue',
-      'src/components/**/*',
-      'src/tests/**/*',
-    ]
-  },
-  experimental: {
-    applyComplexClasses: true,
-  },
-  future: {
-    removeDeprecatedGapUtilities: true,
-    purgeLayersByDefault: true,
-  },
-  theme: {
-    ...baleada,
+module.exports = configureable('tailwindcss')
+  .important()
+  .purge([
+    'index.html',
+    'src/App.vue',
+    'src/components/**/*',
+    'src/tests/**/*',
+  ])
+  .baleada()
+  .theme(({ defaultConfig }) => ({
     fontFamily: {
-      sans: ['Inter', ...defaultTheme.fontFamily.sans],
-      mono: ['Inconsolata', ...defaultTheme.fontFamily.mono],
-      display: ['Caveat', ...defaultTheme.fontFamily.sans],
+      sans: ['Inter', ...defaultConfig.theme.fontFamily.sans],
+      mono: ['Inconsolata', ...defaultConfig.theme.fontFamily.mono],
+      display: ['Caveat', ...defaultConfig.theme.fontFamily.sans],
     },
+  }))
+  .theme.extend(({ linearNumeric }) => ({
     colors: {
-      ...baleada.colors,
       gray: {
-        ...linearNumeric({ only: 'colors', increment: '10' }).gray,
+        ...linearNumeric({ only: 'colors', increment: '10' }).blueGray,
         '100': 'hsla(217, 30%, 8%, 1.0)',
         '75': 'hsla(218, 22%, 26%, 1.0)',
       },
@@ -60,5 +50,43 @@ module.exports = {
         '100': 'hsla(234, 32%, 14%, 1.0)'
       },
     },
-  },
+    minWidth: {
+      '1': '20rem',
+      '4': '32rem',
+      '5': '36rem',
+    },
+  }))
+  .variants.extend({
+    boxShadow: ['active'],
+    scale: ['active'],
+  })
+  .plugin(({ addComponents }) => addComponents({
+    '.icon': apply('h-full w-full fill-current'),
+  }))
+  .plugin(({ addComponents }) => addComponents({
+    '.btn-lg': apply('px-4 py-3 text-5'),
+    '.btn': apply('flex items-center space-x-2 px-2 py-1 rounded-4 text-3'),
+    '.icon-btn': apply('h-em-1 w-em-1'),
+    '.btn-raised': apply('shadow-4 hover:shadow-5 active:shadow-4'),
+    '.btn-grows': apply('scale-100 hover:scale-110 active:scale-100 transform'),
+    '.btn-red-weak': apply('bg-red-10 text-red-90'),
+    '.btn-red-strong': apply('bg-red-70 text-red-10'),
+    '.btn-blue-weak': apply('bg-blue-10 text-blue-90'),
+    '.btn-blue-strong': apply('bg-blue-80 text-blue-10'),
+    '.btn-green-weak': apply('bg-green-10 text-green-90'),
+    '.btn-green-strong': apply('bg-green-70 text-green-10'),
+    '.btn-amber-weak': apply('bg-amber-10 text-amber-90'),
+    '.btn-amber-strong': apply('bg-amber-80 text-amber-10'),
+    '.btn-gray-weak': apply('bg-gray-10 text-gray-90'),
+    '.btn-gray-strong': apply('bg-gray-90 text-gray-10'),
+    // '.form': {
+    //   shadow-0 border-0 ring-2 focus:ring-3 ring-gray-200 focus:ring-blue-300 transition duration-3
+    // }
+  }))
+  .configure()
+
+function apply (classes) {
+  return {
+    [`@apply ${classes}`]: {}
+  }
 }

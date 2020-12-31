@@ -4,7 +4,7 @@
       class="btn btn-sm p-0 no-underline"
       :href="gitRepoPath"
     >
-      <SimpleGitHub class="icon" />
+      <SimpleGitHub class="icon icon-btn" />
       <span>Edit on GitHub</span>
     </a>
   </p>

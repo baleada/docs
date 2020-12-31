@@ -1,14 +1,15 @@
-const { readFileSync } = require('fs'),
-      { resolve, parse } = require('path'),
-      matter = require('gray-matter'),
-      { toFileIds } = require('@baleada/source-transform-utils'),
-      { clipable } = require('@baleada/logic'),
-      basePath = resolve(''),
-      prerender = require('./util/md'),
-      MarkdownIt = require('markdown-it'),
-      MarkdownItTextContent = require('@baleada/markdown-it-text-content')
+import { readFileSync } from 'fs'
+import { resolve, parse } from 'path'
+import matter from 'gray-matter'
+import { toFileIds } from '@baleada/source-transform-utils'
+import { clipable } from '@baleada/logic'
+import prerender from './util/md.js'
+import MarkdownIt from 'markdown-it'
+import MarkdownItTextContent from '@baleada/markdown-it-text-content'
 
-module.exports = function proseFilesToSearchableCandidates () {
+const basePath = resolve('')
+
+export default function proseFilesToSearchableCandidates () {
   console.log('Creating searchable candidates...')
   const ids = toFileIds(`${basePath}/src/prose`),
         candidates = ids

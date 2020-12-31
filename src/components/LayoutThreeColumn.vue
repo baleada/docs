@@ -5,7 +5,7 @@
       darkThemeStatus === 'enabled' ? 'dark' : '',
       minimalistThemeStatus === 'enabled' ? 'minimalist' : '',
       darkThemeStatus === 'disabled' && minimalistThemeStatus === 'disabled'
-        ? 'bg-gray-20'
+        ? 'bg-gray-10'
         : darkThemeStatus === 'enabled' && minimalistThemeStatus === 'disabled'
           ? 'bg-primary-gray-100'
           : darkThemeStatus === 'enabled' && minimalistThemeStatus === 'enabled'
@@ -165,7 +165,7 @@
             aria-label="Enable minimalist theme"
             @click="() => enableMinimalistTheme()"
           >
-            <EvaSquare class="icon transition h-5 w-5" />
+            <OcticonsSquare24 class="icon transition h-5 w-5" />
           </button>
         </div>
 
@@ -282,7 +282,7 @@
 
 <script>
 import { ref, onMounted } from 'vue'
-import { swipe } from '@baleada/listenable-gestures'
+import { swipe } from '@baleada/recognizeable-handlers'
 import { useListenable, useStoreable } from '@baleada/vue-composition'
 import {
   HeroiconsMenuAlt2,
@@ -292,7 +292,7 @@ import {
   HeroiconsMoon,
   HeroiconsTemplate,
 } from '@baleada/vue-heroicons'
-import { EvaSquare } from '@baleada/vue-eva-icons'
+import { OcticonsSquare24 } from '@baleada/vue-octicons'
 
 import { createProseContext } from '../functions'
 
@@ -305,7 +305,7 @@ export default {
     HeroiconsSun,
     HeroiconsMoon,
     HeroiconsTemplate,
-    EvaSquare,
+    OcticonsSquare24,
   },
   setup () {
     /* Manage open status */

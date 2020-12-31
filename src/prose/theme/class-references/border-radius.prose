@@ -10,7 +10,7 @@ order: 0
 ::: ariaLabel="Border radius class reference"
 | Class | Tailwind equivalent | Value |
 | --- | --- | --- |
-| `.rounded-0` | `.rounded-none` | `0` |
+| `.rounded-0` | `.rounded-none` | `0px` |
 | `.rounded-3` | `.rounded-sm` | `0.125rem` |
 | `.rounded-4` | `.rounded-DEFAULT` | `0.25rem` |
 | `.rounded-5` | `.rounded-md` | `0.375rem` |

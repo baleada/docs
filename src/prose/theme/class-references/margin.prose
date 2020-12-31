@@ -12,7 +12,7 @@ order: 0
 ::: ariaLabel="Margin class reference"
 | Class | Tailwind equivalent | Value |
 | --- | --- | --- |
-| `.m-0` | `.m-0` | `0` |
+| `.m-0` | `.m-0` | `0px` |
 | `.m-1` | `.m-1` | `0.25rem` |
 | `.m-2` | `.m-2` | `0.5rem` |
 | `.m-3` | `.m-3` | `0.75rem` |
@@ -49,6 +49,7 @@ order: 0
 | `.m-em-1/2` | none | `.5em` |
 | `.m-em-5/4` | none | `1.25em` |
 | `.m-em-3/2` | none | `1.5em` |
+| `.-m-0` | `.m-0` | `0px` |
 | `.-m-1` | `.-m-1` | `-0.25rem` |
 | `.-m-2` | `.-m-2` | `-0.5rem` |
 | `.-m-3` | `.-m-3` | `-0.75rem` |

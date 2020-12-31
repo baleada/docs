@@ -1,12 +1,13 @@
-const { readdirSync, statSync, readFileSync } = require('fs'),
-      { resolve, parse } = require('path'),
-      matter = require('gray-matter'),
-      { default: gitlog } = require('gitlog'),
-      { toDirIds } = require('@baleada/source-transform-utils'),
-      { clipable } = require('@baleada/logic'),
-      basePath = resolve('')
+import { readdirSync, statSync, readFileSync } from 'fs'
+import { resolve, parse } from 'path'
+import  matter from 'gray-matter'
+import gitlog from 'gitlog'
+import { toDirIds } from '@baleada/source-transform-utils'
+import { clipable } from '@baleada/logic'
 
-module.exports = function proseFilesToManifest () {
+const basePath = resolve('')
+
+export default function proseFilesToManifest () {
   console.log('Creating manifest...')
   
   const dirIds = toDirIds(`${basePath}/src/prose`),

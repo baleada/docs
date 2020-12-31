@@ -36,12 +36,12 @@
   & > .baleada-prose-codeblock > .baleada-prose-contents > pre,
   & > .baleada-prose-table,
   & > .baleada-prose-media {
-    @apply mx-auto max-w-full scrollable;
+    @apply mx-auto max-w-full overflow-x-scroll;
   }
 
   & > pre,
   & > .baleada-prose-codeblock > .baleada-prose-contents > pre {
-    @apply scrollable;
+    @apply overflow-x-scroll;
   }
 
 
@@ -120,7 +120,7 @@
   }
 
   :not(pre) > code {
-    @apply bg-gray-20;
+    @apply bg-gray-10;
   }
 
   :not(h1):not(h2):not(h3):not(h4):not(h5):not(h5) > code {
@@ -131,7 +131,7 @@
     @apply py-1 px-2 rounded-full;
 
     &:focus {
-      @apply shadow-outline;
+      @apply ring-2;
     }
   }
 }
@@ -181,7 +181,7 @@
       }
 
       &:hover {
-        @apply text-gray-20;
+        @apply text-gray-10;
       }
     }
 

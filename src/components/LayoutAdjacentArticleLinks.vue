@@ -5,7 +5,7 @@
       :to="previous.href"
       class="btn btn-lg mx-auto sm:ml-0 p-0 no-underline"
     >
-      <HeroiconsChevronDoubleLeft class="icon" />
+      <HeroiconsChevronDoubleLeft class="icon icon-btn" />
       <span class="hover:no-underline">{{ previous.title }}</span>
     </RouterLink>
     <RouterLink
@@ -14,7 +14,7 @@
       class="btn btn-lg mt-2 sm:mt-0 p-0 mx-auto sm:mr-0 no-underline"
     >
       <span class="hover:no-underline">{{ next.title }}</span>
-      <HeroiconsChevronDoubleRight class="icon" />
+      <HeroiconsChevronDoubleRight class="icon icon-btn" />
     </RouterLink>
   </section>
 </template>

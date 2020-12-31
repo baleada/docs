@@ -10,7 +10,7 @@ order: 0
 ::: ariaLabel="Min height class reference"
 | Class | Tailwind equivalent | Value |
 | --- | --- | --- |
-| `.min-h-0` | `.min-h-0` | `0` |
+| `.min-h-0` | `.min-h-0` | `0px` |
 | `.min-h-full` | `.min-h-full` | `100%` |
 | `.min-h-screen` | `.min-h-screen` | `100vh` |
 | `.min-h-screen-sm` | none | `640px` |

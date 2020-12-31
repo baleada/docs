@@ -1,8 +1,8 @@
-const matter = require('gray-matter'),
-      { resolve } = require('path'),
-      { default: gitlog } = require('gitlog'),
-      { clipable } = require('@baleada/logic'),
-      md = require('./util/md')
+import matter from 'gray-matter'
+import { resolve } from 'path'
+import gitlog from 'gitlog'
+import { clipable } from '@baleada/logic'
+import md from './util/md.js'
 
 
 // TODO: set meta tags and head from data
@@ -15,11 +15,11 @@ const transform = ({ source, id }) => {
 # ${frontMatter.title}\n\
 :::\n\
 \n\
-<LayoutArticleLog />\n\
+<LayoutArticleLog></LayoutArticleLog>\n\
 \n\
 ${prose}\n\
-<LayoutAdjacentArticleLinks />\n\
-<LayoutArticleEdit />\n\
+<LayoutAdjacentArticleLinks></LayoutAdjacentArticleLinks>\n\
+<LayoutArticleEdit></LayoutArticleEdit>\n\
 \n\
 `
         
@@ -45,7 +45,7 @@ ${prose}\n\
   `
 }
 
-module.exports = transform
+export default transform
 
 function toLog (id) {
   const basePath = resolve(''),

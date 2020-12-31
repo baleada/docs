@@ -9,7 +9,7 @@
             v-for="(page, index) in pages"
             :key="page.href"
             :to="page.href"
-            class="hover:text-primary-gray-20"
+            class="hover:text-primary-gray-10"
             :class="[index > 0 ? 'mt-1 ' : '']"
           >
             {{ page.name }}
@@ -19,14 +19,14 @@
         <div class="md:hidden mt-4 mx-auto w-11 h-px rounded-full bg-primary-gray-60" />
         <div class="mt-4 md:mt-0 flex-1 flex items-center justify-center md:border-r border-gray-60">
           <a
-            class="hover:text-primary-gray-20"
+            class="hover:text-primary-gray-10"
             href="https://github.com/baleada"
           >
             <span class="sr-only">View on GitHub</span>
             <SimpleGitHub :class="'icon h-7 w-7'" />
           </a>
           <a
-            class="ml-4 hover:text-primary-gray-20"
+            class="ml-4 hover:text-primary-gray-10"
             href="https://twitter.com/BaleadaToolkit"
           >
             <span class="sr-only">View Twitter profile</span>
@@ -38,7 +38,7 @@
         <div class="mt-7 md:mt-0 flex-1 flex flex-col items-center justify-center md:items-start md:pl-5">
           <span class="">&copy; {{ new Date().getFullYear() }} Alex Vipond</span>
           <span class="mt-7 md:mt-1">
-            Created by <a class="underline hover:text-primary-gray-20" href="https://alexvipond.dev">Alex Vipond</a> 🌱
+            Created by <a class="underline hover:text-primary-gray-10" href="https://alexvipond.dev">Alex Vipond</a> 🌱
           </span>
         </div>
       </div>

@@ -12,7 +12,7 @@ order: 0
 ::: ariaLabel="Translate class reference"
 | Class | Tailwind equivalent | Value |
 | --- | --- | --- |
-| `.translate-x-0` | `.translate-x-0` | `0` |
+| `.translate-x-0` | `.translate-x-0` | `0px` |
 | `.translate-x-1` | `.translate-x-1` | `0.25rem` |
 | `.translate-x-2` | `.translate-x-2` | `0.5rem` |
 | `.translate-x-3` | `.translate-x-3` | `0.75rem` |
@@ -48,6 +48,7 @@ order: 0
 | `.translate-x-em-1/2` | none | `.5em` |
 | `.translate-x-em-5/4` | none | `1.25em` |
 | `.translate-x-em-3/2` | none | `1.5em` |
+| `.-translate-x-0` | `.translate-x-0` | `0px` |
 | `.-translate-x-1` | `.-translate-x-1` | `-0.25rem` |
 | `.-translate-x-2` | `.-translate-x-2` | `-0.5rem` |
 | `.-translate-x-3` | `.-translate-x-3` | `-0.75rem` |

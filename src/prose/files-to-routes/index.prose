@@ -103,7 +103,7 @@ We can get that function from Baleada Files to Routes, which provides a `getTran
 
 
 :::
-### `getTranform` parameters 
+### `getTransform` parameters 
 :::
 
 The `getTransform` function requires the following parameters:
@@ -152,3 +152,4 @@ With all those steps complete, we can now build the site, and our build tool wil
 ::: type="warning"
 Under the hood, generated routes import each raw file as if it were an ES module. If you're writing Markdown files, Vue or React components, etc., be sure to configure your build tool to transform those files into ES modules with `default` exports.
 :::
+

@@ -12,7 +12,7 @@ order: 0
 ::: ariaLabel="Inset class reference"
 | Class | Tailwind equivalent | Value |
 | --- | --- | --- |
-| `.top-0` | `.top-0` | `0` |
+| `.top-0` | `.top-0` | `0px` |
 | `.top-1` | `.top-1` | `0.25rem` |
 | `.top-2` | `.top-2` | `0.5rem` |
 | `.top-3` | `.top-3` | `0.75rem` |
@@ -49,6 +49,7 @@ order: 0
 | `.top-em-1/2` | none | `.5em` |
 | `.top-em-5/4` | none | `1.25em` |
 | `.top-em-3/2` | none | `1.5em` |
+| `.-top-0` | `.top-0` | `0px` |
 | `.-top-1` | `.-top-1` | `-0.25rem` |
 | `.-top-2` | `.-top-2` | `-0.5rem` |
 | `.-top-3` | `.-top-3` | `-0.75rem` |

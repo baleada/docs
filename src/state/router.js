@@ -9,7 +9,6 @@ const history = createWebHistory(),
         history,
         strict: true,
         routes,
-        // scrollBehavior not needed; it's handled by ProseArticle
       })
 
 // remove trailing slashes

@@ -1,6 +1,6 @@
 .baleada-prose-article {
   pre {
-    @apply bg-gray-20 text-gray-100;
+    @apply bg-gray-10 text-gray-100;
 
     & > code {
       .token.comment,

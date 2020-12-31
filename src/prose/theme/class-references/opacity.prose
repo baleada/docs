@@ -11,6 +11,7 @@ order: 0
 | Class | Tailwind equivalent | Value |
 | --- | --- | --- |
 | `.opacity-0` | `.opacity-0` | `0` |
+| `.opacity-5` | `.opacity-5` | `0.05` |
 | `.opacity-10` | `.opacity-10` | `0.1` |
 | `.opacity-20` | `.opacity-20` | `0.2` |
 | `.opacity-25` | `.opacity-25` | `0.25` |
@@ -24,6 +25,7 @@ order: 0
 | `.opacity-75` | `.opacity-75` | `0.75` |
 | `.opacity-80` | `.opacity-80` | `0.8` |
 | `.opacity-90` | `.opacity-90` | `0.9` |
+| `.opacity-95` | `.opacity-95` | `0.95` |
 | `.opacity-100` | `.opacity-100` | `1` |
 :::
 
