@@ -344,8 +344,8 @@ export default {
             '.baleada-prose-codeblock',
             '.baleada-prose-codeblock *',
 
-            '.baleada-prose-grid',
-            '.baleada-prose-grid *',
+            '.baleada-prose-table',
+            '.baleada-prose-table *',
 
             '.swiper-no-swiping',
           ]
