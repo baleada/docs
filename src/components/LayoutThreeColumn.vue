@@ -281,9 +281,10 @@
 </template>
 
 <script>
-import { ref, onMounted } from 'vue'
+import { ref, reactive, computed, onMounted } from 'vue'
 import { swipe } from '@baleada/recognizeable-handlers'
 import { useListenable, useStoreable } from '@baleada/vue-composition'
+import { useHead } from '@baleada/vue-features'
 import {
   HeroiconsMenuAlt2,
   HeroiconsX,
@@ -472,7 +473,51 @@ export default {
     })
 
     // Create Prose context
-    createProseContext(article)
+    const proseContext = reactive(createProseContext(article)),
+          SITE_NAME = 'Baleada'
+
+    useHead({
+      title: computed(() => proseContext.article.frontMatter?.title ?? SITE_NAME),
+      metas: [
+        // Essential META Tags
+        { 
+          property: 'og:title',
+          content: computed(() => proseContext.article.frontMatter?.title ?? SITE_NAME)
+        },
+        { 
+          property: 'og:description',
+          content: computed(() => proseContext.article.frontMatter?.summary ?? '')
+        },
+        { 
+          property: 'og:image',
+          content: computed(() => proseContext.article.frontMatter?.image ?? '')
+        },
+        { 
+          property: 'og:url',
+          content: computed(() => `${window.origin}${proseContext.fullPath}`),
+        },
+        { 
+          name: 'twitter:card',
+          content: computed(() => proseContext.article.frontMatter?.image ?? ''),
+        },
+
+        // Non-Essential, But Recommended
+        { 
+          property: 'og:site_name',
+          content: SITE_NAME
+        },
+        {
+          name: 'twitter:image:alt',
+          content: computed(() => proseContext.article.frontMatter?.imageAlt ?? '')
+        },
+
+        // Non-Essential, But Required for Analytics
+        {
+          name: 'twitter:site',
+          content: '@BaleadaToolkit'
+        },
+      ]
+    })
 
     return {
       openStatus,

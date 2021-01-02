@@ -23,7 +23,7 @@ export default function createProseContext (articleRef) {
           },
         }
 
-  useContextCreator(
+  return useContextCreator(
     { fullPath },
     { defaultProps }
   )
