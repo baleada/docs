@@ -1,8 +1,8 @@
 import matter from 'gray-matter'
 import { configureable, testable } from '@baleada/prepare'
-import sourceTransformProseToVueSfc from './source-transforms/proseToVueSfc'
-import proseFilesToManifest from './source-transforms/proseFilesToManifest'
-import proseFilesToSearchableCandidates from './source-transforms/proseFilesToSearchableCandidates'
+import sourceTransformProseToVueSfc from './source-transforms/proseToVueSfc.js'
+import proseFilesToManifest from './source-transforms/proseFilesToManifest.js'
+import proseFilesToSearchableCandidates from './source-transforms/proseFilesToSearchableCandidates.js'
 
 const testRoute = ({ source, id }) => {
   // Exclude dotfiles
@@ -56,11 +56,11 @@ export default configureable('vite')
     .virtual.routes({ path: 'src/prose/routes', router: 'vue' }, { test: testRoute, transformPath: path => path.replace(/^\//, '').replace(/\/index$/, '') })
     .virtual({
       test: testable().idEndsWith('src/state/manifest').test,
-      transform: proseFilesToManifest,
+      transform: () => proseFilesToManifest(),
     })
     .virtual({
       test: testable().idEndsWith('src/state/searchableCandidates').test,
-      transform: proseFilesToSearchableCandidates,
+      transform: () => proseFilesToSearchableCandidates(),
     })
     .configure()
   )

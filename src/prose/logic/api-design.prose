@@ -22,7 +22,7 @@ To accomplish that, Baleada Logic's classes and factories all follow strict rule
 4. Why classes and factories provide certain state and methods
 5. Why constructors accept certain state and options
 
-This guide explains all the core concepts, rules, and patterns that classes and factories follow. The words "all", "always", "any", and "never" are displayed in bold, to emphasize the rules that apply to every single class and subclass in Baleada Logic.
+This guide explains all the core concepts, rules, and patterns that classes and factories follow. The words "all", "always", "any", and "never" are displayed in bold, to emphasize the rules that apply to every single class and factory in Baleada Logic.
 
 
 :::
@@ -37,7 +37,7 @@ const instance = new Example(...)
 ```
 :::
 
-That `...` represents the arguments you'll pass to constructor functions. The basic arguments for class constructors differ slightly from those of subclass constructors. Details are explained below.
+That `...` represents the arguments you'll pass to constructor functions. The basic arguments for class constructors differ slightly from those of factory constructors. Details are explained below.
 
 
 :::
@@ -79,7 +79,7 @@ Class constructors **never** access the DOM internally. This ensures that you ca
 :::
 
 Factory functions accept two parameters:
-1. The piece of state that will be augmented with a new method prototype will be extended by the subclass.
+1. The piece of state that will be augmented with a new method prototype will be extended by the factory.
 2. An `options` object.
 
 The `state` parameter is **always** required, and the `options` parameter is **always** optional. Given these parameters, the constructor **always** returns the original `state` in Object form, with one new method added.
@@ -244,10 +244,11 @@ Factory functions **never** directly mutate the original state they receive. The
 2. Add a new method onto the copy
 3. Return the copy
 
-Furthermore, the method added by factory functions always has the following characteristics:
+Furthermore, the method added by factory functions **always** has the following characteristics:
 1. It **never** mutates the original object it was called on
 2. It **always** creates a new, mutated copy of the object it was called on
-3. It **always** passes the mutated copy back to the factory function and returns that value
+3. Its mutated copy **always** matches the type of the original object
+4. It **always** passes the mutated copy back to the factory function and returns that value
 
 :::
 ```js
@@ -318,7 +319,7 @@ These types of classes still use that core action in their sentence template, ev
 
 This sentence template ensures that **all** classes' and factories' methods are affordances. In other words, methods tell you what you can do with a given type of state, rather than what that type of state can do to itself or other things.
 
-In the "API design compliance" section in the documentation for each individual library and subclass, you can find the filled-out sentence template, explaining why each class and subclass accepts its specific state type.
+In the "API design compliance" section in the documentation for each individual library and factory, you can find the filled-out sentence template, explaining why each class and factory accepts its specific state type.
 
 
 ::: type="info"

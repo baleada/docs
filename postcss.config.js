@@ -6,10 +6,22 @@
 //   .tailwindcss()
 //   .configure()
 
+// import atImport from 'postcss-import'
+// import nested from 'postcss-nested'
+// import tailwindcss from 'tailwindcss'
+
+// export default {
+//   plugins: [
+//     atImport,
+//     // require('postcss-preset-env'),
+//     nested,
+//     tailwindcss,
+//   ]
+// }
+
 module.exports = {
   plugins: [
     require('postcss-import'),
-    // require('postcss-preset-env'),
     require('postcss-nested'),
     require('tailwindcss'),
   ]

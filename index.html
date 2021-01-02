@@ -24,6 +24,17 @@
 </head>
 <body class="bg-gray-10 antialiased font-sans overflow-x-hidden w-full">
   <div id="app"></div>
+  <script>
+    if (window.netlifyIdentity) {
+      window.netlifyIdentity.on("init", user => {
+        if (!user) {
+          window.netlifyIdentity.on("login", () => {
+            document.location.href = "/admin/";
+          });
+        }
+      });
+    }
+  </script>
   <script type="module" src="/src/entry.js"></script>
 </body>
 </html>

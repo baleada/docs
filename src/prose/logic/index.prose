@@ -7,10 +7,6 @@ order: 0
 
 Baleada Logic is a collection of JavaScript [classes](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Classes) and [factory functions](https://www.youtube.com/watch?v=ImwrezYhw4w) that implement **UI logic**.
 
-::: type="info"
-A "factory function" is a function that returns an object.
-:::
-
 
 :::
 ## A note, before you dive in

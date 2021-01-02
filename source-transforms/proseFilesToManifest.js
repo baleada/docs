@@ -9,7 +9,7 @@ const basePath = resolve('')
 
 export default function proseFilesToManifest () {
   console.log('Creating manifest...')
-  
+
   const dirIds = toDirIds(`${basePath}/src/prose`),
         manifest = [
           {
@@ -17,14 +17,15 @@ export default function proseFilesToManifest () {
             name: 'overview',
             articles: toManifested(`${basePath}/src/prose`),
           },
-          ...dirIds.map(id => ({
-            level: clipable(id).clip(basePath).clip('/src/prose/').split('/').length,
-            name: parse(id).name.replace(/-/g, ' '),
-            articles: toManifested(id),
-          }))
-        ].filter(({ articles }) => articles.length > 0)
+          ...dirIds.map(
+            id => ({
+              level: clipable(id).clip(basePath).clip('/src/prose/').split('/').length,
+              name: parse(id).name.replace(/-/g, ' '),
+              articles: toManifested(id),
+            })
+          )
+        ]
 
-  // Log
   const totalArticles = manifest.reduce((totalArticles, { articles }) => totalArticles + articles.length, 0)
   console.log(`${totalArticles} articles from ${manifest.length} directories added to the manifest`)
 
@@ -32,26 +33,28 @@ export default function proseFilesToManifest () {
 }
 
 function toManifested (id) {
-  const files = readdirSync(id).filter(item => statSync(`${id}/${item}`).isFile())
-
-  return files
-    .filter(file => matter(readFileSync(`${id}/${file}`, 'utf8')).data.publish === true)
-    .map(file => {
-      const { data: { title, tags: rawTags, order } } = matter(readFileSync(`${id}/${file}`, 'utf8')),
+  const files = readdirSync(id),
+        manifestable = files.filter(file => (statSync(`${id}/${file}`)).isFile()),
+        published = manifestable.filter(file => matter(readFileSync(`${id}/${file}`, 'utf8')).data.publish === true),
+        manifested = published.map(
+          file => {
+            const { data: { title, tags: rawTags, order } } = matter(readFileSync(`${id}/${file}`, 'utf8')),
             tags = rawTags ? rawTags.split(',').map(tag => tag.trim()) : [],
             fileName = parse(`${id}/${file}`).name,
             href = `/docs${clipable(id).clip(basePath).clip('/src/prose')}${clipable(`/${fileName}`).clip(/^\/index$/)}`,
-            authorDate = toStats(`${id}/${file}`).authorDate
-      
-      return {
-        title,
-        tags,
-        href,
-        authorDate,
-        order,
-      }
-    })
-    .sort(byOrder)
+            authorDate = (toStats(`${id}/${file}`)).authorDate
+
+            return {
+              title,
+              tags,
+              href,
+              authorDate,
+              order,
+            }
+          }
+        )
+        
+  return manifested.sort(byOrder)
 }
 
 function toStats (id) {
