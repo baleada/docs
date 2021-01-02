@@ -30,7 +30,7 @@ ${prose}\n\
   </ProseArticle>\
   </template>\n\
   <script>\n\
-  import { useContext } from '@functions'\n\
+  import { useContext } from '@baleada/vue-prose'\n\
   \n\
   export default {\n\
     setup () {\n\

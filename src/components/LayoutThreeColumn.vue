@@ -482,7 +482,10 @@ export default {
         // Essential META Tags
         { 
           property: 'og:title',
-          content: computed(() => proseContext.article.frontMatter?.title ?? SITE_NAME)
+          content: computed(() => {
+            console.log({ proseContext: proseContext.article })
+            return proseContext.article.frontMatter?.title ?? SITE_NAME
+          })
         },
         { 
           property: 'og:description',
