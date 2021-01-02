@@ -13,7 +13,7 @@ const testRoute = ({ source, id }) => {
   const { data: { publish } } = matter(source)
   return publish && id.endsWith('.md')
 }
-      
+
 export default configureable('vite')
   .alias({
     '@components': '/src/components',
@@ -23,7 +23,7 @@ export default configureable('vite')
   .koa(koa => koa
     .asVue({
       toVue: sourceTransformProseToVueSfc,
-      include: '**/*.md',
+      test: ({ id }) => id.endsWith('.md'),
     })
     .virtual.index('src/components')
     .virtual.index('src/functions')
@@ -47,8 +47,8 @@ export default configureable('vite')
   )
   .rollup(rollup => rollup
     .sourceTransform({
-      include: '**/*.md',
       transform: sourceTransformProseToVueSfc,
+      test: ({ id }) => id.endsWith('.md'),
     })
     .virtual.index('src/components')
     .virtual.index('src/functions')
@@ -69,7 +69,6 @@ export default configureable('vite')
   })
   .includeDeps([
     '@baleada/logic',
-    '@baleada/vue-prose/plugin',
   ])
   .configure()
 
