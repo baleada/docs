@@ -24,7 +24,7 @@ export default function proseFilesToManifest () {
               articles: toManifested(id),
             })
           )
-        ]
+        ].filter(({ articles }) => articles.length > 0)
 
   const totalArticles = manifest.reduce((totalArticles, { articles }) => totalArticles + articles.length, 0)
   console.log(`${totalArticles} articles from ${manifest.length} directories added to the manifest`)

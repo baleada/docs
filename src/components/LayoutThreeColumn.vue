@@ -281,7 +281,8 @@
 </template>
 
 <script>
-import { ref, reactive, computed, onMounted } from 'vue'
+import { ref, computed, onMounted } from 'vue'
+import { useRoute } from 'vue-router'
 import { swipe } from '@baleada/recognizeable-handlers'
 import { useListenable, useStoreable } from '@baleada/vue-composition'
 import { useHead } from '@baleada/vue-features'
@@ -295,7 +296,7 @@ import {
 } from '@baleada/vue-heroicons'
 import { OcticonsSquare24 } from '@baleada/vue-octicons'
 
-import { createProseContext } from '../functions'
+import { createProseContext, useContext } from '../functions'
 
 export default {
   name: 'LayoutThreeColumn',
@@ -473,35 +474,37 @@ export default {
     })
 
     // Create Prose context
-    const proseContext = reactive(createProseContext(article)),
+    createProseContext(article)
+          
+          
+    // Set up reactive SEO
+    const context = useContext(),
+          route = useRoute(),
           SITE_NAME = 'Baleada'
 
     useHead({
-      title: computed(() => proseContext.article.frontMatter?.title ?? SITE_NAME),
+      title: computed(() => context.article.frontMatter?.title ?? SITE_NAME),
       metas: [
         // Essential META Tags
         { 
           property: 'og:title',
-          content: computed(() => {
-            console.log({ proseContext: proseContext.article })
-            return proseContext.article.frontMatter?.title ?? SITE_NAME
-          })
+          content: computed(() => context.article.frontMatter?.title ?? SITE_NAME)
         },
         { 
           property: 'og:description',
-          content: computed(() => proseContext.article.frontMatter?.summary ?? '')
+          content: computed(() => context.article.frontMatter?.summary ?? '')
         },
         { 
           property: 'og:image',
-          content: computed(() => proseContext.article.frontMatter?.image ?? '')
+          content: computed(() => context.article.frontMatter?.image ?? '')
         },
         { 
           property: 'og:url',
-          content: computed(() => `${window.origin}${proseContext.fullPath}`),
+          content: computed(() => `${window.origin}${route.fullPath}`),
         },
         { 
           name: 'twitter:card',
-          content: computed(() => proseContext.article.frontMatter?.image ?? ''),
+          content: computed(() => context.article.frontMatter?.image ?? ''),
         },
 
         // Non-Essential, But Recommended
@@ -511,7 +514,7 @@ export default {
         },
         {
           name: 'twitter:image:alt',
-          content: computed(() => proseContext.article.frontMatter?.imageAlt ?? '')
+          content: computed(() => context.article.frontMatter?.imageAlt ?? '')
         },
 
         // Non-Essential, But Required for Analytics

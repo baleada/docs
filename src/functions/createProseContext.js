@@ -7,7 +7,7 @@ export default function createProseContext (articleRef) {
         fullPath = computed(() => route.fullPath),
         defaultProps = {
           article: {
-            getScrollableContainer: () => articleRef.value === null ? document : articleRef.value
+            scrollableContainer: computed(() => articleRef.value ?? document)
           },
           blockquote: {
             readerCanTweet: true,

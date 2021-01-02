@@ -5,7 +5,7 @@
       :key="index"
     >
       <component
-        :is="`h${level + 2}`"
+        :is="`h${level + 1}`"
         class="uppercase"
       >
         {{ name }}
@@ -68,10 +68,7 @@ export default {
     h2::after {
       @apply bg-primary-gray-90;
     }
-    h2 {
-      @apply text-primary-gray-50;
-    }
-    h3 {
+    h2, h3 {
       @apply text-primary-gray-50;
     }
     a {
