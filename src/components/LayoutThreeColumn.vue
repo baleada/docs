@@ -244,7 +244,7 @@
 
       <RouterView
         key="content"
-        class="relative"
+        class="relative mt-7"
       />
     </section>
 
