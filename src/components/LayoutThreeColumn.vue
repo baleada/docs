@@ -283,7 +283,7 @@
 <script>
 import { ref, computed, onMounted } from 'vue'
 import { useRoute } from 'vue-router'
-import { swipe } from '@baleada/recognizeable-handlers'
+import { touchdragdrop as swipe } from '@baleada/recognizeable-handlers'
 import { useListenable, useStoreable } from '@baleada/vue-composition'
 import { useHead } from '@baleada/vue-features'
 import {

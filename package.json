@@ -44,7 +44,7 @@
   },
   "dependencies": {
     "@babel/runtime": "^7.12.5",
-    "@baleada/recognizeable-handlers": "^0.5.0",
+    "@baleada/recognizeable-handlers": "^0.5.1",
     "@baleada/vue-features": "^0.5.5",
     "@baleada/vue-heroicons": "^0.0.2",
     "@baleada/vue-octicons": "^0.1.0",

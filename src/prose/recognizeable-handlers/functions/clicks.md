@@ -14,20 +14,18 @@ order: 0
 
 The `clicks` function returns an object that contains event handlers for the following events:
 - `mousedown`
-- `mousemove`
 - `mouseleave`
 - `mouseup`
 
+Under the hood, `clicks` also uses a `mousemove` event listener to gather data. However, listening to every `mousemove` event on a page can cause performance issues, so `clicks` adds its `mousemove` listener on the fly after a succesful `mousedown`, and removes it on `mouseleave` and `mouseup`.
+
 ::: type="info"
-In Baleada Listenable Gestures, `clicks` is the mouse event equivalent of [`taps`](/docs/listenable-gestures/functions/taps).
+In Baleada Recognizeable Handlers, `clicks` is the mouse event equivalent of [`touches`](/docs/recognizeable-handlers/functions/touches).
 :::
 
 ::: type="warning"
-If you're implementing a clicks feature for a touchscreen, use [`taps`](/docs/listenable-gestures/functions/taps) instead of `clicks` (which only works for mouse events).
-
-Likewise, if you're implementing a taps feature for desktop, use `clicks` instead of [`taps`](/docs/listenable-gestures/functions/taps) (which only works for touch events).
+`clicks` only works with mouse events. It won't have any effect if the user uses a touchscreen.
 :::
-
 
 :::
 ## Create the `clicks` handlers
@@ -37,7 +35,7 @@ To create the `clicks` handlers, import and call the `clicks` function:
 
 :::
 ```js
-import { clicks } from '@baleada/listenable-gestures'
+import { clicks } from '@baleada/recognizeable-handlers'
 
 const clicksHandlers = clicks(/* options */)
 

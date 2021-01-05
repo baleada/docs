@@ -17,9 +17,9 @@ order: 0
 ::: type="warning"
 `Recognizeable` is a lower-level tool whose intended purpose is to allow the [`Listenable`](/docs/logic/classes/Listenable) class to listen for custom gestures.
 
-Before using `Recognizeable` to define your own custom gesture, you should test out [Baleada Listenable Gestures](/docs/listenable-gestures), a collection of pre-made `Recognizeable` configurations that allow `Listenable` to listen for common gestures like swipe, pan, drag-and-drop, double-tap, double-click, and more.
+Before using `Recognizeable` to define your own custom gesture, you should test out [Baleada Recognizeable Handlers](/docs/recognizeable-handlers), a collection of pre-made `Recognizeable` configurations that allow `Listenable` to listen for common gestures like swipe, pan, drag-and-drop, double-tap, double-click, and more.
 
-If Baleada Listenable Gestures doesn't suit your needs, feel free to continue learning about `Recognizeable` so you can define your own custom gestures!
+If Baleada Recognizeable Handlers doesn't suit your needs, feel free to continue learning about `Recognizeable` so you can define your own custom gestures!
 :::
 
 
@@ -154,7 +154,7 @@ Here's what the workflow looks like:
     - Final option: did something happen that makes your custom gesture impossible (e.g. a `mouseup` event when you're trying to recognize a drag/pan gesture)? If so, call the `denied` function to deny the event, trigger a full reset, and start the workflow from the beginning.
 
 ::: type="info"
-Still not sure how to use this workflow to recognize your custom gestures? If you're up for a source dive, you can [check out the Baleada Listenable Gestures source code](https://github.com/baleada/listenable-gestures) for inspiration.
+Still not sure how to use this workflow to recognize your custom gestures? If you're up for a source dive, you can [check out the Baleada Recognizeable Handlers source code](https://github.com/baleada/recognizeable-handlers) for inspiration.
 :::
 
 

@@ -16,7 +16,7 @@ Each category of tools has its own NPM package that you can install:
 ::: ariaLabel="Table showing tool categories and the corresponding NPM package for each category" classes="wide-2"
 | Tool category | NPM packages |
 | --- | --- |
-| UI logic | <p>[`@baleada/logic`](/docs/logic)</p><p>[`@baleada/animateable-timings`](/docs/logic/classes/animateable#how-to-format-timing)</p><p>[`@baleada/listenable-gestures`](/docs/listenable-gestures)</p> |
+| UI logic | <p>[`@baleada/logic`](/docs/logic)</p><p>[`@baleada/animateable-timings`](/docs/logic/classes/animateable#how-to-format-timing)</p><p>[`@baleada/recognizeable-handlers`](/docs/recognizeable-handlers)</p> |
 | Composition functions | [`@baleada/composition`](/docs/composition) |
 | Components | <p>[`@baleada/icons`](/docs/icons)</p><p>`@baleada/interface`</p><p>[`@baleada/prose`](/docs/prose)</p> |
 | Configuration utilities | <p>[`@baleada/linear-numeric`](/docs/linear-numeric)</p><p>[`@baleada/source-transform`](/docs/source-transform)</p><p>[`@baleada/spa-links`](/docs/spa-links)</p> |
