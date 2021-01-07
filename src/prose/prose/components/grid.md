@@ -78,7 +78,7 @@ section.baleada-prose-grid
   div // Only renders when canFilterByQuery and canChangeFilterCaseSensitivity are true
     input type="checkbox" name="Change filter case sensitivity"
     label // Contains messages.grid.changeFilterCaseSensitivityLabel
-  section.contents tabindex="0"
+  section.baleada-prose-contents tabindex="0"
     slot // Your content slots in here. See below for more guidance.
 ```
 :::

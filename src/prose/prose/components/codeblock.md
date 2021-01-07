@@ -1,6 +1,6 @@
 ---
 title: ProseCodeblock
-tags: Components, Vue, React, Svelte
+tags: Components
 publish: true
 order: 0
 ---
@@ -18,7 +18,7 @@ order: 0
 
 :::
 
-    ::: canCopy hasLineNumbers
+    ::: canCopy
     ```js
     const thing = new Stuff()
     ```
@@ -30,15 +30,10 @@ order: 0
 ### Rendered
 :::
 
-::: canCopy hasLineNumbers
+::: canCopy
 ```js
-const thing = new Stuff()
+const example = new Thing()
 ```
-:::
-
-
-::: type="info"
-The codeblocks in the Baleada docs are highlighted using [refractor](https://github.com/wooorm/refractor), [rehype](https://github.com/rehypejs/rehype), and a [Tailwind-powered custom syntax theme](https://github.com/baleada/docs/blob/main/assets/css/prose/syntax.csstre).
 :::
 
 
@@ -64,7 +59,7 @@ Here's the structure of `ProseCodeblock`'s markup, written in [Pug](https://gith
 :::
 ```pug
 section.baleada-prose-codeblock
-  section.contents
+  section.baleada-prose-contents
     pre
       code // This pre>code contains line numbers
     slot <- Your pre>code slots in here

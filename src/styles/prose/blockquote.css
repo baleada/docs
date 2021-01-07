@@ -71,7 +71,7 @@
 }
 
 @screen lg {
-  .baleada-prose-blockquote {
+  .baleada-prose-article .baleada-prose-blockquote {
     & > a {
       @apply top-0 left-0;
       transform: translate(-33%, -33%);

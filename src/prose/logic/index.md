@@ -57,22 +57,3 @@ import { markupable } from '@baleada/logic'
 
 All available classes and factories are listed in this site's navigation under **LOGIC** and linked to their specific documentation.
 
-
-:::
-## Language, compilation, browser support, and dependencies
-:::
-
-Classes and factories are written in modern JavaScript, and almost all of them have no dependencies of their own. They are compiled by [Babel](https://babeljs.io) to work in browsers that are used by more than 0.5% of global web visitors AND have had official support or updates in the past 24 months.
-
-To allow for [tree-shaking](https://webpack.js.org/guides/tree-shaking/), Baleada Logic has no side effects and is bundled as ES modules by [Rollup](https://rollupjs.org/), outputting [ES modules](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Modules).
-
-Dependencies, when they exist, were chosen with the following desirable characteristics in mind (in no particular order):
-- Framework agnostic
-- Few or no dependencies of their own
-- Small file size
-- Tree-shakeable
-- Small impact on apps' bundle size
-- Industry standard
-- Recommended/used by proficient, well-known, independent developers
-
-Not all dependencies meet every single one of those requirements. However, lots of care was taken to ensure that, if a dependency can be replaced by something better in the future, doing so will be quick and easy, and with any luck, won't result in breaking changes.

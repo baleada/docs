@@ -1,6 +1,6 @@
 import { computed } from 'vue'
 import { useRoute } from 'vue-router'
-import { useContextCreator } from '@baleada/vue-prose'
+import { useContext } from '@baleada/vue-prose'
 
 export default function createProseContext (articleRef) {
   const route = useRoute(),
@@ -23,8 +23,7 @@ export default function createProseContext (articleRef) {
           },
         }
 
-  return useContextCreator(
-    { fullPath },
-    { defaultProps }
+  return useContext(
+    { fullPath, defaultProps },
   )
 }

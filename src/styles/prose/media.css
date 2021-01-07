@@ -2,6 +2,10 @@
   img,
   video,
   audio {
-    @apply block w-full max-h-full rounded-3 shadow-4;
+    @apply block w-full rounded-3 shadow-4;
+  }
+
+  iframe {
+    @apply block w-full h-screen with-max-h overflow-hidden rounded-3 shadow-4;
   }
 }

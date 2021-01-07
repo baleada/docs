@@ -555,10 +555,6 @@ export default {
 </script>
 
 <style lang="postcss">
-.baleada-prose-article {
-  /* Not doing all styles here because can't use @apply for non-plugin utilities. Also because this file size would be insane. */
-}
-
 @media screen and (min-width: theme(screens.lg)) {
   .baleada-prose-article {
     @apply transition-none;

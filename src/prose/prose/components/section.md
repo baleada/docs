@@ -50,7 +50,7 @@ Here's the structure of `ProseSection`'s markup, written in [Pug](https://github
 :::
 ```pug
 section.baleada-prose-section
-  section.contents
+  section.baleada-prose-contents
     slot // Your blockquote slots in here
 ```
 :::

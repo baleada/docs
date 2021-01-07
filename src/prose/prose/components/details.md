@@ -54,7 +54,7 @@ details.baleada-prose-details open // open is the boolean attribute that determi
   summary
     svg // Chevron icon
     span // Contains the text from the summary prop
-  section.contents
+  section.baleada-prose-contents
     slot // Your content slots in here
 ```
 :::

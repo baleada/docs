@@ -115,7 +115,7 @@
       @apply bg-blue-90 text-blue-10 border-blue-80;
 
       & > svg {
-        @apply bg-blue-70 text-blue-30;
+        @apply bg-blue-70 text-blue-40;
       }
 
       code,
@@ -135,7 +135,7 @@
       @apply bg-yellow-90 text-yellow-10 border-yellow-80;
 
       & > svg {
-        @apply bg-yellow-70 text-yellow-30;
+        @apply bg-yellow-70 text-yellow-40;
       }
 
       code,
@@ -155,7 +155,7 @@
       @apply bg-red-90 text-red-10 border-red-80;
 
       & > svg {
-        @apply bg-red-70 text-red-30;
+        @apply bg-red-70 text-red-40;
       }
 
       code,
@@ -175,7 +175,7 @@
       @apply bg-green-90 text-green-10 border-green-80;
 
       & > svg {
-        @apply bg-green-70 text-green-30;
+        @apply bg-green-70 text-green-40;
       }
 
       code,
@@ -195,7 +195,7 @@
       @apply bg-primary-90 text-primary-10 border-primary-80;
 
       & > svg {
-        @apply bg-primary-70 text-primary-30;
+        @apply bg-primary-70 text-primary-40;
       }
 
       code,

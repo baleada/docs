@@ -1,6 +1,6 @@
 ---
 title: ProseBlockquote
-tags: Components, Vue, React, Svelte
+tags: Components
 publish: true
 order: 0
 ---
@@ -55,7 +55,7 @@ Here's the structure of `ProseBlockquote`'s markup, written in [Pug](https://git
 :::
 ```pug
 section.baleada-prose-blockquote
-  section.contents
+  section.baleada-prose-contents
     slot // Your blockquote slots in here
   a
     svg // Twitter icon

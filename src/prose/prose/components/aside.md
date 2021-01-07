@@ -91,7 +91,7 @@ Here's the structure of `ProseAside`'s markup, written in [Pug](https://github.c
 ```pug
 aside.baleada-prose-aside.baleada-prose-aside-info // Replace info with warning, danger, success, or simple
   svg // Icon
-  section.contents
+  section.baleada-prose-contents
     slot // Your content slots in here
 ```
 :::

@@ -36,10 +36,3 @@ Baleada is designed for developers who:
 - **Do** appreciate [the benefits of using SVG over icon fonts](http://www.fullstackradio.com/47).
 - **Do** appreciate documentation that makes them hungry. -->
 <!-- - **Do** want a design system to govern their styles, but **don't** want their apps and sites to look like everyone else's. -->
-
-
-:::
-## Copyright and Licensing
-:::
-
-All of Baleada's tools are copyrighted from 2019-present and licensed under the MIT license.
