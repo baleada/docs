@@ -96,7 +96,7 @@ const myRenderedHtmlString = md.render(myBaleadaFlavoredMarkdownString)
 
 Finally, use Vue to render the HTML string as an interactive article.
 
-This task involves one important additional task: globally registering Baleada Prose components with Vue so they can be used in any template. Baleada Prose provides a Vue plugin to make this easier. The code below shows basic usage of the plugin, and you can [visit the plugin guide](/docs/prose/plugin) to learn more.
+This task involves one important additional task: globally registering Baleada Prose components with Vue so they can be used in any template. Baleada Prose provides a Vue plugin to make this easier. The code below shows how to use the plugin, and you can [visit the plugin guide](/docs/prose/plugin) to learn more.
 
 Again, this is normally done in the context of a larger toolchain, especially one that supports Vue's [Single File Components](https://v3.vuejs.org/guide/single-file-component.html#introduction), but here is the basic concept:
 
@@ -116,6 +116,50 @@ app.mount('#app')
 :::
 
 And that's the bare minimum workflow to get Baleada Prose working! To see it in action, [click the Run button on this REPL](https://repl.it/@AlexVipond/Baleada-Prose-Demo#src/entry.js).
+
+
+:::
+### Using components directly
+:::
+
+As mentioned, Baleada Prose components are not primarily designed to be used directly. However, many of them can be imported and used just like any other Vue component:
+
+:::
+```html
+<template>
+  <!--
+    ProseAside will render an <aside>, along with an icon
+    determined by the `type` prop.
+  -->
+  <ProseAside type="info" class="bg-blue-100 text-blue-900">
+    <p>Here's some info you should know!</p>
+  </ProseAside>
+</template>
+
+<script>
+import { ProseAside } from '@baleada/vue-prose'
+
+export default {
+  components: { ProseAside },
+}
+</script>
+```
+:::
+
+`ProseGrid` and `ProseList` are the only two components that are downright uncomfortable to write by hand—it would involve calculating total rows and columns, calculating x/y coordinates for each table cell or list item, and writing lots of repetitive markup.
+
+In other words, it's a great task to delegate to the Baleada Prose Container plugin, which transforms your Markdown tables into the correct markup automatically.
+
+
+:::
+```
+### Writing collections of Baleada Prose content
+```
+:::
+
+The REPL linked above shows a basic example of just one Prose-powered article, but Baleada Prose was really designed for blogs and documentation sites, where you'll be writing entire collections of articles.
+
+To enhance collections of articles, Baleada Prose offers two important tools: the `ProseArticle` component and the `useContext` composition function. These tools work just fine with traditional server-rendered websites, but they also have features that support single-page apps, like those built with [Vite](https://vitejs.dev), [Nuxt](https://nuxtjs.org/), or [Vue CLI](https://cli.vuejs.org/).
 
 
 

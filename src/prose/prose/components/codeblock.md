@@ -61,8 +61,10 @@ Here's the structure of `ProseCodeblock`'s markup, written in [Pug](https://gith
 section.baleada-prose-codeblock
   section.baleada-prose-contents
     pre
-      code // This pre>code contains line numbers
-    slot <- Your pre>code slots in here
+      code // This pre > code contains the code language
+    pre
+      code // This pre > code contains line numbers
+    slot <- Your pre > code slots in here
   button // Copy-to-clipboard button
     svg // Copy-to-clipboard icon
 ```
