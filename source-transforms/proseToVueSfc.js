@@ -25,9 +25,9 @@ ${prose}\n\
         
   return `\
   <template>\
-  <ProseArticle>\
+  <article>\
   ${md.render(withBaleadaDocsCustomizations)}\
-  </ProseArticle>\
+  </article>\
   </template>\n\
   <script>\n\
   import { useContext } from '@functions'\n\

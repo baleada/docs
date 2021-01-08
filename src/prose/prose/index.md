@@ -159,7 +159,7 @@ In other words, it's a great task to delegate to the Baleada Prose Container plu
 
 The REPL linked above shows a basic example of just one Prose-powered article, but Baleada Prose was really designed for blogs and documentation sites, where you'll be writing entire collections of articles.
 
-To enhance collections of articles, Baleada Prose offers two important tools: the `ProseArticle` component and the `useContext` composition function. These tools work just fine with traditional server-rendered websites, but they also have features that support single-page apps, like those built with [Vite](https://vitejs.dev), [Nuxt](https://nuxtjs.org/), or [Vue CLI](https://cli.vuejs.org/).
+ features that support single-page apps, like those built with [Vite](https://vitejs.dev), [Nuxt](https://nuxtjs.org/), or [Vue CLI](https://cli.vuejs.org/).
 
 
 
@@ -170,7 +170,6 @@ To enhance collections of articles, Baleada Prose offers two important tools: th
 :::
 
 Here are the available components in the Baleada Prose library, each linked to their specific documentation:
-- [`ProseArticle`](/docs/prose/components/article)
 - [`ProseAside`](/docs/prose/components/aside)
 - [`ProseBlockquote`](/docs/prose/components/blockquote)
 - [`ProseCodeblock`](/docs/prose/components/codeblock)

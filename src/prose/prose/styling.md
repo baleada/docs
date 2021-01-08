@@ -18,14 +18,14 @@ Each component's root element has a `.baleada-prose-[component]` class, where `[
 Inspect this element in devtools! Its root element has a `.baleada-prose-aside` class.
 :::
 
-In each component, the content you actually write is inserted into an element with a `.baleada-prose-contents` class. The only exception is `ProseArticle`, which only has the top level `.baleada-prose-article` element, with your content inside.
+In each component, the content you actually write is inserted into an element with a `.baleada-prose-contents` class.
 
 ::: type="info"
 In devtools, you'll see that this text renders as a `<p>` tag. It slots into a `<section>` tag with a `.baleada-prose-contents` class, so you can target `.baleada-prose-aside .baleada-prose-contents` to style anything in here.
 :::
 
 ::: type="warning"
-In almost every component with `.baleada-prose-contents` (i.e., every component except `ProseArticle`), your content is the _only_ thing inside the `.baleada-prose-contents` element.
+In almost every component with `.baleada-prose-contents`, your content is the _only_ thing inside the `.baleada-prose-contents` element.
 
 The only exception is `ProseCodeblock`, specifically when the `hasLineNumbers` or `hasLang` props are true. Each of those props causes an additional `<pre><code>` to render inside the `.baleada-prose-contents` element.
 
