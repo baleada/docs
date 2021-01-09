@@ -20,9 +20,10 @@ const testRoute = ({ source, id }) => {
 export default {
   ...configureable('vite')
     .alias({
-      '@components': '/src/components',
-      '@functions': '/src/functions',
-      '@state': '/src/state',
+      '@components': '/src/components/index.js',
+      '@functions': '/src/functions/index.js',
+      '@state': '/src/state/index.js',
+      '@prose-routes': '/src/prose/routes.js',
     })
     .includeDeps([
       '@baleada/logic',
@@ -31,14 +32,20 @@ export default {
   plugins: [
     resolve(),
     ...configureable('rollup')
+      .plugin({
+        resolveId: (source, importer) => {
+          console.log({ source, importer })
+          return null
+        }
+      })
       .sourceTransform({
         transform: sourceTransformProseToVueSfc,
         test: ({ id }) => id.endsWith('.md'),
       })
-      .virtual.index('components')
-      .virtual.index('functions')
-      .virtual.index('state')
-      .virtual.routes({ path: 'prose/routes', router: 'vue' }, { test: testRoute, transformPath: path => path.replace(/^\//, '').replace(/\/index$/, '') })
+      .virtual.index('components/index.js')
+      .virtual.index('functions/index.js')
+      .virtual.index('state/index.js')
+      .virtual.routes({ path: 'prose/routes.js', router: 'vue' }, { test: testRoute, transformPath: path => path.replace(/^\//, '').replace(/\/index$/, '') })
       .virtual({
         test: testable().idEndsWith('src/state/manifest').test,
         transform: () => proseFilesToManifest(),
@@ -48,7 +55,7 @@ export default {
         transform: () => proseFilesToSearchableCandidates(),
       })
       .configure()
-      .plugins,
+      .plugins.map(plugin => ({ ...plugin, enforce: 'pre' })),
     vue({
       include: ['**/*.vue', '**/*.md'],
     }), 

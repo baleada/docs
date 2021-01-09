@@ -296,7 +296,7 @@ import {
 } from '@baleada/vue-heroicons'
 import { OcticonsSquare24 } from '@baleada/vue-octicons'
 
-import { createProseContext, useContext } from '../functions'
+import { createProseContext, useContext } from '@functions'
 
 export default {
   name: 'LayoutThreeColumn',

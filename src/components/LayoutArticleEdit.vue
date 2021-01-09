@@ -13,7 +13,7 @@
 <script>
 import { computed } from 'vue'
 import { SimpleGitHub } from '@baleada/vue-simple-icons'
-import { useContext } from '../functions'
+import { useContext } from '@functions'
 
 export default {
   name: 'LayoutArticleEdit',

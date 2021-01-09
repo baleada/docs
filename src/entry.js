@@ -4,7 +4,7 @@ import './index.css'
 import 'typeface-inter'
 import 'typeface-inconsolata'
 import 'typeface-caveat'
-import { globalComponents, plugins } from './state'
+import { globalComponents, plugins } from '@state'
 
 const app = createApp(App)
 

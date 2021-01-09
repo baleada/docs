@@ -1,6 +1,6 @@
 import { clipable } from '@baleada/logic'
-import { PageIndex, LayoutThreeColumn, NotFound } from '../components'
-import articles from '../prose/routes'
+import { PageIndex, LayoutThreeColumn, NotFound } from '@components'
+import articles from '@prose-routes'
 
 const withoutIndex = articles.map(({ path, component }) => ({
   path: `${clipable(path).clip(/(?:^index|\/index$)/)}`,

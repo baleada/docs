@@ -24,7 +24,7 @@
 </template>
 
 <script>
-import manifest from '../state/manifest'
+import manifest from '../state/manifest.js'
 
 export default {
   name: 'LayoutNav',

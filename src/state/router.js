@@ -1,8 +1,8 @@
 import { nextTick } from 'vue'
 import { createRouter, createWebHistory } from 'vue-router'
 import { clipable } from '@baleada/logic'
-import { useContext } from '../functions'
-import routes from './routes'
+import { useContext } from '@functions'
+import routes from './routes.js'
 
 const history = createWebHistory(),
       router = createRouter({
