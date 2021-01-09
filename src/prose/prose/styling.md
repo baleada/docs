@@ -29,7 +29,7 @@ In almost every component with `.baleada-prose-contents`, your content is the _o
 
 The only exception is `ProseCodeblock`, specifically when the `hasLineNumbers` or `hasLang` props are true. Each of those props causes an additional `<pre><code>` to render inside the `.baleada-prose-contents` element.
 
-See the [`ProseCodeblock` docs](/docs/prose/components/codeblock) for the complete markup outline.
+[See the `ProseCodeblock` docs](/docs/prose/components/codeblock) for the complete markup outline.
 :::
 
 Finally, each component's documentation includes an outline of the complete markup structure. You could always use devtools to inspect markup structure, but hopefully those outlines make it easier to write effective CSS selectors.

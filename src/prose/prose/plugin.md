@@ -2,7 +2,7 @@
 title: Plugin
 tags: Components
 publish: true
-order: 2
+order: 1
 ---
 
 The Baleada Prose plugin globally registers all Baleada Prose components with your Vue instance. This means you can use any Baleada Prose component inside of any other component without importing it and registering it in the component's `components` option.

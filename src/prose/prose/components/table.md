@@ -52,14 +52,14 @@ Just like `ProseList`, `ProseTable` also comes with an opt-in "type to filter" f
 ## Props
 :::
 
-::: ariaLabel="ProseAside props" classes="wide-5"
+::: ariaLabel="ProseTable props" classes="wide-5"
 | Prop | Type | Required? | Default | Description |
 | --- | --- | --- | --- | --- |
 | `ariaLabel` | Boolean | no | `false` | An `aria-label` for the table's root element. |
 | `readerCanSearch` | Boolean | no | `false` | Indicates whether or not the table can be filtered by a query string. |
-| `searchIgnoresCase` | Boolean | no | `false` | <p>Indicates whether or not the table's query filtering is case sensitive by default.</p><p>When it's `true`, `ProseTable` renders a text input containing `context.messages.table.searchPlaceholder`.</p><p>For more info on `context.messages`, [see the guide on using `context`](/docs/prose/using-context).</p> |
+| `searchIsCaseSensitive` | Boolean | no | `false` | <p>Indicates whether or not the table's query filtering is case sensitive by default.</p><p>When it's `true`, `ProseTable` renders a text input containing `context.messages.table.searchPlaceholder`.</p><p>For more info on `context.messages`, [see the guide on using `context`](/docs/prose/using-context).</p> |
 | `minimumSearchScore` | Number | no | `1` | <p>Search results from your table are scored based on how closely they match the query. Any number between `0` and `1` is a valid `minimumSearchScore`, and a `minimumSearchScore` of `1` will filter out all table rows that don't contain a perfect match for the query.</p><p>Set a `minimumSearchScore` of less than `1` to enable fuzzy matching.</p><p>`ProseTable` uses [Baleada Logic's `Searchable` class](/docs/logic/classes/Searchable) under the hood to support this feature.</p> |
-| `readerCanChangeSearchCaseSensitivity` | Boolean | no | `false` | <p>Indicates whether or not your end user can change the table's `searchIgnoresCase` setting.</p><p>When it's `true`, `ProseTable` renders a checkbox and `messages.table.changeSearchCaseSensitivityLabel`.</p><p>For more info on `context.messages`, [see the guide on using `context`](/docs/prose/using-context).</p> |
+| `readerCanChangeSearchCaseSensitivity` | Boolean | no | `false` | <p>Indicates whether or not your end user can change the table's `searchIsCaseSensitive` setting.</p><p>When it's `true`, `ProseTable` renders a checkbox and `messages.table.changeSearchCaseSensitivityLabel`.</p><p>For more info on `context.messages`, [see the guide on using `context`](/docs/prose/using-context).</p> |
 | `classes` | String | no | none | Adds additional classes to the component's root element. |
 :::
 
@@ -90,7 +90,7 @@ Here's the structure of the actual table's markup, written in [Pug](https://gith
 div role="table" // Replaces <table>
   div role="rowgroup" // Replaces <thead>
     div role="row" // Replaces <tr>
-      div role="columnheader" tabindex="-1" // Replaces <th>
+      div role="columnheader" // Replaces <th>
   div role="rowgroup" // Replaces <tbody>
     div role="row" // Replaces <tr>. Repeats for each row in the table body.
       div role="cell" // Replaces <td>. Repeats for each cell in the row.

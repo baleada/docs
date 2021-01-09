@@ -25,7 +25,7 @@ ${prose}\n\
         
   return `\
   <template>\
-  <article>\
+  <article class="baleada-prose-article">\
   ${md.render(withBaleadaDocsCustomizations)}\
   </article>\
   </template>\n\

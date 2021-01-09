@@ -146,23 +146,9 @@ export default {
 ```
 :::
 
-`ProseGrid` and `ProseList` are the only two components that are downright uncomfortable to write by hand—it would involve calculating total rows and columns, calculating x/y coordinates for each table cell or list item, and writing lots of repetitive markup.
+`ProseTable` and `ProseList` are the only two components that are downright uncomfortable to write by hand—it would involve calculating total rows and columns, calculating x/y coordinates for each table cell or list item, and writing lots of repetitive markup.
 
 In other words, it's a great task to delegate to the Baleada Prose Container plugin, which transforms your Markdown tables into the correct markup automatically.
-
-
-:::
-```
-### Writing collections of Baleada Prose content
-```
-:::
-
-The REPL linked above shows a basic example of just one Prose-powered article, but Baleada Prose was really designed for blogs and documentation sites, where you'll be writing entire collections of articles.
-
- features that support single-page apps, like those built with [Vite](https://vitejs.dev), [Nuxt](https://nuxtjs.org/), or [Vue CLI](https://cli.vuejs.org/).
-
-
-
 
 
 :::
@@ -174,9 +160,9 @@ Here are the available components in the Baleada Prose library, each linked to t
 - [`ProseBlockquote`](/docs/prose/components/blockquote)
 - [`ProseCodeblock`](/docs/prose/components/codeblock)
 - [`ProseDetails`](/docs/prose/components/details)
-- [`ProseGrid`](/docs/prose/components/grid)
 - [`ProseHeading`](/docs/prose/components/heading)
 - [`ProseLayout`](/docs/prose/components/layout)
 - [`ProseList`](/docs/prose/components/list)
 - [`ProseMedia`](/docs/prose/components/media)
 - [`ProseSection`](/docs/prose/components/section)
+- [`ProseTable`](/docs/prose/components/table)
