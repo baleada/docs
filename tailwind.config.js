@@ -8,7 +8,7 @@ module.exports = configureable('tailwindcss')
     'index.html',
     'src/App.vue',
     'src/components/**/*',
-    'src/tests/**/*',
+    'src/styles/**/*',
   ])
   .baleada()
   .theme(({ defaultConfig }) => ({
