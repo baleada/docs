@@ -24,7 +24,7 @@ import { computed } from 'vue'
 import { useContext } from '@baleada/vue-prose'
 import { clipable } from '@baleada/logic'
 import { HeroiconsChevronDoubleLeft, HeroiconsChevronDoubleRight } from '@baleada/vue-heroicons'
-import manifest from '../state/manifest.js'
+import manifest from '@manifest'
 
 const articles = manifest.reduce((articles, entry) => [...articles, ...entry.articles], [])
 

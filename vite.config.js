@@ -24,6 +24,7 @@ export default {
       '@functions': '/src/functions/index.js',
       '@state': '/src/state/index.js',
       '@prose-routes': '/src/prose/routes.js',
+      '@manifest': '/src/state/manifest.js',
     })
     .includeDeps([
       '@baleada/logic',
@@ -32,26 +33,26 @@ export default {
   plugins: [
     resolve(),
     ...configureable('rollup')
-      .plugin({
-        resolveId: (source, importer) => {
-          console.log({ source, importer })
-          return null
-        }
-      })
+      // .plugin({
+      //   resolveId: (source, importer) => {
+      //     console.log({ source, importer })
+      //     return null
+      //   }
+      // })
       .sourceTransform({
         transform: sourceTransformProseToVueSfc,
         test: ({ id }) => id.endsWith('.md'),
       })
-      .virtual.index('components/index.js')
-      .virtual.index('functions/index.js')
-      .virtual.index('state/index.js')
+      .virtual.index('src/components/index.js')
+      .virtual.index('src/functions/index.js')
+      .virtual.index('src/state/index.js')
       .virtual.routes({ path: 'prose/routes.js', router: 'vue' }, { test: testRoute, transformPath: path => path.replace(/^\//, '').replace(/\/index$/, '') })
       .virtual({
-        test: testable().idEndsWith('src/state/manifest').test,
+        test: testable().idEndsWith('src/state/manifest.js').test,
         transform: () => proseFilesToManifest(),
       })
       .virtual({
-        test: testable().idEndsWith('src/state/searchableCandidates').test,
+        test: testable().idEndsWith('src/state/searchableCandidates.js').test,
         transform: () => proseFilesToSearchableCandidates(),
       })
       .configure()
