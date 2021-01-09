@@ -26,7 +26,7 @@
     "@babel/core": "^7.12.10",
     "@baleada/logic": "^0.16.9",
     "@baleada/markdown-it-prose-container": "^0.8.4",
-    "@baleada/prepare": "^0.4.33",
+    "@baleada/prepare": "^0.4.34",
     "@baleada/source-transform-utils": "^0.1.0",
     "@rollup/plugin-node-resolve": "^11.0.1",
     "@vitejs/plugin-vue": "^1.0.3",
