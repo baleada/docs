@@ -1,7 +1,5 @@
 const { configureable } = require('@baleada/prepare')
-// import { configureable } from '@baleada/prepare'
 
-// export default configureable('tailwindcss')
 module.exports = configureable('tailwindcss')
   .important()
   .purge([

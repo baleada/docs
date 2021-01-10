@@ -26,23 +26,16 @@
     "@babel/core": "^7.12.10",
     "@baleada/logic": "^0.16.9",
     "@baleada/markdown-it-prose-container": "^0.8.4",
-    "@baleada/prepare": "^0.4.36",
+    "@baleada/prepare": "^0.4.37",
     "@baleada/source-transform-utils": "^0.1.0",
-    "@rollup/plugin-node-resolve": "^11.0.1",
-    "@vitejs/plugin-vue": "^1.0.3",
-    "@vue/compiler-sfc": "^3.0.4",
+    "@vue/compiler-sfc": "^3.0.5",
     "gitlog": "^4.0.0",
     "gray-matter": "^4.0.2",
     "postcss-cli": "^8.3.1",
-    "postcss-import": "^12.0.1",
-    "postcss-nested": "^4.2.3",
-    "postcss-preset-env": "^6.7.0",
-    "tailwindcss": "^2.0.1-compat",
     "typeface-caveat": "0.0.76",
     "typeface-inconsolata": "0.0.72",
     "typeface-inter": "^3.15.0",
-    "typescript": "^4.1.3",
-    "vite": "^2.0.0-beta.15"
+    "vite": "^2.0.0-beta.16"
   },
   "dependencies": {
     "@babel/runtime": "^7.12.5",
@@ -54,7 +47,7 @@
     "@baleada/vue-octicons": "^0.1.0",
     "@baleada/vue-prose": "^0.13.19",
     "@baleada/vue-simple-icons": "^0.0.0",
-    "vue": "^3.0.4",
+    "vue": "^3.0.5",
     "vue-router": "^4.0.2"
   }
 }
