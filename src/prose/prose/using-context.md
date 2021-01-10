@@ -58,10 +58,19 @@ After context is initialized, you can read from it at any time by calling `useCo
 - Reading `context.article.media` (Array) to retrieve data on `ProseMedia`s so you can populate a gallery or carousel of media
 
 :::
-```js
+```html
+<!-- MyComponent.vue -->
+<template>...</template>
+
+<script>
 import { useContext } from '@baleada/vue-prose'
 
-const { article: { headings, media } } = useContext()
+export default {
+  setup () {
+    const { article: { headings, media } } = useContext()
+  }
+}
+</script>
 ```
 :::
 
