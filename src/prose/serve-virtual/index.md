@@ -43,7 +43,7 @@ const getServeVirtual = require('@baleada/vite-serve-virtual')
 `getServeVirtual` requires one parameter: an object, whose properties and values are outlined below.
 
 ::: ariaLabel="Baleada Serve Virtual configuration schema" classes="wide-5"
-| Property | Value's type | Required? | Default | Value description |
+| Property | Type | Required? | Default | Value description |
 | --- | --- | --- | --- | --- |
 | `transform` | Function | yes | none | <p>Transforms the empty contents the virtual file into something useful to you.</p><p>See the [Writing a `transform` function](#writing-a-transform-function) section for more guidance.</p> |
 | `test` | Function | no | none | <p>Your middleware will call this function on every file, passing useful arguments you can use to determine whether or not the file should be served with virtual content.</p><p>`test` should return `true` if the file should be served with virtual content, and `false` otherwise.</p><p>See the [Specifying which files get served with virtual content](#specifying-which-files-get-served-with-virtual-content) section for more guidance on what arguments the `test` function receives.</p> |

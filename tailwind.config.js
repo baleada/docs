@@ -60,6 +60,7 @@ module.exports = configureable('tailwindcss')
     boxShadow: ['active'],
     scale: ['active'],
   })
+  .forms()
   .plugin(({ addComponents }) => addComponents({
     '.icon': apply('h-full w-full fill-current'),
   }))

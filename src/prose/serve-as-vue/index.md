@@ -43,7 +43,7 @@ const getServeAsVue = require('@baleada/vite-serve-as-vue')
 `getServeAsVue` requires one parameter: an object, whose properties and values are outlined below.
 
 ::: ariaLabel="Baleada Serve as Vue configuration schema" classes="wide-5"
-| Property | Value's type | Required? | Default | Value description |
+| Property | Type | Required? | Default | Value description |
 | --- | --- | --- | --- | --- |
 | `toVue` | Function | yes | none | <p>Transforms the contents of a file into a valid Vue single file component.</p><p>See the [Writing a `toVue` function](#writing-a-tovue-function) section for more guidance.</p> |
 | `test` | Function | no | none | <p>Your middleware will call this function on every file, passing useful arguments you can use to determine whether or not the file should be served as a Vue component.</p><p>`test` should return `true` if the file should be served as Vue, and `false` otherwise.</p><p>See the [Specifying which files get served as Vue components](#specifying-which-files-get-served-as-vue-components) section for more guidance on what arguments the `test` function receives.</p> |

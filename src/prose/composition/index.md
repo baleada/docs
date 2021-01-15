@@ -5,7 +5,7 @@ publish: true
 order: 0
 ---
 
-Baleada Composition is a collection of composition functions (a.k.a. hooks) that accomplish two things:
+Baleada Composition is a collection of stateless composition functions (a.k.a. hooks) that accomplish two things:
 1. Retrieve **state and methods** from one or more of the [Baleada Logic](/docs/logic) tools
 2. Make all of the state **reactive**, using tools from the JavaScript framework of your choice
 

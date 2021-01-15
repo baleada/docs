@@ -22,6 +22,9 @@ export default configureable('vite')
     '@prose-routes': '/src/prose/routes.js',
     '@manifest': '/src/state/manifest.js',
   })
+  .includeDeps([
+    '@baleada/logic',
+  ])
   .sourceTransform({
     transform: sourceTransformProseToVueSfc,
     test: ({ id }) => id.endsWith('.md'),

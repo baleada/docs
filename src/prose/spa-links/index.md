@@ -66,7 +66,7 @@ const md = new MarkdownIt()
 Use the `use` method of your Markdown-it instance to register the plugin. Pass the plugin as the first argument, and for the second argument, you can pass a configuration object. That object can have two properties:
 
 ::: ariaLabel="Baleada SPA Links configuration schema" classes="wide-5"
-| Property | Value's type | Required? | Default | Value description |
+| Property | Type | Required? | Default | Value description |
 | --- | --- | --- | --- | --- |
 | `spa` | String | yes | none | <p>Indicates which tool you are using to build your SPA, so that the plugin can identify the correct link component.</p><p>See the [Link components by tool](#Link-components-by-tool) reference table to see valid values for the `spa` option and which link components get rendered.</p> |
 | `base` | String | no | none | <p>Passes the base URL of your site to help the plugin identify links within the site.</p><p>If `base` is not passed, the plugin will only use link components for URLs that start with `/`.</p> |

@@ -24,9 +24,8 @@
   "license": "MIT",
   "devDependencies": {
     "@babel/core": "^7.12.10",
-    "@baleada/logic": "^0.16.13",
     "@baleada/markdown-it-prose-container": "^0.8.4",
-    "@baleada/prepare": "^0.4.37",
+    "@baleada/prepare": "^0.4.38",
     "@baleada/source-transform-utils": "^0.1.0",
     "@vue/compiler-sfc": "^3.0.5",
     "gitlog": "^4.0.0",
@@ -39,6 +38,7 @@
   },
   "dependencies": {
     "@babel/runtime": "^7.12.5",
+    "@baleada/logic": "^0.16.13",
     "@baleada/recognizeable-handlers": "^0.5.1",
     "@baleada/vue-composition": "^0.8.12",
     "@baleada/vue-features": "^0.5.5",

@@ -125,7 +125,7 @@ The `linearNumeric` function does not configure the following properties, becaus
 The function accepts one parameter: an object with options (none of which are required). Here's a full breakdown of that object:
 
 ::: ariaLabel="linearNumeric options schema" classes="wide-4"
-| Property | Value's type | Default | Value description |
+| Property | Type | Default | Value description |
 | --- | --- | --- | --- |
 | `only` | String, Array of Strings | An array of all the properties listed above | <p>Indicates which properties' configurations should be returned by `linearNumeric`.</p><p>When `only` is an Array, `linearNumeric` will return a config object with a key for each item in the array.</p><p>When `only` is a String, `linearNumeric` will directly return the config object for that property.</p> |
 | `increment` | Number | `100` | <p>Determines how much the class name is incremented for each step up in size.</p><p>For example, if you pass `1` as the `increment`, you'll get class names like `.text-4` and `.text-5` instead of the default `.text-400` and `.text-500`.</p> |
