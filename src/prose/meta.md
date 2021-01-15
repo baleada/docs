@@ -63,6 +63,13 @@ Baleada packages use [conditional exports](https://nodejs.org/api/packages.html#
 
 
 :::
+## Side effects
+:::
+
+Baleada tools never have side effects, making them all eligible for treeshaking.
+
+
+:::
 ## Testing
 :::
 
