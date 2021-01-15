@@ -67,7 +67,6 @@
         <HeroiconsX class="icon" />
       </button>
 
-      <!-- TODO: use toggle component -->
       <!-- Dark theme toggle -->
       <div class="mt-3 py-3 w-full'">
         <div class="flex items-center">

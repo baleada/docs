@@ -13,13 +13,17 @@ Baleada Composition is a collection of composition functions (a.k.a. hooks) that
 Baleada's docs, which were built using [Nuxt.js](https://nuxtjs.org), use Baleada Composition functions for touch detection, animation, navigating arrays, searching docs content, and more 🚀
 :::
 
-Composition functions are supported for the following frameworks:
-- [Vue](https://vuejs.org)
-- [React](https://react.org) [WIP]
-- [Svelte](https://svelte.dev) [WIP]
 
-::: type="info"
-Didn't see your favorite framework in the list? Feel free to [raise an issue](https://github.com/baleada/vue-composition/issues) and ask for support.
+:::
+## Installation
+:::
+
+Right now, only the [Vue](https://v3.vuejs.org) implementation of Baleada Composition is available:
+
+:::
+```bash
+npm i @baleada/vue-composition
+```
 :::
 
 
@@ -38,26 +42,6 @@ All composition functions follow a simple naming convention: they start with `us
 | Fetchable | `useFetchable` |
 | Searchable | `useSearchable` |
 :::
-
-
-
-:::
-## Language, compilation, browser support, and dependencies
-:::
-
-The functions in Baleada Composition are written in modern JavaScript. [Baleada Logic](/docs/logic) is a peer dependency, and depending on the component framework you're using, additional peer dependencies are required:
-
-::: ariaLabel="Peer dependencies by framework"
-| Framework | Peer dependencies |
-| --- | --- |
-| Vue | [Vue 3](https://github.com/vuejs/vue-next) |
-| React | WIP |
-| Svelte | WIP |
-:::
-
-Baleada Composition functions are compiled by [Babel](https://babeljs.io) to work in browsers that are used by more than 0.5% of global web visitors AND have had official support or updates in the past 24 months.
-
-To allow for [tree-shaking](https://webpack.js.org/guides/tree-shaking/), Baleada Composition has no side effects and is bundled as ES modules by [Rollup](https://rollupjs.org/), outputting [ES modules](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Modules).
 
 
 :::

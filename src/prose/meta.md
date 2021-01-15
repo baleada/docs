@@ -81,6 +81,10 @@ Repositories' source code is located in the `src` folder, bundled code outputs t
 
 If a package tests its code in the browser, you can find the Vite app's code in the `tests/stubs/app` folder.
 
+::: type="info"
+Tests for Baleada packages are almost always written before documentation. If a Baleada package is missing docs, check the `tests` folder in the package's repo to see usage examples and intended behavior. 
+:::
+
 
 :::
 ## Copyright and Licensing

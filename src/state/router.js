@@ -31,9 +31,5 @@ router.beforeEach((to, from) => {
   return true
 })
 
-router.afterEach((to, from, failure) => {
-  // set document title from frontMatter
-  nextTick(() => nextTick(() => (document.title = useContext()?.article?.frontMatter?.title || 'Baleada')))
-})
 
 export default router
