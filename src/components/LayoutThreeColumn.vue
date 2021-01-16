@@ -280,7 +280,7 @@
 </template>
 
 <script>
-import { ref, computed, onMounted } from 'vue'
+import { ref, computed, onMounted, watch } from 'vue'
 import { useRoute } from 'vue-router'
 import { touchdragdrop as swipe } from '@baleada/recognizeable-handlers'
 import { useListenable, useStoreable } from '@baleada/vue-composition'
@@ -309,6 +309,9 @@ export default {
     OcticonsSquare24,
   },
   setup () {
+    // Gonna need it
+    const context = useContext()
+
     /* Manage open status */
     const openStatus = ref('article'),
           openNav = () => (openStatus.value = 'nav'),
@@ -407,7 +410,14 @@ export default {
               break
             }
           },
-          darkThemeShortcut = useListenable('shift+d')
+          darkThemeShortcut = useListenable('shift+d'),
+          darkThemeContextEffect = () => useContext(context => context.statuses.darkTheme = darkThemeStatus.value)
+
+    darkThemeContextEffect()
+    watch(
+      [darkThemeStatus],
+      darkThemeContextEffect
+    )
 
     onMounted(() => {
       switch (storeableDarkThemeStatus.value.status) {
@@ -446,7 +456,14 @@ export default {
               break
             }
           },
-          minimalistThemeShortcut = useListenable('shift+m')
+          minimalistThemeShortcut = useListenable('shift+m'),
+          minimalistThemeContextEffect = () => useContext(context => context.statuses.minimalistTheme = minimalistThemeStatus.value)
+    
+    minimalistThemeContextEffect()
+    watch(
+      [minimalistThemeStatus],
+      minimalistThemeContextEffect
+    )
 
     onMounted(() => {
       switch (storeableMinimalistThemeStatus.value.status) {
@@ -477,8 +494,7 @@ export default {
           
           
     // Set up reactive SEO
-    const context = useContext(),
-          route = useRoute(),
+    const route = useRoute(),
           SITE_NAME = 'Baleada'
 
     useHead({
