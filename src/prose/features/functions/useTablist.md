@@ -124,12 +124,16 @@ Here's a more complete example of how to use your `tablist`:
       v-for="({ tab }, index) in metadata"
       :key="tab"
       :ref="tablist.tabs(index)"
-    >...</div>
+    >
+      {{ tab }}
+    </div>
     <div
       v-for="({ tab, panel }, index) in metadata"
       :key="tab"
       :ref="tablist.panels(index)"
-    >...</div>
+    >
+      {{ panel }}
+    </div>
   </div>
 </template>
 
