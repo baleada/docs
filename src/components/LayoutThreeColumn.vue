@@ -497,6 +497,11 @@ export default {
     const route = useRoute(),
           SITE_NAME = 'Baleada'
 
+    watch(
+      () => route.fullPath,
+      () => console.log(route.fullPath)
+    )
+
     useHead({
       title: computed(() => context.article.frontMatter?.title ?? SITE_NAME),
       metas: [
