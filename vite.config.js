@@ -24,6 +24,7 @@ export default configureable('vite')
   })
   .includeDeps([
     '@baleada/logic',
+    '@baleada/vue-features/affordances',
   ])
   .sourceTransform({
     transform: sourceTransformProseToVueSfc,

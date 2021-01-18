@@ -80,9 +80,7 @@ module.exports = configureable('tailwindcss')
     '.btn-amber-strong': apply('bg-amber-80 text-amber-10'),
     '.btn-gray-weak': apply('bg-gray-10 text-gray-90'),
     '.btn-gray-strong': apply('bg-gray-90 text-gray-10'),
-    // '.form': {
-    //   shadow-0 border-0 ring-2 focus:ring-3 ring-gray-200 focus:ring-blue-300 transition duration-3
-    // }
+    '.form': apply('shadow-0 border-0 ring-2 focus:ring-3 transition'),
   }))
   .configure()
 
