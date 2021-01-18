@@ -264,7 +264,7 @@ At any given time, `status` will always be one (and only one) of the following v
 - `'sought'`
 - `'stopped'`
 
-There's a lot of complexity involved in the way each `status` is achieved (it's affected by which methods you call,in what order you call them, and exactly when you call them), but you likely will never need to worry about that. `status` is available to you if you feel you need it, but for all intended use cases, it's an implementation detail, and you can ignore it.
+There's a lot of complexity involved in the way each `status` is achieved (it's affected by which methods you call, in what order you call them, and exactly when you call them), but you likely will never need to worry about that. `status` is available to you if you feel you need it, but for all intended use cases, it's an implementation detail, and you can ignore it.
 
 The only thing you may want to be aware of is how `status` affects your ability to call certain methods—some methods can be called at any time, and some can only be called when `status` has a specific value.
 

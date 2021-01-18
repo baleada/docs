@@ -53,10 +53,12 @@
 </template>
 
 <script>
-import { ref, computed, readonly } from 'vue'
+import { ref, computed, watchEffect, readonly } from 'vue'
 import { useTablist } from '@baleada/vue-features'
+import { useAnimateable } from '@baleada/vue-composition'
 import { OcticonsTriangleDown24 } from '@baleada/vue-octicons'
 import { useContext } from '@functions'
+import { verouEaseOut } from '@baleada/animateable-utils'
 
 export default {
   name: 'ExampleUseTablist',
@@ -69,9 +71,65 @@ export default {
             { tab: 'Toolkit', panel: '🛠' },
             { tab: 'Yay', panel: '🎉' },
           ]),
+          fadeOut = useAnimateable(
+            [
+              { progress: 0, data: { opacity: 1 } },
+              { progress: 1, data: { opacity: 0 } },
+            ],
+            { duration: 150, timing: verouEaseOut }
+          ),
+          fadeIn = useAnimateable(
+            [
+              { progress: 0, data: { opacity: 0 } },
+              { progress: 1, data: { opacity: 1 } },
+            ],
+            { duration: 150, timing: verouEaseOut }
+          ),
           tablist = readonly(useTablist(
             { totalTabs: computed(() => metadata.value.length), orientation: 'horizontal' },
-            { label: 'Example tablist' }
+            {
+              label: 'Example tablist',
+              transition: {
+                panel: {
+                  enter: (el, done, onCancel) => {
+                    onCancel(() => {
+                      fadeIn.value.stop()
+                      el.style.opacity = 1
+                    })
+
+                    const stop = watch(
+                      [() => fadeIn.value.status],
+                      () => {
+                        if (fadeIn.value.status === 'played') {
+                          stop()
+                          done()
+                        }
+                      }
+                    )
+
+                    fadeIn.value.play(({ data: { opacity } }) => (el.style.opacity = opacity))
+                  },
+                  exit: (el, done, onCancel) => {
+                    onCancel(() => {
+                      fadeOut.value.stop()
+                      el.style.opacity = 0
+                    })
+
+                    const stop = watch(
+                      [() => fadeOut.value.status],
+                      () => {
+                        if (fadeOut.value.status === 'played') {
+                          stop()
+                          done()
+                        }
+                      }
+                    )
+
+                    fadeOut.value.play(({ data: { opacity } }) => (el.style.opacity = opacity))
+                  },
+                }
+              }
+            }
           ))
           
     return {

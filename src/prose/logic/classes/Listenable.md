@@ -340,6 +340,8 @@ The following code shows how this documentation site combines `Listenable` and `
 
 The original code is written specifically to work with [Vue](https://v3.vuejs.org), but this example has been simplified to plain JavaScript, and heavily commented.
 
+[Here's a REPL](https://repl.it/@AlexVipond/Baleada-Logic-Listenable-gesture-workflow#index.html) where you can tinker with similar code.
+
 :::
 ```js
 import { Listenable } from '@baleada/logic'
