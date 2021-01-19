@@ -227,7 +227,7 @@ Here's a list of the available `timing` arrays in the package:
 The constructed `Animateable` instance is an Object, and state and methods can be accessed via its properties:
 
 
-::: ariaLabel="Animateable state and methods" classes="wide-3 wide-5"
+::: ariaLabel="Animateable state and methods" classes="wide-3 wide-4 wide-5"
 | Property | Type | Description | Parameters | Return value |
 | --- | --- | --- | --- | --- |
 | `keyframes` | Getter/Setter | See return value | N/A | <p>A shallow copy (Array) of the `keyframes` array passed to the constructor.</p><p>If you assign a value directly to `keyframes`, a setter will pass the new value to `setKeyframes`.</p> |
