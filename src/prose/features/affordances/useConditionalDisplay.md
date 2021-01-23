@@ -19,18 +19,20 @@ order: 0
 
 <ExampleUseConditionalDisplay class="with-mt" />
 
+The [`useTablist` example](/docs/features/functions/useTablist#example) is another good demo—it uses `useConditionalDisplay` under the hood to toggle an array of tab panel elements.
+
 :::
-## Using bindings
+## Using conditional display
 :::
 
-To bind static or reactive data to a DOM element, call the `useConditionalDisplay` function, which requires one parameter: the `required` Object.
+To conditionally display a DOM element, call the `useConditionalDisplay` function, which requires one parameter: the `required` Object, and accepts an optional `options` object as its second parameter.
 
 :::
 ```js
 import { useConditionalDisplay } from '@baleada/vue-features/affordances'
 
 export default function myCompositionFunction (...) {
-  useConditionalDisplay(required)
+  useConditionalDisplay(required, options)
 }
 ```
 :::
@@ -44,216 +46,67 @@ Here's a breakdown of the `required` object:
 ::: ariaLabel="useConditionalDisplay required object breakdown" classes="wide-5"
 | Property | Type | Required? | Default | Description |
 | --- | --- | --- | --- | --- |
-| `target` | Ref (HTMLElement), Array | yes | none | <p>A reactive reference to the DOM element you're binding data to.</p><p>`target` Can also be a reactive reference to an array of DOM elements. See the [How to format bindings](#how-to-format-bindings) section for more guidance on binding values to specific elements in a reactive array.</p> |
-| `bindings` | Object | yes | none | <p>The properties and values you want to bind to your element or elements.</p><p>See the [How to format bindings](#how-to-format-bindings) section for more guidance.</p> |
+| `target` | Ref (HTMLElement), Array | yes | none | <p>A reactive reference to the DOM element you're conditionally displaying.</p><p>`target` Can also be a reactive reference to an array of DOM elements. See the [How to format your condition](#how-to-format-your-condition) section for more guidance on conditionally displaying specific elements in a reactive array.</p> |
+| `condition` | Ref (Boolean), Function, Object | yes | none | <p>Indicates whether or no a specific `target` should be displayed.</p><p>See the [How to format your condition](#how-to-format-your-condition) section for more guidance on formatting your condition.</p> |
+:::
+
+
+Here's a breakdown of the `options` object:
+
+::: ariaLabel="useConditionalDisplay options object breakdown" classes="wide-5"
+| Property | Type | Required? | Default | Description |
+| --- | --- | --- | --- | --- |
+| `transition` | Object | no | none | <p>An object that contains methods and/or CSS classes for enter/leave transitions.</p><p>See the [How to format enter/leave transitions](#how-to-format-enter-leave-transitions) section for more guidance.</p> |
 :::
 
 
 :::
-### How to format bindings
+#### How to format your condition
 :::
 
-The `bindings` property of the `required` parameter stores an object. The properties of that object must be DOM element attributes that you'll be binding data to:
+There are several different ways to format the condition that `useConditionalDisplay` uses to determine whether or not an element should be displayed.
 
-:::
-```js
-import { useConditionalDisplay } from '@baleada/vue-features/affordances'
-
-export default function myCompositionFunction (...) {
-  useConditionalDisplay({
-    target: myElement,
-    bindings: {
-      ariaLabel: ...,
-      class: ...,
-      style_backgroundColor: ...,
-    }
-  })
-}
-```
-:::
-
-
-:::
-#### How to format properties
-:::
-
-Here are the rules `useConditionalDisplay` follows when reading those properties:
-
-
-
-If the property  starts with `aria` or `data`, followed by a capital letter, `useConditionalDisplay` binds to the correct `aria-` or `data-` attribute
-
-:::
-```js
-useConditionalDisplay({
-  ...
-  bindings: {
-    // Binds to aria-label
-    ariaLabel: ...,
-    // Binds to data-name
-    dataName: ...,
-  }
-})
-```
-:::
-
-If the property is `for`, `useConditionalDisplay` binds to `htmlFor`:
-
-:::
-```js
-useConditionalDisplay({
-  ...
-  bindings: {
-    // useConditionalDisplay sets the htmlFor attribute
-    for: ...,
-  }
-})
-```
-:::
-
-If the property is `class` or `rel`, `useConditionalDisplay` binds to `classList` or `relList`. Existing values in those lists are preserved, while your reactive values are added and removed as needed:
-
-:::
-```js
-useConditionalDisplay({
-  ...
-  bindings: {
-    // useConditionalDisplay adds to and removes from classList,
-    // respecting existing values
-    class: ...,
-    // useConditionalDisplay adds to and removes from relList,
-    // respecting existing values
-    rel: ...,
-  }
-})
-```
-:::
-
-If the property starts with `style_`, `useConditionalDisplay` binds to `style.` + whatever follows the underscore:
-
-:::
-```js
-useConditionalDisplay({
-  ...
-  bindings: {
-    // Binds to style.backgroundColor
-    style_backgroundColor: ...,
-  }
-})
-```
-:::
-
-For all other properties, `useConditionalDisplay` binds to the property exactly as it's written:
-
-:::
-```js
-useConditionalDisplay({
-  ...
-  bindings: {
-    // Binds to id
-    id: ...,
-    // Binds to aria-label
-    'aria-label': ...,
-  }
-})
-```
-:::
-
-
-:::
-#### How to format values
-:::
-
-There are several different ways to format the values that `useConditionalDisplay` binds to the properties you specified.
-
-The simplest type of value is a plain String, Number, or Boolean:
-
-:::
-```js
-useConditionalDisplay({
-  ...
-  bindings: {
-    id: 'my-number-input',
-    ariaHidden: false,
-    value: 0,
-  }
-})
-```
-:::
-
-When you pass plain data like this, `useConditionalDisplay` sets the DOM element's attribute once, then leaves it alone.
-
-In most cases though, some of those values will be reactive references to Strings, Numbers, or Booleans:
+The simplest type of condition is a reactive reference to a Boolean:
 
 :::
 ```js
 import { ref } from 'vue'
 
-const numberInputValue = ref(0)
+const isShown = ref(true),
+      myElement = ref(null) 
+      // ☝️ A Vue component would populate this ref 
+      // with a DOM element after the component is
+      // mounted.
 
 useConditionalDisplay({
-  ...
-  bindings: {
-    ...
-    value: numberInputValue,
-  }
+  target: myElement,
+  condition: isShown,
 })
 ```
 :::
 
-When the value is reactive (i.e. a `ref` or `computed` value), `useConditionalDisplay` watches it for changes, and sets the DOM element's attribute each time a change is detected.
+`useConditionalDisplay` watches your reactive value for changes. When the value is `true`, your element is displayed, and when it's `false`, the element is hidden.
 
-But what about when the `target` is a reactive array of elements, rather than a single reactive element reference? How do we make sure the correct data is bound to each element?
+But what about when the `target` is a reactive array of elements, rather than a single reactive element reference? How do we make each element is correctly shown or hidden?
 
-When you're binding static data, you can pass the **target closure** instead of a standard value. The target closure is a callback function that receives an object as its only argument. Here's a breakdown of that object:
+If you only need to conditionally display your elements once, you can pass the **target closure** instead of a reactive Boolean. The target closure is a callback function that receives an object as its only argument. Here's a breakdown of that object:
 
 ::: ariaLabel="targetClosure object breakdown" classes="wide-3"
 | Property | Type | Description |
 | --- | --- | --- |
-| `target` | HTMLElement | The actual DOM element that `useConditionalDisplay` is currently binding data to. |
+| `target` | HTMLElement | The actual DOM element that `useConditionalDisplay` is currently conditionally displaying. |
 | `index` | Number | The index (Number) of `target` in your reactive array of elements. |
 :::
 
-Your target closure should return the value that `useConditionalDisplay` should bind to the specific `target`.
+Your target closure should return `true` for elements that should be shown, and `false` for elements that should be hidden.
 
-Here's an example of how `useTablist` uses this feature to set the `aria-labelledby` attribute for each tab panel to the ID of the corresponding tab panel. Theses IDs never change, so `aria-labelledby` does not need to be reactive:
-
-:::
-```js
-export default function useTablist (...) {
-  ...
-
-  useConditionalDisplay({
-    // Reactive array of tab panel elements
-    target: panels.els,
-    bindings: {
-      // Each element's aria-labelledby holds the ID of its associated tab element.
-      //
-      // The tabIds array and panels.els array are kept in the same order, so it's
-      // safe to simply pick the tabId whose index matches the index passed to the
-      // target closure.
-      ariaLabelledby: ({ index }) => tabIds[index],
-      ...
-    },
-  })
-
-
-  ...
-}
-
-```
-:::
-
-
-But what about when the data _is_ reactive, but still needs to be bound to an array of elements? For those cases, you can pass an Object as the `bindings` property's value:
+But more commonly, you'll need to conditionally display an array of elements based on some other piece of reactive data. For those cases, you can pass an Object as the `condition`:
 
 :::
 ```js
 useConditionalDisplay({
   target: myReactiveArrayOfElements,
-  bindings: {
-    ariaHidden: { ... },
-  }
+  condition: { ... },
 })
 ```
 :::
@@ -264,10 +117,10 @@ Here's a breakdown of that object:
 | Property | Type | Required? | Default | Description |
 | --- | --- | --- | --- | --- |
 | `targetClosure` | Function | yes | none | A target closure, as described above. |
-| `watchSources` | Ref, Array | yes | none | <p>A single [watch source](https://v3.vuejs.org/guide/reactivity-computed-watchers.html#watching-a-single-source), or an array of watch sources. No need to pass the reactive array of elements—that data is already watched automatically.</p><p>Each time `useConditionalDisplay` detects a change in your watch sources (or the reactive array of elements), it will iterate through your array of elements, calling the `targetClosure` for each one.</p> |
+| `watchSources` | Ref, Array | yes | none | <p>A single [watch source](https://v3.vuejs.org/guide/reactivity-computed-watchers.html#watching-a-single-source), or an array of watch sources. No need to pass the reactive array of elements—that data is already watched automatically.</p><p>Each time `useConditionalDisplay` detects a change in your watch sources (or the reactive array of elements), it will iterate through your array of elements, calling the `targetClosure` to conditionally display each element.</p> |
 :::
 
-Here's an example of how `useTablist` uses this feature to manage the `aria-hidden` attribute on its array of tab panels, setting `false` for the hidden tabs and `true` for the currently selected tab:
+Here's an example of how [`useTablist` ](/docs/features/functions/useTablist) uses this feature to conditionally display tab panels, displaying only the currently selected panel:
 
 :::
 ```js
@@ -277,26 +130,153 @@ export default function useTablist (...) {
   useConditionalDisplay({
     // Reactive array of tab panel elements
     target: panels.els,
-    bindings: {
+    condition: {
       // selectedPanel is a reactive reference to the index of the currently
       // selected tab panel.
       //
-      // aria-hidden should be true for all panels whose index doesn't match
-      // selectedPanel, and should be false for the one panel whose index
+      // Every panel should be hidden, except for the panel whose index
       // is a match.
       //
       // This targetClosure should run again each time selectedPanel changes.
-      ariaHidden: {
-        targetClosure: ({ index }) => index !== selectedPanel.value,
-        watchSources: selectedPanel,
-      },
-      ...
-    },
-  })
+      targetClosure: ({ index }) => index === selectedPanel.value,
+      watchSources: selectedPanel,
+    }
+  }, options)
 
   ...
 }
 
 ```
+:::
+
+
+
+:::
+### How to format enter/leave transitions
+:::
+
+As outlined above, `useConditionalDisplay` accepts an optional `options` object as its second parameter, and that object's only property is `transition`.
+
+You can use this `transition` property to configure an enter/leave transition that will more smoothly show and hide your elements.
+
+The API for `useConditionalDisplay`'s `transition` property is inspired by the API of [Vue's `Transition` component](https://v3.vuejs.org/guide/transitions-enterleave.html):
+
+
+:::
+```js
+useConditionalDisplay(
+  required,
+  {
+    transition: {
+      enter: {
+        before: ...,
+        active: ...,
+        after: ...,
+        cancel: ...,
+      },
+      leave: {
+        before: ...,
+        active: ...,
+        after: ...,
+        cancel: ...,
+      },
+      appear: {
+        before: ...,
+        active: ...,
+        after: ...,
+        cancel: ...,
+      },
+    }
+  }
+)
+```
+:::
+
+All hooks receive an object as their first and only argument. Here's a breakdown of that object:
+
+::: ariaLabel="hook API object breakdown" classes="wide-3"
+| Property | Type | Description |
+| --- | --- | --- |
+| `target` | HTMLElement | The actual DOM element that is transitioning. |
+| `index` | Number | The index (Number) of `target` in your reactive array of elements. |
+| `done` | Function | <p>A function that you should call with no arguments when an `active` hook has finished transitioning the `target`.</p><p>`done` is only available for `active` hooks. The object passed to `before`, `after`, and `cancel` hooks does not have a `done` property.</p> |
+:::
+
+None of transition hooks should have a return value, and all of them are optional.
+
+:::
+```js
+useConditionalDisplay(
+  required,
+  {
+    transition: {
+      enter: {
+        before: ({ target, index }) => { /* do the thing */ },
+        active: ({ target, index, done }) => {
+          // Do the thing
+          // Call `done` when the thing is finished.
+          done()
+        },
+        after: ({ target, index }) => { /* do the thing */ },
+        cancel: ({ target, index }) => { /* do the thing */ },
+      },
+      ...
+    }
+  }
+)
+```
+:::
+
+If you'd like to use your `enter` functions for `appear` transitions, you can either pass those same functions in the `appear` object, or you can simply replace the `appear` object with `true`:
+
+:::
+```js
+useConditionalDisplay(
+  required,
+  {
+    transition: {
+      appear: true,
+      // Enter functions will be called when the element
+      // is displayed for the first time.
+      enter: { ... },
+      ...
+    }
+  }
+)
+```
+:::
+
+::: type="info"
+[Check out this REPL]() for an example of how to use Baleada Logic's [Animateable](/docs/logic/classes/Animateable) and [Delayable](/docs/logic/classes/Delayable) classes to write JavaScript animations inside your `transition` hooks.
+:::
+
+::: type="warning"
+`useConditionalDisplay`'s `transition` feature only supports JavaScript animations right now.
+
+Support for CSS transitions and animations, like you see in the Vue's `Transition` component, will be explored in the future.
+:::
+
+
+:::
+### Transition hook timing
+:::
+
+Here's a breakdown of exactly when each transition hooks gets called:
+
+::: ariaLabel="transition hook timing"
+| Hook | When it's called |
+| --- | --- |
+| `appear.before` | Right before the element's `display` property is changed to show the element for the first time. |
+| `appear.active` | Right after the element's `display` property is changed to show the element for the first time. |
+| `appear.after` | Right after `appear.active`, assuming the transition was not canceled. |
+| `appear.cancel` | When reactive data changes cause `useConditionalDisplay` to hide the element after `appear.active` starts AND before the `done` function has been called inside `appear.active`. |
+| `enter.before` | Right before the element's `display` property is changed to show the element. Does not run when this happens for the first time. |
+| `enter.active` | Right after the element's `display` property is changed to show the element. Does not run when this happens for the first time. |
+| `enter.after` | Right after `enter.active`, assuming the transition was not canceled. |
+| `enter.cancel` | When reactive data changes cause `useConditionalDisplay` to hide the element after `enter.active` starts AND before the `done` function has been called inside `enter.active`. |
+| `leave.before` | Right after reactive data changes cause `useConditionalDisplay` to hide the element. |
+| `leave.active` | Right after `leave.before`. |
+| `leave.after` | Right after the element's `display` property is changed to hide the element, which in turn happens right after the `done` function is called inside `leave.active`. |
+| `leave.cancel` | When reactive data changes cause `useConditionalDisplay` to show the element after `leave.active` starts AND before the `done` function has been called inside `leave.active`. |
 :::
 

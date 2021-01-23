@@ -216,7 +216,7 @@ When you're binding static data, you can pass the **target closure** instead of 
 
 Your target closure should return the value that `useBindings` should bind to the specific `target`.
 
-Here's an example of how `useTablist` uses this feature to set the `aria-labelledby` attribute for each tab panel to the ID of the corresponding tab panel. Theses IDs never change, so `aria-labelledby` does not need to be reactive:
+Here's an example of how [`useTablist` ](/docs/features/functions/useTablist) uses this feature to set the `aria-labelledby` attribute for each tab panel to the ID of the corresponding tab panel. Theses IDs never change, so `aria-labelledby` does not need to be reactive:
 
 :::
 ```js
@@ -267,7 +267,7 @@ Here's a breakdown of that object:
 | `watchSources` | Ref, Array | yes | none | <p>A single [watch source](https://v3.vuejs.org/guide/reactivity-computed-watchers.html#watching-a-single-source), or an array of watch sources. No need to pass the reactive array of elements—that data is already watched automatically.</p><p>Each time `useBindings` detects a change in your watch sources (or the reactive array of elements), it will iterate through your array of elements, calling the `targetClosure` for each one.</p> |
 :::
 
-Here's an example of how `useTablist` uses this feature to manage the `aria-hidden` attribute on its array of tab panels, setting `false` for the hidden tabs and `true` for the currently selected tab:
+Here's an example of how [`useTablist` ](/docs/features/functions/useTablist) uses this feature to manage the `aria-hidden` attribute on its array of tab panels, setting `false` for the hidden tabs and `true` for the currently selected tab:
 
 :::
 ```js

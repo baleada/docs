@@ -7,7 +7,7 @@ order: 0
 
 `useTablist` is a composition function that implements the UI logic needed for a reactive tablist widget.
 
-It follows [WAI-ARIA authoring practices](https://www.w3.org/TR/wai-aria-practices-1.1/#tabpanel) and allows you to easily customize certain aspects of keyboard navigation. For example, you can choose whether tab panels are shown as soon as their tab is focused, or not shown until the end user presses `Space` or `Enter` on the focused tab.
+It follows [WAI-ARIA authoring practices](https://www.w3.org/TR/wai-aria-practices-1.1/#tabpanel) and allows you to easily customize certain aspects of keyboard navigation. For example, you can configure the tablist as **horizontal**, so that it uses left and right arrow keys to navigate tabs, or **vertical**, so that it uses up and down arrow keys instead.
 
 ::: type="info"
 `useTablist` uses [Baleada Logic's `Navigateable` class](/docs/logic/classes/Navigateable) to manage tab navigation.
@@ -65,6 +65,7 @@ And here's a breakdown of the `options` object:
 | `label` | String | no | none | <p>A label for the tablist, to be read by screen readers.</p><p>Note that `label` is optional, but having an accessible label is not optional. If you don't provide a value for the `label` option, you'll need to add a label in the DOM. For those cases, there's more info below on how to tell `useTablist` which DOM element is your accessible label.</p> |
 | `openMenuKeycombo` | Keycombo | no | `'shift+f10'` | Sets the keycombo that will cause `useTablist` to call your `openMenu` function. |
 | `deleteTabKeycombo` | Keycombo | no | `'delete'` | Sets the keycombo that will cause `useTablist` to call your `deleteTab` function. |
+| `transition` | Object | no | none | <p>An object with one property: `panel`.</p><p>Pass an object to `transition.panel`, specifying a transition or animation that `useTablist` should apply to each tab panel as they enter and leave visibility.</p><p>See the [How to format enter/leave transitions](/docs/features/affordances/useConditionalDisplay#how-to-format-enter-leave-transitions) section of the `useConditionalDisplay` docs for more guidance.</p> |
 :::
 
 :::
@@ -112,7 +113,7 @@ export default {
 ```
 :::
 
-Here's a more complete example of how to use your `tablist`:
+Here's a more complete example of how to use your `tablist` and bind the various function refs:
 
 :::
 ```html

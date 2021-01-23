@@ -5,10 +5,8 @@ import { useContext } from '@baleada/vue-prose'
 export default function createProseContext (articleRef) {
   const route = useRoute(),
         fullPath = computed(() => route.fullPath),
+        scrollableContainer = computed(() => articleRef.value ?? document),
         defaultProps = {
-          article: {
-            scrollableContainer: computed(() => articleRef.value ?? document)
-          },
           blockquote: {
             readerCanTweet: true,
             tweetVia: 'BaleadaToolkit',
@@ -24,6 +22,6 @@ export default function createProseContext (articleRef) {
         }
 
   return useContext(
-    { fullPath, defaultProps },
+    { fullPath, scrollableContainer, defaultProps },
   )
 }

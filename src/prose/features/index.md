@@ -24,25 +24,41 @@ npm i @baleada/vue-features
 
 
 :::
-## Available features
+## Using features
 :::
 
-See the **Functions** section under the **Features** heading in the left sidebar for a complete list of available features.
-
-
-:::
-## Affordances
-:::
-
-Baleada Features' Vue implementation also exposes an **affordances** export:
+Import any feature to start using it in your Vue component. Most often, you'll use features in the `setup` function:
 
 :::
 ```js
-import * as affordances from @baleada/vue-features
+import { useTablist } from '@baleada/vue-features'
+
+export default {
+  setup () {
+    const tablist = useTablist(...)
+    
+    ...
+  }
+}
 ```
 :::
 
-This export includes functions that re-implement certain features that are readily available in Vue templates, but are not so easy to figure out inside composition functions.
+To learn more, visit the docs for each function exported by Baleada Features. For a complete list of available features, see the **Functions** section under the **Features** heading in the left sidebar.
+
+
+:::
+## Using affordances
+:::
+
+Baleada Features' Vue implementation also exposes an `affordances` export:
+
+:::
+```js
+import { useConditionalDisplay } from '@baleada/vue-features/affordances'
+```
+:::
+
+The `affordances` export offers functions that re-implement certain features that are readily available in Vue templates, but are not so easy to figure out inside composition functions.
 
 Vue templates, for example, allow you to easily bind static reactive data to the attributes of any element:
 
@@ -92,12 +108,6 @@ export default function useMyFeature () {
 ```
 :::
 
-These functions are primarily used internally as utility functions by Baleada Features. However, they are exported publicly because they are useful for authors who want to write their own Vue composition functions, following some of the style and patterns of Baleada Features.
+These functions are primarily used internally by various features' composition functions. However, Baleada Features exports them publicly because they are useful for authors who want to write their own Vue composition functions, following the style and patterns of Baleada Features.
 
-
-:::
-### Available affordances
-:::
-
-See the **Affordances** section under the **Features** heading in the left sidebar for a complete list of available affordances.
-
+To learn more, visit the docs for each affordance exported by Baleada Features. For a complete list of available affordances, see the **Affordances** section under the **Features** heading in the left sidebar.
