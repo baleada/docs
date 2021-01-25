@@ -93,8 +93,7 @@ export default {
             fadeIn: fadeInCreate(),
             fadeOut: fadeOutCreate(),
             delayable: delayableCreate(),
-            stopWatchingFadeInStatus: () => {},
-            stopWatchingFadeOutStatus: () => {},
+            stopWatchingStatus: {},
           })),
           tablist = readonly(useTablist(
             { totalTabs: computed(() => metadata.value.length), orientation: 'horizontal' },
@@ -102,34 +101,14 @@ export default {
               label: 'Example tablist',
               transition: {
                 panel: {
-                  appear: {
-                    active: ({ target, index, done }) => {
-                      transitionMetadata[index].stopWatchingFadeInStatus = watch(
-                        [() => transitionMetadata[index].fadeIn.value.status],
-                        () => {
-                          console.log(transitionMetadata[index].fadeIn.value.status)
-                          if (transitionMetadata[index].fadeIn.value.status === 'played') {
-                            transitionMetadata[index].stopWatchingFadeInStatus()
-                            done()
-                          }
-                        },
-                      )
-
-                      transitionMetadata[index].fadeIn.value.play(({ data: { opacity } }) => (target.style.opacity = opacity))
-                    },
-                    cancel: ({ target, index }) => {
-                      transitionMetadata[index].stopWatchingFadeInStatus()
-                      transitionMetadata[index].fadeIn.value.stop()
-                      target.style.opacity = 0
-                    }
-                  },
+                  appear: true,
                   enter: {
                     active: ({ target, index, done }) => {
-                      transitionMetadata[index].stopWatchingFadeInStatus = watch(
+                      transitionMetadata[index].stopWatchingStatus.fadeIn = watch(
                         [() => transitionMetadata[index].fadeIn.value.status],
                         () => {
                           if (transitionMetadata[index].fadeIn.value.status === 'played') {
-                            transitionMetadata[index].stopWatchingFadeInStatus()
+                            transitionMetadata[index].stopWatchingStatus.fadeIn()
                             done()
                           }
                         },
@@ -142,18 +121,18 @@ export default {
                     },
                     cancel: ({ target, index }) => {
                       transitionMetadata[index].delayable.value.stop()
-                      transitionMetadata[index].stopWatchingFadeInStatus()
+                      transitionMetadata[index].stopWatchingStatus.fadeIn()
                       transitionMetadata[index].fadeIn.value.stop()
                       target.style.opacity = 0
                     }
                   },
                   leave: {
                     active: ({ target, index, done }) => {
-                      transitionMetadata[index].stopWatchingFadeOutStatus = watch(
+                      transitionMetadata[index].stopWatchingStatus.fadeOut = watch(
                         [() => transitionMetadata[index].fadeOut.value.status],
                         () => {
                           if (transitionMetadata[index].fadeOut.value.status === 'played') {
-                            transitionMetadata[index].stopWatchingFadeOutStatus()
+                            transitionMetadata[index].stopWatchingStatus.fadeOut()
                             done()
                           }
                         },
@@ -162,7 +141,7 @@ export default {
                       transitionMetadata[index].fadeOut.value.play(({ data: { opacity } }) => (target.style.opacity = opacity))
                     },
                     cancel: ({ target, index }) => {
-                      transitionMetadata[index].stopWatchingFadeOutStatus()
+                      transitionMetadata[index].stopWatchingStatus.fadeOut()
                       transitionMetadata[index].fadeOut.value.stop()
                       target.style.opacity = 1
                     },

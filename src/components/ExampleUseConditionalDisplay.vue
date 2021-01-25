@@ -38,17 +38,12 @@ export default {
   setup () {
     const el = ref(null),
           isDisplayed = ref(false),
-          toggle = () => {
-            isDisplayed.value = !isDisplayed.value
-            console.log(isDisplayed.value)
-          },
+          toggle = () => (isDisplayed.value = !isDisplayed.value),
           appear = useAnimateable(
             [
               // Grow a bit
               { progress: 0, data: { scale: 0 }, timing: verouEase },
-              { progress: .1, data: { scale: 1 } },
               { progress: .2, data: { scale: 1 } },
-              { progress: .3, data: { scale: 1.1 } },
 
               // Weeee
               { progress: .35, data: { rotate: 0 }, timing: verouEase },
@@ -85,7 +80,6 @@ export default {
         transition: {
           appear: {
             active ({ target, done }) {
-              console.log('appearing')
               stopWatchingStatus.appear = watch(
                 [() => appear.value.status],
                 () => {
