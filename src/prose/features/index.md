@@ -5,7 +5,11 @@ publish: true
 order: 0
 ---
 
-Baleada Features is a collection of stateless composition functions that implement the UI logic for features and widgets like tablists, comboboxes, carousels, etc.
+Baleada Features is a collection of stateless composition functions that implement UI logic for all kinds of useful features.
+
+Some of these functions offer simple features, like the ability to reactively track the width of an element, and whether that element is currently wider than certain breakpoints.
+
+Other functions implement all of the logic for more complex, WAI-ARIA compliant widgets, like tablists, comboboxes, carousels, etc.
 
 Baleada Features doesn't include any markup or styles. Instead, it combines composition functions from [Baleada Composition](/docs/composition) with reactivity frameworks to create JavaScript-only layers of logic, which you can use directly in your app, or to power your own custom component library, with your own custom markup and styles.
 

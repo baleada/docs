@@ -56,6 +56,19 @@ The one exception is [Baleada Logic](/docs/logic). It's the biggest UI logic too
 
 
 :::
+## Package names
+:::
+
+If a package is written to be used with a specific framework, build tool, etc., the name of that tool is added to the package name.
+
+For example, [Baleada Features](/docs/features) has a Vue-specific implementation. That implementation is published under `@baleada/vue-features`. If a React version is created in the future, it will be published under `@baleada/react-features`.
+
+[Baleada Logic](/docs/logic), on the other hand, is designed to be completely framework agnostic. The only published package is `@baleada/logic`, because there are no framework-specific implementations, and there will never be any.
+
+In the docs, though, all packages are _always_ referred to by their actual name, e.g. "Baleada Features", rather than framework-specific implementations, e.g. "Baleada Vue Features".
+
+
+:::
 ## Package exports
 :::
 

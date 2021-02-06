@@ -65,8 +65,8 @@ module.exports = configureable('tailwindcss')
     '.icon': apply('h-full w-full fill-current'),
   }))
   .plugin(({ addComponents }) => addComponents({
-    '.btn-lg': apply('px-4 py-3 text-5'),
     '.btn': apply('flex items-center space-x-2 px-2 py-1 rounded-4 text-3'),
+    '.btn-lg': apply('px-4 py-3 text-5'),
     '.icon-btn': apply('h-em-1 w-em-1'),
     '.btn-raised': apply('shadow-4 hover:shadow-5 active:shadow-4'),
     '.btn-grows': apply('scale-100 hover:scale-110 active:scale-100 transform'),
