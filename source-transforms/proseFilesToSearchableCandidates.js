@@ -2,7 +2,7 @@ import { readFileSync } from 'fs'
 import { resolve, parse } from 'path'
 import matter from 'gray-matter'
 import { toFileIds } from '@baleada/source-transform-utils'
-import { clipable } from '@baleada/logic'
+import { string } from '@baleada/logic'
 import prerender from './util/md.js'
 import MarkdownIt from 'markdown-it'
 import MarkdownItTextContent from '@baleada/markdown-it-text-content'
@@ -19,7 +19,7 @@ export default function proseFilesToSearchableCandidates () {
                   searchableContent = toSearchableContent(content),
                   tags = rawTags ? rawTags.split(',').map(tag => tag.trim()) : [],
                   { name: fileName, dir } = parse(id),
-                  href = `/docs${clipable(dir).clip(basePath).clip('/src/prose')}/${clipable(fileName).clip(/^index$/)}`
+                  href = `/docs${string(dir).clip(basePath).clip('/src/prose')}/${string(fileName).clip(/^index$/)}`
 
             return {
               searchableContent,

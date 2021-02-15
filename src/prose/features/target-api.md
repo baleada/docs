@@ -7,7 +7,7 @@ order: 1
 
 In the return value for each of Baleada Features' functions, you'll find at least one **target API** object.
 
-Generally, the purpose of the target API is to capture DOM elements from your Vue template, so that a Baleada Features composition function can use that DOM element internally.
+Broadly, the purpose of the target API is to capture DOM elements from your Vue template, so that a Baleada Features composition function can use that DOM element internally.
 
 The target API also gives you an easy way to access those DOM elements in case you need to do additional work with them in your Vue component's `setup` function.
 
@@ -46,6 +46,7 @@ First, here's a breakdown of the single target API object:
 | --- | --- | --- |
 | `ref` | Function | <p>A function that returns a [function ref](https://v3.vuejs.org/guide/composition-api-template-refs.html#usage-inside-v-for).</p><p>`targetAPI.ref` should be called with no arguments, and the returned function ref should be bound to the DOM element that you want to capture.</p><p>See the [Using the ref property](#using-the-ref-property) section for more guidance.</p> |
 | `el` | Ref (HTMLElement) | <p>A reactive reference to the DOM element captured by `targetAPI.ref`.</p><p>Useful when you need to access that DOM element from your Vue component's `setup` function to apply a side effect.</p> |
+:::
 
 And here's a breakdown of the multiple targets API object:
 
@@ -54,6 +55,7 @@ And here's a breakdown of the multiple targets API object:
 | --- | --- | --- |
 | `ref` | Function | <p>A function that returns a [function ref](https://v3.vuejs.org/guide/composition-api-template-refs.html#usage-inside-v-for). `targetAPI.ref` should be called inside the `ref` attribute of an element in your Vue template that has a `v-for` statement.</p><p>Call `targetAPI.ref` with one argument: the `index` (Number) of the current element, which you can get from the `v-for` statement.</p><p>See the [Using the ref property](#using-the-ref-property) section for more guidance.</p> |
 | `els` | Ref (Array) | <p>A reactive reference to an array of DOM elements captured by `ref`. Inside the array, DOM elements will be listed in the exact order they appear in the DOM.</p><p>Useful when you need to access these DOM elements from your Vue component's `setup` function to apply a side effect.</p> |
+:::
 
 
 :::

@@ -1,6 +1,6 @@
 import { nextTick } from 'vue'
 import { createRouter, createWebHistory } from 'vue-router'
-import { clipable } from '@baleada/logic'
+import { string } from '@baleada/logic'
 import { useContext } from '@functions'
 import routes from './routes.js'
 
@@ -15,7 +15,7 @@ const history = createWebHistory(),
 router.beforeEach((to, from) => {
   if (/.\/$/.test(to.path)) {
     to.meta.redirectCode = 301
-    return `${clipable(to.path).clip(/\/$/)}`
+    return `${string(to.path).clip(/\/$/)}`
   }
 
   return true
@@ -25,7 +25,7 @@ router.beforeEach((to, from) => {
 router.beforeEach((to, from) => {
   if (/\/vite-/.test(to.path)) {
     to.meta.redirectCode = 301
-    return `${clipable(to.path).clip(/vite-/)}`
+    return `${string(to.path).clip(/vite-/)}`
   }
 
   return true

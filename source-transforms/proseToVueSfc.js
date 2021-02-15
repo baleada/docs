@@ -1,7 +1,7 @@
 import matter from 'gray-matter'
 import { resolve } from 'path'
 import gitlog from 'gitlog'
-import { clipable } from '@baleada/logic'
+import { string } from '@baleada/logic'
 import md from './util/md.js'
 
 
@@ -49,7 +49,7 @@ export default transform
 
 function toLog (id) {
   const basePath = resolve(''),
-        relativePath = `${clipable(id).clip(basePath).clip(/^\//)}`,
+        relativePath = `${string(id).clip(basePath).clip(/^\//)}`,
         log = gitlog({ repo: basePath, file: relativePath, number: 1 })
   
   return log

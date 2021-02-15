@@ -22,7 +22,7 @@
 <script>
 import { computed } from 'vue'
 import { useContext } from '@baleada/vue-prose'
-import { clipable } from '@baleada/logic'
+import { string } from '@baleada/logic'
 import { HeroiconsChevronDoubleLeft, HeroiconsChevronDoubleRight } from '@baleada/vue-heroicons'
 import manifest from '@manifest'
 
@@ -37,7 +37,7 @@ export default {
   setup () {
     const fullPath = computed(() => useContext().fullPath),
           currentIndex = computed(() => {
-            const basePath = `${clipable(fullPath.value).clip(/#.+$/)}`
+            const basePath = `${string(fullPath.value).clip(/#.+$/)}`
             return articles.findIndex(article => routeMatches(article.href, basePath))
           }),
           previous = computed(() => currentIndex.value - 1 === -1 ? undefined : articles[currentIndex.value - 1]),
@@ -53,7 +53,7 @@ export default {
 function routeMatches (articleHref, basePath) {
   return (
     articleHref === basePath ||
-    articleHref === `${clipable(basePath).clip(/\/$/)}` ||
+    articleHref === `${string(basePath).clip(/\/$/)}` ||
     articleHref === `${basePath}/`.replace(/\/+$/,'/')
   )
 }
