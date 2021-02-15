@@ -9,7 +9,7 @@ order: 0
 - Recognize the sequence as something more abstract, like a "swipe" gesture, or a double-tap
 - Store metadata about the sequence
 - Store the most recent event, for easier access
-- Store a status (`'ready'`, `'recognizing'`, `'recognized'`, or `'denied'`)
+- Store a status (`'ready'`, `recognizing'`, `recognized'`, or `denied'`)
 
 `Recognizeable` depends on [`object-path`](https://github.com/mariocasciaro/object-path).
 
@@ -83,8 +83,8 @@ The value for each property should be a function, and your `Recognizeable` will 
 | `setMetadata({ path, value })` | Function | Sets a new value for a property in the `metadata` object. | <p>An object with two properties: `path` and `value`.</p><p>`path`'s value should be a dot-delimited path (String) to the property that you want to edit on the `metadata` object.</p><p>`value`'s value should be the actual value you want to store in the `metadata` object.</p>  | none |
 | `pushMetadata({ path, value })` | Function | Adds a new value to the end of an array stored in the `metadata` object. | <p>An object with two properties: `path` and `value`.</p><p>`path`'s value should be a dot-delimited path (String) to the array that you want to add a new value to.</p><p>`value`'s value should be the actual value you want to add to the array.</p><p>If there is no existing array at the `path` you passed, `Recognizeable` will automatically set up a new one for you, then add your new value to it.</p>  | none |
 | `insertMetadata({ path, value, index })` | Function | Inserts a new value into an array stored in the `metadata` object. | <p>An object with three properties: `path`, `value`, and `index`.</p><p>`path`'s value should be a dot-delimited path (String) to the array that you want to add a new value to.</p><p>`value`'s value should be the actual value you want to insert into the array.</p><p>`index` should be the index-based position (Number) where you want the value to be inserted.</p><p>If there is no existing array at the `path` you passed, `Recognizeable` will automatically set up a new one for you, then insert your new value into it.</p> | none |
-| `recognized()` | Function | <p>Sets the `Recognizeable` instance's `status` to `'recognized'`, and updates the `sequence` to include the most recent event.</p><p>You should _only_ call this function after the information you've gathered from events and stored in `metadata` proves that your custom gesture has occurred.</p> | none | none |
-| `denied()` | Function | <p>Sets the `Recognizeable` instance's `status` to `'denied'`, resets the instance's `metadata` to an empty object, and resets the instance's `sequence` to an empty array.</p><p>You should _only_ call this function after the information you've gathered from events and stored in `metadata` proves that your custom gesture can't possibly occur, and everything should reset so you can start recognizing again with a clean slate.</p> | none | none |
+| `recognized()` | Function | <p>Sets the `Recognizeable` instance's `status` to `recognized'`, and updates the `sequence` to include the most recent event.</p><p>You should _only_ call this function after the information you've gathered from events and stored in `metadata` proves that your custom gesture has occurred.</p> | none | none |
+| `denied()` | Function | <p>Sets the `Recognizeable` instance's `status` to `denied'`, resets the instance's `metadata` to an empty object, and resets the instance's `sequence` to an empty array.</p><p>You should _only_ call this function after the information you've gathered from events and stored in `metadata` proves that your custom gesture can't possibly occur, and everything should reset so you can start recognizing again with a clean slate.</p> | none | none |
 | `toPolarCoordinates({ xA, yA, xB, yB })` | Function | <p>A utility function that converts a pair of cartesian coordinates to polar coordinates.</p><p>Super useful when calculating the angle and distance of a moving cursor or touch point!</p> | <p>An object with four properties: `xA`, `yA`, `xB`, and `yB`.</p><p>`xA` and `yA` are the cartesian coordinates (Numbers) of the first point, and `xB` and `yB` are the cartesian coordinates (Numbers) of the second point.</p> | <p>An object with two properties: `distance` and `angle`.</p><p>`distance` is the straight-line distance (Number) from point A to point B.</p><p>`angle` is an object with two properties: `radians` and `degrees`. Each property contains the angle (Number) in radians or degrees of the straight line between point A and point B.</p> |
 :::
 
@@ -117,10 +117,10 @@ The constructed `Recognizeable` instance is an Object, and state and methods can
 Each `Recognizeable` instance maintains a `status` property that allows it to take appropriate action after after your `handlers` process a new event received by the `recognize` method.
 
 At any given time, `status` will always be one (and only one) of the following values:
-- `'ready'`
-- `'recognizing'`
-- `'recognized'`
-- `'denied'`
+- `ready'`
+- `recognizing'`
+- `recognized'`
+- `denied'`
 
 `Recognizeable`'s status is pretty easy to predict:
 1. After the instance is constructed, `status` will be `ready`.

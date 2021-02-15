@@ -41,7 +41,7 @@ order: 0
 | `tweetText` | String | no | Your `blockquote`'s text content | Custom text for your tweet, in case you want to override the default. |
 | `tweetHashtags` | Array | no | `[]` | Hashtags (Strings) that will be appended to the tweet text. Omit the `#` in your hashtags. |
 | `tweetVia` | String | no | none | A Twitter handle that will be mentioned in the tweet. Omit the `@` from the Twitter handle. |
-| `tweetUrl` | String | no | none | <p>A URL that Twitter should shorten and append to the tweet.</p><p>You can also pass the keyword `'current'` to make `ProseBlockquote` use the URL of the page your blockquote is on.</p> |
+| `tweetUrl` | String | no | none | <p>A URL that Twitter should shorten and append to the tweet.</p><p>You can also pass the keyword `current` to make `ProseBlockquote` use the URL of the page your blockquote is on.</p> |
 | `classes` | String | no | none | Adds additional classes to the component's root element. |
 :::
 

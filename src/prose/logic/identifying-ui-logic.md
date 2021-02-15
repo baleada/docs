@@ -118,7 +118,7 @@ You would also need to make sure that, when the components reach the end of thei
 All that work and all of those APIs...just to make your app do something after something else happens!
 
 With Baleada Logic, you would instead follow a straightforward process:
-1. Identify the name of the "something" that you're waiting for. For the components above, the "somethings" would be `'keydown'` `'intersect'`, `'tap'`, `'swipe'`, and `'idle'`.
+1. Identify the name of the "something" that you're waiting for. For the components above, the "somethings" would be `keydown` `intersect'`, `tap'`, `swipe'`, and `idle'`.
 2. Pass the name of each "something" to a `Listenable` constructor to create instances of the `Listenable` class.
 3. Call your `Listenable` instances' `listen` methods, passing a callback function to each one that will triggers the appropriate action when its "something" happens. (You can also pass options to `listen`, for example, to make sure that you are only listening for an event on a specific element instead of the whole page.)
 4. Wait for your events to happen, and rest easy knowing that your callbacks will all run at the appropriate time!

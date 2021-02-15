@@ -4,6 +4,7 @@ module.exports = configureable('postcss')
   .import()
   .nested()
   .tailwindcss()
+  .autoprefixer()
   .configure()
 
 // module.exports = {

@@ -116,7 +116,7 @@ To achieve this or something similar, you just need to format your `type` proper
     - `delete`
     - Any individual modifier key: `cmd`, `meta`, `shift`, `ctrl`, `alt`, or `opt`
     - Any arrow direction—`up`, `right`, `down`, `left`, `vertical` (to listen for both `up` and `down`), `horizontal` (to listen for both `right` and `left`), or `arrow` (to listen for any arrow key)
-    - Any of the following punctuation: `,` `.` `<` `>` `/` `?` `;` `:` `'` `"` `[` `]` `{` `}` `}` `\` `|` `\` `~` `!` `@` `#` `$` `%` `^` `&` `*` `(` `)` `-` `_` `=` `+` <code>`</code>
+    - Any of the following punctuation: `,` `.` `<` `>` `/` `?` `;` `:` `` `"` `[` `]` `{` `}` `}` `\` `|` `\` `~` `!` `@` `#` `$` `%` `^` `&` `*` `(` `)` `-` `_` `=` `+` <code>`</code>
     - `click`
     - `mousedown`
     - `mouseup`
@@ -217,7 +217,7 @@ First, here's a breakdown of what each `options` property does, and below that, 
 | `observer` | Object | none | The `options` parameter of the [Intersection Observer constructor](https://developer.mozilla.org/en-US/docs/Web/API/IntersectionObserver/IntersectionObserver) |
 | `observe` | Object | none | The `options` parameter of the [`MutationObserver.observe`](https://developer.mozilla.org/en-US/docs/Web/API/MutationObserver/observe) and [`ResizeObserver.observe`](https://developer.mozilla.org/en-US/docs/Web/API/ResizeObserver/observe) methods |
 | `requestIdleCallback` | Object | none | The `options` parameter of [`requestIdleCallback`](https://developer.mozilla.org/en-US/docs/Web/API/Window/requestIdleCallback) |
-| `keyDirection` | String | `'down'` | <p>Indicates which keyboard event should be listened to when detecting keycombos. Valid options are `down` and `up` .</p><p>The `keyDirection` option only has an effect when your `type` is a keycombo, as described the [How to format key combos and click combos](#how-to-format-key-combos-and-click-combos).</p> |
+| `keyDirection` | String | `down` | <p>Indicates which keyboard event should be listened to when detecting keycombos. Valid options are `down` and `up` .</p><p>The `keyDirection` option only has an effect when your `type` is a keycombo, as described the [How to format key combos and click combos](#how-to-format-key-combos-and-click-combos).</p> |
 
 :::
 
@@ -269,7 +269,7 @@ The default value for the `listen` method's `target` option depends on your `typ
 
 `Listenable` allows you to listen for custom gestures defined by Baleada Logic's `Recognizeable` class. For full information on how to use the `Recognizeable` class, [visit the `Recognizeable` docs](/docs/logic/classes/Recognizeable) (especially the [section on constructor options](/docs/logic/classes/Recognizeable#recognizeable-constructor-options) and the [section on accessing state and methods](/docs/logic/classes/Recognizeable#access-state-and-methods)), but keep reading here to learn the overall workflow.
 
-To get started, construct a new instance of `Listenable`, using `'recognizeable'` as the `type`, and passing the `Recognizeable` options object to the `recognizeable` option:
+To get started, construct a new instance of `Listenable`, using `recognizeable` as the `type`, and passing the `Recognizeable` options object to the `recognizeable` option:
 
 :::
 ```js

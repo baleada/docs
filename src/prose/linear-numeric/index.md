@@ -216,7 +216,7 @@ module.exports = {
 ```
 :::
 
-To expand on that concept: `linearNumeric` returns a full colors object for the `colors` property. If you want to access a single color, you can pass `'colors'` to the `only` option, and tack on the color name right after your function call:
+To expand on that concept: `linearNumeric` returns a full colors object for the `colors` property. If you want to access a single color, you can pass `colors` to the `only` option, and tack on the color name right after your function call:
 
 :::
 ```js

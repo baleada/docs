@@ -106,9 +106,9 @@ md.use(MarkdownItSpaLinks, { spa: 'nuxt', base: 'https://example.com' })
 ::: ariaLabel="Reference table matching SPA tools with link components"
 | When `spa` is... | Links are rendered with... |
 | --- | --- |
-| `'inertia'` | [`inertia-link`](https://inertiajs.com/links#top) |
-| `'next'` | [`Link` > `a`](https://nextjs.org/docs#with-link) |
-| `'nuxt'` | [`RouterLink`](https://nuxtjs.org/api/components-nuxt-link#the-lt-nuxt-link-gt-component) |
-| `'react'` | [`Link`](https://reacttraining.com/react-router/web/api/Link) |
-| `'vue'` | [`RouterLink`](https://router.vuejs.org/api/#router-link) |
+| `inertia` | [`inertia-link`](https://inertiajs.com/links#top) |
+| `next` | [`Link` > `a`](https://nextjs.org/docs#with-link) |
+| `nuxt` | [`RouterLink`](https://nuxtjs.org/api/components-nuxt-link#the-lt-nuxt-link-gt-component) |
+| `react` | [`Link`](https://reacttraining.com/react-router/web/api/Link) |
+| `vue` | [`RouterLink`](https://router.vuejs.org/api/#router-link) |
 :::

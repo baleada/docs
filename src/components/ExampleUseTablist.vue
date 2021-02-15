@@ -1,6 +1,6 @@
 <template>
   <section
-    :ref="tablist.root()"
+    :ref="tablist.root.ref()"
     class="mx-auto with-max-w flex flex-col gap-2 p-6 rounded-4 shadow-4"
     :class="[
       context.statuses.darkTheme === 'enabled'
@@ -12,7 +12,7 @@
       <div
         v-for="({ tab }, index) in metadata"
         :key="tab"
-        :ref="tablist.tabs(index)"
+        :ref="tablist.tabs.ref(index)"
         class="relative btn-grows btn-raised"
       >
         <div
@@ -40,7 +40,7 @@
       <div
         v-for="({ tab, panel }, index) in metadata"
         :key="tab"
-        :ref="tablist.panels(index)"
+        :ref="tablist.panels.ref(index)"
         class="absolute top-0 left-0 w-full p-6 rounded-4 shadow-4"
         :class="[
           context.statuses.darkTheme === 'enabled'
@@ -95,61 +95,58 @@ export default {
             delayable: delayableCreate(),
             stopWatchingStatus: {},
           })),
-          tablist = readonly(useTablist(
-            { totalTabs: computed(() => metadata.value.length), orientation: 'horizontal' },
-            {
-              label: 'Example tablist',
-              transition: {
-                panel: {
-                  appear: true,
-                  enter: {
-                    active: ({ target, index, done }) => {
-                      transitionMetadata[index].stopWatchingStatus.fadeIn = watch(
-                        [() => transitionMetadata[index].fadeIn.value.status],
-                        () => {
-                          if (transitionMetadata[index].fadeIn.value.status === 'played') {
-                            transitionMetadata[index].stopWatchingStatus.fadeIn()
-                            done()
-                          }
-                        },
-                      )
+          tablist = readonly(useTablist({
+            label: 'Example tablist',
+            transition: {
+              panel: {
+                appear: true,
+                enter: {
+                  active: ({ target, index, done }) => {
+                    transitionMetadata[index].stopWatchingStatus.fadeIn = watch(
+                      [() => transitionMetadata[index].fadeIn.value.status],
+                      () => {
+                        if (transitionMetadata[index].fadeIn.value.status === 'played') {
+                          transitionMetadata[index].stopWatchingStatus.fadeIn()
+                          done()
+                        }
+                      },
+                    )
 
-                      transitionMetadata[index].delayable.value.callback = () => {
-                        nextTick(() => transitionMetadata[index].fadeIn.value.play(({ data: { opacity } }) => (target.style.opacity = opacity)))
-                      }
-                      transitionMetadata[index].delayable.value.delay()
-                    },
-                    cancel: ({ target, index }) => {
-                      transitionMetadata[index].delayable.value.stop()
-                      transitionMetadata[index].stopWatchingStatus.fadeIn()
-                      transitionMetadata[index].fadeIn.value.stop()
-                      target.style.opacity = 0
+                    transitionMetadata[index].delayable.value.callback = () => {
+                      nextTick(() => transitionMetadata[index].fadeIn.value.play(({ data: { opacity } }) => (target.style.opacity = opacity)))
                     }
+                    transitionMetadata[index].delayable.value.delay()
                   },
-                  leave: {
-                    active: ({ target, index, done }) => {
-                      transitionMetadata[index].stopWatchingStatus.fadeOut = watch(
-                        [() => transitionMetadata[index].fadeOut.value.status],
-                        () => {
-                          if (transitionMetadata[index].fadeOut.value.status === 'played') {
-                            transitionMetadata[index].stopWatchingStatus.fadeOut()
-                            done()
-                          }
-                        },
-                      )
-          
-                      transitionMetadata[index].fadeOut.value.play(({ data: { opacity } }) => (target.style.opacity = opacity))
-                    },
-                    cancel: ({ target, index }) => {
-                      transitionMetadata[index].stopWatchingStatus.fadeOut()
-                      transitionMetadata[index].fadeOut.value.stop()
-                      target.style.opacity = 1
-                    },
+                  cancel: ({ target, index }) => {
+                    transitionMetadata[index].delayable.value.stop()
+                    transitionMetadata[index].stopWatchingStatus.fadeIn()
+                    transitionMetadata[index].fadeIn.value.stop()
+                    target.style.opacity = 0
+                  }
+                },
+                leave: {
+                  active: ({ target, index, done }) => {
+                    transitionMetadata[index].stopWatchingStatus.fadeOut = watch(
+                      [() => transitionMetadata[index].fadeOut.value.status],
+                      () => {
+                        if (transitionMetadata[index].fadeOut.value.status === 'played') {
+                          transitionMetadata[index].stopWatchingStatus.fadeOut()
+                          done()
+                        }
+                      },
+                    )
+        
+                    transitionMetadata[index].fadeOut.value.play(({ data: { opacity } }) => (target.style.opacity = opacity))
                   },
-                }
+                  cancel: ({ target, index }) => {
+                    transitionMetadata[index].stopWatchingStatus.fadeOut()
+                    transitionMetadata[index].fadeOut.value.stop()
+                    target.style.opacity = 1
+                  },
+                },
               }
             }
-          ))
+          }))
           
     return {
       metadata,

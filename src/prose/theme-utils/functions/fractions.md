@@ -7,7 +7,7 @@ order: 0
 
 `fractions` is a function designed to produce classes with useful fractions of screen width, screen height, and the parent container. 
 
-The `fractions` function returns a config object that includes different fractions depending on which `mode` the function is using. The `'tailwind'` mode produces the fractions used in certain properties by Tailwind's default config. Here's that list, organized by denonimator:
+The `fractions` function returns a config object that includes different fractions depending on which `mode` the function is using. The `tailwind` mode produces the fractions used in certain properties by Tailwind's default config. Here's that list, organized by denonimator:
 - `1/2`
 - `1/3`, `2/3`
 - `1/4`, `2/4`, `3/4`
@@ -96,8 +96,8 @@ And here's the same list, sorted from lowest to highest actual value
 ::: ariaLabel="fractions options" classes="wide-4"
 | Option | Type | Default | Description |
 | --- | --- | --- | --- |
-| `unit` | String | `'%'` | <p>Indicates whether the values of the fraction utility classes will use percentage, viewport width, or viewport height units. Valid `unit` values are `%`, `vw`, and `vh`.</p><p>If you pass `vw` or `vh`, the utilities classes will contain `-screen-` in the middle, e.g. `.h-screen-1/2`. If you pass `%`, utility classes won't have anything in the middle, e.g. `h-1/2`.</p> |
-| `mode` | String | `'baleada'` | Controls which fraction set will be used. Valid `mode` values are `baleada` and `tailwind`. Fraction modes are explained in more detail in the introduction to this article. |
+| `unit` | String | `%` | <p>Indicates whether the values of the fraction utility classes will use percentage, viewport width, or viewport height units. Valid `unit` values are `%`, `vw`, and `vh`.</p><p>If you pass `vw` or `vh`, the utilities classes will contain `-screen-` in the middle, e.g. `.h-screen-1/2`. If you pass `%`, utility classes won't have anything in the middle, e.g. `h-1/2`.</p> |
+| `mode` | String | `baleada` | Controls which fraction set will be used. Valid `mode` values are `baleada` and `tailwind`. Fraction modes are explained in more detail in the introduction to this article. |
 :::
 
 

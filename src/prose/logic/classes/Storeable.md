@@ -59,8 +59,8 @@ const reactiveInstance = useStoreable(key[, options])
 ::: ariaLabel="Storeable constructor options" classes="wide-4"
 | Option | Type | Default | Description |
 | --- | --- | --- | --- |
-| `type` | String | `'local'` | Indicates the type of storage that your `Storeable` instance should use. Valid values are `local` and `session`. |
-| `statusKeySuffix` | String | `'_status'` | <p>Indicates the suffix your `Storeable` instance should add to your `key` when generating the key used to store `status`.</p><p>See the [Access state and methods](#access-state-and-methods) table to learn more about `status`.</p> |
+| `type` | String | `local` | Indicates the type of storage that your `Storeable` instance should use. Valid values are `local` and `session`. |
+| `statusKeySuffix` | String | `_status` | <p>Indicates the suffix your `Storeable` instance should add to your `key` when generating the key used to store `status`.</p><p>See the [Access state and methods](#access-state-and-methods) table to learn more about `status`.</p> |
 :::
 
 

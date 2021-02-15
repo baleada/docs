@@ -89,10 +89,10 @@ The only required property of the object you pass to `getServeVirtual` is `trans
 | Property | Type | Description |
 | --- | --- | --- | --- | --- |
 | `source` | String | The source content of the virtual file |
-| `type` | String | Indicates the [MIME type](https://developer.mozilla.org/en-US/docs/Web/HTTP/Basics_of_HTTP/MIME_types/Common_types) or virtual file extension of your `source` content. You can also pass `'vue'` as the type if you want Vue to pass your `source` through its Vue Single File Component compiler pipeline. |
+| `type` | String | Indicates the [MIME type](https://developer.mozilla.org/en-US/docs/Web/HTTP/Basics_of_HTTP/MIME_types/Common_types) or virtual file extension of your `source` content. You can also pass `vue` as the type if you want Vue to pass your `source` through its Vue Single File Component compiler pipeline. |
 :::
 
-For simpler use cases, you can actually return a plain String from your `transform` function, and Baleada Serve Virtual will use `'js'` as the default `type`.
+For simpler use cases, you can actually return a plain String from your `transform` function, and Baleada Serve Virtual will use `js` as the default `type`.
 
 
 :::

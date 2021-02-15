@@ -12,7 +12,7 @@ order: 0
 - Play, pause, or reverse the animation
 - Seek to a specific frame
 - Restart the animation while it's playing or reversing
-- Store the status of the animation (e.g. `'playing'`, `'reversing'`, `'paused'`, etc.)
+- Store the status of the animation (e.g. `playing'`, `reversing'`, `paused'`, etc.)
 - Store the elapsed time, remaining time, and time progress of the animation
 
 In other words, `Animateable` implements all the main features of [CSS `@keyframes` animations](https://developer.mozilla.org/en-US/docs/Web/CSS/@keyframes) in JavaScript, then adds lots of methods to help you control the animation itself.
@@ -242,7 +242,7 @@ The constructed `Animateable` instance is an Object, and state and methods can b
 | `play(callback)` | Function | Starts the animation, progressing forward. Can't be called until the DOM is available. | <p>`play` accepts a callback function to handle individual frames. Your callback will be called 60 times per second and will receive the current frame as its only argument.</p><p>See the [How to handle frames](#how-to-handle-frames) section for more guidance.</p> | The `Animateable` instance. |
 | `reverse(callback)` | Function | Starts the animation, progressing backward. Can't be called until the DOM is available. | <p>`reverse` accepts a callback function to handle individual frames. Your callback will be called 60 times per second and will receive the current frame as its only argument.</p><p>See the [How to handle frames](#how-to-handle-frames) section for more guidance.</p> | The `Animateable` instance. |
 | `pause()` | Function | Pauses the animation. Can't be called until the DOM is available. | None | The `Animateable` instance. |
-| `seek(progress, callback)` | Function | <p>Seeks to a specific time progress in the animation. If `status` is `'playing'` or `'reversing'`, the animation will continue progressing in the same direction after seeking to the time progress.</p><p>If your animation is supposed to repeat for more than one iteration, you can pass a time progress that is greater than `1` to seek to a specific iteration. For example, to seek halfway through the third iteration, you can call `seek(2.5)`.</p><p>Can't be called until the DOM is available.</p> | <p>`seek` Accepts two parameters: a time progress to seek to, and a callback function to handle the frame(s) that will be computed.</p><p>The `progress` parameter is always required, but the `callback` is only required if the animation is not currently playing or reversing.</p> | The `Animateable` instance. |
+| `seek(progress, callback)` | Function | <p>Seeks to a specific time progress in the animation. If `status` is `playing` or `reversing'`, the animation will continue progressing in the same direction after seeking to the time progress.</p><p>If your animation is supposed to repeat for more than one iteration, you can pass a time progress that is greater than `1` to seek to a specific iteration. For example, to seek halfway through the third iteration, you can call `seek(2.5)`.</p><p>Can't be called until the DOM is available.</p> | <p>`seek` Accepts two parameters: a time progress to seek to, and a callback function to handle the frame(s) that will be computed.</p><p>The `progress` parameter is always required, but the `callback` is only required if the animation is not currently playing or reversing.</p> | The `Animateable` instance. |
 | `restart()` | Function | <p>Restarts the animation, using the same `callback` that was previously passed to `play` or `reverse` to handle frames.</p><p>`restart` only has an effect if the animation is currently playing or reversing.</p><p>Can't be called until the DOM is available.</p> | Callback function. | The `Animateable` instance. |
 | `stop()` | Function | Cancels the animation, stopping it in its tracks and cleaning up side effects. Can't be called until the DOM is available. | None | The `Animateable` instance. |
 :::
@@ -255,14 +255,14 @@ The constructed `Animateable` instance is an Object, and state and methods can b
 Each `Animateable` instance maintains a `status` property that allows it to take appropriate action based on the methods you call, in what order you call them, and when you call them.
 
 At any given time, `status` will always be one (and only one) of the following values:
-- `'ready'`
-- `'playing'`
-- `'played'`
-- `'reversing'`
-- `'reversed'`
-- `'paused'`
-- `'sought'`
-- `'stopped'`
+- `ready'`
+- `playing'`
+- `played'`
+- `reversing'`
+- `reversed'`
+- `paused'`
+- `sought'`
+- `stopped'`
 
 There's a lot of complexity involved in the way each `status` is achieved (it's affected by which methods you call, in what order you call them, and exactly when you call them), but you likely will never need to worry about that. `status` is available to you if you feel you need it, but for all intended use cases, it's an implementation detail, and you can ignore it.
 
