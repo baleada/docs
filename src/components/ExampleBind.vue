@@ -11,9 +11,9 @@
       <span class="preexisting-class" ref="example">👉 Inspect this <code :class="context.statuses.darkTheme === 'enabled' ? 'bg-primary-gray-70' : 'bg-primary-10'">&lt;span&gt;</code> in devtools 👈</span>
     </section>
     <section class="flex flex-col gap-2">
-      <label for="useBinding-example-ariaLabel-input">Edit the <code :class="context.statuses.darkTheme === 'enabled' ? 'bg-primary-gray-70' : 'bg-primary-10'">aria-label</code> dynamically:</label>
+      <label for="bind-example-ariaLabel-input">Edit the <code :class="context.statuses.darkTheme === 'enabled' ? 'bg-primary-gray-70' : 'bg-primary-10'">aria-label</code> dynamically:</label>
       <input
-        id="useBinding-example-ariaLabel-input"
+        id="bind-example-ariaLabel-input"
         type="text"
         v-model="ariaLabel"
         class="form -shadow-4"
@@ -26,9 +26,9 @@
       />
     </section>
     <section class="flex flex-col gap-2">
-      <label for="useBinding-example-class-input">Edit the <code :class="context.statuses.darkTheme === 'enabled' ? 'bg-primary-gray-70' : 'bg-primary-10'">class</code> list dynamically:</label>
+      <label for="bind-example-class-input">Edit the <code :class="context.statuses.darkTheme === 'enabled' ? 'bg-primary-gray-70' : 'bg-primary-10'">class</code> list dynamically:</label>
       <input
-        id="useBinding-example-class-input"
+        id="bind-example-class-input"
         type="text"
         v-model="classes"
         class="form -shadow-4"
@@ -41,9 +41,9 @@
       />
     </section>
     <section class="flex flex-col gap-2">
-      <label for="useBinding-example-backgroundColor-input">Edit the <code :class="context.statuses.darkTheme === 'enabled' ? 'bg-primary-gray-70' : 'bg-primary-10'">backgroundColor</code> dynamically:</label>
+      <label for="bind-example-backgroundColor-input">Edit the <code :class="context.statuses.darkTheme === 'enabled' ? 'bg-primary-gray-70' : 'bg-primary-10'">backgroundColor</code> dynamically:</label>
       <input
-        id="useBinding-example-backgroundColor-input"
+        id="bind-example-backgroundColor-input"
         type="text"
         v-model="backgroundColor"
         class="form -shadow-4"
@@ -60,20 +60,20 @@
 
 <script>
 import { ref, computed, watch, onMounted, nextTick } from 'vue'
-import { useBindings } from '@baleada/vue-features/affordances'
+import { bind } from '@baleada/vue-features/affordances'
 import { useContext } from '@functions'
 
 export default {
-  name: 'ExampleUseBindings',
+  name: 'ExampleBind',
   setup () {
     const ariaLabel = ref('Example label'),
           classes = ref('example-class another-class'),
           backgroundColor = ref('transparent'),
           example = ref(null)
 
-    useBindings({
+    bind({
       target: example,
-      bindings: {
+      attributes: {
         ariaLabel,
         class: classes,
         style_backgroundColor: backgroundColor,

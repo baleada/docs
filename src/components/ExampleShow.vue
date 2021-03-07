@@ -28,13 +28,13 @@
 
 <script>
 import { ref, watch } from 'vue'
-import { useConditionalDisplay } from '@baleada/vue-features/affordances'
+import { show } from '@baleada/vue-features/affordances'
 import { useContext } from '@functions'
 import { useAnimateable } from '@baleada/vue-composition'
 import { verouEase } from '@baleada/animateable-utils'
 
 export default {
-  name: 'ExampleUseConditionalDisplay',
+  name: 'ExampleShow',
   setup () {
     const el = ref(null),
           isDisplayed = ref(false),
@@ -71,7 +71,7 @@ export default {
           ),
           stopWatchingStatus = {}
 
-    useConditionalDisplay(
+    show(
       {
         target: el,
         condition: isDisplayed,

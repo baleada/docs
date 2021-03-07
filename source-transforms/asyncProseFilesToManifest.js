@@ -3,7 +3,7 @@ import { resolve, parse } from 'path'
 import  matter from 'gray-matter'
 import { gitlogPromise as gitlog } from 'gitlog'
 import { toDirIds } from '@baleada/source-transform-utils'
-import { clipable, asyncFilterable, asyncMapable } from '@baleada/logic'
+import { string, array } from '@baleada/logic'
 
 const basePath = resolve('')
 
@@ -18,9 +18,9 @@ export default async function proseFilesToManifest () {
             articles: await toManifested(`${basePath}/src/prose`),
           },
           ...(await
-            asyncMapable(dirIds).asyncMap(
+            array(dirIds).asyncMap(
               async id => ({
-                level: clipable(id).clip(basePath).clip('/src/prose/').split('/').length,
+                level: string(id).clip(basePath).clip('/src/prose/').split('/').length,
                 name: parse(id).name.replace(/-/g, ' '),
                 articles: await toManifested(id),
               })
@@ -36,14 +36,14 @@ export default async function proseFilesToManifest () {
 
 async function toManifested (id) {
   const files = await readdir(id),
-        manifestable = await asyncFilterable(files).asyncFilter(async file => (await stat(`${id}/${file}`)).isFile()),
-        published = await asyncFilterable(manifestable).asyncFilter(async file => matter(await readFile(`${id}/${file}`, 'utf8')).data.publish === true),
-        manifested = await asyncMapable(published).asyncMap(
+        manifestable = await array(files).asyncFilter(async file => (await stat(`${id}/${file}`)).isFile()),
+        published = await array(manifestable).asyncFilter(async file => matter(await readFile(`${id}/${file}`, 'utf8')).data.publish === true),
+        manifested = await array(published).asyncMap(
           async file => {
             const { data: { title, tags: rawTags, order } } = matter(await readFile(`${id}/${file}`, 'utf8')),
             tags = rawTags ? rawTags.split(',').map(tag => tag.trim()) : [],
             fileName = parse(`${id}/${file}`).name,
-            href = `/docs${clipable(id).clip(basePath).clip('/src/prose')}${clipable(`/${fileName}`).clip(/^\/index$/)}`,
+            href = `/docs${string(id).clip(basePath).clip('/src/prose')}${string(`/${fileName}`).clip(/^\/index$/)}`,
             authorDate = (await toStats(`${id}/${file}`)).authorDate
 
             return {
@@ -61,7 +61,7 @@ async function toManifested (id) {
 
 async function toStats (id) {
   const basePath = resolve(''),
-        relativePath = `${clipable(id).clip(basePath).clip(/^\//)}`,
+        relativePath = `${string(id).clip(basePath).clip(/^\//)}`,
         { 0: stats } = await gitlog({ repo: basePath, file: relativePath, number: 1 })
   
   return stats

@@ -163,7 +163,7 @@ The constructed `Listenable` instance is an Object, and state and methods can be
 | --- | --- | --- | --- | --- |
 | `type` | Getter/Setter | See return value | N/A | <p>The event type you passed to the `Listenable` constructor.</p><p>If you assign a value directly to `type`, a setter will pass the new value to `setType`.</p> |
 | `status` | Getter | See return value | N/A | <p>The status (String) of the `Listenable` instance.</p><p>`status` is `ready` after the instance is constructed, and changes to `listening` after the `listen` method is called for the first time, and change to `stopped` after all web API activity has been stopped and cleaned up.</p> |
-| `activeListeners` | Getter | See return value | N/A | An array (Array) of objects that describe all the currently active listeners, observers, etc. |
+| `active` | Getter | See return value | N/A | A set ([Set](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Set)) of objects that describe all the currently active listeners, observers, etc. |
 | `recognizeable` | Getter | See return value | N/A | <p>The `Recognizeable` instance constructed using the object you passed to `options.recognizeable`.</p><p>If you didn't pass that option, the `recognizeable` property will be `undefined`.</p><p>See the [How to listen for custom gestures](#how-to-listen-for-custom-gestures) section for more guidance.</p> |
 | `setType(type)` | Function | Sets a new `type`, after stopping and cleaning up all existing web API activity. | The new type (String). | The `Listenable` instance |
 | `listen(callback, options)` | Function | Listens for the events specified by your `type`, and executes a callback function when the events happen. Can't be called until the DOM is available. | <p>A callback (Function, required) that will be executed when the events are detected, and an optional `options` object.</p><p>To learn more about handling events with your callback, see the [How to handle events](#how-to-handle-events) and [How to customize `listen` behavior](#how-to-customize-listen-behavior) sections.</p> | The `Listenable` instance |
@@ -412,7 +412,7 @@ articleSwipe.listen(
 | Has a public method you can use to set a new value for that public getter | <BrandApiDesignSpecCheckmark /> | `setType` |
 | Has a setter for that getter so you can assign a new value directly | <BrandApiDesignSpecCheckmark /> |  |
 | Any other public getters that should be set by you in some cases also have setters and `set<Property>` methods | <BrandApiDesignSpecCheckmark /> | none |
-| Has at least one additional getter property that you can't (and shouldn't) set directly | <BrandApiDesignSpecCheckmark /> | `status`, `activeListeners`, `recognizeable` |
+| Has at least one additional getter property that you can't (and shouldn't) set directly | <BrandApiDesignSpecCheckmark /> | `status`, `active`, `recognizeable` |
 | Has one or more public methods that expose core functionality | <BrandApiDesignSpecCheckmark /> | `listen`, `stop` |
 | Either has no side effects or has side effects that can be cleaned up with a `stop` method | <BrandApiDesignSpecCheckmark /> | `stop` |
 | Uses the sentence template to decide what state type should be accepted by a constructor | <BrandApiDesignSpecCheckmark /> | "A type of event can be listened for." |

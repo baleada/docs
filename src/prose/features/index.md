@@ -54,15 +54,13 @@ To learn more, visit the docs for each function exported by Baleada Features. Fo
 ## Using affordances
 :::
 
-Baleada Features' Vue implementation also exposes an `affordances` export:
+Baleada Features' Vue implementation also exports "affordances": functions that re-implement certain features that are readily available in Vue templates, but are not so easy to figure out inside composition functions.
 
 :::
 ```js
-import { useConditionalDisplay } from '@baleada/vue-features/affordances'
+import { show } from '@baleada/vue-features'
 ```
 :::
-
-The `affordances` export offers functions that re-implement certain features that are readily available in Vue templates, but are not so easy to figure out inside composition functions.
 
 Vue templates, for example, allow you to easily bind static reactive data to the attributes of any element:
 
@@ -81,19 +79,21 @@ Vue templates, for example, allow you to easily bind static reactive data to the
 ```
 :::
 
-Inside a composition function, it's not obvious how to properly recreate this behavior, but Baleada Features' `useBindings` affordance makes it a cinch:
+Inside a composition function, it's not obvious how to properly recreate this behavior, but Baleada Features' `bind` affordance makes it a cinch:
 
 :::
 ```js
+import { bind } from '@baleada/vue-features'
+
 // useMyFeature.js
 export default function useMyFeature () {
   const el = ref(null),
         isSelected = computed(...)
 
-  useBindings({
+  bind({
     target: el,
-    bindings: {
-      // useBindings can assign static values
+    keys: {
+      // bind can assign static values
       role: 'tab',
       // But it really shines with reactive values
       ariaSelected: isSelected,

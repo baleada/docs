@@ -1,49 +1,49 @@
 ---
-title: useConditionalDisplay
+title: show
 tags: Composition functions
 publish: true
 order: 0
 ---
 
-`useConditionalDisplay` is a composition function that can conditionally show or hide elements in the DOM, using the CSS `display` property under the hood. It works with static values—conditionally displaying once—and reactive values—showing and hiding elements each time the value changes.
+`show` is a function that can conditionally show or hide elements in the DOM, using the CSS `display` property under the hood. It works with static values—conditionally displaying once—and reactive values—showing and hiding elements each time the value changes.
 
 ::: type="info"
-`useConditionalDisplay` reimplements the `v-show` affordance in Vue templates.
+`show` reimplements the `v-show` affordance in Vue templates.
 :::
 
 :::
 ## Example
 :::
 
-[Source code](https://github.com/baleada/docs/blob/main/src/components/ExampleUseConditionalDisplay.vue)
+[Source code](https://github.com/baleada/docs/blob/main/src/components/ExampleShow.vue)
 
-<ExampleUseConditionalDisplay class="with-mt" />
+<ExampleShow class="with-mt" />
 
-The [`useTablist` example](/docs/features/functions/useTablist#example) is another good demo—it uses `useConditionalDisplay` under the hood to toggle an array of tab panel elements.
+The [`useTablist` example](/docs/features/functions/useTablist#example) is another good demo—it uses `show` under the hood to toggle an array of tab panel elements.
 
 :::
-## Using conditional display
+## Usage
 :::
 
-To conditionally display a DOM element, call the `useConditionalDisplay` function, which requires one parameter: the `required` Object, and accepts an optional `options` object as its second parameter.
+To conditionally display a DOM element, call the `show` function, which requires one parameter: the `required` Object, and accepts an optional `options` object as its second parameter.
 
 :::
 ```js
-import { useConditionalDisplay } from '@baleada/vue-features/affordances'
+import { show } from '@baleada/vue-features'
 
 export default function myCompositionFunction (...) {
-  useConditionalDisplay(required, options)
+  show(required, options)
 }
 ```
 :::
 
 ::: type="info"
-Usually, you'll call `useConditionalDisplay` from inside another composition function, but it also works in the `setup` function of any Vue component.
+Usually, you'll call `show` from inside another composition function, but it also works in the `setup` function of any Vue component.
 :::
 
 Here's a breakdown of the `required` object:
 
-::: ariaLabel="useConditionalDisplay required object breakdown" classes="wide-5"
+::: ariaLabel="show required object breakdown" classes="wide-5"
 | Property | Type | Required? | Default | Description |
 | --- | --- | --- | --- | --- |
 | `target` | Ref (HTMLElement), Array | yes | none | <p>A reactive reference to the DOM element you're conditionally displaying.</p><p>`target` Can also be a reactive reference to an array of DOM elements. See the [How to format your condition](#how-to-format-your-condition) section for more guidance on conditionally displaying specific elements in a reactive array.</p> |
@@ -53,7 +53,7 @@ Here's a breakdown of the `required` object:
 
 Here's a breakdown of the `options` object:
 
-::: ariaLabel="useConditionalDisplay options object breakdown" classes="wide-5"
+::: ariaLabel="show options object breakdown" classes="wide-5"
 | Property | Type | Required? | Default | Description |
 | --- | --- | --- | --- | --- |
 | `transition` | Object | no | none | <p>An object that contains methods and/or CSS classes for enter/leave transitions.</p><p>See the [How to format enter/leave transitions](#how-to-format-enter-leave-transitions) section for more guidance.</p> |
@@ -64,7 +64,7 @@ Here's a breakdown of the `options` object:
 #### How to format your condition
 :::
 
-There are several different ways to format the condition that `useConditionalDisplay` uses to determine whether or not an element should be displayed.
+There are several different ways to format the condition that `show` uses to determine whether or not an element should be displayed.
 
 The simplest type of condition is a reactive reference to a Boolean:
 
@@ -78,14 +78,14 @@ const isShown = ref(true),
       // with a DOM element after the component is
       // mounted.
 
-useConditionalDisplay({
+show({
   target: myElement,
   condition: isShown,
 })
 ```
 :::
 
-`useConditionalDisplay` watches your reactive value for changes. When the value is `true`, your element is displayed, and when it's `false`, the element is hidden.
+`show` watches your reactive value for changes. When the value is `true`, your element is displayed, and when it's `false`, the element is hidden.
 
 But what about when the `target` is a reactive array of elements, rather than a single reactive element reference? How do we make each element is correctly shown or hidden?
 
@@ -94,7 +94,7 @@ If you only need to conditionally display your elements once, you can pass the *
 ::: ariaLabel="targetClosure object breakdown" classes="wide-3"
 | Property | Type | Description |
 | --- | --- | --- |
-| `target` | HTMLElement | The actual DOM element that `useConditionalDisplay` is currently conditionally displaying. |
+| `target` | HTMLElement | The actual DOM element that `show` is currently conditionally displaying. |
 | `index` | Number | The index (Number) of `target` in your reactive array of elements. |
 :::
 
@@ -104,7 +104,7 @@ But more commonly, you'll need to conditionally display an array of elements bas
 
 :::
 ```js
-useConditionalDisplay({
+show({
   target: myReactiveArrayOfElements,
   condition: { ... },
 })
@@ -117,7 +117,7 @@ Here's a breakdown of that object:
 | Property | Type | Required? | Default | Description |
 | --- | --- | --- | --- | --- |
 | `targetClosure` | Function | yes | none | A target closure, as described above. |
-| `watchSources` | Ref, Array | yes | none | <p>A single [watch source](https://v3.vuejs.org/guide/reactivity-computed-watchers.html#watching-a-single-source), or an array of watch sources. No need to pass the reactive array of elements—that data is already watched automatically.</p><p>Each time `useConditionalDisplay` detects a change in your watch sources (or the reactive array of elements), it will iterate through your array of elements, calling the `targetClosure` to conditionally display each element.</p> |
+| `watchSources` | Ref, Array | yes | none | <p>A single [watch source](https://v3.vuejs.org/guide/reactivity-computed-watchers.html#watching-a-single-source), or an array of watch sources. No need to pass the reactive array of elements—that data is already watched automatically.</p><p>Each time `show` detects a change in your watch sources (or the reactive array of elements), it will iterate through your array of elements, calling the `targetClosure` to conditionally display each element.</p> |
 :::
 
 Here's an example of how [`useTablist` ](/docs/features/functions/useTablist) uses this feature to conditionally display tab panels, displaying only the currently selected panel:
@@ -127,17 +127,18 @@ Here's an example of how [`useTablist` ](/docs/features/functions/useTablist) us
 export default function useTablist (...) {
   ...
 
-  useConditionalDisplay({
+  show({
     // Reactive array of tab panel elements
-    target: panels.els,
+    target: panels.targets,
     condition: {
-      // selectedPanel is a reactive reference to the index of the currently
-      // selected tab panel.
+      // selectedPanel is a reactive reference to the index
+      // of the currently selected tab panel.
       //
-      // Every panel should be hidden, except for the panel whose index
-      // is a match.
+      // Every panel should be hidden, except for the panel
+      // whose index is a match.
       //
-      // This targetClosure should run again each time selectedPanel changes.
+      // This targetClosure should run again each time
+      // selectedPanel changes.
       targetClosure: ({ index }) => index === selectedPanel.value,
       watchSources: selectedPanel,
     }
@@ -150,21 +151,20 @@ export default function useTablist (...) {
 :::
 
 
-
 :::
 ### How to format enter/leave transitions
 :::
 
-As outlined above, `useConditionalDisplay` accepts an optional `options` object as its second parameter, and that object's only property is `transition`.
+As outlined above, `show` accepts an optional `options` object as its second parameter, and that object's only property is `transition`.
 
 You can use this `transition` property to configure an enter/leave transition that will more smoothly show and hide your elements.
 
-The API for `useConditionalDisplay`'s `transition` property is inspired by the API of [Vue's `Transition` component](https://v3.vuejs.org/guide/transitions-enterleave.html):
+The API for `show`'s `transition` property is inspired by the API of [Vue's `Transition` component](https://v3.vuejs.org/guide/transitions-enterleave.html):
 
 
 :::
 ```js
-useConditionalDisplay(
+show(
   required,
   {
     transition: {
@@ -206,7 +206,7 @@ None of transition hooks should have a return value, and all of them are optiona
 
 :::
 ```js
-useConditionalDisplay(
+show(
   required,
   {
     transition: {
@@ -231,7 +231,7 @@ If you'd like to use your `enter` functions for `appear` transitions, you can ei
 
 :::
 ```js
-useConditionalDisplay(
+show(
   required,
   {
     transition: {
@@ -251,7 +251,7 @@ useConditionalDisplay(
 :::
 
 ::: type="warning"
-`useConditionalDisplay`'s `transition` feature only supports JavaScript animations right now.
+`show`'s `transition` feature only supports JavaScript animations right now.
 
 Support for CSS transitions and animations, like you see in the Vue's `Transition` component, will be explored in the future.
 :::
@@ -269,14 +269,14 @@ Here's a breakdown of exactly when each transition hooks gets called:
 | `appear.before` | Right before the element's `display` property is changed to show the element for the first time. |
 | `appear.active` | Right after the element's `display` property is changed to show the element for the first time. |
 | `appear.after` | Right after `appear.active`, assuming the transition was not canceled. |
-| `appear.cancel` | When reactive data changes cause `useConditionalDisplay` to hide the element after `appear.active` starts AND before the `done` function has been called inside `appear.active`. |
+| `appear.cancel` | When reactive data changes cause `show` to hide the element after `appear.active` starts AND before the `done` function has been called inside `appear.active`. |
 | `enter.before` | Right before the element's `display` property is changed to show the element. Does not run when this happens for the first time. |
 | `enter.active` | Right after the element's `display` property is changed to show the element. Does not run when this happens for the first time. |
 | `enter.after` | Right after `enter.active`, assuming the transition was not canceled. |
-| `enter.cancel` | When reactive data changes cause `useConditionalDisplay` to hide the element after `enter.active` starts AND before the `done` function has been called inside `enter.active`. |
-| `leave.before` | Right after reactive data changes cause `useConditionalDisplay` to hide the element. |
+| `enter.cancel` | When reactive data changes cause `show` to hide the element after `enter.active` starts AND before the `done` function has been called inside `enter.active`. |
+| `leave.before` | Right after reactive data changes cause `show` to hide the element. |
 | `leave.active` | Right after `leave.before`. |
 | `leave.after` | Right after the element's `display` property is changed to hide the element, which in turn happens right after the `done` function is called inside `leave.active`. |
-| `leave.cancel` | When reactive data changes cause `useConditionalDisplay` to show the element after `leave.active` starts AND before the `done` function has been called inside `leave.active`. |
+| `leave.cancel` | When reactive data changes cause `show` to show the element after `leave.active` starts AND before the `done` function has been called inside `leave.active`. |
 :::
 
