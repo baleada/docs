@@ -60,7 +60,7 @@
 
 <script>
 import { ref, computed, watch, onMounted, nextTick } from 'vue'
-import { bind } from '@baleada/vue-features/affordances'
+import { bind } from '@baleada/vue-features'
 import { useContext } from '@functions'
 
 export default {
@@ -73,7 +73,7 @@ export default {
 
     bind({
       target: example,
-      attributes: {
+      keys: {
         ariaLabel,
         class: classes,
         style_backgroundColor: backgroundColor,

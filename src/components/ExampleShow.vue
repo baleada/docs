@@ -28,7 +28,7 @@
 
 <script>
 import { ref, watch } from 'vue'
-import { show } from '@baleada/vue-features/affordances'
+import { show } from '@baleada/vue-features'
 import { useContext } from '@functions'
 import { useAnimateable } from '@baleada/vue-composition'
 import { verouEase } from '@baleada/animateable-utils'
