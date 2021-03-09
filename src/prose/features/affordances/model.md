@@ -8,7 +8,7 @@ order: 0
 `model` is a function that creates two-way data binding between a DOM element and your reactive reference.
 
 ::: type="info"
-`model` reimplements the `v-model` affordance in Vue templates.
+`model` reimplements the `v-model` affordance in Vue templates. Under the hood, it uses the [`bind`](/docs/features/affordances/bind) and [`on`](/docs/features/affordances/on) affordances.
 :::
 
 

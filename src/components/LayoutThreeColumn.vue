@@ -429,7 +429,12 @@ export default {
         // do nothing
         break
       }
-      darkThemeShortcut.value.listen(() => toggleDarkTheme())
+      darkThemeShortcut.value.listen(event => {
+        if (event.target.tagName !== 'INPUT'){
+          event.preventDefault()
+          toggleDarkTheme()
+        }
+      })
     })
 
     /* Minimalist theme */
@@ -475,7 +480,12 @@ export default {
         // do nothing
         break
       }
-      minimalistThemeShortcut.value.listen(() => toggleMinimalistTheme())
+      minimalistThemeShortcut.value.listen(event => {
+        if (event.target.tagName !== 'INPUT'){
+          event.preventDefault()
+          toggleMinimalistTheme()
+        }
+      })
     })
 
     /* Transition hooks for table of contents */

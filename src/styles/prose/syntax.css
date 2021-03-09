@@ -90,11 +90,11 @@
         .token.prolog,
         .token.doctype,
         .token.cdata {
-        	@apply text-gray-70;
+        	@apply text-gray-40;
         }
 
         .token.punctuation {
-        	@apply text-gray-50;
+        	@apply text-gray-30;
         }
 
         .token.property,
