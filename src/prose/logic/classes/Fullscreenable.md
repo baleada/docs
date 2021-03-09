@@ -21,7 +21,7 @@ order: 0
 ## Construct a `Fullscreenable` instance
 :::
 
-To construct a `Fullscreenable` instance (Object), use the `Fullscreenable` constructor, which takes two parameters:
+To construct a `Fullscreenable` instance (Object), use the `Fullscreenable` constructor, which accepts two parameters:
 
 ::: ariaLabel="Fullscreenable constructor parameters" classes="wide-4"
 | Parameter | Type | Required | Description |

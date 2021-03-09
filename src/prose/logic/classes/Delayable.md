@@ -34,7 +34,7 @@ So, just be aware: even though `Delayable`'s API is designed to replace the `set
 ## Construct a `Delayable` instance
 :::
 
-To construct a `Delayable` instance (Object), use the `Delayable` constructor, which takes two parameters:
+To construct a `Delayable` instance (Object), use the `Delayable` constructor, which accepts two parameters:
 
 ::: ariaLabel="Delayable constructor parameters" classes="wide-4"
 | Parameter | Type | Required | Description |

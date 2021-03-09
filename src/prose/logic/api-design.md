@@ -136,7 +136,6 @@ instance
 ```
 :::
 
-
 Class instances **always** store a version of their constructors' state in a public [getter](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/get) named after the state's type (e.g. `string`, `array`, `keyframes`, etc.).
 
 Class instances **always** have a public method you can use to set a new value for that public getter. The method follows a naming convention of `set<PropertyName>` (e.g. `setString`, `setArray`, `setKeyframes`, etc.).
@@ -193,7 +192,6 @@ instance.selection = { start: 0, end: instance.string.length } // Works just fin
 ```
 :::
 
-
 **All** class instances also have one or more non-editable public getters. These getter properties share the following important characteristics:
 1. They allow you to access state that is useful for building certain UI features, but is not part of the core functionality or benefit of the class.
 2. **All** updates to the getter properties are considered side effects of other public methods.
@@ -225,12 +223,22 @@ instance.stop() // Removes all listeners, disconnects all observers, etc.
 :::
 
 ::: type="info"
-If you use [Baleada Composition](/docs/composition) to bring Balaeda Logic into a React, Vue, or Svelte component, all side effects will be cleaned up for you automatically at the end of the component's lifecycle.
+If you use [Baleada Composition](/docs/composition) to bring Baleada Logic into a React, Vue, or Svelte component, all side effects will be cleaned up for you automatically at the end of the component's lifecycle.
 
 So, when you're using Baleada Composition, you never need to call the `stop` method unless you want to clean up side effects somewhere in the middle of a component's lifecycle.
 :::
 
+One final note: every Baleada Logic class has private state as well. Private state is stored under properties prefixed with a single underscore:
 
+:::
+```js
+const instance = new Animateable(...)
+
+instance._controlPoints // Some private state
+```
+:::
+
+Reading and writing private state is technically possible, but **never** recommended. The only reason this state is public (instead of hidden behind [private field declarations](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Classes#Private_field_declarations)) is to make it easier for reactivity systems to detect classes' internal updates, and react accordingly.
 
 
 :::

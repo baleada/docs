@@ -34,7 +34,7 @@ Baleada's docs use `Listenable` to:
 ## Construct a `Listenable` instance
 :::
 
-To construct a `Listenable` instance (Object), use the `Listenable` constructor, which takes two parameters:
+To construct a `Listenable` instance (Object), use the `Listenable` constructor, which accepts two parameters:
 
 ::: ariaLabel="Listenable constructor parameters" classes="wide-4"
 | Parameter | Type | Required | Description |

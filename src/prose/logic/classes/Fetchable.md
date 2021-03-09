@@ -21,7 +21,7 @@ order: 0
 ## Construct a `Fetchable` instance
 :::
 
-To construct a `Fetchable` instance (Object), use the `Fetchable` constructor, which takes two parameters:
+To construct a `Fetchable` instance (Object), use the `Fetchable` constructor, which accepts two parameters:
 
 ::: ariaLabel="Fetchable constructor parameters" classes="wide-4"
 | Parameter | Type | Required | Description |

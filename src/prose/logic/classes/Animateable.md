@@ -33,7 +33,7 @@ Need some animation theory before you put it into practice? Check out [Motion & 
 ## Construct an `Animateable` instance
 :::
 
-To construct an `Animateable` instance (Object), use the `Animateable` constructor, which takes two parameters:
+To construct an `Animateable` instance (Object), use the `Animateable` constructor, which accepts two parameters:
 
 ::: ariaLabel="Animateable constructor parameters" classes="wide-4"
 | Parameter | Type | Required | Description |

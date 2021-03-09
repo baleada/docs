@@ -20,7 +20,7 @@ order: 0
 ## Construct a `Navigateable` instance
 :::
 
-To construct a `Navigateable` instance (Object), use the `Navigateable` constructor, which takes two parameters:
+To construct a `Navigateable` instance (Object), use the `Navigateable` constructor, which accepts two parameters:
 
 ::: ariaLabel="Delayable constructor parameters" classes="wide-4"
 | Parameter | Type | Required | Description |
@@ -72,6 +72,7 @@ The constructed `Navigateable` instance is an Object, and state and methods can 
 | --- | --- | --- | --- | --- |
 | `array` | Getter/Setter | See return value | N/A | <p>A shallow copy (Array) of the array passed to the `Navigateable` constructor.</p><p>If you assign a value directly to `array`, a setter will pass the new value to `setArray`.</p> |
 | `location` | Getter/Setter | See return value | N/A | <p>The index-based location (Number) stored by the `Navigateable` instance. Defaults to the `initialLocation` option passed to the constructor.</p><p>If you assign a value directly to `location`, a setter will pass the new value to `setLocation`.</p> |
+| `status` | Getter | See return value | N/A | The status (String) of the `Navigateable` instance. `status` is `ready` after the instance is constructed, and changes to `navigated` after the first navigation of any kind. |
 | `item` | Getter | See return value | N/A | The item (can be any type) located at `location` in `array` |
 | `setArray(array)` | Function | Sets the `Navigateable` instance's `array` | The new `array` (Array) | The `Navigateable` instance |
 | `setLocation(location)` | Function | An alias for the `navigate` method | The new `location` (Number) | The `Navigateable` instance |

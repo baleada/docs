@@ -27,7 +27,7 @@ If Baleada Recognizeable Handlers doesn't suit your needs, feel free to continue
 ## Construct a `Recognizeable` instance
 :::
 
-To construct a `Recognizeable` instance (Object), use the `Recognizeable` constructor, which takes two parameters:
+To construct a `Recognizeable` instance (Object), use the `Recognizeable` constructor, which accepts two parameters:
 
 ::: ariaLabel="Recognizeable constructor parameters" classes="wide-4"
 | Parameter | Type | Required | Description |

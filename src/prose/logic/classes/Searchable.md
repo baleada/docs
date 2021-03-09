@@ -22,7 +22,7 @@ order: 0
 ## Construct a `Searchable` instance
 :::
 
-To construct a `Searchable` instance (Object), use the `Searchable` constructor, which takes two parameters:
+To construct a `Searchable` instance (Object), use the `Searchable` constructor, which accepts two parameters:
 
 ::: ariaLabel="Searchable constructor parameters" classes="wide-4"
 | Parameter | Type | Required | Description |

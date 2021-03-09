@@ -27,7 +27,7 @@ Baleada's docs use `Storeable` to remember your dark theme and minimalist theme 
 ## Construct a `Storeable` instance
 :::
 
-To construct a `Storeable` instance (Object), use the `Storeable` constructor, which takes two parameters:
+To construct a `Storeable` instance (Object), use the `Storeable` constructor, which accepts two parameters:
 
 ::: ariaLabel="Storeable constructor parameters" classes="wide-4"
 | Parameter | Type | Required | Description |

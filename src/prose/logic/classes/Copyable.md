@@ -20,7 +20,7 @@ Documentation for `Copyable` is still in progress.
 ## Construct a `Copyable` instance
 :::
 
-To construct a `Copyable` instance (Object), use the `Copyable` constructor, which takes two parameters:
+To construct a `Copyable` instance (Object), use the `Copyable` constructor, which accepts two parameters:
 
 ::: ariaLabel="Copyable constructor parameters" classes="wide-4"
 | Parameter | Type | Required | Description |

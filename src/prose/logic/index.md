@@ -46,7 +46,7 @@ All classes and factories are named exports in Baleada Logic's entry file, so yo
 import { Delayable } from '@baleada/logic'
 
 // Import a factory
-import { markupable } from '@baleada/logic'
+import { string } from '@baleada/logic'
 ```
 :::
 

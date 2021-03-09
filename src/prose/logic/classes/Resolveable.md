@@ -19,7 +19,7 @@ order: 0
 ## Construct a `Resolveable` instance
 :::
 
-To construct a `Resolveable` instance (Object), use the `Resolveable` constructor, which takes two parameters:
+To construct a `Resolveable` instance (Object), use the `Resolveable` constructor, which accepts two parameters:
 
 ::: ariaLabel="Resolveable constructor parameters" classes="wide-4"
 | Parameter | Type | Required | Description |
