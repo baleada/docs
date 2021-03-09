@@ -6,9 +6,9 @@ order: 0
 ---
 
 `Completeable` is a class that enriches a string, allowing it to:
-  - Store a current index-based location
+  - Store a current text selection
   - Extract a segment of itself
-  - Replace the segment or the full string with a more complete string
+  - Replace the segment or the full string with a completed string, and automatically update the text selection afterward
 
 `Completeable` has no dependencies.
 
