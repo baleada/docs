@@ -19,7 +19,7 @@ order: 0
 
 To construct a `Completeable` instance (Object), use the `Completeable` constructor, which accepts two parameters:
 
-:::
+::: ariaLabel="Completeable constructor parameters" classes="wide-4"
 | Parameter | Type | Required | Description |
 | --- | --- | --- | --- |
 | `string` | String | yes | Passes the string that will be made completable. |
@@ -54,7 +54,7 @@ const instance = new Completeable(string[, options])
 The constructed `Completeable` instance is an Object, and state and methods can be accessed via its properties:
 
 
-:::
+::: ariaLabel="Completeable state and methods" classes="wide-3 wide-4 wide-5"
 | Property | Type | Description | Parameters | Return value |
 | --- | --- | --- | --- | --- |
 | `string` | Getter/Setter | See return value | N/A | <p>A shallow copy (Array) of the string passed to the `Completeable` constructor.</p><p>If you assign a value directly to `string`, a setter will pass the new value to `setString`.</p> |

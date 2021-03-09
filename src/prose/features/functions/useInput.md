@@ -41,7 +41,7 @@ Here's a breakdown of the `options` object:
 | Property | Type | Required? | Default | Description |
 | --- | --- | --- | --- | --- |
 | `initialValue` | String | no | `''` | The initial value that should be bound to your HTML input |
-| `completeable` | Object | no | `{}` | [Constructor options](/docs/logic/classes/Completeable#Completeable-constructor-options) for the `Completeable` instance created by `useInput` |
+| `completeable` | Object | no | none | [Constructor options](/docs/logic/classes/Completeable#Completeable-constructor-options) for the `Completeable` instance created by `useInput` |
 :::
 
 
@@ -88,7 +88,7 @@ export default {
 
 As mentioned, `useInput` implements reactive two-way binding for both your input's value and its selected text. It stores the value and the selection metadata in `input.completeable`, a fully reactive `Completeable` instance.
 
-More specifically here's what this means for you:
+With this tooling in place, here are the useful side effects that certain actions will have:
 
 ::: ariaLabel="actions and effects in useInput" class="wide-1 wide-2"
 | Action | Side effect |
