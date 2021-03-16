@@ -15,19 +15,6 @@ Check out the [`Listenable`](/docs/logic/classes/Listenable) docs for a full lis
 
 
 :::
-## Example
-:::
-
-<!-- [Source code](https://github.com/baleada/docs/blob/main/src/components/ExampleOn.vue) -->
-
-<!-- <ExampleOn class="with-mt" /> -->
-
-::: type="danger"
-WIP
-:::
-
-
-:::
 ## Usage
 :::
 

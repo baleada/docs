@@ -9,7 +9,7 @@ order: 3
 ## Language
 :::
 
-All UI logic, composition functions, and configuration utilities in the Baleada toolkit are written in modern JavaScript.
+All UI logic, composition functions, and configuration utilities in the Baleada toolkit are written in modern JavaScript. Typescript types are steadily being added via [JSDoc annotations](https://www.typescriptlang.org/docs/handbook/jsdoc-supported-types.html#typedef-callback-and-param).
 
 All components are written as Vue 3 Single File Components, with modern JavaScript in the components' [`setup` functions](https://v3.vuejs.org/guide/composition-api-setup.html#setup).
 

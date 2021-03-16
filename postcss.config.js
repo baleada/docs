@@ -3,7 +3,7 @@ const { configureable } = require('@baleada/prepare')
 module.exports = configureable('postcss')
   .import()
   .nested()
-  .tailwindcss()
+  .plugin(require('@tailwindcss/jit'))
   .autoprefixer()
   .configure()
 

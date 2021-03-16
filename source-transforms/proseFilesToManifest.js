@@ -3,7 +3,7 @@ import { resolve, parse } from 'path'
 import  matter from 'gray-matter'
 import gitlog from 'gitlog'
 import { toDirIds } from '@baleada/source-transform-utils'
-import { string } from '@baleada/logic'
+import { Pipeable, createClip } from '@baleada/logic'
 
 const basePath = resolve('')
 
@@ -19,7 +19,10 @@ export default function proseFilesToManifest () {
           },
           ...dirIds.map(
             id => ({
-              level: string(id).clip(basePath).clip('/src/prose/').split('/').length,
+              level: new Pipeable(id).pipe(
+                createClip(basePath),
+                createClip('/src/prose/')
+              ).split('/').length,
               name: parse(id).name.replace(/-/g, ' '),
               articles: toManifested(id),
             })
@@ -41,7 +44,7 @@ function toManifested (id) {
             const { data: { title, tags: rawTags, order } } = matter(readFileSync(`${id}/${file}`, 'utf8')),
             tags = rawTags ? rawTags.split(',').map(tag => tag.trim()) : [],
             fileName = parse(`${id}/${file}`).name,
-            href = `/docs${string(id).clip(basePath).clip('/src/prose')}${string(`/${fileName}`).clip(/^\/index$/)}`,
+            href = `/docs${new Pipeable(id).pipe(createClip(basePath), createClip('/src/prose'))}${new Pipeable(`/${fileName}`).pipe(createClip(/^\/index$/))}`,
             authorDate = (toStats(`${id}/${file}`)).authorDate
 
             return {
@@ -59,7 +62,7 @@ function toManifested (id) {
 
 function toStats (id) {
   const basePath = resolve(''),
-        relativePath = `${string(id).clip(basePath).clip(/^\//)}`,
+        relativePath = `${new Pipeable(id).pipe(createClip(basePath), createClip(/^\//))}`,
         { 0: stats } = gitlog({ repo: basePath, file: relativePath, number: 1 })
   
   return stats
