@@ -10,8 +10,6 @@ order: 0
 - Store a status (`ready`, `fullscreened`, `exited`, or `errored`)
 - Store any error that gets thrown while entering or exiting full screen
 
-`Fullscreenable` is written in vanilla JS with no dependencies.
-
 ::: type="info"
 `Fullscreenable` adds very little extra functionality to the [Fullscreen API](https://developer.mozilla.org/en-US/docs/Web/API/Fullscreen_API). It's intended to be a thin wrapper, simply ensuring that the Fullscreen API conforms to all of Baleada Logic's API design specs and naming conventions.
 :::
