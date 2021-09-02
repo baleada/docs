@@ -9,7 +9,13 @@ import md from './util/md.js'
 const transform = ({ source, id }) => {
   const { content: prose, data: frontMatter } = matter(source),
         log = toLog(id),
-        { 0: { files: { 0: relativePath } } } = log,
+        { 0: { files: { 0: relativePath } } } = (() => {
+          if (log.length === 0) {
+            console.warn(`\n\nNo git log found for ${id}\n\n`)
+          }
+
+          return log
+        })(),
         withBaleadaDocsCustomizations = `\
 :::\n\
 # ${frontMatter.title}\n\
