@@ -2,12 +2,12 @@
 title: Pipes
 tags: UI Logic
 publish: true
-order: 0
+order: 3
 ---
 
 In Baleada Logic, every **pipe** is a [higher order function](https://medium.com/javascript-scene/higher-order-functions-composing-software-5365cf2cbe99), i.e. a function that returns a function. Pipes are designed to be used with the [pipeline operator](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Pipeline_operator).
 
-Unlike Baleada Logic's classes, which are tailor-made for pretty specific browser-based UI features, pipes are more like utility functions, and are more generally useful across many different environments, regardless of build tooling or other dependencies in your project.
+Unlike Baleada Logic's [classes](/docs/logic/classes-overview), which are tailor-made for pretty specific browser-based UI features, pipes are more like utility functions, and are more generally useful across many different environments, regardless of build tooling or other dependencies in your project.
 
 Here's an example of how you would use pipes with the pipeline operator:
 

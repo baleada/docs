@@ -1,9 +1,13 @@
 ---
 title: mousedrag
-tags: UI Logic, Vue, React, Svelte
+tags: UI Logic
 publish: true
-order: 0
+order: 1
 ---
+
+
+<!-- | `toPolarCoordinates({ xA, yA, xB, yB })` | Function | <p>A utility function that converts a pair of cartesian coordinates to polar coordinates.</p><p>Super useful when calculating the angle and distance of a moving cursor or touch point!</p> | <p>An object with four properties: `xA`, `yA`, `xB`, and `yB`.</p><p>`xA` and `yA` are the cartesian coordinates (Numbers) of the first point, and `xB` and `yB` are the cartesian coordinates (Numbers) of the second point.</p> | <p>An object with two properties: `distance` and `angle`.</p><p>`distance` is the straight-line distance (Number) from point A to point B.</p><p>`angle` is an object with two properties: `radians` and `degrees`. Each property contains the angle (Number) in radians or degrees of the straight line between point A and point B.</p> |
+ -->
 
 `mousedrag` is defined as a single click that:
 - starts at a given point
@@ -19,7 +23,7 @@ The `mousedrag` function returns an object that contains event handlers for the 
 Under the hood, `mousedrag` also uses a `mousemove` event listener to gather data. However, listening to every `mousemove` event on a page can cause performance issues, so `mousedrag` adds its `mousemove` listener on the fly after a succesful `mousedown`, and removes it on `mouseleave` and `mouseup`.
 
 ::: type="info"
-In Baleada Recognizeable Handlers, `mousedrag` is the mouse event equivalent of [`touchdrag`](/docs/recognizeable-handlers/functions/touchdrag).
+In Baleada Recognizeable Handlers, `mousedrag` is the mouse event equivalent of [`touchdrag`](/docs/recognizeable-effects/touchdrag).
 :::
 
 ::: type="warning"
@@ -44,7 +48,7 @@ To create the `mousedrag` handlers, import and call the `mousedrag` function:
 
 :::
 ```js
-import { mousedrag } from '@baleada/recognizeable-handlers'
+import { mousedrag } from '@baleada/recognizeable-effects'
 
 const mousedragHandlers = mousedrag(/* options */)
 ```

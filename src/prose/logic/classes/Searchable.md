@@ -38,7 +38,7 @@ const instance = new Searchable(candidates[, options])
 ```
 :::
 
-Or, if you're using [Baleada Composition](/docs/compositon):
+Or, if you're using [Baleada Composition](/docs/composition):
 
 :::
 ```js
@@ -102,6 +102,21 @@ The `results` returned from the `search` method are stored in an array of object
 :::
 
 
+:::
+## Using with TypeScript
+:::
+
+The `Searchable` constructor accepts one generic type that you can use to enforce a type for the items in `candidates`. By default, TypeScript will infer the item type from the initial candidates you pass to the constructor, but you can specify the type manually if needed.
+
+:::
+```ts
+const withInferredTypes = new Searchable([{ id: 123 }])
+withInferredTypes.candidates = [{ id: 'abc' }] // Type error
+
+const withManualTypes = new Searchable<{ id: string | number }>([{ id: 123 }])
+withManualTypes.candidates = [{ id: 'abc' }] // No type error
+```
+:::
 
 
 :::

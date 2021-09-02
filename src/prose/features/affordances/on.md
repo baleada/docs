@@ -137,7 +137,7 @@ export default function useTablist (...) {
     events: {
       mouseup: {
         targetClosure: ({ index }) => () => {
-          // Inside useTablist, this navigateable instance
+          // Inside useTablist, this Navigateable instance
           // is used to control which tab is selected.
           navigateable.value.navigate(index)
         }
@@ -156,6 +156,8 @@ When Vue detects an update in your reactive array of DOM elements (for example, 
 
 This not only helps avoid memory leaks, but also ensures that the values of `target`, `index`, and `off` are never stale when accessed by your listeners.
 :::
+
+<!-- TODO: Explain options for target closure object -->
 
 
 

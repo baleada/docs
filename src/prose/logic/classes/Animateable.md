@@ -12,21 +12,18 @@ order: 0
 - Play, pause, or reverse the animation
 - Seek to a specific frame
 - Restart the animation while it's playing or reversing
-- Store the status of the animation (e.g. `playing'`, `reversing'`, `paused'`, etc.)
+- Store the status of the animation (e.g. `playing`, `reversing`, `paused`, etc.)
 - Store the elapsed time, remaining time, and time progress of the animation
 
 In other words, `Animateable` implements all the main features of [CSS `@keyframes` animations](https://developer.mozilla.org/en-US/docs/Web/CSS/@keyframes) in JavaScript, then adds lots of methods to help you control the animation itself.
 
+`Animateable` is also very similar to the [Web Animations API](https://developer.mozilla.org/en-US/docs/Web/API/Animation). The main difference is that `Animateable` focuses on exposing interpolated values to you at 60 frames per second, while the Web Animation API focuses on updating element styles, and does not expose interpolated values.
+
 `Animateable` depends on:
 - [`requestAnimationFrame`](https://developer.mozilla.org/en-US/docs/Web/API/window/requestAnimationFrame) and [`cancelAnimationFrame`](https://developer.mozilla.org/en-US/docs/Web/API/window/cancelAnimationFrame)
 - [BezierEasing](https://github.com/gre/bezier-easing)
-- [The chroma.js `mix` method](https://vis4.net/chromajs/#chroma-mix) (imported from the light version of chroma.js, so it has a lower impact on bundle size.)
+- [`mix-css-color`](https://github.com/noeldelgado/mix-css-color/)
 - [`Listenable`](/docs/logic/classes/Listenable)
-
-
-::: type="info"
-Need some animation theory before you put it into practice? Check out [Motion & Playfulness](https://vimeo.com/282452432), a talk by [Benjamin De Cock](https://twitter.com/bdc)
-:::
 
 
 :::
@@ -51,7 +48,7 @@ const instance = new Animateable(keyframes[, options])
 ```
 :::
 
-Or, if you're using [Baleada Composition](/docs/compositon):
+Or, if you're using [Baleada Composition](/docs/composition):
 
 :::
 ```js
@@ -72,8 +69,8 @@ const reactiveInstance = useAnimateable(keyframes[, options])
 | Property | Type | Required | Description |
 | --- | --- | --- | --- |
 | `progress` | Number | yes | <p>A number between `0` and `1` indicating the time through the animation sequence at which the keyframe occurs.</p><p>The `progress` property is exactly like percentage progress in CSS `@keyframe` animations, except that it's between `0` and `1` instead of `0` and `100`.</p> |
-| `data` | Object | yes | <p>Specifies properties and values for the keyframe, which `Animateable` will reference when computing frames between keyframes.</p><p>Each property can be any valid Object property. Properties are **not** required to be valid CSS properties.</p><p>Values can be Numbers, Strings, or Arrays. See the [How data types are animated](#How-data-types-are-animated) section for more guidance on how to format your values so that they get animated properly.</p> |
-| `timing` | Array | no | <p>Customizes the timing function used to compute frame data as progress is made toward the next keyframe.</p><p>See the [How to format timing](#how-to-format-timing) section for more guidance on formatting the `timing` array.</p><p>Just like the [`animation-timing-function` CSS property](https://developer.mozilla.org/en-US/docs/Web/CSS/animation-timing-function), any `timing` specified on the last keyframe will have no effect.</p><p>If `timing` is not specified on the keyframe itself, `Animateable` will use the default timing function, which can be customized using the `timing` option in the constructor. See the [`Animateable` constructor options](#Animateable-constructor-options) section for more info about the global timing function.</p> |
+| `properties` | Object | yes | <p>Specifies properties and values for the keyframe, which `Animateable` will reference when computing frames between keyframes.</p><p>Each property can be any valid Object property. Properties are **not** required to be valid CSS properties.</p><p>Values can be Numbers, Strings, or Arrays. See the [How property types are animated](#How-property-types-are-animated) section for more guidance on how to format your values so that they get animated properly.</p> |
+| `timing` | Array | no | <p>Customizes the timing function used to interpolate values as progress is made toward the next keyframe.</p><p>See the [How to format timing](#how-to-format-timing) section for more guidance on formatting the `timing` array.</p><p>Just like the [`animation-timing-function` CSS property](https://developer.mozilla.org/en-US/docs/Web/CSS/animation-timing-function), any `timing` specified on the last keyframe will have no effect.</p><p>If `timing` is not specified on the keyframe itself, `Animateable` will use the default timing function, which can be customized using the `timing` option in the constructor. See the [`Animateable` constructor options](#Animateable-constructor-options) section for more info about the global timing function.</p> |
 :::
 
 ::: type="info"
@@ -86,26 +83,26 @@ Internally, `Animateable` sorts and analyze all keyframes to extract individual 
 
 
 :::
-#### How data types are animated
+#### How property types are animated
 :::
 
-Values inside the `data` object of each keyframe can be Numbers, Strings, or Arrays. See the table below for more guidance on how each data type is handled when `Animateable` computes animation frames.
+Values inside the `properties` object of each keyframe can be Numbers, Strings, or Arrays. See the table below for more guidance on how each property type is handled when `Animateable` creates new animation frames.
 
-::: ariaLabel="How data values are animated"
+::: ariaLabel="How property values are animated"
 | When the value is a... | `Animateable`... |
 | --- | --- |
-| Number | Computes a number between the numbers of two consecutive keyframes, proportional to the time progress of the animation. |
-| String | <p>Strings are assumed to be colors in [hex](https://en.wikipedia.org/wiki/Web_colors#Hex_triplet), [hsl](https://en.wikipedia.org/wiki/HSL_and_HSV), [rgb](https://en.wikipedia.org/wiki/RGB_color_model), or [lab](https://en.wikipedia.org/wiki/CIELAB_color_space) format (you can use different formats across keyframes, even if it's the same property on your `data` object).</p><p>`Animateable` uses [the chroma.js `mix` method](https://vis4.net/chromajs/#chroma-mix) with `lrgb` color interpolation to compute a color between the colors of two consecutive keyframes. Just like with numbers, the computed color is proportional to the time progress of the animation.</p> |
-| Array | <p>Determines the lengths of the arrays in two consecutive keyframes, then computes a new length between those two lengths (exactly like it would compute any other number). Finally, `Animateable` [slices](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/slice) the array, starting from the `0` index and stopping at the computed index.</p><p>Just like with numbers and colors, the new length of the array is proportional to the time progress of the animation.</p> |
+| Number | Interpolates a number between the numbers of two consecutive keyframes |
+| String | Assumes the String is a color in [hex](https://en.wikipedia.org/wiki/Web_colors#Hex_triplet), [hsl](https://en.wikipedia.org/wiki/HSL_and_HSV), [rgb](https://en.wikipedia.org/wiki/RGB_color_model), or [lab](https://en.wikipedia.org/wiki/CIELAB_color_space) format (you can use different formats across keyframes, even if it's the same property on your `properties` object). Then, `Animateable` interpolates a color between the colors of two consecutive keyframes. |
+| Array | Determines the lengths of the arrays in two consecutive keyframes, then interpolates a new length between those two lengths (exactly like it would interpolate any other number). Finally, `Animateable` slices the array, starting from the `0` index and stopping at the interpolated index. |
 :::
 
-To ensure that all of these computations are proportional to the time progress of the animation, `Animateable` uses [BezierEasing](https://github.com/gre/bezier-easing) to compute the actual animation progress for any given time progress.
+When factoring the animation's time progress and timing function into these interpolations, `Animateable` uses [BezierEasing](https://github.com/gre/bezier-easing).
 
 
 ::: type="warning"
-Each individual property in your keyframes' `data` objects **must** contain the same data type across all keyframes.
+Each individual property in your keyframes' `properties` objects **must** contain the same type across all keyframes.
 
-It's not possible, for example, to set `myProperty` to a String in the first keyframe and a Number in the next keyframe. All values for `myProperty` must be the same data type.
+It's not possible, for example, to set `myProperty` to a String in the first keyframe and a Number in the next keyframe. All values for `myProperty` must be the same type.
 :::
 
 
@@ -114,9 +111,9 @@ It's not possible, for example, to set `myProperty` to a String in the first key
 
 Array animations are designed to be an easy way to achieve the "typewriter" effect in your animation.
 
-Simply pass an empty array to the first keyframe (usually at progress `0`), and in subsequent keyframes, pass a string [split](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/split) by empty quotes.
+Pass an empty array to the first keyframe (usually at progress `0`), and in subsequent keyframes, pass a string [split](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/split) by empty quotes.
 
-`Animateable` will progressively lengthen your array throughout the animation, adding more characters onto the end of it. In each frame of the animation, you can [join](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/join) the array to rebuild the string, and set it as the `textContent` of a DOM element, and it will look like your string is being typed out across the screen.
+`Animateable` will progressively lengthen your array throughout the animation, adding more characters onto the end of it. In each frame of the animation, you can [join](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/join) the array to rebuild the string, and set it as the `textContent` of a DOM element to create the appearance that your string is being typed out across the screen.
 
 Add custom timing functions as you see fit to make the "typewriter" feel more natural. 
 :::
@@ -239,11 +236,11 @@ The constructed `Animateable` instance is an Object, and state and methods can b
 | `progress` | Getter | See return value | N/A | <p>An Object with two keys: `time` and `animation`. Both keys' values are numbers between `0` and `1` indicating the time progress and animation progress of the animation.</p><p>In other words, `progress.time` and `progress.animation` are the x and y coordinates of the current point on the global timing function's easing curve.</p> |
 | `setKeyframes(keyframes)` | Function | Sets the `Animateable` instance's `keyframes` | The new `keyframes` (Array) | The `Animateable` instance |
 | `setPlaybackRate(playbackRate)` | Function | Sets the playback rate for the animation. | The playback rate: a Number greater than `0`. | The `Animateable` instance |
-| `play(callback)` | Function | Starts the animation, progressing forward. Can't be called until the DOM is available. | <p>`play` accepts a callback function to handle individual frames. Your callback will be called 60 times per second and will receive the current frame as its only argument.</p><p>See the [How to handle frames](#how-to-handle-frames) section for more guidance.</p> | The `Animateable` instance. |
-| `reverse(callback)` | Function | Starts the animation, progressing backward. Can't be called until the DOM is available. | <p>`reverse` accepts a callback function to handle individual frames. Your callback will be called 60 times per second and will receive the current frame as its only argument.</p><p>See the [How to handle frames](#how-to-handle-frames) section for more guidance.</p> | The `Animateable` instance. |
+| `play(effect)` | Function | Starts the animation, progressing forward. Can't be called until the DOM is available. | <p>`play` accepts an `effect` function to handle individual frames. Your `effect` will be called 60 times per second and will receive the current frame as its only argument.</p><p>See the [How to handle frames](#how-to-handle-frames) section for more guidance.</p> | The `Animateable` instance. |
+| `reverse(effect)` | Function | Starts the animation, progressing backward. Can't be called until the DOM is available. | <p>`reverse` accepts an `effect` function to handle individual frames. Your `effect` will be called 60 times per second and will receive the current frame as its only argument.</p><p>See the [How to handle frames](#how-to-handle-frames) section for more guidance.</p> | The `Animateable` instance. |
 | `pause()` | Function | Pauses the animation. Can't be called until the DOM is available. | None | The `Animateable` instance. |
-| `seek(progress, callback)` | Function | <p>Seeks to a specific time progress in the animation. If `status` is `playing` or `reversing'`, the animation will continue progressing in the same direction after seeking to the time progress.</p><p>If your animation is supposed to repeat for more than one iteration, you can pass a time progress that is greater than `1` to seek to a specific iteration. For example, to seek halfway through the third iteration, you can call `seek(2.5)`.</p><p>Can't be called until the DOM is available.</p> | <p>`seek` Accepts two parameters: a time progress to seek to, and a callback function to handle the frame(s) that will be computed.</p><p>The `progress` parameter is always required, but the `callback` is only required if the animation is not currently playing or reversing.</p> | The `Animateable` instance. |
-| `restart()` | Function | <p>Restarts the animation, using the same `callback` that was previously passed to `play` or `reverse` to handle frames.</p><p>`restart` only has an effect if the animation is currently playing or reversing.</p><p>Can't be called until the DOM is available.</p> | Callback function. | The `Animateable` instance. |
+| `seek(progress, options)` | Function | <p>Seeks to a specific time progress in the animation. If `status` is `playing` or `reversing`, the animation will continue progressing in the same direction after seeking to the time progress.</p><p>If your animation is supposed to repeat for more than one iteration, you can pass a time progress that is greater than `1` to seek to a specific iteration. For example, to seek halfway through the third iteration, you can call `seek(2.5)`.</p><p>Can't be called until the DOM is available.</p> | <p>`seek` Accepts two parameters: a time progress to seek to, and an `options` object with an `effect` property, passing a function to handle the frame(s) that will be computed.</p><p>The `progress` parameter is always required, but the `options.effect` is only required if the animation is not currently playing or reversing.</p> | The `Animateable` instance. |
+| `restart()` | Function | <p>Restarts the animation, using the same `effect` that was previously passed to `play` or `reverse` to handle frames.</p><p>`restart` does nothing when the animation is not currently playing or reversing.</p><p>Can't be called until the DOM is available.</p> | None | The `Animateable` instance. |
 | `stop()` | Function | Cancels the animation, stopping it in its tracks and cleaning up side effects. Can't be called until the DOM is available. | None | The `Animateable` instance. |
 :::
 
@@ -254,15 +251,15 @@ The constructed `Animateable` instance is an Object, and state and methods can b
 
 Each `Animateable` instance maintains a `status` property that allows it to take appropriate action based on the methods you call, in what order you call them, and when you call them.
 
-At any given time, `status` will always be one (and only one) of the following values:
-- `ready'`
-- `playing'`
-- `played'`
-- `reversing'`
-- `reversed'`
-- `paused'`
-- `sought'`
-- `stopped'`
+At any given time, `status` will always be one of the following values:
+- `ready`
+- `playing`
+- `played`
+- `reversing`
+- `reversed`
+- `paused`
+- `sought`
+- `stopped`
 
 There's a lot of complexity involved in the way each `status` is achieved (it's affected by which methods you call, in what order you call them, and exactly when you call them), but you likely will never need to worry about that. `status` is available to you if you feel you need it, but for all intended use cases, it's an implementation detail, and you can ignore it.
 
@@ -288,7 +285,7 @@ Or, just remember:
 - You can `setKeyframes`, `seek`, and `stop` at any time. Just remember that `setKeyframes` will always `stop` the animation, and if you call `seek` while an animation is progressing, the animation will continue progressing after it seeks to the time progress you specified.
 
 ::: type="info"
-If you call a method when it's not supposed to be called, it won't cause any errors, it will simply have no effect on the animation.
+If you call a method when it's not supposed to be called, it won't cause any errors, it will simply do nothing.
 :::
 
 ::: type="info"
@@ -302,96 +299,94 @@ All methods always return the `Animateable` instance (i.e. `this`), regardless o
 
 Finally, the good stuff!
 
-The first step to handling frames is to pass a callback function to the `play`, `reverse` or `seek` methods when you call them. `Animateable` will call that function at a rate of 60 frames per second, passing the current frame as the first argument.
+The first step to handling frames is to pass an `effect` function to the `play`, `reverse` or `seek` methods when you call them. `Animateable` will call that function at a rate of 60 frames per second, passing the current frame as the first argument.
 
-Each frame is an Object with a `data` property and a `progress` property. The value of each of those properties is also an Object, and they keys in both objects are all the properties from your `keyframes`.
+Each frame is an Object with a `properties` property and a `timestamp` property. 
 
-In the `frame.data` object, the value of each property is the actual computed value for the property at that point in the animation.
+The `timestamp` property indicates the number of milliseconds since [time origin](https://developer.mozilla.org/en-US/docs/Web/API/DOMHighResTimeStamp#the_time_origin). The value of `properties` is an Object, whose keys include all of the properties from the `properties` objects in your `keyframes`.
 
-:::
-```js
-// frame.data
-{
-  data: {
- myProperty: 10,
-  },
-  progress: {...},
-}
-```
-:::
-
-In the `frame.progress` object, the value of each property is an object with a `time` property and an `animation` property, which each contain a number between `0` and `1` representing the time progress and animation progress between the previous and next keyframes for that property.
+The value of each those keys is an object with two properties: `progress` and `interpolated`. The `interpolated` property holds the interpolated value for that specific frame. The `progress` property holds an object with `time` and `animation` properties, indicating the time progress and animation progress between the previous and next keyframes for that property.
 
 :::
 ```js
-// frame.progress
+// Example frame
 {
-  data: {...},
-  progress: {
-    myProperty: {
-      time: 0.25,
-      animation: 0.5,
+  properties: {
+    scale: {
+      progress: { time: 0.5, animation: 0.5 },
+      interpolated: 10,
+    },
+    color: {
+      progress: { time: 0.25, animation: 0.5 },
+      interpolated: '#695ad7',
     },
   },
+  timestamp: 12345,
 }
 ```
 :::
 
-For a simple example, imagine you passed these keyframes:
+For a simpler example, imagine you passed these keyframes:
 
 :::
 ```js
 [
   {
     progress: 0,
-    data: { myProperty: 0 }
+    properties: { myProperty: 0 }
   },
   {
     progress: 1,
-    data: { myProperty: 100 }
+    properties: { myProperty: 100 }
   }
 ]
 ```
 :::
 
-After you call the `play` method, the first frame for your callback function would look like this:
+After you call the `play` method, the first frame for your `effect` function would look like this:
 
 :::
 ```js
 {
-  data: { myProperty: 0 }
+  properties: {
+    myProperty: {
+      interpolated: 0,
+      progress: { time: 0, animation: 0 }
+    }
+  },
+  timestamp: 1000
 }
 ```
 :::
 
-Assuming you're using the default linear timing function, this is the frame your callback function would receive exactly halfway through the animation:
+Assuming you're using the default linear timing function, this is the frame your `effect` function would receive exactly halfway through the animation:
 
 :::
 ```js
 {
-  data: { myProperty: 50 },
-  progress: {
+  properties: {
     myProperty: {
-      time: 0.5,
-      animation: 0.5,
-    },
-  }
+      interpolated: 50,
+      progress: { time: 0.5, animation: 0.5 }
+    }
+  },
+  timestamp: 1500
 }
 ```
 :::
 
-And this is the last frame your callback would receive:
+And this is the last frame your `effect` would receive:
 
 :::
 ```js
 {
-  data: { myProperty: 100 },
-  progress: {
+  properties: {
     myProperty: {
-      time: 1,
-      animation: 1,
-    },
-  }
+      interpolated: 100,
+      progress: { time: 1, animation: 1 }
+    }
+  },
+  timestamp: 2000
 }
 ```
 :::
@@ -403,48 +398,52 @@ Things get slightly more complex when your keyframes don't just start at `progre
 [
   {
     progress: 0,
-    data: { myProperty: 0 }
+    properties: { myProperty: 0 }
   },
   {
     progress: .5,
-    data: { myProperty: 25 }
+    properties: { myProperty: 25 }
   },
   {
     progress: 1,
-    data: { myProperty: 100 }
+    properties: { myProperty: 100 }
   }
 ]
 ```
 :::
 
-Assuming you're using the default linear timing function, this is the frame your callback function would receive exactly one quarter of the way through the animation, when the Animateable instance's `progress.time` is `0.25`:
+Assuming you're using the default linear timing function, this is the frame your `effect` function would receive exactly one quarter of the way through the animation, when the Animateable instance's `progress.time` is `0.25`:
 
 :::
 ```js
 {
-  data: { myProperty: 12.5 },
-  progress: {
+  properties: {
     myProperty: {
-      time: 0.5, // Halfway between the previous and next keyframes
-      animation: 0.5, // With linear timing, animation progress equals time progress
-    },
-  }
+      interpolated: 12.5,
+      progress: {
+        time: 0.5, // Halfway between the previous and next keyframes
+        animation: 0.5, // With linear timing, animation progress equals time progress
+      },
+  },
+  timestamp: 1250
 }
 ```
 :::
 
-This is the frame your callback function would receive exactly halfway through the animation, when the Animateable instance's `progress.time` is `0.5`:
+This is the frame your `effect` function would receive exactly halfway through the animation, when the Animateable instance's `progress.time` is `0.5`:
 
 :::
 ```js
 {
-  data: { myProperty: 25 },
-  progress: {
+  properties: {
     myProperty: {
-      time: 0, // Time progress resets to 0 when you get to next keyframe
-      animation: 0,
-    },
-  }
+      interpolated: 25,
+      progress: {
+        time: 0, // Time and animation progress reset to 0 when you reach a keyframe
+        animation: 0,
+      },
+  },
+  timestamp: 1500
 }
 ```
 :::
@@ -455,68 +454,71 @@ Here's the frame at three quarters progress, when the Animateable instance's `pr
 :::
 ```js
 {
-  data: { myProperty: 62.5 },
-  progress: {
+  properties: {
     myProperty: {
-      time: 0.5,
-      animation: 0.5,
-    },
-  }
+      interpolated: 62.5,
+      progress: {
+        time: 0.5,
+        animation: 0.5,
+      },
+  },
+  timestamp: 1750
 }
 ```
 :::
 
-And this is the last frame your callback would receive, when the Animateable instance's `progress.time` is `1`:
+And this is the last frame your `effect` would receive, when the Animateable instance's `progress.time` is `1`:
 
 :::
 ```js
 {
-  data: { myProperty: 100 },
-  progress: {
+  properties: {
     myProperty: {
-      time: 1,
-      animation: 1,
-    },
-  }
+      interpolated: 100,
+      progress: {
+        time: 1,
+        animation: 1,
+      },
+  },
+  timestamp: 2000
 }
 ```
 :::
 
+So what should you do with that frame inside your `effect` function? The intention behind `Animateable` is that you'll assign interpolated values to the styles of an element.
 
-So what should you do with that frame inside your callback function? The intention behind `Animateable` is that you'll use `frame.data` to assign styles to an element.
-
-Take this callback function for example:
+Take this `effect` function for example:
 
 :::
 ```js
 const el = document.querySelector('#el')
 
-function handleFrame (frame) {
-  el.style.transform = `translateX(${frame.data.myProperty}%)`
+function frameEffect ({ properties: { myProperty: { interpolated } } }) {
+  el.style.transform = `translateX(${interpolated}%)`
 }
 ```
 :::
 
-That callback function translates an element to the right by a percentage value determined by your frame data. As the animation progresses, the element will move from `0%` to `100%`.
+That `effect` function translates an element to the right by a percentage value determined by your frame data. As the animation progresses, the element could move from `0%` to `100%`.
 
-In the same callback function, you could set additional styles with the exact same frame data, if you wanted:
+In the same `effect` function, you could set additional styles with the exact same frame data, if you wanted:
 
 :::
 ```js
 const el = document.querySelector('#el')
 
-function handleFrame (frame) {
-  el.style.transform = `translateX(${frame.data.myProperty}%)`
-  el.style.backgroundColor = `rgb(255, 255, ${frame.data.myProperty})`
+function frameEffect ({ properties: { myProperty: { interpolated } } }) {
+  el.style.transform = `translateX(${interpolated}%)`
+  el.style.backgroundColor = `rgb(255, 255, ${interpolated / 100 * 255})`
 }
 ```
 :::
 
-That callback function would move the element to the right and steadily change its background color at the same time.
+That `effect` function would move the element to the right and steadily change its background color at the same time.
 
-`frame.progress` is less useful, but is exactly what you will need if you ever want to visualize the progress of individual keyframe-to-keyframe transitions (`time` and `animation` progress are the `x` and `y` coordinates of the current point on an easing curve).
+`progress` values are less useful, but are exactly what you will need if you ever want to visualize the progress of individual keyframe-to-keyframe transitions (`time` and `animation` progress are the `x` and `y` coordinates of the current point on an easing curve).
 
-Note that if you have multiple unique properties in your `keyframes`, every property will be included in every frame's data.
+Note that if you have multiple properties in your `keyframes`, every property will be included in every frame's data, even if its interpolated value hasn't changed.
 
 Take these keyframes for example:
 
@@ -526,21 +528,21 @@ Take these keyframes for example:
   // translateX
   {
     progress: 0,
-    data: { translateX: 0 }
+    properties: { translateX: 0 }
   },
   {
     progress: 1,
-    data: { translateX: 100 }
+    properties: { translateX: 100 }
   },
 
   // blueChannel (of rgb color)
   {
     progress: 0.5,
-    data: { blueChannel: 0 }
+    properties: { blueChannel: 0 }
   },
   {
     progress: 1,
-    data: { blueChannel: 255 }
+    properties: { blueChannel: 255 }
   },
 ]
 ```
@@ -551,14 +553,17 @@ Given those keyframes, and assuming you're still using the default linear timing
 :::
 ```js
 {
-  data: {
-    translateX: 25,
-    blueChannel: 0,
+  properties: {
+    translateX: {
+      interpolated: 25,
+      progress: { time: 0.25, animation: 0.25 },
+    },
+    blueChannel: {
+      interpolated: 0,
+      progress: { time: 0.5, animation: 0.5 }, // Halfway from the animation start to the start of its first keyframe
+    },
   },
-  progress: {
-    translateX: { time: 0.25, animation: 0.25 },
-    blueChannel: { time: 0.5, animation: 0.5 }, // Halfway from the animation start to the start of its first keyframe
-  }
+  timestamp: 1250,
 }
 ```
 :::
@@ -568,14 +573,17 @@ Here's what you would get when the `Animateable` instance's `progress.time` is `
 :::
 ```js
 {
-  data: {
-    translateX: 50,
-    blueChannel: 0,
+  properties: {
+    translateX: {
+      interpolated: 50,
+      progress: { time: 0.5, animation: 0.5 },
+    },
+    blueChannel: {
+      interpolated: 0,
+      progress: { time: 0, animation: 0 }, // Starting its first keyframe transition
+    },
   },
-  progress: {
-    translateX: { time: 0.5, animation: 0.5 },
-    blueChannel: { time: 0, animation: 0 }, // Starting its first keyframe transition
-  }
+  timestamp: 1500,
 }
 ```
 :::
@@ -585,62 +593,64 @@ And here's what you would get when the `Animateable` instance's `progress.time` 
 :::
 ```js
 {
-  data: {
-    translateX: 75,
-    blueChannel: 127.5,
+  properties: {
+    translateX: {
+      interpolated: 75,
+      progress: { time: 0.75, animation: 0.75 },
+    },
+    blueChannel: {
+      interpolated: 127.5,
+      progress: { time: 0.5, animation: 0.5 }, // Halfway through its keyframe transition
+    },
   },
-  progress: {
-    translateX: { time: 0.75, animation: 0.75 },
-    blueChannel: { time: 0.5, animation: 0.5 }, // Halfway through its keyframe transition
-  }
+  timestamp: 1750,
 }
 ```
 :::
 
-The important thing to remember is that all properties are included in every frame, even if their value doesn't change, and regardless of how your keyframes are ordered and organized.
+The important thing to remember is that all properties are included in every frame, even if their interpolated value doesn't change, and regardless of how your keyframes are ordered and organized.
 
 And that covers all of the basic concepts! But what we haven't covered yet is how to handle strings and arrays that you pass to your keyframes.
 
-As explained in the [How data types are animated](#How-data-types-are-animated) section, strings are always assumed to be colors. So, you can set them to any color property on an element:
+As explained in the [How property types are animated](#How-property-types-are-animated) section, strings are always assumed to be colors. So, you can set them to any color property on an element:
 
 :::
 ```js
 const el1 = document.querySelector('#el1'),
       el2 = document.querySelector('#el2'),
       keyframes = [
-        // white to red
+        // white to indigo
         {
           progress: 0,
-          data: { whiteToIndigo: "#fff" },
+          properties: { whiteToIndigo: "#fff" },
         },
         {
           progress: 1,
-          data: { whiteToIndigo: 'hsl(246.8, 60.8%, 60%)' }
+          properties: { whiteToIndigo: 'hsl(246.8, 60.8%, 60%)' }
         },
 
-        // red to white
+        // indigo to white
         {
           progress: 0,
-          data: { indigoToWhite: 'hsl(246.8, 60.8%, 60%)' },
+          properties: { indigoToWhite: 'hsl(246.8, 60.8%, 60%)' },
         },
         {
           progress: 1,
-          data: { indigoToWhite: '#fff' }
+          properties: { indigoToWhite: '#fff' }
         },
       ]
 
-function handleFrame ({ data: { whiteToIndigo, redToWhite } }) { // Use destructuring! It's awesome.
-  el1.style.color = redToWhite
-  el1.style.backgroundColor = whiteToIndigo
+function frameEffect ({ properties: { whiteToIndigo, indigoToWhite } }) {
+  el1.style.color = indigoToWhite.interpolated
+  el1.style.backgroundColor = whiteToIndigo.interpolated
 
-  el2.style.color = whiteToRed
-  el2.style.backgroundColor = redToWhite
+  el2.style.color = whiteToIndigo.interpolated
+  el2.style.backgroundColor = indigoToWhite.interpolated
 }
 ```
 :::
 
-Note that you don't have to use the same color format between keyframes—you can freely mix and match hex, hsl, rgb, and lab colors
-
+Note that you don't have to use the same color format between keyframes—you can freely mix and match different formats.
 
 Arrays are primarily intended to be used to achieve the "typewriter" affect, although there are probably other cool things you can do with them.
 
@@ -653,22 +663,30 @@ const el1 = document.querySelector('#el1'),
         // write 'Baleada'
         {
           progress: 0,
-          data: { word: [] },
+          properties: { word: [] },
         },
         {
           progress: 1,
-          data: { word: 'baleada'.split('') } // Much easier to split the string instead of write the array manually
+          properties: { word: 'baleada'.split('') }
         },
       ]
 
-function handleFrame ({ data: { word } }) {
-  el1.style.textContent = word.join('')
+function frameEffect ({ properties: { word: { interpolated } } }) {
+  el1.style.textContent = interpolated.join('')
 }
 ```
 :::
 
-Given those keyframes and that frame handler, your `Animateable` instance would progressively change the text content of your element, making it look like the word "Baleada" is being typed across the screen.
+Given those keyframes and that frame effect, your `Animateable` instance would progressively change the text content of your element, making it look like the word "Baleada" is being typed across the screen.
 
+That's a lot of info to digest! [Here's an editable demo](https://stackblitz.com/edit/baleada-logic-animateable) if you want to play around and get a better feel for how `Animateable` works.
+
+
+:::
+## Using with TypeScript
+:::
+
+Nothing special to know about using `Animateable` with TypeScript! Enjoy IDE autocomplete and type checking while you construct and use your instance.
 
 
 :::

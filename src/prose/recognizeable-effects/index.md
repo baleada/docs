@@ -5,7 +5,7 @@ publish: true
 order: 0
 ---
 
-Baleada Recognizeable Handlers is a collection of functions that can help you recognize gestures.
+Baleada Recognizeable Handlers is a collection of factory functions that can help you recognize gestures.
 
 More specifically, each function in the Baleada Recognizeable Handlers collection returns an object that you can pass to the `handlers` option of Baleada Logic's [`Recognizeable` class](/docs/logic/classes/Recognizeable), or more commonly, to the `recognizeable.handlers` option of the [`Listenable` class](/docs/logic/classes/listenable).
 
@@ -16,7 +16,7 @@ More specifically, each function in the Baleada Recognizeable Handlers collectio
 
 :::
 ```bash
-npm i @baleada/recognizeable-handlers
+npm i @baleada/recognizeable-effects
 ```
 :::
 
@@ -31,7 +31,7 @@ First, import one of the functions from Baleada Recognizeable Handlers:
 
 :::
 ```js
-import { touchdragdrop } from '@baleada/recognizeable-handlers'
+import { touchdragdrop } from '@baleada/recognizeable-effects'
 ```
 :::
 
@@ -43,7 +43,7 @@ Note that the `options` object for the `Listenable` constructor should have a `r
 
 :::
 ```js
-import { touchdragdrop } from '@baleada/recognizeable-handlers'
+import { touchdragdrop } from '@baleada/recognizeable-effects'
 
 const instance = useListenable(
   'recognizeable', // Pass 'recognizeable' as the first argument
@@ -94,12 +94,12 @@ instance.stop()
 
 Baleada Recognizeable Handlers currently has functions available for the following gestures:
 
-- [`clicks`](/docs/recognizeable-handlers/functions/clicks) (i.e. double-clicks, triple-clicks, etc.)
-- [`mousedrag`](/docs/recognizeable-handlers/functions/drag)
-- [`mousedragdrop`](/docs/recognizeable-handlers/functions/dragdrop)
-- [`touchdrag`](/docs/recognizeable-handlers/functions/touchdrag)
-- [`touchdragdrop`](/docs/recognizeable-handlers/functions/touchdragdrop)
-- [`taps`](/docs/recognizeable-handlers/functions/taps) (including double-taps, triple-taps, etc.)
+- [`clicks`](/docs/recognizeable-effects/clicks) (i.e. double-clicks, triple-clicks, etc.)
+- [`mousedrag`](/docs/recognizeable-effects/drag)
+- [`mousedragdrop`](/docs/recognizeable-effects/dragdrop)
+- [`touchdrag`](/docs/recognizeable-effects/touchdrag)
+- [`touchdragdrop`](/docs/recognizeable-effects/touchdragdrop)
+- [`taps`](/docs/recognizeable-effects/taps) (including double-taps, triple-taps, etc.)
 
 And these gestures are on the to-do list:
 - `pinch`

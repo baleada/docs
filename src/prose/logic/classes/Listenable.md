@@ -11,12 +11,7 @@ order: 0
 - Store a status (`ready`, `listening`, or `stopped`)
 - Easily clean up all listening activity to avoid memory leaks
 
-`Listenable` depends on [`Recognizeable`](/docs/logic/classes/Recognizeable) (for custom gestures only, but not tree-shakeable), and uses the following web APIs under the hood:
-- [`addEventListener`](https://developer.mozilla.org/en-US/docs/Web/API/EventTarget/addEventListener) and [`removeEventListener`](https://developer.mozilla.org/en-US/docs/Web/API/EventTarget/removeEventListener)
-- [Intersection Observer](https://developer.mozilla.org/en-US/docs/Web/API/intersectionObserver), [Resize Observer](https://developer.mozilla.org/en-US/docs/Web/API/ResizeObserver), and [Mutation Observer](https://developer.mozilla.org/en-US/docs/Web/API/MutationObserver)
-- [`requestIdleCallback`](https://developer.mozilla.org/en-US/docs/Web/API/Window/requestIdleCallback) and [`cancelIdleCallback`](https://developer.mozilla.org/en-US/docs/Web/API/Window/cancelIdleCallback)
-- [`matchMedia`](https://developer.mozilla.org/en-US/docs/Web/API/Window/matchMedia) and [`removeListener`](https://developer.mozilla.org/en-US/docs/Web/API/MediaQueryList/removeListener)
-- [Page Visibility API](https://developer.mozilla.org/en-US/docs/Web/API/Page_Visibility_API?redirectlocale=en-US&redirectslug=DOM%2FUsing_the_Page_Visibility_API)
+`Listenable` depends on [`Recognizeable`](/docs/logic/classes/Recognizeable) (for custom gestures only, but not tree-shakeable).
 
 
 :::
@@ -50,7 +45,7 @@ const instance = new Listenable(type[, options])
 ```
 :::
 
-Or, if you're using [Baleada Composition](/docs/compositon):
+Or, if you're using [Baleada Composition](/docs/composition):
 
 :::
 ```js
@@ -66,69 +61,67 @@ const reactiveInstance = useListenable(type[, options])
 
 `Listenable` supports a ton of different event types and can deduce which web APIs to use under the hood based on the `type` you pass. 
 
-Most of the time, you don't need to be concerned with exactly which web API is being used, and you can think of it as an implementation detail. But in cases where you want to customize the way a certain web API behaves, you'll need to know which API is being used in order to know what customization options are available. You'll find more guidance down below, in the [How to customize `listen` behavior](#how-to-customize-listen-behavior) section.
+Most of the time, you don't need to be concerned with exactly which web API is being used, and you can think of it as an implementation detail.
+
+But in cases where you want to customize the way a certain web API behaves, you'll need to know which API is being used in order to know what customization options are available.
+
+You'll find more guidance down below, in the [How to customize `listen` behavior](#how-to-customize-listen-behavior) section.
 
 The table below has a breakdown of valid event types, the corresponding web APIs that `Listenable` uses under the hood, and the main purpose of the API.
 
 ::: ariaLabel="Listenable event types and web APIs" classes="wide-3"
 | Event type | Web APIs | Purpose |
 | --- | --- | --- |
-| All the basics, like `click`, `keydown`, `mousemove`, etc. | [`addEventListener`](https://developer.mozilla.org/en-US/docs/Web/API/EventTarget/addEventListener) and [`removeEventListener`](https://developer.mozilla.org/en-US/docs/Web/API/EventTarget/removeEventListener) | Listens for basic events |
+| Every event listed in TypeScript's [HTMLElementEventMap](https://microsoft.github.io/PowerBI-JavaScript/interfaces/_node_modules_typedoc_node_modules_typescript_lib_lib_dom_d_.htmlelementeventmap.html) and [DocumentEventMap](https://microsoft.github.io/PowerBI-JavaScript/interfaces/_node_modules_typedoc_node_modules_typescript_lib_lib_dom_d_.documenteventmap.html#focusout), e.g. `click`, `keydown`, `mousemove`, etc. | [`addEventListener`](https://developer.mozilla.org/en-US/docs/Web/API/EventTarget/addEventListener) and [`removeEventListener`](https://developer.mozilla.org/en-US/docs/Web/API/EventTarget/removeEventListener) | Listens for basic events. |
 | `intersect` | [Intersection Observer](https://developer.mozilla.org/en-US/docs/Web/API/) | Listens for DOM elements intersecting with an ancestor element or with the top-level document's viewport. |
 | `resize` | [Resize Observer](https://developer.mozilla.org/en-US/docs/Web/API/ResizeObserver) | Listens for DOM elements being resized |
 | `mutate` | [Mutation Observer](https://developer.mozilla.org/en-US/docs/Web/API/MutationObserver) | Listens for DOM element being mutated (e.g. children added or removed) |
 | Media queries (i.e. any valid first argument for the [matchMedia](https://developer.mozilla.org/en-US/docs/Web/API/Window/matchMedia) method) | [matchMedia](https://developer.mozilla.org/en-US/docs/Web/API/Window/matchMedia) and [`removeListener`](https://developer.mozilla.org/en-US/docs/Web/API/MediaQueryList/removeListener) | Listens for changes to browser metadata (e.g. screen size, or color scheme preference) |
 | `idle` | [`requestIdleCallback`](https://developer.mozilla.org/en-US/docs/Web/API/Window/requestIdleCallback) and [`cancelIdleCallback`](https://developer.mozilla.org/en-US/docs/Web/API/Window/cancelIdleCallback) | Listens for the end user going idle |
-| `visibilitychange` | [Page Visibility API](https://developer.mozilla.org/en-US/docs/Web/API/Page_Visibility_API?redirectlocale=en-US&redirectslug=DOM%2FUsing_the_Page_Visibility_API) | Listens for the end user switching to a different tab, or returning to your tab |
-| Key combos and click combos (see the [How to format key combos and click combos](#how-to-format-key-combos-and-click-combos) section for more guidance) | [`addEventListener`](https://developer.mozilla.org/en-US/docs/Web/API/EventTarget/addEventListener) and [`removeEventListener`](https://developer.mozilla.org/en-US/docs/Web/API/EventTarget/removeEventListener) | Listens for keys being are pressed or clicks being performed, optionally in combination with modifier keys |
-| `recognizeable` | [`addEventListener`](https://developer.mozilla.org/en-US/docs/Web/API/EventTarget/addEventListener) and [`removeEventListener`](https://developer.mozilla.org/en-US/docs/Web/API/EventTarget/removeEventListener) | <p>Listens for custom gestures, powered by [`Recognizeable`](/docs/logic/classes/recognizeable).</p><p>See the [How to listen for custom gestures](#how-to-listen-for-custom-gestures) section for more guidance.</p> |
+| Combos (see the [How to format combos](#how-to-format-combos) section for more guidance) | [`addEventListener`](https://developer.mozilla.org/en-US/docs/Web/API/EventTarget/addEventListener) and [`removeEventListener`](https://developer.mozilla.org/en-US/docs/Web/API/EventTarget/removeEventListener) | Listens for keys being are pressed or clicks being performed, optionally in combination with modifier keys |
+| `recognizeable` | A nested `Listenable` instance! | <p>Listens for custom gestures, powered by [`Recognizeable`](/docs/logic/classes/recognizeable).</p><p>See the [How to listen for custom gestures](#how-to-listen-for-custom-gestures) section for more guidance.</p> |
 :::
 
 
 :::
-#### How to format key combos and click combos
+#### How to format combos
 :::
 
-`Listenable` makes it easy to listen for key combos and click combos—keys or clicks combined with modifier keys. The Baleada docs, for example, use `Listenable` to listen for `Shift + D` (toggle dark theme) and `Shift + M` (toggle minimalist theme).
+`Listenable` makes it easy to listen for combos—keys, clicks, or pointer events combined with modifier keys. The Baleada docs, for example, use `Listenable` to listen for `Shift + D` (toggle dark theme) and `Shift + M` (toggle minimalist theme).
 
 To achieve this or something similar, you just need to format your `type` properly when passing it to the `Listenable` constructor. Here are the steps you can follow:
 
-1. Optionally, choose modifiers from the options below. You can also add `!` before any modifier to assert that it wasn't pressed during the event:
-    - `shift`/`!shift`
-    - `ctrl`/`!ctrl`
-    - `cmd`/`!cmd`
-    - `alt`/`!alt` a.k.a. `opt`/`!opt`
-2. Choose one of the following things. You can also add `!` before any of these options to assert that it wasn't pressed during the event:
-    - Any number
-    - Any letter
-    - `enter`
-    - `backspace`
-    - `tab`
-    - `space`
-    - `esc`
-    - `home`
-    - `end`
-    - `pagedown`
-    - `pageup`
-    - `capslock`
-    - `f1` (or any other `f` + one-or-two-digit number function key)
-    - `camera`
-    - `delete`
-    - Any individual modifier key: `cmd`, `meta`, `shift`, `ctrl`, `alt`, or `opt`
-    - Any arrow direction—`up`, `right`, `down`, `left`, `vertical` (to listen for both `up` and `down`), `horizontal` (to listen for both `right` and `left`), or `arrow` (to listen for any arrow key)
-    - Any of the following punctuation: `,` `.` `<` `>` `/` `?` `;` `:` `` `"` `[` `]` `{` `}` `}` `\` `|` `\` `~` `!` `@` `#` `$` `%` `^` `&` `*` `(` `)` `-` `_` `=` `+` <code>`</code>
-    - `click`
-    - `mousedown`
-    - `mouseup`
-    - `rightclick`
-3. Join your modifiers and your key or click choice with `+`
+
+First, choose modifiers. This step is optional, and the following modifiers are supported:
+  - `shift`
+  - `ctrl` or `control`
+  - `cmd` or `command` or `meta`
+  - `alt` or `opt` or `option`
+
+Then choose a key or event to be the final item in your combo.
+
+The keys and events in the table below are supported. You can also add `!` before any key to assert that it wasn't pressed during the event.
+
+::: ariaLabel="Keys and events by category"
+| Category | Supported keys and events |
+| --- | --- |
+| Single characters | <ul><li>Any number</li><li>Any letter</li><li>`,`</li><li>`<`</li><li>`>`</li><li>`.`</li><li>`/`</li><li>`?`</li><li>`;`</li><li>`:`</li><li>`'`</li><li>`"`</li><li>`[`</li><li>`{`</li><li>`]`</li><li>`}`</li><li>`\`</li><li>`\|`</li><li><code>\`</code></li><li>`~`</li><li>`!`</li><li>`@`</li><li>`#`</li><li>`$`</li><li>`%`</li><li>`^`</li><li>`&`</li><li>`*`</li><li>`(`</li><li>`)`</li><li>`-`</li><li>`_`</li><li>`=`</li><li>`+`</li></ul> |
+| Arrows | <ul><li>`up`</li><li>`right`</li><li>`down`</li><li>`left`</li><li>`arrow` (any arrow)</li><li>`vertical` (up or down)</li><li>`horizontal` (left or right)</li></ul> |
+| Modifiers (as standalone keys, not actual modifiers) | <ul><li>`shift`</li><li>`ctrl` or `control`</li><li>`cmd` or `command` or `meta`</li><li>`alt` or `opt` or `option`</li></ul> |
+| "Other" keys | <ul><li>`backspace`</li><li>`camera`</li><li>`capslock`</li><li>`delete`</li><li>`end`</li><li>`enter`</li><li>`esc`</li><li>`home`</li><li>`pagedown`</li><li>`pageup`</li><li>`space`</li><li>`tab`</li><li>`f1` through `f20`</li></ul> |
+| Left clicks | <ul><li>`click`</li><li>`mousedown`</li><li>`mouseup`</li><li>`dblclick`</li></ul> |
+| Right clicks | <ul><li>`rightclick`</li><li>`contextmenu`</li></ul> |
+| Pointers | <ul><li>`pointerdown`</li><li>`pointerup`</li></ul> |
+:::
+
+Finally, join your modifiers and your key, click, or pointer choice with `+`.
 
 Here are some more specific examples:
 
 ::: ariaLabel="Examples of key combo and click combo event types"
 | Desired combo | `type` |
 | --- | --- |
-| B | `b` |
+| B | `b` or `B` |
 | Command + 1 | `cmd+1` |
 | Shift + Command + Enter | `shift+cmd+enter` |
 | Shift wasn't pressed + Control + Option + Click | `!shift+ctrl+opt+click` or `!shift+ctrl+alt+click`|
@@ -166,8 +159,8 @@ The constructed `Listenable` instance is an Object, and state and methods can be
 | `active` | Getter | See return value | N/A | A set ([Set](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Set)) of objects that describe all the currently active listeners, observers, etc. |
 | `recognizeable` | Getter | See return value | N/A | <p>The `Recognizeable` instance constructed using the object you passed to `options.recognizeable`.</p><p>If you didn't pass that option, the `recognizeable` property will be `undefined`.</p><p>See the [How to listen for custom gestures](#how-to-listen-for-custom-gestures) section for more guidance.</p> |
 | `setType(type)` | Function | Sets a new `type`, after stopping and cleaning up all existing web API activity. | The new type (String). | The `Listenable` instance |
-| `listen(callback, options)` | Function | Listens for the events specified by your `type`, and executes a callback function when the events happen. Can't be called until the DOM is available. | <p>A callback (Function, required) that will be executed when the events are detected, and an optional `options` object.</p><p>To learn more about handling events with your callback, see the [How to handle events](#how-to-handle-events) and [How to customize `listen` behavior](#how-to-customize-listen-behavior) sections.</p> | The `Listenable` instance |
-| `stop(target)` | Function | Stops and cleans up all web API activity. Can't be called until the DOM is available. | <p>An optional target (a DOM element or `document`).</p><p>If a target is passed, only activity related to that target will be stopped, and if no target is passed, all activity is stopped.</p> | The `Listenable` instance |
+| `listen(effect, options)` | Function | Listens for the events specified by your `type`, and performs side effects via a callback function when the events happen. Can't be called until the DOM is available. | <p>A side effect (Function, required) that will be performed when the events are detected, and an optional `options` object.</p><p>To learn more about handling events with your side effect function, see the [How to handle events](#how-to-handle-events) and [How to customize `listen` behavior](#how-to-customize-listen-behavior) sections.</p> | The `Listenable` instance |
+| `stop(options)` | Function | Stops and cleans up all web API activity. Can't be called until the DOM is available. | <p>An optional object with a `target` property, whose value is a DOM element, `window` or `document`.</p><p>If `options.target` is passed, only activity related to that `target` will be stopped.</p><p>If `options.target` is not passed, all activity is stopped.</p> | The `Listenable` instance |
 
 :::
 
@@ -176,22 +169,21 @@ The constructed `Listenable` instance is an Object, and state and methods can be
 ### How to handle events
 :::
 
-Depending on your `type`, your `callback`—passed as the required first argument of the `listen` method—will receive different parameters.
+Depending on your `type`, your `effect`—passed as the required first argument of the `listen` method—will receive different parameters.
 
-The table below has a full breakdown of what the `listen` method passes to your callback for each specific event type:
+The table below has a full breakdown of what the `listen` method passes to your `effect` for each specific event type:
 
-::: ariaLabel="List of event types and the arguments your callback will receive" class="wide-2"
-| `type` | What your `callback` receives |
+::: ariaLabel="List of event types and the arguments your effect will receive" class="wide-2"
+| `type` | What your `effect` receives |
 | --- | --- |
-| All the basics, like `click`, `keydown`, `mousemove`, etc. | One argument: an [Event](https://developer.mozilla.org/en-US/docs/Web/API/Event) object |
-| `intersect` | One argument: an array of [IntersectionObserverEntry](IntersectionObserverEntry) objects |
-| `resize` | One argument: an array of [ResizeObserverEntry](https://developer.mozilla.org/en-US/docs/Web/API/ResizeObserverEntry) objects |
-| `mutate` | One argument: an array of [MutationRecord](https://developer.mozilla.org/en-US/docs/Web/API/MutationRecord) objects |
-| Media queries (i.e. any valid first argument for the [matchMedia](https://developer.mozilla.org/en-US/docs/Web/API/Window/matchMedia) method) | One argument: a [MediaQueryListEvent](https://developer.mozilla.org/en-US/docs/Web/API/MediaQueryListEvent) object |
-| `idle` | One argument: an [IdleDeadline](https://developer.mozilla.org/en-US/docs/Web/API/IdleDeadline) object |
-| `visibilitychange` | One argument: an [Event](https://developer.mozilla.org/en-US/docs/Web/API/Event) object |
-| Key combos and click combos | One argument: an [Event](https://developer.mozilla.org/en-US/docs/Web/API/Event) object |
-| `recognizeable` | <p>One argument: an [Event](https://developer.mozilla.org/en-US/docs/Web/API/Event) object</p><p>When handling this event, you'll also frequently reach into `listenableInstance.recognizeable.metadata` for additional information about the sequence of events captured by the Recognizeable instance.</p> |
+| Every event listed in TypeScript's [HTMLElementEventMap](https://microsoft.github.io/PowerBI-JavaScript/interfaces/_node_modules_typedoc_node_modules_typescript_lib_lib_dom_d_.htmlelementeventmap.html) and [DocumentEventMap](https://microsoft.github.io/PowerBI-JavaScript/interfaces/_node_modules_typedoc_node_modules_typescript_lib_lib_dom_d_.documenteventmap.html#focusout), e.g. `click`, `keydown`, `mousemove`, etc. | The corresponding DOM event |
+| `intersect` | An array of [`IntersectionObserverEntry`](https://developer.mozilla.org/en-US/docs/Web/API/IntersectionObserverEntry) objects |
+| `resize` | An array of [`ResizeObserverEntry`](https://developer.mozilla.org/en-US/docs/Web/API/ResizeObserverEntry) objects |
+| `mutate` | An array of [`MutationRecord`](https://developer.mozilla.org/en-US/docs/Web/API/MutationRecord) objects |
+| Media queries (i.e. any valid first argument for the [matchMedia](https://developer.mozilla.org/en-US/docs/Web/API/Window/matchMedia) method) | A [`MediaQueryListEvent`](https://developer.mozilla.org/en-US/docs/Web/API/MediaQueryListEvent) object |
+| `idle` | An [`IdleDeadline`](https://developer.mozilla.org/en-US/docs/Web/API/IdleDeadline) object |
+| Combos | A [`KeyboardEvent`](https://developer.mozilla.org/en-US/docs/Web/API/KeyboardEvent), [`MouseEvent`](https://developer.mozilla.org/en-US/docs/Web/API/MouseEvent), or [`PointerEvent`](https://developer.mozilla.org/en-US/docs/Web/API/PointerEvent), depending on the combo type |
+| `recognizeable` | <p>The latest `sequenceItem` added to your `Recognizeable` instance's `sequence`.</p><p>Often, your `effect` won't actually do anything with this argument. Instead, it will reach into `listenableInstance.recognizeable.metadata` for additional information about the captured sequence of events.</p> |
 :::
 
 
@@ -212,12 +204,12 @@ First, here's a breakdown of what each `options` property does, and below that, 
 | `addEventListener` | Object | none | The `options` parameter of [`addEventListener`](https://developer.mozilla.org/en-US/docs/Web/API/EventTarget/addEventListener) |
 | `useCapture` | Boolean | none | A value for the standalone `useCapture` parameter of [`addEventListener`](https://developer.mozilla.org/en-US/docs/Web/API/EventTarget/addEventListener). Ignored if an `addEventListener` object was passed. |
 | `wantsUntrusted` | Boolean | none | A value for the standalone `wantsUntrusted` parameter of [`addEventListener`](https://developer.mozilla.org/en-US/docs/Web/API/EventTarget/addEventListener) |
-| `except` | Array | `[]` | <p>An array of DOM elements that, if they are the target of the event, should *not* cause your `callback` to be executed.</p><p>When the `only` option is a non-empty array, `except` is ignored.</p> |
-| `only` | Array | `[]` | <p>An array of DOM elements that, if they are the target of the event, *should* cause your `callback` to be executed.</p><p>When `only` is a non-empty array, `except` is ignored.</p><p>An empty `only` array is ignored (otherwise, the `callback` would never execute).</p> |
+| `except` | Array | `[]` | <p>An array of DOM elements that, if they are the target of the event, should *not* cause your `effect` to be executed.</p><p>When the `only` option is a non-empty array, `except` is ignored.</p> |
+| `only` | Array | `[]` | <p>An array of DOM elements that, if they are the target of the event, *should* cause your `effect` to be executed.</p><p>When `only` is a non-empty array, `except` is ignored.</p><p>An empty `only` array is ignored (otherwise, the `effect` would never execute).</p> |
 | `observer` | Object | none | The `options` parameter of the [Intersection Observer constructor](https://developer.mozilla.org/en-US/docs/Web/API/IntersectionObserver/IntersectionObserver) |
 | `observe` | Object | none | The `options` parameter of the [`MutationObserver.observe`](https://developer.mozilla.org/en-US/docs/Web/API/MutationObserver/observe) and [`ResizeObserver.observe`](https://developer.mozilla.org/en-US/docs/Web/API/ResizeObserver/observe) methods |
 | `requestIdleCallback` | Object | none | The `options` parameter of [`requestIdleCallback`](https://developer.mozilla.org/en-US/docs/Web/API/Window/requestIdleCallback) |
-| `keyDirection` | String | `down` | <p>Indicates which keyboard event should be listened to when detecting keycombos. Valid options are `down` and `up` .</p><p>The `keyDirection` option only has an effect when your `type` is a keycombo, as described the [How to format key combos and click combos](#how-to-format-key-combos-and-click-combos).</p> |
+| `keyDirection` | String | `down` | <p>Indicates which keyboard event should be listened to when detecting keycombos. Valid options are `down` and `up` .</p><p>The `keyDirection` option only has an effect when your `type` is a keycombo, as described the [How to format combos](#how-to-format-combos).</p> |
 
 :::
 
@@ -231,15 +223,15 @@ The default value for the `listen` method's `target` option depends on your `typ
 ::: ariaLabel="Default values for target based on type"
 | `type` | Default `target` |
 | --- | --- |
-| All the basics, like `click`, `keydown`, `mousemove`, etc. | `document` |
+| Every event listed in TypeScript's [HTMLElementEventMap](https://microsoft.github.io/PowerBI-JavaScript/interfaces/_node_modules_typedoc_node_modules_typescript_lib_lib_dom_d_.htmlelementeventmap.html), e.g. `click`, `keydown`, `mousemove`, etc. | `document` |
+| Every event listed in TypeScript's [DocumentEventMap](https://microsoft.github.io/PowerBI-JavaScript/interfaces/_node_modules_typedoc_node_modules_typescript_lib_lib_dom_d_.documenteventmap.html#focusout) and _not_ listed in the `HTMLElementEventMap`, e.g. `visibilitychange`, `fullscreenchange`, etc. | `document` (can't be overridden) |
 | `intersect` | `document.querySelector('html')` |
 | `resize` | `document.querySelector('html')` |
 | `mutate` | `document.querySelector('html')` |
 | Media queries (i.e. any valid first argument for the [matchMedia](https://developer.mozilla.org/en-US/docs/Web/API/Window/matchMedia) method) | N/A |
 | `idle` | N/A |
-| `visibilitychange` | `document` (Can't be overridden) |
-| Key combos and click combos | `document` |
-| `recognizeable` | `document` |
+| Combos | `document` |
+| `recognizeable` | The corresponding default for each `type` handled by your `Recognizeable` instance's `effects` |
 :::
 
 
@@ -250,15 +242,15 @@ The default value for the `listen` method's `target` option depends on your `typ
 ::: ariaLabel="Available options for each type"
 | `type` | Available options |
 | --- | --- |
-| All the basics, like `click`, `keydown`, `mousemove`, etc. | <ul><li>`target`</li><li>`addEventListener`</li><li>`useCapture`</li><li>`wantsUntrusted`</li><li>`except`</li><li>`only`</li></ul> |
+| Every event listed in TypeScript's [HTMLElementEventMap](https://microsoft.github.io/PowerBI-JavaScript/interfaces/_node_modules_typedoc_node_modules_typescript_lib_lib_dom_d_.htmlelementeventmap.html), e.g. `click`, `keydown`, `mousemove`, etc. | <ul><li>`target`</li><li>`addEventListener`</li><li>`useCapture`</li><li>`wantsUntrusted`</li><li>`except`</li><li>`only`</li></ul> |
+| Every event listed in TypeScript's [DocumentEventMap](https://microsoft.github.io/PowerBI-JavaScript/interfaces/_node_modules_typedoc_node_modules_typescript_lib_lib_dom_d_.documenteventmap.html#focusout) and _not_ listed in the `HTMLElementEventMap`, e.g. `visibilitychange`, `fullscreenchange`, etc. | <ul><li>`addEventListener`</li><li>`useCapture`</li><li>`wantsUntrusted`</li></ul> |
 | `intersect` | `observer` |
 | `resize` | `observe` |
 | `mutate` | `observe` |
 | Media queries (i.e. any valid first argument for the [matchMedia](https://developer.mozilla.org/en-US/docs/Web/API/Window/matchMedia) method) | none |
 | `idle` | `requestIdleCallback` |
-| `visibilitychange` | <ul><li>`addEventListener`</li><li>`useCapture`</li><li>`wantsUntrusted`</li></ul> |
-| Key combos and click combos | <ul><li>`target`</li><li>`addEventListener`</li><li>`useCapture`</li><li>`wantsUntrusted`</li><li>`except`</li><li>`only`</li><li>`keyDirection` (key combos only)</li></ul> |
-| `recognizeable` | <ul><li>`target`</li><li>`addEventListener`</li><li>`useCapture`</li><li>`wantsUntrusted`</li><li>`except`</li><li>`only`</li></ul> |
+| Combos | <ul><li>`target`</li><li>`addEventListener`</li><li>`useCapture`</li><li>`wantsUntrusted`</li><li>`except`</li><li>`only`</li><li>`keyDirection` (key combos only)</li></ul> |
+| `recognizeable` | None |
 :::
 
 
@@ -269,7 +261,7 @@ The default value for the `listen` method's `target` option depends on your `typ
 
 `Listenable` allows you to listen for custom gestures defined by Baleada Logic's `Recognizeable` class. For full information on how to use the `Recognizeable` class, [visit the `Recognizeable` docs](/docs/logic/classes/Recognizeable) (especially the [section on constructor options](/docs/logic/classes/Recognizeable#recognizeable-constructor-options) and the [section on accessing state and methods](/docs/logic/classes/Recognizeable#access-state-and-methods)), but keep reading here to learn the overall workflow.
 
-To get started, construct a new instance of `Listenable`, using `recognizeable` as the `type`, and passing the `Recognizeable` options object to the `recognizeable` option:
+To get started, construct a new instance of `Listenable`, using `recognizeable` as the `type`, and passing the [`Recognizeable` options object](/docs/logic/classes/Recognizeable#Recognizeable-constructor-options) to the `recognizeable` option:
 
 :::
 ```js
@@ -291,27 +283,10 @@ instance.recognizeable instanceof Recognizeable // -> true
 ```
 :::
 
-At this time, `Listenable` will also extract a list of all the properties in `options.recognizeable.handlers` and store it internally.
-
-:::
-```js
-const instance = new Listenable('recognizeable', {
-  recognizeable: {
-    handlers: {...}
-  }
-})
-
-// The properties of options.recognizeable.handlers
-// are the names of events that Listenable should be 
-// listening for. Listenable stores them internally
-// for use later on (when you call the listen method).
-```
-:::
-
 ::: type="info"
-Not sure what to pass to `options.recognizeable.handlers`?
+Not sure what to pass to `options.recognizeable.effects`?
 
-Don't sweat it—check out the [Baleada Recognizeable Handlers](/docs/recognizeable-handlers) package, which gives you access to pre-built `handlers` objects for commonly needed gestures:
+Don't sweat it—check out the [Baleada Recognizeable Effects](/docs/recognizeable-effects) package, which gives you access to pre-built `effects` objects for commonly needed gestures:
 - `clicks` (i.e. double-clicks, triple-clicks, etc.)
 - `touches` (touch equivalent of `clicks`)
 - `mousedrag`
@@ -323,41 +298,39 @@ Don't sweat it—check out the [Baleada Recognizeable Handlers](/docs/recognizea
 - `rotate`
 :::
 
-When you call the `listen` method, passing your `callback` function, `Listenable` will add an event listener for each of the properties/events in `options.recognizeable.handlers`.
+When you call the `listen` method, passing your `effect` function, `Listenable` will add an event listener for each of the event types specified by `options.recognizeable.effects`.
 
-`Listenable` will also store your `callback` in the `Recognizeable` instance's `listener` property, where it can be accessed by the `Recognizeable` instance's handlers if needed.
+As events occur, `Listenable` will pass them through to your `Recognizeable` instance's `recognize` method, which in turn will pass the events to the `Recognizeable` instance's side effect functions.
 
-As events occur, `Listenable` will pass them through to your `Recognizeable` instance's `recognize` method, which in turn will pass the events to the `Recognizeable` instance's event handlers.
-
-When your `Recognizeable` instance recognizes a gesture, Listenable will execute your callback. Your callback will receive the latest `event` in the event sequence tracked by `Recognizeable`. More commonly, though, you'll be reaching into the `Recognizeable` instance to access its `metadata`—i.e., you'll be accessing `myListenableInstance.recognizeable.metadata`.
+When your `Recognizeable` instance recognizes a gesture, Listenable will execute your `effect`. Your `effect` will receive the latest item in the sequence tracked by `Recognizeable`. More commonly, though, you'll be reaching into the `Recognizeable` instance to access its `metadata`—i.e., you'll be accessing `instance.recognizeable.metadata`.
 
 
 :::
 #### Complete custom gesture example
 :::
 
-The following code shows how this documentation site combines `Listenable` and `Recognizeable` with custom handlers from [Baleada Recognizeable Handlers](/docs/recognizeable-handlers) to open and close the sidebar navigation and table of contents when a mobile device user swipes left or right.
+The following real-world code shows how this Baleada documentation site combines `Listenable` and `Recognizeable` with custom effects from [Baleada Recognizeable Effects](/docs/recognizeable-effects) to open and close the sidebar navigation and table of contents when a mobile device user swipes left or right.
 
 The original code is written specifically to work with [Vue](https://v3.vuejs.org), but this example has been simplified to plain JavaScript, and heavily commented.
 
-[Here's a REPL](https://repl.it/@AlexVipond/Baleada-Logic-Listenable-gesture-workflow#index.html) where you can tinker with similar code.
+[Here's an editable demoIDE](https://stackblitz.com/edit/baleada-logic-listenable-gesture-workflow?file=entry.ts) where you can tinker with similar code.
 
 :::
 ```js
 import { Listenable } from '@baleada/logic'
-// The touchdragdrop handlers are a great stand-in for swipe
+// The touchdragdrop effects are a great stand-in for swipe
 // gesture recognition.
-import { touchdragdrop as swipe } from '@baleada/recognizeable-handlers'
+import { touchdragdrop as swipe } from '@baleada/recognizeable-effects'
 
-// Construct the Listenable instance, passing custom handlers
-// to options.recognizeable.handlers
+// Construct the Listenable instance, passing custom effects
+// to options.recognizeable.effects
 const articleSwipe = new Listenable(
   'recognizeable',
-  { recognizeable: { handlers: swipe() } }
+  { recognizeable: { effects: swipe() } }
 )
 
 articleSwipe.listen(
-  // In the listen callback, access the Recognizeable instance's
+  // In the listen effect, access the Recognizeable instance's
   // metadata to make a change in the UI.
   () => {
     const direction = articleSwipe.recognizeable.metadata.direction.fromStart
@@ -375,7 +348,7 @@ articleSwipe.listen(
   {
     // Only the article element, not the entire document,
     // should listen for a swipe gesture
-    target: referenceToArticle,
+    target: document.querySelector('article'),
     // Elements with a .swiper-no-swiping class are not
     // valid swipe targets, even if they are inside the
     // article. This is useful for ignoring horizontal
@@ -384,7 +357,7 @@ articleSwipe.listen(
     // movement as a swipe, and would normally get recognized.
     except: ['.swiper-no-swiping'],
     // For performance reasons, set `passive` to `true`
-    // to prevent the callback from running on the main
+    // to prevent the effect from running on the main
     // thread when the user is scrolling on a touch-enabled
     // device.
     addEventListener: { passive: true }
@@ -393,6 +366,117 @@ articleSwipe.listen(
 ```
 :::
 
+
+:::
+## Using with TypeScript
+:::
+
+`Listenable` will type check your `listen` method `effect` functions and options based on the `type` (String) you pass to the constructor:
+
+:::
+```ts
+const instance = new Listenable('intersect')
+
+instance.listen(
+  // Listenable knows that `entries` is an array of
+  // IntersectionObserverEntry objects.
+  //
+  // entries[0].boundingClientRect.width can be accessed via
+  // IDE autocomplete!
+  entries => console.log(entries[0].boundingClientRect.width),
+  // Listenable also knows that the `listen` method for an
+  // 'intersect' type can accept an `observer` option,
+  // passing an IntersectionObserverInit object.
+  { observer: { threshold: 0.5 } }
+) 
+```
+:::
+
+Even complex types like combos and media queries will be detected:
+
+:::
+```ts
+const screenSize = new Listenable('(min-width: 420px)')
+screenSize.listen(
+  // TypeScript knows that this is a MediaQueryListEvent
+  event => doSomething(event)
+)
+
+const cmdRightclick = new Listenable('cmd+rightclick')
+cmdRightclick.listen(
+  // TypeScript knows that this is a MouseEvent
+  event => doSomething(event),
+  // TypeScript also knows what options are available
+  { target: document.querySelector('canvas') }
+)
+
+const shiftB = new Listenable('shift+b')
+shiftB.listen(
+  // TypeScript knows that this is a KeyboardEvent
+  event => doSomething(event)
+)
+```
+:::
+
+There are two situations where you'll need to adopt a little bit of type unsafety:
+1. When listening for combos that have no modifiers
+2. When using `Listenable` to configure a `Recognizeable` instance for recognizing a custom gesture
+
+Let's talk through these two cases individually, and how to minimize type unsafety.
+
+Here's an annotated code example for the first case:
+
+:::
+```ts
+// In this example, we want to listen for the 'b' key.
+//
+// Listenable can do this as a keycombo with no modifiers,
+// i.e. just the letter 'b'.
+// 
+// When you're using TypeScript, though, you'll need to
+// assert that your 'b' has a type of '+b':
+const b = new Listenable('b' as '+b')
+
+// This instance will now type check correctly, and the `listen`
+// method will know that it's passing a KeyboardEvent to your
+// effect function.
+b.listen(event => console.log(event))
+
+// The other case to be aware of is when you're listening
+// for an unmodified 'rightclick', which Listenable handles
+// as if it were a click combo.
+//
+// Again, just assert that 'rightclick' has a type of '+rightclick',
+// and type checking will work properly.
+const rightclick = new Listenable('rightclick' as '+rightclick')
+
+// Listenable knows that this event is a MouseEvent.
+rightclick.listen(event => console.log(event))
+```
+:::
+
+The key thing to remember: if you're listening to `rightclick`, or any unmodified keycombo, like `b`, `enter`, `.`, etc., use TypeScript's `as` keyword to make a type assertion, adding a `+` in front of your unmodified character.
+
+This might seem a little strange, and at one point, `Listenable` was actually able to seamlessly detect and type check these unmodified combos with no additional help or assertions from you. However, the strange type assertion workaround _drastically_ increased the performance of `Listenable`'s type checking system, leading to a much better DX during IDE type checking and build time type checking.
+
+At least for now, the slight type unsafety appears to be a worthwhile tradeoff.
+
+Now, moving onto the second case: when you're using `Listenable` to configure a `Recognizeable` instance for recognizing a custom gesture.
+
+Recall that to use `Listenable` with `Recognizeable`, you should pass `recognizeable` as the `Listenable` constructor's `type` argument, and pass your `Recognizeable` instance's options to `listenableOptions.recognizeable`
+
+:::
+```js
+const instance = new Listenable(
+  'recognizeable',
+  { recognizeable: { ... } }
+)
+```
+:::
+
+There's a way to write your code so that your `options.recognizeable` object is fully type checked based on all the possible events that you want your `Recognizeable` instance to be able to handle.
+
+We won't cover all that information here, though. Instead, you should visit the [Using with TypeScript section of the `Recognizeable` docs](/docs/logic/classes/Recognizeable#using-with-typescript). Those docs give full information on not only how to set up a standalone `Recognizeable` instance, but more importantly, how to set up a fully type-safe `Listenable` instance that uses `Recognizeable` under the hood to recognize custom gestures.
 
 
 :::

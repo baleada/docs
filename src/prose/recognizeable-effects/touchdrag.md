@@ -2,7 +2,7 @@
 title: touchdrag
 tags: UI Logic
 publish: true
-order: 0
+order: 1
 ---
 
 `touchdrag` is defined as a single touch that:
@@ -17,7 +17,7 @@ The `touchdrag` function returns an object that contains event handlers for the 
 - `touchend`
 
 ::: type="info"
-In Baleada Recognizeable Handlers, `touchdrag` is the touch event equivalent of [`mousedrag`](/docs/recognizeable-handlers/functions/mousedrag).
+In Baleada Recognizeable Handlers, `touchdrag` is the touch event equivalent of [`mousedrag`](/docs/recognizeable-effects/mousedrag).
 :::
 
 ::: type="warning"
@@ -33,7 +33,7 @@ To create the `touchdrag` handlers, import and call the `touchdrag` function:
 
 :::
 ```js
-import { touchdrag } from '@baleada/recognizeable-handlers'
+import { touchdrag } from '@baleada/recognizeable-effects'
 
 const touchdragHandlers = touchdrag(/* options */)
 

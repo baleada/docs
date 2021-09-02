@@ -36,7 +36,7 @@ const instance = new Copyable(resource[, options])
 ```
 :::
 
-Or, if you're using [Baleada Composition](/docs/compositon):
+Or, if you're using [Baleada Composition](/docs/composition):
 
 :::
 ```js
@@ -176,6 +176,13 @@ secondInstance.isClipboardText // -> true
 :::
 
 With this configuration, you can use the shared `clipboard` object and each instance's `isClipboardText` property to inform your decisions about which buttons should have special decorations on your screen, etc.
+
+
+:::
+## Using with TypeScript
+:::
+
+Nothing special to know about using `Copyable` with TypeScript! Enjoy IDE autocomplete and type checking while you construct and use your instance.
 
 
 :::

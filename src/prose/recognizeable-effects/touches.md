@@ -2,7 +2,7 @@
 title: touches
 tags: UI Logic
 publish: true
-order: 0
+order: 1
 ---
 
 `touches` is defined as a single touch that:
@@ -19,7 +19,7 @@ The `touches` function returns an object that contains event handlers for the fo
 - `touchend`
 
 ::: type="info"
-In Baleada Recognizeable Handlers, `touches` is the touch event equivalent of [`clicks`](/docs/recognizeable-handlers/functions/clicks).
+In Baleada Recognizeable Handlers, `touches` is the touch event equivalent of [`clicks`](/docs/recognizeable-effects/clicks).
 :::
 
 ::: type="warning"
@@ -35,14 +35,14 @@ To create the `touches` handlers, import and call the `touches` function:
 
 :::
 ```js
-import { touches } from '@baleada/recognizeable-handlers'
+import { touches } from '@baleada/recognizeable-effects'
 
 const touchesHandlers = touches(/* options */)
 
 // If you're using useListenable:
 const listenable = useListenable(
   'recognizeable',
-  { recognizeable: { handlers: touchesHandlers } }
+  { recognizeable: { handlers: touchesHandlers() } }
 )
 ```
 :::
@@ -52,7 +52,7 @@ Optionally, you can pass an `options` object as the first argument of the `touch
 ::: ariaLabel="touches options" classes="wide-4"
 | Option | Type | Default | Description |
 | --- | --- | --- | --- |
-| `minTaps` | Number | `1` | The minimum number of repetitions required before the gesture is recognized. |
+| `minTouches` | Number | `1` | The minimum number of repetitions required before the gesture is recognized. |
 | `maxInterval` | Number | `500` | The maximum number of milliseconds that can pass between the end of each click. |
 | `maxDistance` | Number | `5` | The maximum distance the mouse can travel after `touchstart` and before `touchend`. |
 | `onStart` | Function | none | <p>Hooks into the `touchstart` event that the `touches` handlers listen to.</p><p>`onStart` receives the touches hook API as its only argument. See the [Taps hook API](#touches-hook-api) section for more info.</p> |

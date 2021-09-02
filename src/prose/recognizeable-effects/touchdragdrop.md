@@ -2,7 +2,7 @@
 title: touchdragdrop
 tags: UI Logic
 publish: true
-order: 0
+order: 1
 ---
 
 `touchdragdrop` is defined as a single touch that:
@@ -18,7 +18,7 @@ The `touchdragdrop` function returns an object that contains event handlers for 
 - `touchend`
 
 ::: type="info"
-In Baleada Recognizeable Handlers, `touchdragdrop` is the touch event equivalent of [`mousedragdrop`](/docs/recognizeable-handlers/functions/mousedragdrop).
+In Baleada Recognizeable Handlers, `touchdragdrop` is the touch event equivalent of [`mousedragdrop`](/docs/recognizeable-effects/mousedragdrop).
 :::
 
 ::: type="warning"
@@ -38,7 +38,7 @@ To create the `touchdragdrop` handlers, import and call the `touchdragdrop` func
 
 :::
 ```js
-import { touchdragdrop } from '@baleada/recognizeable-handlers'
+import { touchdragdrop } from '@baleada/recognizeable-effects'
 
 const touchdragdropHandlers = touchdragdrop(/* options */)
 

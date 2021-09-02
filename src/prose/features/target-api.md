@@ -44,7 +44,7 @@ First, here's a breakdown of the single target API object:
 ::: ariaLabel="single target API breakdown" classes="wide-3"
 | Property | Type | Description |
 | --- | --- | --- |
-| `ref` | Function | <p>A function that returns a [function ref](https://v3.vuejs.org/guide/composition-api-template-refs.html#usage-inside-v-for).</p><p>`targetAPI.ref` should be called with no arguments, and the returned function ref should be bound to the DOM element that you want to capture.</p><p>See the [Using the ref property](#using-the-ref-property) section for more guidance.</p> |
+| `ref` | Function | <p>A [function ref](https://v3.vuejs.org/guide/composition-api-template-refs.html#usage-inside-v-for).</p><p>`targetAPI.ref` should be bound to the DOM element that you want to capture.</p><p>See the [Getting and using refs](#getting-and-using-refs) section for more guidance.</p> |
 | `el` | Ref (HTMLElement) | <p>A reactive reference to the DOM element captured by `targetAPI.ref`.</p><p>Useful when you need to access that DOM element from your Vue component's `setup` function to apply a side effect.</p> |
 :::
 
@@ -53,24 +53,26 @@ And here's a breakdown of the multiple targets API object:
 ::: ariaLabel="multiple targets API breakdown" classes="wide-3"
 | Property | Type | Description |
 | --- | --- | --- |
-| `ref` | Function | <p>A function that returns a [function ref](https://v3.vuejs.org/guide/composition-api-template-refs.html#usage-inside-v-for). `targetAPI.ref` should be called inside the `ref` attribute of an element in your Vue template that has a `v-for` statement.</p><p>Call `targetAPI.ref` with one argument: the `index` (Number) of the current element, which you can get from the `v-for` statement.</p><p>See the [Using the ref property](#using-the-ref-property) section for more guidance.</p> |
-| `els` | Ref (Array) | <p>A reactive reference to an array of DOM elements captured by `ref`. Inside the array, DOM elements will be listed in the exact order they appear in the DOM.</p><p>Useful when you need to access these DOM elements from your Vue component's `setup` function to apply a side effect.</p> |
+| `getRef` | Function | <p>A function that returns a [function ref](https://v3.vuejs.org/guide/composition-api-template-refs.html#usage-inside-v-for). The function ref returned by `targetAPI.getRef` should be bound to the `ref` attribute of an element in your Vue template that has a `v-for` statement.</p><p>Call `targetAPI.getRef` with one argument: the `index` (Number) of the current element, which you can get from the `v-for` statement.</p><p>See the [Getting and using refs](#getting-and-using-refs) section for more guidance.</p> |
+| `els` | Ref (Array) | <p>A reactive reference to an array of DOM elements captured by the function ref. Inside the array, DOM elements will be listed in the exact order they appear in the DOM.</p><p>Useful when you need to access these DOM elements from your Vue component's `setup` function to apply a side effect.</p> |
 :::
 
 
 :::
-### Using the ref property
+### Getting and using refs
 :::
 
 The overarching workflow of Baleada Features is:
 1. Call a Baleada Features function in the setup function of your Vue template, passing optional parameters as needed.
 2. The Baleada Features function will return a object. Inside this object, you'll find at least one target API object.
-3. Use the `ref` property of the target API object to capture a DOM element from your Vue component's template and expose it to the Baleada Features function.
+3. Get a function ref from the target API object, and use it to capture a DOM element from your Vue component's template and expose it to the Baleada Features function.
 4. Internally, the Baleada Features function will access that element. It will bind attributes, add and remove event listeners, conditionally display, etc.
 
-The thing that ties this whole system together is that `ref` property on the target API object.
+The thing that ties this whole system together is the `ref` property on the single target API object, and the `getRef` property of the multiple targets API object.
 
-As mentioned above, `targetAPI.ref` contains a function that **returns** a [function ref](https://v3.vuejs.org/guide/composition-api-template-refs.html#usage-inside-v-for): a JavaScript function that takes a DOM element as one of parameters, and stores that DOM element inside one of Vue's reactive references.
+As mentioned above, `singleTargetAPI.ref` is a [function ref](https://v3.vuejs.org/guide/composition-api-template-refs.html#usage-inside-v-for): a JavaScript function that accepts a DOM element as one of parameters, and stores that DOM element inside one of Vue's reactive references.
+
+`multipleTargetsAPI.getRef` is a function that **returns** a function ref.
 
 In Baleada Features, that DOM element is always the **only** parameter of the function ref.
 
@@ -95,7 +97,7 @@ tablist.root // -> "single target" API object
 ```
 :::
 
-And that target API includes a `ref` property, holding a function that returns a function ref:
+And that target API includes a `ref` property, holding a function ref:
 
 :::
 ```js
@@ -103,11 +105,11 @@ import { useTablist } from '@baleada/features'
 
 const tablist useTablist(...)
 
-tablist.root.ref // -> function
+tablist.root.ref // -> function ref
 ```
 :::
 
-So, to give `useTablist` access to your root element in the DOM, you need to call `tablist.root.ref()`, and bind its return value to the `ref` attribute of your tablist's root element:
+So, to give `useTablist` access to your root element in the DOM, you need to bind `tablist.root.ref`, to the `ref` attribute of your tablist's root element:
 
 :::
 ```html
@@ -127,13 +129,13 @@ export default {
   <section>
     <!--
       This div is the tablist root in this example. We bind
-      the return value of tablist.root.ref to its ref attribute.
+      tablist.root.ref to its ref attribute.
     
       Note that the tablist root *does not* have to be
       the root element of your component, but for accessibility purposes, it should be a container element for your tabs
       and panels.
     -->
-    <div :ref="tablist.root.ref()">
+    <div :ref="tablist.root.ref">
       ...
     </div>
   </section>
@@ -191,15 +193,15 @@ import { useTablist } from '@baleada/features'
 
 const tablist useTablist(...)
 
-tablist.tabs.ref // -> function
+tablist.tabs.getRef // -> function that returns a function ref
 ```
 :::
 
 In most cases, you should use a `v-for` to programmatically create all your tab elements. This is especially true for things like tabs in a spreadsheet app, since the number of tabs and the order of tabs can change reactively as the user interacts with the app.
 
-To give `useTablist` access to your tabs elements in the DOM, you need to call `tablist.tabs.ref`, and bind its return value to your the `ref` attribute of your `v-for` element.
+To give `useTablist` access to your tabs elements in the DOM, you need to call `tablist.tabs.getRef`, and bind its return value to the `ref` attribute of your `v-for` element.
 
-The `tablist.tabs.ref` function also requires an `index` as its only parameter. You can get that index from the `v-for` statement as shown below:
+The `tablist.tabs.getRef` function also requires an `index` as its only parameter. You can get that index from the `v-for` statement as shown below:
 
 :::
 ```html
@@ -221,20 +223,20 @@ export default {
 <template>
   <section>
     <!-- Here's our tablist root element again -->
-    <div :ref="tablist.root.ref()">
+    <div :ref="tablist.root.ref">
       <!--
         And here are the tabs!
         
         Note how we use the v-for statement to access the current
         element's index in the list.
 
-        We pass that index to the tablist.tabs.ref function.
+        We pass that index to the tablist.tabs.getRef function.
         This allows the function to insert the current DOM element
         in the correct position in an array that useTablist
         tracks internally.
 
         If tabs are reordered, deleted, or added, Vue will run
-        tablist.tabs.ref function again, always ensuring that
+        tablist.tabs.getRef function again, always ensuring that
         the order of useTablist's internal array is always
         perfectly in sync with the actual number and order of
         elements in the DOM.
@@ -242,7 +244,7 @@ export default {
       <div
         v-for="(tab, index) in tabs"
         :key="tab"
-        :ref="tablist.tabs.ref(index)"
+        :ref="tablist.tabs.getRef(index)"
       >
         {{ tab }}
       </div>

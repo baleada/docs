@@ -2,7 +2,7 @@
 title: mousedragdrop
 tags: UI Logic
 publish: true
-order: 0
+order: 1
 ---
 
 `mousedragdrop` is defined as a single click that:
@@ -20,7 +20,7 @@ The `mousedragdrop` function returns an object that contains event handlers for 
 Under the hood, `mousedragdrop` also uses a `mousemove` event listener to gather data. However, listening to every `mousemove` event on a page can cause performance issues, so `mousedragdrop` adds its `mousemove` listener on the fly after a succesful `mousedown`, and removes it on `mouseleave` and `mouseup`.
 
 ::: type="info"
-In Baleada Recognizeable Handlers, `mousedragdrop` is the mouse event equivalent of [`touchdragdrop`](/docs/recognizeable-handlers/functions/touchdragdrop).
+In Baleada Recognizeable Handlers, `mousedragdrop` is the mouse event equivalent of [`touchdragdrop`](/docs/recognizeable-effects/touchdragdrop).
 :::
 
 ::: type="warning"
@@ -45,7 +45,7 @@ To create the `mousedragdrop` handlers, import and call the `mousedragdrop` func
 
 :::
 ```js
-import { mousedragdrop } from '@baleada/recognizeable-handlers'
+import { mousedragdrop } from '@baleada/recognizeable-effects'
 
 const mousedragdropHandlers = mousedragdrop(/* options */)
 

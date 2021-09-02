@@ -5,7 +5,7 @@ publish: true
 order: 0
 ---
 
-Baleada Logic is a collection of JavaScript [classes](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Classes) and [pipes](/docs/logic/pipes) that implement **UI logic**.
+Baleada Logic is a collection of JavaScript [classes](/docs/logic/classes-overview) and [pipes](/docs/logic/pipes-overview) that implement **UI logic**.
 
 
 :::

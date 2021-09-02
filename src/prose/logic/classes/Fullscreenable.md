@@ -1,6 +1,6 @@
 ---
 title: Fullscreenable
-tags: UI Logic, Vue, React, Svelte
+tags: UI Logic
 publish: true
 order: 0
 ---
@@ -35,7 +35,7 @@ const instance = new Fullscreenable(getElement[, options])
 ```
 :::
 
-Or, if you're using [Baleada Composition](/docs/compositon):
+Or, if you're using [Baleada Composition](/docs/composition):
 
 :::
 ```js
@@ -86,6 +86,23 @@ Each `Fullscreenable` instance maintains a `status` property that keeps you info
 - After the instance is constructed, `status` will be `ready`.
 - When the `fullscreen` or `enter` methods are called, `status` will be `fullscreened` if the method is successful and `errored` if it isn't.
 - When the `exit` method is called, `status` will be `exited` if the method is successful and `errored` if it isn't.
+
+
+:::
+## Using with TypeScript
+:::
+
+The `Fullscreenable` constructor accepts one generic type that you can use to enforce a type for the element returned by `getElement`. By default, TypeScript will infer the element type from the initial `getElement` function you pass to the constructor, but you can specify the type manually if needed.
+
+:::
+```ts
+const withInferredTypes = new Fullscreenable(() => document.querySelector('button'))
+withInferredTypes.getElement = () => document.querySelector('input') // Type error
+
+const withManualTypes = new Fullscreenable<HTMLInputElement | HTMLButtonElement>(() => document.querySelector('button'))
+withManualTypes.getElement = () => document.querySelector('input') // No type error
+```
+:::
 
 
 :::

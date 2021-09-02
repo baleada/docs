@@ -125,3 +125,36 @@ As mentioned above, the `complete` method accepts two parameters: `completion` a
 | --- | --- | --- | --- |
 | `select` | String | `completion` | <p>Controls how `Completeable` will set the new selection after completing text. Valid values are `completion` or `completionEnd`.</p><p>If `options.select` is `completion`, `Completeable` will set `selection.start` to the start index of the completed text, and `selection.end` to the end index of the completed text.</p><p>If `options.select` is `completionEnd`, `Completeable` will set both `selection.start` and `selection.end` to the end index of the completed text.</p> |
 :::
+
+
+:::
+## Using with TypeScript
+:::
+
+Nothing special to know about using `Completeable` with TypeScript! Enjoy IDE autocomplete and type checking while you construct and use your instance.
+
+
+:::
+## API design compliance
+:::
+
+::: ariaLabel="A table showing Completeable's API design compliance"  classes="wide-1 wide-3"
+| Spec | Compliance status | Notes |
+| --- | --- | --- |
+| Access functionality by constructing an instance | <BrandApiDesignSpecCheckmark /> |  |
+| Constructor accepts two parameters: a piece of state,and an `options` object. | <BrandApiDesignSpecCheckmark /> |  |
+| Constructor does not access the DOM | <BrandApiDesignSpecCheckmark /> |  |
+| Takes the form of a JavaScript Object | <BrandApiDesignSpecCheckmark /> |  |
+| State and methods are accessible through properties of the object | <BrandApiDesignSpecCheckmark /> |  |
+| Methods always return the instance | <BrandApiDesignSpecCheckmark /> |  |
+| Stores the constructor's state in a public getter named after the state's type | <BrandApiDesignSpecCheckmark /> | `string`  |
+| Has a public method you can use to set a new value for that public getter | <BrandApiDesignSpecCheckmark /> | `setString` |
+| Has a setter for that getter so you can assign a new value directly | <BrandApiDesignSpecCheckmark /> |  |
+| Any other public getters that should be set by you in some cases also have setters and `set<Property>` methods | <BrandApiDesignSpecCheckmark /> | `setSelection` |
+| Has at least one additional getter property that you can't (and shouldn't) set directly | <BrandApiDesignSpecCheckmark /> | `status`, `segment`, `dividerIndices` |
+| Has one or more public methods that expose core functionality | <BrandApiDesignSpecCheckmark /> | `complete` |
+| Either has no side effects or has side effects that can be cleaned up with a `stop` method | <BrandApiDesignSpecCheckmark /> | none |
+| Uses the sentence template to decide what state type should be accepted by a constructor | <BrandApiDesignSpecCheckmark /> | "A string can be completed." |
+| Constructor does not accept options that only customize the behavior of public methods, it allows those options to be passed to the method itself as a parameter. | <BrandApiDesignSpecCheckmark /> | |
+| Named after its core action, proper-cased and suffixed with `able` | <BrandApiDesignSpecCheckmark /> | |
+:::

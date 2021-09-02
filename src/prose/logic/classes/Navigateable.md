@@ -38,7 +38,7 @@ const instance = new Navigateable(array[, options])
 ```
 :::
 
-Or, if you're using [Baleada Composition](/docs/compositon):
+Or, if you're using [Baleada Composition](/docs/composition):
 
 :::
 ```js
@@ -157,6 +157,23 @@ instance.previous({ distance: 5 }) // The array's location is 2, and its lowest 
  */
 instance.location // -> 0
 
+```
+:::
+
+
+:::
+## Using with TypeScript
+:::
+
+The `Navigateable` constructor accepts one generic type that you can use to enforce a type for the items in `array`. By default, TypeScript will infer the item type from the initial array you pass to the constructor, but you can specify the type manually if needed.
+
+:::
+```ts
+const withInferredTypes = new Navigateable([1, 2, 3])
+withInferredTypes.array = ['a', 'b', 'c'] // Type error
+
+const withManualTypes = new Navigateable<string | number>([1, 2, 3])
+withManualTypes.array = ['a', 'b', 'c'] // No type error
 ```
 :::
 

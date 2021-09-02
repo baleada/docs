@@ -43,7 +43,7 @@ const instance = new Storeable(key[, options])
 ```
 :::
 
-Or, if you're using [Baleada Composition](/docs/compositon):
+Or, if you're using [Baleada Composition](/docs/composition):
 
 :::
 ```js
@@ -166,6 +166,12 @@ case 'removed':
 ```
 :::
 
+
+:::
+## Using with TypeScript
+:::
+
+Nothing special to know about using `Storeable` with TypeScript! Enjoy IDE autocomplete and type checking while you construct and use your instance.
 
 
 :::

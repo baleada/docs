@@ -1,11 +1,11 @@
 ---
 title: clicks
-tags: UI Logic, Vue, React, Svelte
+tags: UI Logic
 publish: true
-order: 0
+order: 1
 ---
 
-`clicks` is defined as a single click that:
+`clicks` is defined as a `mousedown` and `mouseup` sequence that:
 - starts at a given point
 - does not move beyond a maximum distance
 - does not exit the element and all of its descendants
@@ -20,7 +20,7 @@ The `clicks` function returns an object that contains event handlers for the fol
 Under the hood, `clicks` also uses a `mousemove` event listener to gather data. However, listening to every `mousemove` event on a page can cause performance issues, so `clicks` adds its `mousemove` listener on the fly after a succesful `mousedown`, and removes it on `mouseleave` and `mouseup`.
 
 ::: type="info"
-In Baleada Recognizeable Handlers, `clicks` is the mouse event equivalent of [`touches`](/docs/recognizeable-handlers/functions/touches).
+In Baleada Recognizeable Handlers, `clicks` is the mouse event equivalent of [`touches`](/docs/recognizeable-effects/touches).
 :::
 
 ::: type="warning"
@@ -35,7 +35,7 @@ To create the `clicks` handlers, import and call the `clicks` function:
 
 :::
 ```js
-import { clicks } from '@baleada/recognizeable-handlers'
+import { clicks } from '@baleada/recognizeable-effects'
 
 const clicksHandlers = clicks(/* options */)
 
