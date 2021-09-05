@@ -14,7 +14,7 @@
     <section class="flex flex-col gap-2">
       <label for="model-example-input">Edit the <code :class="context.statuses.darkTheme === 'enabled' ? 'bg-primary-gray-70' : 'bg-primary-10'">value</code> dynamically:</label>
       <input
-        ref="target"
+        ref="element"
         id="model-example-input"
         type="text"
         class="form -shadow-4"
@@ -41,21 +41,21 @@
   </section>
 </template>
 
-<script>
+<script lang="ts">
 import { ref, computed } from 'vue'
 import { model } from '@baleada/vue-features'
-import { useContext } from '@functions'
+import { useContext } from '../functions'
 
 export default {
   name: 'ExampleModel',
   setup () {
-    const target = ref(null),
+    const element = ref(null),
           value = ref(''),
           valueJson = computed(() => JSON.stringify(value.value))
     
-    model({ target, value })
+    model({ element, value })
 
-    return { target, value, valueJson, context: useContext() }
+    return { element, value, valueJson, context: useContext() }
   }
 }
 </script>

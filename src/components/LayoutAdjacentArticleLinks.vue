@@ -19,14 +19,17 @@
   </section>
 </template>
 
-<script>
+<script lang="ts">
+/// <reference types="../../types" />
 import { computed } from 'vue'
+// @ts-ignore
 import { useContext } from '@baleada/vue-prose'
-import { string } from '@baleada/logic'
+import { createClip } from '@baleada/logic'
+// @ts-ignore
 import { HeroiconsChevronDoubleLeft, HeroiconsChevronDoubleRight } from '@baleada/vue-heroicons'
-import manifest from '@manifest'
+import { manifest } from 'virtual:manifest'
 
-const articles = manifest.reduce((articles, entry) => [...articles, ...entry.articles], [])
+const articles = manifest.reduce<typeof manifest[0]['articles']>((articles, entry) => [...articles, ...entry.articles], [])
 
 export default {
   name: 'LayoutAdjacentArticleLinks',
@@ -37,7 +40,7 @@ export default {
   setup () {
     const fullPath = computed(() => useContext().fullPath),
           currentIndex = computed(() => {
-            const basePath = `${string(fullPath.value).clip(/#.+$/)}`
+            const basePath = createClip(/#.+$/)(fullPath.value)
             return articles.findIndex(article => routeMatches(article.href, basePath))
           }),
           previous = computed(() => currentIndex.value - 1 === -1 ? undefined : articles[currentIndex.value - 1]),
@@ -53,7 +56,7 @@ export default {
 function routeMatches (articleHref, basePath) {
   return (
     articleHref === basePath ||
-    articleHref === `${string(basePath).clip(/\/$/)}` ||
+    articleHref === createClip(/\/$/)(basePath) ||
     articleHref === `${basePath}/`.replace(/\/+$/,'/')
   )
 }

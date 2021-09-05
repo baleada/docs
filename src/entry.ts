@@ -8,7 +8,7 @@ import '@fontsource/inter/600.css'
 import '@fontsource/inter/700.css'
 import 'typeface-inconsolata'
 import 'typeface-caveat'
-import { globalComponents, plugins } from '@state'
+import { globalComponents, plugins } from './state'
 
 const app = createApp(App)
 

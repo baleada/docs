@@ -1,6 +1,7 @@
 const { configureable } = require('@baleada/prepare')
 
-module.exports = configureable('tailwindcss')
+module.exports = new configureable.Tailwindcss()
+  .jit()
   .important()
   .purge([
     'index.html',
@@ -16,7 +17,7 @@ module.exports = configureable('tailwindcss')
       display: ['Caveat', ...defaultConfig.theme.fontFamily.sans],
     },
   }))
-  .theme.extend(({ linearNumeric }) => ({
+  .extend(({ linearNumeric }) => ({
     colors: {
       gray: {
         ...linearNumeric({ only: 'colors', increment: '10' }).blueGray,
@@ -56,10 +57,6 @@ module.exports = configureable('tailwindcss')
       '5': '36rem',
     },
   }))
-  .variants.extend({
-    boxShadow: ['active'],
-    scale: ['active'],
-  })
   .forms()
   .plugin(({ addComponents }) => addComponents({
     '.icon': apply('h-full w-full fill-current'),

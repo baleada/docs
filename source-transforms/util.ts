@@ -1,6 +1,6 @@
 import { configureable } from '@baleada/prepare'
 
-export default configureable('markdownit')
+export const md = new configureable.Markdownit()
   .html()
   .linkify()
   .highlight('refractorRehypeWithEscapedVueMustache')

@@ -23,8 +23,9 @@
   </nav>
 </template>
 
-<script>
-import manifest from '@manifest'
+<script lang="ts">
+/// <reference types="../../types" />
+import { manifest } from 'virtual:manifest'
 
 export default {
   name: 'LayoutNav',

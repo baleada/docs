@@ -1,8 +1,10 @@
 import { computed } from 'vue'
+import type { Ref } from 'vue'
 import { useRoute } from 'vue-router'
+// @ts-ignore
 import { useContext } from '@baleada/vue-prose'
 
-export default function createProseContext (articleRef) {
+export function createProseContext (articleRef: Ref<HTMLElement>) {
   const route = useRoute(),
         fullPath = computed(() => route.fullPath),
         scrollableContainer = computed(() => articleRef.value ?? document),

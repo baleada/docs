@@ -26,10 +26,10 @@
   </section>
 </template>
 
-<script>
+<script lang="ts">
 import { ref, watch } from 'vue'
 import { show } from '@baleada/vue-features'
-import { useContext } from '@functions'
+import { useContext } from '../functions'
 import { useAnimateable } from '@baleada/vue-composition'
 import { verouEase } from '@baleada/animateable-utils'
 
@@ -42,44 +42,46 @@ export default {
           appear = useAnimateable(
             [
               // Grow a bit
-              { progress: 0, data: { scale: 0 }, timing: verouEase },
-              { progress: .2, data: { scale: 1 } },
+              { progress: 0, properties: { scale: 0 }, timing: verouEase },
+              { progress: .2, properties: { scale: 1 } },
 
               // Weeee
-              { progress: .35, data: { rotate: 0 }, timing: verouEase },
-              { progress: .75, data: { rotate: 360 } },
+              { progress: .35, properties: { rotate: 0 }, timing: verouEase },
+              { progress: .75, properties: { rotate: 360 } },
 
               // Shrink back
-              { progress: .85, data: { scale: 1.1 }, timing: verouEase },
-              { progress: 1, data: { scale: 1 } },
+              { progress: .85, properties: { scale: 1.1 }, timing: verouEase },
+              { progress: 1, properties: { scale: 1 } },
             ],
             { duration: 2000, timing: verouEase }
           ),
           grow = useAnimateable(
             [
-              { progress: 0, data: { scale: 0 } },
-              { progress: 1, data: { scale: 1 } },
+              { progress: 0, properties: { scale: 0 } },
+              { progress: 1, properties: { scale: 1 } },
             ],
             { duration: 250, timing: verouEase },
           ),
           shrink = useAnimateable(
             [
-              { progress: 0, data: { scale: 1 } },
-              { progress: 1, data: { scale: 0 } },
+              { progress: 0, properties: { scale: 1 } },
+              { progress: 1, properties: { scale: 0 } },
             ],
             { duration: 250, timing: verouEase },
           ),
-          stopWatchingStatus = {}
+          stopWatchingStatus: {
+            [animation in 'appear' | 'grow' | 'shrink']?: ReturnType<typeof watch>
+          } = {}
 
     show(
       {
-        target: el,
+        element: el,
         condition: isDisplayed,
       },
       {
         transition: {
           appear: {
-            active ({ target, done }) {
+            active ({ element, done }) {
               stopWatchingStatus.appear = watch(
                 [() => appear.value.status],
                 () => {
@@ -90,18 +92,18 @@ export default {
                 },
               )
 
-              appear.value.play(({ data: { scale, rotate } }) => {
-                target.style.transform = `scale(${scale}) rotate(${rotate}deg)`
+              appear.value.play(({ properties: { scale, rotate } }) => {
+                element.style.transform = `scale(${scale.interpolated}) rotate(${rotate.interpolated}deg)`
               })
             },
-            cancel ({ target }) {
+            cancel ({ element }) {
               stopWatchingStatus.appear()
               appear.value.stop()
-              target.style.transform = `rotate(${rotate}deg)`
+              element.style.transform = `rotate(0deg)`
             },
           },
           enter: {
-            active ({ target, done }) {
+            active ({ element, done }) {
               stopWatchingStatus.grow = watch(
                 [() => grow.value.status],
                 () => {
@@ -112,16 +114,16 @@ export default {
                 },
               )
 
-              grow.value.play(({ data: { scale } }) => (target.style.transform = `scale(${scale})`))
+              grow.value.play(({ properties: { scale } }) => (element.style.transform = `scale(${scale.interpolated})`))
             },
-            cancel ({ target }) {
+            cancel ({ element }) {
               stopWatchingStatus.grow()
               grow.value.stop()
-              target.style.transform = 'scale(0)'
+              element.style.transform = 'scale(0)'
             },
           },
           leave: {
-            active ({ target, done }) {
+            active ({ element, done }) {
               stopWatchingStatus.shrink = watch(
                 [() => shrink.value.status],
                 () => {
@@ -132,12 +134,12 @@ export default {
                 },
               )
 
-              shrink.value.play(({ data: { scale } }) => (target.style.transform = `scale(${scale})`))
+              shrink.value.play(({ properties: { scale } }) => (element.style.transform = `scale(${scale.interpolated})`))
             },
-            cancel ({ target }) {
+            cancel ({ element }) {
               stopWatchingStatus.shrink()
               shrink.value.stop()
-              target.style.transform = 'scale(1)'
+              element.style.transform = 'scale(1)'
             },
           },
         }

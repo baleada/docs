@@ -2,11 +2,10 @@ import matter from 'gray-matter'
 import { resolve } from 'path'
 import gitlog from 'gitlog'
 import { Pipeable, createClip } from '@baleada/logic'
-import md from './util/md.js'
-
+import { md } from './util'
 
 // TODO: set meta tags and head from data
-const transform = ({ source, id }) => {
+export const proseToVueSfc = ({ source, id }) => {
   const { content: prose, data: frontMatter } = matter(source),
         log = toLog(id),
         { 0: { files: { 0: relativePath } } } = (() => {
@@ -51,11 +50,9 @@ ${prose}\n\
   `
 }
 
-export default transform
-
 function toLog (id) {
   const basePath = resolve(''),
-        relativePath = `${new Pipeable(id).pipe(createClip(basePath), createClip(/^\//))}`,
+        relativePath = new Pipeable(id).pipe(createClip(basePath), createClip(/^\//)),
         log = gitlog({ repo: basePath, file: relativePath, number: 1 })
   
   return log

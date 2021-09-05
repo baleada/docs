@@ -58,10 +58,10 @@
   </section>
 </template>
 
-<script>
-import { ref, computed, watch, onMounted, nextTick } from 'vue'
+<script lang="ts">
+import { ref } from 'vue'
 import { bind } from '@baleada/vue-features'
-import { useContext } from '@functions'
+import { useContext } from '../functions'
 
 export default {
   name: 'ExampleBind',
@@ -72,8 +72,8 @@ export default {
           example = ref(null)
 
     bind({
-      target: example,
-      keys: {
+      element: example,
+      values: {
         ariaLabel,
         class: classes,
         style_backgroundColor: backgroundColor,

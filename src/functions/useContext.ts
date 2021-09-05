@@ -1,7 +1,7 @@
 import { nextTick } from 'vue'
-import { context } from '@state'
+import { context } from '../state'
 
-export default function useContext (writeCallback) {
+export function useContext (writeCallback?: Function) {
   if (!writeCallback) {
     return context
   }

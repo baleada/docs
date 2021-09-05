@@ -36,7 +36,16 @@
   </svg>
 </template>
 
-<script>
+<script lang="ts">
+import { PropType } from "@vue/runtime-core";
+
+export type Stop = {
+  offset: number,
+  opacity: number,
+  classes: string,
+  styles: { [key: string]: any },
+}
+
 export default {
   name: 'BrandRectangleGradient',
   props: {
@@ -45,7 +54,7 @@ export default {
       required: true,
     },
     stops: {
-      type: Array,
+      type: Array as PropType<Stop[]>,
       default: () => {
         return [
           { offset: 0, classes: 'text-white' },
@@ -54,11 +63,11 @@ export default {
       }
     },
     x: {
-      type: Object,
+      type: Object as PropType<{ 1: number, 2: number }>,
       default: () => { return { 1: 0, 2: 1 } },
     },
     y: {
-      type: Object,
+      type: Object as PropType<{ 1: number, 2: number }>,
       default: () => { return { 1: 0, 2: 1 } },
     }
   },

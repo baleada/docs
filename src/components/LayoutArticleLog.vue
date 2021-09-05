@@ -4,9 +4,9 @@
   </p>
 </template>
 
-<script>
+<script lang="ts">
 import { computed } from 'vue'
-import { useContext } from '@functions'
+import { useContext } from '../functions'
 
 export default {
   name: 'LayoutArticleLog',

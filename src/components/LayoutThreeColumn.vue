@@ -279,10 +279,14 @@
   </main>
 </template>
 
-<script>
+<script lang="ts">
 import { ref, computed, onMounted, watch } from 'vue'
 import { useRoute } from 'vue-router'
-import { touchdragdrop as swipe } from '@baleada/recognizeable-handlers'
+import { touchdragdrop as swipe } from '@baleada/recognizeable-effects'
+import type {
+  TouchdragdropTypes as SwipeTypes,
+  TouchdragdropMetadata as SwipeMetadata,
+} from '@baleada/recognizeable-effects'
 import { useListenable, useStoreable } from '@baleada/vue-composition'
 import { useHead } from '@baleada/vue-features'
 import {
@@ -292,10 +296,12 @@ import {
   HeroiconsSun,
   HeroiconsMoon,
   HeroiconsTemplate,
+  // @ts-ignore
 } from '@baleada/vue-heroicons'
+// @ts-ignore
 import { OcticonsSquare24 } from '@baleada/vue-octicons'
 
-import { createProseContext, useContext } from '@functions'
+import { createProseContext, useContext } from '../functions'
 
 export default {
   name: 'LayoutThreeColumn',
@@ -327,14 +333,14 @@ export default {
           nav = ref(null),
           article = ref(null),
           tableOfContents = ref(null),
-          articleSwipe = useListenable('recognizeable', {
-            recognizeable: { handlers: swipe() }
+          articleSwipe = useListenable<SwipeTypes, SwipeMetadata>('recognizeable' as SwipeTypes, {
+            recognizeable: { effects: swipe() }
           }),
-          navSwipe = useListenable('recognizeable', {
-            recognizeable: { handlers: swipe() }
+          navSwipe = useListenable<SwipeTypes, SwipeMetadata>('recognizeable' as SwipeTypes, {
+            recognizeable: { effects: swipe() }
           }),
-          tableOfContentsSwipe = useListenable('recognizeable', {
-            recognizeable: { handlers: swipe() }
+          tableOfContentsSwipe = useListenable<SwipeTypes, SwipeMetadata>('recognizeable' as SwipeTypes, {
+            recognizeable: { effects: swipe() }
           }),
           except = [
             '.baleada-prose-article .overflow-y-scroll',
@@ -430,10 +436,12 @@ export default {
         break
       }
       darkThemeShortcut.value.listen(event => {
-        if (event.target.tagName !== 'INPUT'){
-          event.preventDefault()
-          toggleDarkTheme()
+        if ((event.target as HTMLElement).tagName === 'INPUT'){
+          return
         }
+        
+        event.preventDefault()
+        toggleDarkTheme()
       })
     })
 
@@ -481,10 +489,12 @@ export default {
         break
       }
       minimalistThemeShortcut.value.listen(event => {
-        if (event.target.tagName !== 'INPUT'){
-          event.preventDefault()
-          toggleMinimalistTheme()
+        if ((event.target as HTMLElement).tagName === 'INPUT'){
+          return
         }
+
+        event.preventDefault()
+        toggleMinimalistTheme()
       })
     })
 

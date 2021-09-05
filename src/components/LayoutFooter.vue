@@ -46,7 +46,7 @@
   </footer>
 </template>
 
-<script>
+<script lang="ts">
 import { SimpleGitHub, SimpleTwitter } from '@baleada/vue-simple-icons'
 
 export default {

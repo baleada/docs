@@ -45,10 +45,11 @@
   </main>
 </template>
 
-<script>
+<script lang="ts">
 import { ref } from 'vue'
 import { useAnimateable, useNavigateable } from '@baleada/vue-composition'
 import { SimpleGitHub } from '@baleada/vue-simple-icons'
+// @ts-ignore
 import { HeroiconsBookOpen } from '@baleada/vue-heroicons'
 
 export default {
@@ -59,16 +60,16 @@ export default {
   },
   setup () {
     const logo = ref(null),
-          animations = useNavigateable((new Array(4)).fill()),
+          animations = useNavigateable((new Array(4)).fill(undefined)),
           wiggle = useAnimateable(
             [
               {
                 progress: 0,
-                data: { rotate: 0 }
+                properties: { rotate: 0 }
               },
               {
                 progress: 1,
-                data: { rotate: 8 }
+                properties: { rotate: 8 }
               }
             ],
             {
@@ -86,7 +87,7 @@ export default {
         break
       default:
         wiggle.value.play(frame => {
-          const { data: { rotate } } = frame
+          const { properties: { rotate: { interpolated: rotate } } } = frame
 
           if (wiggle.value.iterations === 3) {
             logo.value.$el.style.transform = `rotate(0deg)`
