@@ -74,6 +74,24 @@ Baleada Linear Numeric also includes Tailwind's default standalone colors `black
 
 
 :::
+## Blur
+:::
+
+::: ariaLabel="Blur class reference"
+| Class | Tailwind equivalent | Value |
+| --- | --- | --- |
+| `.blur-0` | `.blur-0` | `0` |
+| `.blur-3` | `.blur-sm` | `4px` |
+| `.blur-4` | `.blur` | `8px` |
+| `.blur-5` | `.blur-md` | `12px` |
+| `.blur-6` | `.blur-lg` | `16px` |
+| `.blur-7` | `.blur-xl` | `24px` |
+| `.blur-8` | `.blur-2xl` | `40px` |
+| `.blur-9` | `.blur-3xl` | `64px` |
+:::
+
+
+:::
 ## Border radius
 :::
 
@@ -82,7 +100,7 @@ Baleada Linear Numeric also includes Tailwind's default standalone colors `black
 | --- | --- | --- |
 | `.rounded-0` | `.rounded-none` | `0px` |
 | `.rounded-3` | `.rounded-sm` | `0.125rem` |
-| `.rounded-4` | `.rounded-DEFAULT` | `0.25rem` |
+| `.rounded-4` | `.rounded` | `0.25rem` |
 | `.rounded-5` | `.rounded-md` | `0.375rem` |
 | `.rounded-6` | `.rounded-lg` | `0.5rem` |
 | `.rounded-7` | `.rounded-xl` | `0.75rem` |
@@ -100,7 +118,7 @@ Baleada Linear Numeric also includes Tailwind's default standalone colors `black
 | Class | Tailwind equivalent | Value |
 | --- | --- | --- |
 | `.border-0` | `.border-0` | `0px` |
-| `.border-4` | `.border-DEFAULT` | `1px` |
+| `.border-4` | `.border` | `1px` |
 | `.border-5` | `.border-2` | `2px` |
 | `.border-6` | `.border-4` | `4px` |
 | `.border-7` | `.border-8` | `8px` |
@@ -116,12 +134,29 @@ Baleada Linear Numeric also includes Tailwind's default standalone colors `black
 | --- | --- | --- |
 | `.shadow-0` | `.shadow-none` | `none` |
 | `.shadow-3` | `.shadow-sm` | `0 1px 2px 0 rgba(0, 0, 0, 0.05)` |
-| `.shadow-4` | `.shadow-DEFAULT` | `0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06)` |
+| `.shadow-4` | `.shadow` | `0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06)` |
 | `.shadow-5` | `.shadow-md` | `0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06)` |
 | `.shadow-6` | `.shadow-lg` | `0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05)` |
 | `.shadow-7` | `.shadow-xl` | `0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04)` |
 | `.shadow-8` | `.shadow-2xl` | `0 25px 50px -12px rgba(0, 0, 0, 0.25)` |
 | `.-shadow-4` | `.shadow-inner` | `inset 0 2px 4px 0 rgba(0, 0, 0, 0.06)` |
+:::
+
+
+:::
+## Drop shadow
+:::
+
+::: ariaLabel="Drop shadow class reference"
+| Class | Tailwind equivalent | Value |
+| --- | --- | --- |
+| `.drop-shadow-0` | `.drop-shadow-none` | `0 0 #0000` |
+| `.drop-shadow-3` | `.drop-shadow-sm` | `0 1px 1px rgba(0,0,0,0.05)` |
+| `.drop-shadow-4` | `.drop-shadow` | `0 1px 2px rgba(0, 0, 0, 0.1),0 1px 1px rgba(0, 0, 0, 0.06)` |
+| `.drop-shadow-5` | `.drop-shadow-md` | `0 4px 3px rgba(0, 0, 0, 0.07),0 2px 2px rgba(0, 0, 0, 0.06)` |
+| `.drop-shadow-6` | `.drop-shadow-lg` | `0 10px 8px rgba(0, 0, 0, 0.04),0 4px 3px rgba(0, 0, 0, 0.1)` |
+| `.drop-shadow-7` | `.drop-shadow-xl` | `0 20px 13px rgba(0, 0, 0, 0.03),0 8px 5px rgba(0, 0, 0, 0.08)` |
+| `.drop-shadow-8` | `.drop-shadow-2xl` | `0 25px 25px rgba(0, 0, 0, 0.15)` |
 :::
 
 
@@ -133,7 +168,7 @@ Baleada Linear Numeric also includes Tailwind's default standalone colors `black
 | Class | Tailwind equivalent | Value |
 | --- | --- | --- |
 | `.flex-grow-0` | `.flex-grow-0` | `0` |
-| `.flex-grow-4` | `.flex-grow-DEFAULT` | `1` |
+| `.flex-grow-4` | `.flex-grow` | `1` |
 :::
 
 
@@ -145,7 +180,7 @@ Baleada Linear Numeric also includes Tailwind's default standalone colors `black
 | Class | Tailwind equivalent | Value |
 | --- | --- | --- |
 | `.flex-shrink-0` | `.flex-shrink-0` | `0` |
-| `.flex-shrink-4` | `.flex-shrink-DEFAULT` | `1` |
+| `.flex-shrink-4` | `.flex-shrink` | `1` |
 :::
 
 
@@ -300,7 +335,7 @@ Baleada Linear Numeric also includes Tailwind's default standalone colors `black
 | `.ring-0` | `.ring-0` | `0px` |
 | `.ring-2` | `.ring-1` | `1px` |
 | `.ring-3` | `.ring-2` | `2px` |
-| `.ring-4` | `.ring-DEFAULT` | `3px` |
+| `.ring-4` | `.ring` | `3px` |
 | `.ring-5` | `.ring-4` | `4px` |
 | `.ring-6` | `.ring-8` | `8px` |
 :::

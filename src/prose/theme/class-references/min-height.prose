@@ -1,0 +1,23 @@
+---
+title: Min height 
+tags: Configuration utilities, Tailwind CSS
+publish: true
+order: 0
+---
+
+
+
+::: ariaLabel="Min height class reference"
+| Class | Tailwind equivalent | Value |
+| --- | --- | --- |
+| `.min-h-0` | `.min-h-0` | `0px` |
+| `.min-h-full` | `.min-h-full` | `100%` |
+| `.min-h-screen` | `.min-h-screen` | `100vh` |
+| `.min-h-screen-sm` | none | `640px` |
+| `.min-h-screen-md` | none | `768px` |
+| `.min-h-screen-lg` | none | `1024px` |
+| `.min-h-screen-xl` | none | `1280px` |
+| `.min-h-screen-2xl` | none | `1536px` |
+| `.min-h-screen-all` | none | `0` |
+:::
+

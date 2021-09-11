@@ -1,0 +1,36 @@
+---
+title: Max width 
+tags: Configuration utilities, Tailwind CSS
+publish: true
+order: 0
+---
+
+
+
+::: ariaLabel="Max width class reference"
+| Class | Tailwind equivalent | Value |
+| --- | --- | --- |
+| `.max-w-0` | `.max-w-none` | `none` |
+| `.max-w-1` | `.max-w-xs` | `20rem` |
+| `.max-w-2` | `.max-w-sm` | `24rem` |
+| `.max-w-3` | `.max-w-md` | `28rem` |
+| `.max-w-4` | `.max-w-lg` | `32rem` |
+| `.max-w-5` | `.max-w-xl` | `36rem` |
+| `.max-w-6` | `.max-w-2xl` | `42rem` |
+| `.max-w-7` | `.max-w-3xl` | `48rem` |
+| `.max-w-8` | `.max-w-4xl` | `56rem` |
+| `.max-w-9` | `.max-w-5xl` | `64rem` |
+| `.max-w-10` | `.max-w-6xl` | `72rem` |
+| `.max-w-11` | `.max-w-7xl` | `80rem` |
+| `.max-w-full` | `.max-w-full` | `100%` |
+| `.max-w-min` | `.max-w-min` | `min-content` |
+| `.max-w-max` | `.max-w-max` | `max-content` |
+| `.max-w-prose` | `.max-w-prose` | `65ch` |
+| `.max-w-screen-sm` | `.max-w-screen-sm` | `640px` |
+| `.max-w-screen-md` | `.max-w-screen-md` | `768px` |
+| `.max-w-screen-lg` | `.max-w-screen-lg` | `1024px` |
+| `.max-w-screen-xl` | `.max-w-screen-xl` | `1280px` |
+| `.max-w-screen-2xl` | `.max-w-screen-2xl` | `1536px` |
+| `.max-w-screen-all` | none | `0` |
+:::
+
