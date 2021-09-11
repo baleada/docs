@@ -46,7 +46,7 @@ export default {
   }
   h2::after {
     content: '';
-    @apply w-9 mt-3 block rounded-full h-px-2 bg-gray-30;
+    @apply w-9 mt-3 block rounded-full h-[2px] bg-gray-30;
   }
   h2 {
     @apply text-3 font-6 tracking-3 text-primary-70;
@@ -59,7 +59,7 @@ export default {
     transition: all 0.1s ease;
   }
   a.router-link-exact-active {
-    @apply border-l-5 text-primary-70 border-primary-70 -ml-px-2;
+    @apply border-l-5 text-primary-70 border-primary-70 -ml-19;
   }
   a:hover {
     @apply text-primary-60 border-primary-60 underline;

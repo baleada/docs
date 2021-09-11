@@ -3,7 +3,7 @@
     @apply cursor-pointer inline-flex items-center rounded-3 list-none;
 
     svg {
-      @apply h-em-1 w-em-1 fill-current;
+      @apply h-[1em] w-[1em] fill-current;
       transform-origin: center;
     }
 

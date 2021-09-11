@@ -2,7 +2,7 @@
   & > h1::after,
   & > hr {
     content: '';
-    @apply block rounded-full h-px-2 bg-primary-70;
+    @apply block rounded-full h-[2px] bg-primary-70;
   }
 
   & > hr {
@@ -61,7 +61,7 @@
     @apply relative;
 
     button {
-      @apply absolute top-0 left-0 h-em-1 w-em-3/2 pr-em-1/2 inline-flex items-center justify-center rounded-full opacity-0;
+      @apply absolute top-0 left-0 h-[1em] w-em-3/2 pr-20 inline-flex items-center justify-center rounded-full opacity-0;
       transform: translate(-10%, 0%);
 
       svg {
