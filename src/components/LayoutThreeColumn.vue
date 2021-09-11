@@ -300,8 +300,7 @@ import {
 } from '@baleada/vue-heroicons'
 // @ts-ignore
 import { OcticonsSquare24 } from '@baleada/vue-octicons'
-
-import { createProseContext, useContext } from '../functions'
+import { useStore } from '../composition'
 
 export default {
   name: 'LayoutThreeColumn',
@@ -316,7 +315,7 @@ export default {
   },
   setup () {
     // Gonna need it
-    const context = useContext()
+    const store = useStore()
 
     /* Manage open status */
     const openStatus = ref('article'),
@@ -417,12 +416,12 @@ export default {
             }
           },
           darkThemeShortcut = useListenable('shift+d'),
-          darkThemeContextEffect = () => useContext(context => context.statuses.darkTheme = darkThemeStatus.value)
+          darkThemeStoreEffect = () => store.statuses.darkTheme = darkThemeStatus.value
 
-    darkThemeContextEffect()
+    darkThemeStoreEffect()
     watch(
       [darkThemeStatus],
-      darkThemeContextEffect
+      darkThemeStoreEffect
     )
 
     onMounted(() => {
@@ -470,12 +469,12 @@ export default {
             }
           },
           minimalistThemeShortcut = useListenable('shift+m'),
-          minimalistThemeContextEffect = () => useContext(context => context.statuses.minimalistTheme = minimalistThemeStatus.value)
+          minimalistThemeStoreEffect = () => store.statuses.minimalistTheme
     
-    minimalistThemeContextEffect()
+    minimalistThemeStoreEffect()
     watch(
       [minimalistThemeStatus],
-      minimalistThemeContextEffect
+      minimalistThemeStoreEffect
     )
 
     onMounted(() => {
@@ -509,8 +508,11 @@ export default {
       }
     })
 
-    // Create Prose context
-    createProseContext(article)
+    watch(
+      article,
+      () => store.articleRef = article.value,
+      // flush post?
+    )
     
           
     // Set up reactive SEO
@@ -518,20 +520,20 @@ export default {
           SITE_NAME = 'Baleada'
 
     useHead({
-      title: computed(() => context.article.frontMatter?.title ?? SITE_NAME),
+      title: computed(() => store.article.frontMatter?.title ?? SITE_NAME),
       metas: [
         // Essential META Tags
         { 
           property: 'og:title',
-          content: computed(() => context.article.frontMatter?.title ?? SITE_NAME)
+          content: computed(() => store.article.frontMatter?.title ?? SITE_NAME)
         },
         { 
           property: 'og:description',
-          content: computed(() => context.article.frontMatter?.summary ?? '')
+          content: computed(() => store.article.frontMatter?.summary ?? '')
         },
         { 
           property: 'og:image',
-          content: computed(() => context.article.frontMatter?.image ?? '')
+          content: computed(() => store.article.frontMatter?.image ?? '')
         },
         { 
           property: 'og:url',
@@ -539,7 +541,7 @@ export default {
         },
         { 
           name: 'twitter:card',
-          content: computed(() => context.article.frontMatter?.image ?? ''),
+          content: computed(() => store.article.frontMatter?.image ?? ''),
         },
 
         // Non-Essential, But Recommended
@@ -549,7 +551,7 @@ export default {
         },
         {
           name: 'twitter:image:alt',
-          content: computed(() => context.article.frontMatter?.imageAlt ?? '')
+          content: computed(() => store.article.frontMatter?.imageAlt ?? '')
         },
 
         // Non-Essential, But Required for Analytics
@@ -590,7 +592,7 @@ export default {
 </script>
 
 <style lang="postcss">
-@media screen and (min-width: theme(screens.lg)) {
+@media screen and (min-width: theme('screens.lg')) {
   .baleada-prose-article {
     @apply transition-none;
 

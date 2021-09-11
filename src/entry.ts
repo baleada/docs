@@ -13,6 +13,6 @@ import { globalComponents, plugins } from './state'
 const app = createApp(App)
 
 globalComponents.forEach(component => app.component(component.name, component))
-plugins.forEach(plugin => app.use(...plugin))
+plugins.forEach(plugin => app.use(plugin))
 
 app.mount('#app')

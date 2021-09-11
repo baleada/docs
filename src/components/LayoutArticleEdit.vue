@@ -13,7 +13,7 @@
 <script lang="ts">
 import { computed } from 'vue'
 import { SimpleGitHub } from '@baleada/vue-simple-icons'
-import { useContext } from '../functions'
+import { useStore } from '../composition'
 
 export default {
   name: 'LayoutArticleEdit',
@@ -21,7 +21,7 @@ export default {
     SimpleGitHub,
   },
   setup () {
-    const gitRepoPath = computed(() => `https://github.com/baleada/docs/blob/main/${useContext()?.article?.relativePath}`)
+    const gitRepoPath = computed(() => `https://github.com/baleada/docs/blob/main/${useStore()?.article?.relativePath}`)
 
     return { gitRepoPath }
   },

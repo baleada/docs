@@ -1,7 +1,6 @@
 import matter from 'gray-matter'
 import { resolve } from 'path'
 import gitlog from 'gitlog'
-import { Pipeable, createClip } from '@baleada/logic'
 import { md } from './util'
 
 // TODO: set meta tags and head from data
@@ -52,7 +51,9 @@ ${prose}\n\
 
 function toLog (id) {
   const basePath = resolve(''),
-        relativePath = new Pipeable(id).pipe(createClip(basePath), createClip(/^\//)),
+        relativePath = id
+          .replace(basePath, '')
+          .replace(/^\//, ''),
         log = gitlog({ repo: basePath, file: relativePath, number: 1 })
   
   return log

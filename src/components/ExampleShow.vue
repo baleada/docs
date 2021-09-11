@@ -2,7 +2,7 @@
   <section
     class="mx-auto with-max-w flex flex-col items-center p-6 rounded-4 shadow-4"
     :class="[
-      context.statuses.darkTheme === 'enabled'
+      store.statuses.darkTheme === 'enabled'
         ? 'bg-primary-gray-80'
         : 'bg-primary-20'
     ]"
@@ -11,7 +11,7 @@
       @click="toggle"
       class="btn btn-grows btn-raised"
       :class="[
-        context.statuses.darkTheme === 'enabled' && 'bg-primary-gray-70' || 'bg-white'
+        store.statuses.darkTheme === 'enabled' && 'bg-primary-gray-70' || 'bg-white'
       ]"
     >
       Toggle display
@@ -29,7 +29,7 @@
 <script lang="ts">
 import { ref, watch } from 'vue'
 import { show } from '@baleada/vue-features'
-import { useContext } from '../functions'
+import { useStore } from '../composition'
 import { useAnimateable } from '@baleada/vue-composition'
 import { verouEase } from '@baleada/animateable-utils'
 
@@ -150,7 +150,7 @@ export default {
       el,
       isDisplayed,
       toggle,
-      context: useContext(),
+      store: useStore(),
     }
   }
 }

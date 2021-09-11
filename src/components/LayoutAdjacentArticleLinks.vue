@@ -23,7 +23,7 @@
 /// <reference types="../../types" />
 import { computed } from 'vue'
 // @ts-ignore
-import { useContext } from '@baleada/vue-prose'
+import { useStore as useProseStore } from '@baleada/vue-prose'
 import { createClip } from '@baleada/logic'
 // @ts-ignore
 import { HeroiconsChevronDoubleLeft, HeroiconsChevronDoubleRight } from '@baleada/vue-heroicons'
@@ -38,7 +38,7 @@ export default {
     HeroiconsChevronDoubleRight
   },
   setup () {
-    const fullPath = computed(() => useContext().fullPath),
+    const fullPath = computed(() => useProseStore().fullPath),
           currentIndex = computed(() => {
             const basePath = createClip(/#.+$/)(fullPath.value)
             return articles.findIndex(article => routeMatches(article.href, basePath))

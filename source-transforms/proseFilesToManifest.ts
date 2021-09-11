@@ -3,7 +3,6 @@ import { resolve, parse } from 'path'
 import matter from 'gray-matter'
 import gitlog from 'gitlog'
 import fastGlob from 'fast-glob'
-import { createClip } from '@baleada/logic'
 
 export function proseFilesToManifest (): string {
   console.log('Creating manifest...')
@@ -17,7 +16,7 @@ export function proseFilesToManifest (): string {
           },
           ...dirIds.map(
             id => ({
-              level: createClip('/src/prose/')(id).split('/').length,
+              level: id.replace('/src/prose/', '').split('/').length,
               name: parse(id).name.replace(/-/g, ' '),
               articles: toManifested(id),
             })
@@ -39,7 +38,7 @@ function toManifested (dirPath) {
             const { data: { title, tags: rawTags, order } } = matter(readFileSync(`${dirPath}/${file}`, 'utf8')),
             tags = rawTags ? rawTags.split(',').map(tag => tag.trim()) : [],
             fileName = parse(`${dirPath}/${file}`).name,
-            href = `/docs${createClip('src/prose')(dirPath)}${createClip(/^\/index$/)(`/${fileName}`)}`,
+            href = `/docs${dirPath.replace('src/prose', '')}${`/${fileName}`.replace(/^\/index$/, '')}`,
             authorDate = (toStats(`${dirPath}/${file}`)).authorDate
 
             return {
@@ -57,7 +56,7 @@ function toManifested (dirPath) {
 
 function toStats (filePath) {
   const basePath = resolve(''),
-        relativePath = createClip(/^\//)(filePath),
+        relativePath = filePath.replace(/^\//, ''),
         { 0: stats } = gitlog({ repo: basePath, file: relativePath, number: 1 })
   
   return stats

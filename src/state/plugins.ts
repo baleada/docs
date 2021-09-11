@@ -1,10 +1,30 @@
 import type { Plugin } from 'vue'
 import { router } from './router'
-// @ts-ignore
-import { plugin as prose } from '@baleada/vue-prose'
-import { createApp } from 'vue'
+import { components, createProse } from '@baleada/vue-prose'
+import { createPinia } from 'pinia'
+import { useStore } from '../composition'
 
-export const plugins: [plugin: Plugin, ...rest: any[]][] = [
-  [router],
-  [prose],
+export const plugins: Plugin[] = [
+  router,
+  createPinia(),
+  createProse({
+    components,
+    createsPinia: false,
+    getFullPath: 'vue-router',
+    getScrollableContainer: () => useStore().articleRef,
+    propDefaults: {
+      blockquote: {
+        readerCanTweet: true,
+        tweetVia: 'BaleadaToolkit',
+        tweetUrl: 'current',
+      },
+      codeblock: {
+        readerCanCopy: true,
+      },
+      heading: {
+        classes: '',
+        readerCanCopy: true,
+      },
+    }
+  })
 ]

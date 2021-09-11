@@ -2,11 +2,9 @@ import { readFileSync } from 'fs'
 import { resolve, parse } from 'path'
 import matter from 'gray-matter'
 import fastGlob from 'fast-glob'
-import { createClip } from '@baleada/logic'
 import { md } from './util'
 import MarkdownIt from 'markdown-it'
-// @ts-ignore
-import MarkdownItTextContent from '@baleada/markdown-it-text-content'
+import { createMarkdownItTextContent } from '@baleada/markdown-it-text-content'
 
 export function proseFilesToSearchableCandidates () {
   console.log('Creating searchable candidates...')
@@ -18,7 +16,7 @@ export function proseFilesToSearchableCandidates () {
                   searchableContent = toSearchableContent(content),
                   tags = rawTags ? rawTags.split(',').map(tag => tag.trim()) : [],
                   { name: fileName, dir } = parse(path),
-                  href = `/docs${createClip('/src/prose')(dir)}/${createClip(/^index$/)(fileName)}`
+                  href = `/docs${dir.replace('/src/prose', '')}/${fileName.replace(/^index$/, '')}`
 
             return {
               searchableContent,
@@ -31,7 +29,7 @@ export function proseFilesToSearchableCandidates () {
   return `export const searchableCandidates = ${JSON.stringify(candidates)}`
 }
 
-const postrender = (new MarkdownIt({ html: true })).use(MarkdownItTextContent)
+const postrender = (new MarkdownIt({ html: true })).use(createMarkdownItTextContent())
 
 function toSearchableContent (markdown) {
   const prerendered = md.render(markdown)
