@@ -1,9 +1,9 @@
 const { configureable } = require('@baleada/prepare')
 
-module.exports = configureable('postcss')
+module.exports = new configureable.Postcss()
   .import()
   .nested()
-  .plugin(require('@tailwindcss/jit'))
+  .tailwindcss()
   .autoprefixer()
   .configure()
 

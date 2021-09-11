@@ -23,9 +23,12 @@ const testRoute = ({ source, id }) => {
 export default new configureable.Vite()
   .alias({
     'virtual:manifest': '/src/state/manifest.ts',
+    'virtual:searchableCandidates': '/src/state/searchableCandidates.ts',
+    '@composition': '/src/composition/index.ts'
   })
-  .includeDeps([
-    '@baleada/logic',
+  .excludeDeps([
+    'virtual:manifest',
+    'virtual:searchableCandidates',
   ])
   .sourceTransform({
     transform: proseToVueSfc,
@@ -37,11 +40,11 @@ export default new configureable.Vite()
     exclude: toExclude('src/prose'),
   })
   .virtual({
-    test: new Testable().idEndsWith('src/state/manifest.ts').test,
+    test: param => new Testable().idEndsWith('src/state/manifest.ts').test(param),
     transform: () => proseFilesToManifest(),
   })
   .virtual({
-    test: new Testable().idEndsWith('src/state/searchableCandidates.ts').test,
+    test: param => new Testable().idEndsWith('src/state/searchableCandidates.ts').test(param),
     transform: () => proseFilesToSearchableCandidates(),
   })
   .vue({

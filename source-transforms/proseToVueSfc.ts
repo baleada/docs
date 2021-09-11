@@ -34,7 +34,7 @@ ${prose}\n\
   </article>\
   </template>\n\
   <script>\n\
-  import { useContext } from '@functions'\n\
+  import { useStore } from '@composition'\n\
   \n\
   export default {\n\
     setup () {\n\
