@@ -1,7 +1,7 @@
 .baleada-prose-article {
   blockquote::before {
     content: '\201C';
-    @apply absolute text-9 font-3 text-primary-90 opacity-70 top-0 left-0 -mt-20;
+    @apply absolute text-9 font-3 text-primary-90 opacity-70 top-0 left-0 mt-[-.5em];
   }
 
   blockquote {

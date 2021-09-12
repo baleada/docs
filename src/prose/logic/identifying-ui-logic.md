@@ -18,6 +18,7 @@ The big idea behind Baleada Logic, [React Hooks](https://reactjs.org/docs/hooks-
 For example, imagine you want to add an autocomplete feature to your UI, so that the end user can start typing, be prompted with matching options, and pick one to automatically complete the text they were typing.
 
 At first glance, you might think of "autocomplete" as the piece of UI logic you need to create, but autocomplete can actually be broken down into several smaller pieces of logic:
+
 :::
 1. As the user is typing, you need to extract the segment of their text that can be completed. In a simple text input, this is the entire value, but in a large text area, it's more likely to be just the current word the user is typing.
 2. You need to search a list of autocomplete options, using your segment of text as a search query. The search should fuzzy match, in case the user makes a typo.
@@ -30,7 +31,7 @@ Using tools from Baleada Logic, you would approach this list of logic like so:
 1. [`Completable`](/docs/logic/classes/completeable) extracts the segment of text
 2. [`Searchable`](/docs/logic/classes/searchable) searches a list of options for the segment (fuzzy matching is optional)
 3. [`Listenable`](/docs/logic/classes/listenable) detects when the dropdown menu starts leaving the viewport, and gives you some information so that you can simply apply a CSS `transform: translate` to move the menu into a visible spot.
-4. [`Navigable`](/docs/logic/classes/navigateable) tracks which option should be in focus, and can loop around to the beginning or end of the list as needed.
+4. [`Navigateable`](/docs/logic/classes/navigateable) tracks which option should be in focus, and can loop around to the beginning or end of the list as needed.
 5. `Completable` completes the segment of text with a completed value chosen by the user.
 
 It might seem strange to break this feature down and implement it with so many separate tools, but this approach is what allows logic to become abstract enough to be reusable. An autocomplete feature is only useful in situations where you need to autocomplete, but a fuzzy-matching search feature is useful in all kinds of different places.
@@ -65,9 +66,9 @@ Visually, these components are so different that it feels clean and correct to b
 
 Across each of these components, the code that implements this collection of array-navigating behaviors is more or less the same. But when you're using Baleada Logic, you don't have to write or install the same array-navigating code separately for each one of those components.
 
-Instead, you just build your array of images, dropdown options, years/months/days, or playing cards, and you pass the array to the constructor of `Navigable`—one of Baleada Logic's classes—to create an instance of the `Navigable` class.
+Instead, you just build your array of images, dropdown options, years/months/days, or playing cards, and you pass the array to the constructor of `Navigateable`—one of Baleada Logic's classes—to create an instance of the `Navigateable` class.
 
-The `Navigable` class has all the methods you need to navigate forward, backward, to a specific item, or even to a random item. Its methods for moving forward and backward can handle custom increments (e.g. moving forward 3 cards in solitaire) and can loop around to the beginning or end of the array (both features are optional based on parameters you pass to the method when it's called).
+The `Navigateable` class has all the methods you need to navigate forward, backward, to a specific item, or even to a random item. Its methods for moving forward and backward can handle custom increments (e.g. moving forward 3 cards in solitaire) and can loop around to the beginning or end of the array (both features are optional based on parameters you pass to the method when it's called).
 
 Array navigation is on the simpler end of the UI logic spectrum, but it's a great example of logic that can easily get tangled up and repeated inside seemingly unrelated components instead of being extracted into something more reusable and feature-complete.
 
@@ -141,12 +142,11 @@ The purpose of Baleada Logic is to abstract repetitive but relatively complex UI
 
 Baleada's abstractions take the form of **JavaScript classes** and **factory functions**. These classes and factories do several important things:
 
-:::
 - They expose a consistent, unified, intuitive API, regardless of what behaviors and feature you're trying to add to your project
 - They avoid side effects in the DOM whenever possible, and when not possible, they offer a consistent API for cleaning up afterward
 - The _only_ assumption they make about your DOM is that you have one. And sometimes, they don't even assume that!
 - They offer an intentionally limited set of features and functionality. In your project, any component worth its salt won't be powered by a single Baleada Logic class or factory—instead, your components will compose features using more than one class or factory, sometimes even feeding state from one class into the methods of another.
-:::
+
 <!-- TODO: more stuff for that list? Clarify benefits? -->
 
 If you're ready to get your hands dirty, check out the docs listed on the left for individual Baleada Logic classes and factories.

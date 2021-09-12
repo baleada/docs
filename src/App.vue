@@ -2,8 +2,8 @@
   <RouterView />
 </template>
 
-<script>
-export default {
-  name: 'App',
-}
+<script setup lang="ts">
+import { useRoute } from 'vue-router'
+// console.log(useRoute())
+
 </script>

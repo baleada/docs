@@ -1,4 +1,4 @@
-import { ref, reactive } from 'vue'
+import { ref, reactive, watchEffect } from 'vue'
 import { defineStore } from 'pinia'
 import type gitlog from 'gitlog'
 

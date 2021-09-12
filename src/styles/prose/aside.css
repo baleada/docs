@@ -2,7 +2,7 @@
   @apply relative flex items-start rounded-r-3 p-5 pl-6 my-6 border-l-6;
 
   & > svg {
-    @apply absolute left-0 -ml-19 transform -translate-x-1/2 h-7 w-7 rounded-full p-1 fill-current;
+    @apply absolute left-0 ml-[-2px] transform -translate-x-1/2 h-7 w-7 rounded-full p-1 fill-current;
   }
 
   &.baleada-prose-aside-info {

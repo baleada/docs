@@ -15,38 +15,38 @@ export const proseToVueSfc = ({ source, id }) => {
           return log
         })(),
         withBaleadaDocsCustomizations = `\
-:::\n\
-# ${frontMatter.title}\n\
-:::\n\
-\n\
-<LayoutArticleLog></LayoutArticleLog>\n\
-\n\
-${prose}\n\
-<LayoutAdjacentArticleLinks></LayoutAdjacentArticleLinks>\n\
-<LayoutArticleEdit></LayoutArticleEdit>\n\
-\n\
+:::
+# ${frontMatter.title}
+:::
+
+<LayoutArticleLog></LayoutArticleLog>
+
+${prose}
+<LayoutAdjacentArticleLinks></LayoutAdjacentArticleLinks>
+<LayoutArticleEdit></LayoutArticleEdit>
+
 `
         
   return `\
-  <template>\
-  <article class="baleada-prose-article">\
-  ${md.render(withBaleadaDocsCustomizations)}\
-  </article>\
-  </template>\n\
-  <script>\n\
-  import { useStore } from '@composition'\n\
-  \n\
-  export default {\n\
-    setup () {\n\
-      useContext(context => {\n\
-        context.article.log = ${JSON.stringify(log)}\n\
-        context.article.frontMatter = ${JSON.stringify(frontMatter)}\n\
-        context.article.relativePath = '${relativePath}'\n\
-      })\n\
-    }\n\
-  }\n\
-  </script>\
-  `
+<template>
+  <article class="baleada-prose-article">
+  ${md.render(withBaleadaDocsCustomizations)}
+  </article>
+</template>
+<script>
+import { useStore } from '@composition'
+
+export default {
+  setup () {
+    const store = useStore()
+    
+    store.article.log = ${JSON.stringify(log)}
+    store.article.frontMatter = ${JSON.stringify(frontMatter)}
+    store.article.relativePath = '${relativePath}'
+  }
+}
+</script>
+`
 }
 
 function toLog (id) {

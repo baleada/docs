@@ -11,7 +11,6 @@ export const plugins: Plugin[] = [
     components,
     createsPinia: false,
     getFullPath: 'vue-router',
-    getScrollableContainer: () => useStore().articleRef,
     propDefaults: {
       blockquote: {
         readerCanTweet: true,

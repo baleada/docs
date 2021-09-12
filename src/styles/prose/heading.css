@@ -61,7 +61,7 @@
     @apply relative;
 
     button {
-      @apply absolute top-0 left-0 h-[1em] w-em-3/2 pr-20 inline-flex items-center justify-center rounded-full opacity-0;
+      @apply absolute top-0 left-0 h-[1em] w-[1.5em] pr-20 inline-flex items-center justify-center rounded-full opacity-0;
       transform: translate(-10%, 0%);
 
       svg {

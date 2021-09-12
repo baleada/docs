@@ -282,6 +282,7 @@
 <script lang="ts">
 import { ref, computed, onMounted, watch } from 'vue'
 import { useRoute } from 'vue-router'
+import { useEffects } from '@baleada/vue-prose'
 import { touchdragdrop as swipe } from '@baleada/recognizeable-effects'
 import type {
   TouchdragdropTypes as SwipeTypes,
@@ -507,13 +508,8 @@ export default {
         tableOfContentsTransitionStatus.value = 'after-leave'
       }
     })
-
-    watch(
-      article,
-      () => store.articleRef = article.value,
-      // flush post?
-    )
     
+    useEffects({ scrollableContainer: article })
           
     // Set up reactive SEO
     const route = useRoute(),

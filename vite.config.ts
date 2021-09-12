@@ -38,6 +38,18 @@ export default new configureable.Vite()
     pagesDir: 'src/prose',
     extensions: ['md'],
     exclude: toExclude('src/prose'),
+    extendRoute: route => {
+      switch (route.path) {
+        case '/':
+          route.path = '/docs'
+          break
+        default:
+          route.path = `/docs${route.path}`
+          break
+      }
+      
+      return route
+    }
   })
   .virtual({
     test: param => new Testable().idEndsWith('src/state/manifest.ts').test(param),

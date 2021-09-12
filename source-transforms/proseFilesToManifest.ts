@@ -16,7 +16,7 @@ export function proseFilesToManifest (): string {
           },
           ...dirIds.map(
             id => ({
-              level: id.replace('/src/prose/', '').split('/').length,
+              level: id.replace('src/prose/', '').split('/').length,
               name: parse(id).name.replace(/-/g, ' '),
               articles: toManifested(id),
             })
