@@ -7,7 +7,7 @@ import fastGlob from 'fast-glob'
 export function proseFilesToManifest (): string {
   console.log('Creating manifest...')
 
-  const dirIds = fastGlob.sync('src/prose/**', { onlyDirectories: true }),
+  const dirIds = fastGlob.sync('src/prose/**', { onlyDirectories: true }).sort(),
         manifest = [
           {
             level: 1,
@@ -65,3 +65,4 @@ function toStats (filePath) {
 function byOrder (a, z) {
   return a.order - z.order
 }
+
