@@ -18,22 +18,13 @@
         <div
           class="btn"
           :class="[
-            index === tablist.selected.tab
+            tablist.isSelected.tab(index)
               ? store.statuses.darkTheme === 'enabled' && 'bg-primary-gray-60' || 'bg-white'
               : store.statuses.darkTheme === 'enabled' && 'bg-primary-gray-70' || 'bg-primary-10'
           ]"
         >
           {{ tab }}
         </div>
-        <OcticonsTriangleDown24
-          v-show="index === tablist.selected.tab"
-          class="absolute h-6 w-6 bottom-0 left-1/2 transform -translate-x-1/2 translate-y-3.5 fill-current transition"
-          :class="[
-            index === tablist.selected.tab
-              ? store.statuses.darkTheme === 'enabled' && 'text-primary-gray-60' || 'text-white'
-              : store.statuses.darkTheme === 'enabled' && 'text-primary-gray-70' || 'text-primary-10'
-          ]"
-        />
       </div>
     </div>
     <div class="relative">
@@ -59,8 +50,6 @@
 import { ref, watch, reactive, nextTick } from 'vue'
 import { useTablist } from '@baleada/vue-features'
 import { useAnimateable, useDelayable } from '@baleada/vue-composition'
-// @ts-ignore
-import { OcticonsTriangleDown24 } from '@baleada/vue-octicons'
 import { useStore } from '../composition'
 import { verouEaseOut } from '@baleada/animateable-utils'
 
@@ -75,9 +64,6 @@ type TransitionMetadatum = {
 
 export default {
   name: 'ExampleUseTablist',
-  components: {
-    OcticonsTriangleDown24,
-  },
   setup () {
     const metadata = ref([
             { tab: 'Baleada', panel: '🌮' },
