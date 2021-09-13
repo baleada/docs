@@ -331,13 +331,13 @@ export default {
           article = ref(null),
           tableOfContents = ref(null),
           articleSwipe = useListenable<SwipeTypes, SwipeMetadata>('recognizeable' as SwipeTypes, {
-            recognizeable: { effects: swipe() }
+            recognizeable: { effects: swipe({ minDistance: 20 }) }
           }),
           navSwipe = useListenable<SwipeTypes, SwipeMetadata>('recognizeable' as SwipeTypes, {
-            recognizeable: { effects: swipe() }
+            recognizeable: { effects: swipe({ minDistance: 20 }) }
           }),
           tableOfContentsSwipe = useListenable<SwipeTypes, SwipeMetadata>('recognizeable' as SwipeTypes, {
-            recognizeable: { effects: swipe() }
+            recognizeable: { effects: swipe({ minDistance: 20 }) }
           }),
           except = [
             '.baleada-prose-article .overflow-y-scroll',
