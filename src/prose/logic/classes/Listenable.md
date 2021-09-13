@@ -313,7 +313,7 @@ The following real-world code shows how this Baleada documentation site combines
 
 The original code is written specifically to work with [Vue](https://v3.vuejs.org), but this example has been simplified to plain JavaScript, and heavily commented.
 
-[Here's an editable demoIDE](https://stackblitz.com/edit/baleada-logic-listenable-gesture-workflow?file=entry.ts) where you can tinker with similar code.
+[Here's an editable demo](https://stackblitz.com/edit/baleada-logic-listenable-gesture-workflow?file=entry.ts) where you can tinker with similar code.
 
 :::
 ```js
