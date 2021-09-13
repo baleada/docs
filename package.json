@@ -48,7 +48,7 @@
     "@babel/runtime": "^7.12.5",
     "@baleada/animateable-utils": "^0.1.0",
     "@baleada/logic": "^0.20.9",
-    "@baleada/recognizeable-effects": "^0.7.1",
+    "@baleada/recognizeable-effects": "^0.7.2",
     "@baleada/vue-composition": "^0.10.3",
     "@baleada/vue-features": "^0.9.1",
     "@baleada/vue-heroicons": "^0.1.2",

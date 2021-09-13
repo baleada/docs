@@ -508,8 +508,11 @@ export default {
         tableOfContentsTransitionStatus.value = 'after-leave'
       }
     })
-    
+
+
+    // Prose effects
     useEffects({ scrollableContainer: article })
+    
           
     // Set up reactive SEO
     const route = useRoute(),
