@@ -50,13 +50,13 @@
       >
         <span>{{ panel }}</span>
       </div>
-      <div class="w-full p-6 opacity-0" aria-hidden="true"><div class="h-em-1 w-full"></div></div>
+      <div class="w-full p-6 opacity-0" aria-hidden="true"><div class="h-[1em] w-full"></div></div>
     </div>
   </section>
 </template>
 
 <script lang="ts">
-import { ref, watch, readonly, nextTick } from 'vue'
+import { ref, watch, reactive, nextTick } from 'vue'
 import { useTablist } from '@baleada/vue-features'
 import { useAnimateable, useDelayable } from '@baleada/vue-composition'
 // @ts-ignore
@@ -105,7 +105,7 @@ export default {
             delayable: delayableCreate(),
             stopWatchingStatus: {},
           })),
-          tablist = readonly(useTablist({
+          tablist = reactive(useTablist({
             label: 'Example tablist',
             transition: {
               panel: {

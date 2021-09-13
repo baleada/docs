@@ -58,42 +58,38 @@
   }
 
   .baleada-prose-heading {
-    @apply relative;
+    @apply relative hover:text-primary-70 focus:text-primary-70 active:text-primary-70;
 
     button {
-      @apply absolute top-0 left-0 h-[1em] w-[1.5em] pr-20 inline-flex items-center justify-center rounded-full opacity-0;
-      transform: translate(-10%, 0%);
+      @apply
+        absolute top-0 left-0 h-[1em] w-[1.5em] 
+        pr-[0.5em] inline-flex items-center justify-center
+        rounded-full opacity-0 translate-x-[-1em] sm:translate-x-[-1.5em];
 
       svg {
         @apply block h-full w-full fill-current;
       }
 
       &:hover {
-        transform: scale(1.1) translate(-10%, 0%);
+        @apply scale-110;
       }
 
       &:focus {
-        @apply opacity-10;
-        transform: scale(1) translate(-10%, 0%);
+        @apply opacity-100;
       }
 
       &:active {
-        transform: scale(1) translate(-10%, 0%);
       }
     }
 
     &:hover {
       button {
-        @apply opacity-10;
+        @apply opacity-100;
       }
     }
 
     a {
       @apply text-inherit no-underline;
-    }
-
-    &:hover {
-      @apply text-primary-70;
     }
   }
 
@@ -124,12 +120,10 @@
     }
 
     & > .baleada-prose-heading {
+      @apply hover:text-primary-gray-30 focus:text-primary-gray-30 active:text-primary-gray-30;
+
       a {
         @apply text-inherit no-underline;
-      }
-
-      &:hover {
-        @apply text-primary-gray-30;
       }
     }
   }

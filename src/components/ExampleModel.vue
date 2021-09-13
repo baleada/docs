@@ -8,11 +8,11 @@
     ]"
   >
     <section class="flex flex-col gap-2">
-      <label>Reactively stored value:</label>
-      <pre class="px-2 py-1 mt-2 mb-0"><code class="mr-auto">{{ valueJson }}</code></pre>
+      <label>Reactively stored model value:</label>
+      <pre class="px-2 py-1 mt-2 mb-0"><code class="mr-auto">{{ modelValueJson }}</code></pre>
     </section>
     <section class="flex flex-col gap-2">
-      <label for="model-example-input">Edit the <code :class="store.statuses.darkTheme === 'enabled' ? 'bg-primary-gray-70' : 'bg-primary-10'">value</code> dynamically:</label>
+      <label for="model-example-input">Edit the <code :class="store.statuses.darkTheme === 'enabled' ? 'bg-primary-gray-70' : 'bg-primary-10'">modelValue</code> dynamically:</label>
       <input
         ref="element"
         id="model-example-input"
@@ -27,9 +27,9 @@
       />
     </section>
     <section class="flex flex-col gap-2">
-      <label>Programmatically set the <code :class="store.statuses.darkTheme === 'enabled' ? 'bg-primary-gray-70' : 'bg-primary-10'">value</code> to "Baleada":</label>
+      <label>Programmatically set the <code :class="store.statuses.darkTheme === 'enabled' ? 'bg-primary-gray-70' : 'bg-primary-10'">modelValue</code> to "Baleada":</label>
       <button
-        @click="() => value = 'Baleada'"
+        @click="() => modelValue = 'Baleada'"
         class="mr-auto btn btn-grows btn-raised"
         :class="[
           store.statuses.darkTheme === 'enabled' && 'bg-primary-gray-70' || 'bg-white'
@@ -50,12 +50,12 @@ export default {
   name: 'ExampleModel',
   setup () {
     const element = ref(null),
-          value = ref(''),
-          valueJson = computed(() => JSON.stringify(value.value))
+          modelValue = ref(''),
+          modelValueJson = computed(() => JSON.stringify(modelValue.value))
     
-    model({ element, value })
+    model({ element, modelValue })
 
-    return { element, value, valueJson, store: useStore() }
+    return { element, modelValue, modelValueJson, store: useStore() }
   }
 }
 </script>
