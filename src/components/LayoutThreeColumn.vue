@@ -4,15 +4,13 @@
     :class="[
       darkThemeStatus === 'enabled' ? 'dark' : '',
       minimalistThemeStatus === 'enabled' ? 'minimalist' : '',
-      darkThemeStatus === 'disabled' && minimalistThemeStatus === 'disabled'
-        ? 'bg-gray-10'
-        : darkThemeStatus === 'enabled' && minimalistThemeStatus === 'disabled'
-          ? 'bg-primary-gray-100'
-          : darkThemeStatus === 'enabled' && minimalistThemeStatus === 'enabled'
-            ? 'bg-primary-gray-95'
-            : darkThemeStatus === 'disabled' && minimalistThemeStatus === 'enabled'
-              ? 'bg-white'
-              : ''
+      (() => {
+        if (darkThemeStatus === 'disabled' && minimalistThemeStatus === 'disabled') return 'bg-gray-10'
+        if (darkThemeStatus === 'enabled' && minimalistThemeStatus === 'disabled') return 'bg-primary-gray-100'
+        if (darkThemeStatus === 'enabled' && minimalistThemeStatus === 'enabled') return 'bg-primary-gray-95'
+        if (darkThemeStatus === 'disabled' && minimalistThemeStatus === 'enabled') return 'bg-white'
+        return ''
+      })()
     ]"
   >
     <!-- Left -->
@@ -29,15 +27,13 @@
       <header
         class="flex items-center pb-3 border-b-2"
         :class="[
-          darkThemeStatus === 'disabled' && minimalistThemeStatus === 'disabled'
-            ? 'border-gray-30'
-            : darkThemeStatus === 'enabled' && minimalistThemeStatus === 'disabled'
-              ? 'border-primary-gray-95'
-              : darkThemeStatus === 'enabled' && minimalistThemeStatus === 'enabled'
-                ? 'border-primary-gray-95'
-                : darkThemeStatus === 'disabled' && minimalistThemeStatus === 'enabled'
-                  ? 'border-white'
-                  : ''
+          (() => {
+            if (darkThemeStatus === 'disabled' && minimalistThemeStatus === 'disabled') return 'border-gray-30'
+            if (darkThemeStatus === 'enabled' && minimalistThemeStatus === 'disabled') return 'border-primary-gray-95'
+            if (darkThemeStatus === 'enabled' && minimalistThemeStatus === 'enabled') return 'border-primary-gray-95'
+            if (darkThemeStatus === 'disabled' && minimalistThemeStatus === 'enabled') return 'border-white'
+            return ''
+          })()
         ]"
       >
         <RouterLink
@@ -83,11 +79,12 @@
           <div
             class="relative mx-2 inline-flex h-6 w-9 -shadow rounded-full cursor-pointer"
             :class="[
-              darkThemeStatus === 'enabled' && minimalistThemeStatus === 'disabled'
-                ? 'bg-primary-gray-90'
-                : darkThemeStatus === 'enabled' && minimalistThemeStatus === 'enabled'
-                  ? 'bg-primary-gray-100'
-                  : 'bg-gray-30'
+              (() => {
+                if (darkThemeStatus === 'enabled' && minimalistThemeStatus === 'disabled') return 'bg-primary-gray-90'
+                if (darkThemeStatus === 'enabled' && minimalistThemeStatus === 'enabled') return 'bg-primary-gray-100'
+                return 'bg-gray-30'
+              })()
+              
             ]"
             @click="() => toggleDarkTheme()"
           >
@@ -136,13 +133,13 @@
           <div
             class="relative mx-2 inline-flex h-6 w-9 -shadow rounded-full cursor-pointer"
             :class="[
-              darkThemeStatus === 'enabled' && minimalistThemeStatus === 'disabled'
-                ? 'bg-primary-gray-90'
-                : darkThemeStatus === 'enabled' && minimalistThemeStatus === 'enabled'
-                  ? 'bg-primary-gray-100'
-                  : darkThemeStatus === 'disabled' && minimalistThemeStatus === 'enabled'
-                    ? 'bg-primary-30'
-                    : 'bg-gray-30'
+              (() => {
+                if (darkThemeStatus === 'disabled' && minimalistThemeStatus === 'disabled') return 'bg-gray-30'
+                if (darkThemeStatus === 'enabled' && minimalistThemeStatus === 'disabled') return 'bg-primary-gray-90'
+                if (darkThemeStatus === 'enabled' && minimalistThemeStatus === 'enabled') return 'bg-primary-gray-100'
+                if (darkThemeStatus === 'disabled' && minimalistThemeStatus === 'enabled') return 'bg-primary-30'
+                return ''
+              })()
             ]"
             @click="() => toggleMinimalistTheme()"
           >
@@ -190,11 +187,11 @@
       ref="article"
       class="absolute lg:relative top-0 left-0 z-20 h-screen w-screen lg:w-full overflow-x-hidden overflow-y-scroll scrolling-touch lg:translate-x-0 transform"
       :class="[
-        openStatus === 'nav'
-          ? 'translate-x-full'
-          : openStatus === 'tableOfContents'
-            ? '-translate-x-full'
-            : '',
+        (() => {
+          if (openStatus === 'nav') return 'translate-x-full'
+          if (openStatus === 'tableOfContents') return '-translate-x-full'
+          return ''
+        })(),
         darkThemeStatus === 'enabled' ? 'bg-primary-gray-95' : 'bg-white',
         minimalistThemeStatus === 'enabled' ? '' : 'shadow-3 lg:rounded-2',
         `table-of-contents-${tableOfContentsTransitionStatus}`,
