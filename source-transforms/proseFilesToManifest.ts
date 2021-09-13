@@ -58,6 +58,10 @@ function toStats (filePath) {
   const basePath = resolve(''),
         relativePath = filePath.replace(/^\//, ''),
         { 0: stats } = gitlog({ repo: basePath, file: relativePath, number: 1 })
+
+  if (!stats) {
+    throw new Error(`${relativePath} has no git log`)
+  }
   
   return stats
 }
