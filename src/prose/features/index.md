@@ -9,7 +9,7 @@ Baleada Features is a collection of stateless composition functions that impleme
 
 Some of these functions offer simple features, like the ability to reactively track the width of an element, and whether that element is currently wider than certain breakpoints.
 
-Other functions implement all of the logic for more complex, WAI-ARIA compliant widgets, like tablists, comboboxes, carousels, etc.
+Other functions implement all of the logic for complex, WAI-ARIA compliant widgets, like tablists, comboboxes, carousels, etc.
 
 Baleada Features doesn't include any markup or styles. Instead, it combines composition functions from [Baleada Composition](/docs/composition) with reactivity frameworks to create JavaScript-only layers of logic, which you can use directly in your app, or to power your own custom component library, with your own custom markup and styles.
 
@@ -31,7 +31,7 @@ npm i @baleada/vue-features
 ## Using features
 :::
 
-Import any feature to start using it in your Vue component. Most often, you'll use features in the `setup` function:
+Import any feature to start using it in your Vue component. Most often, you'll use features in the `setup` function of a Vue component:
 
 :::
 ```js
@@ -58,7 +58,7 @@ Baleada Features' Vue implementation also exports "affordances": functions that 
 
 :::
 ```js
-import { show } from '@baleada/vue-features'
+import { bind, on, show, model } from '@baleada/vue-features'
 ```
 :::
 
@@ -87,12 +87,12 @@ import { bind } from '@baleada/vue-features'
 
 // useMyFeature.js
 export default function useMyFeature () {
-  const el = ref(null),
+  const element = ref(null),
         isSelected = computed(...)
 
   bind({
-    target: el,
-    keys: {
+    element,
+    values: {
       // bind can assign static values
       role: 'tab',
       // But it really shines with reactive values
@@ -107,7 +107,7 @@ export default function useMyFeature () {
 
   // This returned ref would be attached to an element
   // in the Vue template
-  return el
+  return element
 }
 ```
 :::

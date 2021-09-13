@@ -73,12 +73,12 @@ Here's a breakdown of that object:
 ::: ariaLabel="tablist breakdown" classes="wide-3"
 | Property | Type | Description |
 | --- | --- | --- |
-| `root` | Function | <p>A [single target API object](/docs/features/target-api).</p><p>`root.ref` should be called with no arguments, and its returned function ref should be bound to the DOM element that serves as your tablist's root.</p> |
-| `tabs` | Function | <p>A [multiple target API object](/docs/features/target-api).</p><p>Pass the index-based position (Number) of the current tab as the only argument for `tabs.ref`, and its returned function ref should be bound to the DOM element that serves as that tab.</p><p>It's recommended that you render the tabs with `v-for`, get the index from your `v-for` statement, and bind the function ref to the `v-for` element.</p> |
-| `panels` | Function | <p>A [multiple target API object](/docs/features/target-api).</p><p>Pass the index-based position (Number) of the current panel as the only argument for `panels.ref`, and its returned function ref should be bound to the DOM element that serves as that panel.</p><p>It's recommended that you render the panels with `v-for`, get the index from your `v-for` statement, and bind the function ref to the `v-for` element.</p> |
+| `root` | Function | <p>A [single element API object](/docs/features/element-api).</p><p>`root.ref` should be bound to the DOM element that serves as your tablist's root.</p> |
+| `tabs` | Function | <p>A [multiple element API object](/docs/features/element-api).</p><p>Pass the index-based position (Number) of the current tab as the only argument for `tabs.getRef`, and its returned function ref should be bound to the DOM element that serves as that tab.</p><p>It's recommended that you render the tabs with `v-for`, get the index from your `v-for` statement, and bind the function ref to the `v-for` element.</p> |
+| `panels` | Function | <p>A [multiple element API object](/docs/features/element-api).</p><p>Pass the index-based position (Number) of the current panel as the only argument for `panels.getRef`, and its returned function ref should be bound to the DOM element that serves as that panel.</p><p>It's recommended that you render the panels with `v-for`, get the index from your `v-for` statement, and bind the function ref to the `v-for` element.</p> |
 | `navigateable` | Ref (Navigateable) | <p>The reactive [Navigateable](/docs/logic/classes/Navigateable) instance that powers `useTablist`s tab navigation.</p><p>All of `useTablist`s internal state will update reactively each time `navigateable.location` changes. This is useful when you need to control navigate with custom buttons or keyboard shortcuts.</p> |
 | `selected` | Object | This object has two properties: `tab` and `panel`. Each property stores a reactive reference to the index (Number) of the currently selected tab and panel, respectively. |
-| `label` | Function | <p>A [single target API object](/docs/features/target-api).</p><p>`label.ref` should be called with no arguments, and its returned function ref should be bound to the DOM element that serves as your tablist's accessible label.</p><p>The `label` property is **only** included in `useTablist`s return object when the `label` option was not initially passed, otherwise, `options.label` serves as the accessible label, and you should not use a separate DOM element.</p> |
+| `label` | Function | <p>A [single element API object](/docs/features/element-api).</p><p>`label.ref` should be bound to the DOM element that serves as your tablist's accessible label.</p><p>The `label` property should **only** be used when the `label` option was not initially passed. Otherwise, `options.label` serves as the accessible label, and you should not use a separate DOM element to label your tablist.</p> |
 :::
 
 Note that some of these values store reactive references. Calling Vue's `readonly` function on `useTablist`s entire return value is recommended, so that all references are unwrapped, and all reactive values can be accessed directly, without using the `.value` property like you normally would on a reactive reference.
@@ -111,19 +111,19 @@ Here's a more complete example of how to use your `tablist` and bind the various
 ```html
 <!-- MyComponent.vue -->
 <template>
-  <div :ref="tablist.label.ref()">My Tablist</div>
-  <div :ref="tablist.root.ref()">
+  <div :ref="tablist.label.ref">My Tablist</div>
+  <div :ref="tablist.root.ref">
     <div
       v-for="({ tab }, index) in metadata"
       :key="tab"
-      :ref="tablist.tabs.ref(index)"
+      :ref="tablist.tabs.getRef(index)"
     >
       {{ tab }}
     </div>
     <div
       v-for="({ tab, panel }, index) in metadata"
       :key="tab"
-      :ref="tablist.panels.ref(index)"
+      :ref="tablist.panels.getRef(index)"
     >
       {{ panel }}
     </div>
@@ -139,7 +139,7 @@ export default {
     const metadata = ref([
             { tab: 'Baleada', panel: '🌮' },
             { tab: 'Toolkit', panel: '🛠' },
-            { tab: 'Yay', panel: '🎉' },
+            { tab: 'Poop', panel: '💩' },
           ]),
           tablist = readonly(
             useTablist()

@@ -1,13 +1,13 @@
 ---
-title: What is Baleada Recognizeable Handlers?
+title: What is Baleada Recognizeable Effects?
 tags: UI logic
 publish: true
 order: 0
 ---
 
-Baleada Recognizeable Handlers is a collection of factory functions that can help you recognize gestures.
+Baleada Recognizeable Effects is a collection of factory functions that can help you recognize sequences of events, like gestures and keychords.
 
-More specifically, each function in the Baleada Recognizeable Handlers collection returns an object that you can pass to the `handlers` option of Baleada Logic's [`Recognizeable` class](/docs/logic/classes/Recognizeable), or more commonly, to the `recognizeable.handlers` option of the [`Listenable` class](/docs/logic/classes/listenable).
+More specifically, each function in the Baleada Recognizeable Effects collection returns an object that you can pass to the `effects` option of Baleada Logic's [`Recognizeable` class](/docs/logic/classes/Recognizeable), or more commonly, to the `recognizeable.effects` option of the [`Listenable` class](/docs/logic/classes/listenable).
 
 
 :::
@@ -25,9 +25,9 @@ npm i @baleada/recognizeable-effects
 ## Workflow
 :::
 
-The best way to get a sense of the Baleada Recognizeable Handlers workflow is to see some code examples.
+The best way to get a sense of the Baleada Recognizeable Effects workflow is to see some code examples.
 
-First, import one of the functions from Baleada Recognizeable Handlers:
+First, import one of the functions from Baleada Recognizeable Effects:
 
 :::
 ```js
@@ -39,7 +39,7 @@ The functions are designed to work seamlessly with the `Listenable` class from B
 
 In the example below, an instance of the `Listenable` class is  constructed using the `useListenable` composition function from [Baleada Composition](/docs/composition).
 
-Note that the `options` object for the `Listenable` constructor should have a `recognizeable` property, whose value is an object with a `handlers` key. Call your Baleada Recognizeable Handlers function, passing the result to that key.
+Note that the `options` object for the `Listenable` constructor should have a `recognizeable` property, whose value is an object with a `effects` key. Call your Baleada Recognizeable Effects function, passing the result to that key.
 
 :::
 ```js
@@ -50,8 +50,8 @@ const instance = useListenable(
   {
     // Options object has a `recognizeable` property 
     recognizeable: { 
-      // Pass the function's result to options.recognizeable.handlers
-      handlers: touchdragdrop()
+      // Pass the function's result to options.recognizeable.effects
+      effects: touchdragdrop()
     }
   }
 )
@@ -92,7 +92,7 @@ instance.stop()
 ## Available gestures
 :::
 
-Baleada Recognizeable Handlers currently has functions available for the following gestures:
+Baleada Recognizeable Effects currently has functions available for the following gestures:
 
 - [`clicks`](/docs/recognizeable-effects/clicks) (i.e. double-clicks, triple-clicks, etc.)
 - [`mousedrag`](/docs/recognizeable-effects/drag)
@@ -111,7 +111,7 @@ And these gestures are on the to-do list:
 ## Language, compilation, browser support, and dependencies
 :::
 
-The functions in Baleada Recognizeable Handlers are written in modern JavaScript, and the package has no dependencies ([Baleada Logic](/docs/logic) is a peer dependency).
+The functions in Baleada Recognizeable Effects are written in modern JavaScript, and the package has no dependencies ([Baleada Logic](/docs/logic) is a peer dependency).
 
 Functions are compiled by [Babel](https://babeljs.io) to work in browsers that are used by more than 0.5% of global web visitors AND have had official support or updates in the past 24 months.
 
@@ -122,8 +122,8 @@ To allow for [tree-shaking](https://webpack.js.org/guides/tree-shaking/), Balead
 ## Semantic versioning conventions
 :::
 
-The following things will trigger a new major release of Baleada Recognizeable Handlers:
-- Any changes to the existing options accepted by any of the Baleada Recognizeable Handlers functons
+The following things will trigger a new major release of Baleada Recognizeable Effects:
+- Any changes to the existing options accepted by any of the Baleada Recognizeable Effects functons
 - Any changes to the existing metadata stored by the functions
 
 The following things will trigger a new minor release:

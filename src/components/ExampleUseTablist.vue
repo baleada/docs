@@ -82,7 +82,7 @@ export default {
     const metadata = ref([
             { tab: 'Baleada', panel: '🌮' },
             { tab: 'Toolkit', panel: '🛠' },
-            { tab: 'Yay', panel: '🎉' },
+            { tab: 'Poop', panel: '💩' },
           ]),
           fadeOutCreate = () => useAnimateable(
             [

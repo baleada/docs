@@ -8,7 +8,7 @@ order: 0
 `show` is a function that can conditionally show or hide elements in the DOM, using the CSS `display` property under the hood. It works with static values—conditionally displaying once—and reactive values—showing and hiding elements each time the value changes.
 
 ::: type="info"
-`show` reimplements the `v-show` affordance in Vue templates.
+`show` reimplements the `v-show` affordance from Vue templates.
 :::
 
 :::
@@ -46,8 +46,8 @@ Here's a breakdown of the `required` object:
 ::: ariaLabel="show required object breakdown" classes="wide-5"
 | Property | Type | Required? | Default | Description |
 | --- | --- | --- | --- | --- |
-| `target` | Ref (HTMLElement), Array | yes | none | <p>A reactive reference to the DOM element you're conditionally displaying.</p><p>`target` Can also be a reactive reference to an array of DOM elements. See the [How to format your condition](#how-to-format-your-condition) section for more guidance on conditionally displaying specific elements in a reactive array.</p> |
-| `condition` | Ref (Boolean), Function, Object | yes | none | <p>Indicates whether or no a specific `target` should be displayed.</p><p>See the [How to format your condition](#how-to-format-your-condition) section for more guidance on formatting your condition.</p> |
+| `element` | Ref (HTMLElement), Array | yes | none | <p>A reactive reference to the DOM element you're conditionally displaying.</p><p>`element` Can also be a reactive reference to an array of DOM elements. See the [How to format your condition](#how-to-format-your-condition) section for more guidance on conditionally displaying specific elements in a reactive array.</p> |
+| `condition` | Ref (Boolean), Function, Object | yes | none | <p>Indicates whether or no a specific `element` should be displayed.</p><p>See the [How to format your condition](#how-to-format-your-condition) section for more guidance on formatting your condition.</p> |
 :::
 
 
@@ -79,7 +79,7 @@ const isShown = ref(true),
       // mounted.
 
 show({
-  target: myElement,
+  element: myElement,
   condition: isShown,
 })
 ```
@@ -87,25 +87,25 @@ show({
 
 `show` watches your reactive value for changes. When the value is `true`, your element is displayed, and when it's `false`, the element is hidden.
 
-But what about when the `target` is a reactive array of elements, rather than a single reactive element reference? How do we make each element is correctly shown or hidden?
+But what about when the `element` is a reactive array of elements, rather than a single reactive element reference? How do we make each element is correctly shown or hidden?
 
-If you only need to conditionally display your elements once, you can pass the **target closure** instead of a reactive Boolean. The target closure is a callback function that receives an object as its only argument. Here's a breakdown of that object:
+If you only need to conditionally display your elements once, you can pass the **value getter** instead of a reactive Boolean. The value getter is a callback function that receives an object as its only argument. Here's a breakdown of that object:
 
-::: ariaLabel="targetClosure object breakdown" classes="wide-3"
+::: ariaLabel="getValue object breakdown" classes="wide-3"
 | Property | Type | Description |
 | --- | --- | --- |
-| `target` | HTMLElement | The actual DOM element that `show` is currently conditionally displaying. |
-| `index` | Number | The index (Number) of `target` in your reactive array of elements. |
+| `element` | HTMLElement | The actual DOM element that `show` is currently conditionally displaying. |
+| `index` | Number | The index (Number) of `element` in your reactive array of elements. |
 :::
 
-Your target closure should return `true` for elements that should be shown, and `false` for elements that should be hidden.
+Your value getter should return `true` for elements that should be shown, and `false` for elements that should be hidden.
 
 But more commonly, you'll need to conditionally display an array of elements based on some other piece of reactive data. For those cases, you can pass an Object as the `condition`:
 
 :::
 ```js
 show({
-  target: myReactiveArrayOfElements,
+  element: myReactiveArrayOfElements,
   condition: { ... },
 })
 ```
@@ -113,11 +113,11 @@ show({
 
 Here's a breakdown of that object:
 
-::: ariaLabel="targetClosure object breakdown" classes="wide-5"
+::: ariaLabel="getValue object breakdown" classes="wide-5"
 | Property | Type | Required? | Default | Description |
 | --- | --- | --- | --- | --- |
-| `targetClosure` | Function | yes | none | A target closure, as described above. |
-| `watchSources` | Ref, Array | yes | none | <p>A single [watch source](https://v3.vuejs.org/guide/reactivity-computed-watchers.html#watching-a-single-source), or an array of watch sources. No need to pass the reactive array of elements—that data is already watched automatically.</p><p>Each time `show` detects a change in your watch sources (or the reactive array of elements), it will iterate through your array of elements, calling the `targetClosure` to conditionally display each element.</p> |
+| `getValue` | Function | yes | none | A value getter, as described above. |
+| `watchSources` | Ref, Array | yes | none | <p>A single [watch source](https://v3.vuejs.org/guide/reactivity-computed-watchers.html#watching-a-single-source), or an array of watch sources. No need to pass the reactive array of elements—that data is already watched automatically.</p><p>Each time `show` detects a change in your watch sources (or the reactive array of elements), it will iterate through your array of elements, calling `getValue` to conditionally display each element.</p> |
 :::
 
 Here's an example of how [`useTablist` ](/docs/features/functions/useTablist) uses this feature to conditionally display tab panels, displaying only the currently selected panel:
@@ -129,7 +129,7 @@ export default function useTablist (...) {
 
   show({
     // Reactive array of tab panel elements
-    target: panels.targets,
+    element: panels.targets,
     condition: {
       // selectedPanel is a reactive reference to the index
       // of the currently selected tab panel.
@@ -137,9 +137,9 @@ export default function useTablist (...) {
       // Every panel should be hidden, except for the panel
       // whose index is a match.
       //
-      // This targetClosure should run again each time
+      // This getValue should run again each time
       // selectedPanel changes.
-      targetClosure: ({ index }) => index === selectedPanel.value,
+      getValue: ({ index }) => index === selectedPanel.value,
       watchSources: selectedPanel,
     }
   }, options)
@@ -197,12 +197,12 @@ All hooks receive an object as their first and only argument. Here's a breakdown
 ::: ariaLabel="hook API object breakdown" classes="wide-3"
 | Property | Type | Description |
 | --- | --- | --- |
-| `target` | HTMLElement | The actual DOM element that is transitioning. |
-| `index` | Number | The index (Number) of `target` in your reactive array of elements. |
-| `done` | Function | <p>A function that you should call with no arguments when an `active` hook has finished transitioning the `target`.</p><p>`done` is only available for `active` hooks. The object passed to `before`, `after`, and `cancel` hooks does not have a `done` property.</p> |
+| `element` | HTMLElement | The actual DOM element that is transitioning. |
+| `index` | Number | The index (Number) of `element` in your reactive array of elements. |
+| `done` | Function | <p>A function that you should call with no arguments when an `active` hook has finished transitioning the `element`.</p><p>`done` is only available for `active` hooks. The object passed to `before`, `after`, and `cancel` hooks does not have a `done` property.</p> |
 :::
 
-None of transition hooks should have a return value, and all of them are optional.
+None of the transition hooks should have a return value, and all of them are optional.
 
 :::
 ```js
