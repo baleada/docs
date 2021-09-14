@@ -58,13 +58,16 @@
   }
 
   .baleada-prose-heading {
-    @apply relative hover:text-primary-70 focus:text-primary-70 active:text-primary-70;
+    @apply 
+      relative 
+      pl-[0.25em] sm:pl-[.5em] translate-x-[-0.25em] sm:translate-x-[-0.5em]
+      hover:text-primary-70 focus:text-primary-70 active:text-primary-70;
 
     button {
       @apply
-        absolute top-0 left-0 h-[1em] w-[1.5em] 
-        pr-[0.5em] inline-flex items-center justify-center
-        rounded-full opacity-0 translate-x-[-1em] sm:translate-x-[-1.5em];
+        absolute top-0 left-0 h-[1em] w-[1em] 
+        inline-flex items-center justify-center
+        rounded-full opacity-0 translate-x-[-.75em] sm:-translate-x-full;
 
       svg {
         @apply block h-full w-full fill-current;
