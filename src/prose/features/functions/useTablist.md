@@ -47,7 +47,7 @@ export default {
 
 Here's a breakdown of the `options` object:
 
-::: ariaLabel="useTablist required" classes="wide-5"
+::: ariaLabel="useTablist options" classes="wide-5"
 | Property | Type | Required? | Default | Description |
 | --- | --- | --- | --- | --- |
 | `label` | String | no | none | <p>A label for the tablist, to be read by screen readers.</p><p>Note that `label` is optional, but having an accessible label is not optional. If you don't provide a value for the `label` option, you'll need to add a label in the DOM. For those cases, there's more info below on how to tell `useTablist` which DOM element is your accessible label.</p> |
@@ -78,6 +78,7 @@ Here's a breakdown of that object:
 | `panels` | Function | <p>A [multiple element API object](/docs/features/element-api).</p><p>Pass the index-based position (Number) of the current panel as the only argument for `panels.getRef`, and its returned function ref should be bound to the DOM element that serves as that panel.</p><p>It's recommended that you render the panels with `v-for`, get the index from your `v-for` statement, and bind the function ref to the `v-for` element.</p> |
 | `navigateable` | Ref (Navigateable) | <p>The reactive [Navigateable](/docs/logic/classes/Navigateable) instance that powers `useTablist`s tab navigation.</p><p>All of `useTablist`s internal state will update reactively each time `navigateable.location` changes. This is useful when you need to control navigate with custom buttons or keyboard shortcuts.</p> |
 | `selected` | Object | This object has two properties: `tab` and `panel`. Each property stores a reactive reference to the index (Number) of the currently selected tab and panel, respectively. |
+| `isSelected` | Object | This object has two properties: `tab` and `panel`. Each property stores a function, which accepts an index (Number) and returns a boolean indicating whether or not that index is the currently selected tab or panel. |
 | `label` | Function | <p>A [single element API object](/docs/features/element-api).</p><p>`label.ref` should be bound to the DOM element that serves as your tablist's accessible label.</p><p>The `label` property should **only** be used when the `label` option was not initially passed. Otherwise, `options.label` serves as the accessible label, and you should not use a separate DOM element to label your tablist.</p> |
 :::
 
