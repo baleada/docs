@@ -5,7 +5,7 @@ publish: true
 order: 0
 ---
 
-`ProseCodeblock` is the Baleada Prose version of the classic Markdown fenced codeblock that starts with three backticks. It comes with easy-to-style line numbers and a copy-to-clipboard button (powered by [Baleada Logic's `Copyable` class](/docs/logic/classes/copyable)).
+`BaleadaProseCodeblock` is the Baleada Prose version of the classic Markdown fenced codeblock that starts with three backticks. It comes with easy-to-style line numbers and a copy-to-clipboard button (powered by [Baleada Logic's `Copyable` class](/docs/logic/classes/copyable)).
 
 :::
 ## Example
@@ -44,8 +44,8 @@ const example = new Thing()
 ::: ariaLabel="ProseAside props" classes="wide-5"
 | Prop | Type | Required? | Default | Description |
 | --- | --- | --- | --- | --- |
-| `canCopy` | Boolean | no | `false` | Indicates whether or not `ProseCodeblock` should render the copy-to-clipboard button and icon. |
-| `hasLineNumbers` | Boolean | no | `false` | Indicates whether or not `ProseCodeblock` should render line numbers. |
+| `canCopy` | Boolean | no | `false` | Indicates whether or not `BaleadaProseCodeblock` should render the copy-to-clipboard button and icon. |
+| `hasLineNumbers` | Boolean | no | `false` | Indicates whether or not `BaleadaProseCodeblock` should render line numbers. |
 | `classes` | String | no | none | Adds additional classes to the component's root element. |
 :::
 
@@ -54,7 +54,7 @@ const example = new Thing()
 ## Structure
 :::
 
-Here's the structure of `ProseCodeblock`'s markup, written in [Pug](https://github.com/pugjs/pug#syntax) for simplicity:
+Here's the structure of `BaleadaProseCodeblock`'s markup, written in [Pug](https://github.com/pugjs/pug#syntax) for simplicity:
 
 :::
 ```pug

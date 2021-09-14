@@ -5,7 +5,7 @@ publish: true
 order: 0
 ---
 
-`ProseDetails` is just a good old [`details`/`summary`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/details), but it also renders a custom chevron icon.
+`BaleadaProseDetails` is just a good old [`details`/`summary`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/details), but it also renders a custom chevron icon.
 
 :::
 ## Example
@@ -46,7 +46,7 @@ Syke!
 ## Structure
 :::
 
-Here's the structure of `ProseDetails`'s markup, written in [Pug](https://github.com/pugjs/pug#syntax) for simplicity:
+Here's the structure of `BaleadaProseDetails`'s markup, written in [Pug](https://github.com/pugjs/pug#syntax) for simplicity:
 
 :::
 ```pug

@@ -5,8 +5,8 @@ publish: true
 order: 0
 ---
 
-`ProseHeading` is Baleada Prose's version of Markdown headings. It does three things that you typically want from a heading:
-1. It communicates with the top-level layout ([`ProseLayout`](/docs/prose/components/layout), to be specific) to add itself to a table of contents.
+`BaleadaProseHeading` is Baleada Prose's version of Markdown headings. It does three things that you typically want from a heading:
+1. It communicates with the top-level layout ([`BaleadaProseLayout`](/docs/prose/components/layout), to be specific) to add itself to a table of contents.
 2. It renders its text inside an `a`, so that the entire heading becomes a clickable link.
 3. It renders a copy-to-clipboard button so the end user can easily copy the link directly to that heading.
 
@@ -40,7 +40,7 @@ order: 0
 ::: ariaLabel="ProseAside props" classes="wide-5"
 | Prop | Type | Required? | Default | Description |
 | --- | --- | --- | --- | --- |
-| `canCopy` | Boolean | no | `false` | Indicates whether or not `ProseHeading` should render the copy-to-clipboard button and icon. |
+| `canCopy` | Boolean | no | `false` | Indicates whether or not `BaleadaProseHeading` should render the copy-to-clipboard button and icon. |
 | `classes` | String | no | none | Adds additional classes to the component's root element. |
 :::
 
@@ -49,7 +49,7 @@ order: 0
 ## Structure
 :::
 
-Here's the structure of `ProseHeading`'s markup, written in [Pug](https://github.com/pugjs/pug#syntax) for simplicity:
+Here's the structure of `BaleadaProseHeading`'s markup, written in [Pug](https://github.com/pugjs/pug#syntax) for simplicity:
 
 :::
 ```pug

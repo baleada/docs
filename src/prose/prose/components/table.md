@@ -5,11 +5,11 @@ publish: true
 order: 0
 ---
 
-As an enhancement to the more traditional `table` element and its children, Baleada Prose offers `ProseTable`—a table as defined by the [WAI-ARIA](https://www.w3.org/TR/wai-aria/#table) spec.
+As an enhancement to the more traditional `table` element and its children, Baleada Prose offers `BaleadaProseTable`—a table as defined by the [WAI-ARIA](https://www.w3.org/TR/wai-aria/#table) spec.
 
-To make the table easier to style than a standard HTML table, `ProseTable` renders `div`s for the table head, table body, and all table columns and rows. To be fully WAI-ARIA compliant, `ProseTable` renders those `div`s with all the necessary aria roles, and it requires the `ariaLabel` prop (i.e., it will show a warning in development if that prop is not supplied).
+To make the table easier to style than a standard HTML table, `BaleadaProseTable` renders `div`s for the table head, table body, and all table columns and rows. To be fully WAI-ARIA compliant, `BaleadaProseTable` renders those `div`s with all the necessary aria roles, and it requires the `ariaLabel` prop (i.e., it will show a warning in development if that prop is not supplied).
 
-Just like `ProseList`, `ProseTable` also comes with an opt-in "type to filter" feature.
+Just like `BaleadaProseList`, `BaleadaProseTable` also comes with an opt-in "type to filter" feature.
 
 
 :::
@@ -57,9 +57,9 @@ Just like `ProseList`, `ProseTable` also comes with an opt-in "type to filter" f
 | --- | --- | --- | --- | --- |
 | `ariaLabel` | Boolean | no | `false` | An `aria-label` for the table's root element. |
 | `readerCanSearch` | Boolean | no | `false` | Indicates whether or not the table can be filtered by a query string. |
-| `searchIsCaseSensitive` | Boolean | no | `false` | <p>Indicates whether or not the table's query filtering is case sensitive by default.</p><p>When it's `true`, `ProseTable` renders a text input containing `context.messages.table.searchPlaceholder`.</p><p>For more info on `context.messages`, [see the guide on using `context`](/docs/prose/using-context).</p> |
-| `minimumSearchScore` | Number | no | `1` | <p>Search results from your table are scored based on how closely they match the query. Any number between `0` and `1` is a valid `minimumSearchScore`, and a `minimumSearchScore` of `1` will filter out all table rows that don't contain a perfect match for the query.</p><p>Set a `minimumSearchScore` of less than `1` to enable fuzzy matching.</p><p>`ProseTable` uses [Baleada Logic's `Searchable` class](/docs/logic/classes/Searchable) under the hood to support this feature.</p> |
-| `readerCanChangeSearchCaseSensitivity` | Boolean | no | `false` | <p>Indicates whether or not your end user can change the table's `searchIsCaseSensitive` setting.</p><p>When it's `true`, `ProseTable` renders a checkbox and `messages.table.changeSearchCaseSensitivityLabel`.</p><p>For more info on `context.messages`, [see the guide on using `context`](/docs/prose/using-context).</p> |
+| `searchIsCaseSensitive` | Boolean | no | `false` | <p>Indicates whether or not the table's query filtering is case sensitive by default.</p><p>When it's `true`, `BaleadaProseTable` renders a text input containing `context.messages.table.searchPlaceholder`.</p><p>For more info on `context.messages`, [see the guide on using `context`](/docs/prose/using-context).</p> |
+| `minimumSearchScore` | Number | no | `1` | <p>Search results from your table are scored based on how closely they match the query. Any number between `0` and `1` is a valid `minimumSearchScore`, and a `minimumSearchScore` of `1` will filter out all table rows that don't contain a perfect match for the query.</p><p>Set a `minimumSearchScore` of less than `1` to enable fuzzy matching.</p><p>`BaleadaProseTable` uses [Baleada Logic's `Searchable` class](/docs/logic/classes/Searchable) under the hood to support this feature.</p> |
+| `readerCanChangeSearchCaseSensitivity` | Boolean | no | `false` | <p>Indicates whether or not your end user can change the table's `searchIsCaseSensitive` setting.</p><p>When it's `true`, `BaleadaProseTable` renders a checkbox and `messages.table.changeSearchCaseSensitivityLabel`.</p><p>For more info on `context.messages`, [see the guide on using `context`](/docs/prose/using-context).</p> |
 | `classes` | String | no | none | Adds additional classes to the component's root element. |
 :::
 
@@ -68,7 +68,7 @@ Just like `ProseList`, `ProseTable` also comes with an opt-in "type to filter" f
 ## Structure
 :::
 
-Here's the structure of `ProseTable`'s markup, written in [Pug](https://github.com/pugjs/pug#syntax) for simplicity:
+Here's the structure of `BaleadaProseTable`'s markup, written in [Pug](https://github.com/pugjs/pug#syntax) for simplicity:
 
 :::
 ```pug

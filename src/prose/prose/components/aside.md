@@ -5,7 +5,7 @@ publish: true
 order: 0
 ---
 
-`ProseAside` is perfect when you want to insert additional information into an article outside the normal flow of writing. It renders a satisfyingly semantic `aside` element and can render an icon as well.
+`BaleadaProseAside` is perfect when you want to insert additional information into an article outside the normal flow of writing. It renders a satisfyingly semantic `aside` element and can render an icon as well.
 
 :::
 ## Example
@@ -77,7 +77,7 @@ Behold, your blank canvas.
 :::
 
 ::: type="warning"
-When you're writing in Markdown, the `type` prop is required—that's the only way [Baleada Prose Container](/docs/prose-container) will know that it's a `ProseAside` and not a [`ProseSection`](/docs/prose/components/section).
+When you're writing in Markdown, the `type` prop is required—that's the only way [Baleada Prose Container](/docs/prose-container) will know that it's a `BaleadaProseAside` and not a [`BaleadaProseSection`](/docs/prose/components/section).
 :::
 
 
@@ -85,7 +85,7 @@ When you're writing in Markdown, the `type` prop is required—that's the only w
 ## Structure
 :::
 
-Here's the structure of `ProseAside`'s markup, written in [Pug](https://github.com/pugjs/pug#syntax) for simplicity:
+Here's the structure of `BaleadaProseAside`'s markup, written in [Pug](https://github.com/pugjs/pug#syntax) for simplicity:
 
 :::
 ```pug

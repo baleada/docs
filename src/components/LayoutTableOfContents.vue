@@ -18,13 +18,12 @@
 <script lang="ts">
 import { computed } from 'vue'
 import { useRoute } from 'vue-router'
-// @ts-ignore
 import { useStore as useProseStore } from '@baleada/vue-prose'
 
 export default {
   name: 'LayoutTableOfContents',
   setup () {
-    const headings = computed(() => useProseStore().article.headings),
+    const headings = computed(() => useProseStore().headings),
           route = useRoute(),
           hash = computed(() => route.hash)
 

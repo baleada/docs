@@ -36,12 +36,7 @@ Currently, Baleada supports [`markdown-it`](https://markdown-it.github.io/) as t
 
 Using those tools, here is the more specific workflow you should follow:
 
-
-:::
-### Write your article using Baleada's extension of the Markdown syntax.
-:::
-
-Eventually, you should read the [Baleada Markdown syntax](/docs/prose/markdown-syntax) guide for full documentation, but here's a quick example for now:
+Write your article using Baleada's extension of the Markdown syntax. Eventually, you should read the [Baleada Markdown syntax](/docs/prose/markdown-syntax) guide for full documentation, but for now, here's a quick example:
 
 :::
 ```md
@@ -121,7 +116,6 @@ app.mount('#app')
 :::
 
 And that's the bare minimum workflow to get Baleada Prose working! To see it in action, [here's an editable demo](https://stackblitz.com/edit/baleada-vue-prose).
-
 
 
 :::

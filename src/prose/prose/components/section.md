@@ -5,7 +5,7 @@ publish: true
 order: 0
 ---
 
-`ProseSection`'s root element is just a generic `section`. It comes in handy when you need to contain a few things in a block-level element, maybe with a few CSS classes tacked on so you can add specific styling.
+`BaleadaProseSection`'s root element is just a generic `section`. It comes in handy when you need to contain a few things in a block-level element, maybe with a few CSS classes tacked on so you can add specific styling.
 
 :::
 ## Example
@@ -45,7 +45,7 @@ Inspect me! I'm contained in a `section`.
 ## Structure
 :::
 
-Here's the structure of `ProseSection`'s markup, written in [Pug](https://github.com/pugjs/pug#syntax) for simplicity:
+Here's the structure of `BaleadaProseSection`'s markup, written in [Pug](https://github.com/pugjs/pug#syntax) for simplicity:
 
 :::
 ```pug
