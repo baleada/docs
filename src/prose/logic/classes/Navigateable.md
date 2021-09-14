@@ -22,7 +22,7 @@ order: 0
 
 To construct a `Navigateable` instance (Object), use the `Navigateable` constructor, which accepts two parameters:
 
-::: ariaLabel="Delayable constructor parameters" classes="wide-4"
+::: ariaLabel="Navigateable constructor parameters" classes="wide-4"
 | Parameter | Type | Required | Description |
 | --- | --- | --- | --- |
 | `array` | Array | yes | Passes the array that will be made navigable. |
