@@ -101,7 +101,7 @@ const myRenderedHtmlString = md.render(myBaleadaFlavoredMarkdownString)
 
 Finally, use Vue to render the HTML string as an interactive article.
 
-This task involves one important additional task: globally registering Baleada Prose components with Vue so they can be used in any template. Baleada Prose provides a Vue plugin to make this easier. The code below shows basic plugin usage, and you can [visit the plugin guide](/docs/prose/createProse) to learn more about customization.
+This task involves one important additional task: globally registering Baleada Prose components with Vue so they can be used in any template. Baleada Prose provides a Vue plugin to make this easier. The code below shows basic plugin usage, and you can [visit the Baleada Prose setup guide](/docs/prose/setup) to learn more about customization.
 
 Again, this is normally done in the context of a larger toolchain, especially one that supports Vue's [Single File Components](https://v3.vuejs.org/guide/single-file-component.html#introduction), but here is the basic concept:
 
