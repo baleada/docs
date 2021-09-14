@@ -44,13 +44,12 @@ Here's a breakdown of the `options` object:
 ::: ariaLabel="createProse options breakdown" classes="wide-4 wide-5"
 | Property | Type | Required? | Default | Description |
 | --- | --- | --- | --- | --- |
-| `createsPinia` | Boolean | no | `false` | <p>Indicates whether or not Baleada Prose should install [Pinia](https://pinia.esm.dev) in your Vue app.</p><p>Baleada Prose depends on Pinia for shared state. If you use Pinia too, and you've already installed Pinia yourself with the [`createPinia`](https://pinia.esm.dev/api/modules/pinia.html#createpinia) function, then leave `createsPinia` as `false`.</p><p>If you're not using Pinia, and you'd rather have Baleada Prose do that installation behind the scenes, set `createsPinia` to `true`.</p> |
+| `createsPinia` | Boolean | no | `false` | <p>Indicates whether or not Baleada Prose should install the [Pinia](https://pinia.esm.dev) plugin in your Vue app.</p><p>Baleada Prose depends on Pinia for shared state. If you use Pinia too, and you've already installed Pinia yourself with the [`createPinia`](https://pinia.esm.dev/api/modules/pinia.html#createpinia) function, then leave `createsPinia` as `false`.</p><p>If you're not using Pinia, and you'd rather have Baleada Prose do that installation behind the scenes, set `createsPinia` to `true`.</p> |
 | `components` | Array | no | `[]` | <p>An array of functions that return Baleada Prose components for global registration in your Vue app.</p><p>See the [Choose your components](#choose-your-components) section for more guidance.</p> |
 | `getFullPath` | Function, `vue-router` | no | `() => window.location.pathname` | <p>A function that gets the full path to the current route location.</p><p>If you're using [Vue Router](https://next.router.vuejs.org/), you should set `getFullPath` to the string `'vue-router'`, instead of a function. Then, Baleada Prose will automatically keep track of [Vue Router's `fullPath`](https://next.router.vuejs.org/api/#fullpath).</p> |
 | `propDefaults` | Object | no | See the [Customize prop defaults](#customize-prop-defaults) section | <p>An object that can configure a default value for any prop on any Baleada Prose component.</p><p>See the [Customize prop defaults](#customize-prop-defaults) section for more guidance.</p> |
 | `messages` | Object | no | See the [Customize messages](#customize-messages) section | <p>An object that can configure text displayed by certain Baleada Prose components.</p><p>See the [Customize messages](#customize-messages) section for more guidance.</p> |
 :::
-
 
 
 :::
@@ -219,20 +218,20 @@ See the [Messages](/docs/prose/messages) guide for a full breakdown of what mess
 
 
 :::
-## Wire up side effects
+## Set up side effects
 :::
 
-Two features of Baleada Prose can be considered side effects:
-1. Smooth scrolling your article to the top or to an anchored `BaleadaProseHeading` based on URL changes
+Two features of Baleada Prose involve small DOM side effects:
+1. Smooth scrolling your article to the top or to an anchored `BaleadaProseHeading` based on URL changes and user preferences
 2. Setting up Baleada Prose's internal shared store to reactively track the route location, which is used by `BaleadaProseBlockquote` to generate [tweet intents](https://developer.twitter.com/en/docs/twitter-for-websites/tweet-button/guides/web-intent) for tweet buttons.
 
-To wire up these side effects, you can call the `useEffects` function exported by Baleada Prose:
+To set up these side effects, you can call the `useEffects` function exported by Baleada Prose:
 
 :::
 ```js
 import { useEffects } from '@baleada/vue-prose'
 
-useEffects(..)
+useEffects(...)
 ```
 :::
 
@@ -264,7 +263,7 @@ However, it doesn't have to be `App.vue`, and it doesn't event have to be an anc
 | Property | Type | Required? | Default | Description |
 | --- | --- | --- | --- | --- |
 | `scrollableContainer` | Ref (HTMLElement) | no | none | <p>A reactive reference to an element that contains your article, i.e., an element that can be scrolled to move to different positions in your article.</p><p>`scrollableContainer` is not required, but if you don't pass it, Baleada Prose's smooth scrolling features won't work.</p> |
-| `scrollIntoView` | ScrollIntoViewOptions | no | `{ behavior: 'auto', block: 'start' }` | An object that passes options for the [`Element.scrollIntoView`](https://developer.mozilla.org/en-US/docs/Web/API/Element/scrollIntoView) function, used under the hood by Baleada Prose for smooth scrolling. |
+| `scrollIntoView` | Object | no | `{ behavior: 'preferred', block: 'start' }` | <p>An object that passes options for smooth scrolling.</p><p>This is almost the same as the standard [`Element.scrollIntoView`](https://developer.mozilla.org/en-US/docs/Web/API/Element/scrollIntoView) options, with one difference. See the [Customize smooth scrolling](#customize-smooth-scrolling) section for more info.</p> |
 :::
 
 Here's a more complete example of how to call and configure `useEffects`:
@@ -288,12 +287,12 @@ export default {
     const article = ref(null)
     
     // Pass the `article` element reference as the
-    // scrollable container, and configure smooth scrolling.
+    // scrollable container, and force auto scrolling.
     useEffects({
       scrollableContainer: article,
       scrollIntoView: {
         block: 'start',
-        behavior: 'smooth',
+        behavior: 'auto',
       }
     })
 
@@ -303,6 +302,38 @@ export default {
 </script>
 ```
 :::
+
+
+:::
+### Customize smooth scrolling
+:::
+
+As mentioned above, the `options.scrollIntoView` object lets you customize smooth scrolling behavior for `useEffects`.
+
+The `options.scrollIntoView` object is almost exactly the same as the web's standard `scrollIntoView` options. It has one small difference: instead of just `auto` and `smooth` behavior, you can opt for `preferred` behavior.
+
+:::
+```js
+import { useEffects } from '@baleada/vue-prose'
+
+useEffects({
+  scrollIntoView: {
+    // `block` and `inline` are exactly the same as the
+    // standard `scrollIntoView` options
+    block: ...,
+    inline: ...,
+    // `behavior` accepts 'preferred', in addition to the
+    // standard 'auto' and 'smooth'.
+    behavior: 'preferred'
+  }
+})
+```
+:::
+
+When you set `options.scrollIntoView.behavior` to `preferred` (which is Baleada Prose's default setting), `useEffects` will check the reduced motion settings on the end user's device. If the end user has opted into reduced motion, `useEffects` will use `auto` scrolling behavior, otherwise, it will use `smooth` scrolling behavior.
+
+Event if the user changes their reduced motion settings after they have already opened your page, `useEffects` will instantly update its scrolling behavior to match the user's new preferences.
+
 
 ::: type="success"
 Congrats! You finished setting up the front end of Baleada Prose.
