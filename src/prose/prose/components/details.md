@@ -1,5 +1,5 @@
 ---
-title: ProseDetails
+title: BaleadaProseDetails
 tags: Components, Vue, React, Svelte
 publish: true
 order: 0

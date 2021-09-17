@@ -1,5 +1,5 @@
 ---
-title: ProseBlockquote
+title: BaleadaProseBlockquote
 tags: Components
 publish: true
 order: 0

@@ -1,5 +1,5 @@
 ---
-title: ProseAside
+title: BaleadaProseAside
 tags: Components, Vue, React, Svelte
 publish: true
 order: 0

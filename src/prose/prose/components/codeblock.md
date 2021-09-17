@@ -1,5 +1,5 @@
 ---
-title: ProseCodeblock
+title: BaleadaProseCodeblock
 tags: Components
 publish: true
 order: 0

@@ -1,5 +1,5 @@
 ---
-title: ProseMedia
+title: BaleadaProseMedia
 tags: Components, Vue, React, Svelte
 publish: false
 order: 0
