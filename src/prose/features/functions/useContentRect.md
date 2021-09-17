@@ -55,7 +55,7 @@ Here's a breakdown of that object:
 ::: ariaLabel="contentRect breakdown" classes="wide-3"
 | Property | Type | Description |
 | --- | --- | --- |
-| `root` | Object | <p>A [single target API object](/docs/features/element-api).</p><p>`root.ref` should be bound to the DOM element whose content rect you want to track.</p> |
+| `root` | Object | <p>A [single element API object](/docs/features/element-api).</p><p>`root.ref` should be bound to the DOM element whose content rect you want to track.</p> |
 | `pixels` | Ref (Object) | A reactive reference to the [`contentRect`](https://developer.mozilla.org/en-US/docs/Web/API/ResizeObserverEntry/contentRect) (Object) of the most recent `ResizeObserver` entry. |
 | `breaks` | Object | <p>The properties of the `breaks` object are the same properties in the `breakpoints` object from your `options`. Also, if the smallest breakpoint is greater than `0`, the `breaks` object will include a `none` property.</p><p>If you stick with the default `breakpoints`, the properties of `breaks` will be `none`, `sm`, `md`, `lg`, `xl`, and `2xl`.</p><p>The value of each property is a reactive reference to a Boolean indicating whether or not your element's width is currently "breaking" the specified breakpoint.</p><p>See the [How to check breakpoints](#how-to-check-breakpoints) section for more guidance on using `breaks`.</p> |
 | `orientation` | Ref (String) | A reactive reference to the orientation (String) of the element: `portrait` (height greater than width), `landscape` (width greater than height), or `none` (equal height and width). |
