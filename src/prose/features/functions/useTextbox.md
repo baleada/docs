@@ -42,7 +42,10 @@ Here's a breakdown of the `options` object:
 | --- | --- | --- | --- | --- |
 | `initialValue` | String | no | `''` | The initial value that should be bound to your HTML input |
 | `completeable` | Object | no | none | [Constructor options](/docs/logic/classes/Completeable#Completeable-constructor-options) for the `Completeable` instance created by `useTextbox` |
-| `history` | Object | no | none | Options for the undo/redo history tracked by `useTextbox`. See the next table for more info. | 
+| `completesBracketsAndQuotes` | Boolean | no | `false` | <p>Indicates whether or not open brackets and quotes should autocomplete with the closing bracket or quote.</p><p>For example, if `completesBracketsAndQuotes` is `true`, you can type `{` in the textbox, and it will autocomplete the closing `}`. Or, if you highlight text and type `{`, the highlighted text will be wrapped with curly braces.</p> |
+| `toValid` | Function | no | `() => true` | <p>A function that returns a boolean indicating whether or not the current text is valid.</p><p>Your `toValid` function will receive one argument: the current value (String) of your HTML input or textarea.</p><p>If your `toValid` function references reactive values, the textbox's valid state will be updated each time your reactive data changes.</p> |
+| `history` | Object | no | none | Options for the undo/redo history tracked by `useTextbox`. See the next table for more info. |
+| `storeableKey` | String | no | none | <p>A key that can be passed as the first argument to a [`Storeable`](/docs/logic/classes/Storeable) constructor.</p><p>If you pass a `storeableKey`, your textbox will automatically store its value and its selection metadata in `localStorage` each time a new entry is recorded to the undo/redo history.</p> |
 :::
 
 As mentioned in the table above, `useTextbox` tracks an undo/redo history, whose behavior can be configured via the `options.history` object. See the [How your textbox manages undo/redo history](#how-your-textbox-manages-undo-redo-history) section for more general info, and see the table below for the optional properties of the `options.history` object:
@@ -65,9 +68,11 @@ Here's a breakdown of that object:
 ::: ariaLabel="input breakdown" classes="wide-3"
 | Property | Type | Description |
 | --- | --- | --- |
-| `root` | Object | <p>A [single target API object](/docs/features/element-api).</p><p>`root.ref` should be bound to the HTML input or textarea you want to control.</p> |
-| `completeable` | Ref (Object) | <p>The reactive `Completeable` instance created by `useTextbox`.</p><p>See the [How to control value and selection](#how-to-control-value-and-selection) section for more guidance on `completeable` usage, and see the [Access state and methods](/docs/logic/classes/Completeable#access-state-and-methods) section of the `Completeable` docs for more guidance on how to use `completeable` to autocomplete text.</p> |
+| `root` | Object | <p>A [single element API object](/docs/features/element-api).</p><p>`root.ref` should be bound to the HTML input or textarea you want to control.</p> |
+| `completeable` | Ref ([Completeable](/docs/logic/classes/Completeable)) | <p>The reactive `Completeable` instance created by `useTextbox`.</p><p>See the [How to control value and selection](#how-to-control-value-and-selection) section for more guidance on `completeable` usage, and see the [Access state and methods](/docs/logic/classes/Completeable#access-state-and-methods) section of the `Completeable` docs for more guidance on how to use `completeable` to autocomplete text.</p> |
 | `history` | Object | <p>Useful state and methods for interacting with your `textbox`'s undo/redo history.</p><p>See the [How your textbox manages undo/redo history](#how-your-textbox-manages-undo-redo-history) section for more info.</p> |
+| `storeable` | Ref ([Storeable](/docs/logic/classes/Storeable)), `undefined` | <p>If you don't pass a `storeableKey` option, `textbox.storeable` will be `undefined`, otherwise, it will be the reactive `Storeable` instance used to manage `localStorage` reads and writes.</p> |
+| `label`, `errorMessage`, `description`, `details` | Object | <p>[Single element API objects](/docs/features/element-api), used in certain cases for accessibility.</p><p>See the [Accessibility](/docs/features/accessibility) guide for more information.</p> |
 :::
 
 Here's a more complete example of how to use your `textbox` and bind the function ref:
@@ -118,6 +123,10 @@ With this tooling in place, here are the useful side effects that certain action
 `useTextbox` supports undo/redo functionality inspired by VS Code's undo/redo. This feature is much more thorough and flexible than browsers' default undo/redo for HTML inputs and textareas.
 
 Users of your textbox can press `Command+Z` or `Control+Z` to undo, and `Command+Y` or `Control+Y` to redo.
+
+::: type="info"
+If you pass the `storeableKey` option to `useTextbox`, your textbox will update `localStorage` with its value and selection metadata each time a `history` entry is recorded.
+:::
 
 In most cases, you don't need to be concerned with how this undo/redo history is tracked, but just in case you need to watch changes or record new history events, your `textbox` object has a `history` property.
 
