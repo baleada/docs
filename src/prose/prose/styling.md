@@ -63,7 +63,7 @@ This is super useful when you need to add a class to a particular Prose componen
 
 
 :::
-### You can set default classes for any component
+## You can set default classes for any component
 :::
 
 When you call Baleada Prose's [`createProse`](/docs/prose/setup/#create-your-baleada-prose-plugin) function to create your Vue plugin, you can pass options to customize default values for props.

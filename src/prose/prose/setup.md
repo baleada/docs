@@ -2,7 +2,7 @@
 title: Setup
 tags: Components
 publish: true
-order: 1
+order: 2
 ---
 
 Setting up Baleada Prose is a two-part process:
