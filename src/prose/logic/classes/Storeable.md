@@ -60,7 +60,7 @@ const reactiveInstance = useStoreable(key[, options])
 | Option | Type | Default | Description |
 | --- | --- | --- | --- |
 | `type` | String | `local` | Indicates the type of storage that your `Storeable` instance should use. Valid values are `local` and `session`. |
-| `statusKeySuffix` | String | `_status` | <p>Indicates the suffix your `Storeable` instance should add to your `key` when generating the key used to store `status`.</p><p>See the [Access state and methods](#access-state-and-methods) table to learn more about `status`.</p> |
+| `statusKeySuffix` | String | ` status` | <p>Indicates the suffix your `Storeable` instance should add to your `key` when generating the key used to store `status`.</p><p>See the [Access state and methods](#access-state-and-methods) table to learn more about `status`.</p> |
 :::
 
 
@@ -92,7 +92,7 @@ The constructed `Storeable` instance is an Object, and state and methods can be 
 
 As mentioned in the table above, each `Storeable` instance stores its `status` in `localStorage` or `sessionStorage`. After the instance is constructed, `status` will be `ready`, and if the DOM is available, `status` will be stored.
 
-The key used for your `Storeable` instance's `status` is your `key` suffixed with the `statusKeySuffix` option. For example, if the `key` is `baleada`, and the `statusKeySuffix` option is left as the default, `status` will be stored under the `baleada_status` key.
+The key used for your `Storeable` instance's `status` is your `key` suffixed with the `statusKeySuffix` option. For example, if the `key` is `baleada`, and the `statusKeySuffix` option is left as the default, `status` will be stored under the `baleada status` key.
 
 Persistent status isn't quite as useful when using `sessionStorage`, but makes it particularly easy to write explicit, readable code when using `localStorage`.
 
@@ -100,7 +100,7 @@ Here's an example of how these docs use `status` to make a decision about whethe
 
 :::
 ```js
-const darkThemeStatus = new Storeable('baleada_dark_theme_status'),
+const darkThemeStatus = new Storeable('baleada_dark_theme status'),
       enableDarkTheme = () => darkThemeStatus.store('enabled'),
       disableDarkTheme = () => darkThemeStatus.store('disabled')
 
@@ -191,7 +191,7 @@ Nothing special to know about using `Storeable` with TypeScript! Enjoy IDE autoc
 | Has a public method you can use to set a new value for that public getter | <BrandApiDesignSpecCheckmark /> | `setKey` |
 | Has a setter for that getter so you can assign a new value directly | <BrandApiDesignSpecCheckmark /> |  |
 | Any other public getters that should be set by you in some cases also have setters and `set<Property>` methods | <BrandApiDesignSpecCheckmark /> | none |
-| Has at least one additional getter property that you can't (and shouldn't) set directly | <BrandApiDesignSpecCheckmark /> | `status`, `results`, `trie` |
+| Has at least one additional getter property that you can't (and shouldn't) set directly | <BrandApiDesignSpecCheckmark /> | `status`, `storage`, `string`, `error` |
 | Has one or more public methods that expose core functionality | <BrandApiDesignSpecCheckmark /> | `store`, `remove`, `removeStatus` |
 | Either has no side effects or has side effects that can be cleaned up with a `stop` method | <BrandApiDesignSpecCheckmark /> |  |
 | Uses the sentence template to decide what state type should be accepted by a constructor | <BrandApiDesignSpecCheckmark /> | "A key can be stored." |
