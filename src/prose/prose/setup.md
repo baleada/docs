@@ -42,7 +42,7 @@ In that code example, you'll see that `createProse` was called with no arguments
 Here's a breakdown of the `options` object:
 
 ::: ariaLabel="createProse options breakdown" classes="wide-4 wide-5"
-| Property | Type | Required? | Default | Description |
+| Property | Type | Required | Default | Description |
 | --- | --- | --- | --- | --- |
 | `createsPinia` | Boolean | no | `false` | <p>Indicates whether or not Baleada Prose should install the [Pinia](https://pinia.esm.dev) plugin in your Vue app.</p><p>Baleada Prose depends on Pinia for shared state. If you use Pinia too, and you've already installed Pinia yourself with the [`createPinia`](https://pinia.esm.dev/api/modules/pinia.html#createpinia) function, then leave `createsPinia` as `false`.</p><p>If you're not using Pinia, and you'd rather have Baleada Prose do that installation behind the scenes, set `createsPinia` to `true`.</p> |
 | `components` | Array | no | `[]` | <p>An array of functions that return Baleada Prose components for global registration in your Vue app.</p><p>See the [Choose your components](#choose-your-components) section for more guidance.</p> |
@@ -260,7 +260,7 @@ However, it doesn't have to be `App.vue`, and it doesn't event have to be an anc
 `useEffects` accepts an `options` object as its only argument. Here's a breakdown of that object:
 
 ::: ariaLabel="useEffects options breakdown" classes="wide-4 wide-5"
-| Property | Type | Required? | Default | Description |
+| Property | Type | Required | Default | Description |
 | --- | --- | --- | --- | --- |
 | `scrollableContainer` | Ref (HTMLElement) | no | none | <p>A reactive reference to an element that contains your article, i.e., an element that can be scrolled to move to different positions in your article.</p><p>`scrollableContainer` is not required, but if you don't pass it, Baleada Prose's smooth scrolling features won't work.</p> |
 | `scrollIntoView` | Object | no | `{ behavior: 'preferred', block: 'start' }` | <p>An object that passes options for smooth scrolling.</p><p>This is almost the same as the standard [`Element.scrollIntoView`](https://developer.mozilla.org/en-US/docs/Web/API/Element/scrollIntoView) options, with one difference. See the [Customize smooth scrolling](#customize-smooth-scrolling) section for more info.</p> |

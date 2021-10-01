@@ -42,7 +42,7 @@ const example = new Thing()
 :::
 
 ::: ariaLabel="ProseAside props" classes="wide-5"
-| Prop | Type | Required? | Default | Description |
+| Prop | Type | Required | Default | Description |
 | --- | --- | --- | --- | --- |
 | `canCopy` | Boolean | no | `false` | Indicates whether or not `BaleadaProseCodeblock` should render the copy-to-clipboard button and icon. |
 | `hasLineNumbers` | Boolean | no | `false` | Indicates whether or not `BaleadaProseCodeblock` should render line numbers. |

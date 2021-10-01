@@ -35,7 +35,7 @@ Syke!
 :::
 
 ::: ariaLabel="ProseAside props" classes="wide-5"
-| Prop | Type | Required? | Default | Description |
+| Prop | Type | Required | Default | Description |
 | --- | --- | --- | --- | --- |
 | `summary` | String | no | none | The text that will go inside the `summary` element. |
 | `classes` | String | no | none | Adds additional classes to the component's root element. |

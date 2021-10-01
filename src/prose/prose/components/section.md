@@ -35,7 +35,7 @@ Inspect me! I'm contained in a `section`.
 :::
 
 ::: ariaLabel="ProseSection props"
-| Prop | Type | Required? | Default | Description |
+| Prop | Type | Required | Default | Description |
 | --- | --- | --- | --- | --- |
 | `classes` | String | no | none | Adds additional classes to the component's root element. |
 :::

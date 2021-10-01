@@ -61,7 +61,7 @@ Remember: nesting Baleada Prose components isn't supported, so you can't use `Ba
 :::
 
 ::: ariaLabel="ProseList props" classes="wide-5"
-| Prop | Type | Required? | Default | Description |
+| Prop | Type | Required | Default | Description |
 | --- | --- | --- | --- | --- |
 | `readerCanSearch` | Boolean | no | `false` | Indicates whether or not the list can be filtered by a query string. |
 | `searchIsCaseSensitive` | Boolean | no | `false` | <p>Indicates whether or not the list's query filtering is case sensitive by default.</p><p>When it's `true`, `BaleadaProseTable` renders a text input containing `context.messages.list.searchPlaceholder`.</p><p>For more info on `context.messages`, [see the guide on using `context`](/docs/prose/using-context).</p> |

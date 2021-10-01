@@ -35,7 +35,7 @@ order: 0
 :::
 
 ::: ariaLabel="ProseAside props" classes="wide-5"
-| Prop | Type | Required? | Default | Description |
+| Prop | Type | Required | Default | Description |
 | --- | --- | --- | --- | --- |
 | `canTweet` | Boolean | no | `false` | Indicates whether or not the tweet button should render. |
 | `tweetText` | String | no | Your `blockquote`'s text content | Custom text for your tweet, in case you want to override the default. |

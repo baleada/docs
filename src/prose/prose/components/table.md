@@ -53,7 +53,7 @@ Just like `BaleadaProseList`, `BaleadaProseTable` also comes with an opt-in "typ
 :::
 
 ::: ariaLabel="ProseTable props" classes="wide-5"
-| Prop | Type | Required? | Default | Description |
+| Prop | Type | Required | Default | Description |
 | --- | --- | --- | --- | --- |
 | `ariaLabel` | Boolean | no | `false` | An `aria-label` for the table's root element. |
 | `readerCanSearch` | Boolean | no | `false` | Indicates whether or not the table can be filtered by a query string. |
