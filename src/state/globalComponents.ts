@@ -7,6 +7,7 @@ import ExampleDelayable from '../components/ExampleDelayable.vue'
 import ExampleModel from '../components/ExampleModel.vue'
 import ExampleShow from '../components/ExampleShow.vue'
 import ExampleUseTablist from '../components/ExampleUseTablist.vue'
+import ExampleUseTextbox from '../components/ExampleUseTextbox.vue'
 import LayoutAdjacentArticleLinks from '../components/LayoutAdjacentArticleLinks.vue'
 import LayoutArticleEdit from '../components/LayoutArticleEdit.vue'
 import LayoutArticleLog from '../components/LayoutArticleLog.vue'
@@ -27,6 +28,7 @@ export const globalComponents: Component[] = Object.values({
   ExampleModel,
   ExampleShow,
   ExampleUseTablist,
+  ExampleUseTextbox,
   LayoutAdjacentArticleLinks,
   LayoutArticleEdit,
   LayoutArticleLog,

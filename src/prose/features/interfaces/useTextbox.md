@@ -156,7 +156,7 @@ textbox.history // -> a custom history object
 
 
 :::
-## Extending the textbox
+## Extend the textbox
 :::
 
 The following extensions are compatible with your textbox:
