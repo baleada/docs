@@ -43,7 +43,7 @@ Usually, you'll call `model` from inside another composition function, but it al
 Here's a breakdown of the `required` object:
 
 ::: ariaLabel="model required object breakdown" classes="wide-5"
-| Property | Type | Required? | Default | Description |
+| Property | Type | Required | Default | Description |
 | --- | --- | --- | --- | --- |
 | `element` | Ref (HTMLElement) | yes | none | <p>A reactive reference to the DOM element you're modeling data to.</p><p>Unlike other Baleada Features affordances, which let you pass an array of DOM elements as the `element`, `model` only accepts a reactive reference to a single DOM element.</p> |
 | `modelValue` | Ref | yes | none | The reactive reference where you will store the two-way bound data. |
@@ -52,7 +52,7 @@ Here's a breakdown of the `required` object:
 And here's a breakdown of the `options` object:
 
 ::: ariaLabel="model required object breakdown" classes="wide-4 wide-5"
-| Property | Type | Required? | Default | Description |
+| Property | Type | Required | Default | Description |
 | --- | --- | --- | --- | --- |
 | `key` | String | no | `value` | The DOM element's attribute or property where data should be bound. |
 | `event` | String | no | `input` | The event that `model` should listen for on the DOM element to detect when new data has been entered by the end user |

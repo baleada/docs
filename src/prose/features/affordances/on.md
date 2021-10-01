@@ -37,7 +37,7 @@ Usually, you'll call `on` from inside another composition function, but it also 
 Here's a breakdown of the `required` object:
 
 ::: ariaLabel="on required object breakdown" classes="wide-5"
-| Property | Type | Required? | Default | Description |
+| Property | Type | Required | Default | Description |
 | --- | --- | --- | --- | --- |
 | `element` | Ref (HTMLElement), Array | yes | none | <p>A reactive reference to the DOM element where you want to add event listeners, connect observers, etc.</p><p>`element` Can also be a reactive reference to an array of DOM elements. See the [How to format effects](#how-to-format-effects) section for more guidance on using your event listener/observer callback/etc. to access specific elements in a reactive array.</p> |
 | `effects` | Object | yes | none | <p>A list of side effects, performed via callback functions, that you want to run when events are fired on your element or elements.</p><p>See the [How to format the effects object](#how-to-format-the-effects-object) section for more guidance on usage.</p><p>Also, see the [Valid event types](/docs/logic/classes/Listenable#Valid-event-types) section of the `Listenable` docs for more guidance on how to listen for specific keyboard shortcuts, resized elements, custom gestures, and much more.</p> |

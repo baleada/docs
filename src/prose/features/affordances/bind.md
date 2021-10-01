@@ -46,7 +46,7 @@ Usually, you'll call `bind` from inside another composition function, but it als
 Here's a breakdown of the `required` object:
 
 ::: ariaLabel="bind required object breakdown" classes="wide-5"
-| Property | Type | Required? | Default | Description |
+| Property | Type | Required | Default | Description |
 | --- | --- | --- | --- | --- |
 | `element` | Ref (HTMLElement), Array | yes | none | <p>A reactive reference to the DOM element you're binding data to.</p><p>`element` Can also be a reactive reference to an array of DOM elements. See the [How to format values](#how-to-format-values) section for more guidance on binding values to specific elements in a reactive array.</p> |
 | `values` | Object | yes | none | <p>The attributes or properties and values you want to bind to your element or elements.</p><p>See the [How to format the `values` object](#how-to-format-the-values-object) section for more guidance.</p> |
@@ -279,7 +279,7 @@ bind({
 Here's a breakdown of that object:
 
 ::: ariaLabel="getValue object breakdown" classes="wide-5"
-| Property | Type | Required? | Default | Description |
+| Property | Type | Required | Default | Description |
 | --- | --- | --- | --- | --- |
 | `getValue` | Function | yes | none | A value getter, as described above. |
 | `watchSources` | Ref, Array | yes | none | <p>A single [watch source](https://v3.vuejs.org/guide/reactivity-computed-watchers.html#watching-a-single-source), or an array of watch sources. No need to pass your reactive array of elements—that data is already watched automatically.</p><p>Each time `bind` detects a change in your watch sources (or the reactive array of elements), it will iterate through your array of elements, calling `getValue` for each one.</p> |

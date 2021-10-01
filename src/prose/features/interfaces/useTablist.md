@@ -23,7 +23,7 @@ It follows [WAI-ARIA authoring practices](https://www.w3.org/TR/wai-aria-practic
 
 
 :::
-## Creating a tablist
+## Create a tablist
 :::
 
 To create a tablist, call the `useTablist` function, which accepts one optional `options` object as its only parameter.
@@ -48,7 +48,7 @@ export default {
 Here's a breakdown of the `options` object:
 
 ::: ariaLabel="useTablist options" classes="wide-5"
-| Property | Type | Required? | Default | Description |
+| Property | Type | Required | Default | Description |
 | --- | --- | --- | --- | --- |
 | `label` | String | no | none | <p>A label for the tablist, to be read by screen readers.</p><p>Note that `label` is optional, but having an accessible label is not optional. If you don't provide a value for the `label` option, you'll need to add a label in the DOM. For those cases, there's more info below on how to tell `useTablist` which DOM element is your accessible label.</p> |
 | `orientation` | String | yes | `horizontal` | The visual direction of tabs. Must be `horizontal` or `vertical`. |
@@ -63,7 +63,7 @@ Here's a breakdown of the `options` object:
 
 
 :::
-## Using the tablist
+## Use the tablist
 :::
 
 `useTablist` returns a `tablist`—an object with tools you can use to connect `useTablist`s UI logic to your markup.

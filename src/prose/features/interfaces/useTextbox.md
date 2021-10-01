@@ -13,7 +13,16 @@ order: 0
 
 
 :::
-## Creating an textbox
+## Example
+:::
+
+[Source code](https://github.com/baleada/docs/blob/main/src/components/ExampleUseTextbox.vue)
+
+<ExampleUseTextbox class="with-mt" />
+
+
+:::
+## Create a textbox
 :::
 
 To start using a controlled textbox, call the `useTextbox` function, which accepts one optional `options` object as its only parameter.
@@ -38,27 +47,25 @@ export default {
 Here's a breakdown of the `options` object:
 
 ::: ariaLabel="useTextbox options" classes="wide-5"
-| Property | Type | Required? | Default | Description |
+| Property | Type | Required | Default | Description |
 | --- | --- | --- | --- | --- |
 | `initialValue` | String | no | `''` | The initial value that should be bound to your HTML input |
 | `completeable` | Object | no | none | [Constructor options](/docs/logic/classes/Completeable#Completeable-constructor-options) for the `Completeable` instance created by `useTextbox` |
-| `completesBracketsAndQuotes` | Boolean | no | `false` | <p>Indicates whether or not open brackets and quotes should autocomplete with the closing bracket or quote.</p><p>For example, if `completesBracketsAndQuotes` is `true`, you can type `{` in the textbox, and it will autocomplete the closing `}`. Or, if you highlight text and type `{`, the highlighted text will be wrapped with curly braces.</p> |
 | `toValid` | Function | no | `() => true` | <p>A function that returns a boolean indicating whether or not the current text is valid.</p><p>Your `toValid` function will receive one argument: the current value (String) of your HTML input or textarea.</p><p>If your `toValid` function references reactive values, the textbox's valid state will be updated each time your reactive data changes.</p> |
 | `history` | Object | no | none | Options for the undo/redo history tracked by `useTextbox`. See the next table for more info. |
-| `storeableKey` | String | no | none | <p>A key that can be passed as the first argument to a [`Storeable`](/docs/logic/classes/Storeable) constructor.</p><p>If you pass a `storeableKey`, your textbox will automatically store its value and its selection metadata in `localStorage` each time a new entry is recorded to the undo/redo history.</p> |
 :::
 
 As mentioned in the table above, `useTextbox` tracks an undo/redo history, whose behavior can be configured via the `options.history` object. See the [How your textbox manages undo/redo history](#how-your-textbox-manages-undo-redo-history) section for more general info, and see the table below for the optional properties of the `options.history` object:
 
 ::: ariaLabel="history options" classes="wide-5"
-| Property | Type | Required? | Default | Description |
+| Property | Type | Required | Default | Description |
 | --- | --- | --- | --- | --- |
 | `maxLength` | Number, `true` | no | `true` | <p>Limits the number of events that `useTextbox` can record in its undo/redo history.</p><p>Set `maxLength` to `true` to allow an infinite number of events.</p> |
 :::
 
 
 :::
-## Using the textbox
+## Use the textbox
 :::
 
 `useTextbox` returns `textbox`—an object with tools you can use to control your HTML input or textarea.
@@ -69,10 +76,8 @@ Here's a breakdown of that object:
 | Property | Type | Description |
 | --- | --- | --- |
 | `root` | Object | <p>A [single element API object](/docs/features/element-api).</p><p>`root.ref` should be bound to the HTML input or textarea you want to control.</p> |
-| `completeable` | Ref ([Completeable](/docs/logic/classes/Completeable)) | <p>The reactive `Completeable` instance created by `useTextbox`.</p><p>See the [How to control value and selection](#how-to-control-value-and-selection) section for more guidance on `completeable` usage, and see the [Access state and methods](/docs/logic/classes/Completeable#access-state-and-methods) section of the `Completeable` docs for more guidance on how to use `completeable` to autocomplete text.</p> |
+| `completeable` | Ref ([`Completeable`](/docs/logic/classes/Completeable)) | <p>The reactive `Completeable` instance created by `useTextbox`.</p><p>See the [How to control value and selection](#how-to-control-value-and-selection) section for more guidance on `completeable` usage, and see the [Access state and methods](/docs/logic/classes/Completeable#access-state-and-methods) section of the `Completeable` docs for more guidance on how to use `completeable` to autocomplete text.</p> |
 | `history` | Object | <p>Useful state and methods for interacting with your `textbox`'s undo/redo history.</p><p>See the [How your textbox manages undo/redo history](#how-your-textbox-manages-undo-redo-history) section for more info.</p> |
-| `storeable` | Ref ([Storeable](/docs/logic/classes/Storeable)), `undefined` | <p>If you don't pass a `storeableKey` option, `textbox.storeable` will be `undefined`, otherwise, it will be the reactive `Storeable` instance used to manage `localStorage` reads and writes.</p> |
-| `label`, `errorMessage`, `description`, `details` | Object | <p>[Single element API objects](/docs/features/element-api), used in certain cases for accessibility.</p><p>See the [Accessibility](/docs/features/accessibility) guide for more information.</p> |
 :::
 
 Here's a more complete example of how to use your `textbox` and bind the function ref:
@@ -148,3 +153,19 @@ textbox.history // -> a custom history object
 | `undo(options)` | Navigateable | <p>A function you can use to undo events and revert to a recorded state.</p><p>To undo more than one entry at a time, pass the optional `options` object, with the `options.distance` property indicating how many entries should be undone.</p> |
 | `redo(options)` | Navigateable | <p>A function you can use to redo events and move forward to a recorded state.</p><p>To redo more than one entry at a time, pass the optional `options` object, with the `options.distance` property indicating how many entries should be redone.</p> |
 :::
+
+
+:::
+## Extending the textbox
+:::
+
+The following extensions are compatible with your textbox:
+- [`useClosingCompletion`](/docs/features/extensions/useClosingCompletion)
+- [`useMarkdownCompletion`](/docs/features/extensions/useMarkdownCompletion)
+- [`useTextboxStorage`](/docs/features/extensions/useTextboxStorage)
+- [`useSize`](/docs/features/extensions/useSize)
+- [`useVisibility`](/docs/features/extensions/useVisibility)
+- [`useLabel`](/docs/features/extensions/useLabel)
+- [`useDescription`](/docs/features/extensions/useDescription)
+- [`useDetails`](/docs/features/extensions/useDetails)
+- [`useErrorMessage`](/docs/features/extensions/useErrorMessage)

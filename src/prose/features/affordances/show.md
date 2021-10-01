@@ -44,7 +44,7 @@ Usually, you'll call `show` from inside another composition function, but it als
 Here's a breakdown of the `required` object:
 
 ::: ariaLabel="show required object breakdown" classes="wide-5"
-| Property | Type | Required? | Default | Description |
+| Property | Type | Required | Default | Description |
 | --- | --- | --- | --- | --- |
 | `element` | Ref (HTMLElement), Array | yes | none | <p>A reactive reference to the DOM element you're conditionally displaying.</p><p>`element` Can also be a reactive reference to an array of DOM elements. See the [How to format your condition](#how-to-format-your-condition) section for more guidance on conditionally displaying specific elements in a reactive array.</p> |
 | `condition` | Ref (Boolean), Function, Object | yes | none | <p>Indicates whether or no a specific `element` should be displayed.</p><p>See the [How to format your condition](#how-to-format-your-condition) section for more guidance on formatting your condition.</p> |
@@ -54,7 +54,7 @@ Here's a breakdown of the `required` object:
 Here's a breakdown of the `options` object:
 
 ::: ariaLabel="show options object breakdown" classes="wide-5"
-| Property | Type | Required? | Default | Description |
+| Property | Type | Required | Default | Description |
 | --- | --- | --- | --- | --- |
 | `transition` | Object | no | none | <p>An object that contains methods and/or CSS classes for enter/leave transitions.</p><p>See the [How to format enter/leave transitions](#how-to-format-enter-leave-transitions) section for more guidance.</p> |
 :::
@@ -114,7 +114,7 @@ show({
 Here's a breakdown of that object:
 
 ::: ariaLabel="getValue object breakdown" classes="wide-5"
-| Property | Type | Required? | Default | Description |
+| Property | Type | Required | Default | Description |
 | --- | --- | --- | --- | --- |
 | `getValue` | Function | yes | none | A value getter, as described above. |
 | `watchSources` | Ref, Array | yes | none | <p>A single [watch source](https://v3.vuejs.org/guide/reactivity-computed-watchers.html#watching-a-single-source), or an array of watch sources. No need to pass the reactive array of elements—that data is already watched automatically.</p><p>Each time `show` detects a change in your watch sources (or the reactive array of elements), it will iterate through your array of elements, calling `getValue` to conditionally display each element.</p> |
