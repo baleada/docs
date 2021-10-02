@@ -1,6 +1,7 @@
 <template>
   <section
     :ref="tablist.root.ref"
+    aria-label="Example tablist"
     class="mx-auto with-max-w flex flex-col gap-2 p-6 rounded-4 shadow-4"
     :class="[
       store.statuses.darkTheme === 'enabled'
@@ -18,7 +19,7 @@
         <div
           class="btn"
           :class="[
-            tablist.isSelected.tab(index)
+            tablist.is.selected.tab(index)
               ? store.statuses.darkTheme === 'enabled' && 'bg-primary-gray-60' || 'bg-white'
               : store.statuses.darkTheme === 'enabled' && 'bg-primary-gray-70' || 'bg-primary-10'
           ]"
@@ -92,7 +93,6 @@ export default {
             stopWatchingStatus: {},
           })),
           tablist = reactive(useTablist({
-            label: 'Example tablist',
             transition: {
               panel: {
                 appear: true,

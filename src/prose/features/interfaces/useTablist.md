@@ -76,10 +76,10 @@ Here's a breakdown of that object:
 | `root` | Function | <p>A [single element API object](/docs/features/element-api).</p><p>`root.ref` should be bound to the DOM element that serves as your tablist's root.</p> |
 | `tabs` | Function | <p>A [multiple element API object](/docs/features/element-api).</p><p>Pass the index-based position (Number) of the current tab as the only argument for `tabs.getRef`, and its returned function ref should be bound to the DOM element that serves as that tab.</p><p>It's recommended that you render the tabs with `v-for`, get the index from your `v-for` statement, and bind the function ref to the `v-for` element.</p> |
 | `panels` | Function | <p>A [multiple element API object](/docs/features/element-api).</p><p>Pass the index-based position (Number) of the current panel as the only argument for `panels.getRef`, and its returned function ref should be bound to the DOM element that serves as that panel.</p><p>It's recommended that you render the panels with `v-for`, get the index from your `v-for` statement, and bind the function ref to the `v-for` element.</p> |
-| `navigateable` | Ref (Navigateable) | <p>The reactive [Navigateable](/docs/logic/classes/Navigateable) instance that powers `useTablist`s tab navigation.</p><p>All of `useTablist`s internal state will update reactively each time `navigateable.location` changes. This is useful when you need to control navigate with custom buttons or keyboard shortcuts.</p> |
 | `selected` | Object | This object has two properties: `tab` and `panel`. Each property stores a reactive reference to the index (Number) of the currently selected tab and panel, respectively. |
-| `isSelected` | Object | This object has two properties: `tab` and `panel`. Each property stores a function, which accepts an index (Number) and returns a boolean indicating whether or not that index is the currently selected tab or panel. |
-| `label` | Function | <p>A [single element API object](/docs/features/element-api).</p><p>`label.ref` should be bound to the DOM element that serves as your tablist's accessible label.</p><p>The `label` property should **only** be used when the `label` option was not initially passed. Otherwise, `options.label` serves as the accessible label, and you should not use a separate DOM element to label your tablist.</p> |
+| `is` | Object | <p>This object has one property: `selected`, and `is.selected` is a nested object with two properties: `tab` and `panel`.</p><p>`is.selected.tab` and `is.selected.panel` are both functions that accept an index (Number) and return a boolean indicating whether or not the tab or panel at that index is currently selected.</p> |
+| `select` | Object | <p>The `select` object has two properties: `tab` and `panel`.</p><p>`select.tab` and `select.panel` are both functions that accept an index (Number) and programmatically select the tab or panel at that index.</p><p>If `options.selectsPanelOnTabFocus` is `true`, `select.tab` will also update the selected panel, and `select.panel` will also update the selected tab.</p> |
+| `navigateable` | Ref (Navigateable) | <p>The reactive [Navigateable](/docs/logic/classes/Navigateable) instance that powers `useTablist`s tab navigation.</p><p>All of `useTablist`s internal state will update reactively each time `navigateable.location` changes. This is useful when you need to control navigate with custom buttons or keyboard shortcuts.</p> |
 :::
 
 Note that some of these values store reactive references. Calling Vue's `readonly` function on `useTablist`s entire return value is recommended, so that all references are unwrapped, and all reactive values can be accessed directly, without using the `.value` property like you normally would on a reactive reference.
@@ -155,3 +155,16 @@ export default {
 </script>
 ```
 :::
+
+
+:::
+## Extend the tablist
+:::
+
+The following extensions are compatible with your textbox:
+- [`useTablistStorage`](/docs/features/extensions/useTablistStorage)
+- [`useSize`](/docs/features/extensions/useSize)
+- [`useVisibility`](/docs/features/extensions/useVisibility)
+- [`useLabel`](/docs/features/extensions/useLabel)
+- [`useDescription`](/docs/features/extensions/useDescription)
+- [`useDetails`](/docs/features/extensions/useDetails)
