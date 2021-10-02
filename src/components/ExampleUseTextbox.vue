@@ -7,54 +7,69 @@
         : 'bg-primary-20 text-primary-100'
     ]"
   >
-    <input
-      :ref="textbox.root.ref"
-      type="text"
-      placeholder="Type something..."
-      aria-label="Example textbox"
-      class="form -shadow-4"
-      :class="[
-        store.statuses.darkTheme === 'enabled'
-          ? 'bg-primary-gray-90 ring-primary-gray-80 focus:ring-primary-gray-40'
-          : 'bg-white ring-primary-20 focus:ring-primary-70'
-        
-      ]"
-    />
-    <section class="flex gap-2">
-      <button
-        class="btn btn-grows btn-raised"
+    <section class="flex flex-col gap-2">
+      <input
+        :ref="textbox.root.ref"
+        type="text"
+        placeholder="Type something..."
+        aria-label="Example textbox"
+        class="form -shadow-4"
         :class="[
-          store.statuses.darkTheme === 'enabled' && 'bg-primary-gray-70' || 'bg-white'
+          store.statuses.darkTheme === 'enabled'
+            ? 'bg-primary-gray-90 ring-primary-gray-80 focus:ring-primary-gray-40'
+            : 'bg-white ring-primary-20 focus:ring-primary-70'
+      
         ]"
-        @click="() => textbox.undo()"
-      >
-        Undo
-      </button>
-      <button
-        class="btn btn-grows btn-raised"
-        :class="[
-          store.statuses.darkTheme === 'enabled' && 'bg-primary-gray-70' || 'bg-white'
-        ]"
-        @click="() => textbox.redo()"
-      >
-        Redo
-      </button>
+      />
+      <section class="flex gap-2">
+        <button
+          class="btn btn-grows btn-raised"
+          :class="[
+            store.statuses.darkTheme === 'enabled' && 'bg-primary-gray-70' || 'bg-white'
+          ]"
+          @click="() => textbox.undo()"
+        >
+          Undo
+        </button>
+        <button
+          class="btn btn-grows btn-raised"
+          :class="[
+            store.statuses.darkTheme === 'enabled' && 'bg-primary-gray-70' || 'bg-white'
+          ]"
+          @click="() => textbox.redo()"
+        >
+          Redo
+        </button>
+      </section>
+    </section>
+    <section class="flex flex-col gap-4">
+
+      <section class="flex flex-col gap-2">
+        <label>Value:</label>
+        <pre class="px-2 py-1 mt-2 mb-0"><code class="mr-auto">{{ textbox.completeable.string || '\'\'' }}</code></pre>
+      </section>
+      <section class="flex flex-col gap-2">
+        <label>Selection:</label>
+        <pre class="px-2 py-1 mt-2 mb-0"><code class="mr-auto">{{ selectionJson }}</code></pre>
+      </section>
     </section>
   </section>
 </template>
 
 <script lang="ts">
-import { readonly } from 'vue'
+import { readonly, computed } from 'vue'
 import { useTextbox } from '@baleada/vue-features'
 import { useStore } from '../composition'
 
 export default {
   name: 'ExampleUseTextbox',
   setup () {
-    const textbox = readonly(useTextbox())
+    const textbox = readonly(useTextbox()),
+          selectionJson = computed(() => JSON.stringify(textbox.completeable.selection, null, 2))
 
     return {
       textbox,
+      selectionJson,
       store: useStore(),
     }
   }
