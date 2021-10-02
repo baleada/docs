@@ -78,6 +78,10 @@ Here's a breakdown of that object:
 | `root` | Object | <p>A [single element API object](/docs/features/element-api).</p><p>`root.ref` should be bound to the HTML input or textarea you want to control.</p> |
 | `completeable` | Ref ([`Completeable`](/docs/logic/classes/Completeable)) | <p>The reactive `Completeable` instance created by `useTextbox`.</p><p>See the [How to control value and selection](#how-to-control-value-and-selection) section for more guidance on `completeable` usage, and see the [Access state and methods](/docs/logic/classes/Completeable#access-state-and-methods) section of the `Completeable` docs for more guidance on how to use `completeable` to autocomplete text.</p> |
 | `history` | Object | <p>Useful state and methods for interacting with your `textbox`'s undo/redo history.</p><p>See the [How your textbox manages undo/redo history](#how-your-textbox-manages-undo-redo-history) section for more info.</p> |
+| `undo(options)` | Function | <p>A function you can use to undo events and revert to a recorded state.</p><p>Note that `undo` is not exactly the same as calling `history.undo`—it's slightly more sophisticated and tailored to `useTextbox`'s specific use case.</p><p>To undo more than one entry at a time, pass the optional `options` object, with the `options.distance` property indicating how many entries should be undone.</p> |
+| `redo(options)` | Function | <p>A function you can use to redo events and move forward to a recorded state.</p><p>Note that `redo` is not exactly the same as calling `history.redo`—it's slightly more sophisticated and tailored to `useTextbox`'s specific use case.</p><p>To redo more than one entry at a time, pass the optional `options` object, with the `options.distance` property indicating how many entries should be redone.</p> |
+| `type(string)` | Function | <p>A function you can use to programmatically type in the textbox.</p><p>`type` accepts one argument: the new `string` to type into the textbox.</p><p>You can assign a new string to `completeable.value.string` to achieve the same effect, but `type` is a convenient shortcut.</p> |
+| `select(selection)` | Function | <p>A function you can use to programmatically select text in the textbox.</p><p>`select` accepts one argument: the new `selection` object.</p><p>[See the `Completeable` docs](/docs/logic/classes/Completeable#access-state-and-methods) to learn what the shape of that `selection` object should be.</p><p>You can assign a new selection object to `completeable.value.selection` to achieve the same effect, but `select` is a convenient shortcut.</p> |
 :::
 
 Here's a more complete example of how to use your `textbox` and bind the function ref:
@@ -115,8 +119,8 @@ With this tooling in place, here are the useful side effects that certain action
 | --- | --- |
 | The end user enters text into your HTML input | You can read that value in `textbox.completeable.value.string` |
 | The end user selects text in your HTML input | You can read selection metadata in `textbox.completeable.value.selection` |
-| You assign a new value to `textbox.completeable.value.string` | The HTML input's value will automatically update |
-| You assign new selection metadata to `textbox.completeable.value.selection` | Text will automatically be selected in the the HTML input (assuming the input is currently focused) |
+| You assign a new value to `textbox.completeable.value.string`, or you call the `type(...)` function | The HTML input's value will automatically update |
+| You assign new selection metadata to `textbox.completeable.value.selection`, or you call the `select` method | Text will automatically be selected in the the HTML input (assuming the input is currently focused) |
 | You use the `textbox.completeable.value.complete(...)` method to perform an autocomplete operation | <p>The HTML input's value will automatically update.</p><p>Also, the completed portion of text will be automatically selected, or you can [pass options to `complete`](/docs/logic/classes/Completeable#how-the-completeable-instance-completes-strings-and-computes-new-selections) if you'd rather automatically position the cursor right after the completed text.</p> |
 :::
 
@@ -127,10 +131,10 @@ With this tooling in place, here are the useful side effects that certain action
 
 `useTextbox` supports undo/redo functionality inspired by VS Code's undo/redo. This feature is much more thorough and flexible than browsers' default undo/redo for HTML inputs and textareas.
 
-Users of your textbox can press `Command+Z` or `Control+Z` to undo, and `Command+Y` or `Control+Y` to redo.
+Users of your textbox can press `Command+Z` or `Control+Z` to undo, and `Command+Y` or `Control+Y` to redo. You can also call the `textbox.undo` and `textbox.redo` functions at any time to programmatically navigate history.
 
 ::: type="info"
-If you pass the `storeableKey` option to `useTextbox`, your textbox will update `localStorage` with its value and selection metadata each time a `history` entry is recorded.
+If you extend your `textbox` with the `useTextboxStorage` extension, your textbox will update `localStorage` with its value and selection metadata each time a `history` entry is recorded.
 :::
 
 In most cases, you don't need to be concerned with how this undo/redo history is tracked, but just in case you need to watch changes or record new history events, your `textbox` object has a `history` property.
@@ -150,8 +154,8 @@ textbox.history // -> a custom history object
 | --- | --- | --- |
 | `recorded` | Ref (Navigateable) | A reactive [`Navigateable`](/docs/logic/classes/Navigateable) instance, used to store and navigate your undo/redo history. |
 | `record(entry)` | Function | <p>A function you can use to programmatically record new entries in your history.</p><p>Accepts one argument: the new entry. The new entry should be an object with a `string` property passing the recorded value of your textbox, and a `selection` property passing an object describing your textbox's recorded selection. [See the `Completeable` docs](/docs/logic/classes/Completeable#access-state-and-methods) to learn what the shape of that `selection` object should be.</p> |
-| `undo(options)` | Navigateable | <p>A function you can use to undo events and revert to a recorded state.</p><p>To undo more than one entry at a time, pass the optional `options` object, with the `options.distance` property indicating how many entries should be undone.</p> |
-| `redo(options)` | Navigateable | <p>A function you can use to redo events and move forward to a recorded state.</p><p>To redo more than one entry at a time, pass the optional `options` object, with the `options.distance` property indicating how many entries should be redone.</p> |
+| `undo(options)` | Function | <p>A function you can use to undo events and revert to a recorded state.</p><p>To undo more than one entry at a time, pass the optional `options` object, with the `options.distance` property indicating how many entries should be undone.</p> |
+| `redo(options)` | Function | <p>A function you can use to redo events and move forward to a recorded state.</p><p>To redo more than one entry at a time, pass the optional `options` object, with the `options.distance` property indicating how many entries should be redone.</p> |
 :::
 
 

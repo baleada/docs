@@ -26,28 +26,35 @@
         :class="[
           store.statuses.darkTheme === 'enabled' && 'bg-primary-gray-70' || 'bg-white'
         ]"
-        @click="() => textbox.history.undo()">Undo
+        @click="() => textbox.undo()"
+      >
+        Undo
       </button>
       <button
         class="btn btn-grows btn-raised"
         :class="[
           store.statuses.darkTheme === 'enabled' && 'bg-primary-gray-70' || 'bg-white'
         ]"
-        @click="() => textbox.history.redo()">Redo
+        @click="() => textbox.redo()"
+      >
+        Redo
       </button>
     </section>
   </section>
 </template>
 
 <script lang="ts">
+import { readonly } from 'vue'
 import { useTextbox } from '@baleada/vue-features'
 import { useStore } from '../composition'
 
 export default {
   name: 'ExampleUseTextbox',
   setup () {
+    const textbox = readonly(useTextbox())
+
     return {
-      textbox: useTextbox(),
+      textbox,
       store: useStore(),
     }
   }
