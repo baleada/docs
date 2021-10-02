@@ -75,7 +75,7 @@ export default {
 
 
 :::
-## Use visibility
+## Use your visibility
 :::
 
 `useVisibility` returns `visibility`—an object with tools you can use to react to an element's visibility and visibility.

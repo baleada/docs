@@ -63,7 +63,7 @@ export default {
 
 
 :::
-## Use closing completion
+## Use your closing completion
 :::
 
 `useClosingCompletion` returns `closingCompletion`—an object with tools you can use to monitor autocompletion.

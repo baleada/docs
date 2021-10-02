@@ -57,7 +57,7 @@ export default {
 
 
 :::
-## Use size
+## Use your size
 :::
 
 `useSize` returns `size`—an object with tools you can use to react to an element's size.

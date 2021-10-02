@@ -65,7 +65,7 @@ As mentioned in the table above, `useTextbox` tracks an undo/redo history, whose
 
 
 :::
-## Use the textbox
+## Use your textbox
 :::
 
 `useTextbox` returns `textbox`—an object with tools you can use to control your HTML input or textarea.

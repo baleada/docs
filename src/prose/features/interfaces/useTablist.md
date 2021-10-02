@@ -63,7 +63,7 @@ Here's a breakdown of the `options` object:
 
 
 :::
-## Use the tablist
+## Use your tablist
 :::
 
 `useTablist` returns a `tablist`—an object with tools you can use to connect `useTablist`s UI logic to your markup.
