@@ -8,6 +8,7 @@
     ]"
   >
     <section class="flex flex-col gap-2">
+      <p :ref="description.root.ref">This textbox has two-way binding for both value and selection.</p>
       <input
         :ref="textbox.root.ref"
         type="text"
@@ -27,6 +28,7 @@
           :class="[
             store.statuses.darkTheme === 'enabled' && 'bg-primary-gray-70' || 'bg-white'
           ]"
+          aria-label="Undo"
           @click="() => textbox.undo()"
         >
           Undo
@@ -36,6 +38,7 @@
           :class="[
             store.statuses.darkTheme === 'enabled' && 'bg-primary-gray-70' || 'bg-white'
           ]"
+          aria-label="Redo"
           @click="() => textbox.redo()"
         >
           Redo
@@ -43,7 +46,6 @@
       </section>
     </section>
     <section class="flex flex-col gap-4">
-
       <section class="flex flex-col gap-2">
         <label>Value:</label>
         <pre class="px-2 py-1 mt-2 mb-0"><code class="mr-auto">{{ textbox.completeable.string || '\'\'' }}</code></pre>
@@ -58,17 +60,19 @@
 
 <script lang="ts">
 import { readonly, computed } from 'vue'
-import { useTextbox } from '@baleada/vue-features'
+import { useTextbox, useDescription } from '@baleada/vue-features'
 import { useStore } from '../composition'
 
 export default {
   name: 'ExampleUseTextbox',
   setup () {
-    const textbox = readonly(useTextbox()),
-          selectionJson = computed(() => JSON.stringify(textbox.completeable.selection, null, 2))
+    const textbox = useTextbox(),
+          description = useDescription(textbox),
+          selectionJson = computed(() => JSON.stringify(textbox.completeable.value.selection, null, 2))
 
     return {
-      textbox,
+      textbox: readonly(textbox),
+      description: readonly(description),
       selectionJson,
       store: useStore(),
     }

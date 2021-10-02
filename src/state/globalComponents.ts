@@ -6,6 +6,7 @@ import ExampleBind from '../components/ExampleBind.vue'
 import ExampleDelayable from '../components/ExampleDelayable.vue'
 import ExampleModel from '../components/ExampleModel.vue'
 import ExampleShow from '../components/ExampleShow.vue'
+import ExampleUseClosingCompletion from '../components/ExampleUseClosingCompletion.vue'
 import ExampleUseTablist from '../components/ExampleUseTablist.vue'
 import ExampleUseTextbox from '../components/ExampleUseTextbox.vue'
 import LayoutAdjacentArticleLinks from '../components/LayoutAdjacentArticleLinks.vue'
@@ -27,6 +28,7 @@ export const globalComponents: Component[] = Object.values({
   ExampleDelayable,
   ExampleModel,
   ExampleShow,
+  ExampleUseClosingCompletion,
   ExampleUseTablist,
   ExampleUseTextbox,
   LayoutAdjacentArticleLinks,
