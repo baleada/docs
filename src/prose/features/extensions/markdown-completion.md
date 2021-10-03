@@ -1,5 +1,5 @@
 ---
-title: useMarkdownCompletion
+title: Markdown completion
 tags: Composition functions
 publish: true
 order: 0

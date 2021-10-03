@@ -1,5 +1,5 @@
 ---
-title: useTablist
+title: Tablist
 tags: Composition functions
 publish: true
 order: 0

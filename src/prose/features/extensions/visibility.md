@@ -1,5 +1,5 @@
 ---
-title: useVisibility
+title: Visibility
 tags: Composition functions
 publish: true
 order: 0

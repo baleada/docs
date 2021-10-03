@@ -1,5 +1,5 @@
 ---
-title: useSize
+title: Size
 tags: Composition functions
 publish: true
 order: 0

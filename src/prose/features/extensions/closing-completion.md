@@ -1,5 +1,5 @@
 ---
-title: useClosingCompletion
+title: Closing completion
 tags: Composition functions
 publish: true
 order: 0
