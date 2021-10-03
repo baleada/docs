@@ -8,8 +8,21 @@
     ]"
   >
     <section class="flex flex-col gap-2">
-      <p :ref="description.root.ref">Type an opening bracket or quote to autocomplete. Or, highlight text and type an opening bracket or quote to wrap the selected text.</p>
-      <input
+      <section class="flex gap-2">
+        <button
+          v-for="({ name, display, icon, effect }) of effects"
+          class="btn btn-grows btn-raised flex-col gap-0"
+          :class="[
+            store.statuses.darkTheme === 'enabled' && 'bg-primary-gray-70' || 'bg-white'
+          ]"
+          :aria-label="`Autocomplete ${name}`"
+          @click="() => effect()"
+        >
+          <component :is="icon" class="h-5 w-5 fill-current" />
+          <code class="text-2 bg-transparent uppercase">{{ display }}</code>
+        </button>
+      </section>
+      <textarea
         :ref="textbox.root.ref"
         type="text"
         placeholder="Type something..."
@@ -22,20 +35,6 @@
       
         ]"
       />
-      <section class="flex gap-2">
-        <button
-          v-for="({ name, mac, icon: ButtonIcon, effect }) of effects"
-          class="btn btn-grows btn-raised flex-col"
-          :class="[
-            store.statuses.darkTheme === 'enabled' && 'bg-primary-gray-70' || 'bg-white'
-          ]"
-          :aria-label="`Autocomplete ${name}`"
-          @click="() => effect()"
-        >
-          <ButtonIcon />
-          <code class="text-3">{{ mac }}</code>
-        </button>
-      </section>
     </section>    
   </section>
 </template>
@@ -44,44 +43,98 @@
 import { readonly } from 'vue'
 import { useTextbox, useMarkdownCompletion, useDescription, on } from '@baleada/vue-features'
 import { useStore } from '../composition'
-import type { ListenableKeycombo, ListenEffect } from '@baleada/logic'
+import type { ListenableKeycombo } from '@baleada/logic'
+import {
+  OcticonsBold24,
+  OcticonsItalic24,
+  OcticonsCode24,
+  OcticonsLink24,
+  OcticonsQuote24,
+  OcticonsCodeSquare24,
 // @ts-ignore
-import { OcticonsBold, OcticonsItalic } from '@baleada/vue-octicons'
+} from '@baleada/vue-octicons'
 
 export default {
-  name: 'ExampleUseClosingCompletion',
+  name: 'ExampleUseMarkdownCompletion',
   setup () {
     const textbox = useTextbox(),
           markdownCompletion = useMarkdownCompletion(textbox),
           description = useDescription(textbox),
           effects: {
             name: string,
-            icon: typeof OcticonsBold,
+            icon: typeof OcticonsBold24,
+            display: ListenableKeycombo,
             mac: ListenableKeycombo,
             windows: ListenableKeycombo,
             effect: Function,
           }[] = [
             {
               name: 'bold',
-              icon: OcticonsBold,
+              icon: OcticonsBold24,
+              display: 'cmd+b',
               mac: 'cmd+b',
               windows: 'ctrl+b',
               effect: () => markdownCompletion.bold(),
             },
             {
               name: 'italic',
-              icon: OcticonsItalic,
+              icon: OcticonsItalic24,
+              display: 'cmd+i',
               mac: 'cmd+i',
               windows: 'ctrl+i',
               effect: () => markdownCompletion.italic(),
-            }
+            },
+            {
+              name: 'inline code',
+              icon: OcticonsCode24,
+              display: 'cmd+e',
+              mac: '!shift+cmd+e',
+              windows: '!shift+ctrl+e',
+              effect: () => markdownCompletion.code(),
+            },
+            {
+              name: 'link',
+              icon: OcticonsLink24,
+              display: 'cmd+k',
+              mac: 'cmd+k',
+              windows: 'ctrl+k',
+              effect: () => markdownCompletion.link(),
+            },
+            {
+              name: 'blockquote',
+              icon: OcticonsQuote24,
+              display: 'cmd+shift+.',
+              mac: 'cmd+shift+.',
+              windows: 'ctrl+shift+.',
+              effect: () => markdownCompletion.blockquote(),
+            },
+            {
+              name: 'codeblock',
+              icon: OcticonsCodeSquare24,
+              display: 'cmd+shift+e',
+              mac: 'cmd+shift+e',
+              windows: 'ctrl+shift+e',
+              effect: () => markdownCompletion.codeblock(),
+            },
           ]
 
     on<ListenableKeycombo>({
       element: textbox.root.element,
       effects: defineEffect => [
-        ...effects.map(({ mac, effect }) => defineEffect(mac, () => effect())),
-        ...effects.map(({ windows, effect }) => defineEffect(windows, () => effect())),
+        ...effects.map(({ mac, effect }) => defineEffect(
+          mac,
+          event => {
+            event.preventDefault(),
+            effect()
+          }
+        )),
+        ...effects.map(({ windows, effect }) => defineEffect(
+          windows,
+          event => {
+            event.preventDefault(),
+            effect()
+          }
+        )),
       ]
     })
 
