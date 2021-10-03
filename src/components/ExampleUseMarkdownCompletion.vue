@@ -8,10 +8,10 @@
     ]"
   >
     <section class="flex flex-col gap-2">
-      <section class="flex gap-2 flex-nowrap overflow-x-scroll">
+      <section class="flex gap-2 flex-nowrap justify-center py-2 overflow-x-scroll">
         <button
-          v-for="({ name, display, icon, effect }) of effects"
-          class="btn btn-grows btn-raised flex-col gap-0"
+          v-for="({ name, icon, effect }) of effects"
+          class="btn btn-grows btn-raised"
           :class="[
             store.statuses.darkTheme === 'enabled' && 'bg-primary-gray-70' || 'bg-white'
           ]"
@@ -19,7 +19,6 @@
           @click="() => effect()"
         >
           <component :is="icon" class="h-5 w-5 fill-current" />
-          <code class="text-2 bg-transparent uppercase">{{ display }}</code>
         </button>
       </section>
       <textarea
@@ -27,7 +26,7 @@
         type="text"
         placeholder="Type something..."
         aria-label="Example textbox with markdown completion"
-        class="form -shadow-4"
+        class="form -shadow-4 h-16"
         :class="[
           store.statuses.darkTheme === 'enabled'
             ? 'bg-primary-gray-90 ring-primary-gray-80 focus:ring-primary-gray-40'
@@ -35,6 +34,22 @@
       
         ]"
       />
+      <section class="with-mt">
+        <p><strong>Shortcuts*:</strong></p>
+        <ul>
+          <li
+            v-for="({ name, display }) of effects"
+          >
+            <div class="flex gap-1 items-center">
+              <pre 
+                v-for="key in display.split('+')"
+                class="m-0 inline-flex py-1 px-2"
+              ><code class="uppercase tracking-3">{{ key }}</code></pre><span> for {{ name }}</span>
+            </div>
+          </li>
+        </ul>
+        <p class="text-3">* Shortcuts were custom-defined for this example—they're not built into markdown completion, and they're fully customizable.</p>
+      </section>
     </section>    
   </section>
 </template>
@@ -49,6 +64,7 @@ import {
   OcticonsItalic24,
   OcticonsCode24,
   OcticonsLink24,
+  OcticonsHeading24,
   OcticonsQuote24,
   OcticonsCodeSquare24,
 // @ts-ignore
@@ -99,6 +115,14 @@ export default {
               mac: 'cmd+k',
               windows: 'ctrl+k',
               effect: () => markdownCompletion.link(),
+            },
+            {
+              name: 'heading 2',
+              icon: OcticonsHeading24,
+              display: 'cmd+h',
+              mac: 'cmd+h',
+              windows: 'ctrl+h',
+              effect: () => markdownCompletion.heading({ level: 2 }),
             },
             {
               name: 'blockquote',
