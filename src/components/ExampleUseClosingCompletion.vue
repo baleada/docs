@@ -13,7 +13,7 @@
         :ref="textbox.root.ref"
         type="text"
         placeholder="Type something..."
-        aria-label="Example textbox"
+        aria-label="Example textbox with closing completion"
         class="form -shadow-4"
         :class="[
           store.statuses.darkTheme === 'enabled'
