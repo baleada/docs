@@ -1,5 +1,5 @@
 ---
-title: BaleadaProseSection
+title: Section
 tags: Components, Vue, React, Svelte
 publish: true
 order: 0

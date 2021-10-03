@@ -1,5 +1,5 @@
 ---
-title: BaleadaProseList
+title: List
 tags: Components, Vue, React, Svelte
 publish: true
 order: 0

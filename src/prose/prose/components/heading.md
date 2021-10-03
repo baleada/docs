@@ -1,5 +1,5 @@
 ---
-title: BaleadaProseHeading
+title: Heading
 tags: Components, Vue, React, Svelte
 publish: true
 order: 0
