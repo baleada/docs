@@ -8,7 +8,7 @@
     ]"
   >
     <section class="flex flex-col gap-2">
-      <section class="flex gap-2">
+      <section class="flex gap-2 flex-nowrap overflow-x-scroll">
         <button
           v-for="({ name, display, icon, effect }) of effects"
           class="btn btn-grows btn-raised flex-col gap-0"
