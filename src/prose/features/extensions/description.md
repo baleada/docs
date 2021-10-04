@@ -33,7 +33,7 @@ To wire up an accessible description, call the `useDescription` function, which 
 | `extendable` | Interface, Ref (HTMLElement) | yes | <p>The return object from a Baleada Features [interface](/docs/features#using-functions), or a reactive reference to an HTML element.</p><p>If you pass an interface object, `useDescription` will set the `aria-describedby` of the `root` element.</p> |
 :::
 
-
+:::
 ```html
 <!-- MyComponent.vue -->
 <template>...</template>

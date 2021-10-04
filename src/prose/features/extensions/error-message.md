@@ -34,6 +34,7 @@ To wire up an accessible error message, call the `useErrorMessage` function, whi
 :::
 
 
+:::
 ```html
 <!-- MyComponent.vue -->
 <template>...</template>

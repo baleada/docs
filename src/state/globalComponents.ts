@@ -8,6 +8,10 @@ import ExampleModel from '../components/ExampleModel.vue'
 import ExampleShow from '../components/ExampleShow.vue'
 import ExampleUseClosingCompletion from '../components/ExampleUseClosingCompletion.vue'
 import ExampleUseMarkdownCompletion from '../components/ExampleUseMarkdownCompletion.vue'
+import ExampleUseLabel from '../components/ExampleUseLabel.vue'
+import ExampleUseDescription from '../components/ExampleUseDescription.vue'
+import ExampleUseDetails from '../components/ExampleUseDetails.vue'
+import ExampleUseErrorMessage from '../components/ExampleUseErrorMessage.vue'
 import ExampleUseTablist from '../components/ExampleUseTablist.vue'
 import ExampleUseTextbox from '../components/ExampleUseTextbox.vue'
 import LayoutAdjacentArticleLinks from '../components/LayoutAdjacentArticleLinks.vue'
@@ -31,6 +35,10 @@ export const globalComponents: Component[] = Object.values({
   ExampleShow,
   ExampleUseClosingCompletion,
   ExampleUseMarkdownCompletion,
+  ExampleUseLabel,
+  ExampleUseDescription,
+  ExampleUseDetails,
+  ExampleUseErrorMessage,
   ExampleUseTablist,
   ExampleUseTextbox,
   LayoutAdjacentArticleLinks,

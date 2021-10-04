@@ -56,7 +56,7 @@
 
 <script lang="ts">
 import { readonly } from 'vue'
-import { useTextbox, useMarkdownCompletion, useDescription, on } from '@baleada/vue-features'
+import { useTextbox, useMarkdownCompletion, on } from '@baleada/vue-features'
 import { useStore } from '../composition'
 import type { ListenableKeycombo } from '@baleada/logic'
 import {
@@ -75,7 +75,6 @@ export default {
   setup () {
     const textbox = useTextbox(),
           markdownCompletion = useMarkdownCompletion(textbox),
-          description = useDescription(textbox),
           effects: {
             name: string,
             icon: typeof OcticonsBold24,
@@ -165,7 +164,6 @@ export default {
     return {
       textbox: readonly(textbox),
       markdownCompletion: readonly(markdownCompletion),
-      description: readonly(description),
       store: useStore(),
       effects,
     }
