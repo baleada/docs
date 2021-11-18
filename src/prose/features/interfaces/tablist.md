@@ -138,9 +138,9 @@ import { useTablist } from '@baleada/vue-features'
 export default {
   setup () {
     const metadata = ref([
-            { tab: 'Baleada', panel: '🌮' },
-            { tab: 'Toolkit', panel: '🛠' },
-            { tab: 'Poop', panel: '💩' },
+            { tab: 'Educate Girls', panel: 'https://www.educategirls.ngo/' },
+            { tab: 'Kheyti', panel: 'https://www.kheyti.com/' },
+            { tab: 'One Heart Worldwide', panel: 'https://oneheartworldwide.org/' },
           ]),
           tablist = readonly(
             useTablist()
