@@ -71,15 +71,12 @@ Here's a breakdown of that object:
 | `code` | Function | <p>A function you can use to autocomplete code text, i.e. wrap words in <code>`</code>.</p> |
 | `link` | Function | <p>A function you can use to autocomplete a link.</p> |
 | `codeblock` | Function | <p>A function you can use to autocomplete a codeblock, i.e. wrap a block of text in <code>```</code>.</p> |
-| `blockquote` | Function | <p>A function you can use to programmatically convert one or more |
-| `orderedList` | Function | <p>A function you can use to autocomplete orderedList text |
-| `unorderedList` | Function | <p>A function you can use to autocomplete unorderedList text |
-| `checklist` | Function | <p>A function you can use to autocomplete checklist text |
-| `heading` | Function | <p>A function you can use to autocomplete heading text |
-| `horizontalRule` | Function | <p>A function you can use to autocomplete horizontalRule text |
-
-| `close` | Function | <p>A function you can use to programmatically autocomplete punctuation based on the current selection.</p><p>`close` accepts one argument: `opening`, the opening punctuation that should be autocompleted.</p><p>Given the `opening` punctuation, `close` will record a new entry with the autocompleted text into your [`textbox`'s undo/redo history](/docs/features/interfaces/useTextbox#how-your-textbox-manages-undo-redo-history), which in turn will update the value of your HTML text input or textarea.</p><p>`close` returns the closing punctuation character (String).</p> |
-| `completeable` | Ref ([`Completeable`](/docs/logic/classes/Completeable)) | <p>The reactive `Completeable` instance created by `useMarkdownCompletion` to manage punctuation autocompletion.</p><p>See the [How autocompletion works](#how-autocompletion-works) section for more guidance on `completeable` usage.</p> |
+| `blockquote` | Function | <p>A function you can use to programmatically convert one or more</p> |
+| `orderedList` | Function | <p>A function you can use to autocomplete orderedList text</p> |
+| `unorderedList` | Function | <p>A function you can use to autocomplete unorderedList text</p> |
+| `checklist` | Function | <p>A function you can use to autocomplete checklist text</p> |
+| `heading` | Function | <p>A function you can use to autocomplete heading text</p> |
+| `horizontalRule` | Function | <p>A function you can use to autocomplete horizontalRule text</p> |
 :::
 
 
