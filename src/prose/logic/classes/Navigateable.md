@@ -75,8 +75,8 @@ The constructed `Navigateable` instance is an Object, and state and methods can 
 | `status` | Getter | See return value | N/A | The status (String) of the `Navigateable` instance. `status` is `ready` after the instance is constructed, and changes to `navigated` after the first navigation of any kind. |
 | `item` | Getter | See return value | N/A | The item (can be any type) located at `location` in `array` |
 | `setArray(array)` | Function | Sets the `Navigateable` instance's `array` | The new `array` (Array) | The `Navigateable` instance |
-| `setLocation(location)` | Function | An alias for the `navigate` method | The new `location` (Number) | The `Navigateable` instance |
-| `navigate(location)` | Function | <p>Navigates to a specific item.</p><p>If the new location is less than `0`, `navigate` will set `location` to `0`.</p><p>If the new location is greater than the index of the last item in the array, `navigate` will set `location` to the index of the last item in the array.</p> | The index-based location (Number) of the item that should be navigated to | The` Navigateable` instance |
+| `setLocation(location)` | Function | An alias for the `navigate` method, but it **doesn't** support the optional `options` argument. | The new `location` (Number) | The `Navigateable` instance |
+| `navigate(location[, options])` | Function | <p>Navigates to a specific item.</p><p>See the [How `Navigateable` navigates](#how-navigateable-navigates) section for more information on how `options` affect navigation. | The index-based location (Number) of the item that should be navigated to, and an optional `options` argument. | The` Navigateable` instance |
 | `next(options)` | Function | <p>Steps forward through the array, increasing `location` by `options.distance`.</p> | <p>An `options` object with two properties: `distance` (Number) and `loops` (Boolean).</p><p>See the [How `Navigateable` navigates](#how-navigateable-navigates) section for more information on how `options` affect navigation.</p> | The `Navigateable` instance |
 | `previous(options)` | Function | Steps backward through the array, decreasing `location` by `options.distance`. | <p>An `options` object with two properties: `distance` (Number) and `loops` (Boolean).</p><p>See the [How `Navigateable` navigates](#how-navigateable-navigates) section for more information on how `options` affect navigation.</p> | The `Navigateable` instance |
 | `random()` | Function | Navigates to a random item | none | The `Navigateable` instance |
@@ -89,7 +89,15 @@ The constructed `Navigateable` instance is an Object, and state and methods can 
 
 In general, whenever the `setLocation`, `navigate`, `next`, `previous`, or `random` methods are called, the `Navigateable` instance computes the new location and stores that location in its `location` property. 
 
-The only other thing you need to know about how your `Navigateable` instance navigates is what options are available for the `next` and `previous` methods, and how those options affect the way `Navigateable` computes the final location.
+The only other thing you need to know about how your `Navigateable` instance navigates is what options are available for the `navigate`, `next`, and `previous` methods, and how those options affect the way `Navigateable` computes the final location.
+
+`navigate` accepts an optional `options` object as its second argument. Here's a breakdown of the `options` object:
+
+::: ariaLabel="Options for the navigate method" classes="wide-4"
+| Option | Type | Default | Description |
+| --- | --- | --- | --- |
+| `allow` | String | `possible` | <p>When `allow` is set to `any`, `navigate` will set `location` to the exact index you pass as the first argument of `navigate`, even if that index is impossible, e.g. a negative number, a decimal, or an index beyond the length of `array`.</p><p>When `allow` is set to `possible`, navigation is a bit smarter:</p><p>If the new location is less than `0`, `navigate` will set `location` to `0`.</p><p>If the new location is greater than the index of the last item in the array, `navigate` will set `location` to the index of the last item in the array.</p> |
+:::
 
 Both `next` and `previous` accept an optional `options` object as their only argument. Here's a breakdown of the `options` object:
 
