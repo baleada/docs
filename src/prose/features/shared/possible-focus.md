@@ -20,10 +20,10 @@ Every interface that relies on possible focus also includes all of the possible 
 
 Possible focus is always included in interfaces' return values as an object containing methods. Here are the properties on that object:
 
-::: ariaLabel="Possible focus methods" classes="wide-3 wide-4"
+::: ariaLabel="Possible focus methods" classes="wide-1 wide-3 wide-4"
 | Property | Type | Description | Parameters |
 | --- | --- | --- | --- |
-| `exact(index)` | Function | Transfers focus to a specific element | The index-based position of the element |
+| `exact(index[, options])` | Function | Transfers focus to a specific element | <p>The index-based position of the element.</p><p>For more guidance on the optional `options` parameter, see the [Narrowing the definition of "possible"](#narrowing-the-definition-of-possible) section.</p> |
 | `next(index[, options])` | Function | Transfers focus to the next possible element after a specific index | <p>The index to start searching from.</p><p>Each interface that uses possible focus accepts an option to configure whether or not `next` will loop around to the beginning of the list of elements to continue its search for a possible focus target.</p><p>For more guidance on the optional `options` parameter, see the [Narrowing the definition of "possible"](#narrowing-the-definition-of-possible) section.</p> |
 | `previous(index[, options])` | Function | Transfers focus to the previous possible element before a specific index | <p>The index to start searching from.</p><p>Each interface that uses possible focus accepts an option to configure whether or not `previous` will loop around to the end of the list of elements to continue its search for a possible focus target.</p><p>For more guidance on the optional `options` parameter, see the [Narrowing the definition of "possible"](#narrowing-the-definition-of-possible) section.</p> |
 | `first([options])` | Function | Transfers focus to the first possible element | For more guidance on the optional `options` parameter, see the [Narrowing the definition of "possible"](#narrowing-the-definition-of-possible) section. |
@@ -44,14 +44,35 @@ In some situations, you might want to narrow the definition of "possible". In ot
 
 For example, if you're building a spreadsheet interface, you might want an easy way to focus the next cell that contains a formula. These app-specific conditions for focus transfer get first-class support from Baleada Features' possible focus functions.
 
-More specifically, you can use the optional `options` argument of the `next`, `previous`, `first`, and `last` functions to set up your additional conditions for determining what is considered a "possible" focus target.
+More specifically, you can use the optional `options` argument of the possible focus functions to set up your additional conditions for determining what is considered a "possible" focus target.
 
 The `options` argument for each of those functions is an object. Here's a breakdown of that object:
 
-::: ariaLabel="Possible focus methods" classes="wide-5"
+::: ariaLabel="Possible focus methods" classes="wide-1 wide-4 wide-5"
 | Property | Type | Required | Default | Description |
 | --- | --- | --- | --- | --- |
-| `toPossibility` | Function | no | `() => 'possible'` | <p>When `next`, `previous`, `first`, or `last` find an element that they consider to be a possible focus target (based on the conditions listed at the beginning of this guide), they call the `toPossibility` function as an additional check.</p><p>`toPossibility` receives one argument: an object with two properties. The `index` property holds the index-based position of the element in its list, and the `element` property is a reference to the actual DOM element.</p><p>Given that argument, `toPossibility` should return the string `possible` if the element is a possible focus target, and the string `impossible` if it is not a possible focus target.</p> |
+| `toPossibility({ index, element })` | Function | no | `() => 'possible'` | <p>When possible focus functions find an element that they consider to be a possible focus target (based on the conditions listed at the beginning of this guide), they call the `toPossibility` function as an additional check.</p><p>`toPossibility` receives one argument: an object with two properties. The `index` property holds the index-based position of the element in its list, and the `element` property is a reference to the actual DOM element.</p><p>Given that argument, `toPossibility` should return the string `possible` if the element is a possible focus target, and the string `impossible` if it is not a possible focus target.</p> |
 :::
 
-what about exact?
+Here's a code example of how to use the possible focus functions return by [`useListbox`](/docs/features/interfaces/listbox) to transfer focus to the next possible element, where the definition of "possible" has been narrowed:
+
+:::
+```ts
+import { useListbox } from '@baleada/vue-features'
+
+const listbox = useListbox()
+
+// Imagine a listbox whose list options are split into several groups.
+//
+// We can pass a custom `toPossibility` option to the 
+// `listbox.focus.first` function to transfer focus the first
+// enabled element in a specific group.
+listbox.focus.first({
+  toPossibility: ({ index }) => {
+    return myOptions[index].group === 'Group 3'
+      ? 'possible'
+      : 'impossible'
+  }
+})
+```
+:::
