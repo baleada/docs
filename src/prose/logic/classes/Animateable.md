@@ -19,12 +19,6 @@ In other words, `Animateable` implements all the main features of [CSS `@keyfram
 
 `Animateable` is also very similar to the [Web Animations API](https://developer.mozilla.org/en-US/docs/Web/API/Animation). The main difference is that `Animateable` focuses on exposing interpolated values to you at 60 frames per second, while the Web Animation API focuses on updating element styles, and does not expose interpolated values.
 
-`Animateable` depends on:
-- [`requestAnimationFrame`](https://developer.mozilla.org/en-US/docs/Web/API/window/requestAnimationFrame) and [`cancelAnimationFrame`](https://developer.mozilla.org/en-US/docs/Web/API/window/cancelAnimationFrame)
-- [BezierEasing](https://github.com/gre/bezier-easing)
-- [`mix-css-color`](https://github.com/noeldelgado/mix-css-color/)
-- [`Listenable`](/docs/logic/classes/Listenable)
-
 
 :::
 ## Construct an `Animateable` instance

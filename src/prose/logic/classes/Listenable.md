@@ -11,8 +11,6 @@ order: 0
 - Store a status (`ready`, `listening`, or `stopped`)
 - Easily clean up all listening activity to avoid memory leaks
 
-`Listenable` depends on [`Recognizeable`](/docs/logic/classes/Recognizeable) (for custom gestures only, but not tree-shakeable).
-
 
 :::
 ## Example

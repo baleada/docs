@@ -11,10 +11,8 @@ order: 0
 - Store search results
 - Store a status (`ready` or `searched`)
 
-`Searchable` depends on the `Searcher` class from the [fast-fuzzy](https://github.com/EthanRutherford/fast-fuzzy) package.
-
 ::: type="info"
-`Searchable` adds very little extra functionality to the fast-fuzzy `Searcher` class. It's intended to be a thin wrapper, simply ensuring that the `Searcher` class conforms to all of Baleada Logic's API design specs and naming conventions.
+`Searchable` adds very little extra functionality to the [`fast-fuzzy`](https://github.com/EthanRutherford/fast-fuzzy) `Searcher` class. It's intended to be a thin wrapper, simply ensuring that the `Searcher` class conforms to all of Baleada Logic's API design specs and naming conventions.
 :::
 
 

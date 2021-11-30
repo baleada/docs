@@ -10,8 +10,6 @@ order: 0
 - Store the response and [any derived version](https://developer.mozilla.org/en-US/docs/Web/API/Body#Methods) of the response's body
 - Store a status (`ready`, `fetching`, `fetched`, `aborted`, or `errored`)
 
-`Fetchable` depends on [`Resolveable`](/docs/logic/classes/Resolveable).
-
 ::: type="info"
 `Fetchable` adds very little extra functionality to the [`fetch`](https://developer.mozilla.org/en-US/docs/Web/API/WindowOrWorkerGlobalScope/fetch) and [`AbortController`](https://developer.mozilla.org/en-US/docs/Web/API/AbortController) web APIs. It's intended to be a thin wrapper, simply ensuring that they integrate properly, and conform to all of Baleada Logic's API design specs and naming conventions.
 :::

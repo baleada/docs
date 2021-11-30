@@ -13,8 +13,6 @@ order: 0
 - Navigate forward or backward to a different item
 - Navigate to a specific item or a random item
 
-`Navigateable` is written in vanilla JS with no dependencies.
-
 
 :::
 ## Construct a `Navigateable` instance

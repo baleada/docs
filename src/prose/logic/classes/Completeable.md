@@ -10,8 +10,6 @@ order: 0
   - Extract a segment of itself
   - Replace the segment or the full string with a completed string, and automatically update the text selection afterward
 
-`Completeable` has no dependencies.
-
 
 :::
 ## Construct a `Completeable` instance

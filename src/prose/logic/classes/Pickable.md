@@ -13,8 +13,6 @@ order: 0
 - Replace existing picks using different strategies, like FIFO or LIFO
 - Omit specific picks, or all picks
 
-`Pickable` is written in vanilla JS with no dependencies.
-
 
 :::
 ## Construct a `Pickable` instance
@@ -81,7 +79,7 @@ The constructed `Pickable` instance is an Object, and state and methods can be a
 | `status` | Getter | See return value | N/A | The status (String) of the `Pickable` instance. `status` is `ready` after the instance is constructed, and changes to `picked` a successful pick, or `omitted` after a successful omission. |
 | `setArray(array)` | Function | Sets the `Pickable` instance's `array` | The new `array` (Array) | The `Pickable` instance |
 | `setPicks(picks)` | Function | An alias for the `pick` method, but it **doesn't** support the optional `options` argument. | The new `picks` (Number or Array) | The `Pickable` instance |
-| `pick(indexOrIndices[, options])` | Function | <p>Picks a specific item or more than one item, identified by their index-based positions in the array.</p><p>See the [How `Pickable` picks](#how-pickable-picks) section for more information on how `options` affect picking. | The index-based position (Number) of the item that should be picked, or an array of index-based positions for multiple picks. Also accepts an optional `options` argument. | The` Pickable` instance |
+| `pick(indexOrIndices[, options])` | Function | <p>Picks a specific item or more than one item, identified by their index-based positions in the array.</p><p>See the [How `Pickable` picks](#how-pickable-picks) section for more information on how `options` affect picking.</p> | The index-based position (Number) of the item that should be picked, or an array of index-based positions for multiple picks. Also accepts an optional `options` argument. | The` Pickable` instance |
 | `omit([indexOrIndices])` | Function | <p>Omits (removes from `picks`) a specific item or more than one item, identified by their index-based positions in the array.</p><p>When called with no arguments, `omit` omits every pick from `picks`, leaving only an empty array.</p> | Optional: the index-based position (Number) of the item that should be picked, or an array of index-based positions for multiple picks. | The` Pickable` instance |
 :::
 
