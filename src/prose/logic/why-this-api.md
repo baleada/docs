@@ -1,6 +1,6 @@
 ---
 title: Why this API?
-tags: UI logic, Vue, React, Svelte
+tags: UI logic
 publish: false
 order: 4
 ---

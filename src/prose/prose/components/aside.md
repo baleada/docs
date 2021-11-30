@@ -1,6 +1,6 @@
 ---
 title: Aside
-tags: Components, Vue, React, Svelte
+tags: Components
 publish: true
 order: 0
 ---

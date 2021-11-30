@@ -1,6 +1,6 @@
 ---
 title: What is Baleada Composition?
-tags: Composition functions, Vue, React, Svelte
+tags: Composition functions
 publish: true
 order: 0
 ---

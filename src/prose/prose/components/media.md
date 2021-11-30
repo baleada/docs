@@ -1,6 +1,6 @@
 ---
 title: Media
-tags: Components, Vue, React, Svelte
+tags: Components
 publish: false
 order: 0
 ---

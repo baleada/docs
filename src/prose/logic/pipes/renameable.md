@@ -1,5 +1,5 @@
 ---
 title: renamable
-tags: UI logic, Vue, React, Svelte
+tags: UI logic
 publish: false
 ---

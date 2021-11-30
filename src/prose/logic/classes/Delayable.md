@@ -1,6 +1,6 @@
 ---
 title: Delayable
-tags: UI logic, Vue, React, Svelte
+tags: UI logic
 publish: true
 order: 0
 ---
