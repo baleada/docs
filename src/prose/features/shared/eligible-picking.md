@@ -38,9 +38,9 @@ All eligible picking methods return a string that describes the element that was
 
 In some situations, you might want to narrow the definition of "eligible". In other words, you might want to consider other information, beyond just the enabled/disabled state, before confirming that an element is actually an eligible picking target.
 
-For example, if you're building a spreadsheet interface, you might want an easy way to focus the next cell that contains a formula. These app-specific conditions for focus transfer get first-class support from Baleada Features' eligible picking functions.
+For example, if you're building a spreadsheet interface, you might want an easy way to highlight the next cell that contains a formula. These app-specific conditions for picking get first-class support from Baleada Features' eligible picking functions.
 
-More specifically, you can use the optional `options` argument of the eligible picking functions to set up your additional conditions for determining what is considered a "eligible" focus target.
+More specifically, you can use the optional `options` argument of the eligible picking functions to set up your additional conditions to determine what is considered "eligible".
 
 The `options` argument for each of those functions is an object. Here's a breakdown of that object:
 
@@ -51,7 +51,7 @@ The `options` argument for each of those functions is an object. Here's a breakd
 | Any property that can be passed to the optional `options` argument of the `pick` method of the [`Pickable`](/docs/logic/classes/Pickable) class. | See `Pickable` docs | ... | ... | ... |
 :::
 
-Here's a code example of how to use the eligible picking functions return by [`useListbox`](/docs/features/interfaces/listbox) to activate the next eligible element, where the definition of "eligible" has been narrowed:
+Here's a code example of how to use the eligible picking functions return by [`useListbox`](/docs/features/interfaces/listbox) to select the next eligible element, where the definition of "eligible" has been narrowed:
 
 :::
 ```ts
@@ -62,9 +62,9 @@ const listbox = useListbox()
 // Imagine a listbox whose list options are split into several groups.
 //
 // We can pass an index of `-1` and a custom `toEligibility` option
-// to the `listbox.activate.next` function to activate the first
+// to the `listbox.select.next` function to select the first
 // enabled element in a specific group.
-listbox.activate.next(-1, {
+listbox.select.next(-1, {
   toEligibility: ({ index }) => {
     return myOptions[index].group === 'Group 3'
       ? 'eligible'

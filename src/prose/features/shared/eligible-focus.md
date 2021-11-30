@@ -44,7 +44,7 @@ In some situations, you might want to narrow the definition of "eligible". In ot
 
 For example, if you're building a spreadsheet interface, you might want an easy way to focus the next cell that contains a formula. These app-specific conditions for focus transfer get first-class support from Baleada Features' eligible focus functions.
 
-More specifically, you can use the optional `options` argument of the eligible focus functions to set up your additional conditions for determining what is considered a "eligible" focus target.
+More specifically, you can use the optional `options` argument of the eligible focus functions to set up your additional conditions to determine what is considered a "eligible" focus target.
 
 The `options` argument for each of those functions is an object. Here's a breakdown of that object:
 
