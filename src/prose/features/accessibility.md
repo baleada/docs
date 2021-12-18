@@ -1,6 +1,6 @@
 ---
 title: Accessibility
-tags: Composition functions
+tags: Composables
 publish: true
 order: 2
 ---
@@ -119,10 +119,10 @@ export default {
 :::
 
 Baleada Features offers several accessibility extensions that follow this same pattern, automating the tedious parts of accessibility engineering, and letting you focus on more bespoke work:
-- [`useLabel`](/docs/features/extensions/useLabel)
-- [`useDescription`](/docs/features/extensions/useDescription)
-- [`useDetails`](/docs/features/extensions/useDetails)
-- [`useErrorMessage`](/docs/features/extensions/useErrorMessage)
+- [`useLabel`](/docs/features/extensions/label)
+- [`useDescription`](/docs/features/extensions/description)
+- [`useDetails`](/docs/features/extensions/details)
+- [`useErrorMessage`](/docs/features/extensions/error-message)
 
 
 <!-- ::: ariaLabel="Properties of some functions' returned objects"

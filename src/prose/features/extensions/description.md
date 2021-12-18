@@ -1,6 +1,6 @@
 ---
 title: Description
-tags: Composition functions
+tags: Composables
 publish: true
 order: 0
 ---
@@ -25,7 +25,7 @@ In other words, `useDescription` does the following:
 ## Create a description
 :::
 
-To wire up an accessible description, call the `useDescription` function, which accepts one parameters:
+To wire up an accessible description, call the `useDescription` function, which requires one parameter:
 
 ::: ariaDescription="useDescription parameters" classes="wide-4"
 | Parameter | Type | Required | Description |

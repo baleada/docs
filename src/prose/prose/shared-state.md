@@ -9,7 +9,7 @@ Baleada Prose components use a [Pinia](https://pinia.esm.dev/) store to share so
 - A list of metadata for all currently rendered `BaleadaProseHeading` components. You can use this to build a reactive table of contents.
 - A list of metadata for all currently rendered `BaleadaProseMedia` components. You can use this to build a reactive media carousel for an article.
 
-To support those use cases, Baleada Prose exports a `useStore` composition function that you can use to access this data:
+To support those use cases, Baleada Prose exports a `useStore` composable that you can use to access this data:
 
 :::
 ```js

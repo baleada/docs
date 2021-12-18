@@ -1,6 +1,6 @@
 ---
 title: show
-tags: Composition functions
+tags: Composables
 publish: true
 order: 0
 ---
@@ -19,7 +19,7 @@ order: 0
 
 <ExampleShow class="with-mt" />
 
-The [`useTablist` example](/docs/features/functions/useTablist#example) is another good demo—it uses `show` under the hood to toggle an array of tab panel elements.
+The [`useTablist` example](/docs/features/interfaces/tablist#example) is another good demo—it uses `show` under the hood to toggle an array of tab panel elements.
 
 :::
 ## Usage
@@ -38,7 +38,7 @@ export default function myCompositionFunction (...) {
 :::
 
 ::: type="info"
-Usually, you'll call `show` from inside another composition function, but it also works in the `setup` function of any Vue component.
+Usually, you'll call `show` from inside another composable, but it also works in the `setup` function of any Vue component.
 :::
 
 Here's a breakdown of the `required` object:
@@ -117,10 +117,10 @@ Here's a breakdown of that object:
 | Property | Type | Required | Default | Description |
 | --- | --- | --- | --- | --- |
 | `getValue` | Function | yes | none | A value getter, as described above. |
-| `watchSources` | Ref, Array | yes | none | <p>A single [watch source](https://v3.vuejs.org/guide/reactivity-computed-watchers.html#watching-a-single-source), or an array of watch sources. No need to pass the reactive array of elements—that data is already watched automatically.</p><p>Each time `show` detects a change in your watch sources (or the reactive array of elements), it will iterate through your array of elements, calling `getValue` to conditionally display each element.</p> |
+| `watchSource` | Ref, Array | yes | none | <p>A single [watch source](https://v3.vuejs.org/guide/reactivity-computed-watchers.html#watching-a-single-source), or an array of watch sources. No need to pass the reactive array of elements—that data is already watched automatically.</p><p>Each time `show` detects a change in your watch sources (or the reactive array of elements), it will iterate through your array of elements, calling `getValue` to conditionally display each element.</p> |
 :::
 
-Here's an example of how [`useTablist` ](/docs/features/functions/useTablist) uses this feature to conditionally display tab panels, displaying only the currently selected panel:
+Here's an example of how [`useTablist` ](/docs/features/interfaces/tablist) uses this feature to conditionally display tab panels, displaying only the currently selected panel:
 
 :::
 ```js
@@ -140,7 +140,7 @@ export default function useTablist (...) {
       // This getValue should run again each time
       // selectedPanel changes.
       getValue: ({ index }) => index === selectedPanel.value,
-      watchSources: selectedPanel,
+      watchSource: selectedPanel,
     }
   }, options)
 

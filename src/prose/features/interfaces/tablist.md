@@ -1,16 +1,16 @@
 ---
 title: Tablist
-tags: Composition functions
+tags: Composables
 publish: true
 order: 0
 ---
 
-`useTablist` is a composition function that implements the UI logic needed for a reactive tablist widget.
+`useTablist` is a composable that implements the UI logic needed for a reactive tablist widget.
 
 It follows [WAI-ARIA authoring practices](https://www.w3.org/TR/wai-aria-practices-1.1/#tabpanel) and allows you to easily customize certain aspects of keyboard navigation. For example, you can configure the tablist as **horizontal**, so that it uses left and right arrow keys to navigate tabs, or **vertical**, so that it uses up and down arrow keys instead.
 
 ::: type="info"
-`useTablist` uses [Baleada Logic's `Navigateable` class](/docs/logic/classes/Navigateable) to manage tab navigation.
+`useTablist` uses [Baleada Logic's `Navigateable` class](/docs/logic/classes/Navigateable) internally to manage tab navigation.
 :::
 
 :::
@@ -50,15 +50,14 @@ Here's a breakdown of the `options` object:
 ::: ariaLabel="useTablist options" classes="wide-5"
 | Property | Type | Required | Default | Description |
 | --- | --- | --- | --- | --- |
-| `label` | String | no | none | <p>A label for the tablist, to be read by screen readers.</p><p>Note that `label` is optional, but having an accessible label is not optional. If you don't provide a value for the `label` option, you'll need to add a label in the DOM. For those cases, there's more info below on how to tell `useTablist` which DOM element is your accessible label.</p> |
-| `orientation` | String | yes | `horizontal` | The visual direction of tabs. Must be `horizontal` or `vertical`. |
-| `initialSelected` | Number | yes | `0` | The index of the tab and tab panel that should be selected by default. |
-| `selectsPanelOnTabFocus` | Boolean | no | `true` | <p>Indicates whether or not tab panels are shown as soon as their tab is focused.</p><p>When `selectsPanelOnTabFocus` is `false`, panels are not shown until the end user clicks on a tab, or presses `Space` or `Enter` while focused on a tab.</p> |
-| `openMenu` | Function | no | none | <p>Opens a context menu for a tab after the `openMenuKeycombo` is pressed.</p><p>As its only argument, your `openMenu` function will receive an object, whose only property is `index`. The value of `index` is the index (Number) of the currently selected tab.</p> |
-| `deleteTab` | Function | no | none | <p>Deletes one of the tabs when the `deleteTabKeycombo` is pressed.</p><p>As its only argument, your `deleteTab` function will receive an object with two properties: `index` and `done`.</p><p>The `index` property holds the index (Number) of the currently selected tab.</p><p>The `done` property holds the `done` callback: a function that you should call with no arguments after the tab has been deleted.</p> |
-| `openMenuKeycombo` | Keycombo | no | `shift+f10` | Sets the keycombo that will cause `useTablist` to call your `openMenu` function. |
-| `deleteTabKeycombo` | Keycombo | no | `delete` | Sets the keycombo that will cause `useTablist` to call your `deleteTab` function. |
-| `transition` | Object | no | none | <p>An object with one property: `panel`.</p><p>Pass an object to `transition.panel`, specifying a transition or animation that `useTablist` should apply to each tab panel as they enter and leave visibility.</p><p>See the [How to format enter/leave transitions](/docs/features/affordances/useConditionalDisplay#how-to-format-enter-leave-transitions) section of the `useConditionalDisplay` docs for more guidance.</p> |
+| `transition` | Object | no | none | <p>An object with one property: `panel`.</p><p>Pass an object to `transition.panel`, specifying a transition or animation that `useTablist` should apply to each tab panel as they enter and leave visibility.</p><p>See the [How to format enter/leave transitions](/docs/features/affordances/show#how-to-format-enter-leave-transitions) section of the `show` docs for more guidance.</p> |
+| `initialSelected` | Number | no | `0` | The index-based position of the tab that should be initially selected. |
+| `ability` | StatusOption | no | `() => 'enabled'` | <p>A [status option](/docs/features/shared/controlling-status) that should resolve to `enabled` for each enabled tab, and `disabled` for each disabled tab.</p><p>`useTablist` uses this information to decide which tabs are eligible to receive focus and/or be selected.</p> |
+| `orientation` | String | no | `horizontal` | Indicates the orientation of the tablist. For horizontal tablists, left and right arrow keys will transfer focus, and for vertical tablists, up and down arrow keys will transfer focus. |
+| `selectsOnFocus` | Boolean | no | `true` | Indicates whether or not tabs should be selected as soon as they are focused |
+| `loops` | Boolean | no | `true` | Indicates whether or not your tablist should "loop around" to the beginning of the list after reaching the end, and vice versa. |
+| `disabledTabsReceiveFocus` | Boolean | no | `true` | <p>Indicates whether or not your `tablist` can transfer focus to disabled tabs.</p><p>If you set `disabledTabsReceiveFocus` to `false`, you should be confident that assistive tech users don't need or want to read the labels of disabled tabs, or that they have another way to access that content.</p><p>Note that even when `disabledTabsReceiveFocus` is `true`, it's never possible to select disabled tabs.</p> |
+| `panelContentsFocusability` | StatusOption | | <p>A [status option](/docs/features/shared/controlling-status) that should resolve to `focusable` when tab panel contents can receive focus, and `not focusable` when tab panel contents cannot receive focus.</p><p>`useTablist` uses this information to implement an accessibility feature for you: the tab panel should only be included in the page's tab order when tab panel contents are **not** focusable.</p> |
 :::
 
 
@@ -66,7 +65,7 @@ Here's a breakdown of the `options` object:
 ## Use your tablist
 :::
 
-`useTablist` returns a `tablist`—an object with tools you can use to connect `useTablist`s UI logic to your markup.
+`useTablist` returns a `tablist`—an object with tools you can use to connect `useTablist`'s UI logic to your markup.
 
 Here's a breakdown of that object:
 
@@ -76,32 +75,28 @@ Here's a breakdown of that object:
 | `root` | Function | <p>A [single element API object](/docs/features/element-api).</p><p>`root.ref` should be bound to the DOM element that serves as your tablist's root.</p> |
 | `tabs` | Function | <p>A [multiple element API object](/docs/features/element-api).</p><p>Pass the index-based position (Number) of the current tab as the only argument for `tabs.getRef`, and its returned function ref should be bound to the DOM element that serves as that tab.</p><p>It's recommended that you render the tabs with `v-for`, get the index from your `v-for` statement, and bind the function ref to the `v-for` element.</p> |
 | `panels` | Function | <p>A [multiple element API object](/docs/features/element-api).</p><p>Pass the index-based position (Number) of the current panel as the only argument for `panels.getRef`, and its returned function ref should be bound to the DOM element that serves as that panel.</p><p>It's recommended that you render the panels with `v-for`, get the index from your `v-for` statement, and bind the function ref to the `v-for` element.</p> |
-| `selected` | Object | This object has two properties: `tab` and `panel`. Each property stores a reactive reference to the index (Number) of the currently selected tab and panel, respectively. |
-| `is` | Object | <p>This object has one property: `selected`, and `is.selected` is a nested object with two properties: `tab` and `panel`.</p><p>`is.selected.tab` and `is.selected.panel` are both functions that accept an index (Number) and return a boolean indicating whether or not the tab or panel at that index is currently selected.</p> |
-| `select` | Object | <p>The `select` object has two properties: `tab` and `panel`.</p><p>`select.tab` and `select.panel` are both functions that accept an index (Number) and programmatically select the tab or panel at that index.</p><p>If `options.selectsPanelOnTabFocus` is `true`, `select.tab` will also update the selected panel, and `select.panel` will also update the selected tab.</p> |
-| `navigateable` | Ref (Navigateable) | <p>The reactive [Navigateable](/docs/logic/classes/Navigateable) instance that powers `useTablist`s tab navigation.</p><p>All of `useTablist`s internal state will update reactively each time `navigateable.location` changes. This is useful when you need to control navigate with custom buttons or keyboard shortcuts.</p> |
+| `focused` | Ref (Number) | A reactive reference to the index-based position of the currently focused tab |
+| `selected` | Ref (Number) | A reactive reference to the index-based position of the currently selected tab |
+| `is` | Object | <p>An object with two properties: `focused` and `selected`.</p><p>Each property holds a method that requires an index (Number) as its only parameter.</p><p>Given the index, `is.focused` returns a boolean indicating whether or not that tab is focused, and `is.selected` returns a boolean indicating whether or not that tab is selected.</p><p>`is.focused` and `is.selected` read from reactive references, so their boolean return values are fully reactive when used in Vue templates, watchers, and computed references.</p> |
+| `getStatuses(index)` | Function | <p>A function that requires an index (Number) as its only parameter, and returns a three-item array indicating the statuses (Strings) of the tab at that index.</p><p>The first item will be `focused` or `blurred`, the second item will be `selected` or `deselected` and the third item will be `enabled` or `disabled`.</p> |
+| `focus` | Object | <p>An object containing all the methods described in the [eligible focus guide](/docs/features/shared/eligible-focus).</p><p>You can use these methods to programmatically transfer focus in a smarter way, taking enabled/disabled state and other customizable conditions into account.</p> |
+| `select` | Functions | <p>An object containing all the methods described in the [eligible picking guide](/docs/features/shared/eligible-picking).</p><p>You can use these methods to programmatically select tabs in a smarter way, taking enabled/disabled state and other customizable conditions into account.</p><p>Note that tablists can never be multiselectable, so you can only pass a single index to the `select.exact` method—an array of selected indices is not possible.</p> |
 :::
 
-Note that some of these values store reactive references. Calling Vue's `readonly` function on `useTablist`s entire return value is recommended, so that all references are unwrapped, and all reactive values can be accessed directly, without using the `.value` property like you normally would on a reactive reference.
+Note that some of these values store reactive references. Calling Vue's `readonly` function on `useTablist`'s entire return value is recommended, so that all references are unwrapped, and all reactive values can be accessed directly, without using the `.value` property like you normally would on a reactive reference.
 
 :::
 ```html
 <!-- MyComponent.vue -->
 <template>...</template>
 
-<script>
+<script setup>
 import { readonly } from 'vue'
 import { useTablist } from '@baleada/vue-features'
 
-export default {
-  setup () {
-    const tablist = readonly(
-      useTablist([options])
-    )
-
-    return { tablist }
-  }
-}
+const tablist = readonly(
+  useTablist([options])
+)
 </script>
 ```
 :::
@@ -131,27 +126,17 @@ Here's a more complete example of how to use your `tablist` and bind the various
   </div>
 </template>
 
-<script>
+<script setup>
 import { ref, computed, readonly } from 'vue'
 import { useTablist } from '@baleada/vue-features'
 
-export default {
-  setup () {
-    const metadata = ref([
-            { tab: 'Educate Girls', panel: 'https://www.educategirls.ngo/' },
-            { tab: 'Kheyti', panel: 'https://www.kheyti.com/' },
-            { tab: 'One Heart Worldwide', panel: 'https://oneheartworldwide.org/' },
-          ]),
-          tablist = readonly(
-            useTablist()
-          )
-          
-    return {
-      metadata,
-      tablist,
-    }
-  }
-}
+const metadata = ref([
+  { tab: 'Educate Girls', panel: 'https://www.educategirls.ngo/' },
+  { tab: 'Kheyti', panel: 'https://www.kheyti.com/' },
+  { tab: 'One Heart Worldwide', panel: 'https://oneheartworldwide.org/' },
+])
+
+const tablist = readonly(useTablist())
 </script>
 ```
 :::
@@ -162,9 +147,9 @@ export default {
 :::
 
 The following extensions are compatible with your textbox:
-- [`useTablistStorage`](/docs/features/extensions/useTablistStorage)
-- [`useSize`](/docs/features/extensions/useSize)
-- [`useVisibility`](/docs/features/extensions/useVisibility)
-- [`useLabel`](/docs/features/extensions/useLabel)
-- [`useDescription`](/docs/features/extensions/useDescription)
-- [`useDetails`](/docs/features/extensions/useDetails)
+- [`useTablistStorage`](/docs/features/extensions/tablist-storage)
+- [`useSize`](/docs/features/extensions/size)
+- [`useVisibility`](/docs/features/extensions/visibility)
+- [`useLabel`](/docs/features/extensions/label)
+- [`useDescription`](/docs/features/extensions/description)
+- [`useDetails`](/docs/features/extensions/details)

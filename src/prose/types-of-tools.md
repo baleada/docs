@@ -1,13 +1,13 @@
 ---
 title: Types of tools
-tags: agnostic
+tags: 
 publish: true
 order: 1
 ---
 
 Each tool in the Baleada app-building toolkit falls into one of the following categories:
 - [UI logic](#ui-logic)
-- [Composition functions (a.k.a. hooks)](#composition-functions-a-k-a-hooks)
+- [Composables (a.k.a. hooks)](#composables-a-k-a-hooks)
 - [Components](#components)
 - [Configuration utilities](#configuration-utilities)
 
@@ -30,15 +30,17 @@ UI logic like this is not only useful in its own right, but also when it gets co
 
 
 :::
-## Composition functions (a.k.a. hooks)
+## Composables (a.k.a. hooks)
 :::
 
-"Composition function" is a term coined by the [Vue](https://vuejs.org) team to describe functions that **collocate code** related to the same logical concern. In [React](https://react.org), these functions are called "hooks", but the concept and motivations are virtually the same.
+"Composable" is a term coined by the [Vue](https://vuejs.org) team to describe functions that use the Vue Composition API and **collocate code** related to the same logical concern.
 
-Baleada's composition functions collocate **reactivity** code with **UI logic** code. More specifically, each Baleada composition function retrieves state and methods from one or more of the Baleada Logic tools, then makes all of the state reactive.
+In [React](https://react.org), these functions are called "hooks", but the concept and motivations are virtually the same.
 
-Currently, all Baleada composition functions are written to work with Vue 3.
-
+Baleada's definition of a "composable" is just a little stricter. All composables in Baleada meet these conditions:
+- They internally use reactivity APIs and/or perform side effects during a component lifecycle
+- They have a return value that includes reactive state
+- Their names are always camelCased, starting with `use` and ending with a noun
 
 
 :::

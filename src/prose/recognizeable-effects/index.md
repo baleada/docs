@@ -37,7 +37,7 @@ import { touchdragdrop } from '@baleada/recognizeable-effects'
 
 The functions are designed to work seamlessly with the `Listenable` class from Baleada Logic. 
 
-In the example below, an instance of the `Listenable` class is  constructed using the `useListenable` composition function from [Baleada Composition](/docs/composition).
+In the example below, an instance of the `Listenable` class is  constructed using the `useListenable` composable from [Baleada Composition](/docs/composition).
 
 Note that the `options` object for the `Listenable` constructor should have a `recognizeable` property, whose value is an object with a `effects` key. Call your Baleada Recognizeable Effects function, passing the result to that key.
 

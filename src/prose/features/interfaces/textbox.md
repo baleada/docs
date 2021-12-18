@@ -1,15 +1,13 @@
 ---
 title: Textbox
-tags: Composition functions
+tags: Composables
 publish: true
 order: 0
 ---
 
-`useTextbox` is a composition function that controls native HTML inputs and textareas with reactive two-way binding for both the input's value and its selection metadata (start position, end position, and direction). `useTextbox` also provides an API for autocomplete operations.
+`useTextbox` is a composable that controls native HTML inputs and textareas with reactive two-way binding for both the input's value and its selection metadata (start position, end position, and direction). `useTextbox` also provides an API for autocomplete operations and undo/redo history.
 
-::: type="info"
 `useTextbox` uses [the `Completeable` class](/docs/logic/classes/Completeable) from Baleada Logic to control your input's value and selection, and to support autocomplete features.
-:::
 
 
 :::
@@ -50,8 +48,7 @@ Here's a breakdown of the `options` object:
 | Property | Type | Required | Default | Description |
 | --- | --- | --- | --- | --- |
 | `initialValue` | String | no | `''` | The initial value that should be bound to your HTML input |
-| `completeable` | Object | no | none | [Constructor options](/docs/logic/classes/Completeable#Completeable-constructor-options) for the `Completeable` instance created by `useTextbox` |
-| `toValid` | Function | no | `() => true` | <p>A function that returns a boolean indicating whether or not the current text is valid.</p><p>Your `toValid` function will receive one argument: the current value (String) of your HTML input or textarea.</p><p>If your `toValid` function references reactive values, the textbox's valid state will be updated each time your reactive data changes.</p> |
+| `text` | Object | no | none | [Constructor options](/docs/logic/classes/Completeable#Completeable-constructor-options) for the `Completeable` instance created by `useTextbox` |
 | `history` | Object | no | none | Options for the undo/redo history tracked by `useTextbox`. See the next table for more info. |
 :::
 
@@ -76,12 +73,14 @@ Here's a breakdown of that object:
 | Property | Type | Description |
 | --- | --- | --- |
 | `root` | Object | <p>A [single element API object](/docs/features/element-api).</p><p>`root.ref` should be bound to the HTML input or textarea you want to control.</p> |
-| `completeable` | Ref ([`Completeable`](/docs/logic/classes/Completeable)) | <p>The reactive `Completeable` instance created by `useTextbox`.</p><p>See the [How to control value and selection](#how-to-control-value-and-selection) section for more guidance on `completeable` usage, and see the [Access state and methods](/docs/logic/classes/Completeable#access-state-and-methods) section of the `Completeable` docs for more guidance on how to use `completeable` to autocomplete text.</p> |
-| `history` | Object | <p>Useful state and methods for interacting with your `textbox`'s undo/redo history.</p><p>See the [How your textbox manages undo/redo history](#how-your-textbox-manages-undo-redo-history) section for more info.</p> |
-| `undo(options)` | Function | <p>A function you can use to undo events and revert to a recorded state.</p><p>Note that `undo` is not exactly the same as calling `history.undo`—it's slightly more sophisticated and tailored to `useTextbox`'s specific use case.</p><p>To undo more than one entry at a time, pass the optional `options` object, with the `options.distance` property indicating how many entries should be undone.</p> |
-| `redo(options)` | Function | <p>A function you can use to redo events and move forward to a recorded state.</p><p>Note that `redo` is not exactly the same as calling `history.redo`—it's slightly more sophisticated and tailored to `useTextbox`'s specific use case.</p><p>To redo more than one entry at a time, pass the optional `options` object, with the `options.distance` property indicating how many entries should be redone.</p> |
-| `type(string)` | Function | <p>A function you can use to programmatically type in the textbox.</p><p>`type` accepts one argument: the new `string` to type into the textbox.</p><p>You can assign a new string to `completeable.value.string` to achieve the same effect, but `type` is a convenient shortcut.</p> |
-| `select(selection)` | Function | <p>A function you can use to programmatically select text in the textbox.</p><p>`select` accepts one argument: the new `selection` object.</p><p>[See the `Completeable` docs](/docs/logic/classes/Completeable#access-state-and-methods) to learn what the shape of that `selection` object should be.</p><p>You can assign a new selection object to `completeable.value.selection` to achieve the same effect, but `select` is a convenient shortcut.</p> |
+| `text` | Ref ([`Completeable`](/docs/logic/classes/Completeable)) | <p>The reactive `Completeable` instance created by `useTextbox`.</p><p>See the [How to control value and selection](#how-to-control-value-and-selection) section for more guidance on `text` usage, and see the [Access state and methods](/docs/logic/classes/Completeable#access-state-and-methods) section of the `Completeable` docs for more guidance on how to use `text` to autocomplete text.</p> |
+| `type(string)` | Function | <p>A function you can use to programmatically type in the textbox.</p><p>`type` requires one parameter: the new `string` to type into the textbox.</p><p>You can assign a new string to `text.value.string` to achieve the same effect, but `type` is a convenient shortcut.</p> |
+| `select(selection)` | Function | <p>A function you can use to programmatically select text in the textbox.</p><p>`select` requires one parameter: the new `selection` object.</p><p>[See the `Completeable` docs](/docs/logic/classes/Completeable#access-state-and-methods) to learn what the shape of that `selection` object should be.</p><p>You can assign a new selection object to `text.value.selection` to achieve the same effect, but `select` is a convenient shortcut.</p> |
+| `history` | Ref (Array) | <p>A reactive [`Navigateable`](/docs/logic/classes/Navigateable) instance that stores and navigates your undo/redo history.</p><p>See the [How your textbox manages undo/redo history](#how-your-textbox-manages-undo-redo-history) section for more info.</p> |
+| `record(entry)` | Ref (Object) | <p>A function you can use to programmatically record new entries in your textbox's `history`.</p><p>`record` requires one parameter: a new history entry, which is an object with a `string` and `selection` property.</p><p>`string` is a plain string, and `selection` is a selection object as defined by [`Completeable`](/docs/logic/classes/Completeable).</p> |
+| `undo(options)` | Function | <p>A function you can use to undo events and revert to a recorded state.</p><p>To undo more than one entry at a time, pass the optional `options` object, with the `options.distance` property indicating how many entries should be undone.</p><p>Note that `undo` is not exactly the same as calling `history`'s `previous` method—it's slightly more sophisticated and tailored to `useTextbox`'s specific use case.</p> |
+| `redo(options)` | Function | <p>A function you can use to redo events and move forward to a recorded state.</p><p>To redo more than one entry at a time, pass the optional `options` object, with the `options.distance` property indicating how many entries should be redone.</p><p>Note that `redo` is not exactly the same as calling `history`'s `next` method—it's slightly more sophisticated and tailored to `useTextbox`'s specific use case.</p> |
+| `rewrite(entries)` | Function | <p>A function you can use to rewrite `history`, replacing all of its current entries with an array of new entries.</p> |
 :::
 
 Here's a more complete example of how to use your `textbox` and bind the function ref:
@@ -110,18 +109,18 @@ export default {
 ### How to control value and selection
 :::
 
-As mentioned, `useTextbox` implements reactive two-way binding for both your input's value and its selected text. It stores the value and the selection metadata in `textbox.completeable`, a fully reactive `Completeable` instance.
+As mentioned, `useTextbox` implements reactive two-way binding for both your input's value and its selected text. It stores the value and the selection metadata in `textbox.text`, a fully reactive `Completeable` instance.
 
 With this tooling in place, here are the useful side effects that certain actions will have:
 
 ::: ariaLabel="actions and effects in useTextbox" class="wide-1 wide-2"
 | Action | Side effect |
 | --- | --- |
-| The end user enters text into your HTML input | You can read that value in `textbox.completeable.value.string` |
-| The end user selects text in your HTML input | You can read selection metadata in `textbox.completeable.value.selection` |
-| You assign a new value to `textbox.completeable.value.string`, or you call the `type(...)` function | The HTML input's value will automatically update |
-| You assign new selection metadata to `textbox.completeable.value.selection`, or you call the `select` method | Text will automatically be selected in the the HTML input (assuming the input is currently focused) |
-| You use the `textbox.completeable.value.complete(...)` method to perform an autocomplete operation | <p>The HTML input's value will automatically update.</p><p>Also, the completed portion of text will be automatically selected, or you can [pass options to `complete`](/docs/logic/classes/Completeable#how-the-completeable-instance-completes-strings-and-computes-new-selections) if you'd rather automatically position the cursor right after the completed text.</p> |
+| The end user enters text into your HTML input | You can read that value in `textbox.text.value.string` |
+| The end user selects text in your HTML input | You can read selection metadata in `textbox.text.value.selection` |
+| You assign a new value to `textbox.text.value.string`, or you call the `type(...)` function | The HTML input's value will automatically update |
+| You assign new selection metadata to `textbox.text.value.selection`, or you call the `select` method | Text will automatically be selected in the the HTML input (assuming the input is currently focused) |
+| You use the `textbox.text.value.complete(...)` method to perform an autocomplete operation | <p>The HTML input's value will automatically update.</p><p>Also, the completed portion of text will be automatically selected, or you can [pass options to `complete`](/docs/logic/classes/Completeable#how-the-completeable-instance-completes-strings-and-computes-new-selections) if you'd rather automatically position the cursor right after the completed text.</p> |
 :::
 
 
@@ -137,25 +136,16 @@ Users of your textbox can press `Command+Z` or `Control+Z` to undo, and `Command
 If you extend your `textbox` with the `useTextboxStorage` extension, your textbox will update `localStorage` with its value and selection metadata each time a `history` entry is recorded.
 :::
 
-In most cases, you don't need to be concerned with how this undo/redo history is tracked, but just in case you need to watch changes or record new history events, your `textbox` object has a `history` property.
+In most cases, you don't need to be concerned with how this undo/redo history is tracked, but just in case you need to watch changes or record new history events, your `textbox` object has a `history` property, which holds the reactive [`Navigateable`](/docs/logic/classes/Navigateable) instance that stores and navigates your history entries.
 
 :::
 ```js
+import { watchEffect } from 'vue'
+
 const textbox = useTextbox()
 
-textbox.history // -> a custom history object
+watchEffect(() => console.log(textbox.history.value.location))
 ```
-:::
-
-`textbox.history` is an Object, whose properties and values are described below:
-
-::: ariaLabel="textbox history breakdown"
-| Property | Type | Description |
-| --- | --- | --- |
-| `recorded` | Ref (Navigateable) | A reactive [`Navigateable`](/docs/logic/classes/Navigateable) instance, used to store and navigate your undo/redo history. |
-| `record(entry)` | Function | <p>A function you can use to programmatically record new entries in your history.</p><p>Accepts one argument: the new entry. The new entry should be an object with a `string` property passing the recorded value of your textbox, and a `selection` property passing an object describing your textbox's recorded selection. [See the `Completeable` docs](/docs/logic/classes/Completeable#access-state-and-methods) to learn what the shape of that `selection` object should be.</p> |
-| `undo(options)` | Function | <p>A function you can use to undo events and revert to a recorded state.</p><p>To undo more than one entry at a time, pass the optional `options` object, with the `options.distance` property indicating how many entries should be undone.</p> |
-| `redo(options)` | Function | <p>A function you can use to redo events and move forward to a recorded state.</p><p>To redo more than one entry at a time, pass the optional `options` object, with the `options.distance` property indicating how many entries should be redone.</p> |
 :::
 
 
@@ -164,12 +154,12 @@ textbox.history // -> a custom history object
 :::
 
 The following extensions are compatible with your textbox:
-- [`useClosingCompletion`](/docs/features/extensions/useClosingCompletion)
-- [`useMarkdownCompletion`](/docs/features/extensions/useMarkdownCompletion)
-- [`useTextboxStorage`](/docs/features/extensions/useTextboxStorage)
-- [`useSize`](/docs/features/extensions/useSize)
-- [`useVisibility`](/docs/features/extensions/useVisibility)
-- [`useLabel`](/docs/features/extensions/useLabel)
-- [`useDescription`](/docs/features/extensions/useDescription)
-- [`useDetails`](/docs/features/extensions/useDetails)
-- [`useErrorMessage`](/docs/features/extensions/useErrorMessage)
+- [`useClosingCompletion`](/docs/features/extensions/closing-completion)
+- [`useMarkdownCompletion`](/docs/features/extensions/markdown-completion)
+- [`useTextboxStorage`](/docs/features/extensions/textbox-storage)
+- [`useSize`](/docs/features/extensions/size)
+- [`useVisibility`](/docs/features/extensions/visibility)
+- [`useLabel`](/docs/features/extensions/label)
+- [`useDescription`](/docs/features/extensions/description)
+- [`useDetails`](/docs/features/extensions/details)
+- [`useErrorMessage`](/docs/features/extensions/error-message)

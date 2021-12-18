@@ -278,7 +278,7 @@ const instance = new Recognizeable<MyTypes, MyMetadata>(
     // Your Function will receive a `defineEffect` helper function
     // as its only argument.
     effects: defineEffect => [
-      // `defineEffect` accepts an event type as its first parameter,
+      // `defineEffect` requires an event type as its first parameter,
       // and a side effect function as its second parameter.
       //
       // `defineEffect` uses type inference on the first parameter
@@ -354,7 +354,7 @@ Let's review a few key details from that code.
 
 **Use the Function format for `options.effects`**. Your function should return an array of tuples. In each tuple, the first item should be one of the event types from your instance's first generic type, and the second item should be the side effect function.
 
-**Use `defineEffect` to build your effect tuples**. Your `options.effects` function receives a `defineEffect` helper function as its only argument. `defineEffect` accepts one of your event types as its first argument, and your side effect function as its second argument. It provides great type checking for your side effect, and it returns your tuple.
+**Use `defineEffect` to build your effect tuples**. Your `options.effects` function receives a `defineEffect` helper function as its only argument. `defineEffect` requires one of your event types as its first argument, and your side effect function as its second argument. It provides great type checking for your side effect, and it returns your tuple.
 
 :::
 ```ts
@@ -482,7 +482,7 @@ pan.listen(() => {
 | Spec | Compliance status | Notes |
 | --- | --- | --- |
 | Access functionality by constructing an instance | <BrandApiDesignSpecCheckmark /> |  |
-| Constructor accepts two parameters: a piece of state,and an `options` object. | <BrandApiDesignSpecCheckmark /> |  |
+| Constructor accepts two parameters: a piece of state, and an `options` object. | <BrandApiDesignSpecCheckmark /> |  |
 | Constructor does not access the DOM | <BrandApiDesignSpecCheckmark /> |  |
 | Takes the form of a JavaScript Object | <BrandApiDesignSpecCheckmark /> |  |
 | State and methods are accessible through properties of the object | <BrandApiDesignSpecCheckmark /> |  |

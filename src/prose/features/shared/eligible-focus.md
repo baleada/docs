@@ -1,6 +1,6 @@
 ---
 title: Eligible focus
-tags: Composition functions
+tags: Composables
 publish: true
 order: 0
 ---

@@ -28,7 +28,7 @@ Every pipe **creates a function** that accepts a single argument. By passing opt
 
 If you're working in an environment that doesn't support the pipeline operator, you can shim support with Baleada Logic's `Pipeable` class.
 
-The `Pipeable` constructor accepts one argument: the piece of state that should be pipeable:
+The `Pipeable` constructor accepts one parameter: the piece of state that should be pipeable:
 
 :::
 ```js

@@ -38,16 +38,19 @@
 </template>
 
 <script lang="ts">
-import { readonly, computed } from 'vue'
+import { ref, watchEffect, readonly, computed } from 'vue'
 import { useTextbox, useErrorMessage } from '@baleada/vue-features'
 import { useStore } from '../composition'
 
 export default {
   name: 'ExampleUseErrorMessage',
   setup () {
-    const textbox = useTextbox({ toValid: string => !/\d/.test(string) }),
+    const validity = ref<'valid' | 'invalid'>('valid'),
+          textbox = useTextbox({ validity }),
           errorMessage = useErrorMessage(textbox),
-          selectionJson = computed(() => JSON.stringify(textbox.completeable.value.selection, null, 2))
+          selectionJson = computed(() => JSON.stringify(textbox.text.value.selection, null, 2))
+
+    watchEffect(() => /\d/.test(textbox.text.value.string) ? 'invalid' : 'valid')
 
     return {
       textbox: readonly(textbox),

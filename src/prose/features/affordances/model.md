@@ -1,6 +1,6 @@
 ---
 title: model
-tags: Composition functions
+tags: Composables
 publish: true
 order: 0
 ---
@@ -37,7 +37,7 @@ export default function myCompositionFunction (...) {
 :::
 
 ::: type="info"
-Usually, you'll call `model` from inside another composition function, but it also works in the `setup` function of any Vue component.
+Usually, you'll call `model` from inside another composable, but it also works in the `setup` function of any Vue component.
 :::
 
 Here's a breakdown of the `required` object:

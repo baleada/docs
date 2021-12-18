@@ -9,7 +9,7 @@ order: 3
 ## Developer experience
 :::
 
-The top priorities for creating a great Baleada developer experience are:
+The basic priorities for Baleada's developer experience are:
 1. **Ship excellent types**. Baleada package's TypeScript types should always be considered the source of truth for how a particular tool is supposed to work.
 2. **Thoroughly test**. In most cases, Baleada packages don't get published without a suite of passing tests. Test code is sometimes very simplified and contrived, but it should still give a decent overview of intended functionality.
 3. **Write world-class docs**. Baleada docs are usually written during development, and they even inform development in a lot of cases. Docs pretty much always up to date with the latest release of any package, but they can occasionally lag behind bigger updates. Always trust types and tests if an API appears to be incorrectly documented.
@@ -19,7 +19,7 @@ The top priorities for creating a great Baleada developer experience are:
 ## Language
 :::
 
-All UI logic, composition functions, and configuration utilities in the Baleada toolkit are written in TypeScript.
+All UI logic, composables, and configuration utilities in the Baleada toolkit are written in TypeScript.
 
 All components are written in Vue 3, with TypeScript in the components' [`setup` functions](https://v3.vuejs.org/guide/composition-api-setup.html#setup).
 
@@ -28,7 +28,7 @@ All components are written in Vue 3, with TypeScript in the components' [`setup`
 ## Dependencies
 :::
 
-Dependencies for UI logic, composition functions, and components, when they exist, are chosen with the following characteristics in mind (in no particular order):
+Dependencies for UI logic, composables, and components, when they exist, are chosen with the following characteristics in mind (in no particular order):
 - Framework agnostic
 - Few or no dependencies of their own
 - Tree-shakeable
@@ -57,7 +57,7 @@ Vue components are either written as pure TypeScript render functions, or compil
 
 All Baleada packages are bundled by Rollup.
 
-UI logic, composition functions, and components are bundled as ES modules. Configuration utilities are bundled as ES modules and Common JS modules.
+UI logic, composables, and components are bundled as ES modules. Configuration utilities are bundled as ES modules and Common JS modules.
 
 All bundles include a `.d.ts` file with all exported types.
 

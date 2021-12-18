@@ -1,6 +1,6 @@
 ---
 title: bind
-tags: Composition functions
+tags: Composables
 publish: true
 order: 0
 ---
@@ -40,7 +40,7 @@ export default function myCompositionFunction (...) {
 :::
 
 ::: type="info"
-Usually, you'll call `bind` from inside another composition function, but it also works in the `setup` function of any Vue component.
+Usually, you'll call `bind` from inside another composable, but it also works in the `setup` function of any Vue component.
 :::
 
 Here's a breakdown of the `required` object:
@@ -78,7 +78,7 @@ export default function myCompositionFunction (...) {
 
 
 :::
-#### How to format individual values
+#### How to format keys
 :::
 
 Here are the rules `bind` follows when reading the keys on the `values` object:
@@ -186,7 +186,7 @@ Also, it's technically possible to bind to event properties like `onclick`. Howe
 
 There are several different ways to format the values that `bind` binds to the properties or attributes you specified.
 
-The simplest type of value is a plain String, Number, or Boolean:
+The simplest type of value is a plain String, Number, or Boolean.
 
 :::
 ```js
@@ -194,7 +194,7 @@ bind({
   ...
   values: {
     id: 'my-number-input',
-    ariaHidden: false,
+    ariaHidden: true,
     value: 0,
   }
 })
@@ -225,18 +225,18 @@ When the value is reactive (i.e. a `ref` or `computed` value), `bind` automatica
 
 But what about when the `element` is a reactive array of elements, rather than a single reactive element reference? How do we make sure the correct data is bound to each element?
 
-When you're binding static data, you can pass the **value getter** instead of a standard value. The value getter is a callback function that receives an object as its only argument. Here's a breakdown of that object:
+When you're binding static data, you can pass the **value getter** instead of a standard value. The value getter is a callback function that receives an object as its only argument, and should return the value that `bind` should bind to the specific `element`.
 
-::: ariaLabel="getValue object breakdown" classes="wide-3"
+Here's a breakdown of that object:
+
+::: ariaLabel="get object breakdown" classes="wide-3"
 | Property | Type | Description |
 | --- | --- | --- |
 | `element` | HTMLElement | The actual DOM element that `bind` is currently binding data to. |
 | `index` | Number | The index (Number) of `element` in your reactive array of elements. |
 :::
 
-Your value getter should return the value that `bind` should bind to the specific `element`.
-
-Here's an example of how [`useTablist` ](/docs/features/functions/useTablist) uses this feature to set the `aria-labelledby` attribute for each tab panel to the ID of the corresponding tab panel. Theses IDs never change, so `aria-labelledby` does not need to be reactive:
+Here's an example of how [`useTablist` ](/docs/features/interfaces/tablist) uses this feature to set the `aria-labelledby` attribute for each tab panel to the ID of the corresponding tab panel. Theses IDs never change, so `aria-labelledby` does not need to be reactive:
 
 :::
 ```js
@@ -263,49 +263,43 @@ export default function useTablist (...) {
 ```
 :::
 
-But what about when the data _is_ reactive, but still needs to be bound to an array of elements? For those cases, you can pass an Object as the key's value:
+But what about when the data _is_ reactive, but still needs to be bound to an array of elements? For those cases, you can pass a **reactive value getter** as the key's value.
 
-:::
-```js
-bind({
-  element: myReactiveArrayOfElements,
-  values: {
-    ariaHidden: { ... },
-  }
-})
-```
-:::
+A reactive value getter is an **object**. Here's a breakdown of that object:
 
-Here's a breakdown of that object:
-
-::: ariaLabel="getValue object breakdown" classes="wide-5"
+::: ariaLabel="reactive value getter breakdown" classes="wide-5"
 | Property | Type | Required | Default | Description |
 | --- | --- | --- | --- | --- |
-| `getValue` | Function | yes | none | A value getter, as described above. |
-| `watchSources` | Ref, Array | yes | none | <p>A single [watch source](https://v3.vuejs.org/guide/reactivity-computed-watchers.html#watching-a-single-source), or an array of watch sources. No need to pass your reactive array of elements—that data is already watched automatically.</p><p>Each time `bind` detects a change in your watch sources (or the reactive array of elements), it will iterate through your array of elements, calling `getValue` for each one.</p> |
+| `get` | Function | yes | none | A value getter, as described above. |
+| `watchSource` | Ref, Array | yes | none | <p>A single [watch source](https://v3.vuejs.org/guide/reactivity-computed-watchers.html#watching-a-single-source), or an array of watch sources. No need to pass your reactive array of elements—that data is already watched automatically.</p><p>Each time `bind` detects a change in your watch sources (or the reactive array of elements), it will iterate through your array of elements, calling `get` for each one.</p> |
 :::
 
-Here's an example of how [`useTablist` ](/docs/features/functions/useTablist) uses this feature to manage the `aria-hidden` attribute on its array of tab panels, setting `false` for the hidden tabs and `true` for the currently selected tab:
+Here's an example of how [`useTablist` ](/docs/features/interfaces/tablist) uses a reactive value getter to manage the `aria-hidden` attribute on its array of tab panels, setting `false` for the hidden tabs and `true` for the currently selected tab:
 
 :::
 ```js
 export default function useTablist (...) {
   bind({
     // Reactive array of tab panel elements
-    element: panels.targets,
+    element: panels.elements,
     values: {
-      // selectedPanel is a reactive reference to the index 
-      // of the currently selected tab panel.
+      // `selected` is a reactive reference to the index 
+      // of the currently `selected` tab panel.
       //
       // aria-hidden should be true for all panels whose
-      // index doesn't match selectedPanel, and should be
-      // false for the one panel whose index is a match.
+      // index doesn't match `selected`, and should be
+      // `undefined` for the one panel whose index.
+      // (`undefined` will instruct `bind` to remove
+      // the `aria-hidden` attribute from the visible
+      // tab panel.)
       //
-      // This getValue should run again each time
-      // selectedPanel changes.
+      // This get should run again each time
+      // `selected` changes.
       ariaHidden: {
-        getValue: ({ index }) => index !== selectedPanel.value,
-        watchSources: selectedPanel,
+        get: ({ index }) => index === selected.value
+          ? undefined
+          : 'true',
+        watchSource: selected,
       },
     },
   })
@@ -313,3 +307,15 @@ export default function useTablist (...) {
 ```
 :::
 
+
+:::
+#### How to remove attributes
+:::
+
+In the example above, you can see a great example of a case where we'd actually like to **remove an attribute** from an element in certain cases.
+- Hidden tab panels should have their `aria-hidden` attribute set to `true`
+- The visible tab panel should not have an `aria-hidden` attribute.
+
+In cases like this one, the attribute needs to either receive a value or be removed reactively, whenever selected state changes.
+
+With `bind`, you can remove any attribute from an element at any time by making sure the value of that attribute is `undefined`. In other words, if a reactive reference, value getter, or reactive value getter resolves to `undefined` for an element, `bind` will remove the attribute from that element.

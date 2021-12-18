@@ -1,6 +1,6 @@
 ---
 title: on
-tags: Composition functions
+tags: Composables
 publish: true
 order: 0
 ---
@@ -31,7 +31,7 @@ export default function myCompositionFunction (...) {
 :::
 
 ::: type="info"
-Usually, you'll call `on` from inside another composition function, but it also works in the `setup` function of any Vue component.
+Usually, you'll call `on` from inside another composable, but it also works in the `setup` function of any Vue component.
 :::
 
 Here's a breakdown of the `required` object:
@@ -127,7 +127,7 @@ The `createEffect` function receives an object as its only argument. Here's a br
 | `off` | Function | <p>A function you can call with no arguments to immediately stop listening for the event on the current `element`. The event listener (or observer, etc.) will be cleaned up and will be inactive for the rest of the component's lifecycle OR until Vue detects a change to the DOM target or array of DOM targets you passed in the `required` parameter.</p><p>To imitate the `once` feature of Vue, where an event listener only runs once, you can call `off` at the end of your listener.</p> |
 :::
 
-Again, the `createEffect`, given this object as an argument, should return an event listener. Here's an example of how [`useTablist` ](/docs/features/functions/useTablist) uses this feature to navigate to a tab when that specific tab is clicked:
+Again, the `createEffect`, given this object as an argument, should return an event listener. Here's an example of how [`useTablist` ](/docs/features/interfaces/tablist) uses this feature to navigate to a tab when that specific tab is clicked:
 
 :::
 ```js

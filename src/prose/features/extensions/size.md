@@ -1,6 +1,6 @@
 ---
 title: Size
-tags: Composition functions
+tags: Composables
 publish: true
 order: 0
 ---

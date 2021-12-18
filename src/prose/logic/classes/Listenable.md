@@ -189,7 +189,7 @@ The table below has a full breakdown of what the `listen` method passes to your 
 ### How to customize `listen` behavior
 :::
 
-The `listen` method accepts an optional second argument, which is an Object whose properties customize the behavior of the web APIs `Listenable` uses under the hood.
+The `listen` method accepts an optional second parameter, which is an Object whose properties customize the behavior of the web APIs `Listenable` uses under the hood.
 
 Depending on your `type` only certain properties will have an effect.
 
@@ -485,7 +485,7 @@ We won't cover all that information here, though. Instead, you should visit the 
 | Spec | Compliance status | Notes |
 | --- | --- | --- |
 | Access functionality by constructing an instance | <BrandApiDesignSpecCheckmark /> |  |
-| Constructor accepts two parameters: a piece of state,and an `options` object. | <BrandApiDesignSpecCheckmark /> |  |
+| Constructor accepts two parameters: a piece of state, and an `options` object. | <BrandApiDesignSpecCheckmark /> |  |
 | Constructor does not access the DOM | <BrandApiDesignSpecCheckmark /> |  |
 | Takes the form of a JavaScript Object | <BrandApiDesignSpecCheckmark /> |  |
 | State and methods are accessible through properties of the object | <BrandApiDesignSpecCheckmark /> |  |

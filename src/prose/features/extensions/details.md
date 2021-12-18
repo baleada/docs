@@ -1,6 +1,6 @@
 ---
 title: Details
-tags: Composition functions
+tags: Composables
 publish: true
 order: 0
 ---
@@ -25,7 +25,7 @@ In other words, `useDetails` does the following:
 ## Create details
 :::
 
-To wire up accessible details, call the `useDetails` function, which accepts one parameters:
+To wire up accessible details, call the `useDetails` function, which requires one parameter:
 
 ::: ariaDetails="useDetails parameters" classes="wide-4"
 | Parameter | Type | Required | Description |

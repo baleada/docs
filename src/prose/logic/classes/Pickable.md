@@ -147,7 +147,7 @@ withManualTypes.array = ['a', 'b', 'c'] // No type error
 | Spec | Compliance status | Notes |
 | --- | --- | --- |
 | Access functionality by constructing an instance | <BrandApiDesignSpecCheckmark /> |  |
-| Constructor accepts two parameters: a piece of state,and an `options` object. | <BrandApiDesignSpecCheckmark /> |  |
+| Constructor accepts two parameters: a piece of state, and an `options` object. | <BrandApiDesignSpecCheckmark /> |  |
 | Constructor does not access the DOM | <BrandApiDesignSpecCheckmark /> |  |
 | Takes the form of a JavaScript Object | <BrandApiDesignSpecCheckmark /> |  |
 | State and methods are accessible through properties of the object | <BrandApiDesignSpecCheckmark /> |  |
