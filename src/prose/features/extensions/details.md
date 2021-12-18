@@ -38,17 +38,11 @@ To wire up accessible details, call the `useDetails` function, which requires on
 <!-- MyComponent.vue -->
 <template>...</template>
 
-<script>
+<script setup>
 import { useTextbox, useDetails } from '@baleada/vue-features'
 
-export default {
-  setup () {
-    const textbox = useTextbox(),
-          details = useDetails(textbox[, options])
-
-    return { ... }
-  }
-}
+const textbox = useTextbox(),
+      details = useDetails(textbox[, options])
 </script>
 ```
 :::
@@ -86,24 +80,19 @@ Here's a more complete example of how to use `useDetails` with any DOM element:
   <p :ref="details.root.ref">Lorem ipsum...</p>
 </template>
 
-<script>
+<script setup>
 import { ref } from 'vue'
 import { useDetails } from '@baleada/vue-features'
 
-export default {
-  setup () {
-          // Here, we'll set up a template ref for our input
-    const input = ref(null),
-          // Then, we'll pass that reference to `useDetails`.
-          //
-          // With this done, assistive tech will understand
-          // that it should read our details when describing
-          // the checkbox.
-          details = useDetails(input)
+// Here, we'll set up a template ref for our input
+const input = ref(null)
 
-    return { details, input }
-  }
-}
+// Then, we'll pass that reference to `useDetails`.
+//
+// With this done, assistive tech will understand
+// that it should read our details when describing
+// the checkbox.
+const details = useDetails(input)
 </script>
 ```
 :::

@@ -45,17 +45,11 @@ Here's a breakdown of the `useClosingCompletion` options:
 <!-- MyComponent.vue -->
 <template>...</template>
 
-<script>
+<script setup>
 import { useTextbox, useClosingCompletion } from '@baleada/vue-features'
 
-export default {
-  setup () {
-    const textbox = useTextbox(),
-          closingCompletion = useClosingCompletion(textbox[, options])
-
-    return { ... }
-  }
-}
+const textbox = useTextbox(),
+      closingCompletion = useClosingCompletion(textbox[, options])
 </script>
 ```
 :::

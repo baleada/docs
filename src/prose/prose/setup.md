@@ -243,14 +243,10 @@ You should call `useEffects` from inside the `setup` function of a Vue component
 ```html
 <!-- App.vue -->
 <template>...</template>
-<script>
+<script setup>
 import { useEffects } from '@baleada/vue-prose'
 
-export default {
-  setup () {
-    useEffects(...)
-  }
-}
+useEffects(...)
 </script>
 ```
 :::
@@ -277,28 +273,22 @@ Here's a more complete example of how to call and configure `useEffects`:
   </article>
 </template>
 
-<script>
+<script setup>
 import { ref } from 'vue'
 import { useEffects } from '@baleada/vue-prose'
 
-export default {
-  setup () {
-    // Set up the reactive reference
-    const article = ref(null)
-    
-    // Pass the `article` element reference as the
-    // scrollable container, and force auto scrolling.
-    useEffects({
-      scrollableContainer: article,
-      scrollIntoView: {
-        block: 'start',
-        behavior: 'auto',
-      }
-    })
+// Set up the reactive reference
+const article = ref(null)
 
-    return { article }
+// Pass the `article` element reference as the
+// scrollable container, and force auto scrolling.
+useEffects({
+  scrollableContainer: article,
+  scrollIntoView: {
+    block: 'start',
+    behavior: 'auto',
   }
-}
+})
 </script>
 ```
 :::

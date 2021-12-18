@@ -38,17 +38,11 @@ To wire up an accessible description, call the `useDescription` function, which 
 <!-- MyComponent.vue -->
 <template>...</template>
 
-<script>
+<script setup>
 import { useTextbox, useDescription } from '@baleada/vue-features'
 
-export default {
-  setup () {
-    const textbox = useTextbox(),
-          description = useDescription(textbox[, options])
-
-    return { ... }
-  }
-}
+const textbox = useTextbox(),
+      description = useDescription(textbox[, options])
 </script>
 ```
 :::
@@ -86,24 +80,19 @@ Here's a more complete example of how to use `useDescription` with any DOM eleme
   <p :ref="description.root.ref">Lorem ipsum...</p>
 </template>
 
-<script>
+<script setup>
 import { ref } from 'vue'
 import { useDescription } from '@baleada/vue-features'
 
-export default {
-  setup () {
-          // Here, we'll set up a template ref for our input
-    const input = ref(null),
-          // Then, we'll pass that reference to `useDescription`.
-          //
-          // With this done, assistive tech will understand
-          // that it should read our description when describing
-          // the checkbox.
-          description = useDescription(input)
+// Here, we'll set up a template ref for our input
+const input = ref(null)
 
-    return { description, input }
-  }
-}
+// Then, we'll pass that reference to `useDescription`.
+//
+// With this done, assistive tech will understand
+// that it should read our description when describing
+// the checkbox.
+const description = useDescription(input)
 </script>
 ```
 :::

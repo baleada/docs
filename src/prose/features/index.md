@@ -82,7 +82,7 @@ Import any interface to start using it in your Vue component. Most often, you'll
 import { useTablist } from '@baleada/vue-features'
 
 const tablist = useTablist(...)
-<script>
+</script>
 ```
 :::
 
@@ -102,7 +102,7 @@ function handleUndoButtonClick () {
   // object to programmatically undo changes:
   textbox.undo()
 }
-<script>
+</script>
 ```
 :::
 

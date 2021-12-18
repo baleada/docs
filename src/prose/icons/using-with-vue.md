@@ -113,7 +113,7 @@ These 4 attributes are easy to override or expand—all of the component's attri
   />
 </template>
 
-<script>...</script>
+<script setup>...</script>
 ```
 :::
 

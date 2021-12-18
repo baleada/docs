@@ -52,17 +52,11 @@ Here's a breakdown of the `useLabel` options:
 <!-- MyComponent.vue -->
 <template>...</template>
 
-<script>
+<script setup>
 import { useTextbox, useLabel } from '@baleada/vue-features'
 
-export default {
-  setup () {
-    const textbox = useTextbox(),
-          label = useLabel(textbox[, options])
-
-    return { ... }
-  }
-}
+const textbox = useTextbox(),
+      label = useLabel(textbox[, options])
 </script>
 ```
 :::
@@ -102,26 +96,21 @@ Here's a more complete example of how to use `useLabel` with any DOM element:
   <label :ref="label.root.ref">Subscribe to newsletter</label>
 </template>
 
-<script>
+<script setup>
 import { ref } from 'vue'
 import { useLabel } from '@baleada/vue-features'
 
-export default {
-  setup () {
-          // Here, we'll set up a template ref for our input
-    const input = ref(null),
-          // Then, we'll pass that reference to `useLabel`,
-          // and we'll also set the `bindsHtmlFor` option to
-          // `true` in this case.
-          //
-          // With this done, assistive tech will understand
-          // that it should read our label when describing
-          // the checkbox.
-          label = useLabel(input, { bindsHtmlFor: true })
+// Here, we'll set up a template ref for our input
+const input = ref(null)
 
-    return { label, input }
-  }
-}
+// Then, we'll pass that reference to `useLabel`,
+// and we'll also set the `bindsHtmlFor` option to
+// `true` in this case.
+//
+// With this done, assistive tech will understand
+// that it should read our label when describing
+// the checkbox.
+const label = useLabel(input, { bindsHtmlFor: true })
 </script>
 ```
 :::

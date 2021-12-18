@@ -64,23 +64,16 @@ Here's an example of how you could create two-way data binding on an HTML text i
 :::
 ```html
 <!-- MyComponent.vue -->
-<script>
+<script setup>
 import { ref } from 'vue'
 import { model } from '@baleada/vue-features'
 
-export default {
-  setup () {
-    // Set up the DOM element ref and the value ref
-    const input = ref(null),
-          modelValue = ref('')
-    
-    // Pass those reactive references to model
-    model({ element: input, modelValue })
+// Set up the DOM element ref and the value ref
+const input = ref(null),
+      modelValue = ref('')
 
-    // Return the template ref
-    return { input }
-  }
-}
+// Pass those reactive references to model
+model({ element: input, modelValue })
 </script>
 
 <template>

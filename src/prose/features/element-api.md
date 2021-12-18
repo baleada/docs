@@ -199,12 +199,12 @@ The `tablist.tabs.getRef` function also requires an `index` as its only paramete
 :::
 ```html
 <!-- MyComponent.vue -->
-<script>
+<script setup>
 import { ref } from 'vue'
 import { useTablist } from '@baleada/features'
 
-const tablist useTablist(...),
-      tabs = ref([...]) // Array of metadata for your tabs
+const tablist useTablist(...)
+const tabs = ref([...]) // Array of metadata for your tabs
 </script>
 
 <template>

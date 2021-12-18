@@ -60,7 +60,7 @@ const errorMessage = useErrorMessage(textbox, {
 // error message. When `validity` is 'invalid', `errorMessage` will
 // show the accessible error message, and set the `aria-invalid`
 // attribute of our textbox to `true`.
-<script>
+</script>
 
 <template>
   <!--
@@ -129,7 +129,7 @@ const listbox = useListbox({
 // can use their keyboard to navigate to that element, transferring
 // focus and making sure assistive tech reads the element's
 // content.
-<script>
+</script>
 
 <template>
   <!--
@@ -206,7 +206,7 @@ const listbox = useListbox({
 
 // Our listbox is now tracking enabled/disabled status for each
 // element, and will react to changes in the `ability` object.
-<script>
+</script>
 
 <template>
   <!--

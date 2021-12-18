@@ -39,18 +39,14 @@ Here's a breakdown of the `useSize` options:
 <!-- MyComponent.vue -->
 <template>...</template>
 
-<script>
+<script setup>
 import { computed } from 'vue'
 import { useSize } from '@baleada/vue-features'
 
-export default {
-  setup () {
-    const size = useSize(
-      computed(() => document.body)
-      [, options]
-    )
-  }
-}
+const size = useSize(
+  computed(() => document.body)
+  [, options]
+)
 </script>
 ```
 :::
@@ -118,18 +114,12 @@ img {
   </header>
 </template>
 
-<script>
+<script setup>
 import { ref, readonly } from 'vue'
 import { useSize } from '@baleada/vue-features'
 
-export default {
-  setup () {
-    const header = ref(null)
-    const size = readonly(useSize(header))
-
-    return { header, size }
-  }
-}
+const header = ref(null)
+const size = readonly(useSize(header))
 </script>
 ```
 :::

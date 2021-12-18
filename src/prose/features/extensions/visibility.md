@@ -48,27 +48,21 @@ Instead of passing the unreliable DOM element to `options.observer.root`, you ca
   </div>
 </template>
 
-<script>
+<script setup>
 import { useTablist, useVisibility } from '@baleada/vue-features'
 
-export default {
-  setup () {
-    const tablist = useTablist(),
-          viewport = ref(null),
-          visibility = useVisibility(
-            tablist,
-            {
-              threshold: 0.5,
-              // When in the `setup` function, pass a reactive
-              // reference instead of an unreliable HTML element
-              // to `options.observer.root` if needed.
-              root: viewport,
-            }
-          )
-
-    return { tablist, viewport }
-  }
-}
+const tablist = useTablist(),
+      viewport = ref(null),
+      visibility = useVisibility(
+        tablist,
+        {
+          threshold: 0.5,
+          // When in the `setup` function, pass a reactive
+          // reference instead of an unreliable HTML element
+          // to `options.observer.root` if needed.
+          root: viewport,
+        }
+      )
 </script>
 ```
 :::

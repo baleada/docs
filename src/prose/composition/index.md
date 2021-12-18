@@ -99,21 +99,17 @@ When you're using Baleada Composition with Vue, just know that you need to acces
 ```html
 <template>...</template>
 
-<script>
+<script setup>
 import { onMounted } from 'vue'
 import { useListenable } from '@baleada/vue-composition'
 
-export default {
-  setup () {
-    const listenable = useListenable('cmd+shift+b')
+const listenable = useListenable('cmd+shift+b')
 
-    onMounted(() => {
-      // Listenable's 'listen' method requires DOM access,
-      // so you need to call it inside onMounted.
-      listenable.value.listen(event => console.log(event))
-    })
-  }
-}
+onMounted(() => {
+  // Listenable's 'listen' method requires DOM access,
+  // so you need to call it inside onMounted.
+  listenable.value.listen(event => console.log(event))
+})
 </script>
 ```
 :::
@@ -126,25 +122,21 @@ More specifically: every Baleada Logic class that has side effects (e.g. adding 
 ```html
 <template>...</template>
 
-<script>
+<script setup>
 import { onMounted, onBeforeUnmount } from 'vue'
 import { useListenable } from '@baleada/vue-composition'
 
-export default {
-  setup () {
-    const listenable = useListenable('cmd+shift+b')
+const listenable = useListenable('cmd+shift+b')
 
-    onMounted(() => {
-      listenable.value.listen(event => console.log(event))
-    })
+onMounted(() => {
+  listenable.value.listen(event => console.log(event))
+})
 
-    // No need to call 'stop' on onBeforeUnmount. useListenable
-    // takes care of it for you. Cut out this boilerplate
-    // and work on bigger and better things!
-    //
-    // onBeforeUnmount(() => listenable.value.stop())
-  }
-}
+// No need to call 'stop' on onBeforeUnmount. useListenable
+// takes care of it for you. Cut out this boilerplate
+// and work on bigger and better things!
+//
+// onBeforeUnmount(() => listenable.value.stop())
 </script>
 ```
 :::

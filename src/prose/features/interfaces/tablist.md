@@ -33,14 +33,10 @@ To create a tablist, call the `useTablist` function, which accepts one optional 
 <!-- MyComponent.vue -->
 <template>...</template>
 
-<script>
+<script setup>
 import { useTablist } from '@baleada/vue-features'
 
-export default {
-  setup () {
-    const tablist = useTablist([options])
-  }
-}
+const tablist = useTablist([options])
 </script>
 ```
 :::

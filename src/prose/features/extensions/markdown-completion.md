@@ -34,17 +34,11 @@ To start autocompleting markdown, call the `useMarkdownCompletion` function, whi
 <!-- MyComponent.vue -->
 <template>...</template>
 
-<script>
+<script setup>
 import { useTextbox, useMarkdownCompletion } from '@baleada/vue-features'
 
-export default {
-  setup () {
-    const textbox = useTextbox(),
-          markdownCompletion = useMarkdownCompletion(textbox)
-
-    return { ... }
-  }
-}
+const textbox = useTextbox(),
+      markdownCompletion = useMarkdownCompletion(textbox)
 </script>
 ```
 :::

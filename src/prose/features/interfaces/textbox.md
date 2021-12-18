@@ -30,14 +30,10 @@ To start using a controlled textbox, call the `useTextbox` function, which accep
 <!-- MyComponent.vue -->
 <template>...</template>
 
-<script>
+<script setup>
 import { useTextbox } from '@baleada/vue-features'
 
-export default {
-  setup () {
-    const textbox = useTextbox([options])
-  }
-}
+const textbox = useTextbox([options])
 </script>
 ```
 :::
@@ -91,16 +87,10 @@ Here's a more complete example of how to use your `textbox` and bind the functio
   <input type="text" :ref="textbox.root.ref" />
 </template>
 
-<script>
+<script setup>
 import { useTextbox } from '@baleada/vue-features'
 
-export default {
-  setup () {
-    const textbox = useTextbox()
-
-    return { input }
-  }
-}
+const textbox = useTextbox([options])
 </script>
 ```
 :::
