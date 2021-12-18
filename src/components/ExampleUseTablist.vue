@@ -53,7 +53,7 @@ import { useTablist } from '@baleada/vue-features'
 import { useAnimateable, useDelayable, useFetchable } from '@baleada/vue-composition'
 import { useStore } from '../composition'
 import { verouEaseOut } from '@baleada/animateable-utils'
-import type { Organization } from '@alexvipond/mulago-foundation-portfolio'
+// import type { Organization } from '@alexvipond/mulago-foundation-portfolio'
 
 type TransitionMetadatum = {
   fadeIn: ReturnType<typeof useAnimateable>,
@@ -69,15 +69,36 @@ const totalTabs = 3
 export default {
   name: 'ExampleUseTablist',
   setup () {
-    const mulagoFoundationPortfolio = useFetchable('https://raw.githubusercontent.com/AlexVipond/mulago-foundation-portfolio/main/src/portfolio.json')
-    const organizations = ref<Organization[]>([])
+    // const mulagoFoundationPortfolio = useFetchable('https://raw.githubusercontent.com/AlexVipond/mulago-foundation-portfolio/main/src/portfolio.json')
+    // const organizations = ref<Organization[]>([])
 
-    onMounted(async () => {
-      await mulagoFoundationPortfolio.value.get()
-      const json = await mulagoFoundationPortfolio.value.json
+    // onMounted(async () => {
+    //   await mulagoFoundationPortfolio.value.get()
+    //   const json = await mulagoFoundationPortfolio.value.json
 
-      organizations.value = new Array(totalTabs).fill(0).map(() => json.value[Math.floor(Math.random() * json.value.length)])
-    })
+    //   organizations.value = new Array(totalTabs).fill(0).map(() => json.value[Math.floor(Math.random() * json.value.length)])
+    // })
+
+    const organizations = ref([
+      {
+        "name": "Komaza",
+        "why": [
+          "Africa faces a daunting wood supply crisis.  With booming populations and accelerating economies, most regions consume much more wood than they grow.  Wood prices are climbing and surging deforestation is an environmental tragedy. Komaza helps people living on arid, degraded land make a living growing trees.  They work across the forestry value chain, from seedlings to sawmills.  At harvest, farmers get paid for their trees and Komaza earns revenue from processing and selling timber products.  Komaza aims to become Africa’s largest forestry company, able to produce an enormous, environmentally friendly wood supply while generating life-changing income for millions of farmers."
+        ]
+      },
+      {
+        "name": "Healthy Learners",
+        "why": [
+          "The health needs of school age children are still largely unmet across Africa. Healthy Learners tries to meet that need by turning school teachers into front-line health workers for low income kids. Preventable and treatable illnesses not only cause misery, they also have a direct effect on school attendance and mental development. Healthy Learners has a simple and effective solution with the potential to scale up via the Ministry of Education."
+        ]
+      },
+      {
+        "name": "EarthEnable",
+        "why": [
+          "Nearly 80% of Rwandans, and millions of other Africans, live in houses with dirt floors. It’s a major cause of infectious disease, especially in kids. Concrete flooring is prohibitively expensive, even for a tiny home. EarthEnable sell and install a sealed earthen floor that is healthy, affordable, and environmentally sustainable. With their proprietary locally-sourced sealant, EarthEnable sells hard floors that are 70% cheaper than concrete. Their product improves health with a proven, affordable, and green solution."
+        ]
+      },
+    ])
 
     const fadeOutCreate = () => useAnimateable(
             [
