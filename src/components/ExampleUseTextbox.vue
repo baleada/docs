@@ -48,7 +48,7 @@
     <section class="flex flex-col gap-4">
       <section class="flex flex-col gap-2">
         <label>Value:</label>
-        <pre class="px-2 py-1 mt-2 mb-0"><code class="mr-auto">{{ textbox.completeable.string || '\'\'' }}</code></pre>
+        <pre class="px-2 py-1 mt-2 mb-0"><code class="mr-auto">{{ textbox.text.string || '\'\'' }}</code></pre>
       </section>
       <section class="flex flex-col gap-2">
         <label>Selection:</label>
@@ -68,7 +68,7 @@ export default {
   setup () {
     const textbox = useTextbox(),
           description = useDescription(textbox),
-          selectionJson = computed(() => JSON.stringify(textbox.completeable.value.selection, null, 2))
+          selectionJson = computed(() => JSON.stringify(textbox.text.value.selection, null, 2))
 
     return {
       textbox: readonly(textbox),
