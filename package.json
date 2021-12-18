@@ -51,7 +51,7 @@
     "@baleada/logic": "^0.20.30",
     "@baleada/recognizeable-effects": "^0.7.2",
     "@baleada/vue-composition": "^0.10.8",
-    "@baleada/vue-features": "^0.11.0",
+    "@baleada/vue-features": "^0.11.2",
     "@baleada/vue-heroicons": "^0.1.2",
     "@baleada/vue-interface": "^0.8.0",
     "@baleada/vue-octicons": "^0.1.0",
