@@ -158,6 +158,7 @@ Here's a breakdown of that object:
 | --- | --- | --- |
 | `element` | HTMLElement | The actual DOM element that the interface or extension is currently retrieving the status of. |
 | `index` | Number | The index-based position (Number) of `element` in the rendered list of elements. |
+:::
 
 The value getter works great for most use cases. In fact, if the rendered list of elements is shortened, lengthened, or reordered, the value getter will actually run again, computing an up-to-date status for each element in the list.
 
