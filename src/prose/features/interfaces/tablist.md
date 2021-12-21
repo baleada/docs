@@ -5,12 +5,12 @@ publish: true
 order: 0
 ---
 
-`useTablist` is a composable that implements the UI logic needed for a reactive tablist widget.
+`useTablist` is a composable that implements the UI logic needed for a reactive, accessible tablist interface.
 
 It follows [WAI-ARIA authoring practices](https://www.w3.org/TR/wai-aria-practices-1.1/#tabpanel) and allows you to easily customize certain aspects of keyboard navigation. For example, you can configure the tablist as **horizontal**, so that it uses left and right arrow keys to navigate tabs, or **vertical**, so that it uses up and down arrow keys instead.
 
 ::: type="info"
-`useTablist` uses [Baleada Logic's `Navigateable` class](/docs/logic/classes/Navigateable) internally to manage tab navigation.
+`useListbox` uses [Baleada Logic's `Navigateable` class](/docs/logic/classes/Navigateable) internally to manage tab navigation, and [Baleada Logic's `Pickable` class](/docs/logic/classes/Pickable) to manage the selected tab.
 :::
 
 :::
@@ -68,9 +68,9 @@ Here's a breakdown of that object:
 ::: ariaLabel="tablist breakdown" classes="wide-3"
 | Property | Type | Description |
 | --- | --- | --- |
-| `root` | Function | <p>A [single element API object](/docs/features/element-api).</p><p>`root.ref` should be bound to the DOM element that serves as your tablist's root.</p> |
-| `tabs` | Function | <p>A [multiple element API object](/docs/features/element-api).</p><p>Pass the index-based position (Number) of the current tab as the only argument for `tabs.getRef`, and its returned function ref should be bound to the DOM element that serves as that tab.</p><p>It's recommended that you render the tabs with `v-for`, get the index from your `v-for` statement, and bind the function ref to the `v-for` element.</p> |
-| `panels` | Function | <p>A [multiple element API object](/docs/features/element-api).</p><p>Pass the index-based position (Number) of the current panel as the only argument for `panels.getRef`, and its returned function ref should be bound to the DOM element that serves as that panel.</p><p>It's recommended that you render the panels with `v-for`, get the index from your `v-for` statement, and bind the function ref to the `v-for` element.</p> |
+| `root` | Function | <p>A [single element API object](/docs/features/shared/element-api).</p><p>`root.ref` should be bound to the DOM element that serves as your tablist's root.</p> |
+| `tabs` | Function | <p>A [multiple element API object](/docs/features/shared/element-api).</p><p>Pass the index-based position (Number) of the current tab as the only argument for `tabs.getRef`, and its returned function ref should be bound to the DOM element that serves as that tab.</p><p>It's recommended that you render the tabs with `v-for`, get the index from your `v-for` statement, and bind the function ref to the `v-for` element.</p> |
+| `panels` | Function | <p>A [multiple element API object](/docs/features/shared/element-api).</p><p>Pass the index-based position (Number) of the current panel as the only argument for `panels.getRef`, and its returned function ref should be bound to the DOM element that serves as that panel.</p><p>It's recommended that you render the panels with `v-for`, get the index from your `v-for` statement, and bind the function ref to the `v-for` element.</p> |
 | `focused` | Ref (Number) | A reactive reference to the index-based position of the currently focused tab |
 | `selected` | Ref (Number) | A reactive reference to the index-based position of the currently selected tab |
 | `is` | Object | <p>An object with two properties: `focused` and `selected`.</p><p>Each property holds a method that requires an index (Number) as its only parameter.</p><p>Given the index, `is.focused` returns a boolean indicating whether or not that tab is focused, and `is.selected` returns a boolean indicating whether or not that tab is selected.</p><p>`is.focused` and `is.selected` read from reactive references, so their boolean return values are fully reactive when used in Vue templates, watchers, and computed references.</p> |
@@ -79,31 +79,12 @@ Here's a breakdown of that object:
 | `select` | Functions | <p>An object containing all the methods described in the [eligible picking guide](/docs/features/shared/eligible-picking).</p><p>You can use these methods to programmatically select tabs in a smarter way, taking enabled/disabled state and other customizable conditions into account.</p><p>Note that tablists can never be multiselectable, so you can only pass a single index to the `select.exact` method—an array of selected indices is not possible.</p> |
 :::
 
-Note that some of these values store reactive references. Calling Vue's `readonly` function on `useTablist`'s entire return value is recommended, so that all references are unwrapped, and all reactive values can be accessed directly, without using the `.value` property like you normally would on a reactive reference.
-
-:::
-```html
-<!-- MyComponent.vue -->
-<template>...</template>
-
-<script setup>
-import { readonly } from 'vue'
-import { useTablist } from '@baleada/vue-features'
-
-const tablist = readonly(
-  useTablist([options])
-)
-</script>
-```
-:::
-
 Here's a more complete example of how to use your `tablist` and bind the various function refs:
 
 :::
 ```html
 <!-- MyComponent.vue -->
 <template>
-  <div :ref="tablist.label.ref">My Tablist</div>
   <div :ref="tablist.root.ref">
     <div
       v-for="({ tab }, index) in metadata"
@@ -123,7 +104,7 @@ Here's a more complete example of how to use your `tablist` and bind the various
 </template>
 
 <script setup>
-import { ref, computed, readonly } from 'vue'
+import { ref, computed } from 'vue'
 import { useTablist } from '@baleada/vue-features'
 
 const metadata = ref([
@@ -132,7 +113,7 @@ const metadata = ref([
   { tab: 'One Heart Worldwide', panel: 'https://oneheartworldwide.org/' },
 ])
 
-const tablist = readonly(useTablist())
+const tablist = useTablist()
 </script>
 ```
 :::

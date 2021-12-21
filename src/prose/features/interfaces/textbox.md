@@ -68,7 +68,7 @@ Here's a breakdown of that object:
 ::: ariaLabel="input breakdown" classes="wide-3"
 | Property | Type | Description |
 | --- | --- | --- |
-| `root` | Object | <p>A [single element API object](/docs/features/element-api).</p><p>`root.ref` should be bound to the HTML input or textarea you want to control.</p> |
+| `root` | Object | <p>A [single element API object](/docs/features/shared/element-api).</p><p>`root.ref` should be bound to the HTML input or textarea you want to control.</p> |
 | `text` | Ref ([`Completeable`](/docs/logic/classes/Completeable)) | <p>The reactive `Completeable` instance created by `useTextbox`.</p><p>See the [How to control value and selection](#how-to-control-value-and-selection) section for more guidance on `text` usage, and see the [Access state and methods](/docs/logic/classes/Completeable#access-state-and-methods) section of the `Completeable` docs for more guidance on how to use `text` to autocomplete text.</p> |
 | `type(string)` | Function | <p>A function you can use to programmatically type in the textbox.</p><p>`type` requires one parameter: the new `string` to type into the textbox.</p><p>You can assign a new string to `text.value.string` to achieve the same effect, but `type` is a convenient shortcut.</p> |
 | `select(selection)` | Function | <p>A function you can use to programmatically select text in the textbox.</p><p>`select` requires one parameter: the new `selection` object.</p><p>[See the `Completeable` docs](/docs/logic/classes/Completeable#access-state-and-methods) to learn what the shape of that `selection` object should be.</p><p>You can assign a new selection object to `text.value.selection` to achieve the same effect, but `select` is a convenient shortcut.</p> |

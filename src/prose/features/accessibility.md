@@ -27,7 +27,7 @@ WIP
 ## Accessibility extensions
 :::
 
-All of Baleada Features' [interfaces](/docs/features#using-functions) return objects, and some of those objects contain [single element API objects](/docs/features/element-api) that can help you enhance the accessibility of your UI.
+All of Baleada Features' [interfaces](/docs/features#using-functions) return objects, and some of those objects contain [single element API objects](/docs/features/shared/element-api) that can help you enhance the accessibility of your UI.
 
 For example, imagine you're using the `useTextbox` function to enhance an HTML input in your app. Here's how you would start:
 

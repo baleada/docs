@@ -57,7 +57,7 @@ Here's a breakdown of that object:
 ::: ariaErrorMessage="size breakdown" classes="wide-3"
 | Property | Type | ErrorMessage |
 | --- | --- | --- |
-| `root` | Object | <p>A [single element API object](/docs/features/element-api).</p><p>`root.ref` should be bound to the element that serves as your accessible error message.</p><p>`root` includes an `id` property.</p> |
+| `root` | Object | <p>A [single element API object](/docs/features/shared/element-api).</p><p>`root.ref` should be bound to the element that serves as your accessible error message.</p><p>`root` includes an `id` property.</p> |
 :::
 
 
