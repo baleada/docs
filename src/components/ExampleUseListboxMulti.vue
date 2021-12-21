@@ -1,27 +1,31 @@
 <template>
   <section
     class="mx-auto with-max-w flex flex-col gap-2 p-6 rounded-4 shadow-4"
-    :class="[
-      store.statuses.darkTheme === 'enabled'
-        ? 'bg-primary-gray-80'
-        : 'bg-primary-20'
-    ]"
+    :class="{
+      'bg-primary-20': store.statuses.darkTheme === 'disabled',
+      'bg-primary-gray-80': store.statuses.darkTheme === 'enabled',
+    }"
   >
     <div
       :ref="listbox.root.ref"
       aria-label="Example listbox"
       class="h-18 flex flex-col overflow-x-scroll"
+      :class="{
+        'bg-white': store.statuses.darkTheme === 'disabled',
+        'bg-primary-gray-80': store.statuses.darkTheme === 'enabled',
+      }"
     >
       <div
         v-for="(name, index) in organizations"
         :key="name"
         :ref="listbox.options.getRef(index)"
         class="p-2"
-        :class="[
-          listbox.is.selected(index)
-            ? store.statuses.darkTheme === 'enabled' && 'bg-primary-gray-50' || 'bg-white'
-            : store.statuses.darkTheme === 'enabled' && 'bg-primary-gray-70' || 'bg-primary-10'
-        ]"
+        :class="{
+          'bg-primary-10 text-primary-90': listbox.is.focused(index) && !listbox.is.selected(index) && store.statuses.darkTheme === 'disabled',
+          'bg-primary-50 text-primary-10': listbox.is.selected(index) && store.statuses.darkTheme === 'disabled',
+          'bg-primary-gray-70': listbox.is.focused(index) && !listbox.is.selected(index) && store.statuses.darkTheme === 'enabled',
+          'bg-primary-50': listbox.is.selected(index) && store.statuses.darkTheme === 'enabled',
+        }"
       >
         {{ name }}
       </div>
@@ -38,7 +42,7 @@ import { names } from '@alexvipond/mulago-foundation-portfolio'
 // import type { Organization } from '@alexvipond/mulago-foundation-portfolio'
 
 export default {
-  name: 'ExampleUseListbox',
+  name: 'ExampleUseListboxMulti',
   setup () {
     const organizations = ref(names.slice(Math.floor(names.length / 2)))
 
