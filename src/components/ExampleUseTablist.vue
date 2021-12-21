@@ -2,7 +2,7 @@
   <section
     :ref="tablist.root.ref"
     aria-label="Example tablist"
-    class="mx-auto with-max-w flex flex-col gap-2 p-6 rounded-4 shadow-4"
+    class="mx-auto with-max-w flex flex-col gap-8 p-6 rounded-4 shadow-4"
     :class="[
       store.statuses.darkTheme === 'enabled'
         ? 'bg-primary-gray-80'
@@ -44,11 +44,21 @@
         <p v-for="p in why">{{ p }}</p>
       </div>
     </div>
+    <section class="flex flex-col gap-4">
+      <section class="flex flex-col gap-2">
+        <label>Focused:</label>
+        <pre class="px-2 py-1 mt-2 mb-0"><code class="mr-auto">{{ tablist.focused }}</code></pre>
+      </section>
+      <section class="flex flex-col gap-2">
+        <label>Selected:</label>
+        <pre class="px-2 py-1 mt-2 mb-0"><code class="mr-auto">{{ tablist.selected }}</code></pre>
+      </section>
+    </section>
   </section>
 </template>
 
 <script lang="ts">
-import { ref, watch, reactive, nextTick, onMounted } from 'vue'
+import { ref, watch, readonly, nextTick, onMounted } from 'vue'
 import { useTablist } from '@baleada/vue-features'
 import { useAnimateable, useDelayable, useFetchable } from '@baleada/vue-composition'
 import { useStore } from '../composition'
@@ -121,7 +131,7 @@ export default {
             delayable: delayableCreate(),
             stopWatchingStatus: {},
           })),
-          tablist = reactive(useTablist({
+          tablist = readonly(useTablist({
             transition: {
               panel: {
                 appear: true,
