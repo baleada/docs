@@ -13,6 +13,9 @@ It follows [WAI-ARIA authoring practices](https://www.w3.org/TR/wai-aria-practic
 `useListbox` uses [Baleada Logic's `Navigateable` class](/docs/logic/classes/Navigateable) internally to manage option navigation, and [Baleada Logic's `Pickable` class](/docs/logic/classes/Pickable) to manage the selected option(s).
 :::
 
+::: type="success"
+For a ✨111-page✨ deep dive in to the patterns, concepts, and Vue 3 best practices behind Baleada Features, with `useListbox` as an in-depth, real world use case, [check out "Rethinking Reusability in Vue"](https://rethinking-reusability-in-vue.alexvipond.dev).
+:::
 
 :::
 ## Features
