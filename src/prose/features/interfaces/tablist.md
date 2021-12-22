@@ -7,7 +7,7 @@ order: 0
 
 `useTablist` is a composable that implements the UI logic needed for a reactive, accessible tablist interface.
 
-It follows [WAI-ARIA authoring practices](https://www.w3.org/TR/wai-aria-practices-1.1/#tabpanel) and allows you to easily customize certain aspects of keyboard navigation. For example, you can configure the tablist as **horizontal**, so that it uses left and right arrow keys to navigate tabs, or **vertical**, so that it uses up and down arrow keys instead.
+It follows [WAI-ARIA authoring practices](https://www.w3.org/TR/wai-aria-practices-1.1/#tabpanel) and allows you to easily customize accessibility features.
 
 ::: type="info"
 `useListbox` uses [Baleada Logic's `Navigateable` class](/docs/logic/classes/Navigateable) internally to manage tab navigation, and [Baleada Logic's `Pickable` class](/docs/logic/classes/Pickable) to manage the selected tab.

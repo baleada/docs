@@ -7,7 +7,7 @@ order: 0
 
 `useListbox` is a composable that implements the UI logic needed for a reactive, accessible listbox interface.
 
-It follows [WAI-ARIA authoring practices](https://www.w3.org/TR/wai-aria-practices-1.1/#Listbox) and allows you to easily customize certain aspects of keyboard navigation. For example, you can configure the listbox as **horizontal**, so that it uses left and right arrow keys to navigate options, or **vertical**, so that it uses up and down arrow keys instead.
+It follows [WAI-ARIA authoring practices](https://www.w3.org/TR/wai-aria-practices-1.1/#Listbox) and allows you to easily customize accessibility features.
 
 ::: type="info"
 `useListbox` uses [Baleada Logic's `Navigateable` class](/docs/logic/classes/Navigateable) internally to manage option navigation, and [Baleada Logic's `Pickable` class](/docs/logic/classes/Pickable) to manage the selected option(s).
