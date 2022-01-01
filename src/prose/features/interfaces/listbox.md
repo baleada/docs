@@ -136,7 +136,7 @@ Here's a more complete example of how to use your `listbox` and bind the various
 </template>
 
 <script setup>
-import { ref, computed } from 'vue'
+import { ref } from 'vue'
 import { useListbox } from '@baleada/vue-features'
 
 const options = ref([
