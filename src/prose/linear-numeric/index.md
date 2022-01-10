@@ -5,7 +5,7 @@ publish: true
 order: 0
 ---
 
-Baleada Linear Numeric is a function that returns theme configurations from [Tailwind](https://tailwindcss.com)'s [default config file](https://github.com/tailwindcss/tailwindcss/blob/master/stubs/defaultConfig.stub.js), aliasing all class names so that they use a linear numeric naming convention.
+Baleada Linear Numeric is a function that returns configurations for certain [Tailwind](https://tailwindcss.com) default plugins, aliasing all class names so that they use a linear numeric naming convention.
 
 By default, it produces class names like the following:
 - `.text-4` instead of `.text-base`
@@ -35,10 +35,7 @@ Other classes use "T-shirt sizes" in their class names. For example, here are th
 - `.text-lg`
 - `.text-xl`
 - `.text-2xl`
-- `.text-3xl`
-- `.text-4xl`
-- `.text-5xl`
-- `.text-6xl`
+- etc.
 
 Other classes, like the ones for font weight, use more semantic words:
 - `.font-hairline`
@@ -90,21 +87,23 @@ npm i @baleada/tailwind-linear-numeric --save-dev
 ## Usage
 :::
 
-To get started, require `@baleada/tailwind-linear-numeric` in your [Tailwind config file](https://tailwindcss.com/docs/configuration). The default export is a function, which we'll call `linearNumeric` in this example.
+To get started, require `@baleada/tailwind-linear-numeric` in your [Tailwind config file](https://tailwindcss.com/docs/configuration). The default export is a function, which we'll call `getLinearNumeric` in this example.
 
 :::
 ```js
 // tailwind.config.js
-const linearNumeric = require('@baleada/tailwind-linear-numeric')
+const getLinearNumeric = require('@baleada/tailwind-linear-numeric')
 ```
 :::
 
-The `linearNumeric` function returns configurations for the following properties of the `theme` object in your config file:
+The `getLinearNumeric` function returns configurations for the following properties of the `theme` object in your config file:
 - `colors`
 - `spacing`
+- `blur`
 - `borderRadius`
 - `borderWidth`
 - `boxShadow`
+- `dropShadow`
 - `flexGrow`
 - `flexShrink`
 - `fontSize`
@@ -112,7 +111,12 @@ The `linearNumeric` function returns configurations for the following properties
 - `letterSpacing`
 - `lineHeight`
 - `maxWidth`
-- `strokeWidth`
+- `outlineOffset`
+- `outlineWidth`
+- `ringOffsetWidth`
+- `ringWidth`
+- `textDecorationThickness`
+- `textUnderlineOffset`
 - `transitionDuration`
 - `transitionDelay`
 

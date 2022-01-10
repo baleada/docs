@@ -38,7 +38,7 @@ Baleada Linear Numeric also includes Tailwind's default standalone colors `black
 ## Spacing
 :::
 
-`height` is shown here as an example, but spacing also affects `width`, `margin`, `padding`, `translate`, `gap`, `space`, and `divide` utilities.
+`height` is shown here as an example, but spacing affects several other Tailwind core plugins. [Visit the Tailwind docs](https://tailwindcss.com/docs/customizing-spacing) for a full list.
 
 ::: ariaLabel="Spacing class reference"
 | Class | Tailwind equivalent | Value |
@@ -50,21 +50,29 @@ Baleada Linear Numeric also includes Tailwind's default standalone colors `black
 | `.h-4` | `.h-4` | `1rem` |
 | `.h-5` | `.h-5` | `1.25rem` |
 | `.h-6` | `.h-6` | `1.5rem` |
-| `.h-7` | `.h-8` | `2rem` |
-| `.h-8` | `.h-10` | `2.5rem` |
-| `.h-9` | `.h-11` | `2.75rem` |
-| `.h-10` | `.h-12` | `3rem` |
-| `.h-11` | `.h-16` | `4rem` |
-| `.h-12` | `.h-20` | `5rem` |
-| `.h-13` | `.h-24` | `6rem` |
-| `.h-14` | `.h-32` | `8rem` |
-| `.h-15` | `.h-40` | `10rem` |
-| `.h-16` | `.h-48` | `12rem` |
-| `.h-17` | `.h-56` | `14rem` |
-| `.h-18` | `.h-64` | `16rem` |
-| `.h-19` | `.h-72` | `18rem` |
-| `.h-20` | `.h-80` | `20rem` |
-| `.h-21` | `.h-96` | `24rem` |
+| `.h-7` | `.h-7` | `1.75rem` |
+| `.h-8` | `.h-8` | `2rem` |
+| `.h-9` | `.h-9` | `2.25rem` |
+| `.h-10` | `.h-10` | `2.5rem` |
+| `.h-11` | `.h-11` | `2.75rem` |
+| `.h-12` | `.h-12` | `3rem` |
+| `.h-13` | `.h-14` | `3.5rem` |
+| `.h-14` | `.h-16` | `4rem` |
+| `.h-15` | `.h-20` | `5rem` |
+| `.h-16` | `.h-24` | `6rem` |
+| `.h-17` | `.h-28` | `7rem` |
+| `.h-18` | `.h-32` | `8rem` |
+| `.h-19` | `.h-36` | `9rem` |
+| `.h-20` | `.h-40` | `10rem` |
+| `.h-21` | `.h-44` | `11rem` |
+| `.h-22` | `.h-48` | `12rem` |
+| `.h-23` | `.h-52` | `13rem` |
+| `.h-24` | `.h-56` | `14rem` |
+| `.h-25` | `.h-60` | `15rem` |
+| `.h-26` | `.h-64` | `16rem` |
+| `.h-27` | `.h-72` | `18rem` |
+| `.h-28` | `.h-80` | `20rem` |
+| `.h-29` | `.h-96` | `24rem` |
 | `.h-px-1` | `.h-px` | `1px` |
 | `.h-0.5` | `.h-0.5` | `0.125rem` |
 | `.h-1.5` | `.h-1.5` | `0.375rem` |
@@ -133,13 +141,13 @@ Baleada Linear Numeric also includes Tailwind's default standalone colors `black
 | Class | Tailwind equivalent | Value |
 | --- | --- | --- |
 | `.shadow-0` | `.shadow-none` | `none` |
-| `.shadow-3` | `.shadow-sm` | `0 1px 2px 0 rgba(0, 0, 0, 0.05)` |
-| `.shadow-4` | `.shadow` | `0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06)` |
-| `.shadow-5` | `.shadow-md` | `0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06)` |
-| `.shadow-6` | `.shadow-lg` | `0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05)` |
-| `.shadow-7` | `.shadow-xl` | `0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04)` |
-| `.shadow-8` | `.shadow-2xl` | `0 25px 50px -12px rgba(0, 0, 0, 0.25)` |
-| `.-shadow-4` | `.shadow-inner` | `inset 0 2px 4px 0 rgba(0, 0, 0, 0.06)` |
+| `.shadow-3` | `.shadow-sm` | `0 1px 2px 0 rgb(0 0 0 / 0.05)` |
+| `.shadow-4` | `.shadow` | `0 1px 3px 0 rgb(0 0 0 / 0.1), 0 1px 2px -1px rgb(0 0 0 / 0.1)` |
+| `.shadow-5` | `.shadow-md` | `0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1)` |
+| `.shadow-6` | `.shadow-lg` | `0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1)` |
+| `.shadow-7` | `.shadow-xl` | `0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1)` |
+| `.shadow-8` | `.shadow-2xl` | `0 25px 50px -12px rgb(0 0 0 / 0.25)` |
+| `.-shadow-4` | `.shadow-inner` | `inset 0 2px 4px 0 rgb(0 0 0 / 0.05)` |
 :::
 
 
@@ -151,12 +159,12 @@ Baleada Linear Numeric also includes Tailwind's default standalone colors `black
 | Class | Tailwind equivalent | Value |
 | --- | --- | --- |
 | `.drop-shadow-0` | `.drop-shadow-none` | `0 0 #0000` |
-| `.drop-shadow-3` | `.drop-shadow-sm` | `0 1px 1px rgba(0,0,0,0.05)` |
-| `.drop-shadow-4` | `.drop-shadow` | `0 1px 2px rgba(0, 0, 0, 0.1),0 1px 1px rgba(0, 0, 0, 0.06)` |
-| `.drop-shadow-5` | `.drop-shadow-md` | `0 4px 3px rgba(0, 0, 0, 0.07),0 2px 2px rgba(0, 0, 0, 0.06)` |
-| `.drop-shadow-6` | `.drop-shadow-lg` | `0 10px 8px rgba(0, 0, 0, 0.04),0 4px 3px rgba(0, 0, 0, 0.1)` |
-| `.drop-shadow-7` | `.drop-shadow-xl` | `0 20px 13px rgba(0, 0, 0, 0.03),0 8px 5px rgba(0, 0, 0, 0.08)` |
-| `.drop-shadow-8` | `.drop-shadow-2xl` | `0 25px 25px rgba(0, 0, 0, 0.15)` |
+| `.drop-shadow-3` | `.drop-shadow-sm` | `0 1px 1px rgb(0 0 0 / 0.05)` |
+| `.drop-shadow-4` | `.drop-shadow` | `0 1px 2px rgb(0 0 0 / 0.1),0 1px 1px rgb(0 0 0 / 0.06)` |
+| `.drop-shadow-5` | `.drop-shadow-md` | `0 4px 3px rgb(0 0 0 / 0.07),0 2px 2px rgb(0 0 0 / 0.06)` |
+| `.drop-shadow-6` | `.drop-shadow-lg` | `0 10px 8px rgb(0 0 0 / 0.04),0 4px 3px rgb(0 0 0 / 0.1)` |
+| `.drop-shadow-7` | `.drop-shadow-xl` | `0 20px 13px rgb(0 0 0 / 0.03),0 8px 5px rgb(0 0 0 / 0.08)` |
+| `.drop-shadow-8` | `.drop-shadow-2xl` | `0 25px 25px rgb(0 0 0 / 0.15)` |
 :::
 
 
@@ -298,15 +306,32 @@ Baleada Linear Numeric also includes Tailwind's default standalone colors `black
 
 
 :::
-## Stroke width
+## Outline offset
 :::
 
-::: ariaLabel="Stroke width class reference"
+::: ariaLabel="Outline offset class reference"
 | Class | Tailwind equivalent | Value |
 | --- | --- | --- |
-| `.stroke-0` | `.stroke-0` | `0` |
-| `.stroke-1` | `.stroke-1` | `1` |
-| `.stroke-2` | `.stroke-2` | `2` |
+| `.ring-offset-0` | `.ring-offset-0` | `0px` |
+| `.ring-offset-1` | `.ring-offset-1` | `1px` |
+| `.ring-offset-2` | `.ring-offset-2` | `2px` |
+| `.ring-offset-3` | `.ring-offset-4` | `4px` |
+| `.ring-offset-4` | `.ring-offset-8` | `8px` |
+:::
+
+
+:::
+## Outline width
+:::
+
+::: ariaLabel="Outline width class reference"
+| Class | Tailwind equivalent | Value |
+| --- | --- | --- |
+| `.ring-0` | `.ring-0` | `0px` |
+| `.ring-1` | `.ring-1` | `1px` |
+| `.ring-2` | `.ring-2` | `2px` |
+| `.ring-3` | `.ring-4` | `4px` |
+| `.ring-4` | `.ring-8` | `8px` |
 :::
 
 
@@ -338,6 +363,39 @@ Baleada Linear Numeric also includes Tailwind's default standalone colors `black
 | `.ring-4` | `.ring` | `3px` |
 | `.ring-5` | `.ring-4` | `4px` |
 | `.ring-6` | `.ring-8` | `8px` |
+:::
+
+
+:::
+## Text decoration thickness
+:::
+
+::: ariaLabel="Text decoration thickness class reference"
+| Class | Tailwind equivalent | Value |
+| --- | --- | --- |
+| `.decoration-0` | `.decoration-0` | `0px` |
+| `.decoration-1` | `.decoration-1` | `1px` |
+| `.decoration-2` | `.decoration-2` | `2px` |
+| `.decoration-3` | `.decoration-4` | `4px` |
+| `.decoration-4` | `.decoration-8` | `8px` |
+| `.decoration-auto` | `.decoration-auto` | `auto` |
+| `.decoration-from-font` | `.decoration-from-font` | `from-font` |
+:::
+
+
+:::
+## Text underline offset
+:::
+
+::: ariaLabel="Text underline offset class reference"
+| Class | Tailwind equivalent | Value |
+| --- | --- | --- |
+| `.underline-0` | `.underline-0` | `0px` |
+| `.underline-1` | `.underline-1` | `1px` |
+| `.underline-2` | `.underline-2` | `2px` |
+| `.underline-3` | `.underline-4` | `4px` |
+| `.underline-4` | `.underline-8` | `8px` |
+| `.underline-auto` | `.underline-auto` | `auto` |
 :::
 
 

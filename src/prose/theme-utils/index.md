@@ -23,12 +23,12 @@ npm i @baleada/tailwind-theme-utils --save-dev
 ## Usage
 :::
 
-Theme utils are exported as Common JS modules from the package's entry file:
+Import theme utils from the package:
 
 :::
 ```js
 // tailwind.config.js
-const { rem, screen, fractions } = require('@baleada/tailwind-theme-utils')
+const { rem, screen } = require('@baleada/tailwind-theme-utils')
 ```
 :::
 

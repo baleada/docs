@@ -22,12 +22,14 @@ order: 0
 ```js
 // tailwind.config.js
 const { withoutColorPalettes } = require('@baleada/tailwind-theme-utils'),
-      defaultTheme = require('tailwindcss/defaultTheme')
+      defaultTheme = require('tailwindcss/defaultTheme'),
+      resolveConfig = require('tailwindcss/resolveConfig'),
+      resolvedConfig = resolveConfig({ theme: defaultTheme })
 
 module.exports = {
   theme: {
     colors: {
-      ...withoutColorPalettes(defaultTheme.colors), // returns black, white, and transparent
+      ...withoutColorPalettes(resolvedConfig.theme.colors),
     }
   },
 }
