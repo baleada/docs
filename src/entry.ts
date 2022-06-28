@@ -1,13 +1,10 @@
 import { createApp } from 'vue'
 import App from './App.vue'
 import './index.css'
-import '@fontsource/inter/300.css'
-import '@fontsource/inter/400.css'
-import '@fontsource/inter/500.css'
-import '@fontsource/inter/600.css'
-import '@fontsource/inter/700.css'
-import 'typeface-inconsolata'
-import 'typeface-caveat'
+import '@fontsource/inter/variable.css'
+import '@fontsource/inconsolata/variable.css'
+import '@fontsource/caveat/400.css'
+import '@fontsource/caveat/600.css'
 import { globalComponents, plugins } from './state'
 
 const app = createApp(App)

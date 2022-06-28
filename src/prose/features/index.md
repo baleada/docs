@@ -5,7 +5,7 @@ publish: true
 order: 0
 ---
 
-Baleada Features is a collection of functions that implement UI logic for all kinds of useful features in Vue 3.
+Baleada Features is a collection of functions that implement all kinds of useful features in Vue 3.
 
 Some of these functions offer simple features, like the ability to reactively track the width of an element, and whether that element is currently wider than certain breakpoints.
 

@@ -16,7 +16,7 @@
     <!-- Left -->
     <section
       ref="nav"
-      class="relative h-screen w-screen lg:w-17 flex-none px-7 py-3 overflow-y-scroll scrolling-touch lg:translate-x-0 transform"
+      class="relative h-screen w-screen lg:w-24 flex-none px-7 py-3 overflow-y-scroll scrolling-touch lg:translate-x-0 transform"
       :class="[
         openStatus === 'nav' ? 'translate-x-0' : '-translate-x-full',
         tableOfContentsTransitionStatus === 'after-leave'
@@ -253,7 +253,7 @@
       <section
         v-show="minimalistThemeStatus === 'disabled'"
         ref="tableOfContents"
-        class="absolute lg:relative top-0 left-0 h-screen w-screen lg:w-17 flex-none px-7 py-3 overflow-y-scroll scrolling-touch lg:translate-x-0 transform"
+        class="absolute lg:relative top-0 left-0 h-screen w-screen lg:w-24 flex-none px-7 py-3 overflow-y-scroll scrolling-touch lg:translate-x-0 transform"
         :class="[
           openStatus === 'tableOfContents' ? 'translate-x-0' : 'translate-x-full',
         ]"
@@ -314,6 +314,7 @@ export default {
   setup () {
     // Gonna need it
     const store = useStore()
+    const keydown = useListenable('keydown')
 
     /* Manage open status */
     const openStatus = ref('article'),
@@ -413,7 +414,6 @@ export default {
               break
             }
           },
-          darkThemeShortcut = useListenable('shift+d'),
           darkThemeStoreEffect = () => store.statuses.darkTheme = darkThemeStatus.value
 
     darkThemeStoreEffect()
@@ -432,13 +432,15 @@ export default {
         // do nothing
         break
       }
-      darkThemeShortcut.value.listen(event => {
+      keydown.value.listen((event, { is }) => {
         if ((event.target as HTMLElement).tagName === 'INPUT'){
           return
         }
-        
-        event.preventDefault()
-        toggleDarkTheme()
+
+        if (is('shift+d')) {
+          event.preventDefault()
+          toggleDarkTheme()
+        }
       })
     })
 
@@ -466,7 +468,6 @@ export default {
               break
             }
           },
-          minimalistThemeShortcut = useListenable('shift+m'),
           minimalistThemeStoreEffect = () => store.statuses.minimalistTheme
     
     minimalistThemeStoreEffect()
@@ -485,13 +486,15 @@ export default {
         // do nothing
         break
       }
-      minimalistThemeShortcut.value.listen(event => {
+      keydown.value.listen((event, { is }) => {
         if ((event.target as HTMLElement).tagName === 'INPUT'){
           return
         }
 
-        event.preventDefault()
-        toggleMinimalistTheme()
+        if (is('shift+m')) {
+          event.preventDefault()
+          toggleMinimalistTheme()
+        }
       })
     })
 

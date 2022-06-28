@@ -46,8 +46,8 @@ export default {
   name: 'ExampleUseErrorMessage',
   setup () {
     const validity = ref<'valid' | 'invalid'>('valid'),
-          textbox = useTextbox({ validity }),
-          errorMessage = useErrorMessage(textbox),
+          textbox = useTextbox(),
+          errorMessage = useErrorMessage(textbox, { validity: () => validity.value }),
           selectionJson = computed(() => JSON.stringify(textbox.text.value.selection, null, 2))
 
     watchEffect(() => /\d/.test(textbox.text.value.string) ? 'invalid' : 'valid')

@@ -75,7 +75,7 @@ export default {
   setup () {
     const textbox = useTextbox(),
           markdownCompletion = useMarkdownCompletion(textbox),
-          effects: {
+          effectsMeta: {
             name: string,
             icon: typeof OcticonsBold24,
             display: ListenableKeycombo,
@@ -139,27 +139,25 @@ export default {
               windows: 'ctrl+shift+e',
               effect: () => markdownCompletion.codeblock(),
             },
-          ]
+          ],
+          effects = {}
 
-    on<ListenableKeycombo>({
-      element: textbox.root.element,
-      effects: defineEffect => [
-        ...effects.map(({ mac, effect }) => defineEffect(
-          mac,
-          event => {
-            event.preventDefault(),
-            effect()
-          }
-        )),
-        ...effects.map(({ windows, effect }) => defineEffect(
-          windows,
-          event => {
-            event.preventDefault(),
-            effect()
-          }
-        )),
-      ]
-    })
+    for (const meta of effectsMeta) {
+      effects[meta.mac] = event => {
+        event.preventDefault(),
+        meta.effect()
+      }
+
+      effects[meta.windows] = event => {
+        event.preventDefault(),
+        meta.effect()
+      }
+    }
+
+    on(
+      textbox.root.element,
+      effects,
+    )
 
     return {
       textbox: readonly(textbox),

@@ -1,4 +1,4 @@
-@variants responsive, group-hover, focus-within, hover, focus, active {
+@layer utilities {
   .with-max-h {
     @apply max-h-[calc(2/3*100vh)];
   }

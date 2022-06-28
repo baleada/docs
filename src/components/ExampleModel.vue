@@ -53,7 +53,7 @@ export default {
           modelValue = ref(''),
           modelValueJson = computed(() => JSON.stringify(modelValue.value))
     
-    model({ element, modelValue })
+    model(element, modelValue)
 
     return { element, modelValue, modelValueJson, store: useStore() }
   }

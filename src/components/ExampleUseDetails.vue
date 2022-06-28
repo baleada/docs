@@ -42,7 +42,7 @@ export default {
   setup () {
     const textbox = useTextbox(),
           details = useDetails(textbox),
-          selectionJson = computed(() => JSON.stringify(textbox.completeable.value.selection, null, 2))
+          selectionJson = computed(() => JSON.stringify(textbox.text.value.selection, null, 2))
 
     return {
       textbox: readonly(textbox),

@@ -47,22 +47,22 @@
     <section class="flex flex-col gap-4">
       <section class="flex flex-col gap-2">
         <label>Focused:</label>
-        <pre class="px-2 py-1 mt-2 mb-0"><code class="mr-auto">{{ tablist.focused }}</code></pre>
+        <pre class="px-2 py-1 mt-2 mb-0"><code class="mr-auto">{{ tablist.focused.location }}</code></pre>
       </section>
       <section class="flex flex-col gap-2">
         <label>Selected:</label>
-        <pre class="px-2 py-1 mt-2 mb-0"><code class="mr-auto">{{ tablist.selected }}</code></pre>
+        <pre class="px-2 py-1 mt-2 mb-0"><code class="mr-auto">{{ tablist.selected.newest }}</code></pre>
       </section>
     </section>
   </section>
 </template>
 
 <script lang="ts">
-import { ref, watch, readonly, nextTick, onMounted } from 'vue'
+import { ref, watch, readonly, nextTick, onMounted, defineComponent } from 'vue'
 import { useTablist } from '@baleada/vue-features'
 import { useAnimateable, useDelayable, useFetchable } from '@baleada/vue-composition'
 import { useStore } from '../composition'
-import { verouEaseOut } from '@baleada/animateable-utils'
+import { verouEaseOut } from '@baleada/logic'
 // import type { Organization } from '@alexvipond/mulago-foundation-portfolio'
 
 type TransitionMetadatum = {
@@ -76,7 +76,7 @@ type TransitionMetadatum = {
 
 const totalTabs = 3
 
-export default {
+export default defineComponent({
   name: 'ExampleUseTablist',
   setup () {
     // const mulagoFoundationPortfolio = useFetchable('https://raw.githubusercontent.com/AlexVipond/mulago-foundation-portfolio/main/src/portfolio.json')
@@ -93,7 +93,7 @@ export default {
       {
         "name": "Komaza",
         "why": [
-          "Africa faces a daunting wood supply crisis.  With booming populations and accelerating economies, most regions consume much more wood than they grow.  Wood prices are climbing and surging deforestation is an environmental tragedy. Komaza helps people living on arid, degraded land make a living growing trees.  They work across the forestry value chain, from seedlings to sawmills.  At harvest, farmers get paid for their trees and Komaza earns revenue from processing and selling timber products.  Komaza aims to become Africa’s largest forestry company, able to produce an enormous, environmentally friendly wood supply while generating life-changing income for millions of farmers."
+          "Africa faces a daunting wood supply crisis. With booming populations and accelerating economies, most regions consume much more wood than they grow. Wood prices are climbing and surging deforestation is an environmental tragedy. Komaza helps people living on arid, degraded land make a living growing trees. They work across the forestry value chain, from seedlings to sawmills. At harvest, farmers get paid for their trees and Komaza earns revenue from processing and selling timber products. Komaza aims to become Africa's largest forestry company, able to produce an enormous, environmentally friendly wood supply while generating life-changing income for millions of farmers."
         ]
       },
       {
@@ -105,7 +105,7 @@ export default {
       {
         "name": "EarthEnable",
         "why": [
-          "Nearly 80% of Rwandans, and millions of other Africans, live in houses with dirt floors. It’s a major cause of infectious disease, especially in kids. Concrete flooring is prohibitively expensive, even for a tiny home. EarthEnable sell and install a sealed earthen floor that is healthy, affordable, and environmentally sustainable. With their proprietary locally-sourced sealant, EarthEnable sells hard floors that are 70% cheaper than concrete. Their product improves health with a proven, affordable, and green solution."
+          "Nearly 80% of Rwandans, and millions of other Africans, live in houses with dirt floors. It's a major cause of infectious disease, especially in kids. Concrete flooring is prohibitively expensive, even for a tiny home. EarthEnable sell and install a sealed earthen floor that is healthy, affordable, and environmentally sustainable. With their proprietary locally-sourced sealant, EarthEnable sells hard floors that are 70% cheaper than concrete. Their product improves health with a proven, affordable, and green solution."
         ]
       },
     ])
@@ -133,10 +133,10 @@ export default {
           })),
           tablist = readonly(useTablist({
             transition: {
-              panel: {
+              panel: elements => ({
                 appear: true,
-                enter: {
-                  active: ({ element, index, done }) => {
+                enter: defineTransition => defineTransition('js', {
+                  active: (index, done) => {
                     transitionMetadata[index].stopWatchingStatus.fadeIn = watch(
                       [() => transitionMetadata[index].fadeIn.value.status],
                       () => {
@@ -148,19 +148,19 @@ export default {
                     )
 
                     transitionMetadata[index].delayable.value.effect = () => {
-                      nextTick(() => transitionMetadata[index].fadeIn.value.play(({ properties: { opacity: { interpolated: opacity } } }) => (element.style.opacity = `${opacity}`)))
+                      nextTick(() => transitionMetadata[index].fadeIn.value.play(({ properties: { opacity: { interpolated: opacity } } }) => (elements.value[index].style.opacity = `${opacity}`)))
                     }
                     transitionMetadata[index].delayable.value.delay()
                   },
-                  cancel: ({ element, index }) => {
+                  cancel: (index) => {
                     transitionMetadata[index].delayable.value.stop()
                     transitionMetadata[index].stopWatchingStatus.fadeIn()
                     transitionMetadata[index].fadeIn.value.stop()
-                    element.style.opacity = '0'
+                    elements.value[index].style.opacity = '0'
                   }
-                },
-                leave: {
-                  active: ({ element, index, done }) => {
+                }),
+                leave: defineTransition => defineTransition('js', {
+                  active: (index, done) => {
                     transitionMetadata[index].stopWatchingStatus.fadeOut = watch(
                       [() => transitionMetadata[index].fadeOut.value.status],
                       () => {
@@ -171,15 +171,15 @@ export default {
                       },
                     )
         
-                    transitionMetadata[index].fadeOut.value.play(({ properties: { opacity: { interpolated: opacity } } }) => (element.style.opacity = `${opacity}`))
+                    transitionMetadata[index].fadeOut.value.play(({ properties: { opacity: { interpolated: opacity } } }) => (elements.value[index].style.opacity = `${opacity}`))
                   },
-                  cancel: ({ element, index }) => {
+                  cancel: (index) => {
                     transitionMetadata[index].stopWatchingStatus.fadeOut()
                     transitionMetadata[index].fadeOut.value.stop()
-                    element.style.opacity = '1'
+                    elements.value[index].style.opacity = '1'
                   },
-                },
-              }
+                }),
+              })
             }
           }))
           
@@ -189,5 +189,5 @@ export default {
       store: useStore(),
     }
   }
-}
+})
 </script>

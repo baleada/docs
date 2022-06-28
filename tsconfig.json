@@ -8,9 +8,9 @@
     ],
     "moduleResolution": "node",
     "allowSyntheticDefaultImports": true,
-    "declaration": true,
-    "declarationDir": "types",
-    "emitDeclarationOnly": true
+    "declaration": false,
+    "emitDeclarationOnly": true,
+    "jsx": "preserve",
   },
   "include": [
     "src/**/*",

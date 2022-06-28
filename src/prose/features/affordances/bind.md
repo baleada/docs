@@ -27,14 +27,14 @@ Just like Vue's `v-bind`, the `bind` affordance handles all that complexity inte
 ## Usage
 :::
 
-To bind static or reactive data to a DOM element, call the `bind` function, which requires one parameter: the `required` Object.
+To bind static or reactive data to a DOM element, call the `bind` function, which requires two parameters: the element or elements you're binding to, and the values you want to bind.
 
 :::
 ```js
 import { bind } from '@baleada/vue-features'
 
 export default function myCompositionFunction (...) {
-  bind(required)
+  bind(elementOrElements, values)
 }
 ```
 :::
@@ -43,12 +43,12 @@ export default function myCompositionFunction (...) {
 Usually, you'll call `bind` from inside another composable, but it also works in the `setup` function of any Vue component.
 :::
 
-Here's a breakdown of the `required` object:
+Here's a breakdown of the parameters:
 
 ::: ariaLabel="bind required object breakdown" classes="wide-5"
 | Property | Type | Required | Default | Description |
 | --- | --- | --- | --- | --- |
-| `element` | Ref (HTMLElement), Array | yes | none | <p>A reactive reference to the DOM element you're binding data to.</p><p>`element` Can also be a reactive reference to an array of DOM elements. See the [How to format values](#how-to-format-values) section for more guidance on binding values to specific elements in a reactive array.</p> |
+| `elementOrElements` | Ref (HTMLElement), Array | yes | none | <p>A reactive reference to the DOM element you're binding data to.</p><p>`elementOrElements` Can also be a reactive reference to an array of DOM elements. See the [How to format values](#how-to-format-values) section for more guidance on binding values to specific elements in a reactive array.</p> |
 | `values` | Object | yes | none | <p>The attributes or properties and values you want to bind to your element or elements.</p><p>See the [How to format the `values` object](#how-to-format-the-values-object) section for more guidance.</p> |
 :::
 
@@ -57,21 +57,21 @@ Here's a breakdown of the `required` object:
 ### How to format the `values` object
 :::
 
-The value of the `values` property of the `required` parameter is an object. The keys of that object must be DOM element attributes (e.g. `aria-label`) or DOM element properties (e.g. `value`) that you'll be binding data to:
+The required `values` parameter is an object. The keys of that object must be DOM element attributes (e.g. `aria-label`) or DOM element properties (e.g. `value`) that you'll be binding data to:
 
 :::
 ```js
 import { bind } from '@baleada/vue-features'
 
 export default function myCompositionFunction (...) {
-  bind({
-    element: myElement,
-    values: {
+  bind(
+    myElement,
+    {
       ariaLabel: ...,
       class: ...,
       style_backgroundColor: ...,
     }
-  })
+  )
 }
 ```
 :::
@@ -87,15 +87,15 @@ If the key starts with `aria` or `data`, followed by a capital letter, `bind` bi
 
 :::
 ```js
-bind({
+bind(
   ...
-  values: {
+  {
     // Binds to aria-label
     ariaLabel: ...,
     // Binds to data-name
     dataName: ...,
   }
-})
+)
 ```
 :::
 
@@ -115,13 +115,13 @@ If the key is one of the values from the list below, `bind` binds to the correct
 
 :::
 ```js
-bind({
+bind(
   ...
-  values: {
+  {
     // bind sets the htmlFor property
     for: ...,
   }
-})
+)
 ```
 :::
 
@@ -129,9 +129,9 @@ If the key is `class` or `rel`, `bind` binds to `classList` or `relList`. Existi
 
 :::
 ```js
-bind({
+bind(
   ...
-  values: {
+  {
     // bind adds to and removes from classList,
     // respecting existing values
     class: ...,
@@ -139,7 +139,7 @@ bind({
     // respecting existing values
     rel: ...,
   }
-})
+)
 ```
 :::
 
@@ -147,13 +147,13 @@ If the key starts with `style_`, `bind` binds to `style.` + whatever follows the
 
 :::
 ```js
-bind({
+bind(
   ...
-  values: {
+  {
     // Binds to style.backgroundColor
     style_backgroundColor: ...,
   }
-})
+)
 ```
 :::
 
@@ -161,15 +161,15 @@ For all other keys, `bind` binds to the property or attribute exactly as it's wr
 
 :::
 ```js
-bind({
+bind(
   ...
-  values: {
+  {
     // Binds to the id property
     id: ...,
     // Binds to the aria-label attribute
     'aria-label': ...,
   }
-})
+)
 ```
 :::
 
@@ -190,14 +190,14 @@ The simplest type of value is a plain String, Number, or Boolean.
 
 :::
 ```js
-bind({
+bind(
   ...
-  values: {
+  {
     id: 'my-number-input',
     ariaHidden: true,
     value: 0,
   }
-})
+)
 ```
 :::
 
@@ -211,13 +211,13 @@ import { ref } from 'vue'
 
 const numberInputValue = ref(0)
 
-bind({
+bind(
   ...
-  values: {
+  {
     ...
     value: numberInputValue,
   }
-})
+)
 ```
 :::
 
@@ -225,26 +225,17 @@ When the value is reactive (i.e. a `ref` or `computed` value), `bind` automatica
 
 But what about when the `element` is a reactive array of elements, rather than a single reactive element reference? How do we make sure the correct data is bound to each element?
 
-When you're binding static data, you can pass the **value getter** instead of a standard value. The value getter is a callback function that receives an object as its only argument, and should return the value that `bind` should bind to the specific `element`.
-
-Here's a breakdown of that object:
-
-::: ariaLabel="get object breakdown" classes="wide-3"
-| Property | Type | Description |
-| --- | --- | --- |
-| `element` | HTMLElement | The actual DOM element that `bind` is currently binding data to. |
-| `index` | Number | The index (Number) of `element` in your reactive array of elements. |
-:::
+When you're binding static data, you can pass the **value getter** instead of a standard value. The value getter is a callback function that receives only one argument: the `index` (Number) of a given element in your reactive array of elements. It should return the value that `bind` should bind to that specific element.
 
 Here's an example of how [`useTablist` ](/docs/features/interfaces/tablist) uses this feature to set the `aria-labelledby` attribute for each tab panel to the ID of the corresponding tab panel. Theses IDs never change, so `aria-labelledby` does not need to be reactive:
 
 :::
 ```js
 export default function useTablist (...) {
-  bind({
+  bind(
     // Reactive array of tab panel elements
-    element: panels.targets,
-    values: {
+    panels.targets,
+    {
       // Each element's aria-labelledby holds the ID of
       // its associated tab element.
       //
@@ -252,10 +243,9 @@ export default function useTablist (...) {
       // guaranteed to always be in matching order,
       // so it's safe to simply pick the tabId whose index
       // matches the index passed to the value getter.
-      ariaLabelledby: ({ index }) => tabIds.value[index],
+      ariaLabelledby: index => tabIds.value[index],
     },
-  })
-
+  )
 
   ...
 }
@@ -279,10 +269,10 @@ Here's an example of how [`useTablist` ](/docs/features/interfaces/tablist) uses
 :::
 ```js
 export default function useTablist (...) {
-  bind({
+  bind(
     // Reactive array of tab panel elements
-    element: panels.elements,
-    values: {
+    panels.elements,
+    {
       // `selected` is a reactive reference to the index 
       // of the currently `selected` tab panel.
       //
@@ -296,13 +286,13 @@ export default function useTablist (...) {
       // This get should run again each time
       // `selected` changes.
       ariaHidden: {
-        get: ({ index }) => index === selected.value
+        get: index => index === selected.value
           ? undefined
           : 'true',
         watchSource: selected,
       },
     },
-  })
+  )
 }
 ```
 :::

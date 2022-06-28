@@ -24,14 +24,16 @@ order: 0
 ## Usage
 :::
 
-To create two-way binding, call the `model` function, which accepts two parameters: `required` and `options`, both of which are Objects.
+To create two-way binding, call the `model` function, which requires two parameters: the element you're binding data to, and the model value—a reactive reference where `model` can read and write the stored value.
+
+`model` also accepts an optional `options` object as its final parameter.
 
 :::
 ```js
 import { model } from '@baleada/vue-features'
 
 export default function myCompositionFunction (...) {
-  model(required[, options])
+  model(element, modelValue[, options])
 }
 ```
 :::
@@ -40,13 +42,13 @@ export default function myCompositionFunction (...) {
 Usually, you'll call `model` from inside another composable, but it also works in the `setup` function of any Vue component.
 :::
 
-Here's a breakdown of the `required` object:
+Here's a breakdown of the required parameters:
 
 ::: ariaLabel="model required object breakdown" classes="wide-5"
 | Property | Type | Required | Default | Description |
 | --- | --- | --- | --- | --- |
-| `element` | Ref (HTMLElement) | yes | none | <p>A reactive reference to the DOM element you're modeling data to.</p><p>Unlike other Baleada Features affordances, which let you pass an array of DOM elements as the `element`, `model` only accepts a reactive reference to a single DOM element.</p> |
-| `modelValue` | Ref | yes | none | The reactive reference where you will store the two-way bound data. |
+| `element` | Ref (HTMLElement) | yes | none | <p>A reactive reference to the DOM element you're modeling data to.</p><p>Unlike other Baleada Features affordances, which let you pass an array of DOM elements as the first parameter, `model` only accepts a reactive reference to a single DOM element.</p> |
+| `modelValue` | Ref | yes | none | The reactive reference where `model` will read and write the two-way bound data. |
 :::
 
 And here's a breakdown of the `options` object:
@@ -73,7 +75,7 @@ const input = ref(null),
       modelValue = ref('')
 
 // Pass those reactive references to model
-model({ element: input, modelValue })
+model(input, modelValue)
 </script>
 
 <template>
@@ -91,6 +93,40 @@ model({ element: input, modelValue })
     HTML input's value automatically.
   -->
   <input ref="input" />
+</template>
+```
+:::
+
+Here's an example of how you would use `option` to customize `model`'s behavior to work with a `checkbox` input:
+
+:::
+```html
+<!-- MyComponent.vue -->
+<script setup>
+import { ref } from 'vue'
+import { model } from '@baleada/vue-features'
+
+// Set up the DOM element ref and the value ref
+const input = ref(null),
+      modelValue = ref(false)
+
+// Pass those reactive references to model
+model(
+  input,
+  modelValue,
+  // Use options to make sure `model` is modelling the boolean `checked`
+  // property of the input, instead of grabbing the `value` property
+  // by default.
+  { toValue: event => event.target.checked }
+)
+</script>
+
+<template>
+  <!--
+    Attach the template ref to an element, and wait for 
+    user input!
+  -->
+  <input type="checked" ref="input" />
 </template>
 ```
 :::

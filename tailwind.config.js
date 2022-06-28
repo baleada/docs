@@ -1,26 +1,26 @@
 const { configureable } = require('@baleada/prepare')
 
 module.exports = new configureable.Tailwindcss()
-  .jit()
   .important()
-  .purge([
+  .content([
     'index.html',
     'src/App.vue',
     'src/components/**/*',
     'src/styles/**/*',
   ])
-  .baleada()
-  .theme(({ defaultConfig }) => ({
+  .theme(({ getLinearNumeric, defaultConfig }) => ({
+    ...getLinearNumeric(),
+    colors: getLinearNumeric({ only: 'colors', increment: 10 }),
     fontFamily: {
       sans: ['Inter', ...defaultConfig.theme.fontFamily.sans],
       mono: ['Inconsolata', ...defaultConfig.theme.fontFamily.mono],
       display: ['Caveat', ...defaultConfig.theme.fontFamily.sans],
     },
   }))
-  .extend(({ linearNumeric }) => ({
+  .extend(({ getLinearNumeric }) => ({
     colors: {
       gray: {
-        ...linearNumeric({ only: 'colors', increment: '10' }).blueGray,
+        ...getLinearNumeric({ only: 'colors', increment: 10 }).slate,
         '100': 'hsla(217, 30%, 8%, 1.0)',
         '75': 'hsla(218, 22%, 26%, 1.0)',
       },

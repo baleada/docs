@@ -25,14 +25,14 @@ The [`useTablist` example](/docs/features/interfaces/tablist#example) is another
 ## Usage
 :::
 
-To conditionally display a DOM element, call the `show` function, which requires one parameter: the `required` Object, and accepts an optional `options` object as its second parameter.
+To conditionally display a DOM element, call the `show` function, which requires two parameters: the element or elements you're conditionally showing, and the condition the element or elements need to meet. `show` also accepts an optional `options` object as its final parameter.
 
 :::
 ```js
 import { show } from '@baleada/vue-features'
 
 export default function myCompositionFunction (...) {
-  show(required, options)
+  show(elementOrElements, condition[, options])
 }
 ```
 :::
@@ -41,17 +41,17 @@ export default function myCompositionFunction (...) {
 Usually, you'll call `show` from inside another composable, but it also works in the `setup` function of any Vue component.
 :::
 
-Here's a breakdown of the `required` object:
+Here's a breakdown of the required parameters:
 
 ::: ariaLabel="show required object breakdown" classes="wide-5"
 | Property | Type | Required | Default | Description |
 | --- | --- | --- | --- | --- |
-| `element` | Ref (HTMLElement), Array | yes | none | <p>A reactive reference to the DOM element you're conditionally displaying.</p><p>`element` Can also be a reactive reference to an array of DOM elements. See the [How to format your condition](#how-to-format-your-condition) section for more guidance on conditionally displaying specific elements in a reactive array.</p> |
+| `elementOrElements` | Ref (HTMLElement), Array | yes | none | <p>A reactive reference to the DOM element you're conditionally displaying.</p><p>`elementOrElements` Can also be a reactive reference to an array of DOM elements. See the [How to format your condition](#how-to-format-your-condition) section for more guidance on conditionally displaying specific elements in a reactive array.</p> |
 | `condition` | Ref (Boolean), Function, Object | yes | none | <p>Indicates whether or no a specific `element` should be displayed.</p><p>See the [How to format your condition](#how-to-format-your-condition) section for more guidance on formatting your condition.</p> |
 :::
 
 
-Here's a breakdown of the `options` object:
+And here's a breakdown of the `options` object:
 
 ::: ariaLabel="show options object breakdown" classes="wide-5"
 | Property | Type | Required | Default | Description |
@@ -78,10 +78,10 @@ const isShown = ref(true),
       // with a DOM element after the component is
       // mounted.
 
-show({
-  element: myElement,
-  condition: isShown,
-})
+show(
+  myElement,
+  isShown,
+)
 ```
 :::
 
@@ -89,35 +89,17 @@ show({
 
 But what about when the `element` is a reactive array of elements, rather than a single reactive element reference? How do we make each element is correctly shown or hidden?
 
-If you only need to conditionally display your elements once, you can pass the **value getter** instead of a reactive Boolean. The value getter is a callback function that receives an object as its only argument. Here's a breakdown of that object:
+If you only need to conditionally display your elements once, you can pass the **value getter** instead of a reactive Boolean. The value getter is a callback function that receives only one argument: the `index` (Number) of a given element in your reactive array of elements. It should return `true` for elements that should be shown, and `false` for elements that should be hidden.
 
-::: ariaLabel="getValue object breakdown" classes="wide-3"
-| Property | Type | Description |
-| --- | --- | --- |
-| `element` | HTMLElement | The actual DOM element that `show` is currently conditionally displaying. |
-| `index` | Number | The index (Number) of `element` in your reactive array of elements. |
-:::
+But more commonly, you'll need to conditionally display an array of elements based on some other piece of reactive data. For those cases, you can pass a **reactive value getter** as the key's value.
 
-Your value getter should return `true` for elements that should be shown, and `false` for elements that should be hidden.
+A reactive value getter is an **object**, as described in the [`bind`](/docs/features/affordances/bind#how-to-format-values) guide. Here's a breakdown of that object:
 
-But more commonly, you'll need to conditionally display an array of elements based on some other piece of reactive data. For those cases, you can pass an Object as the `condition`:
-
-:::
-```js
-show({
-  element: myReactiveArrayOfElements,
-  condition: { ... },
-})
-```
-:::
-
-Here's a breakdown of that object:
-
-::: ariaLabel="getValue object breakdown" classes="wide-5"
+::: ariaLabel="reactive value getter breakdown" classes="wide-5"
 | Property | Type | Required | Default | Description |
 | --- | --- | --- | --- | --- |
-| `getValue` | Function | yes | none | A value getter, as described above. |
-| `watchSource` | Ref, Array | yes | none | <p>A single [watch source](https://v3.vuejs.org/guide/reactivity-computed-watchers.html#watching-a-single-source), or an array of watch sources. No need to pass the reactive array of elements—that data is already watched automatically.</p><p>Each time `show` detects a change in your watch sources (or the reactive array of elements), it will iterate through your array of elements, calling `getValue` to conditionally display each element.</p> |
+| `get` | Function | yes | none | A value getter, as described above. |
+| `watchSource` | Ref, Array | yes | none | <p>A single [watch source](https://v3.vuejs.org/guide/reactivity-computed-watchers.html#watching-a-single-source), or an array of watch sources. No need to pass your reactive array of elements—that data is already watched automatically.</p><p>Each time `show` detects a change in your watch sources (or the reactive array of elements), it will iterate through your array of elements, calling `get` for each one.</p> |
 :::
 
 Here's an example of how [`useTablist` ](/docs/features/interfaces/tablist) uses this feature to conditionally display tab panels, displaying only the currently selected panel:
@@ -127,10 +109,10 @@ Here's an example of how [`useTablist` ](/docs/features/interfaces/tablist) uses
 export default function useTablist (...) {
   ...
 
-  show({
+  show(
     // Reactive array of tab panel elements
-    element: panels.targets,
-    condition: {
+    panels.targets,
+    {
       // selectedPanel is a reactive reference to the index
       // of the currently selected tab panel.
       //
@@ -139,10 +121,11 @@ export default function useTablist (...) {
       //
       // This getValue should run again each time
       // selectedPanel changes.
-      getValue: ({ index }) => index === selectedPanel.value,
-      watchSource: selectedPanel,
-    }
-  }, options)
+      get: index => index === selected.value.newest,
+      watchSource: () => selected.value.newest,
+    },
+    options
+  )
 
   ...
 }
@@ -155,9 +138,9 @@ export default function useTablist (...) {
 ### How to format enter/leave transitions
 :::
 
-As outlined above, `show` accepts an optional `options` object as its second parameter, and that object's only property is `transition`.
+As outlined above, `show` accepts an optional `options` object as its final parameter, and that object's only property is `transition`.
 
-You can use this `transition` property to configure an enter/leave transition that will more smoothly show and hide your elements.
+You can use this `transition` property to configure an enter/leave transition that will more smoothly show and hide your element or elements.
 
 The API for `show`'s `transition` property is inspired by the API of [Vue's `Transition` component](https://v3.vuejs.org/guide/transitions-enterleave.html):
 
@@ -192,40 +175,49 @@ show(
 ```
 :::
 
-All hooks receive an object as their first and only argument. Here's a breakdown of that object:
-
-::: ariaLabel="hook API object breakdown" classes="wide-3"
-| Property | Type | Description |
-| --- | --- | --- |
-| `element` | HTMLElement | The actual DOM element that is transitioning. |
-| `index` | Number | The index (Number) of `element` in your reactive array of elements. |
-| `done` | Function | <p>A function that you should call with no arguments when an `active` hook has finished transitioning the `element`.</p><p>`done` is only available for `active` hooks. The object passed to `before`, `after`, and `cancel` hooks does not have a `done` property.</p> |
-:::
-
-None of the transition hooks should have a return value, and all of them are optional.
+If you're transitioning a single element, the `before`, `after` and `cancel` hooks receive no arguments. The `active` hook receives one argument: `done`, a function that you should call with no arguments when you've finished transitioning the element.
 
 :::
 ```js
+// Single element transition hooks
 show(
-  required,
+  ...
   {
     transition: {
       enter: {
-        before: ({ target, index }) => { /* do the thing */ },
-        active: ({ target, index, done }) => {
-          // Do the thing
-          // Call `done` when the thing is finished.
-          done()
-        },
-        after: ({ target, index }) => { /* do the thing */ },
-        cancel: ({ target, index }) => { /* do the thing */ },
-      },
-      ...
+        before: () => {...},
+        active: (done) => {...},
+        after: () => {...},
+        cancel: () => {...},
+      }
     }
   }
 )
 ```
 :::
+
+If you're transitioning multiple elements, the `before`, `after` and `cancel` hooks each receive only one argument: the `index` (Number) of the elements that is currently being transitioned. The `active` hook receives two arguments: the `index` (Number) of the elements that is currently being transitioned, and `done`, a function that you should call with no arguments when you've finished transitioning the element.
+
+:::
+```js
+// Multiple element transition hooks
+show(
+  ...
+  {
+    transition: {
+      enter: {
+        before: (index) => {...},
+        active: (index, done) => {...},
+        after: (index) => {...},
+        cancel: (index) => {...},
+      }
+    }
+  }
+)
+```
+:::
+
+None of the transition hooks should have a return value, and all of them are optional.
 
 If you'd like to use your `enter` functions for `appear` transitions, you can either pass those same functions in the `appear` object, or you can simply replace the `appear` object with `true`:
 
@@ -246,9 +238,9 @@ show(
 ```
 :::
 
-::: type="info"
+<!-- ::: type="info"
 [Check out this REPL]() for an example of how to use Baleada Logic's [Animateable](/docs/logic/classes/Animateable) and [Delayable](/docs/logic/classes/Delayable) classes to write JavaScript animations inside your `transition` hooks.
-:::
+::: -->
 
 ::: type="warning"
 `show`'s `transition` feature only supports JavaScript animations right now.

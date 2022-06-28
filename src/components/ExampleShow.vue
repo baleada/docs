@@ -31,7 +31,7 @@ import { ref, watch } from 'vue'
 import { show } from '@baleada/vue-features'
 import { useStore } from '../composition'
 import { useAnimateable } from '@baleada/vue-composition'
-import { verouEase } from '@baleada/animateable-utils'
+import { verouEase } from '@baleada/logic'
 
 export default {
   name: 'ExampleShow',
@@ -74,10 +74,8 @@ export default {
           } = {}
 
     show(
-      {
-        element: el,
-        condition: isDisplayed,
-      },
+      el,
+      isDisplayed,
       {
         transition: {
           appear: {

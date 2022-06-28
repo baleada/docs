@@ -71,15 +71,15 @@ export default {
           backgroundColor = ref('transparent'),
           example = ref(null)
 
-    bind({
-      element: example,
-      values: {
+    bind(
+      example,
+      {
         ariaLabel,
         class: classes,
         style_backgroundColor: backgroundColor,
         ariaHidden: 'true'
       }
-    })
+    )
     
     return {
       ariaLabel,
