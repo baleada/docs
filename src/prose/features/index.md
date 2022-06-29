@@ -16,7 +16,7 @@ Baleada Features doesn't include any markup or styles. Instead, it combines comp
 ::: type="success"
 For a ✨111-page✨ deep dive in to the patterns, concepts, and Vue 3 best practices behind Baleada Features, [check out "Rethinking Reusability in Vue"](https://rethinking-reusability-in-vue.alexvipond.dev).
 
-Use code BALEADA for $15 off!
+Use code **BALEADA** for $15 off!
 :::
 
 

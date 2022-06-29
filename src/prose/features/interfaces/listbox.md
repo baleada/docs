@@ -15,6 +15,8 @@ It follows [WAI-ARIA authoring practices](https://www.w3.org/TR/wai-aria-practic
 
 ::: type="success"
 For a ✨111-page✨ deep dive in to the patterns, concepts, and Vue 3 best practices behind Baleada Features, with `useListbox` as an in-depth, real world use case, [check out "Rethinking Reusability in Vue"](https://rethinking-reusability-in-vue.alexvipond.dev).
+
+Use code **BALEADA** for $15 off!
 :::
 
 :::
