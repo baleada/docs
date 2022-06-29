@@ -5,15 +5,16 @@ publish: true
 order: 1
 ---
 
-In the return value for each of Baleada Features' interfaces, as well as some extensions, you'll find at least one **element API** object.
+In the return value for each of Baleada Features' interfaces and combos, as well as some extensions, you'll find at least one **element API** object.
 
-Broadly, the purpose of the element API is to capture DOM elements from your Vue template, so that a Baleada Features composable can use that DOM element internally.
+Broadly speaking, the purpose of the element API is to capture DOM elements from your Vue template, so that a Baleada Features composable can use that DOM element internally.
 
 The element API also gives you an easy way to access those DOM elements in case you need to do additional work with them in your Vue component's `setup` function.
 
-There are two main types of element APIs:
-1. **Single Element API**, designed for individual DOM elements.
-2. **Multiple Elements API**, designed for a list of DOM elements rendered by a `v-for` statement in your template.
+There are three kinds of APIs:
+1. **Element API**, designed for individual DOM elements.
+2. **List API**, designed for a list of DOM elements rendered by a `v-for` statement in your template.
+3. **Plane API**, designed for two-dimensional plane or grid of elements, rendered in your template by a top-level `v-for` statement with another `v-for` nested inside it (for example, to loop over rows and their nested columns).
 
 Again, each of these APIs is an object, nested inside the object returned by a Baleada Features function. For example:
 
@@ -23,41 +24,61 @@ import { useTablist } from '@baleada/features'
 
 const tablist useTablist(...)
 
-tablist.root // -> Single Element API object
-tablist.tabs // -> Multiple Elements API object
+tablist.root // -> Element API object
+tablist.tabs // -> List API object
+tablist.panels // -> another List API object
 ```
 :::
 
 ::: type="warning"
 Note: Baleada Features' affordances don't follow this pattern, and don't return anything at all.
 
-This API is only used by Baleada Features interfaces, and by some extensions.
+This API is only used by Baleada Features interfaces and combos, and by some extensions.
 :::
 
 
 :::
-## Using the element API
+## Using the Element API
 :::
 
-First, here's a breakdown of the Single Element API object:
+First, here's a breakdown of the Element API object designed for individual DOM elements:
 
-::: ariaLabel="Single Element API breakdown" classes="wide-3"
+::: ariaLabel="Element API breakdown" classes="wide-3"
 | Property | Type | Description |
 | --- | --- | --- |
-| `ref` | Function | <p>A [function ref](https://v3.vuejs.org/guide/composition-api-template-refs.html#usage-inside-v-for).</p><p>`singleElementApi.ref` should be bound to the DOM element that you want to capture.</p><p>See the [Getting and using refs](#getting-and-using-function-refs) section for more guidance.</p> |
-| `element` | Ref (HTMLElement) | <p>A reactive reference to the DOM element captured by `singleElementApi.ref`.</p><p>Useful when you need to access that DOM element inside your Vue component's `setup` function to apply a side effect.</p> |
-| `id` | Ref (String) | <p>A reactive reference to a unique ID for the element.</p><p>`id` is not included in every Single Element API object. Documentation for interfaces and extensions will inform you when `id` is included.</p><p>When `id` is included, it will also be bound automatically to the `id` attribute of your `element`.</p> |
+| `ref` | Function | <p>A [function ref](https://vuejs.org/guide/essentials/template-refs.html#function-refs).</p><p>`elementApi.ref` should be bound to the DOM element that you want to capture.</p><p>See the [Getting and using refs](#getting-and-using-function-refs) section for more guidance.</p> |
+| `element` | Ref (HTMLElement) | <p>A reactive reference to the DOM element captured by `elementApi.ref`.</p><p>Useful when you need to access that DOM element inside your Vue component's `setup` function to apply a side effect.</p> |
+| `id` | Ref (String) | <p>A reactive reference to a unique ID for the element.</p><p>`id` is not included in every Element API object. Documentation for interfaces and extensions will inform you when `id` is included.</p><p>When `id` is included, the unique ID will also be bound automatically to the `id` attribute of your `element`.</p> |
 :::
 
-And here's a breakdown of the Multiple Elements API object:
+And here's a breakdown of the List API object:
 
-::: ariaLabel="Multiple Elements API breakdown" classes="wide-3"
+::: ariaLabel="List API breakdown" classes="wide-3"
 | Property | Type | Description |
 | --- | --- | --- |
-| `getRef` | Function | <p>A function that returns a [function ref](https://v3.vuejs.org/guide/composition-api-template-refs.html#usage-inside-v-for). The function ref returned by `multipleElementsApi.getRef` should be bound to the `ref` attribute of an element in your Vue template that has a `v-for` statement.</p><p>Call `multipleElementsApi.getRef` with one argument: the `index` (Number) of the current element, which you can get from the `v-for` statement.</p><p>See the [Getting and using refs](#getting-and-using-function-refs) section for more guidance.</p> |
+| `getRef` | Function | <p>A function that returns a [function ref](https://vuejs.org/guide/essentials/template-refs.html#function-refs). The function ref returned by `listApi.getRef` should be bound to the `ref` attribute of an element in your Vue template that has a `v-for` statement.</p><p>Call `listApi.getRef` with one argument: the `index` (Number) of the current element, which you can get from the `v-for` statement.</p><p>See the [Getting and using refs](#getting-and-using-function-refs) section for more guidance.</p> |
 | `elements` | Ref (Array) | <p>A reactive reference to an array of DOM elements captured by the function ref. Inside the array, DOM elements will be listed in the exact order they appear in the DOM.</p><p>Useful when you need to access these DOM elements from your Vue component's `setup` function to apply a side effect.</p> |
 | `status` | Ref (Object) | <p>A reactive reference to an object describing the status of `elements`.</p><p>`status` has two properties: `order` and `length`.</p><p>After each Vue update, `status.order` is set to `changed` if the order of elements in your `elements` array has changed, or `none` if not.</p><p>Also after each Vue update, `status.length` is set to `shortened` if elements have been removed from your `elements` array, `lengthened` if elements have been added, or `none` if the number of elements has not changed.</p> |
-| `ids` | Ref (Array) | <p>A reactive reference to an array of unique IDs (Strings) for each element in `elements`.</p><p>`ids` and `elements` are always kept in exactly the same order, and when `ids` is included, IDs will also be bound automatically to the `id` attribute of your `elements`. In other words, you can be confident that `ids.value[3]` will be the ID assigned to the `id` attribute of `elements.value[3]`. IDs will always stay attached to the same element, even after elements are reordered.</p><p>`ids` is not included in every Multiple Elements API object. Documentation for interfaces and extensions will inform you when `ids` is included.</p> |
+| `ids` | Ref (Array) | <p>A reactive reference to an array of unique IDs (Strings) for each element in `elements`.</p><p>`ids` and `elements` are always kept in exactly the same order, and when `ids` is included, IDs will also be bound automatically to the `id` attribute of your `elements`. In other words, you can be confident that `ids.value[3]` will be the ID assigned to the `id` attribute of `elements.value[3]`. IDs will always stay attached to the same element, even after elements are reordered.</p><p>`ids` is not included in every List API object. Documentation for interfaces and extensions will inform you when `ids` is included.</p> |
+:::
+
+And finally, here's a breakdown of the Plane API object:
+
+::: ariaLabel="Plane API breakdown" classes="wide-3"
+| Property | Type | Description |
+| --- | --- | --- |
+| `getRef` | Function | <p>A function that returns a [function ref](https://vuejs.org/guide/essentials/template-refs.html#function-refs). The function ref returned by `planeApi.getRef` should be bound to the `ref` attribute of an element in your Vue template that is rendered by a nested `v-for` statement.</p><p>Call `planeApi.getRef` with two arguments: the current element's `row` (Number), which you can get from your top-level `v-for` statement, and the element's `column` (Number), which you can get from your nested `v-for` statement.</p><p>See the [Getting and using refs](#getting-and-using-function-refs) section for more guidance.</p> |
+| `elements` | Ref (Array) | <p>A reactive `Plane` of DOM elements captured by the function ref.</p><p>In Baleada Features, `Plane` is an array of arrays of elements, and under the hood, `Plane` is just a subclass of `Array` with no added methods or properties.</p><p>Inside the array of arrays, DOM elements will be listed in the exact order they appear in the DOM. You can access them based on their row and column position (e.g. `planeApi.elements.value[2][4]`).</p><p>Useful when you need to access these DOM elements from your Vue component's `setup` function to apply a side effect.</p> |
+| `status` | Ref (Object) | <p>A reactive reference to an object describing the status of `elements`.</p><p>`status` has three properties: `order`, `rowLength`, and `columnLength`.</p><p>After each Vue update, `status.value.order` is set to `changed` if the order of elements in your `elements` `Plane` has changed, or `none` if not.</p><p>Also after each Vue update, `status.value.rowLength` is set to `shortened` if rows have been removed from your `Plane`, `lengthened` if rows have been added, or `none` if the number of rows has not changed.</p><p>`status.value.columnLength` behaves the same way, but it describes the length of the first array in your `Plane`.</p> |
+| `ids` | Ref (Array) | <p>A reactive reference to an array of arrays of unique IDs (Strings) for each element in `elements`.</p><p>`ids` and `elements` are always kept in exactly the same order, and when `ids` is included, IDs will also be bound automatically to the `id` attribute of your `elements`. In other words, you can be confident that `ids.value[2][4]` will be the ID assigned to the `id` attribute of `elements.value[2][4]`. IDs will always stay attached to the same element, even after elements are reordered.</p><p>`ids` is not included in every List API object. Documentation for interfaces and extensions will inform you when `ids` is included.</p> |
+:::
+
+::: type="warning"
+Currently a "plane" is defined as a two-dimensional grid of elements. The underlying assumption is that each element fills only one cell, and that all rows have the same number of cells (i.e. the same number of columns).
+
+In practice, this is implemented as an array of arrays, where each nested array has the same length.
+
+In the real world, planes don't always behave this way—elements can span multiple columns or rows when you're building custom tables or spreadsheet interfaces. Supporting these use cases is definitely on the roadmap for Baleada Features, but right now, only simpler planes are supported.
 :::
 
 
@@ -66,38 +87,38 @@ And here's a breakdown of the Multiple Elements API object:
 :::
 
 The overarching workflow of Baleada Features is:
-1. Call a Baleada Features interface or extension function in the setup function of your Vue template, passing optional parameters as needed.
+1. Call a Baleada Features interface, combo, or extension function in the setup function of your Vue template, passing optional parameters as needed.
 2. The Baleada Features function will return a object. Inside this object, you'll find at least one element API object.
 3. Get a function ref from the element API object, and use it to capture a DOM element from your Vue component's template and expose it to the Baleada Features function.
 4. Internally, the Baleada Features function will access that element. It will bind attributes, add and remove event listeners, conditionally display the element, etc.
 
-The thing that ties this whole system together is the **function ref** feature of Vue 3, which powers the `ref` property on the Single Element API object, and the `getRef` property of the Multiple Elements API object.
+The thing that ties this whole system together is the **function ref** feature of Vue 3, which powers the `ref` property on the Element API object, and the `getRef` property of the List API object.
 
 ::: type="info"
 Looking for more info on what function refs are, how to use them, and why Baleada Features relies on them? Check out [this three-part screencast series](https://www.youtube.com/playlist?list=PLHP34VGeo17dkrxEksyo3-ySK7oay6huY) dedicated to function refs.
 :::
 
-As mentioned above, `singleElementAPI.ref` is a [function ref](https://v3.vuejs.org/guide/composition-api-template-refs.html#usage-inside-v-for): a JavaScript function that requires a DOM element as one of its parameters, and stores that DOM element inside one of Vue's reactive references. `multipleElementsAPI.getRef` is a function that **returns** a function ref.
+As mentioned above, `elementApi.ref` is a [function ref](https://vuejs.org/guide/essentials/template-refs.html#function-refs): a JavaScript function that requires a DOM element as one of its parameters, and stores that DOM element inside one of Vue's reactive references. `listApi.getRef` and `planeApi.getRef` are functions that **return** a function ref.
 
 In Baleada Features, that DOM element is always the **only** parameter of the function ref.
 
-To see how that works when capturing a single DOM element, let's look at [`useTablist`](/docs/features/interfaces/tablist) as an example.
+To see how this all works when capturing DOM elements, let's look at [`useGrid`](/docs/features/interfaces/grid) as an example.
 
-Internally, `useTablist` needs to perform a few side effects on your tablist's root element:
-- Set the element's `role` attribute to `tablist`
-- Set the element's `aria-orientation` attribute to `horizontal` or `vertical`, depending on the options you originally pass to the `useTablist` function
+Internally, `useGrid` needs to perform a few side effects on your grid's root element, including:
+- Set the element's `role` attribute to `grid`
+- Set up event listeners to capture keyboard and pointer interactions that transfer focus to different grid cells
 
-To perform these side effects, `useTablist` needs you to somehow give it access to the correct DOM element. That's where the element API comes in!
+To perform these side effects, `useGrid` needs you to somehow give it access to the correct DOM element. That's where the element API comes in!
 
-`useTablist`'s return object includes a element API for a "root" element:
+`useGrid`'s return object includes a element API for a "root" element:
 
 :::
 ```js
-import { useTablist } from '@baleada/features'
+import { useGrid } from '@baleada/features'
 
-const tablist useTablist(...)
+const grid = useGrid(...)
 
-tablist.root // -> Single Element API object
+grid.root // -> Element API object
 ```
 :::
 
@@ -105,36 +126,36 @@ And that element API includes a `ref` property, holding a function ref:
 
 :::
 ```js
-import { useTablist } from '@baleada/features'
+import { useGrid } from '@baleada/features'
 
-const tablist useTablist(...)
+const grid = useGrid(...)
 
-tablist.root.ref // -> function ref
+grid.root.ref // -> function ref
 ```
 :::
 
-So, to give `useTablist` access to your root element in the DOM, you need to bind `tablist.root.ref`, to the `ref` attribute of your tablist's root element:
+So, to give `useGrid` access to your root element in the DOM, you need to bind `grid.root.ref`, to the `ref` attribute of your grid's root element:
 
 :::
 ```html
 <!-- MyComponent.vue -->
 <script setup>
-import { useTablist } from '@baleada/features'
+import { useGrid } from '@baleada/features'
 
-const tablist = useTablist(...)
+const grid = useGrid(...)
 </script>
 
 <template>
   <section>
     <!--
-      This div is the tablist root in this example. We bind
-      `tablist.root.ref` to its ref attribute.
+      This div is the grid root in this example. We bind
+      `grid.root.ref` to its ref attribute.
     
-      Note that the tablist root *does not* have to be
-      the root element of your component, but for accessibility purposes, it should be a container element for your tabs
-      and panels.
+      Note that the grid root *does not* have to be
+      the root element of your component, but for accessibility purposes, it should be a container element for your rows
+      and cells.
     -->
-    <div :ref="tablist.root.ref">
+    <div :ref="grid.root.ref">
       ...
     </div>
   </section>
@@ -142,39 +163,37 @@ const tablist = useTablist(...)
 ```
 :::
 
-With that done, `useTablist` can now access the tablist root internally and do what it needs to do.
+With that done, `useGrid` can now access the grid root internally and do what it needs to do.
 
-Also, if you need to access the root element from JavaScript, you can use `tablist.root.element`. Just be careful not to do anything with that element before the component is mounted, since it won't be available yet.
+Also, if you need to access the root element from JavaScript, you can use `grid.root.element`. Just be careful not to do anything with that element before the component is mounted, since it won't be available yet.
 
 :::
 ```js
-import { useTablist } from '@baleada/features'
+import { useGrid } from '@baleada/features'
 import { onMounted } from 'vue'
 
-const tablist = useTablist(...)
+const grid = useGrid(...)
 
 onMounted(() => {
-  // Note that `tablist.root.element` is a reactive reference,
+  // Note that `grid.root.element` is a reactive reference,
   // so you have to go through its .value property
   // to access the actual DOM element.
-  tablist.root.element.value.style.backgroundColor = 'rebeccapurple'
+  grid.root.element.value.style.backgroundColor = 'rebeccapurple'
 })
 ```
 :::
 
-For lists of elements, rendered by a `v-for` statement, the element API has a few subtle differences. `useTablist` again is a great example to explore this.
+For lists of elements, rendered by a `v-for` statement, we use the List API, which has a few subtle differences. `useGrid` again is a great example to explore this.
 
-`useTablist` needs to access the tab elements in your DOM so it can set their HTML attributes, add keyboard event listeners, handle focus and navigation, etc.
-
-To make this possible, `useTablist` includes another element API for tabs:
+`useGrid` needs to access the row elements in your DOM so it can set their `role` attribute. To make this possible, `useGrid` includes another element API for rows:
 
 :::
 ```js
-import { useTablist } from '@baleada/features'
+import { useGrid } from '@baleada/features'
 
-const tablist useTablist(...)
+const grid useGrid(...)
 
-tablist.tabs // -> Multiple Elements API object
+grid.rows // -> List API object
 ```
 :::
 
@@ -182,58 +201,58 @@ And that element API includes a `getRef` property, holding a **function ref gett
 
 :::
 ```js
-import { useTablist } from '@baleada/features'
+import { useGrid } from '@baleada/features'
 
-const tablist useTablist(...)
+const grid useGrid(...)
 
-tablist.tabs.getRef // -> function that returns a function ref
+grid.rows.getRef // -> function that returns a function ref
 ```
 :::
 
-In most cases, you should use a `v-for` to programmatically create all your tab elements. This is especially true for things like tabs in a spreadsheet app, since the number of tabs and the order of tabs can change reactively as the user interacts with the app.
+In most cases, you should use a `v-for` to programmatically create all your row elements. This is especially true for things like rows in a spreadsheet app, since the number of rows and the order of rows can change reactively as the user interacts with the app.
 
-To give `useTablist` access to your tabs elements in the DOM, you need to call `tablist.tabs.getRef`, and bind its return value to the `ref` attribute of your `v-for` element.
+To give `useGrid` access to your row elements in the DOM, you need to call `grid.rows.getRef`, and bind its return value to the `ref` attribute of your `v-for` element.
 
-The `tablist.tabs.getRef` function also requires an `index` as its only parameter. You can get that index from the `v-for` statement as shown below:
+The `grid.rows.getRef` function also requires an `index` as its only parameter. You can get that index from the `v-for` statement as shown below:
 
 :::
 ```html
 <!-- MyComponent.vue -->
 <script setup>
 import { ref } from 'vue'
-import { useTablist } from '@baleada/features'
+import { useGrid } from '@baleada/features'
 
-const tablist useTablist(...)
-const tabs = ref([...]) // Array of metadata for your tabs
+const grid useGrid(...)
+const gridMetadata = ref([...]) // Array of metadata for your rows
 </script>
 
 <template>
   <section>
-    <!-- Here's our tablist root element again -->
-    <div :ref="tablist.root.ref">
+    <!-- Here's our grid root element again -->
+    <div :ref="grid.root.ref">
       <!--
-        And here are the tabs!
+        And here are the rows!
         
         Note how we use the v-for statement to access the current
         element's index in the list.
 
-        We pass that index to the `tablist.tabs.getRef` function.
+        We pass that index to the `grid.rows.getRef` function.
         This allows the function to insert the current DOM element
-        in the correct position in an array that useTablist
+        in the correct position in an array that useGrid
         tracks internally.
 
-        If tabs are reordered, deleted, or added, Vue will run
-        `tablist.tabs.getRef` function again, always ensuring that
-        the order of useTablist's internal array is always
+        If rows are reordered, deleted, or added, Vue will run
+        `grid.rows.getRef` function again, always ensuring that
+        the order of useGrid's internal array is always
         perfectly in sync with the actual number and order of
         elements in the DOM.
       -->
       <div
-        v-for="(tab, index) in tabs"
-        :key="tab"
-        :ref="tablist.tabs.getRef(index)"
+        v-for="(row, index) in gridMetadata"
+        :key="row"
+        :ref="grid.rows.getRef(index)"
       >
-        {{ tab }}
+        {{ row }}
       </div>
     </div>
   </section>
@@ -241,24 +260,24 @@ const tabs = ref([...]) // Array of metadata for your tabs
 ```
 :::
 
-With that done, `useTablist` can now access an array of tab elements internally, and perform side effects.
+With that done, `useGrid` can now access an array of row elements internally, and perform side effects.
 
-If you need to access the array of tab elements from JavaScript, you can use `tablist.tabs.elements`. Again, be careful not to do anything with those elements before the component is mounted, since they won't be available yet.
+If you need to access the array of row elements from JavaScript, you can use `grid.rows.elements`. Again, be careful not to do anything with those elements before the component is mounted, since they won't be available yet.
 
 :::
 ```js
-import { useTablist } from '@baleada/features'
+import { useGrid } from '@baleada/features'
 import { onMounted } from 'vue'
 
-const tablist = useTablist(...)
+const grid = useGrid(...)
 
 onMounted(() => {
-  // Note that `tablist.tabs.elements` is a reactive reference,
+  // Note that `grid.rows.elements` is a reactive reference,
   // so you have to go through its .value property
   // to access the actual array of DOM elements.
-  tablist.tabs.elements.value.forEach(el => {
+  for (const el of grid.rows.elements.value) {
     el.style.backgroundColor = 'rebeccapurple'
-  })
+  }
 })
 ```
 :::
