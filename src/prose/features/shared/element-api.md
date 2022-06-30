@@ -185,7 +185,7 @@ onMounted(() => {
 
 For lists of elements, rendered by a `v-for` statement, we use the List API, which has a few subtle differences. `useGrid` again is a great example to explore this.
 
-`useGrid` needs to access the row elements in your DOM so it can set their `role` attribute. To make this possible, `useGrid` includes another element API for rows:
+`useGrid` needs to access the row elements in your DOM so it can set their `role` attribute. To make this possible, `useGrid` returns a List API for rows:
 
 :::
 ```js
@@ -197,7 +197,7 @@ grid.rows // -> List API object
 ```
 :::
 
-And that element API includes a `getRef` property, holding a **function ref getter**: a function that returns a function ref:
+And that List API includes a `getRef` property, holding a **function ref getter**: a function that returns a function ref:
 
 :::
 ```js
@@ -209,7 +209,7 @@ grid.rows.getRef // -> function that returns a function ref
 ```
 :::
 
-In most cases, you should use a `v-for` to programmatically create all your row elements. This is especially true for things like rows in a spreadsheet app, since the number of rows and the order of rows can change reactively as the user interacts with the app.
+In most cases, you should use a `v-for` to programmatically render all your row elements. This is especially true for things like rows in a spreadsheet app, since the number of rows and the order of rows can change reactively as the user interacts with the app.
 
 To give `useGrid` access to your row elements in the DOM, you need to call `grid.rows.getRef`, and bind its return value to the `ref` attribute of your `v-for` element.
 
@@ -252,7 +252,7 @@ const gridMetadata = ref([...]) // Array of metadata for your rows
         :key="row"
         :ref="grid.rows.getRef(index)"
       >
-        {{ row }}
+        <!-- We'll see shortly how cells get rendered here -->
       </div>
     </div>
   </section>
@@ -277,6 +277,133 @@ onMounted(() => {
   // to access the actual array of DOM elements.
   for (const el of grid.rows.elements.value) {
     el.style.backgroundColor = 'rebeccapurple'
+  }
+})
+```
+:::
+
+For two-dimensional grids of elements, rendered by a `v-for` statement with another `v-for` nested inside it, we use the Plane API. `useGrid` again is a great example to explore this.
+
+`useGrid` needs to access the grid cell elements in your DOM so it can set their `role` attribute and reactively manage their `aria-selected` attribute, among other things. To make this possible, `useGrid` returns a Plane API for cells:
+
+:::
+```js
+import { useGrid } from '@baleada/features'
+
+const grid useGrid(...)
+
+grid.cells // -> Plane API object
+```
+:::
+
+And that Plane API includes a `getRef` property, holding a **function ref getter**: a function that returns a function ref:
+
+:::
+```js
+import { useGrid } from '@baleada/features'
+
+const grid useGrid(...)
+
+grid.cells.getRef // -> function that returns a function ref
+```
+:::
+
+In most cases, you should use a `v-for` to programmatically render all your row elements, and a nested `v-for` to programmatically render all your cells in each row.
+
+To give `useGrid` access to your cell elements in the DOM, you need to call `grid.cells.getRef`, and bind its return value to the `ref` attribute of your nested `v-for` element.
+
+The `grid.cells.getRef` function requires a `row` index as its first parameter, and a `column` index as its second parameter. You can get those indices from your `v-for` statements as shown below:
+
+:::
+```html
+<!-- MyComponent.vue -->
+<script setup>
+import { ref } from 'vue'
+import { useGrid } from '@baleada/features'
+
+const grid useGrid(...)
+const gridMetadata = ref([...]) // Array of metadata for your rows
+</script>
+
+<template>
+  <section>
+    <!-- Here's our grid root element again -->
+    <div :ref="grid.root.ref">
+
+      <!-- And here are our grid row elements again -->
+      <div
+        v-for="(row, rowIndex) in gridMetadata"
+        :key="row.id"
+        :ref="grid.rows.getRef(index)"
+      >
+        <!--
+          And here are the cells!
+
+          In this example, grid metadata is an array of objects
+          for each row. Each row object has an `id` and a `cells`
+          property, and `row.cells` is an array of cell metadata.
+        
+          Note how we use the rows' v-for statement to access the
+          row index, and the nested v-for statement to access the
+          column index.
+
+          We pass those indices to the `grid.cells.getRef` function.
+          This allows the function to insert the current DOM element
+          in the correct position in an array of arrays that useGrid
+          tracks internally.
+
+          If rows or columsn are reordered, deleted, or added, Vue will 
+          run `grid.cells.getRef` function again, always ensuring that
+          the order of useGrid's internal array is perfectly in sync with the actual number and order of elements in the DOM.
+        -->
+        <div
+          v-for="(cell, columnIndex) in row.cells"
+          :key="cell.id"
+          :ref="grid.cells.getRef(rowIndex, columnIndex)"
+        >...</div>
+      </div>
+    </div>
+  </section>
+</template>
+```
+:::
+
+With that done, `useGrid` can now access a `Plane` (an array of arrays) of cell elements internally, and perform side effects.
+
+If you need to access the `Plane` of cell elements from JavaScript, you can use `grid.cells.elements`. Again, be careful not to do anything with those elements before the component is mounted, since they won't be available yet.
+
+:::
+```js
+import { useGrid } from '@baleada/features'
+import { onMounted } from 'vue'
+
+const grid = useGrid(...)
+
+onMounted(() => {
+  // Note that `grid.cells.elements` is a reactive reference,
+  // so you have to go through its .value property to access
+  // the actual `Plane` of DOM elements.
+  //
+  // Since that `Plane` an array of arrays of elements, we can
+  // use a nested `for` loop to traverse them.
+  for (
+    let row = 0;
+    row < grid.cells.elements.value.length;
+    row++
+  ) {
+    for (
+      let column = 0;
+      // Note that we compute the total columns based on the
+      // length of the first row. This is a simplified assumption,
+      // and future versions of Baleada Features will allow this to
+      // be more flexible for grids that have a different number of
+      // columns in any given row.
+      column < grid.cells.elements.value[0].length;
+      column++
+    ) {
+      const el = grid.cells.elements.value[row][column]
+      el.style.backgroundColor = 'rebeccapurple'
+    }
   }
 })
 ```
