@@ -18,9 +18,30 @@ The rest of this guide explains those tools in more technical detail.
 ## Essential Accessibility
 :::
 
-::: type="danger"
-WIP
-:::
+As short summaries of essential accessibility go, the best one I've seen is [a checklist](https://twitter.com/devongovett/status/1542546932840534016?s=20&t=f8mdjeFBkZVjp-bAYHXYWg) from Devon Govett, one of the authors of the incredibly impressive [React Aria](https://react-spectrum.adobe.com/react-aria/index.html) library.
+
+In Baleada Features, I aim to check every box on the that checklist, except for the markup and style related points (Baleada Features is logic-only and ships no markup or styles). Here's the abridged relevant list:
+
+**Interactions:**
+☑️ Works with mouse, touch, and keyboard input
+☑️ Hover, active, and focus states as appropriate for device
+☑️ Predictable focus management
+☑️ Adapt UI and behavior for input type
+
+**Accessibility:**
+☑️ Usable (tested) with multiple screen readers on various devices (e.g. mobile/desktop)
+
+**Internationalization:**
+☑️ International dates, numbers, collation, etc.
+☑️ Localized strings, or the ability to provide them
+☑️ Right-to-left layout support
+☑️ Avoid locale-specific assumptions
+
+When working with Baleada Features, you'll find that ARIA roles and attributes, keyboard interactions, and pointer interactions are all managed for you, closely following [ARIA authoring practices](https://www.w3.org/WAI/ARIA/apg/).
+
+You'll also find tons of accessibility-related configuration options, and you'll always have access to functions and methods for highly specialized side effects (like programmatically selecting the next non-disabled listbox option). These tools allow you to craft custom, accessible user experiences, tailored to your project in a way that no general purpose library could or should do for you.
+
+Accessibility is great UX, and it's one of the main motivations driving the entire Baleada Features project.
 
 
 :::
