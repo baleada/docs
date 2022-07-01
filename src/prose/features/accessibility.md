@@ -27,9 +27,9 @@ WIP
 ## Accessibility extensions
 :::
 
-All of Baleada Features' [interfaces](/docs/features#using-functions) return objects, and some of those objects contain [single element API objects](/docs/features/shared/element-api) that can help you enhance the accessibility of your UI.
+All of Baleada Features' [extensions](/docs/features#using-extensions) return objects, and some of those objects contain [element API objects](/docs/features/shared/element-api) that can help you enhance the accessibility of your UI.
 
-For example, imagine you're using the `useTextbox` function to enhance an HTML input in your app. Here's how you would start:
+For example, imagine you're using the [`useTextbox`](/docs/features/interfaces/textbox) interface to enhance an HTML input in your app. Here's how you would start:
 
 :::
 ```html
@@ -45,16 +45,10 @@ For example, imagine you're using the `useTextbox` function to enhance an HTML i
   />
 </template>
 
-<script lang="js">
+<script setup>
 import { useTextbox } from '@baleada/vue-features'
 
-export default {
-  setup () {
-    return {
-      textbox: useTextbox(),
-    }
-  }
-}
+const textbox = useTextbox(),
 </script>
 ```
 :::
@@ -63,7 +57,7 @@ That's a good start, but assistive technology won't be able to tell the user any
 
 One great way to do this is with a `label` element. If the `label` element has a `for` attribute that contains the unique ID of the `input`, assistive tech will read the contents of the `label` when describing the `input`.
 
-Managing unique IDs for all your inputs and matching those IDs up with labels is tedious work, so the `useLabel` **extension** is designed to handle this for you:
+Managing unique IDs for all your inputs and matching those IDs up with labels is tedious work, so the [`useLabel`](/docs/features/extensions/label) **extension** is designed to handle this for you:
 
 :::
 ```html
@@ -99,21 +93,15 @@ Managing unique IDs for all your inputs and matching those IDs up with labels is
   -->
 </template>
 
-<script lang="js">
+<script setup>
 import { useTextbox, useLabel } from '@baleada/vue-features'
 
-export default {
-  setup () {
-    const textbox = useTextbox(),
-          // We can pass our `textbox` object directly into
-          // the `useLabel` extension. The extension knows
-          // that it should interact with `textbox.root` when
-          // setting up accessibility features.
-          label = useLabel(textbox)
-    
-    return { textbox, label }
-  }
-}
+const textbox = useTextbox(),
+      // We can pass our `textbox` object directly into
+      // the `useLabel` extension. The extension knows
+      // that it should interact with `textbox.root` when
+      // setting up accessibility features.
+      label = useLabel(textbox)
 </script>
 ```
 :::
@@ -123,13 +111,3 @@ Baleada Features offers several accessibility extensions that follow this same p
 - [`useDescription`](/docs/features/extensions/description)
 - [`useDetails`](/docs/features/extensions/details)
 - [`useErrorMessage`](/docs/features/extensions/error-message)
-
-
-<!-- ::: ariaLabel="Properties of some functions' returned objects"
-| Property | Description |
-| --- | --- |
-| `label` | <p>If an element serves as the accessible label for your textbox, `label.ref` should be bound to that element.</p><p>Binding `label.ref` will assign a unique ID to your accessible label and set that ID as the `aria-labelledby` of the labelled element. In some cases, it will also assign a unique ID to the labelled element, and set that ID as the `for` attribute of your accessible label.</p> |
-| `errorMessage` | <p>If an element serves as the accessible error message when invalid data has been entered into a form field, `errorMessage.ref` should be bound to that element.</p><p>Binding `errorMessage.ref` will assign a unique ID to your accessible error message and set that ID as the `aria-errormessage` of the element that contains invalid data.</p> |
-| `description` | <p>If an element serves as the accessible description for your textbox, `description.ref` should be bound to that element.</p><p>Binding `description.ref` will assign a unique ID to your accessible description and set that ID as the `aria-describedby` of the described element.</p> |
-| `details` | <p>If an element serves as the accessible details for your textbox, `details.ref` should be bound to that element.</p><p>Binding `details.ref` will assign a unique ID to your accessible details and set that ID as the `aria-details` of the detailed element.</p> |
-::: -->
