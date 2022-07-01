@@ -44,7 +44,7 @@ const listbox = useListbox({
 
 The best short summary I've seen of what is considered "essential" is [a checklist](https://twitter.com/devongovett/status/1542546932840534016?s=20&t=f8mdjeFBkZVjp-bAYHXYWg) from Devon Govett, one of the authors of the incredibly impressive [React Aria](https://react-spectrum.adobe.com/react-aria/index.html) library, one of Baleada Features' biggest inspirations.
 
-In Baleada Features, I aim to check every box on the that checklist, except for the markup and style related points (Baleada Features is logic-only and ships no markup or styles). Here's the abridged relevant list:
+In Baleada Features, I aim to check every box on that checklist, except for the markup and style related points (Baleada Features is logic-only and ships no markup or styles). Here's the abridged relevant list:
 
 **Interactions:**
 - Works with mouse, touch, and keyboard input
