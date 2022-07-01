@@ -37,7 +37,7 @@
     }
 
     [role="rowgroup"]:first-child {
-      @apply rounded-4 sticky top-0 shadow-5;
+      @apply rounded-4 sticky top-0 shadow-5 z-10;
       display: table-header-group;
     }
 
