@@ -18,24 +18,48 @@ The rest of this guide explains those tools in more technical detail.
 ## Essential Accessibility
 :::
 
-As short summaries of essential accessibility go, the best one I've seen is [a checklist](https://twitter.com/devongovett/status/1542546932840534016?s=20&t=f8mdjeFBkZVjp-bAYHXYWg) from Devon Govett, one of the authors of the incredibly impressive [React Aria](https://react-spectrum.adobe.com/react-aria/index.html) library.
+In Baleada Features, [interfaces](/docs/features#using-interfaces) and [combos](/docs/features#using-combos) are responsible for implementing essential accessibility features—bare minimum features that are required in every situation for a given UI pattern. Interfaces and combos (which are Vue composables) always accept optional parameters to lightly configure some of that essential behavior.
+
+:::
+```ts
+import { useListbox } from '@baleada/vue-features'
+
+const listbox = useListbox({
+  // With the `useListbox` interface, customize the `orientation`
+  // option, and Baleada Features will adjust accordingly.
+  //
+  // In this case, that means navigating the listbox using left and
+  // right arrow keys, plus setting the `aria-orientation` attribute 
+  // to 'horizontal' on the root element.
+  orientation: 'horizontal',
+  
+  // Another example: use the `selectsOnFocus` option to determine
+  // whether options get selected as soon as they receive keyboard\
+  // focus, or whether the end user actually has to use a mouse,
+  // touch, spacebar, or enter key to select the focused option.
+  selectsOnFocus: true,
+}),
+```
+:::
+
+The best short summary I've seen of what is considered "essential" is [a checklist](https://twitter.com/devongovett/status/1542546932840534016?s=20&t=f8mdjeFBkZVjp-bAYHXYWg) from Devon Govett, one of the authors of the incredibly impressive [React Aria](https://react-spectrum.adobe.com/react-aria/index.html) library, one of Baleada Features' biggest inspirations.
 
 In Baleada Features, I aim to check every box on the that checklist, except for the markup and style related points (Baleada Features is logic-only and ships no markup or styles). Here's the abridged relevant list:
 
 **Interactions:**
-☑️ Works with mouse, touch, and keyboard input
-☑️ Hover, active, and focus states as appropriate for device
-☑️ Predictable focus management
-☑️ Adapt UI and behavior for input type
+- Works with mouse, touch, and keyboard input
+- Hover, active, and focus states as appropriate for device
+- Predictable focus management
+- Adapt UI and behavior for input type
 
 **Accessibility:**
-☑️ Usable (tested) with multiple screen readers on various devices (e.g. mobile/desktop)
+- Usable (tested) with multiple screen readers on various devices (e.g. mobile/desktop)
 
 **Internationalization:**
-☑️ International dates, numbers, collation, etc.
-☑️ Localized strings, or the ability to provide them
-☑️ Right-to-left layout support
-☑️ Avoid locale-specific assumptions
+- International dates, numbers, collation, etc.
+- Localized strings, or the ability to provide them
+- Right-to-left layout support
+- Avoid locale-specific assumptions
 
 When working with Baleada Features, you'll find that ARIA roles and attributes, keyboard interactions, and pointer interactions are all managed for you, closely following [ARIA authoring practices](https://www.w3.org/WAI/ARIA/apg/).
 
@@ -117,12 +141,12 @@ Managing unique IDs for all your inputs and matching those IDs up with labels is
 <script setup>
 import { useTextbox, useLabel } from '@baleada/vue-features'
 
-const textbox = useTextbox(),
-      // We can pass our `textbox` object directly into
-      // the `useLabel` extension. The extension knows
-      // that it should interact with `textbox.root` when
-      // setting up accessibility features.
-      label = useLabel(textbox)
+const textbox = useTextbox()
+
+// We can pass our `textbox` object directly into the `useLabel`
+// extension. The extension knows that it should interact with 
+// `textbox.root` when setting up accessibility features.
+const label = useLabel(textbox)
 </script>
 ```
 :::
