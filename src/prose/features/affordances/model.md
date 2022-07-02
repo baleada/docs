@@ -39,7 +39,7 @@ export default function myCompositionFunction (...) {
 :::
 
 ::: type="info"
-Usually, you'll call `model` from inside another composable, but it also works in the `setup` function of any Vue component.
+Usually, you'll call `model` from inside another composable, but it also works in `script setup`.
 :::
 
 Here's a breakdown of the required parameters:

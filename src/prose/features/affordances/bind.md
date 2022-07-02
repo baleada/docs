@@ -27,28 +27,28 @@ Just like Vue's `v-bind`, the `bind` affordance handles all that complexity inte
 ## Usage
 :::
 
-To bind static or reactive data to a DOM element, call the `bind` function, which requires two parameters: the element or elements you're binding to, and the values you want to bind.
+To bind static or reactive data to a DOM element, call the `bind` function, which requires two parameters: the element, list of elements, or `Plane` of elements you're binding to, and the values you want to bind.
 
 :::
 ```js
 import { bind } from '@baleada/vue-features'
 
 export default function myCompositionFunction (...) {
-  bind(elementOrElements, values)
+  bind(elementOrListOrPlane, values)
 }
 ```
 :::
 
 ::: type="info"
-Usually, you'll call `bind` from inside another composable, but it also works in the `setup` function of any Vue component.
+Usually, you'll call `bind` from inside another composable, but it also works in `script setup`.
 :::
 
 Here's a breakdown of the parameters:
 
-::: ariaLabel="bind required object breakdown" classes="wide-5"
-| Property | Type | Required | Default | Description |
+::: ariaLabel="bind parameters breakdown" classes="wide-5"
+| Parameter | Type | Required | Default | Description |
 | --- | --- | --- | --- | --- |
-| `elementOrElements` | Ref (HTMLElement), Array | yes | none | <p>A reactive reference to the DOM element you're binding data to.</p><p>`elementOrElements` Can also be a reactive reference to an array of DOM elements. See the [How to format values](#how-to-format-values) section for more guidance on binding values to specific elements in a reactive array.</p> |
+| `elementOrListOrPlane` | See description | yes | none | <p>A reactive reference to the DOM element or elements you're binding data to.</p><p>`elementOrListOrPlane` can be one of the following types: </p><ul><li>HTMLElement</li><li>Array of HTMLElements</li><li>`Plane` of HTMLElements</li><li>Reactive reference to any of the above types</li></ul><p>See the [How to format values](#how-to-format-values) section for more guidance on binding values to specific elements in a reactive array or reactive `Plane`.</p> |
 | `values` | Object | yes | none | <p>The attributes or properties and values you want to bind to your element or elements.</p><p>See the [How to format the `values` object](#how-to-format-the-values-object) section for more guidance.</p> |
 :::
 

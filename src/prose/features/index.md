@@ -92,7 +92,7 @@ Visit any utility's dedicated guide to learn more about its use cases and usage.
 ### Using interfaces
 :::
 
-Import any interface to start using it in your Vue component. Most often, you'll use interfaces in the `setup` function of a Vue component:
+Import any interface to start using it in your Vue component. Most often, you'll use interfaces in `script setup`:
 
 :::
 ```html
@@ -131,7 +131,7 @@ To learn more, visit the docs for each interface exported by Baleada Features. F
 ### Using combos
 :::
 
-Import any combo to start using it in your Vue component. Most often, you'll use combos in the `setup` function of a Vue component:
+Import any combo to start using it in your Vue component. Most often, you'll use combos in `script setup`:
 
 :::
 ```html
@@ -167,7 +167,7 @@ To learn more, visit the docs for each combo exported by Baleada Features. For a
 ### Using extensions
 :::
 
-Import any extension to start using it in your Vue component. Most often, you'll use extensions in the `setup` function of a Vue component:
+Import any extension to start using it in your Vue component. Most often, you'll use extensions in `script setup`:
 
 :::
 ```html
