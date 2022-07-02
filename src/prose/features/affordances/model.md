@@ -32,7 +32,7 @@ To create two-way binding, call the `model` function, which requires two paramet
 ```js
 import { model } from '@baleada/vue-features'
 
-export default function myCompositionFunction (...) {
+export function myCompositionFunction (...) {
   model(element, modelValue[, options])
 }
 ```

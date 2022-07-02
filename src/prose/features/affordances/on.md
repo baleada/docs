@@ -24,7 +24,7 @@ To listen for events, call the `on` function, which requires two parameters: the
 ```js
 import { on } from '@baleada/vue-features'
 
-export default function myCompositionFunction (...) {
+export function myCompositionFunction (...) {
   on(elementOrElements, effects)
 }
 ```
@@ -54,7 +54,7 @@ The `effects` parameter is an object. The properties of that object must be [val
 ```js
 import { on } from '@baleada/vue-features'
 
-export default function myCompositionFunction (...) {
+export function myCompositionFunction (...) {
   on(
     myElement,
     {
@@ -132,7 +132,7 @@ Again, the `createEffect`, given this object as an argument, should return an ev
 
 :::
 ```js
-export default function useListbox (...) {
+export function useListbox (...) {
   on(
     options.elements,
     {

@@ -31,7 +31,7 @@ To conditionally display a DOM element, call the `show` function, which requires
 ```js
 import { show } from '@baleada/vue-features'
 
-export default function myCompositionFunction (...) {
+export function myCompositionFunction (...) {
   show(elementOrElements, condition[, options])
 }
 ```
@@ -106,7 +106,7 @@ Here's an example of how [`useTablist` ](/docs/features/interfaces/tablist) uses
 
 :::
 ```js
-export default function useTablist (...) {
+export function useTablist (...) {
   ...
 
   show(

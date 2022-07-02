@@ -41,7 +41,7 @@ These 4 attributes are easy to override or expand—simply pass an object to the
 
 :::
 ```js
-export default function MyComponent() {
+export function MyComponent() {
   ...
 
   return (

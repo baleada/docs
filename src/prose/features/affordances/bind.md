@@ -33,7 +33,7 @@ To bind static or reactive data to a DOM element, call the `bind` function, whic
 ```js
 import { bind } from '@baleada/vue-features'
 
-export default function myCompositionFunction (...) {
+export function myCompositionFunction (...) {
   bind(elementOrListOrPlane, values)
 }
 ```
@@ -63,7 +63,7 @@ The required `values` parameter is an object. The keys of that object must be DO
 ```js
 import { bind } from '@baleada/vue-features'
 
-export default function myCompositionFunction (...) {
+export function myCompositionFunction (...) {
   bind(
     myElement,
     {
@@ -176,7 +176,7 @@ bind(
 ::: type="warning"
 Setting `innerHTML` is out of Baleada Features' scope. Using `bind` with `innerHTML` is possible in some cases, but not recommended, since Baleada Features doesn't include security measures or edge case handling for this kind of work.
 
-Also, it's technically possible to bind to event properties like `onclick`. However, `bind` intentionally doesn't do any cleanup for these event handlers, and will cause memory leaks. To add event listeners that will be automatically cleaned up and more efficiently implemented, use the [`on`](/docs/features/affordances/on.md) affordance instead.
+Also, it's technically possible to bind to event properties like `onclick`. However, `bind` intentionally doesn't do any cleanup for these event handlers, and will cause memory leaks. To add event listeners that will be automatically cleaned up and more efficiently implemented, use the [`on`](/docs/features/affordances/on) affordance instead.
 :::
 
 
@@ -227,14 +227,14 @@ But what about when the `element` is a reactive array of elements, rather than a
 
 When you're binding static data, you can pass the **value getter** instead of a standard value. The value getter is a callback function that receives only one argument: the `index` (Number) of a given element in your reactive array of elements. It should return the value that `bind` should bind to that specific element.
 
-Here's an example of how [`useTablist` ](/docs/features/interfaces/tablist) uses this feature to set the `aria-labelledby` attribute for each tab panel to the ID of the corresponding tab panel. Theses IDs never change, so `aria-labelledby` does not need to be reactive:
+Here's an example of how [`useTablist` ](/docs/features/interfaces/tablist) uses this feature to set the `aria-labelledby` attribute for each tab panel to the ID of the corresponding tab panel. These IDs never change, so `aria-labelledby` does not need to be reactive:
 
 :::
 ```js
-export default function useTablist (...) {
+export function useTablist (...) {
   bind(
     // Reactive array of tab panel elements
-    panels.targets,
+    panels.elements,
     {
       // Each element's aria-labelledby holds the ID of
       // its associated tab element.
@@ -249,7 +249,6 @@ export default function useTablist (...) {
 
   ...
 }
-
 ```
 :::
 
@@ -268,7 +267,7 @@ Here's an example of how [`useTablist` ](/docs/features/interfaces/tablist) uses
 
 :::
 ```js
-export default function useTablist (...) {
+export function useTablist (...) {
   bind(
     // Reactive array of tab panel elements
     panels.elements,
@@ -297,15 +296,93 @@ export default function useTablist (...) {
 ```
 :::
 
+Finally, let's look at how this all works with a `Plane`, the Baleada Features data structure for an array of arrays of elements.
+
+The value format for a `Plane` is almost identical to the format for arrays of elements. When you're binding static data, you can pass the **value getter** instead of a standard value. The value getter for a `Plane` is a callback function that receives two arguments: the `row` index (Number) and `column` index (Number) of a given element in your `Plane` of elements. It should return the value that `bind` should bind to that specific element.
+
+Here's an example of how [`useGrid` ](/docs/features/interfaces/grid) uses this feature to set the `role` attribute for each cell in the grid. These values never change, so `roles` does not need to be reactive:
+
+:::
+```js
+export function useGrid (...) {
+  bind(
+    // Reactive `Plane` (array of arrays) of grid cell elements
+    cells.elements,
+    {
+      // The `hasRowHeaders` and `hasColumnHeaders` options
+      // control whether or not `useGrid` applies the `rowheader`
+      // and `columnheader` roles to the first row and column.
+      //
+      // This value getter is able to use the `row` and `column`
+      // arguments to determine whether or not the cell is in the
+      // first row or column.
+      //
+      // Any cell that is neither in the first row nor the first
+      // column should get the `gridcell` role.
+      role: (row, column) => 
+        (hasRowheaders && row === 0 && 'rowheader')
+        || (hasColumnheaders && column === 0 && 'columnheader')
+        || 'gridcell',
+    }
+  )
+
+  ...
+}
+```
+:::
+
+And just like with arrays of elements, when the data _is_ reactive, but still needs to be bound to the `Plane` of elements, you can pass a **reactive value getter** as the key's value.
+
+A reactive value getter for `Plane` is identical to the reactive value getter for arrays. It's still an object, with a `get` property for the value getter, and a `watchSource` property for a single watch source or array of watch sources.
+
+The only difference, remember, is that this value getter receives the `row` and `column` indices as its arguments.
+
+Here's an example of how [`useGrid` ](/docs/features/interfaces/grid) uses a reactive value getter to manage the `aria-selected` attribute on its `Plane` of grid cells, setting `true` for selected cells and removing the attribute for unselected cells:
+
+:::
+```js
+export function useGrid (...) {
+  bind(
+    cells.elements,
+    {
+      ariaSelected: {
+        // An internal `isSelected` function does the heavy lifting
+        // here and returns a boolean.
+        get: (row, column) => isSelected(row, column)
+          ? 'true'
+          // Returning `undefined` from a value getter causes
+          // the attribute to get removed. More on that in the
+          // next section of this guide.
+          : undefined,
+        // Internally, info about selected cells is stored in 
+        // two reactive objects, named `selectedRows` and
+        // `selectedColumns`.
+        //
+        // We can set up those two objects as watch sources, and
+        // `bind` will recompute `aria-selected` for each gridcell
+        // whenever reactive changes are detected.
+        watchSource: [
+          () => selectedRows.value.picks,
+          () => selectedColumns.value.picks
+        ],
+      },
+    }
+  )
+
+  ...
+}
+```
+:::
+
 
 :::
 #### How to remove attributes
 :::
 
-In the example above, you can see a great example of a case where we'd actually like to **remove an attribute** from an element in certain cases.
-- Hidden tab panels should have their `aria-hidden` attribute set to `true`
-- The visible tab panel should not have an `aria-hidden` attribute.
+In a few code samples above, you can see great examples of cases where we'd actually like to **remove an attribute** from an element in certain cases.
+- Hidden tab panels should have their `aria-hidden` attribute set to `true`, but the visible tab panel should not have an `aria-hidden` attribute.
+- Selected grid cells should have `aria-selected` set to `true`, but unselected grid cells should not have an `aria-selected` attribute.
 
-In cases like this one, the attribute needs to either receive a value or be removed reactively, whenever selected state changes.
+In cases like theses, the attribute needs to either be set to `true` or be removed reactively, based on user interaction.
 
 With `bind`, you can remove any attribute from an element at any time by making sure the value of that attribute is `undefined`. In other words, if a reactive reference, value getter, or reactive value getter resolves to `undefined` for an element, `bind` will remove the attribute from that element.
