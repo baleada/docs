@@ -10,7 +10,7 @@ order: 0
 ::: type="info"
 `on` reimplements the `v-on` affordance from Vue templates, and adds support for even more web APIs, like [Intersection Observer](https://developer.mozilla.org/en-US/docs/Web/API/intersectionObserver) and [media queries](https://developer.mozilla.org/en-US/docs/Web/API/Window/matchMedia).
 
-Check out the [`Listenable`](/docs/logic/classes/Listenable) docs for a full list of supported event types.
+To do this, `on` uses [`Listenable`](/docs/logic/classes/Listenable) under the hood. Check out the `Listenable` docs for a full list of supported event types.
 :::
 
 
@@ -90,15 +90,9 @@ on(
 ```
 :::
 
-But what about when the `element` is a reactive array of elements, rather than a single reactive element reference? How do we create custom listeners that are aware of each element's position in the array?
+But in some situations, you'll need to configure the listener more precisely. For example, you'll need to pass options to `addEventListener` or the `IntersectionObserver` constructor (both used under the hood by `Listenable`), or you might want to configure the underlying `Listenable` instance to listen for custom gestures.
 
-First, make sure this is actually the right solution to your problem. Adding one or more event listeners to every item in a list of arbitrary length can quickly have a negative impact on performance. If there's a way to add fewer listeners, or to add them to a single parent element, take that option.
-
-In `useListbox` for example, individual listbox options can receive keyboard focus, but there are no `keydown` listeners on the options themselves. Instead, a single `keydown` listener is added to the listbox's root element, handling `keydown` events that bubble up from the options.
-
-If you do want to add listeners to a list of elements though, it's possible!
-
-In this case, you can pass an **effect config** as the key's value. The effect config is an object with two properties: `createEffect` and `options`.
+In these cases, you can pass an **effect config** as the key's value. The effect config is an object with two properties: `createEffect` and `options`.
 
 The value of `createEffect` should be a callback function that **returns** a function with side effects:
 
@@ -137,6 +131,99 @@ Here's a breakdown of that object:
 
 Again, the `createEffect`, given this object as an argument, should return an event listener.
 
+The other key of the effect config is `options`, which is an object. Here's a breakdown of the `options` object:
+
+::: ariaLabel="effect config options breakdown" classes="wide-5"
+| Property | Type | Required | Default | Description |
+| --- | --- | --- | --- | --- |
+| `listenable` | Object | no | `{}` | <p>The optional second parameter of the `Listenable` constructor.</p><p>You can use `effectConfig.options.listenable` to configure custom gesture recognition powered by [`Recognizeable`](/docs/logic/classes/Recognizeable).</p> |
+| `listen` | Object | no | `{}` | <p>The optional second parameter of `Listenable.listen` method.</p><p>You can use `effectConfig.options.listenable` to pass things like `addEventListener` options or `IntersectionObserver` constructor options.</p> |
+
+Here's a simplified example of how `useGrid` uses an effect config with `options` to react to the [`mousedrag`](/docs/recognizeable-effects/mousedrag) gesture:
+
+:::
+```js
+import { mousedrag } from '@baleada/recognizeable-effects'
+
+export function useGrid (...) {
+  ...
+
+  on(
+    root.element,
+    {
+      // To listen to a custom gesture powered by `Recognizeable`,
+      // use `recognizeable` as the effect key name.
+      recognizeable: {
+        // `createEffect` returns the event handler, which will get
+        // called as soon as the `mousedrag` gesture is recognized.
+        createEffect: () => (event, { is }) => {
+          // Do some magic to figure out which grid cells get added
+          // to the current selection when the user clicks and drags
+          // across the grid.
+        },
+        // `options.listenable` passes the optional second parameter
+        // of the underlying `Listenable` instance. In this case,
+        // that feature is used to configure the `mousedrag` gesture
+        // with `Listenable`.
+        options: {
+          listenable: {
+            recognizeable: {
+              effects: mousedrag(...)
+            },
+          },
+        },
+      }),
+    }
+  )
+
+  ...
+}
+```
+:::
+
+And here's an example of use `useVisibility` uses an effect config to configure the underlying `IntersectionObserver` instance that tracks element visibility.
+
+:::
+```js
+export function useVisibility (element, options) {
+  ...
+
+  on(
+    element,
+    {
+      // When `on` and its underlying `Listenable` instance see
+      // the `intersect` effect name, they know to use an 
+      // `IntersectionObserver` instance under the hood.
+      intersect: {
+        // `createEffect` returns the callback that should run
+        // when the `IntersectionObserver` adds a new entry.
+        createEffect: () => entries => {
+          // Store relevant entry data as reactive state
+        },
+        // `options.listen` is used to pass `IntersectionObserver`
+        // constructor options through to the underlying instance.
+        options: {
+          listen: {
+            observer: options.observer || {},
+          }
+        }
+      }
+    }
+  )
+
+  ...
+}
+```
+:::
+
+<!-- But what about when the `element` is a reactive array of elements, rather than a single reactive element reference? How do we create custom listeners that are aware of each element's position in the array?
+
+First, make sure this is actually the right solution to your problem. Adding one or more event listeners to every item in a list of arbitrary length can quickly have a negative impact on performance. If there's a way to add fewer listeners, or to add them to a single parent element, take that option.
+
+In `useListbox` for example, individual listbox options can receive keyboard focus, but there are no `keydown` listeners on the options themselves. Instead, a single `keydown` listener is added to the listbox's root element, handling `keydown` events that bubble up from the options.
+
+If you do want to add listeners to a list of elements though, it's possible!
+
 Adding event listeners to every element in a `Plane` (array of arrays of elements) works the same way. The only difference is that `createEffect` will receive three parameters: the `row` index (Number)  of a given element in your `Plane`, the `column` index (Number) of that element, and the same object detailed above.
 
 ::: type="info"
@@ -148,7 +235,7 @@ When Baleada Features, with Vue's help, detects a meaningful change in your reac
 This not only helps avoid memory leaks, but also ensures that element position arguments (i.e. `index` for lists, and `row` & `column` for `Plane`s) is never stale when accessed by your listeners.
 
 But be aware, this process has a noticeable negative performance impact when working with larger lists, and that negative impact is multiplied for `Plane`s.
-:::
+::: -->
 
 
 :::
