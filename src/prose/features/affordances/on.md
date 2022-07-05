@@ -79,6 +79,8 @@ The simplest type of listener is a plain callback function, exactly like the one
 
 :::
 ```js
+import { on } from '@baleada/vue-features'
+
 on(
   ...
   {
@@ -98,6 +100,8 @@ The value of `createEffect` should be a callback function that **returns** a fun
 
 :::
 ```js
+import { on } from '@baleada/vue-features'
+
 on(
   ...,
   {
@@ -240,4 +244,138 @@ But be aware, this process has a noticeable negative performance impact when wor
 
 :::
 ### How to write type-safe effects
+:::
+
+Thanks to some truly joy-sparking TypeScript tactics, type safety works out of the box for almost every use case.
+
+:::
+```js
+import { on } from '@baleada/vue-features'
+
+on(
+  ...
+  {
+    click: event => {
+      // `event` is type-checked and autocompleted as a `MouseEvent`
+    },
+    keydown: event => {
+      // `event` is type-checked and autocompleted as a `KeyboardEvent`
+    },
+    intersect: entries => {
+      // `event` is type-checked and autocompleted as an array
+      // of `IntersectionObserverEntry` objects.
+    },
+  }
+)
+```
+:::
+
+The one exception to this rule is custom gestures powered by `Recognizeable`. To set those up, you use `recognizeable` as the effect key:
+
+:::
+```js
+import { on } from '@baleada/vue-features'
+
+on(
+  ...
+  {
+    recognizeable: event => { ... },
+  }
+)
+```
+:::
+
+But since `Recognizeable` instances are designed to collect and analyze pretty much any kind of event, including `MouseEvent`, `KeyboardEvent`, `IntersectionObserverEntry`, `MutationRecord`, etc., it's impossible to infer types automatically.
+
+The solution is the `defineRecognizeableEffect` type helper from Baleada Features.
+
+There are three basic steps to using `defineRecognizeableEffect`:
+1. Pass in generic types to support type safety in your event callback (which runs when the gesture is recognized).
+2. Pass an effect config object as the first and only parameter of `defineRecognizeableEffect`. The `createEffect` callback will type-check and autocomplete its arguments based on the generic types you passed to `defineRecognizeableEffect`.
+3. Spread the return value of `defineRecognizeableEffect` into your `effects` parameter.
+
+Let's take a look at the basic pattern, and then we'll see a real world example.
+
+:::
+```js
+import { on, defineRecognizeableEffect } from '@baleada/vue-features'
+
+on(
+  element,
+  {
+    // We spread the return value of `defineRecognizeableEffect`
+    // into our `effects` parameter. We'll also use the function's
+    // generic types to support type safety for our callback function.
+    //
+    // `defineRecognizeableEffect`'s  first and only parameter is an
+    // effect config object.
+    ...defineRecognizeableEffect<...>({
+      // Enjoy type safety in `createEffect`
+      createEffect: () => event => { ... },
+      // For `options`, we'll use `options.listenable` to configure
+      // `Recognizeable` to recognize a custom gesture.
+      options: {
+        listenable: {
+          recognizeable: {
+            effects: { ... }
+          }
+        },
+      }
+    }),
+  }
+)
+```
+:::
+
+Earlier in this guide, we looked at a simplified example of how [`useGrid`](/docs/features/interfaces/grid) uses an effect config object to set up a `Recognizeable`-powered listener for the `mousedrag` gesture. In the source code, that listener is actually implemented with `defineRecognizeableEffect` for type safety. Here's roughly how it works:
+
+:::
+```js
+import {
+  mousedrag,
+  MousedragTypes,
+  MousedragMetadata
+} from '@baleada/recognizeable-effects'
+import { on, defineRecognizeableEffect } from '@baleada/vue-features'
+
+
+
+export function useGrid (...) {
+  ...
+  on(
+    element,
+    {
+      // Generic types for the target element, `mousedrag` event
+      // types (mousedown, mouseleave, and mouseup) and `mousedrag`
+      // metadata are passed in.
+      ...defineRecognizeableEffect<
+        typeof element,
+        MousedragTypes,
+        MousedragMetadata
+      >({
+        createEffect: () => event => {
+          // `event` is type-checked and autocompleted as a 
+          // `MouseEvent`, inferred from the `MousedragTypes`
+          // type.
+          // 
+          // MousedragTypes -> 'mousedown' | 'mouseleave' | 'mouseup'
+        },
+        options: {
+          listenable: {
+            recognizeable: {
+              // `useGrid` calls the `mousedrag` function to create
+              // a suite of event listeners that will captured
+              // various mouse events and store their metadata
+              // for later analysis.
+              effects: mousedrag(...)
+            },
+          },
+        },
+      }),
+    }
+  )
+
+  ...
+}
+```
 :::
