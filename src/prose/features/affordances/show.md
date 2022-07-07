@@ -32,7 +32,7 @@ To conditionally display a DOM element, call the `show` function, which requires
 import { show } from '@baleada/vue-features'
 
 export function myCompositionFunction (...) {
-  show(elementOrElements, condition[, options])
+  show(elementOrListOrPlane, condition[, options])
 }
 ```
 :::
@@ -43,11 +43,11 @@ Usually, you'll call `show` from inside another composable, but it also works in
 
 Here's a breakdown of the required parameters:
 
-::: ariaLabel="show required object breakdown" classes="wide-5"
-| Property | Type | Required | Default | Description |
+::: ariaLabel="show parameter breakdown" classes="wide-5"
+| Parameter | Type | Required | Default | Description |
 | --- | --- | --- | --- | --- |
-| `elementOrElements` | Ref (HTMLElement), Array | yes | none | <p>A reactive reference to the DOM element you're conditionally displaying.</p><p>`elementOrElements` Can also be a reactive reference to an array of DOM elements. See the [How to format your condition](#how-to-format-your-condition) section for more guidance on conditionally displaying specific elements in a reactive array.</p> |
-| `condition` | Ref (Boolean), Function, Object | yes | none | <p>Indicates whether or no a specific `element` should be displayed.</p><p>See the [How to format your condition](#how-to-format-your-condition) section for more guidance on formatting your condition.</p> |
+| `elementOrListOrPlane` | See description | yes | none | <p>A reactive reference to the DOM element or elements you're binding data to.</p><p>`elementOrListOrPlane` can be one of the following types: </p><ul><li>HTMLElement</li><li>Array of HTMLElements</li><li>`Plane` of HTMLElements</li><li>Reactive reference to any of the above types</li></ul><p>See the [How to format your condition](#how-to-format-your-condition) section for more guidance on conditionally displaying specific elements in a reactive array.</p> |
+| `condition` | Ref (Boolean), Function, Object | yes | none | <p>Indicates whether or not `elementOrListOrPlane` should be displayed.</p><p>See the [How to format your condition](#how-to-format-your-condition) section for more guidance on formatting your condition.</p> |
 :::
 
 
@@ -111,16 +111,16 @@ export function useTablist (...) {
 
   show(
     // Reactive array of tab panel elements
-    panels.targets,
+    panels.elements,
     {
-      // selectedPanel is a reactive reference to the index
-      // of the currently selected tab panel.
+      // `selected.value.newest` is a reactive reference to the
+      // index of the currently selected tab panel.
       //
       // Every panel should be hidden, except for the panel
       // whose index is a match.
       //
-      // This getValue should run again each time
-      // selectedPanel changes.
+      // This `get` callback should run again each time
+      // `selected.value.newest` changes.
       get: index => index === selected.value.newest,
       watchSource: () => selected.value.newest,
     },
@@ -129,7 +129,41 @@ export function useTablist (...) {
 
   ...
 }
+```
+:::
 
+Finally, let's look at how this all works with a `Plane`, the Baleada Features data structure for an array of arrays of elements.
+
+The value format for a `Plane` is almost identical to the format for arrays of elements. When you only need to conditionally display the elements in the `Plane` once, you can pass the **value getter**. The value getter for a `Plane` is a callback function that receives two arguments: the `row` index (Number) and `column` index (Number) of a given element in your `Plane` of elements. It should return `true` for elements that should be shown, and `false` for elements that should be hidden.
+
+Here's an example of how that would look:
+
+:::
+```js
+import { show } from '@baleada/vue-features'
+
+export function myComposable (...) {
+  ...
+
+  show(
+    // Reactive `Plane` of elements
+    myPlane,
+    {
+      get: (row, column) => {
+        // Based on `row` and `column`, return `true` for
+        // elements that should be shown, and `false` for
+        // elements that should be hidden.
+      },
+      watchSource: [
+        // Any watch sources that should cause the `get` callback
+        // to re-run and conditionally display each element again.
+      ],
+    },
+    options
+  )
+
+  ...
+}
 ```
 :::
 
@@ -142,11 +176,87 @@ As outlined above, `show` accepts an optional `options` object as its final para
 
 You can use this `transition` property to configure an enter/leave transition that will more smoothly show and hide your element or elements.
 
-The API for `show`'s `transition` property is inspired by the API of [Vue's `Transition` component](https://v3.vuejs.org/guide/transitions-enterleave.html):
+The API for `show`'s `transition` option is inspired by the API of [Vue's `Transition` component](https://vuejs.org/guide/built-ins/transition.html). Both CSS and JS transitions are supported.
+
+The value of the `transition` property should be an object configuring your transition. That object can have these properties:
+- `appear`
+- `enter`
+- `leave`
+
+Each property of your transition config can either be a CSS transition or a JS transition, whose formats are explained in more detail in the next section.
+
+Before diving in to transition formats, note a few points:
+- It's possible to mix and match transitions, i.e. you can have a CSS `enter` transition and a JS `leave` transition.
+- It's not required to define a transition for every state, i.e. you can define an `enter` transition with no `leave` transition.
+- Just like with Vue's `Transition` component, you can set `appear` to `true`, and your element will use the `enter` transition when it first appears.
+
+Now, let's go through the CSS and JS transition formats individually.
+
+
+:::
+#### CSS transitions
+:::
+
+CSS transitions are configured by objects. Here's a breakdown of the CSS transition object:
+
+::: ariaLabel="CSS transition object breakdown" classes="wide-5"
+| Property | Type | Required | Default | Description |
+| --- | --- | --- | --- | --- |
+| `from` | String | yes | none | One or more space-separated CSS classes that should be added to the target element to apply initial styles. |
+| `active` | String | yes | none | One or more space-separated CSS classes that should be added to the target element one frame after the `from` classes get added, and kept on the element until it finishes transitioning. |
+| `to` | String | yes | none | One or more space-separated CSS classes that should be added to the target element to define where it transitions to. |
+| `end` | Function | no | none | A callback that `show` will call with no arguments, one animation frame after the transition ends, in the same animation frame that `active` and `to` classes are removed. Useful for performing post-transition side effects, like focusing a form control. |
+| `cancel` | Function | no | none | A callback that `show` will call with no arguments, one animation frame after the transition cancels. Useful for performing post-cancel side effects, like focusing a form control. |
+:::
+
+Here's a more detailed breakdown of transition timing:
+1. `from` classes get added
+2. One animation frame later, `active` classes get added
+3. One animation frame later, `from` classes get removed, and `to` classes get added
+4. Transition eventually ends
+5. One animation frame later, `active` and `to` classes get removed, and `show` calls the optional `end` callback
+
+Cancel timing:
+1. Transition is canceled by setting `transition-property` to `none` and removing `from`, `active`, and `to` classes
+2. One animation frame later, `transition-property` is restored to its original value (if any) and `show` calls the optional `cancel` callback
+3. `show` never calls the optional `end` callback
 
 
 :::
 ```js
+import { show } from '@baleada/vue-features'
+
+show(
+  myElement,
+  myCondition,
+  {
+    transition: {
+      // Example fade-in transition using Tailwind classes
+      enter: {
+        from: 'opacity-0 scale-[98%]',
+        active: 'transition ease-out duration-150',
+        to: 'opacity-100 scale-100',
+
+        // Optional callbacks for post-transition side effects
+        end: () => myElement.value.focus(),
+        cancel: () => someOtherElement.value.focus(),
+      }
+    }
+  }
+)
+```
+:::
+
+
+:::
+#### JS transitions
+:::
+
+
+:::
+```js
+import { show } from '@baleada/vue-features'
+
 show(
   required,
   {
@@ -179,7 +289,9 @@ If you're transitioning a single element, the `before`, `after` and `cancel` hoo
 
 :::
 ```js
-// Single element transition hooks
+import { show } from '@baleada/vue-features'
+
+// Element transition hooks
 show(
   ...
   {
@@ -200,7 +312,9 @@ If you're transitioning multiple elements, the `before`, `after` and `cancel` ho
 
 :::
 ```js
-// Multiple element transition hooks
+import { show } from '@baleada/vue-features'
+
+// List transition hooks
 show(
   ...
   {
@@ -223,6 +337,8 @@ If you'd like to use your `enter` functions for `appear` transitions, you can ei
 
 :::
 ```js
+import { show } from '@baleada/vue-features'
+
 show(
   required,
   {
@@ -272,3 +388,7 @@ Here's a breakdown of exactly when each transition hooks gets called:
 | `leave.cancel` | When reactive data changes cause `show` to show the element after `leave.active` starts AND before the `done` function has been called inside `leave.active`. |
 :::
 
+
+:::
+### Type-safe transitions
+:::
