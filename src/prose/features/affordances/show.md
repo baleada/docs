@@ -56,12 +56,12 @@ And here's a breakdown of the `options` object:
 ::: ariaLabel="show options object breakdown" classes="wide-5"
 | Property | Type | Required | Default | Description |
 | --- | --- | --- | --- | --- |
-| `transition` | Object | no | none | <p>An object that contains methods and/or CSS classes for enter/leave transitions.</p><p>See the [How to format enter/leave transitions](#how-to-format-enter-leave-transitions) section for more guidance.</p> |
+| `transition` | Object | no | none | <p>An object that contains methods and/or CSS classes for enter/leave transitions.</p><p>See the [How to format enter/leave transitions](#how-to-format-enter-leave-transitions) section for more guidance, including tips for type-safe transition definitions using TypeScript.</p> |
 :::
 
 
 :::
-#### How to format your condition
+### How to format your condition
 :::
 
 There are several different ways to format the condition that `show` uses to determine whether or not an element should be displayed.
@@ -190,7 +190,7 @@ Before diving in to transition formats, note a few points:
 - It's not required to define a transition for every state, i.e. you can define an `enter` transition with no `leave` transition.
 - Just like with Vue's `Transition` component, you can set `appear` to `true`, and your element will use the `enter` transition when it first appears.
 
-Now, let's go through the CSS and JS transition formats individually.
+Now, let's go through the CSS and JS transition formats individually, and finish up by looking at type-safe transitions for TypeScript users.
 
 
 :::
@@ -252,6 +252,23 @@ show(
 #### JS transitions
 :::
 
+JS transitions are configured by objects. Here's a breakdown of the JS transition object:
+
+::: ariaLabel="JS transition object breakdown" classes="wide-5"
+| Property | Type | Required | Default | Description |
+| --- | --- | --- | --- | --- |
+| `before` | Function | no | none | <p>Performs side effects before the transition starts.</p><p>See the list below this table for more info on `before` parameters.</p> |
+| `active` | Function | no | none | <p>Performs the bulk of JS transition work</p><p>**Important:** in addition to the parameters explained below this table, `active` receives a final `done` parameter.</p><p>`done` is a callback that you should call with no arguments when the JS transition has been completed.</p> |
+| `after` | Function | no | none | <p>Performs side effects after the transition ends.</p><p>See the list below this table for more info on `before` parameters.</p> |
+| `cancel` | Function | no | none | <p>Performs side effects after the transition cancels.</p><p>See the list below this table for more info on `before` parameters.</p> |
+:::
+
+More info on the parameters passed to these callbacks:
+- When you're transitioning a single element, the callbacks receive no parameters.
+- When you're transitioning a list, the callbacks get called for each element, and the receive the index (number) of the element currently being transitioned.
+- When you're transitioning a `Plane`, the callbacks get called for each element, and they receive the row (Number) and column (Number) of the element currently being transitioned.
+- Remember that `active` receives its `done` parameter _after_ any index/row/column parameters. Call `done` with no arguments when the JS transition has been completed.
+
 
 :::
 ```js
@@ -285,94 +302,10 @@ show(
 ```
 :::
 
-If you're transitioning a single element, the `before`, `after` and `cancel` hooks receive no arguments. The `active` hook receives one argument: `done`, a function that you should call with no arguments when you've finished transitioning the element.
+Here's a more detailed breakdown of JS transition timing:
 
-:::
-```js
-import { show } from '@baleada/vue-features'
-
-// Element transition hooks
-show(
-  ...
-  {
-    transition: {
-      enter: {
-        before: () => {...},
-        active: (done) => {...},
-        after: () => {...},
-        cancel: () => {...},
-      }
-    }
-  }
-)
-```
-:::
-
-If you're transitioning multiple elements, the `before`, `after` and `cancel` hooks each receive only one argument: the `index` (Number) of the elements that is currently being transitioned. The `active` hook receives two arguments: the `index` (Number) of the elements that is currently being transitioned, and `done`, a function that you should call with no arguments when you've finished transitioning the element.
-
-:::
-```js
-import { show } from '@baleada/vue-features'
-
-// List transition hooks
-show(
-  ...
-  {
-    transition: {
-      enter: {
-        before: (index) => {...},
-        active: (index, done) => {...},
-        after: (index) => {...},
-        cancel: (index) => {...},
-      }
-    }
-  }
-)
-```
-:::
-
-None of the transition hooks should have a return value, and all of them are optional.
-
-If you'd like to use your `enter` functions for `appear` transitions, you can either pass those same functions in the `appear` object, or you can simply replace the `appear` object with `true`:
-
-:::
-```js
-import { show } from '@baleada/vue-features'
-
-show(
-  required,
-  {
-    transition: {
-      appear: true,
-      // Enter functions will be called when the element
-      // is displayed for the first time.
-      enter: { ... },
-      ...
-    }
-  }
-)
-```
-:::
-
-<!-- ::: type="info"
-[Check out this REPL]() for an example of how to use Baleada Logic's [Animateable](/docs/logic/classes/Animateable) and [Delayable](/docs/logic/classes/Delayable) classes to write JavaScript animations inside your `transition` hooks.
-::: -->
-
-::: type="warning"
-`show`'s `transition` feature only supports JavaScript animations right now.
-
-Support for CSS transitions and animations, like you see in the Vue's `Transition` component, will be explored in the future.
-:::
-
-
-:::
-### Transition hook timing
-:::
-
-Here's a breakdown of exactly when each transition hooks gets called:
-
-::: ariaLabel="transition hook timing"
-| Hook | When it's called |
+::: ariaLabel="JS transition hook timing"
+| Callback | When it's called |
 | --- | --- |
 | `appear.before` | Right before the element's `display` property is changed to show the element for the first time. |
 | `appear.active` | Right after the element's `display` property is changed to show the element for the first time. |
@@ -390,5 +323,72 @@ Here's a breakdown of exactly when each transition hooks gets called:
 
 
 :::
-### Type-safe transitions
+#### Type-safe transitions
+:::
+
+Baleada Features exports a `defineTransition` helper function that you can use to define type-safe transition configurations for `appear`, `enter`, and `leave`.
+
+`defineTransition` is a no-op—you pass in a transition configuration object as its first and only parameter, and the exact same object gets returned.
+
+Type safety comes from the generic types that you can pass to `defineTransition`.
+
+::: ariaLabel="defineTransition generic types breakdown"
+| Generic | Required | Default | Description |
+| --- | --- | --- | --- |
+| `BindElement` | yes | none | <p>A type that describes the type of element being transitioned. Valid types include:</p><ul><li>`HTMLElement`</li><li>`HTMLElement[]`</li><li>`HTMLElement[][]`</li><li>Vue's `Ref` type, with any of the above types passed in as a generic</li></ul><p>Normally, you'll use the `typeof` operator to infer this type—see example below this table.</p> |
+| `TransitionType` | yes | none | A string literal—it can be `'css'` or `'js'`, depending on what kind of transition you're configuring. |
+:::
+
+Here's a code example:
+:::
+```ts
+import { ref } from 'vue'
+import {
+  show,
+  defineTransition,
+  useElementApi
+} from '@baleada/vue-features'
+
+const element = ref<HTMLElement>()
+const elementIsShown = ref(false)
+
+show(
+  element,
+  elementIsShown,
+  {
+    transition: {
+      appear: true,
+      // It's recommended to use the `typeof` operator to infer
+      // the first generic type, instead of manually passing a
+      // valid type.
+      //
+      // The second generic type defines `enter` as a CSS transition.
+      enter: defineTransition<typeof element, 'css'>({
+        // `from`, `active`, and `to` are type-checked as strings
+        from: ..., active: ..., to: ...,
+        // `end` and `cancel` are type checked as functions
+        end: ..., cancel: ...,
+      }),
+
+      // You can pass 'js' as the second generic to define a
+      // type-safe JS transition:
+      leave: defineTransition<typeof element, 'js'>({
+        // All properties are type-checked as functions
+        before: () => { ... },
+        after: () => { ... },
+        cancel: () => { ... },
+        // The `active` function actually has a few different
+        // signatures. For single elements, it just receives
+        // the `done` callback as its first and only parameter.
+        //
+        // For lists and planes, though, it can receive the `index`
+        // or the `row` & `column` as parameters, with the `done`
+        // callback always passed as the last parameter. TypeScript
+        // will correctly type-check all three of these variations
+        // with the help of your generic types.
+        active: (done) => { ... },
+    }
+  }
+)
+```
 :::
