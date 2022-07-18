@@ -58,21 +58,10 @@
 </template>
 
 <script lang="ts">
-import { ref, watch, readonly, nextTick, onMounted, defineComponent } from 'vue'
-import { useTablist } from '@baleada/vue-features'
-import { useAnimateable, useDelayable, useFetchable } from '@baleada/vue-composition'
+import { ref, readonly, defineComponent } from 'vue'
+import { defineTransition, useTablist } from '@baleada/vue-features'
 import { useStore } from '../composition'
-import { verouEaseOut } from '@baleada/logic'
 // import type { Organization } from '@alexvipond/mulago-foundation-portfolio'
-
-type TransitionMetadatum = {
-  fadeIn: ReturnType<typeof useAnimateable>,
-  fadeOut: ReturnType<typeof useAnimateable>,
-  delayable: ReturnType<typeof useDelayable>,
-  stopWatchingStatus: {
-    [animation in 'fadeOut' | 'fadeIn']?: ReturnType<typeof watch>
-  }
-}
 
 const totalTabs = 3
 
@@ -110,74 +99,19 @@ export default defineComponent({
       },
     ])
 
-    const fadeOutCreate = () => useAnimateable(
-            [
-              { progress: 0, properties: { opacity: 1 } },
-              { progress: 1, properties: { opacity: 0 } },
-            ],
-            { duration: 75, timing: verouEaseOut }
-          ),
-          fadeInCreate = () => useAnimateable(
-            [
-              { progress: 0, properties: { opacity: 0 } },
-              { progress: 1, properties: { opacity: 1 } },
-            ],
-            { duration: 100, timing: verouEaseOut }
-          ),
-          delayableCreate = () => useDelayable(() => {}, { delay: 130 }),
-          transitionMetadata: TransitionMetadatum[] = new Array(totalTabs).fill(0).map(() => ({
-            fadeIn: fadeInCreate(),
-            fadeOut: fadeOutCreate(),
-            delayable: delayableCreate(),
-            stopWatchingStatus: {},
-          })),
-          tablist = readonly(useTablist({
+    const tablist = readonly(useTablist({
             transition: {
               panel: elements => ({
                 appear: true,
-                enter: defineTransition => defineTransition('js', {
-                  active: (index, done) => {
-                    transitionMetadata[index].stopWatchingStatus.fadeIn = watch(
-                      [() => transitionMetadata[index].fadeIn.value.status],
-                      () => {
-                        if (transitionMetadata[index].fadeIn.value.status === 'played') {
-                          transitionMetadata[index].stopWatchingStatus.fadeIn()
-                          done()
-                        }
-                      },
-                    )
-
-                    transitionMetadata[index].delayable.value.effect = () => {
-                      nextTick(() => transitionMetadata[index].fadeIn.value.play(({ properties: { opacity: { interpolated: opacity } } }) => (elements.value[index].style.opacity = `${opacity}`)))
-                    }
-                    transitionMetadata[index].delayable.value.delay()
-                  },
-                  cancel: (index) => {
-                    transitionMetadata[index].delayable.value.stop()
-                    transitionMetadata[index].stopWatchingStatus.fadeIn()
-                    transitionMetadata[index].fadeIn.value.stop()
-                    elements.value[index].style.opacity = '0'
-                  }
+                enter: defineTransition<typeof elements, 'css'>({
+                  from: 'opacity-0',
+                  active: 'transition ease-out duration-5',
+                  to: 'opacity-100',
                 }),
-                leave: defineTransition => defineTransition('js', {
-                  active: (index, done) => {
-                    transitionMetadata[index].stopWatchingStatus.fadeOut = watch(
-                      [() => transitionMetadata[index].fadeOut.value.status],
-                      () => {
-                        if (transitionMetadata[index].fadeOut.value.status === 'played') {
-                          transitionMetadata[index].stopWatchingStatus.fadeOut()
-                          done()
-                        }
-                      },
-                    )
-        
-                    transitionMetadata[index].fadeOut.value.play(({ properties: { opacity: { interpolated: opacity } } }) => (elements.value[index].style.opacity = `${opacity}`))
-                  },
-                  cancel: (index) => {
-                    transitionMetadata[index].stopWatchingStatus.fadeOut()
-                    transitionMetadata[index].fadeOut.value.stop()
-                    elements.value[index].style.opacity = '1'
-                  },
+                leave: defineTransition<typeof elements, 'css'>({
+                  from: 'opacity-100',
+                  active: 'transition ease-in duration-5',
+                  to: 'opacity-0',
                 }),
               })
             }
