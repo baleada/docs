@@ -205,16 +205,18 @@ CSS transitions are configured by objects. Here's a breakdown of the CSS transit
 | `from` | String | yes | none | One or more space-separated CSS classes that should be added to the target element to apply initial styles. |
 | `active` | String | yes | none | One or more space-separated CSS classes that should be added to the target element one frame after the `from` classes get added, and kept on the element until it finishes transitioning. |
 | `to` | String | yes | none | One or more space-separated CSS classes that should be added to the target element to define where it transitions to. |
+| `start` | Function | no | none | A callback that `show` will call with no arguments, right before adding `from` classes. Useful for performing pre-transition side effects. |
 | `end` | Function | no | none | A callback that `show` will call with no arguments, one animation frame after the transition ends, in the same animation frame that `active` and `to` classes are removed. Useful for performing post-transition side effects, like focusing a form control. |
 | `cancel` | Function | no | none | A callback that `show` will call with no arguments, one animation frame after the transition cancels. Useful for performing post-cancel side effects, like focusing a form control. |
 :::
 
 Here's a more detailed breakdown of transition timing:
-1. `from` classes get added
-2. One animation frame later, `active` classes get added
-3. One animation frame later, `from` classes get removed, and `to` classes get added
-4. Transition eventually ends
-5. One animation frame later, `active` and `to` classes get removed, and `show` calls the optional `end` callback
+1. The optional `start` callback gets called
+2. `from` classes get added
+3. One animation frame later, `active` classes get added
+4. One animation frame later, `from` classes get removed, and `to` classes get added
+5. Transition eventually ends
+6. One animation frame later, `active` and `to` classes get removed, and `show` calls the optional `end` callback
 
 Cancel timing:
 1. Transition is canceled by setting `transition-property` to `none` and removing `from`, `active`, and `to` classes

@@ -1,21 +1,24 @@
 <template>
   <section
-    class="mx-auto with-max-w flex flex-col items-center p-6 rounded-4 shadow-4"
+    class="mx-auto with-max-w flex flex-col items-center gap-5 p-6 rounded-4 shadow-4"
     :class="[
       store.statuses.darkTheme === 'enabled'
         ? 'bg-primary-gray-80'
         : 'bg-primary-20'
     ]"
   >
-    <button
-      @click="toggle"
-      class="btn btn-grows btn-raised"
-      :class="[
-        store.statuses.darkTheme === 'enabled' && 'bg-primary-gray-70' || 'bg-white'
-      ]"
-    >
-      Toggle display
-    </button>
+    <section class="grid grid-cols-1 md:grid-cols-2 gap-5 items-center justify-center">
+      <button
+        @click="toggle"
+        class="mx-auto md:mr-0 btn btn-grows btn-raised whitespace-nowrap"
+        :class="[
+          store.statuses.darkTheme === 'enabled' && 'bg-primary-gray-70' || 'bg-white'
+        ]"
+      >
+        Toggle display
+      </button>
+      <pre class="px-2 py-1 m-0"><code class="mr-auto">status: '{{ status }}'</code></pre>
+    </section>
     <div
       role="img"
       ref="el"
@@ -28,7 +31,7 @@
 
 <script lang="ts">
 import { ref, watch } from 'vue'
-import { show } from '@baleada/vue-features'
+import { show, defineTransition } from '@baleada/vue-features'
 import { useStore } from '../composition'
 import { useAnimateable } from '@baleada/vue-composition'
 import { verouEase } from '@baleada/logic'
@@ -36,10 +39,10 @@ import { verouEase } from '@baleada/logic'
 export default {
   name: 'ExampleShow',
   setup () {
-    const el = ref(null),
+    const el = ref<HTMLElement>(),
           isDisplayed = ref(false),
           toggle = () => (isDisplayed.value = !isDisplayed.value),
-          appear = useAnimateable(
+          fancyEnter = useAnimateable(
             [
               // Grow a bit
               { progress: 0, properties: { scale: 0 }, timing: verouEase },
@@ -55,91 +58,71 @@ export default {
             ],
             { duration: 2000, timing: verouEase }
           ),
-          grow = useAnimateable(
-            [
-              { progress: 0, properties: { scale: 0 } },
-              { progress: 1, properties: { scale: 1 } },
-            ],
-            { duration: 250, timing: verouEase },
-          ),
-          shrink = useAnimateable(
-            [
-              { progress: 0, properties: { scale: 1 } },
-              { progress: 1, properties: { scale: 0 } },
-            ],
-            { duration: 250, timing: verouEase },
-          ),
-          stopWatchingStatus: {
-            [animation in 'appear' | 'grow' | 'shrink']?: ReturnType<typeof watch>
-          } = {}
+          status = ref<
+            'idle'
+            | 'appearing/entering'
+            | 'appeared/entered'
+            | 'cancelled appear/enter'
+            | 'leaving'
+            | 'left'
+            | 'cancelled leave'
+          >('idle')
+      
+    let stopWatchingStatus: ReturnType<typeof watch>
 
     show(
       el,
       isDisplayed,
       {
         transition: {
-          appear: {
-            active ({ element, done }) {
-              stopWatchingStatus.appear = watch(
-                [() => appear.value.status],
+          // Setting `appear` to `true` to reuse `enter` transition
+          appear: true,
+
+          // JS enter transition
+          enter: defineTransition<typeof el, 'js'>({
+            before () {
+              status.value = 'appearing/entering'
+            },
+            active (done) {
+              stopWatchingStatus = watch(
+                [() => fancyEnter.value.status],
                 () => {
-                  if (appear.value.status === 'played') {
-                    stopWatchingStatus.appear()
+                  if (fancyEnter.value.status === 'played') {
+                    stopWatchingStatus()
                     done()
                   }
                 },
               )
-
-              appear.value.play(({ properties: { scale, rotate } }) => {
-                element.style.transform = `scale(${scale.interpolated}) rotate(${rotate.interpolated}deg)`
+              fancyEnter.value.play(({ properties: { scale, rotate } }) => {
+                el.value.style.transform = `scale(${scale.interpolated}) rotate(${rotate.interpolated}deg)`
               })
             },
-            cancel ({ element }) {
-              stopWatchingStatus.appear()
-              appear.value.stop()
-              element.style.transform = `rotate(0deg)`
+            after () {
+              status.value = 'appeared/entered'
             },
-          },
-          enter: {
-            active ({ element, done }) {
-              stopWatchingStatus.grow = watch(
-                [() => grow.value.status],
-                () => {
-                  if (grow.value.status === 'played') {
-                    stopWatchingStatus.grow()
-                    done()
-                  }
-                },
-              )
+            cancel () {
+              stopWatchingStatus()
+              fancyEnter.value.stop()
+              el.value.style.transform = `rotate(0deg)`
+              status.value = 'cancelled appear/enter'
+            },
+          }),
 
-              grow.value.play(({ properties: { scale } }) => (element.style.transform = `scale(${scale.interpolated})`))
+          // CSS leave transition
+          leave: defineTransition<typeof el, 'css'>({
+            from: 'scale-100',
+            active: 'transition duration-[500ms] ease-in',
+            to: 'scale-0',
+            start: () => {
+              status.value = 'leaving'
             },
-            cancel ({ element }) {
-              stopWatchingStatus.grow()
-              grow.value.stop()
-              element.style.transform = 'scale(0)'
+            end: () => {
+              status.value = 'left'
             },
-          },
-          leave: {
-            active ({ element, done }) {
-              stopWatchingStatus.shrink = watch(
-                [() => shrink.value.status],
-                () => {
-                  if (shrink.value.status === 'played') {
-                    stopWatchingStatus.shrink()
-                    done()
-                  }
-                },
-              )
-
-              shrink.value.play(({ properties: { scale } }) => (element.style.transform = `scale(${scale.interpolated})`))
-            },
-            cancel ({ element }) {
-              stopWatchingStatus.shrink()
-              shrink.value.stop()
-              element.style.transform = 'scale(1)'
-            },
-          },
+            cancel: () => {
+              status.value = 'cancelled leave'
+            }
+          }),
         }
       }
     )
@@ -147,6 +130,7 @@ export default {
     return {
       el,
       isDisplayed,
+      status,
       toggle,
       store: useStore(),
     }
