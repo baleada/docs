@@ -30,18 +30,18 @@ To use Baleada Utilities, include the plugin in the `plugins` array of your Tail
 :::
 ```js
 // tailwind.config.js
-const { plugin: utilities } = require('@baleada/tailwind-utilities')
-
 module.exports = {
   plugins: [
-    utilities
+    require('@baleada/tailwind-utilities').plugin
   ]
 }
 ```
 :::
 
 By default, this will add all available utilities, which fall into these categories:
-- **Center** utilities, which make it super easy to center elements or their contents, without having to think about flex vs. grid, flex direction, etc.
+- **Center** utilities, which make it easy to center elements or their contents, regardless of flex vs. grid, flex direction, etc.
+- **Corner** utilities, which make it easy to place elements or their contents in a specific corner, regardless of flex vs. grid, flex direction, etc.
+- **Edge** utilities, which make it easy to place elements or their contents in the center of a specific edge, regardless of flex vs. grid, flex direction, etc.
 - **Dimension** utilities, which are an excellent shorthand for creating elements with the same height and width.
 
 We'll cover those categories and their classes [below](#classes), but first, let's look at how you can configure Baleada Utilities to disable categories of utilities that you don't want.
@@ -51,8 +51,8 @@ To do that, call the plugin function with options. The plugin accepts two option
 ::: ariaLabel="Baleada Utilities plugin options"
 | Option | Type | Default | Description |
 | --- | --- | --- | --- |
-| `only` | Array | `['center', 'dimension']` | A list of the utility categories that should be included. Right now, categories are just `center` and `dimension`, but more may be added in the future. |
-| `except` | Array | `[]` | <p>A list of the utility categories that should be excluded. Again, categories are just `center` or `dimension`, but more may be added in the future.</p><p>`except` overrides `only`.</p> |
+| `only` | Array | `['center', 'corner', 'edge', 'dimension']` | A list of the utility categories that should be included. The default value lists all possible options. |
+| `except` | Array | `[]` | A list of the utility categories that should be excluded. `except` overrides `only`. |
 :::
 
 Here's a code example of how to use these options:
@@ -60,12 +60,10 @@ Here's a code example of how to use these options:
 :::
 ```js
 // tailwind.config.js
-const { plugin: utilities } = require('@baleada/tailwind-utilities')
-
 module.exports = {
   plugins: [
-    utilities({
-      // Enable dimension utilities, but not center utilities
+    require('@baleada/tailwind-utilities').plugin({
+      // Enable only dimension utilities
       only: ['dimension'],
     })
   ]
@@ -79,7 +77,9 @@ module.exports = {
 :::
 
 Utility classes can be divided into these categories:
-- **Center** utilities, which make it super easy to center elements or their contents, without having to think about flex vs. grid, flex direction, etc.
+- **Center** utilities, which make it easy to center elements or their contents, regardless of flex vs. grid, flex direction, etc.
+- **Corner** utilities, which make it easy to place elements or their contents in a specific corner, regardless of flex vs. grid, flex direction, etc.
+- **Edge** utilities, which make it easy to place elements or their contents in the center of a specific edge, regardless of flex vs. grid, flex direction, etc.
 - **Dimension** utilities, which are an excellent shorthand for creating elements with the same height and width.
 
 All classes have a total specificity of 1, making them easy to override if needed.
@@ -99,6 +99,64 @@ Here's a list of center utilities and their features:
 | `.center` | <p>Apply to an element to vertically center it within its `.flex` or `.grid` parent.</p><p>Or, apply to an `.absolute` element to center it within its closest positioned ancestor.</p> |
 | `.center-x` | <p>Apply to an element to horizontally center it within its `.flex` or `.grid` parent.</p><p>Or, apply to an `.absolute` element to center it horizontally within its closest positioned ancestor.</p> |
 | `.center-y` | <p>Apply to an element to vertically center it within its `.flex` or `.grid` parent.</p><p>Or, apply to an `.absolute` element to center it vertically within its closest positioned ancestor.</p> |
+:::
+
+::: type="info"
+Centering always works as expected, regardless of flex direction.
+:::
+
+::: type="info"
+As often as possible, center utilities avoid using the `margin` property, so that you can apply positive or negative margins to fine-tune placement as needed.
+
+`margin` is only used to center items horizontally in `.flex` containers, and vertically in `.flex.flex-col` containers.
+:::
+
+
+:::
+### Corner
+:::
+
+Here's a list of corner utilities and their features:
+
+::: ariaLabel="Corner utilities and their features"
+| Utility class | Features |
+| --- | --- |
+| `.corner-all-<corner>` | <p>Apply to a `.flex` or `.grid` element to place all of its elements in a specific corner.</p><p>Replace `<corner>` with `t-l`, `t-r`, `b-r`, or `b-l`.</p>|
+| `.corner-<corner>` | <p>Apply to an element to place it in a specific corner of its `.flex` or `.grid` parent.</p><p>Or, apply to an `.absolute` element to place it in a specific corner of its closest positioned ancestor.</p><p>Replace `<corner>` with `t-l`, `t-r`, `b-r`, or `b-l`.</p> |
+:::
+
+::: type="info"
+Cornering always works as expected, regardless of flex direction.
+:::
+
+::: type="info"
+As often as possible, corner utilities avoid using the `margin` property, so that you can apply positive or negative margins to fine-tune placement as needed.
+
+`margin` is only used to align items horizontally in `.flex` containers, and vertically in `.flex.flex-col` containers.
+:::
+
+
+:::
+### Edge
+:::
+
+Here's a list of edge utilities and their features:
+
+::: ariaLabel="Edge utilities and their features"
+| Utility class | Features |
+| --- | --- |
+| `.edge-all-<side>` | <p>Apply to a `.flex` or `.grid` element to center all of its elements on a specific side.</p><p>Replace `<side>` with `t`, `r`, `b`, or `l`.</p><p>`.edge-all-t` is the equivalent of `.center-all-x`, and `.edge-all-l` is the equivalent of `.center-all-y`.</p> |
+| `.edge-<side>` | <p>Apply to an element to center it perfectly on a specific side of its `.flex` or `.grid` parent.</p><p>Or, apply to an `.absolute` element to center it on a specific side of its closest positioned ancestor.</p><p>Replace `<side>` with `t`, `r`, `b`, or `l`.</p><p>`.edge-t` is the equivalent of `.center-x`, and `.edge-l` is the equivalent of `.center-y`.</p> |
+:::
+
+::: type="info"
+Centering and edge direction always works as expected, regardless of flex direction.
+:::
+
+::: type="info"
+As often as possible, edge utilities avoid using the `margin` property, so that you can apply positive or negative margins to fine-tune placement as needed.
+
+`margin` is only used to center items horizontally in `.flex` containers, and vertically in `.flex.flex-col` containers.
 :::
 
 
@@ -145,8 +203,6 @@ Or, you can add a `dimension` key to your `theme` configuration. `dimension` is 
 :::
 ```js
 // tailwind.config.js
-const { plugin: utilities } = require('@baleada/tailwind-utilities')
-
 module.exports = {
   theme: {
     dimension: {
@@ -154,7 +210,7 @@ module.exports = {
     }
   },
   plugins: [
-    utilities
+    require('@baleada/tailwind-utilities').plugin
   ]
 }
 ```
@@ -175,7 +231,13 @@ To type check your dimension theme configuration, import the `defineDimensionCon
 ```ts
 // @ts-check
 // tailwind.config.js
-const { plugin: utilities, defineDimensionConfig } = require('@baleada/tailwind-utilities')
+const {
+  // Most Tailwind packages export their plugin as the default export,
+  // so this package does the same. But it also exports the plugin
+  // as a named `plugin` export, because named exports are great 👍 
+  plugin: utilities,
+  defineDimensionConfig
+} = require('@baleada/tailwind-utilities')
 
 /** @type {import('tailwindcss').Config} */
 module.exports = {
