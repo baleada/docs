@@ -58,7 +58,7 @@ Each variant or negated variant adds 1 specificity point to the CSS class.
 :::
 
 :::
-```
+```bash
 npm install @baleada/tailwind-ancestor-variants
 ```
 :::
@@ -189,7 +189,7 @@ When passing options to the plugin function, you'll get type checking automatica
 To type check your theme configuration, import the `defineConfig` function, which is a no-op that just enforces types:
 
 :::
-```js
+```ts
 // @ts-check
 // tailwind.config.js
 const {
