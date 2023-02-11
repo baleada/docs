@@ -7,6 +7,8 @@ order: 0
 
 Baleada Utilities is a Tailwind plugin designed to add a small library of Tailwind utility classes.
 
+[Here's a demo](https://stackblitz.com/edit/baleada-utilities?file=index.html) where you can see them all in action 🤓
+
 
 :::
 ## Installation
