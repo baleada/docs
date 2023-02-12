@@ -30,9 +30,11 @@ To use Baleada Utilities, include the plugin in the `plugins` array of your Tail
 :::
 ```js
 // tailwind.config.js
+const { plugin: utilities } = require('@baleada/tailwind-utilities')
+
 module.exports = {
   plugins: [
-    require('@baleada/tailwind-utilities').plugin
+    utilities
   ]
 }
 ```
@@ -42,7 +44,8 @@ By default, this will add all available utilities, which fall into these categor
 - **Center** utilities, which make it easy to center elements or their contents, regardless of flex vs. grid, flex direction, etc.
 - **Corner** utilities, which make it easy to place elements or their contents in a specific corner, regardless of flex vs. grid, flex direction, etc.
 - **Edge** utilities, which make it easy to place elements or their contents in the center of a specific edge, regardless of flex vs. grid, flex direction, etc.
-- **Dimension** utilities, which are an excellent shorthand for creating elements with the same height and width.
+- **Dimension** utilities, which are shorthand for creating elements with the same height and width.
+- **Stretch** utilities, which are shorthand for making an element full height or width while setting a max height or width.
 
 We'll cover those categories and their classes [below](#classes), but first, let's look at how you can configure Baleada Utilities to disable categories of utilities that you don't want.
 
@@ -60,9 +63,11 @@ Here's a code example of how to use these options:
 :::
 ```js
 // tailwind.config.js
+const { plugin: utilities } = require('@baleada/tailwind-utilities')
+
 module.exports = {
   plugins: [
-    require('@baleada/tailwind-utilities').plugin({
+    utilities({
       // Enable only dimension utilities
       only: ['dimension'],
     })
@@ -80,9 +85,11 @@ Utility classes can be divided into these categories:
 - **Center** utilities, which make it easy to center elements or their contents, regardless of flex vs. grid, flex direction, etc.
 - **Corner** utilities, which make it easy to place elements or their contents in a specific corner, regardless of flex vs. grid, flex direction, etc.
 - **Edge** utilities, which make it easy to place elements or their contents in the center of a specific edge, regardless of flex vs. grid, flex direction, etc.
-- **Dimension** utilities, which are an excellent shorthand for creating elements with the same height and width.
+- **Dimension** utilities, which are shorthand for creating elements with the same height and width.
+- **Stretch** utilities, which are shorthand for making an element full height or width while setting a max height or width.
 
-All classes have a total specificity of 1, making them easy to override if needed.
+All Baleada Utilities classes have a total specificity of 1, making them easy to override with variants and responsive classes.
+
 
 :::
 ### Center
@@ -164,7 +171,7 @@ As often as possible, edge utilities avoid using the `margin` property, so that 
 ### Dimension
 :::
 
-Dimension utilities are a shorthand for creating elements with the same height and width.
+Dimension utilities are shorthand for creating elements with the same height and width.
 
 They start with `.d-` and end with any value from your `height` or `width` theme configurations, or any arbitrary value supported by height and width utilities. You can also use `theme.dimension` to configure additional classes and values.
 
@@ -203,6 +210,8 @@ Or, you can add a `dimension` key to your `theme` configuration. `dimension` is 
 :::
 ```js
 // tailwind.config.js
+const { plugin: utilities } = require('@baleada/tailwind-utilities')
+
 module.exports = {
   theme: {
     dimension: {
@@ -210,7 +219,68 @@ module.exports = {
     }
   },
   plugins: [
-    require('@baleada/tailwind-utilities').plugin
+    utilities
+  ]
+}
+```
+:::
+
+
+:::
+### Stretch
+:::
+
+Stretch utilities are shorthand for making an element full height or width while setting a max height or width.
+
+Stretch width utilities start with `.stretch-w-`  and end with any value from your `maxWidth` theme configurations, or any arbitrary value supported by max width. You can also use `theme.stretchWidth` to configure additional classes and values.
+
+Likewise, stretch height utilities start with `.stretch-h-`  and end with any value from your `maxHeight` theme configurations, or any arbitrary value supported by max height. You can also use `theme.stretchHeight` to configure additional classes and values.
+
+:::
+```html
+<!-- This div will be 100% wide, with a max width of 24rem. -->
+<div class="stretch-w-sm"></div>
+
+<!-- This div will be 100% tall, with a max height of 1rem. -->
+<div class="stretch-h-4"></div>
+```
+:::
+
+To add custom `.stretch-w-` classes, you can extend the [`maxWidth`](https://tailwindcss.com/docs/max-width) config. Or, you can add a `stretchWidth` key to your `theme` configuration. `stretchWidth` is configured exactly like `maxWidth`:
+
+:::
+```js
+// tailwind.config.js
+const { plugin: utilities } = require('@baleada/tailwind-utilities')
+
+module.exports = {
+  theme: {
+    stretchWidth: {
+      'custom': '42px', // .stretch-w-custom
+    }
+  },
+  plugins: [
+    utilities
+  ]
+}
+```
+:::
+
+To add custom `.stretch-h-` classes, you can extend the [`maxHeight`](https://tailwindcss.com/docs/max-height) config. Or, you can add a `stretchHeight` key to your `theme` configuration. `stretchHeight` is configured exactly like `maxHeight`:
+
+:::
+```js
+// tailwind.config.js
+const { plugin: utilities } = require('@baleada/tailwind-utilities')
+
+module.exports = {
+  theme: {
+    stretchHeight: {
+      'custom': '42px', // .stretch-h-custom
+    }
+  },
+  plugins: [
+    utilities
   ]
 }
 ```
@@ -225,18 +295,17 @@ Baleada Utilities is written in TypeScript and provides full type support for co
 
 When passing options to the plugin function, you'll get type checking automatically.
 
-To type check your dimension theme configuration, import the `defineDimensionConfig` function, which is a no-op that just enforces types:
+To type check your dimension, stretch width, or stretch height theme configurations, import the no-op helper functions:
 
 :::
 ```ts
 // @ts-check
 // tailwind.config.js
 const {
-  // Most Tailwind packages export their plugin as the default export,
-  // so this package does the same. But it also exports the plugin
-  // as a named `plugin` export, because named exports are great 👍 
   plugin: utilities,
   defineDimensionConfig
+  defineStretchWidthConfig,
+  defineStretchHeightConfig,
 } = require('@baleada/tailwind-utilities')
 
 /** @type {import('tailwindcss').Config} */
@@ -250,7 +319,9 @@ module.exports = {
       // These are type errors:
       'false': false,
       42: 42,
-    })
+    }),
+    stretchWidth: defineStretchWidthConfig(...),
+    stretchHeight: defineStretchHeightConfig(...),
   },
   plugins: [utilities]
 }
@@ -262,7 +333,7 @@ module.exports = {
 ## Browser support
 :::
 
-For center utilities, you're good to go in [any browser that supports the `:where()` pseudo-selector](https://caniuse.com/css-matches-pseudo).
+For center, corner, and edge utilities, you're good to go in [any browser that supports the `:where()` pseudo-selector](https://caniuse.com/css-matches-pseudo).
 
-Dimension utilities are supported everywhere.
+Dimension and stretch utilities are supported everywhere.
 
