@@ -7,7 +7,7 @@ order: 0
 
 Baleada Utilities is a Tailwind plugin designed to add a small library of Tailwind utility classes.
 
-[Here's a demo](https://stackblitz.com/edit/baleada-utilities?file=index.html) where you can see them all in action 🤓
+[Here's a demo](https://stackblitz.com/edit/baleada-utilities?file=index.html,tailwind.config.js) where you can see them all in action 🤓
 
 
 :::
@@ -337,3 +337,155 @@ For center, corner, and edge utilities, you're good to go in [any browser that s
 
 Dimension and stretch utilities are supported everywhere.
 
+
+:::
+## Apply helper
+:::
+
+:::
+> `createApply` keeps your CSS-in-JS less complex, much more readable, and truly powered by Tailwind's full feature set.
+>
+> Use it!
+:::
+
+In Tailwind's plugin system, custom utilities and component classes get defined with a CSS-in-JS syntax.
+
+:::
+```js
+const plugin = require('tailwindcss/plugin')
+
+const myPlugin = plugin(({ addComponents }) => {
+  addComponents({
+    '.btn': {
+      display: 'flex',
+      color: 'white',
+      backgroundColor: 'rebeccapurple',
+    }
+  })
+})
+```
+:::
+
+It's a smart, super flexible solution, and it even exposes a `theme` helper to make it easier to pull in values from the user's theme configuration:
+
+:::
+```js
+const plugin = require('tailwindcss/plugin')
+
+const myPlugin = plugin(({ addComponents, theme }) => {
+  addComponents({
+    '.btn': {
+      display: 'flex',
+      color: theme('colors.white'),
+      backgroundColor: theme('colors.purple.500'),
+    }
+  })
+})
+```
+:::
+
+There's one big problem: there's no easy way handle Tailwind classes that actually apply multiple properties under the hood to support certain features.
+
+Transform is the best example—Tailwind's transform utilities don't just compile to a plain `transform` property and value. They actually set a bunch of different CSS variables and `transform` values, allowing you to easily combine multiple transformations with separate utility classes:
+
+:::
+```css
+// Compiled CSS for the `.translate-x-full` class
+.translate-x-full {
+  --tw-translate-x: 100%;
+  transform:
+    translate(var(--tw-translate-x), var(--tw-translate-y))
+    rotate(var(--tw-rotate))
+    skewX(var(--tw-skew-x))
+    skewY(var(--tw-skew-y))
+    scaleX(var(--tw-scale-x))
+    scaleY(var(--tw-scale-y));
+}
+```
+:::
+
+If you want to recreate this in your custom classes, you have to do it with CSS-in-JS manually:
+
+:::
+```js
+const plugin = require('tailwindcss/plugin')
+
+const myPlugin = plugin(({ addUtilities, theme }) => {
+  addUtilities({
+    '.center': {
+      position: 'absolute',
+      top: '50%',
+      left: '50%',
+      '--tw-translate-x': '-50%',
+      '--tw-translate-y': '-50%',
+      transform: `
+        translate(var(--tw-translate-x), var(--tw-translate-y))
+        rotate(var(--tw-rotate))
+        skewX(var(--tw-skew-x))
+        skewY(var(--tw-skew-y))
+        scaleX(var(--tw-scale-x))
+        scaleY(var(--tw-scale-y));
+      `
+    }
+  })
+})
+```
+:::
+
+That's rough! There's a better way: use `@apply` to handle it all for you:
+
+:::
+```js
+const plugin = require('tailwindcss/plugin')
+
+const myPlugin = plugin(({ addUtilities, theme }) => {
+  addUtilities({
+    '.center': {
+      // Write the `@apply` statement as a key, with an empty object
+      // as the value.
+      '@apply absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2': {}
+    }
+  })
+})
+```
+:::
+
+This is better, but it still feels a bit clunky, and it would throw errors in any project that configures a [custom class prefix](https://tailwindcss.com/docs/configuration#prefix). 
+
+To solve all this, Baleada Utilities exports a `createApply` function, which it also uses under the hood.
+
+:::
+```js
+const { createApply } = require('@baleada/tailwind-utilities')
+const plugin = require('tailwindcss/plugin')
+
+const myPlugin = plugin(({ addUtilities, theme, config }) => {
+  // Use the `config` function from the plugin API to get the
+  // user's prefix (if unconfigured, it's an empty string).
+  const prefix = config('prefix')
+  // Pass the prefix to the `createApply` function to create an `apply`
+  // function for this specific Tailwind user's config.
+  const apply = createApply(prefix)
+
+  addUtilities({
+    // Pass any string of Tailwind classes to `apply`
+    '.center': apply(`
+      absolute
+      top-1/2 left-1/2
+      -translate-x-1/2 -translate-y-1/2
+    `)
+  })
+})
+```
+:::
+
+`createApply` keeps your CSS-in-JS less complex, much more readable, and truly powered by Tailwind's full feature set.
+
+Use it!
+
+
+::: type="warning"
+In plugins, `@apply` will still fail if you try to apply a class that doesn't exist, based on your user's configuration.
+
+For example, if the user has fully overridden `theme.colors`, and you try to apply a color that no longer exists, Tailwind will throw compiler errors that won't trace directly back to your plugin.
+:::
