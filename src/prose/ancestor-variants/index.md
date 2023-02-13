@@ -1,56 +1,85 @@
 ---
-title: Ancestor variants
-tags: Configuration utilities
+title: What is Baleada Ancestor Variants?
+tags: Configuration utilities, Tailwind CSS
 publish: true
 order: 0
 ---
 
-`ancestorVariants` is a Tailwind plugin for adding ancestor variants, i.e. variants that will make sure classes are only applied when an ancestor element matches a specific selector.
-
-It's super useful for supporting multiple themes on a page, or for applying different styles based on user type, device type, or anything else you'd like to track.
+Baleada Ancestor Variants is a Tailwind plugin for adding ancestor variants, i.e. variants that will only apply styles when an ancestor element matches a specific selector.
 
 :::
 ```html
 <div class="ancestor theme-1">
-  <div class="text-red-500 theme-1:text-blue-500">
-    I'll be blue text
-  </div>
+  <!--
+  This element will have blue text, because it has an ancestor
+  with the `.ancestor` and `.theme-1` classes.
+  -->
+  <div class="text-red-500 theme-1:text-blue-500">...</div>
+  
+  <!--
+  This element will have red text, because it does not have an ancestor
+  with the `.ancestor` and `.theme-2` classes.
+  -->
+  <div class="text-red-500 theme-2:text-blue-500">...</div>
 </div>
 ```
 :::
 
-Variants can be used in combination with each other, and in any order:
+Variants can be stacked in any order:
 
 :::
 ```html
-<div class="ancestor theme-1 user">
-  <div class="
-    text-red-500
-    theme-1:text-blue-500
-    user:theme-1:text-green-500
-  ">
-    I'll be green text
-  </div>
+<div class="ancestor user theme-1">
+  <!--
+  This element will have blue text, because it has an ancestor
+  with the `.ancestor.user.theme-1`  classes.
+  -->
+  <div class="theme-1:user:text-blue-500">...</div>
+  
+  <!--
+  This element will also have blue text. It's the same stack of
+  variants, in a different order.
+  -->
+  <div class="user:theme-1:text-blue-500">...</div>
 </div>
 ```
 :::
 
-Negated variants are also supported:
+Variants can also be "negated" by adding `not-`:
 
 :::
 ```html
-<div class="ancestor theme-1 user">
-  <div class="
-    text-red-500
-    not-theme-2:text-blue-500
-  ">
-    I'll be blue text
-  </div>
+<div class="ancestor theme-1">
+  <!--
+  This element _will_ have blue text, because it does _not_ have an
+  ancestor with the `.ancestor` and `.theme-2` classes.
+  -->
+  <div class="not-theme-2:text-blue-500">...</div>
 </div>
 ```
 :::
 
-Each variant or negated variant adds 1 specificity point to the CSS class.
+And negated variants can also be stacked in any order:
+
+:::
+```html
+<div class="ancestor user theme-1">
+  <!--
+  This element _will_ have blue text, because it does _not_ have an
+  ancestor with the `.ancestor.admin.theme-2` classes.
+  -->
+  <div class="not-admin:not-theme-2:text-blue-500">...</div>
+</div>
+```
+:::
+
+Each variant or negated variant adds **exactly 1 specificity point** to the CSS class, so they work the same as Tailwind's built-in variants, like `hover` or `focus`.
+
+Ancestor variants are incredibly useful for supporting multiple themes on a page, or for applying different styles based on user type, device type, or anything else you'd like to track.
+
+[Here's a demo](https://stackblitz.com/edit/baleada-ancestor-variants?file=index.html,tailwind.config.js) where you can see all the different features in action.
+
+<!-- Note that the demo shows some "uncontrolled markup features". Those are documented [below](#uncontrolled-markup-features), after the sections on configuration. -->
 
 
 :::
@@ -65,10 +94,10 @@ npm install @baleada/tailwind-ancestor-variants
 
 
 :::
-## Configuration
+## Usage
 :::
 
-To configure `ancestorVariants`, import the plugin into your Tailwind config file, and use the `ancestorVariants` key of your `theme` to add variants:
+To use Baleada Ancestor Variants, import the plugin into your Tailwind config file, and use the `ancestorVariants` key of your `theme` to add variants:
 
 :::
 ```js
@@ -110,9 +139,11 @@ There are a few use cases that need more fine-tuned configuration. Let's walk th
 ### Customizing the ancestor identifier
 :::
 
-To solve this, you can call the plugin functions with options, instead of passing it directly to your `plugins` array.
+In some projects, you might have naming collisions with the `.ancestor` class, so you won't be able to add it to the ancestor element.
 
-Use the `ancestorIdentifier` option to override the default `.ancestor` selector with a different selector that is guaranteed to always select your ancestor element, and nothing else.
+To solve this, you can call the `ancestorVariants` plugin function with options, instead of passing it directly to your `plugins` array.
+
+Use the `ancestorIdentifier` option to override the default `.ancestor` selector with a different selector that is guaranteed to always select your ancestor element.
 
 :::
 ```js
@@ -138,7 +169,7 @@ module.exports = {
 ### Mapping variants to different class names
 :::
 
-Sometimes, you want the variant name to be different from its corresponding class name. Or, you might want to add more than one variant for a single ancestor class (e.g. longhand and shorthand versions).
+Sometimes, you might want the variant name to be different from its corresponding class name. Or, you might want to add more than one variant for a single ancestor class (e.g. longhand and shorthand versions).
 
 To solve both of these problems, you can change the way you define `ancestorVariants` in your theme.
 
@@ -177,6 +208,16 @@ module.exports = {
 ```
 :::
 
+<!-- There's one more valid format for variants, but that's related to [uncontrolled markup features](#uncontrolled-markup-features), so let's cover it in that section of the docs.
+
+
+:::
+## Uncontrolled markup features
+:::
+ -->
+
+
+
 
 :::
 ## Using with TypeScript
@@ -202,17 +243,18 @@ module.exports = {
   theme: {
     ...,
     ancestorVariants: defineAncestorVariants([
-      // These types are supported
+      // These types are all supported
       ['theme-1', '[data-theme=1]'],
       ['theme-2', '[data-theme=2]'],
       ['2',       '[data-theme=2]'],
       'user',
       'admin',
-
-      // These are all type errors:
-      1,
-      false,
-      { variant: '1', selector: '.theme-1' },
+      {
+        variant: '1',
+        selector: '.theme-1',
+        specificity: 0,
+        disableSelector: '.not-theme-1'
+      },
     ])
   },
   plugins: [
@@ -230,4 +272,4 @@ module.exports = {
 ## Browser support
 :::
 
-You're good to go in [any browser that supports the `:is()` pseudo-selector](https://caniuse.com/css-matches-pseudo).
+You're good to go in [any browser that supports the `:is()` and `where()` pseudo-selectors](https://caniuse.com/css-matches-pseudo).

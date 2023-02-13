@@ -54,7 +54,7 @@ To do that, call the plugin function with options. The plugin accepts two option
 ::: ariaLabel="Baleada Utilities plugin options"
 | Option | Type | Default | Description |
 | --- | --- | --- | --- |
-| `only` | Array | `['center', 'corner', 'edge', 'dimension']` | A list of the utility categories that should be included. The default value lists all possible options. |
+| `only` | Array | `['center', 'corner', 'edge', 'dimension', 'stretch']` | A list of the utility categories that should be included. The default value lists all possible options. |
 | `except` | Array | `[]` | A list of the utility categories that should be excluded. `except` overrides `only`. |
 :::
 
@@ -330,15 +330,6 @@ module.exports = {
 
 
 :::
-## Browser support
-:::
-
-For center, corner, and edge utilities, you're good to go in [any browser that supports the `:where()` pseudo-selector](https://caniuse.com/css-matches-pseudo).
-
-Dimension and stretch utilities are supported everywhere.
-
-
-:::
 ## Apply helper
 :::
 
@@ -489,3 +480,12 @@ In plugins, `@apply` will still fail if you try to apply a class that doesn't ex
 
 For example, if the user has fully overridden `theme.colors`, and you try to apply a color that no longer exists, Tailwind will throw compiler errors that won't trace directly back to your plugin.
 :::
+
+
+:::
+## Browser support
+:::
+
+For center, corner, and edge utilities, you're good to go in [any browser that supports the `:where()` pseudo-selector](https://caniuse.com/css-matches-pseudo).
+
+Dimension and stretch utilities are supported everywhere.
