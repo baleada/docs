@@ -171,9 +171,9 @@ As often as possible, edge utilities avoid using the `margin` property, so that 
 ### Dimension
 :::
 
-Dimension utilities are shorthand for creating elements with the same height and width.
+Dimension utilities are shorthand for creating elements with the same height and width. They also support setting height and width to different values with a single class.
 
-They start with `.d-` and end with any value from your `height` or `width` theme configurations, or any arbitrary value supported by height and width utilities. You can also use `theme.dimension` to configure additional classes and values.
+Dimension utilities start with `.d-` and end with any value from your `height` or `width` theme configurations, or any arbitrary value supported by height and width utilities. You can also use `theme.dimension` to configure additional classes and values.
 
 :::
 ```html
@@ -202,6 +202,18 @@ Arbitrary values for `.d-` classes support two custom CSS units: `v%` and `cq%`.
 In arbitrary value classes, you can even use these custom units in `calc()`, like `calc(20cq%-10cq%)`. This would evaluate to a height of `calc(20cqh-10cqh)` and a width of `calc(20cqw-10cqw)`.
 
 However, browsers don't support viewport units and container query units in `calc()` expressions, so this is currently invalid CSS.
+
+One more great feature: you can use dimension utilities as a shorthand to set height and width to different values with a single class. The format is `.d-<height>/<width>`, like this:
+
+:::
+```html
+<!-- This div will be 6rem tall and 8rem wide. -->
+<div class="d-24/32"></div>
+
+<!-- Supports arbitrary values 🎯 -->
+<div class="d-[42px]/[84px]"></div>
+```
+:::
 
 To add custom `.d-` classes, you can extend the [`spacing`](https://tailwindcss.com/docs/customizing-spacing#extending-the-default-spacing-scale), [`height`](https://tailwindcss.com/docs/height#customizing-your-theme), or [`width`](https://tailwindcss.com/docs/width#customizing-your-theme) configs.
 
