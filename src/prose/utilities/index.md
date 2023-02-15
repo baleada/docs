@@ -44,8 +44,8 @@ By default, this will add all available utilities, which fall into these categor
 - **Center** utilities, which make it easy to center elements or their contents, regardless of flex vs. grid, flex direction, etc.
 - **Corner** utilities, which make it easy to place elements or their contents in a specific corner, regardless of flex vs. grid, flex direction, etc.
 - **Edge** utilities, which make it easy to place elements or their contents in the center of a specific edge, regardless of flex vs. grid, flex direction, etc.
-- **Dimension** utilities, which are shorthand for creating elements with the same height and width.
-- **Stretch** utilities, which are shorthand for making an element full height or width while setting a max height or width.
+- **Dimension** utilities, which are shorthand for creating elements with the same width and height.
+- **Stretch** utilities, which are shorthand for making an element full width or height while setting a max width or height.
 
 We'll cover those categories and their classes [below](#classes), but first, let's look at how you can configure Baleada Utilities to disable categories of utilities that you don't want.
 
@@ -85,8 +85,8 @@ Utility classes can be divided into these categories:
 - **Center** utilities, which make it easy to center elements or their contents, regardless of flex vs. grid, flex direction, etc.
 - **Corner** utilities, which make it easy to place elements or their contents in a specific corner, regardless of flex vs. grid, flex direction, etc.
 - **Edge** utilities, which make it easy to place elements or their contents in the center of a specific edge, regardless of flex vs. grid, flex direction, etc.
-- **Dimension** utilities, which are shorthand for creating elements with the same height and width.
-- **Stretch** utilities, which are shorthand for making an element full height or width while setting a max height or width.
+- **Dimension** utilities, which are shorthand for creating elements with the same width and height.
+- **Stretch** utilities, which are shorthand for making an element full width or height while setting a max width or height.
 
 All Baleada Utilities classes have a total specificity of 1, making them easy to override with variants and responsive classes.
 
@@ -171,9 +171,9 @@ As often as possible, edge utilities avoid using the `margin` property, so that 
 ### Dimension
 :::
 
-Dimension utilities are shorthand for creating elements with the same height and width. They also support setting height and width to different values with a single class.
+Dimension utilities are shorthand for creating elements with the same width and height. They also support setting width and height to different values with a single class.
 
-Dimension utilities start with `.d-` and end with any value from your `height` or `width` theme configurations, or any arbitrary value supported by height and width utilities. You can also use `theme.dimension` to configure additional classes and values.
+Dimension utilities start with `.d-` and end with any value from your `width` or `height` theme configurations, or any arbitrary value supported by width and height utilities. You can also use `theme.dimension` to configure additional classes and values.
 
 :::
 ```html
@@ -182,18 +182,18 @@ Dimension utilities start with `.d-` and end with any value from your `height` o
 ```
 :::
 
-Note that `.d-screen` is smart—it will give you a `100vh` height and `100vw` width, instead of a `100vh` width.
+Note that `.d-screen` is smart—it will give you a `100vw` width and `100vh` height, using the appropriate unit for each dimension.
 
 Arbitrary values for `.d-` classes support two custom CSS units: `v%` and `cq%`. Under the hood, these units evaluate to `vh`, `vw`, `cqh`, and `cqw` as appropriate:
 
 :::
 ```html
-<!-- This div will be 42vh tall and 42vw wide -->
+<!-- This div will be 42vw wide and 42vh tall -->
 <div class="d-[42v%]"></div>
 
 <!-- Install @tailwindcss/container-queries for container support -->
 <div class="@container">
-  <!-- This div will be 42cqh tall and 42cqw wide -->
+  <!-- This div will be 42cqw wide and 42cqh tall -->
   <div class="d-[42cq%]"></div>
 </div>
 ```
@@ -203,11 +203,11 @@ In arbitrary value classes, you can even use these custom units in `calc()`, lik
 
 However, browsers don't support viewport units and container query units in `calc()` expressions, so this is currently invalid CSS.
 
-One more great feature: you can use dimension utilities as a shorthand to set height and width to different values with a single class. The format is `.d-<height>/<width>`, like this:
+One more great feature: you can use dimension utilities as a shorthand to set width and height to different values with a single class. The format is `.d-<width>/<height>`, like this:
 
 :::
 ```html
-<!-- This div will be 6rem tall and 8rem wide. -->
+<!-- This div will be 6rem wide and 8rem tall. -->
 <div class="d-24/32"></div>
 
 <!-- Supports arbitrary values 🎯 -->
@@ -217,7 +217,7 @@ One more great feature: you can use dimension utilities as a shorthand to set he
 
 To add custom `.d-` classes, you can extend the [`spacing`](https://tailwindcss.com/docs/customizing-spacing#extending-the-default-spacing-scale), [`height`](https://tailwindcss.com/docs/height#customizing-your-theme), or [`width`](https://tailwindcss.com/docs/width#customizing-your-theme) configs.
 
-Or, you can add a `dimension` key to your `theme` configuration. `dimension` is configured exactly like `spacing`, `height`, and `width`:
+Or, you can add a `dimension` key to your `theme` configuration. `dimension` is configured exactly like `spacing`, `width`, and `height`:
 
 :::
 ```js
@@ -242,7 +242,7 @@ module.exports = {
 ### Stretch
 :::
 
-Stretch utilities are shorthand for making an element full height or width while setting a max height or width.
+Stretch utilities are shorthand for making an element full width or height while setting a max width or height.
 
 Stretch width utilities start with `.stretch-w-`  and end with any value from your `maxWidth` theme configurations, or any arbitrary value supported by max width. You can also use `theme.stretchWidth` to configure additional classes and values.
 
