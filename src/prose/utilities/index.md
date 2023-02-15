@@ -55,7 +55,7 @@ To do that, call the plugin function with options. The plugin accepts two option
 ::: ariaLabel="Baleada Utilities plugin options"
 | Option | Type | Default | Description |
 | --- | --- | --- | --- |
-| `only` | Array | `['center', 'corner', 'edge', 'dimension', 'stretch', 'gapModifiers']` | A list of the utility categories that should be included. The default value lists all possible options. |
+| `only` | Array | `['center', 'corner', 'edge', 'dimension', 'stretch', 'gap modifiers']` | A list of the utility categories that should be included. The default value lists all possible options. |
 | `except` | Array | `[]` | A list of the utility categories that should be excluded. `except` overrides `only`. |
 :::
 
@@ -307,7 +307,7 @@ module.exports = {
 
 Gap modifiers are shorthand for setting `gap` on flex and grid containers.
 
-Add a `/` to `flex`, `flex-col`, or `grid`, then add a value from `spacing` or `gap` in your Tailwind config. You can also use arbitrary values in square brackets.
+Add a `/` to `flex`, `flex-row`, `flex-col`, or `grid`, then add a value from `spacing` or `gap` in your Tailwind config. You can also use arbitrary values in square brackets.
 
 :::
 ```html
@@ -325,31 +325,68 @@ Add a `/` to `flex`, `flex-col`, or `grid`, then add a value from `spacing` or `
 ```
 :::
 
-Note that `.flex-col` has been upgraded to set `display: flex` automatically, so you can omit `flex` when using `flex-col`.
+Note that `.flex-row` and `.flex-col` have been upgraded to set `display: flex` automatically, so you can omit `flex` when using them.
 
-Apart from that change, the built-in `.flex`, `.flex-col`, and `.grid` classes work exactly the same. You can still freely use them as standalone classes that don't set any `gap` values.
+Apart from that change, the built-in `.flex`, `.flex-row`, `.flex-col`, and `.grid` classes work exactly the same. You can still freely use them as standalone classes that don't set any `gap` values.
 
 To add custom gap modifier values, you can extend the [`spacing`](https://tailwindcss.com/docs/customizing-spacing#extending-the-default-spacing-scale) or [`gap`](https://tailwindcss.com/docs/gap#customizing-your-theme) configs.
 
-Or, you can add a `gapModifiers` key to your `theme` configuration. `gapModifiers` is configured exactly like `spacing` and `gap`:
 
 :::
-```js
-// tailwind.config.js
-const { plugin: utilities } = require('@baleada/tailwind-utilities')
+## Center, corner, and edge limitations
+:::
 
-module.exports = {
-  theme: {
-    gapModifiers: {
-      'custom': '42px', // .flex/custom
-    }
-  },
-  plugins: [
-    utilities
-  ]
-}
+Center, corner, and edge classes check for the presence of `.flex`, `.flex-row`, `.flex-col`, or `.grid` classes so they can figure out the optimal way to place your content. When you have [gap modifiers](#gap-modifiers) enabled, thes utilities also check for the presence of `flex/`, `flex-row/`, `flex-col/`, and `grid/`.
+
+This is a neat solution, but it breaks down in a few cases:
+- Responsively changing `display` or `position`, e.g. `flex md:grid` or `relative md:absolute`
+- Responsively changing flex direction, e.g. `flex md:flex-row center-all-x`.
+
+In those cases, CSS simply can't keep up with which `display` or `position` value is _actually_ applied, so you'll get unexpected and incorrect results from center, corner, and edge classes.
+
+Notable exceptions are:
+- `center-all`, applied to an element that is always `display: flex`
+- `center`, applied to a direct child of an element that is always `display: flex`
+
+In those cases, `center-all` and `center` will always work correctly.
+
+To completely solve this problem, you can use JS to swap classes in and out at different screen sizes, instead of relying on CSS media queries to do that work.
+
+An upcoming release of [Baleada Features](/docs/features) will export a `useResponsive` function that can help you do this in Vue projects:
+
+:::
+```vue
+<template>
+  <div
+    class="flex center-all-x"
+    :class=[flexDirection]
+  >...</div>
+</template>
+
+<script setup lang="ts">
+import { useResponsive } from '@baleada/vue-features'
+
+// Vue will reactively swap out `flex-row` and insert `flex-col`
+// when your screen reaches the `md` breakpoint.
+const flexDirection = useResponsive('flex-row', { md: 'flex-col' })
+</script>
 ```
 :::
+
+This is obviously way more code than the standard Tailwind equivalent, which you can absolutely still do, even with Baleada Utilities installed:
+
+:::
+```html
+<div class="
+  flex flex-row justify-center
+  md:flex-col md:justify-start md:items-center
+">...</div>
+```
+:::
+
+The Baleada Utilities plugin **never interferes** with default Tailwind functionality, so these escape hatches are **always available**.
+
+But if you want to avoid the mental gymnastics of row vs. column vs. justify vs. items vs. start vs. center vs. end vs. screen size, a little JS is a small price to pay!
 
 
 :::
@@ -553,4 +590,4 @@ For example, if the user has fully overridden `theme.colors`, and you try to app
 
 For center, corner, and edge utilities, you're good to go in [any browser that supports the `:where()` pseudo-selector](https://caniuse.com/css-matches-pseudo).
 
-Dimension and stretch utilities are supported everywhere.
+Dimension and stretch utilities are supported everywhere. Gap modifiers are supported in any browser that supports `gap`.
