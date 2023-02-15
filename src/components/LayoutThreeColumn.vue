@@ -281,6 +281,7 @@ import { ref, computed, onMounted, watch } from 'vue'
 import { useRoute } from 'vue-router'
 import { useEffects } from '@baleada/vue-prose'
 import { touchdragdrop as swipe } from '@baleada/recognizeable-effects'
+import { createMatchesKeycombo } from '@baleada/logic'
 import type {
   TouchdragdropTypes as SwipeTypes,
   TouchdragdropMetadata as SwipeMetadata,
@@ -432,12 +433,12 @@ export default {
         // do nothing
         break
       }
-      keydown.value.listen((event, { is }) => {
+      keydown.value.listen(event => {
         if ((event.target as HTMLElement).tagName === 'INPUT'){
           return
         }
 
-        if (is('shift+d')) {
+        if (createMatchesKeycombo('shift+d')(event)) {
           event.preventDefault()
           toggleDarkTheme()
         }
@@ -486,12 +487,12 @@ export default {
         // do nothing
         break
       }
-      keydown.value.listen((event, { is }) => {
+      keydown.value.listen((event) => {
         if ((event.target as HTMLElement).tagName === 'INPUT'){
           return
         }
 
-        if (is('shift+m')) {
+        if (createMatchesKeycombo('shift+m')(event)) {
           event.preventDefault()
           toggleMinimalistTheme()
         }

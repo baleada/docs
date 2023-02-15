@@ -46,6 +46,7 @@ By default, this will add all available utilities, which fall into these categor
 - **Edge** utilities, which make it easy to place elements or their contents in the center of a specific edge, regardless of flex vs. grid, flex direction, etc.
 - **Dimension** utilities, which are shorthand for creating elements with the same width and height.
 - **Stretch** utilities, which are shorthand for making an element full width or height while setting a max width or height.
+- **Gap modifiers**, which are shorthand for setting `gap` on flex and grid containers.
 
 We'll cover those categories and their classes [below](#classes), but first, let's look at how you can configure Baleada Utilities to disable categories of utilities that you don't want.
 
@@ -54,7 +55,7 @@ To do that, call the plugin function with options. The plugin accepts two option
 ::: ariaLabel="Baleada Utilities plugin options"
 | Option | Type | Default | Description |
 | --- | --- | --- | --- |
-| `only` | Array | `['center', 'corner', 'edge', 'dimension', 'stretch']` | A list of the utility categories that should be included. The default value lists all possible options. |
+| `only` | Array | `['center', 'corner', 'edge', 'dimension', 'stretch', 'gapModifiers']` | A list of the utility categories that should be included. The default value lists all possible options. |
 | `except` | Array | `[]` | A list of the utility categories that should be excluded. `except` overrides `only`. |
 :::
 
@@ -87,6 +88,7 @@ Utility classes can be divided into these categories:
 - **Edge** utilities, which make it easy to place elements or their contents in the center of a specific edge, regardless of flex vs. grid, flex direction, etc.
 - **Dimension** utilities, which are shorthand for creating elements with the same width and height.
 - **Stretch** utilities, which are shorthand for making an element full width or height while setting a max width or height.
+- **Gap modifiers**, which are shorthand for setting `gap` on flex and grid containers.
 
 All Baleada Utilities classes have a total specificity of 1, making them easy to override with variants and responsive classes.
 
@@ -289,6 +291,57 @@ module.exports = {
   theme: {
     stretchHeight: {
       'custom': '42px', // .stretch-h-custom
+    }
+  },
+  plugins: [
+    utilities
+  ]
+}
+```
+:::
+
+
+:::
+### Gap modifiers
+:::
+
+Gap modifiers are shorthand for setting `gap` on flex and grid containers.
+
+Add a `/` to `flex`, `flex-col`, or `grid`, then add a value from `spacing` or `gap` in your Tailwind config. You can also use arbitrary values in square brackets.
+
+:::
+```html
+<!-- display: flex; gap: 1.5rem -->
+<div class="flex/6"></div>
+
+<!-- display: grid; gap: 1.5rem -->
+<div class="grid/6"></div>
+
+<!-- display: flex; flex-direction: column; gap: 1.5rem -->
+<div class="flex-col/6"></div>
+
+<!-- display: flex; gap: 42px -->
+<div class="flex/[42px]"></div>
+```
+:::
+
+Note that `.flex-col` has been upgraded to set `display: flex` automatically, so you can omit `flex` when using `flex-col`.
+
+Apart from that change, the built-in `.flex`, `.flex-col`, and `.grid` classes work exactly the same. You can still freely use them as standalone classes that don't set any `gap` values.
+
+To add custom gap modifier values, you can extend the [`spacing`](https://tailwindcss.com/docs/customizing-spacing#extending-the-default-spacing-scale) or [`gap`](https://tailwindcss.com/docs/gap#customizing-your-theme) configs.
+
+Or, you can add a `gapModifiers` key to your `theme` configuration. `gapModifiers` is configured exactly like `spacing` and `gap`:
+
+:::
+```js
+// tailwind.config.js
+const { plugin: utilities } = require('@baleada/tailwind-utilities')
+
+module.exports = {
+  theme: {
+    gapModifiers: {
+      'custom': '42px', // .flex/custom
     }
   },
   plugins: [
