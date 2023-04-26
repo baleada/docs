@@ -7,7 +7,7 @@ order: 0
 
 Baleada Utilities is a Tailwind plugin designed to add a small library of Tailwind utility classes.
 
-[Here's a demo](https://stackblitz.com/edit/baleada-utilities?file=index.html,tailwind.config.js) where you can see them all in action 🤓
+[Here's a demo](https://stackblitz.com/edit/baleada-utilities?file=tailwind.config.js) where you can see them all in action 🤓
 
 
 :::
@@ -40,42 +40,7 @@ module.exports = {
 ```
 :::
 
-By default, this will add all available utilities, which fall into these categories:
-- **Center** utilities, which make it easy to center elements or their contents, regardless of flex vs. grid, flex direction, etc.
-- **Corner** utilities, which make it easy to place elements or their contents in a specific corner, regardless of flex vs. grid, flex direction, etc.
-- **Edge** utilities, which make it easy to place elements or their contents in the center of a specific edge, regardless of flex vs. grid, flex direction, etc.
-- **Dimension** utilities, which are shorthand for creating elements with the same width and height.
-- **Stretch** utilities, which are shorthand for making an element full width or height while setting a max width or height.
-- **Gap modifiers**, which are shorthand for setting `gap` on flex and grid containers.
-
-We'll cover those categories and their classes [below](#classes), but first, let's look at how you can configure Baleada Utilities to disable categories of utilities that you don't want.
-
-To do that, call the plugin function with options. The plugin accepts two options:
-
-::: ariaLabel="Baleada Utilities plugin options"
-| Option | Type | Default | Description |
-| --- | --- | --- | --- |
-| `only` | Array | `['center', 'corner', 'edge', 'dimension', 'stretch', 'gap modifiers']` | A list of the utility categories that should be included. The default value lists all possible options. |
-| `except` | Array | `[]` | A list of the utility categories that should be excluded. `except` overrides `only`. |
-:::
-
-Here's a code example of how to use these options:
-
-:::
-```js
-// tailwind.config.js
-const { plugin: utilities } = require('@baleada/tailwind-utilities')
-
-module.exports = {
-  plugins: [
-    utilities({
-      // Enable only dimension utilities
-      only: ['dimension'],
-    })
-  ]
-}
-```
-:::
+This will add all available utilities, which are documented [below](#classes).
 
 
 :::
@@ -83,14 +48,88 @@ module.exports = {
 :::
 
 Utility classes can be divided into these categories:
+- **Flex and grid overrides**, which add nice functionality to some of the built-in Tailwind flex and grid classes
 - **Center** utilities, which make it easy to center elements or their contents, regardless of flex vs. grid, flex direction, etc.
 - **Corner** utilities, which make it easy to place elements or their contents in a specific corner, regardless of flex vs. grid, flex direction, etc.
 - **Edge** utilities, which make it easy to place elements or their contents in the center of a specific edge, regardless of flex vs. grid, flex direction, etc.
 - **Dimension** utilities, which are shorthand for creating elements with the same width and height.
 - **Stretch** utilities, which are shorthand for making an element full width or height while setting a max width or height.
-- **Gap modifiers**, which are shorthand for setting `gap` on flex and grid containers.
 
 All Baleada Utilities classes have a total specificity of 1, making them easy to override with variants and responsive classes.
+
+
+:::
+### Flex and grid overrides
+:::
+
+Baleada Utilities overrides the following built-in Tailwind classes:
+- `.flex`
+- `.flex-row`
+- `.flex-col`
+- `.flex-row-reverse`
+- `.flex-col-reverse`
+- `.grid`
+- `.grid-cols-<n>`
+- `.grid-rows-<n>`
+
+It overrides those classes to add these additional features:
+- `.flex-row`, `.flex-col`, `.flex-row-reverse`, and `.flex-col-reverse` all explicitly set `display: flex`, so that you don't have to add the repetitive `.flex` class
+- `.flex` explicitly sets `flex-direction: row`, so that you can use e.g. `flex-col md:flex` to responsively switch flex direction from column to row
+- `.grid-cols-<n>` and `.grid-rows-<n>` both explicitly set `display: grid`, so that you don't have to add the repetitive `.grid` class
+- All classes manage a bunch of [space toggle variables](https://css-tricks.com/the-css-custom-property-toggle-trick/) so that [center](#center), [corner](#corner), and [edge](#edge) utilities can optimize the way they align elements.
+- All classes support **gap modifiers**, which are documented in the next section.
+
+Note that these are feature **additions** only. All original functionality of the built-in Tailwind classes is preserved.
+
+
+:::
+#### Gap modifiers
+:::
+
+Gap modifiers are shorthand for setting `gap` on flex and grid containers.
+
+Add a `/` to any of the overridden flex and grid classes, then add a value from `spacing` or `gap` in your Tailwind config. You can also use arbitrary values in square brackets.
+
+:::
+```html
+<!--
+display: flex;
+gap: 1.5rem
+-->
+<div class="flex/6"></div>
+
+<!--
+display: grid;
+gap: 1.5rem;
+-->
+<div class="grid/6"></div>
+
+<!--
+display: flex;
+flex-direction: column;
+gap: 1.5rem;
+-->
+<div class="flex-col/6"></div>
+
+<!--
+display: flex;
+flex-direction: row-reverse;
+gap: 42px;
+-->
+<div class="flex-row-reverse/[42px]"></div>
+
+<!--
+display: grid;
+grid-template-columns: repeat(3, 1fr);
+gap: 1.5rem;
+-->
+<div class="grid-cols-3/6"></div>
+```
+:::
+
+Note that gap modifiers are totally optional. You can still freely use flex and grid classes as standalone classes that don't set any `gap` values.
+
+To add custom gap modifier values, you can extend the [`spacing`](https://tailwindcss.com/docs/customizing-spacing#extending-the-default-spacing-scale) or [`gap`](https://tailwindcss.com/docs/gap#customizing-your-theme) configs.
 
 
 :::
@@ -102,12 +141,12 @@ Here's a list of center utilities and their features:
 ::: ariaLabel="Center utilities and their features"
 | Utility class | Features |
 | --- | --- |
-| `.center-all` | Apply to a `.flex` or `.grid` element to vertically and horizontally center all of its direct children. |
-| `.center-all-x` | Apply to a `.flex` or `.grid` element to horizontally center all of its direct children. |
-| `.center-all-y` | Apply to a `.flex` or `.grid` element to vertically center all of its direct children. |
-| `.center` | <p>Apply to an element to vertically center it within its `.flex` or `.grid` parent.</p><p>Or, apply to an `.absolute` element to center it within its closest positioned ancestor.</p> |
-| `.center-x` | <p>Apply to an element to horizontally center it within its `.flex` or `.grid` parent.</p><p>Or, apply to an `.absolute` element to center it horizontally within its closest positioned ancestor.</p> |
-| `.center-y` | <p>Apply to an element to vertically center it within its `.flex` or `.grid` parent.</p><p>Or, apply to an `.absolute` element to center it vertically within its closest positioned ancestor.</p> |
+| `.center-all` | Apply to an element with a [flex or grid override class](#flex-and-grid-overrides) to vertically and horizontally center all of its direct children. |
+| `.center-all-x` | Apply to an element with a [flex or grid override class](#flex-and-grid-overrides) to horizontally center all of its direct children. |
+| `.center-all-y` | Apply to an element with a [flex or grid override class](#flex-and-grid-overrides) to vertically center all of its direct children. |
+| `.center` | <p>Apply to an element to vertically center it inside a parent with a [flex or grid override class](#flex-and-grid-overrides).</p><p>Or, apply to an `.absolute` element to center it within its closest positioned ancestor.</p> |
+| `.center-x` | <p>Apply to an element to horizontally center it inside a parent with a [flex or grid override class](#flex-and-grid-overrides).</p><p>Or, apply to an `.absolute` element to center it horizontally within its closest positioned ancestor.</p> |
+| `.center-y` | <p>Apply to an element to vertically center it inside a parent with a [flex or grid override class](#flex-and-grid-overrides).</p><p>Or, apply to an `.absolute` element to center it vertically within its closest positioned ancestor.</p> |
 :::
 
 ::: type="info"
@@ -130,8 +169,8 @@ Here's a list of corner utilities and their features:
 ::: ariaLabel="Corner utilities and their features"
 | Utility class | Features |
 | --- | --- |
-| `.corner-all-<corner>` | <p>Apply to a `.flex` or `.grid` element to place all of its elements in a specific corner.</p><p>Replace `<corner>` with `t-l`, `t-r`, `b-r`, or `b-l`.</p>|
-| `.corner-<corner>` | <p>Apply to an element to place it in a specific corner of its `.flex` or `.grid` parent.</p><p>Or, apply to an `.absolute` element to place it in a specific corner of its closest positioned ancestor.</p><p>Replace `<corner>` with `t-l`, `t-r`, `b-r`, or `b-l`.</p> |
+| `.corner-all-<corner>` | <p>Apply to an element with a [flex or grid override class](#flex-and-grid-overrides) to place all of its elements in a specific corner.</p><p>Replace `<corner>` with `t-l`, `t-r`, `b-r`, or `b-l`.</p>|
+| `.corner-<corner>` | <p>Apply to an element to place it in a specific corner of a parent with a [flex or grid override class](#flex-and-grid-overrides).</p><p>Or, apply to an `.absolute` element to place it in a specific corner of its closest positioned ancestor.</p><p>Replace `<corner>` with `t-l`, `t-r`, `b-r`, or `b-l`.</p> |
 :::
 
 ::: type="info"
@@ -154,8 +193,8 @@ Here's a list of edge utilities and their features:
 ::: ariaLabel="Edge utilities and their features"
 | Utility class | Features |
 | --- | --- |
-| `.edge-all-<side>` | <p>Apply to a `.flex` or `.grid` element to center all of its elements on a specific side.</p><p>Replace `<side>` with `t`, `r`, `b`, or `l`.</p><p>`.edge-all-t` is the equivalent of `.center-all-x`, and `.edge-all-l` is the equivalent of `.center-all-y`.</p> |
-| `.edge-<side>` | <p>Apply to an element to center it perfectly on a specific side of its `.flex` or `.grid` parent.</p><p>Or, apply to an `.absolute` element to center it on a specific side of its closest positioned ancestor.</p><p>Replace `<side>` with `t`, `r`, `b`, or `l`.</p><p>`.edge-t` is the equivalent of `.center-x`, and `.edge-l` is the equivalent of `.center-y`.</p> |
+| `.edge-all-<side>` | <p>Apply to an element with a [flex or grid override class](#flex-and-grid-overrides) to center all of its elements on a specific side.</p><p>Replace `<side>` with `t`, `r`, `b`, or `l`.</p><p>`.edge-all-t` is the equivalent of `.center-all-x`, and `.edge-all-l` is the equivalent of `.center-all-y`.</p> |
+| `.edge-<side>` | <p>Apply to an element to center it perfectly on a specific side of a parent with a [flex or grid override class](#flex-and-grid-overrides).</p><p>Or, apply to an `.absolute` element to center it on a specific side of its closest positioned ancestor.</p><p>Replace `<side>` with `t`, `r`, `b`, or `l`.</p><p>`.edge-t` is the equivalent of `.center-x`, and `.edge-l` is the equivalent of `.center-y`.</p> |
 :::
 
 ::: type="info"
@@ -302,72 +341,76 @@ module.exports = {
 
 
 :::
-### Gap modifiers
-:::
-
-Gap modifiers are shorthand for setting `gap` on flex and grid containers.
-
-Add a `/` to `flex`, `flex-row`, `flex-col`, or `grid`, then add a value from `spacing` or `gap` in your Tailwind config. You can also use arbitrary values in square brackets.
-
-:::
-```html
-<!-- display: flex; gap: 1.5rem -->
-<div class="flex/6"></div>
-
-<!-- display: grid; gap: 1.5rem -->
-<div class="grid/6"></div>
-
-<!-- display: flex; flex-direction: column; gap: 1.5rem -->
-<div class="flex-col/6"></div>
-
-<!-- display: flex; gap: 42px -->
-<div class="flex/[42px]"></div>
-```
-:::
-
-Note that `.flex-row` and `.flex-col` have been upgraded to set `display: flex` automatically, so you can omit `flex` when using them.
-
-Apart from that change, the built-in `.flex`, `.flex-row`, `.flex-col`, and `.grid` classes work exactly the same. You can still freely use them as standalone classes that don't set any `gap` values.
-
-To add custom gap modifier values, you can extend the [`spacing`](https://tailwindcss.com/docs/customizing-spacing#extending-the-default-spacing-scale) or [`gap`](https://tailwindcss.com/docs/gap#customizing-your-theme) configs.
-
-
-:::
 ## Center, corner, and edge limitations
 :::
 
-Center, corner, and edge classes check for the presence of `.flex`, `.flex-row`, `.flex-col`, or `.grid` classes so they can figure out the optimal way to place your content. When you have [gap modifiers](#gap-modifiers) enabled, thes utilities also check for the presence of `flex/`, `flex-row/`, `flex-col/`, and `grid/`.
+The parent implementations of center, corner, and edge utilities (e.g. `.center-all`, `.corner-all-t-r`, `.edge-all-b`) have **no limitations**. Use them with responsive variants as needed:
 
-This is a neat solution, but it breaks down in a few cases:
-- Responsively changing `display` or `position`, e.g. `flex md:grid` or `relative md:absolute`
-- Responsively changing flex direction, e.g. `flex md:flex-row center-all-x`.
+:::
+```html
+<!--
+Direct children of this div will be horizontally centered on
+all screen sizes.
+-->
+<div class="center-all-x flex md:flex-col">...</div>
+<!--
+When the flex direction flips from row to column on medium screens,
+`center-all-x` will automatically switch from `justify-content: center`
+to `align-items: center` to keep the children horizontally centered.
 
-In those cases, CSS simply can't keep up with which `display` or `position` value is _actually_ applied, so you'll get unexpected and incorrect results from center, corner, and edge classes.
+The space toggle CSS technique makes this possible 🤓
+-->
+```
+:::
 
-Notable exceptions are:
-- `center-all`, applied to an element that is always `display: flex`
-- `center`, applied to a direct child of an element that is always `display: flex`
+For child implementations, e.g. `.center`, `.corner-t-r`, `.edge-b`, etc., things get a little more complex.
 
-In those cases, `center-all` and `center` will always work correctly.
+First, if the child is `.absolute`, it has no limitations:
 
-To completely solve this problem, you can use JS to swap classes in and out at different screen sizes, instead of relying on CSS media queries to do that work.
+:::
+```html
+<!--
+This div will be centered on small screen sizes using inset and
+transform: translate, but it will revert to default inset and
+transform. as soon as it reaches medium screen sizes and takes on
+relative positioning.
+-->
+<div class="center absolute md:relative">...</div>
+<!--
+This is the space toggle CSS technique in action again, allowing
+the element to read its actual computed styles at runtime and adjust
+accordingly, all without any JavaScript 🤯
+-->
+```
+:::
+
+But if you're aligning a child inside its flex or grid parent, the current implementation breaks in a few cases:
+- Responsively changing the parent's `display`, e.g. `flex md:grid`
+- Responsively changing the parent's flex direction, e.g. `flex md:flex-row`
+
+In those cases, CSS simply can't keep up with which `display` or `position` value is _actually_ active at any given time, so you'll sometimes get unexpected and incorrect results from center, corner, and edge utilities.
+
+As soon as [container style queries](https://css-tricks.com/digging-deeper-into-container-style-queries/) get widespread browser support for checking CSS variable values, a new Baleada Utilities release will fix this problem 🎉
+
+To completely solve this problem right now, you can use JS to swap classes in and out at different screen sizes, instead of relying on CSS media queries to do that work.
 
 An upcoming release of [Baleada Features](/docs/features) will export a `useResponsive` function that can help you do this in Vue projects:
 
 :::
 ```vue
 <template>
-  <div
-    class="flex center-all-x"
-    :class=[flexDirection]
-  >...</div>
+  <div :class="[flexDirection]">
+    <div class="center-x"></div>
+  </div>
 </template>
 
 <script setup lang="ts">
 import { useResponsive } from '@baleada/vue-features'
 
 // Vue will reactively swap out `flex-row` and insert `flex-col`
-// when your screen reaches the `md` breakpoint.
+// when your screen reaches the `md` breakpoint. The CSS selectors
+// that power the `.center-x` class will see this change and adjust
+// accordingly.
 const flexDirection = useResponsive('flex-row', { md: 'flex-col' })
 </script>
 ```
@@ -377,10 +420,9 @@ This is obviously way more code than the standard Tailwind equivalent, which you
 
 :::
 ```html
-<div class="
-  flex flex-row justify-center
-  md:flex-col md:justify-start md:items-center
-">...</div>
+<div class="flex md:flex-col">
+  <div class="mx-auto md:mx-unset md:self-center"></div>
+</div>
 ```
 :::
 
@@ -543,7 +585,7 @@ const myPlugin = plugin(({ addUtilities, theme }) => {
 ```
 :::
 
-This is better, but it still feels a bit clunky, and it would throw errors in any project that configures a [custom class prefix](https://tailwindcss.com/docs/configuration#prefix). 
+This is better, but it still feels a bit clunky, and it would throw errors in any project that configures a [custom class prefix](https://tailwindcss.com/docs/configuration#prefix).
 
 To solve all this, Baleada Utilities exports a `createApply` function, which it also uses under the hood.
 
