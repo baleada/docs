@@ -7,7 +7,7 @@ order: 2
 
 In Baleada Logic, lots of UI logic is implemented in [JavaScript classes](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Classes). Classes are designed to collocate pieces of related state, and provide methods for working with that state.
 
-Unlike Baleada Logic's [pipes], which are more like utility functions, classes are tailor-made for pretty specific browser-based UI features.
+Unlike Baleada Logic's [pipes](/docs/logic/pipes-overview), which are more like utility functions, classes are tailor-made for pretty specific browser-based UI features.
 
 Here's a quick example of how you would construct and use one of the classes to manage some of the state needed for a tablist component:
 
@@ -54,7 +54,6 @@ watch(
 To learn more, visit the docs for each class exported by Baleada Logic. For a complete list of available classes, see the **Classes** section under the **Logic** heading in the left sidebar.
 
 If you'd like to dive deeper in the design rules and principles behind Baleada Logic's classes, keep reading!
-
 
 
 :::
