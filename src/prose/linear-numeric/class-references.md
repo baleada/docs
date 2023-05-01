@@ -21,6 +21,7 @@ Baleada Linear Numeric also includes Tailwind's default standalone colors `black
 ::: ariaLabel="Colors class reference"
 | Class | Tailwind equivalent | Value |
 | --- | --- | --- |
+| `.bg-blue-0.5` | `.bg-blue-50` | `#eff6ff` |
 | `.bg-blue-1` | `.bg-blue-100` | `#dbeafe` |
 | `.bg-blue-2` | `.bg-blue-200` | `#bfdbfe` |
 | `.bg-blue-3` | `.bg-blue-300` | `#93c5fd` |
@@ -30,7 +31,7 @@ Baleada Linear Numeric also includes Tailwind's default standalone colors `black
 | `.bg-blue-7` | `.bg-blue-700` | `#1d4ed8` |
 | `.bg-blue-8` | `.bg-blue-800` | `#1e40af` |
 | `.bg-blue-9` | `.bg-blue-900` | `#1e3a8a` |
-| `.bg-blue-0.5` | `.bg-blue-50` | `#eff6ff` |
+| `.bg-blue-9.5` | `.bg-blue-950` | `#172554` |
 :::
 
 
