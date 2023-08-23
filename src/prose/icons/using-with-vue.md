@@ -1,7 +1,7 @@
 ---
 title: Using with Vue
 tags: Components, Vue
-publish: true
+publish: false
 ---
 
 
@@ -105,7 +105,7 @@ These 4 attributes are easy to override or expand—all of the component's attri
 <template lang="html">
   <SimpleGeocaching
     preserveAspectRatio="none"
-    class="h-4 w-4 fill-czurrent inline-block text-blue-600"
+    class="inline-block w-4 h-4 text-blue-600 fill-czurrent"
   />
   <EvaGlobe2
     aria-label="A nifty globe icon"
