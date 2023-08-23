@@ -18,6 +18,7 @@ import ExampleUseTablist from '../components/ExampleUseTablist.vue'
 import ExampleUseTextbox from '../components/ExampleUseTextbox.vue'
 import LayoutAdjacentArticleLinks from '../components/LayoutAdjacentArticleLinks.vue'
 import LayoutArticleEdit from '../components/LayoutArticleEdit.vue'
+import LayoutArticleLinks from '../components/LayoutArticleLinks.vue'
 import LayoutArticleLog from '../components/LayoutArticleLog.vue'
 import LayoutFooter from '../components/LayoutFooter.vue'
 import LayoutNav from '../components/LayoutNav.vue'
@@ -47,6 +48,7 @@ export const globalComponents: Component[] = Object.values({
   ExampleUseTextbox,
   LayoutAdjacentArticleLinks,
   LayoutArticleEdit,
+  LayoutArticleLinks,
   LayoutArticleLog,
   LayoutFooter,
   LayoutNav,

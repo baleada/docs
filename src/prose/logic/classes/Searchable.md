@@ -1,6 +1,7 @@
 ---
 title: Searchable
 tags: UI logic
+source: true
 publish: true
 order: 0
 ---
