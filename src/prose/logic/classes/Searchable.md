@@ -20,28 +20,13 @@ order: 0
 ## Construct a `Searchable` instance
 :::
 
-To construct a `Searchable` instance (Object), use the `Searchable` constructor, which accepts two parameters:
+To construct a `Searchable` instance, use the `Searchable` constructor, which accepts two parameters:
 
 ::: ariaLabel="Searchable constructor parameters" classes="wide-4"
 | Parameter | Type | Required | Description |
 | --- | --- | --- | --- |
 | `candidates` | Array | yes | Passes the search candidates that will be made searchable. All items in `candidates` should be strings or objects. |
 | `options` | Object | no | Passes options for the `Searchable` instance. See the [`Searchable` constructor options](#Searchable-constructor-options) section for more guidance. |
-:::
-
-
-:::
-```js
-const instance = new Searchable(candidates[, options])
-```
-:::
-
-Or, if you're using [Baleada Composition](/docs/composition):
-
-:::
-```js
-const reactiveInstance = useSearchable(candidates[, options])
-```
 :::
 
 
@@ -53,11 +38,8 @@ const reactiveInstance = useSearchable(candidates[, options])
 
 
 :::
-## Access state and methods
+## State and methods
 :::
-
-The constructed `Searchable` instance is an Object, and state and methods can be accessed via its properties:
-
 
 ::: ariaLabel="Searchable state and methods" classes="wide-3 wide-4 wide-5"
 | Property | Type | Description | Parameters | Return value |
@@ -121,7 +103,7 @@ withManualTypes.candidates = [{ id: 'abc' }] // No type error
 ## API design compliance
 :::
 
-::: ariaLabel="A table showing Searchable's API design compliance"  classes="wide-1 wide-3"
+::: ariaLabel="Searchable's API design compliance"  classes="wide-1 wide-3"
 | Spec | Compliance status | Notes |
 | --- | --- | --- |
 | Access functionality by constructing an instance | <BrandApiDesignSpecCheckmark /> |  |

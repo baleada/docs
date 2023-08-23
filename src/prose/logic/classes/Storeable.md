@@ -27,28 +27,13 @@ Baleada's docs use `Storeable` to remember your dark theme and minimalist theme 
 ## Construct a `Storeable` instance
 :::
 
-To construct a `Storeable` instance (Object), use the `Storeable` constructor, which accepts two parameters:
+To construct a `Storeable` instance, use the `Storeable` constructor, which accepts two parameters:
 
 ::: ariaLabel="Storeable constructor parameters" classes="wide-4"
 | Parameter | Type | Required | Description |
 | --- | --- | --- | --- |
 | `key` | String | yes | The key (from a key/value pair) that will be made storable. |
 | `options` | Object | no | Options for the `Storeable` instance. See the [`Storeable` constructor options](#Storeable-constructor-options) section for more guidance. |
-:::
-
-
-:::
-```js
-const instance = new Storeable(key[, options])
-```
-:::
-
-Or, if you're using [Baleada Composition](/docs/composition):
-
-:::
-```js
-const reactiveInstance = useStoreable(key[, options])
-```
 :::
 
 
@@ -65,11 +50,8 @@ const reactiveInstance = useStoreable(key[, options])
 
 
 :::
-## Access state and methods
+## State and methods
 :::
-
-The constructed `Storeable` instance is an Object, and state and methods can be accessed via its properties:
-
 
 ::: ariaLabel="Storeable state and methods" classes="wide-3 wide-4 wide-5"
 | Property | Type | Description | Parameters | Return value |
@@ -78,7 +60,7 @@ The constructed `Storeable` instance is an Object, and state and methods can be 
 | `status` | Getter | See return value | N/A | <p>The status (String) of the `Storeable` instance.</p><p>`status` is `constructing` while the instance is constructing and `ready` after it's constructed. It changes to `stored` after a value has been stored for your `key`, and it changes to `removed` after your key/value pair has been removed from storage.</p><p>`status` also gets stored in `localStorage` or `sessionStorage`. See the [How to use persistent status](#how-to-use-persistent-status) section for more guidance on this.</p> |
 | `storage` | Getter | See return value | N/A | `localStorage` or `sessionStorage`, depending on what options were passed to the `Storeable` constructor. |
 | `string` | Getter | See return value | N/A | The value (String) stored under your `key` in `localStorage` or `sessionStorage`. |
-| `error` | Getter | See return value | N/A | An empty object `{}` before any storage has been attempted The value (String) stored under your `key` in `localStorage` or `sessionStorage`. |
+| `error` | Getter | See return value | N/A | `undefined` before any storage has been attempted The value (String) stored under your `key` in `localStorage` or `sessionStorage`. |
 | `setKey(newKey)` | Function | Sets the `key` and updates `trie`. | The new `key` (Array) | The `Storeable` instance |
 | `store(string)` | Function | Stores the `key` in `localStorage` or `sessionStorage`, along with any String you want to store as the value for your `key`. | The String you want to store. If you don't pass this parameter, `Storeable` will store `undefined` as the value for your `key`. | The `Storeable` instance |
 | `remove()` | Function | Removes the `key` from `localStorage` or `sessionStorage`. | None | The `Storeable` instance |
@@ -171,14 +153,14 @@ case 'removed':
 ## Using with TypeScript
 :::
 
-Nothing special to know about using `Storeable` with TypeScript! Enjoy IDE autocomplete and type checking while you construct and use your instance.
+Nothing special to know about using `Storeable` with TypeScript 🚀
 
 
 :::
 ## API design compliance
 :::
 
-::: ariaLabel="A table showing Storeable's API design compliance"  classes="wide-1 wide-3"
+::: ariaLabel="Storeable's API design compliance"  classes="wide-1 wide-3"
 | Spec | Compliance status | Notes |
 | --- | --- | --- |
 | Access functionality by constructing an instance | <BrandApiDesignSpecCheckmark /> |  |

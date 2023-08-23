@@ -24,7 +24,7 @@ If Baleada Recognizeable Effects doesn't suit your needs, feel free to continue 
 ## Construct a `Recognizeable` instance
 :::
 
-To construct a `Recognizeable` instance (Object), use the `Recognizeable` constructor, which accepts two parameters:
+To construct a `Recognizeable` instance, use the `Recognizeable` constructor, which accepts two parameters:
 
 ::: ariaLabel="Recognizeable constructor parameters" classes="wide-4"
 | Parameter | Type | Required | Description |
@@ -32,22 +32,6 @@ To construct a `Recognizeable` instance (Object), use the `Recognizeable` constr
 | `sequence` | Array | yes | <p>Passes the event sequence (Array) that will be made recognizable.</p><p>In all intended use cases, `Listenable` will be constructing the `Recognizeable` instance for you, and it will pass an empty array here.</p> |
 | `options` | Object | no | <p>Passes options for the `Recognizeable` instance. See the [`Recognizeable` constructor options](#Recognizeable-constructor-options) section for more guidance.</p><p>This is where `Listenable` delivers the options object you pass to `Listenable`'s `recognizeable` option.</p> |
 :::
-
-
-:::
-```js
-const instance = new Recognizeable(sequence[, options])
-```
-:::
-
-Or, if you're using [Baleada Composition](/docs/composition):
-
-:::
-```js
-const reactiveInstance = useRecognizeable(sequence[, options])
-```
-:::
-
 
 
 :::
@@ -182,11 +166,8 @@ For more info on this Function format, and how it provides better type checking,
 
 
 :::
-## Access state and methods
+## State and methods
 :::
-
-The constructed `Recognizeable` instance is an Object, and state and methods can be accessed via its properties:
-
 
 ::: ariaLabel="Recognizeable state and methods" classes="wide-3 wide-5"
 | Property | Type | Description | Parameters | Return value |
@@ -478,7 +459,7 @@ pan.listen(() => {
 ## API design compliance
 :::
 
-::: ariaLabel="A table showing Recognizeable's API design compliance"  classes="wide-1 wide-3"
+::: ariaLabel="Recognizeable's API design compliance"  classes="wide-1 wide-3"
 | Spec | Compliance status | Notes |
 | --- | --- | --- |
 | Access functionality by constructing an instance | <BrandApiDesignSpecCheckmark /> |  |

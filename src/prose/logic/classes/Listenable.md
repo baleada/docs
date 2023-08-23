@@ -27,29 +27,13 @@ Baleada's docs use `Listenable` to:
 ## Construct a `Listenable` instance
 :::
 
-To construct a `Listenable` instance (Object), use the `Listenable` constructor, which accepts two parameters:
+To construct a `Listenable` instance, use the `Listenable` constructor, which accepts two parameters:
 
 ::: ariaLabel="Listenable constructor parameters" classes="wide-4"
 | Parameter | Type | Required | Description |
 | --- | --- | --- | --- |
 | `type` | String | yes | The type of event that will be made listenable. See the [Valid event types](#valid-event-types) section for more guidance. |
 | `options` | Object | no | Passes options for the `Listenable` instance. See the [`Listenable` constructor options](#Listenable-constructor-options) section for more guidance. |
-:::
-
-:::
-```js
-import { Listenable } from '@baleada/logic'
-const instance = new Listenable(type[, options])
-```
-:::
-
-Or, if you're using [Baleada Composition](/docs/composition):
-
-:::
-```js
-import { useListenable } from '@baleada/vue-composition'
-const reactiveInstance = useListenable(type[, options])
-```
 :::
 
 
@@ -143,11 +127,8 @@ Here are some more specific examples:
 
 
 :::
-## Access state and methods
+## State and methods
 :::
-
-The constructed `Listenable` instance is an Object, and state and methods can be accessed via its properties:
-
 
 ::: ariaLabel="Listenable state and methods" classes="wide-3 wide-4 wide-5"
 | Property | Type | Description | Parameters | Return value |
@@ -481,7 +462,7 @@ We won't cover all that information here, though. Instead, you should visit the 
 ## API design compliance
 :::
 
-::: ariaLabel="A table showing Listenable's API design compliance"  classes="wide-1 wide-3"
+::: ariaLabel="Listenable's API design compliance"  classes="wide-1 wide-3"
 | Spec | Compliance status | Notes |
 | --- | --- | --- |
 | Access functionality by constructing an instance | <BrandApiDesignSpecCheckmark /> |  |

@@ -18,7 +18,7 @@ order: 0
 ## Construct a `Navigateable` instance
 :::
 
-To construct a `Navigateable` instance (Object), use the `Navigateable` constructor, which accepts two parameters:
+To construct a `Navigateable` instance, use the `Navigateable` constructor, which accepts two parameters:
 
 ::: ariaLabel="Navigateable constructor parameters" classes="wide-4"
 | Parameter | Type | Required | Description |
@@ -26,26 +26,6 @@ To construct a `Navigateable` instance (Object), use the `Navigateable` construc
 | `array` | Array | yes | Passes the array that will be made navigable. |
 | `options` | Object | no | Passes options for the `Navigateable` instance. See the [Navigateable constructor options](#Navigateable-constructor-options) section for more guidance. |
 :::
-
-
-:::
-```js
-import { Navigateable } from '@baleada/logic'
-
-const instance = new Navigateable(array[, options])
-```
-:::
-
-Or, if you're using [Baleada Composition](/docs/composition):
-
-:::
-```js
-import { useNavigateable } from '@baleada/vue-composition'
-
-const reactiveInstance = useNavigateable(array[, options])
-```
-:::
-
 
 
 :::
@@ -60,10 +40,8 @@ const reactiveInstance = useNavigateable(array[, options])
 
 
 :::
-## Access state and methods
+## State and methods
 :::
-
-The constructed `Navigateable` instance is an Object, and state and methods can be accessed via its properties:
 
 ::: ariaLabel="Navigateable state and methods" classes="wide-3 wide-5"
 | Property | Type | Description | Parameters | Return value |
@@ -188,7 +166,7 @@ withManualTypes.array = ['a', 'b', 'c'] // No type error
 ## API design compliance
 :::
 
-::: ariaLabel="A table showing Navigateable's API design compliance"  classes="wide-1 wide-3"
+::: ariaLabel="Navigateable's API design compliance"  classes="wide-1 wide-3"
 | Spec | Compliance status | Notes |
 | --- | --- | --- |
 | Access functionality by constructing an instance | <BrandApiDesignSpecCheckmark /> |  |

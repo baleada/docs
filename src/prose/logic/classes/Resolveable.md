@@ -19,28 +19,13 @@ order: 0
 ## Construct a `Resolveable` instance
 :::
 
-To construct a `Resolveable` instance (Object), use the `Resolveable` constructor, which accepts two parameters:
+To construct a `Resolveable` instance, use the `Resolveable` constructor, which accepts two parameters:
 
 ::: ariaLabel="Resolveable constructor parameters" classes="wide-4"
 | Parameter | Type | Required | Description |
 | --- | --- | --- | --- |
 | `getPromise` | Function | yes | A function that, when called, returns the Promise that will be made resolvable. |
 | `options` | Object | no | Options for the `Resolveable` instance. See the [`Resolveable` constructor options](#Resolveable-constructor-options) section for more guidance. |
-:::
-
-
-:::
-```js
-const instance = new Resolveable(getPromise[, options])
-```
-:::
-
-Or, if you're using [Baleada Composition](/docs/composition):
-
-:::
-```js
-const reactiveInstance = useResolveable(getPromise[, options])
-```
 :::
 
 
@@ -52,19 +37,16 @@ const reactiveInstance = useResolveable(getPromise[, options])
 
 
 :::
-## Access state and methods
+## State and methods
 :::
-
-The constructed `Resolveable` instance is an Object, and state and methods can be accessed via its properties:
-
 
 ::: ariaLabel="Resolveable state and methods" classes="wide-3 wide-4 wide-5"
 | Property | Type | Description | Parameters | Return value |
 | --- | --- | --- | --- | --- |
 | `getPromise` | Getter/Setter | See return value | N/A | <p>The `getPromise` function passed to the constructor.</p><p>If you assign a value directly to `getPromise`, a setter will pass the new value to `setGetPromise`.</p> |
 | `status` | Getter | See return value | N/A | The status (String) of the promise-resolving process. See the [How methods affect status](#how-methods-affect-status) section for more information. |
-| `response` | Getter | See return value | N/A | An empty object `{}` before calling the `resolve` method, and the Promise's return value after successfully calling the `resolve` method. |
-| `error` | Getter | See return value | N/A | An empty object `{}` before calling the `resolve` method, and an [`Error`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Errors) object after calling the `resolve` method and encountering an error. |
+| `response` | Getter | See return value | N/A | `undefined` before calling the `resolve` method, and the Promise's return value after successfully calling the `resolve` method. |
+| `error` | Getter | See return value | N/A | `undefined` before calling the `resolve` method, and an [`Error`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Errors) object after calling the `resolve` method and encountering an error. |
 | `setGetPromise(newGetPromise)` | Function | Sets `getPromise` | The new `getPromise` (Array) | The `Resolveable` instance |
 | `resolve()` | Function | Asynchronously resolves the Promise. Can't be called until the DOM or Node is available. | None | The `Resolveable` instance |
 :::
@@ -90,7 +72,7 @@ All methods always return the `Resolveable` instance (i.e. `this`), regardless o
 ## API design compliance
 :::
 
-::: ariaLabel="A table showing Resolveable's API design compliance"  classes="wide-1 wide-3"
+::: ariaLabel="Resolveable's API design compliance"  classes="wide-1 wide-3"
 | Spec | Compliance status | Notes |
 | --- | --- | --- |
 | Access functionality by constructing an instance | <BrandApiDesignSpecCheckmark /> |  |

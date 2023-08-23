@@ -18,7 +18,7 @@ order: 0
 ## Construct a `Pickable` instance
 :::
 
-To construct a `Pickable` instance (Object), use the `Pickable` constructor, which accepts two parameters:
+To construct a `Pickable` instance, use the `Pickable` constructor, which accepts two parameters:
 
 ::: ariaLabel="Pickable constructor parameters" classes="wide-4"
 | Parameter | Type | Required | Description |
@@ -26,26 +26,6 @@ To construct a `Pickable` instance (Object), use the `Pickable` constructor, whi
 | `array` | Array | yes | Passes the array that will be made navigable. |
 | `options` | Object | no | Passes options for the `Pickable` instance. See the [Pickable constructor options](#Pickable-constructor-options) section for more guidance. |
 :::
-
-
-:::
-```js
-import { Pickable } from '@baleada/logic'
-
-const instance = new Pickable(array[, options])
-```
-:::
-
-Or, if you're using [Baleada Composition](/docs/composition):
-
-:::
-```js
-import { usePickable } from '@baleada/vue-composition'
-
-const reactiveInstance = usePickable(array[, options])
-```
-:::
-
 
 
 :::
@@ -60,10 +40,8 @@ const reactiveInstance = usePickable(array[, options])
 
 
 :::
-## Access state and methods
+## State and methods
 :::
-
-The constructed `Pickable` instance is an Object, and state and methods can be accessed via its properties:
 
 ::: ariaLabel="Pickable state and methods" classes="wide-1 wide-3 wide-5"
 | Property | Type | Description | Parameters | Return value |
@@ -143,7 +121,7 @@ withManualTypes.array = ['a', 'b', 'c'] // No type error
 ## API design compliance
 :::
 
-::: ariaLabel="A table showing Pickable's API design compliance"  classes="wide-1 wide-3"
+::: ariaLabel="Pickable's API design compliance"  classes="wide-1 wide-3"
 | Spec | Compliance status | Notes |
 | --- | --- | --- |
 | Access functionality by constructing an instance | <BrandApiDesignSpecCheckmark /> |  |
