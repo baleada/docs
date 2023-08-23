@@ -1,14 +1,15 @@
 import { resolve, parse, dirname } from 'path'
-import { readFileSync, readdirSync } from 'fs'
+import { readFileSync, readdirSync, writeFileSync } from 'fs'
 import { config } from 'dotenv'
 
 config({ path: resolve('./.env') })
 const relativePathToLogic = process.env.RELATIVE_PATH_TO_LOGIC
 
 function write () {
+  const files: string[] = []
   for (const { name, title, createdName, fileName, kind } of toLogicPipeMetadata().pipes) {
-    const path = `./src/prose/logic/pipes/${fileName}.md`
-    const fileExists = readdirSync(dirname(path)).includes(parse(path).base)
+    const path = `./src/prose/logic/pipes/${fileName}.md`,
+          fileExists = readdirSync(dirname(path)).includes(parse(path).base)
     
     if (fileExists) continue
 
@@ -21,9 +22,20 @@ publish: true
 order: 0
 ---
 
-\`${name}\` is a pipe that accepts a${/^[aeiou]/.test(kind) ? 'n' : ''} ${kind.replace(/ async/, '')} as an input, and ${kind.includes('async') ? 'asynchronously ' : ''}outputs <!--TODO-->.
+\`${name}\` is a pipe that accepts ${kind === 'any' ? 'anything' : `a${/^[aeiou]/.test(kind) ? 'n' : ''} ${kind.replace(/ async/, '')}`} as an input, and ${kind.includes('async') ? 'asynchronously ' : ''}outputs <!--TODO-->.
 
+${
+  kind.includes('array')
+    ? `\
+::: type="info"
+\`${name}\` is a light wrapper around [\`${createdName.replace(/Async/, '')}\`](https://github.com/RobinMalfait/lazy-collections#${createdName.replace(/Async/, '')}) and [\`toArray\`](https://github.com/RobinMalfait/lazy-collections#toarray) from \`lazy-collections\`.
 
+If you're sending your array through multiple transformations, prefer using \`lazy-collections\` directly, to maximize [its benefits](https://alexvipond.dev/blog/im-obsessed-with-lazy-collections).
+:::
+
+`
+    : ''
+}
 :::
 ## Create \`${createdName}\`
 :::
@@ -46,8 +58,12 @@ Call \`${name}\` with the parameters listed below to create your \`${createdName
 Nothing special to know about using \`${name}\` with TypeScript 🚀
 `
 
-    console.log(contents);
+    writeFileSync(path, contents, { encoding: 'utf8' })
+
+    files.push(fileName)
   }
+
+  console.log(`Wrote ${files.length} pipe documentation files`)
 }
 
 export type PipeMetadatum = {
