@@ -19,13 +19,14 @@ If you're sending your array through multiple transformations, prefer using `laz
 ## Create find index async
 :::
 
-Call `createFindIndexAsync` with no parameters to create your `findIndex` function.
-
 Call `createFindIndexAsync` with these parameters to create your `findIndex` function:
 
 ::: ariaLabel="createFindIndexAsync parameters" classes="wide-4"
 | Parameter | Type | Required | Description |
 | --- | --- | --- | --- |
-
+| `predicate` | Function | yes | <p>A function that returns a `Promise` that resolves to a boolean indicating whether or not an item is the item you're trying to find.</p><p>`predicate` receives an item (any data type) and the item's index (number) as parameters.</p> |
 :::
 
+::: type="info"
+Baleada Logic doesn't export `createFindIndex`, i.e. the synchronous version of `createFindIndexAsync`. Instead, just import [`findIndex` from `lazy-collections`](https://github.com/RobinMalfait/lazy-collections#findIndex).
+:::

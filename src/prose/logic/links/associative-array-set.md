@@ -13,15 +13,13 @@ order: 0
 ## Create set
 :::
 
-Call `createAssociativeArraySet` with no parameters to create your `set` function.
-
 Call `createAssociativeArraySet` with these parameters to create your `set` function:
 
 ::: ariaLabel="createAssociativeArraySet parameters" classes="wide-4"
 | Parameter | Type | Required | Description |
 | --- | --- | --- | --- |
-| `key` | Any | yes | The key to set (add or overwrite). |
-| `value` | Any | yes | The value to set on the associative array. |
+| `key` | any | yes | The key to set (add or overwrite). |
+| `value` | any | yes | The value to set on the associative array. |
 | `options` | Object | no | Options to customize the behavior of the `set` function. See the [Options](#options) section for more guidance. |
 :::
 

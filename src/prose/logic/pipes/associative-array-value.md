@@ -18,7 +18,7 @@ Call `createAssociativeArrayValue` with these parameters to create your `value` 
 ::: ariaLabel="createAssociativeArrayValue parameters" classes="wide-4"
 | Parameter | Type | Required | Description |
 | --- | --- | --- | --- |
-| `key` | Any | yes | The key to retrieve. |
+| `key` | any | yes | The key to retrieve. |
 | `options` | Object | no | Options to customize the behavior of the `value` function. See the [Options](#options) section for more guidance. |
 :::
 

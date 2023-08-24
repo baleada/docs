@@ -19,13 +19,14 @@ If you're sending your array through multiple transformations, prefer using `laz
 ## Create find
 :::
 
-Call `createFindAsync` with no parameters to create your `find` function.
-
 Call `createFindAsync` with these parameters to create your `find` function:
 
 ::: ariaLabel="createFindAsync parameters" classes="wide-4"
 | Parameter | Type | Required | Description |
 | --- | --- | --- | --- |
-
+| `predicate` | Function | yes | <p>A function that returns a `Promise` that resolves to a boolean indicating whether or not an item is the item you're trying to find.</p><p>`predicate` receives an item (any data type) and the item's index (number) as parameters.</p> |
 :::
 
+::: type="info"
+Baleada Logic doesn't export `createFind`, i.e. the synchronous version of `createFindAsync`. Instead, just import [`find` from `lazy-collections`](https://github.com/RobinMalfait/lazy-collections#find).
+:::

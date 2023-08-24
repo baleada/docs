@@ -15,13 +15,11 @@ Your created `incoming` function is a [generator](https://developer.mozilla.org/
 ## Create incoming
 :::
 
-Call `createIncoming` with no parameters to create your `incoming` function.
-
 Call `createIncoming` with these parameters to create your `incoming` function:
 
 ::: ariaLabel="createIncoming parameters" classes="wide-4"
 | Parameter | Type | Required | Description |
 | --- | --- | --- | --- |
-
+| `graph` | [graph](/docs/logic/graph-overview) | yes | The graph to analyze. |
 :::
 

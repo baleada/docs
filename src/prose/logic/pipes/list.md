@@ -14,12 +14,3 @@ order: 0
 :::
 
 Call `createList` with no parameters to create your `list` function.
-
-Call `createList` with these parameters to create your `list` function:
-
-::: ariaLabel="createList parameters" classes="wide-4"
-| Parameter | Type | Required | Description |
-| --- | --- | --- | --- |
-
-:::
-

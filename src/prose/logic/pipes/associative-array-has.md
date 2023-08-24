@@ -18,7 +18,7 @@ Call `createAssociativeArrayHas` with these parameters to create your `has` func
 ::: ariaLabel="createAssociativeArrayHas parameters" classes="wide-4"
 | Parameter | Type | Required | Description |
 | --- | --- | --- | --- |
-| `key` | Any | yes | The key to check for. |
+| `key` | any | yes | The key to check for. |
 | `options` | Object | no | Options to customize the behavior of the `has` function. See the [Options](#options) section for more guidance. |
 :::
 

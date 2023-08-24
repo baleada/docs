@@ -13,13 +13,12 @@ order: 0
 ## Create replace
 :::
 
-Call `createReplace` with no parameters to create your `replace` function.
-
 Call `createReplace` with these parameters to create your `replace` function:
 
 ::: ariaLabel="createReplace parameters" classes="wide-4"
 | Parameter | Type | Required | Description |
 | --- | --- | --- | --- |
-
+| `index` | number | yes | The index of the item to replace. |
+| `replacement` | any | yes | The item to replace the item at the given index with. |
 :::
 

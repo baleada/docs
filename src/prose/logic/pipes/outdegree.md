@@ -13,13 +13,11 @@ order: 0
 ## Create outdegree
 :::
 
-Call `createOutdegree` with no parameters to create your `outdegree` function.
-
 Call `createOutdegree` with these parameters to create your `outdegree` function:
 
 ::: ariaLabel="createOutdegree parameters" classes="wide-4"
 | Parameter | Type | Required | Description |
 | --- | --- | --- | --- |
-
+| `graph` | [graph](/docs/logic/graph-overview) | yes | The graph to analyze. |
 :::
 

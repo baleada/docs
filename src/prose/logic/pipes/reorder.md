@@ -13,13 +13,11 @@ order: 0
 ## Create reorder
 :::
 
-Call `createReorder` with no parameters to create your `reorder` function.
-
 Call `createReorder` with these parameters to create your `reorder` function:
 
 ::: ariaLabel="createReorder parameters" classes="wide-4"
 | Parameter | Type | Required | Description |
 | --- | --- | --- | --- |
-
+| `from` | number, Object | yes | <p>The index (number) of the item to move.</p><p>Alternatively, you can pass an object with a `start` property and a `itemCount` property. In this case, your `reorder` function would start from the `start` index, collect `itemCount` items, and move them to the new location.</p> |
+| `to` | number | yes | The index of the new location. |
 :::
-

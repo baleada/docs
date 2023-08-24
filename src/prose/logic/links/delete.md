@@ -18,6 +18,6 @@ Call `createDelete` with these parameters to create your `delete` function:
 ::: ariaLabel="createDelete parameters" classes="wide-4"
 | Parameter | Type | Required | Description |
 | --- | --- | --- | --- |
-| `key` | Any | yes | The key to delete. |
+| `key` | any | yes | The key to delete. |
 :::
 

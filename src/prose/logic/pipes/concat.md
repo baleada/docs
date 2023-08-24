@@ -26,6 +26,5 @@ Call `createConcat` with these parameters to create your `concat` function:
 ::: ariaLabel="createConcat parameters" classes="wide-4"
 | Parameter | Type | Required | Description |
 | --- | --- | --- | --- |
-
+| `...arrays` | Array | yes | One or more arrays to concatenate with the array you pass to your created `concat` function. |
 :::
-

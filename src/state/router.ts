@@ -29,5 +29,15 @@ router.beforeEach((to, from) => {
   return true
 })
 
+// redirect logic indices to overviews
+router.beforeEach((to, from) => {
+  if (/\/(pipes|links|factories)$/.test(to.path)) {
+    to.meta.redirectCode = 301
+    return `${to.path}-overview`
+  }
+
+  return true
+})
+
 
 export { router }

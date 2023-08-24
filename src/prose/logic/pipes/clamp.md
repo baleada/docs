@@ -13,13 +13,12 @@ order: 0
 ## Create clamp
 :::
 
-Call `createClamp` with no parameters to create your `clamp` function.
-
 Call `createClamp` with these parameters to create your `clamp` function:
 
 ::: ariaLabel="createClamp parameters" classes="wide-4"
 | Parameter | Type | Required | Description |
 | --- | --- | --- | --- |
-
+| `min` | `number` | Yes | The lower bound to clamp between. |
+| `max` | `number` | Yes | The upper bound to clamp between. |
 :::
 

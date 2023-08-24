@@ -18,5 +18,5 @@ Call `createValue` with these parameters to create your `value` function:
 ::: ariaLabel="createValue parameters" classes="wide-4"
 | Parameter | Type | Required | Description |
 | --- | --- | --- | --- |
-| `key` | Any | yes | The key to retrieve. |
+| `key` | any | yes | The key to retrieve. |
 :::

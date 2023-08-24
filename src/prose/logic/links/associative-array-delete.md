@@ -18,7 +18,7 @@ Call `createAssociativeArrayDelete` with these parameters to create your `delete
 ::: ariaLabel="createAssociativeArrayDelete parameters" classes="wide-4"
 | Parameter | Type | Required | Description |
 | --- | --- | --- | --- |
-| `key` | Any | yes | The key to delete. |
+| `key` | any | yes | The key to delete. |
 | `options` | Object | no | Options to customize the behavior of the `delete` function. See the [Options](#options) section for more guidance. |
 :::
 

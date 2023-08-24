@@ -20,6 +20,5 @@ Call `createForEachAsync` with these parameters to create your `forEach` functio
 ::: ariaLabel="createForEachAsync parameters" classes="wide-4"
 | Parameter | Type | Required | Description |
 | --- | --- | --- | --- |
-
+| `effect` | Function | yes | The effect to perform. Your `effect` will receive an item and its index as parameters. |
 :::
-

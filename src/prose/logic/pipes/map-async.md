@@ -19,13 +19,11 @@ If you're sending your array through multiple transformations, prefer using `laz
 ## Create map
 :::
 
-Call `createMapAsync` with no parameters to create your `map` function.
-
 Call `createMapAsync` with these parameters to create your `map` function:
 
 ::: ariaLabel="createMapAsync parameters" classes="wide-4"
 | Parameter | Type | Required | Description |
 | --- | --- | --- | --- |
-
+| `transform` | Function | yes | <p>A function that returns a `Promise` that resolves to the transformed item.</p><p>`transform` receives an item (any data type) and the item's index (number) as parameters.</p> |
 :::
 

@@ -18,7 +18,7 @@ Call `createSet` with these parameters to create your `set` function:
 ::: ariaLabel="createSet parameters" classes="wide-4"
 | Parameter | Type | Required | Description |
 | --- | --- | --- | --- |
-| `key` | Any | yes | The key to set. |
-| `value` | Any | yes | The value to set. |
+| `key` | any | yes | The key to set. |
+| `value` | any | yes | The value to set. |
 :::
 

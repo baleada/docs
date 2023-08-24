@@ -14,12 +14,3 @@ order: 0
 :::
 
 Call `createEntries` with no parameters to create your `entries` function.
-
-Call `createEntries` with these parameters to create your `entries` function:
-
-::: ariaLabel="createEntries parameters" classes="wide-4"
-| Parameter | Type | Required | Description |
-| --- | --- | --- | --- |
-
-:::
-

@@ -13,13 +13,10 @@ order: 0
 ## Create some
 :::
 
-Call `createSome` with no parameters to create your `some` function.
-
 Call `createSome` with these parameters to create your `some` function:
 
 ::: ariaLabel="createSome parameters" classes="wide-4"
 | Parameter | Type | Required | Description |
 | --- | --- | --- | --- |
-
+| `predicate` | Function | yes | A function that receives two parameters—`key` and `value`—and should return a boolean indicating whether or not the key/value pair meets some condition. |
 :::
-

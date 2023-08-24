@@ -13,13 +13,12 @@ order: 0
 ## Create insert
 :::
 
-Call `createInsert` with no parameters to create your `insert` function.
-
 Call `createInsert` with these parameters to create your `insert` function:
 
 ::: ariaLabel="createInsert parameters" classes="wide-4"
 | Parameter | Type | Required | Description |
 | --- | --- | --- | --- |
-
+| `item` | any | yes | The item to insert. |
+| `index` | number | yes | The index at which to insert the item. |
 :::
 

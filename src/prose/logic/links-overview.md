@@ -2,7 +2,7 @@
 title: Links
 tags: UI Logic
 publish: true
-order: 3
+order: 4
 ---
 
 In Baleada Logic, every **link** is a [higher order function](https://medium.com/javascript-scene/higher-order-functions-composing-software-5365cf2cbe99), i.e. a function that returns a function. Links are designed to be used with the [pipeline operator](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Pipeline_operator).

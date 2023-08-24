@@ -13,13 +13,11 @@ order: 0
 ## Create indegree
 :::
 
-Call `createIndegree` with no parameters to create your `indegree` function.
-
 Call `createIndegree` with these parameters to create your `indegree` function:
 
 ::: ariaLabel="createIndegree parameters" classes="wide-4"
 | Parameter | Type | Required | Description |
 | --- | --- | --- | --- |
-
+| `graph` | [graph](/docs/logic/graph-overview) | yes | The graph to analyze. |
 :::
 

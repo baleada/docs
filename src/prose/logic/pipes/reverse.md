@@ -20,12 +20,3 @@ If you're sending your array through multiple transformations, prefer using `laz
 :::
 
 Call `createReverse` with no parameters to create your `reverse` function.
-
-Call `createReverse` with these parameters to create your `reverse` function:
-
-::: ariaLabel="createReverse parameters" classes="wide-4"
-| Parameter | Type | Required | Description |
-| --- | --- | --- | --- |
-
-:::
-

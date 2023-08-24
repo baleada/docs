@@ -19,13 +19,12 @@ If you're sending your array through multiple transformations, prefer using `laz
 ## Create reduce
 :::
 
-Call `createReduce` with no parameters to create your `reduce` function.
-
 Call `createReduce` with these parameters to create your `reduce` function:
 
 ::: ariaLabel="createReduce parameters" classes="wide-4"
 | Parameter | Type | Required | Description |
 | --- | --- | --- | --- |
-
+| `accumulate` | Function | yes | <p>A function that returns the accumulated value.</p><p>`accumulate` receives the accumulated value (any data type), the current item (any data type), and the current item's index (number) as parameters.</p> |
+| `initialValue` | any | no | <p>The initial value of the accumulator.</p><p>Defaults to `undefined`.</p> |
 :::
 

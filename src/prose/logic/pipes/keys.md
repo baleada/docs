@@ -14,12 +14,3 @@ order: 0
 :::
 
 Call `createKeys` with no parameters to create your `keys` function.
-
-Call `createKeys` with these parameters to create your `keys` function:
-
-::: ariaLabel="createKeys parameters" classes="wide-4"
-| Parameter | Type | Required | Description |
-| --- | --- | --- | --- |
-
-:::
-

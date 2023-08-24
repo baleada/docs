@@ -1,9 +1,9 @@
 ---
-title: Graph overview
+title: Graph
 tags: UI Logic
 source: extracted/graph.ts
 publish: true
-order: 0
+order: 6
 ---
 
 Baleada Logic includes [pipes](/docs/logic/pipes-overview) for working with graphs, i.e. collections of interconnected nodes.

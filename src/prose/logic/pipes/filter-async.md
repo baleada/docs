@@ -19,13 +19,10 @@ If you're sending your array through multiple transformations, prefer using `laz
 ## Create filter
 :::
 
-Call `createFilterAsync` with no parameters to create your `filter` function.
-
 Call `createFilterAsync` with these parameters to create your `filter` function:
 
 ::: ariaLabel="createFilterAsync parameters" classes="wide-4"
 | Parameter | Type | Required | Description |
 | --- | --- | --- | --- |
-
+| `predicate` | Function | yes | <p>A function that returns a `Promise` that resolves to a boolean indicating whether or not an item meets your filter condition.</p><p>`predicate` receives an item (any data type) and the item's index (number) as parameters.</p> |
 :::
-

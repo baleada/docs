@@ -2,7 +2,7 @@
 title: Factories
 tags: UI Logic
 publish: true
-order: 3
+order: 5
 ---
 
 In Baleada Logic, every **factory** is a [factory function](https://medium.com/javascript-scene/javascript-factory-functions-with-es6-4d224591a8b1), i.e. a function that returns an object.

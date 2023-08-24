@@ -13,13 +13,11 @@ order: 0
 ## Create every
 :::
 
-Call `createEvery` with no parameters to create your `every` function.
-
 Call `createEvery` with these parameters to create your `every` function:
 
 ::: ariaLabel="createEvery parameters" classes="wide-4"
 | Parameter | Type | Required | Description |
 | --- | --- | --- | --- |
-
+| `predicate` | Function | yes | A function that receives two parameters—`key` and `value`—and should return a boolean indicating whether or not the key/value pair meets some condition. |
 :::
 

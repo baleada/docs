@@ -13,13 +13,10 @@ order: 0
 ## Create equal
 :::
 
-Call `createEqual` with no parameters to create your `equal` function.
-
 Call `createEqual` with these parameters to create your `equal` function:
 
 ::: ariaLabel="createEqual parameters" classes="wide-4"
 | Parameter | Type | Required | Description |
 | --- | --- | --- | --- |
-
+| `compared` | any | yes | The value to compare for strict equality. |
 :::
-

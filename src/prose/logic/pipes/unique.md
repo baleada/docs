@@ -20,12 +20,3 @@ If you're sending your array through multiple transformations, prefer using `laz
 :::
 
 Call `createUnique` with no parameters to create your `unique` function.
-
-Call `createUnique` with these parameters to create your `unique` function:
-
-::: ariaLabel="createUnique parameters" classes="wide-4"
-| Parameter | Type | Required | Description |
-| --- | --- | --- | --- |
-
-:::
-

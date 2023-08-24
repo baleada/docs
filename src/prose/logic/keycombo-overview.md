@@ -2,7 +2,7 @@
 title: Keycombo
 tags: UI Logic
 publish: true
-order: 0
+order: 7
 ---
 
 In Baleada Logic, there are several functions that deal with keycombos:

@@ -18,5 +18,5 @@ Call `createHas` with these parameters to create your `has` function:
 ::: ariaLabel="createHas parameters" classes="wide-4"
 | Parameter | Type | Required | Description |
 | --- | --- | --- | --- |
-| `key` | Any | yes | The key to check for. |
+| `key` | any | yes | The key to check for. |
 :::
