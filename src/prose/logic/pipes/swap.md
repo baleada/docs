@@ -6,22 +6,16 @@ publish: true
 order: 0
 ---
 
-`createSwap` is a pipe that accepts an array as an input, and outputs <!--TODO-->.
-
-::: type="info"
-`createSwap` is a light wrapper around [`swap`](https://github.com/RobinMalfait/lazy-collections#swap) and [`toArray`](https://github.com/RobinMalfait/lazy-collections#toarray) from `lazy-collections`.
-
-If you're sending your array through multiple transformations, prefer using `lazy-collections` directly, to maximize [its benefits](https://alexvipond.dev/blog/im-obsessed-with-lazy-collections).
-:::
+`createSwap` is a [pipe](/docs/logic/pipes-overview) that transforms an array to an array with the positions of two items swapped.
 
 
 :::
-## Create `swap`
+## Create swap
 :::
 
 Call `createSwap` with no parameters to create your `swap` function.
 
-Call `createSwap` with the parameters listed below to create your `swap` function:
+Call `createSwap` with these parameters to create your `swap` function:
 
 ::: ariaLabel="createSwap parameters" classes="wide-4"
 | Parameter | Type | Required | Description |
@@ -29,9 +23,3 @@ Call `createSwap` with the parameters listed below to create your `swap` functio
 
 :::
 
-
-:::
-## Using with TypeScript
-:::
-
-Nothing special to know about using `createSwap` with TypeScript 🚀

@@ -6,7 +6,7 @@ publish: true
 order: 0
 ---
 
-`createConcat` is a pipe that accepts an array as an input, and outputs <!--TODO-->.
+`createConcat` is a [pipe](/docs/logic/pipes-overview) that transforms an array to a concatenated array.
 
 ::: type="info"
 `createConcat` is a light wrapper around [`concat`](https://github.com/RobinMalfait/lazy-collections#concat) and [`toArray`](https://github.com/RobinMalfait/lazy-collections#toarray) from `lazy-collections`.
@@ -16,12 +16,12 @@ If you're sending your array through multiple transformations, prefer using `laz
 
 
 :::
-## Create `concat`
+## Create concat
 :::
 
 Call `createConcat` with no parameters to create your `concat` function.
 
-Call `createConcat` with the parameters listed below to create your `concat` function:
+Call `createConcat` with these parameters to create your `concat` function:
 
 ::: ariaLabel="createConcat parameters" classes="wide-4"
 | Parameter | Type | Required | Description |
@@ -29,9 +29,3 @@ Call `createConcat` with the parameters listed below to create your `concat` fun
 
 :::
 
-
-:::
-## Using with TypeScript
-:::
-
-Nothing special to know about using `createConcat` with TypeScript 🚀

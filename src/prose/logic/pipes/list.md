@@ -1,21 +1,21 @@
 ---
 title: list
 tags: UI Logic
-source: class value.ts
+source: class-value.ts
 publish: true
 order: 0
 ---
 
-`createList` is a pipe that accepts a class value as an input, and outputs <!--TODO-->.
+`createList` is a [pipe](/docs/logic/pipes-overview) that transforms a [class value](https://github.com/lukeed/clsx/blob/master/clsx.d.ts#L2) to a space-separated class list, with falsey values filtered out.
 
 
 :::
-## Create `list`
+## Create list
 :::
 
 Call `createList` with no parameters to create your `list` function.
 
-Call `createList` with the parameters listed below to create your `list` function:
+Call `createList` with these parameters to create your `list` function:
 
 ::: ariaLabel="createList parameters" classes="wide-4"
 | Parameter | Type | Required | Description |
@@ -23,9 +23,3 @@ Call `createList` with the parameters listed below to create your `list` functio
 
 :::
 
-
-:::
-## Using with TypeScript
-:::
-
-Nothing special to know about using `createList` with TypeScript 🚀

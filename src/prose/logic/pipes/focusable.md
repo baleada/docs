@@ -6,16 +6,16 @@ publish: true
 order: 0
 ---
 
-`createFocusable` is a pipe that accepts an element as an input, and outputs <!--TODO-->.
+`createFocusable` is a [pipe](/docs/logic/pipes-overview) that transforms an element to its first or last focusable descendant, via a depth-first search. It optionally can return the element itself, if it is focusable.
 
 
 :::
-## Create `focusable`
+## Create focusable
 :::
 
 Call `createFocusable` with no parameters to create your `focusable` function.
 
-Call `createFocusable` with the parameters listed below to create your `focusable` function:
+Call `createFocusable` with these parameters to create your `focusable` function:
 
 ::: ariaLabel="createFocusable parameters" classes="wide-4"
 | Parameter | Type | Required | Description |
@@ -23,9 +23,3 @@ Call `createFocusable` with the parameters listed below to create your `focusabl
 
 :::
 
-
-:::
-## Using with TypeScript
-:::
-
-Nothing special to know about using `createFocusable` with TypeScript 🚀

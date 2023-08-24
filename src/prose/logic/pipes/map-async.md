@@ -1,12 +1,12 @@
 ---
 title: map async
 tags: UI Logic
-source: array async.ts
+source: array-async.ts
 publish: true
 order: 0
 ---
 
-`createMapAsync` is a pipe that accepts an array as an input, and asynchronously outputs <!--TODO-->.
+`createMapAsync` is a [pipe](/docs/logic/pipes-overview) that asynchronously transforms an array to a mapped array.
 
 ::: type="info"
 `createMapAsync` is a light wrapper around [`map`](https://github.com/RobinMalfait/lazy-collections#map) and [`toArray`](https://github.com/RobinMalfait/lazy-collections#toarray) from `lazy-collections`.
@@ -16,12 +16,12 @@ If you're sending your array through multiple transformations, prefer using `laz
 
 
 :::
-## Create `mapAsync`
+## Create map
 :::
 
-Call `createMapAsync` with no parameters to create your `mapAsync` function.
+Call `createMapAsync` with no parameters to create your `map` function.
 
-Call `createMapAsync` with the parameters listed below to create your `mapAsync` function:
+Call `createMapAsync` with these parameters to create your `map` function:
 
 ::: ariaLabel="createMapAsync parameters" classes="wide-4"
 | Parameter | Type | Required | Description |
@@ -29,9 +29,3 @@ Call `createMapAsync` with the parameters listed below to create your `mapAsync`
 
 :::
 
-
-:::
-## Using with TypeScript
-:::
-
-Nothing special to know about using `createMapAsync` with TypeScript 🚀

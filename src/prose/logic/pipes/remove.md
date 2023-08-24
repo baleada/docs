@@ -6,7 +6,7 @@ publish: true
 order: 0
 ---
 
-`createRemove` is a pipe that accepts an array as an input, and outputs <!--TODO-->.
+`createRemove` is a [pipe](/docs/logic/pipes-overview) that transforms an array to an array with an item at a given index removed.
 
 ::: type="info"
 `createRemove` is a light wrapper around [`remove`](https://github.com/RobinMalfait/lazy-collections#remove) and [`toArray`](https://github.com/RobinMalfait/lazy-collections#toarray) from `lazy-collections`.
@@ -16,12 +16,12 @@ If you're sending your array through multiple transformations, prefer using `laz
 
 
 :::
-## Create `remove`
+## Create remove
 :::
 
 Call `createRemove` with no parameters to create your `remove` function.
 
-Call `createRemove` with the parameters listed below to create your `remove` function:
+Call `createRemove` with these parameters to create your `remove` function:
 
 ::: ariaLabel="createRemove parameters" classes="wide-4"
 | Parameter | Type | Required | Description |
@@ -29,9 +29,3 @@ Call `createRemove` with the parameters listed below to create your `remove` fun
 
 :::
 
-
-:::
-## Using with TypeScript
-:::
-
-Nothing special to know about using `createRemove` with TypeScript 🚀

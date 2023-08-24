@@ -6,16 +6,16 @@ publish: true
 order: 0
 ---
 
-`createClip` is a pipe that accepts a string as an input, and outputs <!--TODO-->.
+`createClip` is a [pipe](/docs/logic/pipes-overview) that transforms a string to a string with some content clipped out of it.
 
 
 :::
-## Create `clip`
+## Create clip
 :::
 
 Call `createClip` with no parameters to create your `clip` function.
 
-Call `createClip` with the parameters listed below to create your `clip` function:
+Call `createClip` with these parameters to create your `clip` function:
 
 ::: ariaLabel="createClip parameters" classes="wide-4"
 | Parameter | Type | Required | Description |
@@ -23,9 +23,3 @@ Call `createClip` with the parameters listed below to create your `clip` functio
 
 :::
 
-
-:::
-## Using with TypeScript
-:::
-
-Nothing special to know about using `createClip` with TypeScript 🚀

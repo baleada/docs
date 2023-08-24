@@ -6,16 +6,16 @@ publish: true
 order: 0
 ---
 
-`createEvery` is a pipe that accepts an object as an input, and outputs <!--TODO-->.
+`createEvery` is a [pipe](/docs/logic/pipes-overview) that transforms an object to a boolean indicating whether or not every key/value pair meets some condition.
 
 
 :::
-## Create `every`
+## Create every
 :::
 
 Call `createEvery` with no parameters to create your `every` function.
 
-Call `createEvery` with the parameters listed below to create your `every` function:
+Call `createEvery` with these parameters to create your `every` function:
 
 ::: ariaLabel="createEvery parameters" classes="wide-4"
 | Parameter | Type | Required | Description |
@@ -23,9 +23,3 @@ Call `createEvery` with the parameters listed below to create your `every` funct
 
 :::
 
-
-:::
-## Using with TypeScript
-:::
-
-Nothing special to know about using `createEvery` with TypeScript 🚀

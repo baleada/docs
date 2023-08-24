@@ -6,16 +6,16 @@ publish: true
 order: 0
 ---
 
-`createSome` is a pipe that accepts an object as an input, and outputs <!--TODO-->.
+`createSome` is a [pipe](/docs/logic/pipes-overview) that transforms an object to a boolean indicating whether or not some of its key/value pairs meet a given condition.
 
 
 :::
-## Create `some`
+## Create some
 :::
 
 Call `createSome` with no parameters to create your `some` function.
 
-Call `createSome` with the parameters listed below to create your `some` function:
+Call `createSome` with these parameters to create your `some` function:
 
 ::: ariaLabel="createSome parameters" classes="wide-4"
 | Parameter | Type | Required | Description |
@@ -23,9 +23,3 @@ Call `createSome` with the parameters listed below to create your `some` functio
 
 :::
 
-
-:::
-## Using with TypeScript
-:::
-
-Nothing special to know about using `createSome` with TypeScript 🚀

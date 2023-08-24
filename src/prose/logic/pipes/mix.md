@@ -6,16 +6,16 @@ publish: true
 order: 0
 ---
 
-`createMix` is a pipe that accepts a color as an input, and outputs <!--TODO-->.
+`createMix` is a [pipe](/docs/logic/pipes-overview) that transforms a color to a mix of that color and another given color, optionally in a given color space with given percentage weights of each color.
 
 
 :::
-## Create `mix`
+## Create mix
 :::
 
 Call `createMix` with no parameters to create your `mix` function.
 
-Call `createMix` with the parameters listed below to create your `mix` function:
+Call `createMix` with these parameters to create your `mix` function:
 
 ::: ariaLabel="createMix parameters" classes="wide-4"
 | Parameter | Type | Required | Description |
@@ -23,9 +23,3 @@ Call `createMix` with the parameters listed below to create your `mix` function:
 
 :::
 
-
-:::
-## Using with TypeScript
-:::
-
-Nothing special to know about using `createMix` with TypeScript 🚀

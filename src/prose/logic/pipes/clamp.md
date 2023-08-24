@@ -6,16 +6,16 @@ publish: true
 order: 0
 ---
 
-`createClamp` is a pipe that accepts a number as an input, and outputs <!--TODO-->.
+`createClamp` is a [pipe](/docs/logic/pipes-overview) that transforms a number to a number clamped between a min and max value.
 
 
 :::
-## Create `clamp`
+## Create clamp
 :::
 
 Call `createClamp` with no parameters to create your `clamp` function.
 
-Call `createClamp` with the parameters listed below to create your `clamp` function:
+Call `createClamp` with these parameters to create your `clamp` function:
 
 ::: ariaLabel="createClamp parameters" classes="wide-4"
 | Parameter | Type | Required | Description |
@@ -23,9 +23,3 @@ Call `createClamp` with the parameters listed below to create your `clamp` funct
 
 :::
 
-
-:::
-## Using with TypeScript
-:::
-
-Nothing special to know about using `createClamp` with TypeScript 🚀

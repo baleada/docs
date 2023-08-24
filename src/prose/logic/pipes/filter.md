@@ -6,7 +6,7 @@ publish: true
 order: 0
 ---
 
-`createFilter` is a pipe that accepts an array as an input, and outputs <!--TODO-->.
+`createFilter` is a [pipe](/docs/logic/pipes-overview) that transforms an array to a filtered array.
 
 ::: type="info"
 `createFilter` is a light wrapper around [`filter`](https://github.com/RobinMalfait/lazy-collections#filter) and [`toArray`](https://github.com/RobinMalfait/lazy-collections#toarray) from `lazy-collections`.
@@ -16,12 +16,12 @@ If you're sending your array through multiple transformations, prefer using `laz
 
 
 :::
-## Create `filter`
+## Create filter
 :::
 
 Call `createFilter` with no parameters to create your `filter` function.
 
-Call `createFilter` with the parameters listed below to create your `filter` function:
+Call `createFilter` with these parameters to create your `filter` function:
 
 ::: ariaLabel="createFilter parameters" classes="wide-4"
 | Parameter | Type | Required | Description |
@@ -29,9 +29,3 @@ Call `createFilter` with the parameters listed below to create your `filter` fun
 
 :::
 
-
-:::
-## Using with TypeScript
-:::
-
-Nothing special to know about using `createFilter` with TypeScript 🚀

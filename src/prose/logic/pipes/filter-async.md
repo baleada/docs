@@ -1,12 +1,12 @@
 ---
 title: filter async
 tags: UI Logic
-source: array async.ts
+source: array-async.ts
 publish: true
 order: 0
 ---
 
-`createFilterAsync` is a pipe that accepts an array as an input, and asynchronously outputs <!--TODO-->.
+`createFilterAsync` is a [pipe](/docs/logic/pipes-overview) that asynchronously transforms an array to a filtered `toArray`.
 
 ::: type="info"
 `createFilterAsync` is a light wrapper around [`filter`](https://github.com/RobinMalfait/lazy-collections#filter) and [`toArray`](https://github.com/RobinMalfait/lazy-collections#toarray) from `lazy-collections`.
@@ -16,12 +16,12 @@ If you're sending your array through multiple transformations, prefer using `laz
 
 
 :::
-## Create `filterAsync`
+## Create filter
 :::
 
-Call `createFilterAsync` with no parameters to create your `filterAsync` function.
+Call `createFilterAsync` with no parameters to create your `filter` function.
 
-Call `createFilterAsync` with the parameters listed below to create your `filterAsync` function:
+Call `createFilterAsync` with these parameters to create your `filter` function:
 
 ::: ariaLabel="createFilterAsync parameters" classes="wide-4"
 | Parameter | Type | Required | Description |
@@ -29,9 +29,3 @@ Call `createFilterAsync` with the parameters listed below to create your `filter
 
 :::
 
-
-:::
-## Using with TypeScript
-:::
-
-Nothing special to know about using `createFilterAsync` with TypeScript 🚀

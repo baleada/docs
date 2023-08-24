@@ -6,16 +6,16 @@ publish: true
 order: 0
 ---
 
-`createKeys` is a pipe that accepts an object as an input, and outputs <!--TODO-->.
+`createKeys` is a [pipe](/docs/logic/pipes-overview) that transforms an object to an array of its keys.
 
 
 :::
-## Create `keys`
+## Create keys
 :::
 
 Call `createKeys` with no parameters to create your `keys` function.
 
-Call `createKeys` with the parameters listed below to create your `keys` function:
+Call `createKeys` with these parameters to create your `keys` function:
 
 ::: ariaLabel="createKeys parameters" classes="wide-4"
 | Parameter | Type | Required | Description |
@@ -23,9 +23,3 @@ Call `createKeys` with the parameters listed below to create your `keys` functio
 
 :::
 
-
-:::
-## Using with TypeScript
-:::
-
-Nothing special to know about using `createKeys` with TypeScript 🚀

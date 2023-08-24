@@ -6,16 +6,16 @@ publish: true
 order: 0
 ---
 
-`createClone` is a pipe that accepts anything as an input, and outputs <!--TODO-->.
+`createClone` is a [pipe](/docs/logic/pipes-overview) that transforms anything to a deep clone of itself.
 
 
 :::
-## Create `clone`
+## Create clone
 :::
 
 Call `createClone` with no parameters to create your `clone` function.
 
-Call `createClone` with the parameters listed below to create your `clone` function:
+Call `createClone` with these parameters to create your `clone` function:
 
 ::: ariaLabel="createClone parameters" classes="wide-4"
 | Parameter | Type | Required | Description |
@@ -23,9 +23,3 @@ Call `createClone` with the parameters listed below to create your `clone` funct
 
 :::
 
-
-:::
-## Using with TypeScript
-:::
-
-Nothing special to know about using `createClone` with TypeScript 🚀

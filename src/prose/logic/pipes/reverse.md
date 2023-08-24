@@ -6,7 +6,7 @@ publish: true
 order: 0
 ---
 
-`createReverse` is a pipe that accepts an array as an input, and outputs <!--TODO-->.
+`createReverse` is a [pipe](/docs/logic/pipes-overview) that transforms an array to a reversed array.
 
 ::: type="info"
 `createReverse` is a light wrapper around [`reverse`](https://github.com/RobinMalfait/lazy-collections#reverse) and [`toArray`](https://github.com/RobinMalfait/lazy-collections#toarray) from `lazy-collections`.
@@ -16,12 +16,12 @@ If you're sending your array through multiple transformations, prefer using `laz
 
 
 :::
-## Create `reverse`
+## Create reverse
 :::
 
 Call `createReverse` with no parameters to create your `reverse` function.
 
-Call `createReverse` with the parameters listed below to create your `reverse` function:
+Call `createReverse` with these parameters to create your `reverse` function:
 
 ::: ariaLabel="createReverse parameters" classes="wide-4"
 | Parameter | Type | Required | Description |
@@ -29,9 +29,3 @@ Call `createReverse` with the parameters listed below to create your `reverse` f
 
 :::
 
-
-:::
-## Using with TypeScript
-:::
-
-Nothing special to know about using `createReverse` with TypeScript 🚀

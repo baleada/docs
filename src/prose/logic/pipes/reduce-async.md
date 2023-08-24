@@ -1,12 +1,12 @@
 ---
 title: reduce async
 tags: UI Logic
-source: array async.ts
+source: array-async.ts
 publish: true
 order: 0
 ---
 
-`createReduceAsync` is a pipe that accepts an array as an input, and asynchronously outputs <!--TODO-->.
+`createReduceAsync` is a [pipe](/docs/logic/pipes-overview) that asynchronously transforms an array to a reduced array (which can be any data type).
 
 ::: type="info"
 `createReduceAsync` is a light wrapper around [`reduce`](https://github.com/RobinMalfait/lazy-collections#reduce) and [`toArray`](https://github.com/RobinMalfait/lazy-collections#toarray) from `lazy-collections`.
@@ -16,12 +16,12 @@ If you're sending your array through multiple transformations, prefer using `laz
 
 
 :::
-## Create `reduceAsync`
+## Create reduce
 :::
 
-Call `createReduceAsync` with no parameters to create your `reduceAsync` function.
+Call `createReduceAsync` with no parameters to create your `reduce` function.
 
-Call `createReduceAsync` with the parameters listed below to create your `reduceAsync` function:
+Call `createReduceAsync` with these parameters to create your `reduce` function:
 
 ::: ariaLabel="createReduceAsync parameters" classes="wide-4"
 | Parameter | Type | Required | Description |
@@ -29,9 +29,3 @@ Call `createReduceAsync` with the parameters listed below to create your `reduce
 
 :::
 
-
-:::
-## Using with TypeScript
-:::
-
-Nothing special to know about using `createReduceAsync` with TypeScript 🚀

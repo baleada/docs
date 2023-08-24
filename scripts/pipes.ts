@@ -17,15 +17,15 @@ function write () {
 ---
 title: ${title}
 tags: UI Logic
-source: ${kind}.ts
+source: ${kind.replace(/ /g, '-')}.ts
 publish: true
 order: 0
 ---
 
-\`${name}\` is a pipe that accepts ${kind === 'any' ? 'anything' : `a${/^[aeiou]/.test(kind) ? 'n' : ''} ${kind.replace(/ async/, '')}`} as an input, and ${kind.includes('async') ? 'asynchronously ' : ''}outputs <!--TODO-->.
+\`${name}\` is a [pipe](/docs/logic/pipes-overview) that ${kind.includes('async') ? 'asynchronously ' : ''}transforms ${kind === 'any' ? 'anything' : `a${/^[aeiou]/.test(kind) ? 'n' : ''} ${kind.replace(/ async/, '')}`} to <!--TODO-->.
 
 ${
-  kind.includes('array')
+  kind.startsWith('array')
     ? `\
 ::: type="info"
 \`${name}\` is a light wrapper around [\`${createdName.replace(/Async/, '')}\`](https://github.com/RobinMalfait/lazy-collections#${createdName.replace(/Async/, '')}) and [\`toArray\`](https://github.com/RobinMalfait/lazy-collections#toarray) from \`lazy-collections\`.
@@ -37,12 +37,12 @@ If you're sending your array through multiple transformations, prefer using \`la
     : ''
 }
 :::
-## Create \`${createdName}\`
+## Create ${title}
 :::
 
 Call \`${name}\` with no parameters to create your \`${createdName}\` function.
 
-Call \`${name}\` with the parameters listed below to create your \`${createdName}\` function:
+Call \`${name}\` with these parameters to create your \`${createdName}\` function:
 
 ::: ariaLabel="${name} parameters" classes="wide-4"
 | Parameter | Type | Required | Description |
@@ -50,12 +50,6 @@ Call \`${name}\` with the parameters listed below to create your \`${createdName
 
 :::
 
-
-:::
-## Using with TypeScript
-:::
-
-Nothing special to know about using \`${name}\` with TypeScript 🚀
 `
 
     writeFileSync(path, contents, { encoding: 'utf8' })

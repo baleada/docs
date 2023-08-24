@@ -6,16 +6,16 @@ publish: true
 order: 0
 ---
 
-`createDeepMerge` is a pipe that accepts an object as an input, and outputs <!--TODO-->.
+`createDeepMerge` is a [pipe](/docs/logic/pipes-overview) that transforms an object to an object deeply merged with another object.
 
 
 :::
-## Create `deepMerge`
+## Create deep merge
 :::
 
 Call `createDeepMerge` with no parameters to create your `deepMerge` function.
 
-Call `createDeepMerge` with the parameters listed below to create your `deepMerge` function:
+Call `createDeepMerge` with these parameters to create your `deepMerge` function:
 
 ::: ariaLabel="createDeepMerge parameters" classes="wide-4"
 | Parameter | Type | Required | Description |
@@ -23,9 +23,3 @@ Call `createDeepMerge` with the parameters listed below to create your `deepMerg
 
 :::
 
-
-:::
-## Using with TypeScript
-:::
-
-Nothing special to know about using `createDeepMerge` with TypeScript 🚀

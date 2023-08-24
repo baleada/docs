@@ -6,16 +6,16 @@ publish: true
 order: 0
 ---
 
-`createDeepEqual` is a pipe that accepts anything as an input, and outputs <!--TODO-->.
+`createDeepEqual` is a [pipe](/docs/logic/pipes-overview) that transforms anything to a boolean that indicates whether or not it deeply equals another value.
 
 
 :::
-## Create `deepEqual`
+## Create deep equal
 :::
 
 Call `createDeepEqual` with no parameters to create your `deepEqual` function.
 
-Call `createDeepEqual` with the parameters listed below to create your `deepEqual` function:
+Call `createDeepEqual` with these parameters to create your `deepEqual` function:
 
 ::: ariaLabel="createDeepEqual parameters" classes="wide-4"
 | Parameter | Type | Required | Description |
@@ -23,9 +23,3 @@ Call `createDeepEqual` with the parameters listed below to create your `deepEqua
 
 :::
 
-
-:::
-## Using with TypeScript
-:::
-
-Nothing special to know about using `createDeepEqual` with TypeScript 🚀

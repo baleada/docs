@@ -1,37 +1,35 @@
 ---
 title: associative array has
 tags: UI Logic
-source: associative array.ts
+source: associative-array.ts
 publish: true
 order: 0
 ---
 
-`createAssociativeArrayHas` is a pipe that accepts an associative array as an input, and outputs <!--TODO-->.
-
-::: type="info"
-`createAssociativeArrayHas` is a light wrapper around [`associativeArrayHas`](https://github.com/RobinMalfait/lazy-collections#associativeArrayHas) and [`toArray`](https://github.com/RobinMalfait/lazy-collections#toarray) from `lazy-collections`.
-
-If you're sending your array through multiple transformations, prefer using `lazy-collections` directly, to maximize [its benefits](https://alexvipond.dev/blog/im-obsessed-with-lazy-collections).
-:::
+`createAssociativeArrayHas` is a [pipe](/docs/logic/pipes-overview) that transforms an [associative array](/docs/logic/associative-array-overview) to a boolean indicating whether or not the associative array has a given key.
 
 
 :::
-## Create `associativeArrayHas`
+## Create has
 :::
 
-Call `createAssociativeArrayHas` with no parameters to create your `associativeArrayHas` function.
-
-Call `createAssociativeArrayHas` with the parameters listed below to create your `associativeArrayHas` function:
+Call `createAssociativeArrayHas` with these parameters to create your `has` function:
 
 ::: ariaLabel="createAssociativeArrayHas parameters" classes="wide-4"
 | Parameter | Type | Required | Description |
 | --- | --- | --- | --- |
-
+| `key` | Any | yes | The key to check for. |
+| `options` | Object | no | Options to customize the behavior of the `has` function. See the [Options](#options) section for more guidance. |
 :::
 
 
 :::
-## Using with TypeScript
+### Options
 :::
 
-Nothing special to know about using `createAssociativeArrayHas` with TypeScript 🚀
+::: ariaLabel="createAssociativeArrayHas options" classes="wide-4"
+| Option | Type | Default | Description |
+| --- | --- | --- | --- |
+| `predicateKey` | Function | Strict equality check | A function that accepts a key and returns a boolean indicating whether or not the key matches the one you're looking for. |
+:::
+

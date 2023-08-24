@@ -6,22 +6,16 @@ publish: true
 order: 0
 ---
 
-`createReplace` is a pipe that accepts an array as an input, and outputs <!--TODO-->.
-
-::: type="info"
-`createReplace` is a light wrapper around [`replace`](https://github.com/RobinMalfait/lazy-collections#replace) and [`toArray`](https://github.com/RobinMalfait/lazy-collections#toarray) from `lazy-collections`.
-
-If you're sending your array through multiple transformations, prefer using `lazy-collections` directly, to maximize [its benefits](https://alexvipond.dev/blog/im-obsessed-with-lazy-collections).
-:::
+`createReplace` is a [pipe](/docs/logic/pipes-overview) that transforms an array to an array with an item at a given index replaced with a new item.
 
 
 :::
-## Create `replace`
+## Create replace
 :::
 
 Call `createReplace` with no parameters to create your `replace` function.
 
-Call `createReplace` with the parameters listed below to create your `replace` function:
+Call `createReplace` with these parameters to create your `replace` function:
 
 ::: ariaLabel="createReplace parameters" classes="wide-4"
 | Parameter | Type | Required | Description |
@@ -29,9 +23,3 @@ Call `createReplace` with the parameters listed below to create your `replace` f
 
 :::
 
-
-:::
-## Using with TypeScript
-:::
-
-Nothing special to know about using `createReplace` with TypeScript 🚀

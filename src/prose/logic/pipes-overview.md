@@ -11,6 +11,8 @@ Unlike Baleada Logic's [classes](/docs/logic/classes-overview), which are tailor
 
 Pipes are very similar to [links](/docs/logic/links-overview) in Baleada Logic, with one key difference: pipes are **pure functions** that transform an input to an output, without performing any side effects or mutating any parameters.
 
+Some pipes are extremely thin wrappers around third party code, like [`clsx`](https://github.com/lukeed/clsx), [`@sindresorhus/slugify`](https://github.com/sindresorhus/slugify), anything from [`lazy-collections`](https://github.com/RobinMalfait/lazy-collections), etc. These pipes aren't supposed to add functionality—they're just supposed to sprinkle a functional programming aesthetic onto a curated collection of some of the best utility functions on the web, handpicked based on tradeoffs of speed, bundle size, reliability, and feature-completeness.
+
 Here's an example of how you would use pipes with the pipeline operator:
 
 :::
