@@ -1,12 +1,12 @@
 ---
 title: root
 tags: UI Logic
-source: graph.ts
+source: graph-node.ts
 publish: true
 order: 0
 ---
 
-`createRoot` is a [pipe](/docs/logic/pipes-overview) that transforms a node in a [graph](/docs/logic/graph-overview) to a boolean indicating whether or not that node is a root node (i.e. has no incoming connections).
+`createRoot` is a [pipe](/docs/logic/pipes-overview) that transforms a [node](/docs/logic/graph-overview#graph-node-and-edge) to a boolean indicating whether or not that node is a root node (i.e. has no incoming edges).
 
 
 :::

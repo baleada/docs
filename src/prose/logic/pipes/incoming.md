@@ -1,12 +1,12 @@
 ---
 title: incoming
 tags: UI Logic
-source: graph.ts
+source: graph-node.ts
 publish: true
 order: 0
 ---
 
-`createIncoming` is a [pipe](/docs/logic/pipes-overview) that transforms a node in a [graph](/docs/logic/graph-overview) to the node's incoming edges.
+`createIncoming` is a [pipe](/docs/logic/pipes-overview) that transforms a [node](/docs/logic/graph-overview#graph-node-and-edge) to the node's incoming edges.
 
 Your created `incoming` function is a [generator](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Generator) that yields each edge separately.
 

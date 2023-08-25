@@ -6,7 +6,7 @@ publish: true
 order: 0
 ---
 
-`createDirectedAcyclicNodeDepthFirstSteps` is a [pipe](/docs/logic/pipes-overview) that transforms a node in a [directed acyclic graph](/docs/logic/graph-overview) to depth-first steps in the graph where the step's path ends at that node.
+`createDirectedAcyclicNodeDepthFirstSteps` is a [pipe](/docs/logic/pipes-overview) that transforms a node in a [directed acyclic graph](/docs/logic/graph-overview) to depth-first [steps](/docs/logic/graph-overview#step) in the graph where the step's path ends at that node.
 
 Your created `directedAcyclicNodeDepthFirstSteps` function is a [generator](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Generator) that yields each step separately.
 

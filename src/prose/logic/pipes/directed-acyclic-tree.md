@@ -6,7 +6,7 @@ publish: true
 order: 0
 ---
 
-`createDirectedAcyclicTree` is a [pipe](/docs/logic/pipes-overview) that transforms a [directed acyclic graph](/docs/logic/graph-overview) to a more traditional tree structure, where each node has a `children` property that is an array of nested nodes.
+`createDirectedAcyclicTree` is a [pipe](/docs/logic/pipes-overview) that transforms a [directed acyclic graph](/docs/logic/graph-overview) to a [tree](/docs/logic/graph-overview#tree).
 
 
 :::

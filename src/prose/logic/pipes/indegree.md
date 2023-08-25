@@ -1,12 +1,12 @@
 ---
 title: indegree
 tags: UI Logic
-source: graph.ts
+source: graph-node.ts
 publish: true
 order: 0
 ---
 
-`createIndegree` is a [pipe](/docs/logic/pipes-overview) that transforms a node in a [graph](/docs/logic/graph-overview) to the total number of its incoming connections.
+`createIndegree` is a [pipe](/docs/logic/pipes-overview) that transforms a [node](/docs/logic/graph-overview#graph-node-and-edge) to the total number of its incoming edges.
 
 
 :::

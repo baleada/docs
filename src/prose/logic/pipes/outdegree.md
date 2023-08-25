@@ -1,12 +1,12 @@
 ---
 title: outdegree
 tags: UI Logic
-source: graph.ts
+source: graph-node.ts
 publish: true
 order: 0
 ---
 
-`createOutdegree` is a [pipe](/docs/logic/pipes-overview) that transforms a node in a [graph](/docs/logic/graph-overview) to the total number of its outgoing connections.
+`createOutdegree` is a [pipe](/docs/logic/pipes-overview) that transforms a [node](/docs/logic/graph-overview#graph-node-and-edge) to the total number of its outgoing edges.
 
 
 :::

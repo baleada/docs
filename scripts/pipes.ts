@@ -107,8 +107,9 @@ const pipeRE = /( {2,}create\w+,| as create\w+,)/g
 const kindRE = /from '\.\/([-A-Za-z]+)/
 function toPipeMetadata (pipes: string) {
   return (pipes.match(exportBlockRE) || [])
-    .flatMap(block => {
+    .flatMap<PipeMetadatum>(block => {
       const kind = block.match(kindRE)?.[1].replace(/-/g, ' ')
+      
       return (block.match(pipeRE) || [])
         .map(
           pipe => {
@@ -125,6 +126,7 @@ function toPipeMetadata (pipes: string) {
                     .toLowerCase(),
                   fileName = title.replace(/ /g, '-'),
                   createdName = title.replace(/ [a-z]/g, match => match.toUpperCase().trim())
+                  
 
             return {
               name,
@@ -136,6 +138,7 @@ function toPipeMetadata (pipes: string) {
           }
         )
     })
+    .filter(({ kind }) => kind !== 'decision tree')
     .sort((a, b) => a.kind.localeCompare(b.kind))
 }
 
