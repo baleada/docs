@@ -16,13 +16,13 @@ order: 0
 ## Construct a `Completeable` instance
 :::
 
-To construct a `Completeable` instance, use the `Completeable` constructor, which accepts two parameters:
+The `Completeable` constructor accepts two parameters:
 
 ::: ariaLabel="Completeable constructor parameters" classes="wide-4"
 | Parameter | Type | Required | Description |
 | --- | --- | --- | --- |
-| `string` | String | yes | Passes the string that will be made completable. |
-| `options` | Object | no | Passes options for the `Completeable` instance. See the [Completeable constructor options](#Completeable-constructor-options) section for more guidance. |
+| `string` | String | yes | The string that will be made completable. |
+| `options` | Object | no | Options for the `Completeable` instance. See the [Completeable constructor options](#Completeable-constructor-options) section for more guidance. |
 :::
 
 

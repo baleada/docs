@@ -21,13 +21,13 @@ order: 0
 ## Construct a `Copyable` instance
 :::
 
-To construct a `Copyable` instance, use the `Copyable` constructor, which accepts two parameters:
+The `Copyable` constructor accepts two parameters:
 
 ::: ariaLabel="Copyable constructor parameters" classes="wide-4"
 | Parameter | Type | Required | Description |
 | --- | --- | --- | --- |
 | `string` | String | yes | The string that will be made copyable. |
-| `options` | Object | no | Passes options for the `Copyable` instance. See the [`Copyable` constructor options](#Copyable-constructor-options) section for more guidance. |
+| `options` | Object | no | Options for the `Copyable` instance. See the [`Copyable` constructor options](#Copyable-constructor-options) section for more guidance. |
 :::
 
 

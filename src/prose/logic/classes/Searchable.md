@@ -7,8 +7,8 @@ order: 0
 ---
 
 `Searchable` is a class that enriches an array, allowing it to:
-- Create and store a searchable trie of itself
-- Search the trie for matches or fuzzy matches to a query
+- Create and store a [`Searcher` instance for itself](https://github.com/EthanRutherford/fast-fuzzy#searcher-methods)
+- Search itself for matches or fuzzy matches to a query
 - Store search results
 - Store a status (`ready` or `searched`)
 
@@ -21,13 +21,13 @@ order: 0
 ## Construct a `Searchable` instance
 :::
 
-To construct a `Searchable` instance, use the `Searchable` constructor, which accepts two parameters:
+The `Searchable` constructor accepts two parameters:
 
 ::: ariaLabel="Searchable constructor parameters" classes="wide-4"
 | Parameter | Type | Required | Description |
 | --- | --- | --- | --- |
-| `candidates` | Array | yes | Passes the search candidates that will be made searchable. All items in `candidates` should be strings or objects. |
-| `options` | Object | no | Passes options for the `Searchable` instance. See the [`Searchable` constructor options](#Searchable-constructor-options) section for more guidance. |
+| `candidates` | Array | yes | The search candidates that will be made searchable. All items in `candidates` should be strings or objects. |
+| `options` | Object | no | Options for the `Searchable` instance. See the [`Searchable` constructor options](#Searchable-constructor-options) section for more guidance. |
 :::
 
 
@@ -47,39 +47,10 @@ To construct a `Searchable` instance, use the `Searchable` constructor, which ac
 | --- | --- | --- | --- | --- |
 | `candidates` | Getter/Setter | See return value | N/A | <p>A shallow copy (Array) of the `candidates` array passed to the constructor.</p><p>If you assign a value directly to `candidates`, a setter will pass the new value to `setCandidates`.</p> |
 | `status` | Getter | See return value | N/A | The status (String) of the `Searchable` instance. `status` is `ready` after the instance is constructed, and changes to `searched` after the `candidates` are searched for the first time. |
-| `results` | Getter | See return value | N/A | <p>The place where search results (Array) are stored.</p><p>Immediately after the `Searchable` instance is constructed, `results` is simply an empty array (`[]`).</p><p>See the [How `results` are formatted](#how-results-are-formatted) section for more guidance.</p> |
-| `trie` | Getter | See return value | N/A | The searchable trie (Object) created by the `Searcher` class (Array) |
-| `setCandidates(newCandidates)` | Function | Sets the `candidates` and updates `trie`. | The new `candidates` (Array) | The `Searchable` instance |
+| `results` | Getter | See return value | N/A | <p>The latest search results (Array).</p><p>See the [`fast-fuzzy` docs](https://github.com/EthanRutherford/fast-fuzzy#examples) for examples of result structure.</p> |
+| `searcher` | Getter | See return value | N/A | The `Searcher` instance |
+| `setCandidates(newCandidates)` | Function | Sets the `candidates` and updates `searcher` with a new instance. | The new `candidates` (Array) | The `Searchable` instance |
 | `search(query, options)` | Function | Searches the `candidates` to find matches and fuzzy matches for your query. | <p>A search query (String) and search options (Object).</p><p>To learn more about what search options are available, [visit the docs for the `Searcher` class' `search` method](https://github.com/EthanRutherford/fast-fuzzy#options).</p> | The `Searchable` instance |
-:::
-
-
-:::
-### How `results` are formatted
-:::
-
-The `results` returned from the `search` method are stored in an array of objects. Here's an example pulled from the `fast-fuzzy` docs to show you what those objects look like:
-
-:::
-```js
-[
-  {
-    item: 'abc',
-    original: 'abc',
-    key: 'abc',
-    score: 1,
-    match: { index: 0, length: 3 },
-  },
-  { 
-    item: 'bcd',
-    original: 'bcd',
-    key: 'bcd',
-    score: 0.6666666666666667,
-    match: { index: 0, length: 2 },
-  }
-  ...
-]
-```
 :::
 
 

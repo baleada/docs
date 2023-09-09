@@ -1,6 +1,6 @@
 ---
 title: Fullscreenable
-tags: UI Logic
+tags: UI logic
 source: true
 publish: true
 order: 0
@@ -20,13 +20,13 @@ order: 0
 ## Construct a `Fullscreenable` instance
 :::
 
-To construct a `Fullscreenable` instance, use the `Fullscreenable` constructor, which accepts two parameters:
+The `Fullscreenable` constructor accepts two parameters:
 
 ::: ariaLabel="Fullscreenable constructor parameters" classes="wide-4"
 | Parameter | Type | Required | Description |
 | --- | --- | --- | --- |
 | `getElement` | Function | yes | A function that, when called, will return the element that will be made fullscreenable. |
-| `options` | Object | no | Passes options for the `Fullscreenable` instance. See the [`Fullscreenable` constructor options](#Fullscreenable-constructor-options) section for more guidance. |
+| `options` | Object | no | Options for the `Fullscreenable` instance. See the [`Fullscreenable` constructor options](#Fullscreenable-constructor-options) section for more guidance. |
 :::
 
 

@@ -20,12 +20,12 @@ order: 0
 ## Construct a `Resolveable` instance
 :::
 
-To construct a `Resolveable` instance, use the `Resolveable` constructor, which accepts two parameters:
+The `Resolveable` constructor accepts two parameters:
 
 ::: ariaLabel="Resolveable constructor parameters" classes="wide-4"
 | Parameter | Type | Required | Description |
 | --- | --- | --- | --- |
-| `getPromise` | Function | yes | A function that, when called, returns the Promise that will be made resolvable. |
+| `getPromise` | Function | yes | A function that returns the Promise that will be made resolvable. |
 | `options` | Object | no | Options for the `Resolveable` instance. See the [`Resolveable` constructor options](#Resolveable-constructor-options) section for more guidance. |
 :::
 
@@ -46,26 +46,27 @@ To construct a `Resolveable` instance, use the `Resolveable` constructor, which 
 | --- | --- | --- | --- | --- |
 | `getPromise` | Getter/Setter | See return value | N/A | <p>The `getPromise` function passed to the constructor.</p><p>If you assign a value directly to `getPromise`, a setter will pass the new value to `setGetPromise`.</p> |
 | `status` | Getter | See return value | N/A | The status (String) of the promise-resolving process. See the [How methods affect status](#how-methods-affect-status) section for more information. |
-| `response` | Getter | See return value | N/A | `undefined` before calling the `resolve` method, and the Promise's return value after successfully calling the `resolve` method. |
-| `error` | Getter | See return value | N/A | `undefined` before calling the `resolve` method, and an [`Error`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Errors) object after calling the `resolve` method and encountering an error. |
+| `value` | Getter | See return value | N/A | The the value resolved from the Promise after calling the `resolve` method. |
+| `error` | Getter | See return value | N/A | The error thrown after unsuccessfully calling the `resolve` method. |
 | `setGetPromise(newGetPromise)` | Function | Sets `getPromise` | The new `getPromise` (Array) | The `Resolveable` instance |
-| `resolve()` | Function | Asynchronously resolves the Promise. Can't be called until the DOM or Node is available. | None | The `Resolveable` instance |
+| `resolve()` | Function | Asynchronously resolves the Promise, updating `value` when done. | None | The `Resolveable` instance |
 :::
 
 
 :::
-### How methods affect status
+## Using with TypeScript
 :::
 
-Each `Resolveable` instance maintains a `status` property that keeps you informed of what's going on internally. As mentioned above, the value of `status` is a String.
+The `Resolveable` constructor accepts one generic type that you can use to enforce a type for the resolved Promise value. By default, TypeScript will infer the type from the initial state you pass to the constructor, but you can specify the type manually if needed.
 
-Immediately after the instance is constructed, `status` is `ready`. After you call the `resolve` method, `status` will change to `resolving`, and will stay there until the Promise resolution succeeds or fails.
+:::
+```ts
+const withInferredTypes = new Resolveable(async () => await 0)
+withInferredTypes.getPromise = async () => await 'baleada' // Type error
 
-If the Promise resolution succeeds, `status` changes to `resolved`, and if it fails, `status` changes to `errored`.
-
-
-::: type="info"
-All methods always return the `Resolveable` instance (i.e. `this`), regardless of `status`.
+const withManualTypes = new Resolveable<string | number>(async () => await 0)
+withManualTypes.getPromise = async () => await 'baleada' // No type error
+```
 :::
 
 

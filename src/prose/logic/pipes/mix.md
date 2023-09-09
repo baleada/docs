@@ -13,16 +13,15 @@ order: 0
 ## Create mix
 :::
 
-Call `createMix` with no parameters to create your `mix` function.
-
 Call `createMix` with these parameters to create your `mix` function:
 
 ::: ariaLabel="createMix parameters" classes="wide-4"
 | Parameter | Type | Required | Description |
 | --- | --- | --- | --- |
-| `method` | [color interpolation method](https://developer.mozilla.org/en-US/docs/Web/CSS/color-interpolation-method) | yes | The color interpolation method to use. |
+| `color2` | string | yes | The color to mix with your given color. |
 | `options` | Object | no | Options to customize the behavior of the `mix` function. See the [Options](#options) section for more guidance. |
 :::
+
 
 :::
 ### Options
@@ -39,22 +38,23 @@ These options allow you to customize that behavior.
 ::: ariaLabel="createMix options" classes="wide-4"
 | Option | Type | Default | Description |
 | --- | --- | --- | --- |
+| `method` | ColorInterpolationMethod | `oklch` | A [color interpolation method](https://developer.mozilla.org/en-US/docs/Web/CSS/color-interpolation-method), omitting the `in` keyword |
 | `tag` | HTML tag | `div` | Tag name for the element that will be inserted into the DOM. |
 | `getParent` | Function | `() => document.body` | A function that should return the parent element into which the element will be inserted. |
 :::
+
 
 :::
 ## Example
 :::
 
-
 :::
 ```ts
 import { createMix } from '@baleada/logic'
 
-const oklch = createMix('oklch')
+const mixWithBlue = createMix('blue')
 
-const purple = oklch('red', 'blue')
-const fuchsia = oklch('red 70%', 'blue')
+const purple = mixWithBlue('red')
+const fuchsia = mixWithBlue('red 70%')
 ```
 :::

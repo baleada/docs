@@ -25,7 +25,7 @@ If Baleada Recognizeable Effects doesn't suit your needs, feel free to continue 
 ## Construct a `Recognizeable` instance
 :::
 
-To construct a `Recognizeable` instance, use the `Recognizeable` constructor, which accepts two parameters:
+The `Recognizeable` constructor accepts two parameters:
 
 ::: ariaLabel="Recognizeable constructor parameters" classes="wide-4"
 | Parameter | Type | Required | Description |

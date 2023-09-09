@@ -24,13 +24,13 @@ order: 0
 ## Construct a `Fetchable` instance
 :::
 
-To construct a `Fetchable` instance, use the `Fetchable` constructor, which accepts two parameters:
+The `Fetchable` constructor accepts two parameters:
 
 ::: ariaLabel="Fetchable constructor parameters" classes="wide-4"
 | Parameter | Type | Required | Description |
 | --- | --- | --- | --- |
 | `resource` | String | yes | The URL of a resource that will be made fetchable. |
-| `options` | Object | no | Passes options for the `Fetchable` instance. See the [`Fetchable` constructor options](#Fetchable-constructor-options) section for more guidance. |
+| `options` | Object | no | Options for the `Fetchable` instance. See the [`Fetchable` constructor options](#Fetchable-constructor-options) section for more guidance. |
 :::
 
 
@@ -152,6 +152,13 @@ const fetchable = new Fetchable('https://example.com'),
 :::
 
 If you're working with a reactivity library like Vue that can deeply observe objects, this approach affords you a ton of granular reactive updates. By observing things like `fetchable.status` and `fetchable.json.status`, you can perform side effects and/or update your UI exactly when fetching starts, fetching ends, JSON resolution starts, JSON resolution ends, etc.
+
+
+:::
+## Using with TypeScript
+:::
+
+Nothing special to know about using `Fetchable` with TypeScript 🚀
 
 
 :::

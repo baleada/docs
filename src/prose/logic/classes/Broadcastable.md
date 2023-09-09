@@ -1,6 +1,6 @@
 ---
 title: Broadcastable
-tags: UI Logic
+tags: UI logic
 source: true
 publish: true
 order: 0
@@ -18,13 +18,13 @@ order: 0
 ## Construct a `Broadcastable` instance
 :::
 
-To construct a `Broadcastable` instance, use the `Broadcastable` constructor, which accepts two parameters:
+The `Broadcastable` constructor accepts two parameters:
 
 ::: ariaLabel="Broadcastable constructor parameters" classes="wide-4"
 | Parameter | Type | Required | Description |
 | --- | --- | --- | --- |
 | `state` | any | yes | <p>Passes the state that will be made broadcastable.</p><p>`state` can be [any type supported by the structured clone algorithm](https://developer.mozilla.org/en-US/docs/Web/API/Web_Workers_API/Structured_clone_algorithm#supported_types).</p> |
-| `options` | Object | no | Passes options for the `Broadcastable` instance. See the [Broadcastable constructor options](#Broadcastable-constructor-options) section for more guidance. |
+| `options` | Object | no | Options for the `Broadcastable` instance. See the [Broadcastable constructor options](#Broadcastable-constructor-options) section for more guidance. |
 :::
 
 
@@ -91,7 +91,17 @@ message.listen(...toMessageListenParams(
 ## Using with TypeScript
 :::
 
-Nothing special to know about using `Broadcastable` with TypeScript 🚀
+The `Broadcastable` constructor accepts one generic type that you can use to enforce a type for `state`. By default, TypeScript will infer the type from the initial state you pass to the constructor, but you can specify the type manually if needed.
+
+:::
+```ts
+const withInferredTypes = new Broadcastable(0)
+withInferredTypes.state = 'a' // Type error
+
+const withManualTypes = new Broadcastable<string | number>(0)
+withManualTypes.state = 'a' // No type error
+```
+:::
 
 
 

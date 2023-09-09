@@ -22,7 +22,7 @@ order: 0
 ## Construct a `Grantable` instance
 :::
 
-To construct a `Grantable` instance, use the `Grantable` constructor, which accepts two parameters:
+The `Grantable` constructor accepts two parameters:
 
 ::: ariaLabel="Grantable constructor parameters" classes="wide-4"
 | Parameter | Type | Required | Description |

@@ -28,13 +28,13 @@ Baleada's docs use `Listenable` to:
 ## Construct a `Listenable` instance
 :::
 
-To construct a `Listenable` instance, use the `Listenable` constructor, which accepts two parameters:
+The `Listenable` constructor accepts two parameters:
 
 ::: ariaLabel="Listenable constructor parameters" classes="wide-4"
 | Parameter | Type | Required | Description |
 | --- | --- | --- | --- |
 | `type` | String | yes | The type of event that will be made listenable. See the [Valid event types](#valid-event-types) section for more guidance. |
-| `options` | Object | no | Passes options for the `Listenable` instance. See the [`Listenable` constructor options](#Listenable-constructor-options) section for more guidance. |
+| `options` | Object | no | Options for the `Listenable` instance. See the [`Listenable` constructor options](#Listenable-constructor-options) section for more guidance. |
 :::
 
 
@@ -46,7 +46,7 @@ To construct a `Listenable` instance, use the `Listenable` constructor, which ac
 
 Most of the time, you don't need to be concerned with exactly which web API is being used, and you can think of it as an implementation detail.
 
-But in cases where you want to customize the way a certain web API behaves, you'll need to know which API is being used in order to know what customization options are available.
+But in certain cases where you want to customize the way a specific web API behaves, you'll need to know which API is being used in order to know what customization options are available.
 
 You'll find more guidance down below, in the [How to customize `listen` behavior](#how-to-customize-listen-behavior) section.
 
@@ -61,59 +61,12 @@ The table below has a breakdown of valid event types, the corresponding web APIs
 | `mutate` | [Mutation Observer](https://developer.mozilla.org/en-US/docs/Web/API/MutationObserver) | Listens for DOM element being mutated (e.g. children added or removed) |
 | Media queries (i.e. any valid first argument for the [matchMedia](https://developer.mozilla.org/en-US/docs/Web/API/Window/matchMedia) method) | [matchMedia](https://developer.mozilla.org/en-US/docs/Web/API/Window/matchMedia) and [`removeListener`](https://developer.mozilla.org/en-US/docs/Web/API/MediaQueryList/removeListener) | Listens for changes to browser metadata (e.g. screen size, or color scheme preference) |
 | `idle` | [`requestIdleCallback`](https://developer.mozilla.org/en-US/docs/Web/API/Window/requestIdleCallback) and [`cancelIdleCallback`](https://developer.mozilla.org/en-US/docs/Web/API/Window/cancelIdleCallback) | Listens for the end user going idle |
-| Combos (see the [How to format combos](#how-to-format-combos) section for more guidance) | [`addEventListener`](https://developer.mozilla.org/en-US/docs/Web/API/EventTarget/addEventListener) and [`removeEventListener`](https://developer.mozilla.org/en-US/docs/Web/API/EventTarget/removeEventListener) | Listens for keys being are pressed or clicks being performed, optionally in combination with modifier keys |
-| `recognizeable` | A nested `Listenable` instance! | <p>Listens for custom gestures, powered by [`Recognizeable`](/docs/logic/classes/recognizeable).</p><p>See the [How to listen for custom gestures](#how-to-listen-for-custom-gestures) section for more guidance.</p> |
+| `message` and `messageerror` | Listens for messages and/or errors from a [`BroadcastChannel`](https://developer.mozilla.org/en-US/docs/Web/API/BroadcastChannel) | Listens for the end user going idle |
+| `recognizeable` | A nested `Listenable` instance 🤯 | <p>Listens for custom gestures, powered by [`Recognizeable`](/docs/logic/classes/recognizeable).</p><p>See the [How to listen for custom gestures](#how-to-listen-for-custom-gestures) section for more guidance.</p> |
 :::
 
 
-:::
-#### How to format combos
-:::
 
-`Listenable` makes it easy to listen for combos—keys, clicks, or pointer events combined with modifier keys. The Baleada docs, for example, use `Listenable` to listen for `Shift + D` (toggle dark theme) and `Shift + M` (toggle minimalist theme).
-
-To achieve this or something similar, you just need to format your `type` properly when passing it to the `Listenable` constructor. Here are the steps you can follow:
-
-
-First, choose modifiers. This step is optional, and the following modifiers are supported:
-  - `shift`
-  - `ctrl` or `control`
-  - `cmd` or `command` or `meta`
-  - `alt` or `opt` or `option`
-
-Then choose a key or event to be the final item in your combo.
-
-The keys and events in the table below are supported. You can also add `!` before any key to assert that it wasn't pressed during the event.
-
-::: ariaLabel="Keys and events by category"
-| Category | Supported keys and events |
-| --- | --- |
-| Single characters | <ul><li>Any number</li><li>Any letter</li><li>`,`</li><li>`<`</li><li>`>`</li><li>`.`</li><li>`/`</li><li>`?`</li><li>`;`</li><li>`:`</li><li>`'`</li><li>`"`</li><li>`[`</li><li>`{`</li><li>`]`</li><li>`}`</li><li>`\`</li><li>`\|`</li><li><code>\`</code></li><li>`~`</li><li>`!`</li><li>`@`</li><li>`#`</li><li>`$`</li><li>`%`</li><li>`^`</li><li>`&`</li><li>`*`</li><li>`(`</li><li>`)`</li><li>`-`</li><li>`_`</li><li>`=`</li><li>`+`</li></ul> |
-| Arrows | <ul><li>`up`</li><li>`right`</li><li>`down`</li><li>`left`</li><li>`arrow` (any arrow)</li><li>`vertical` (up or down)</li><li>`horizontal` (left or right)</li></ul> |
-| Modifiers (as standalone keys, not actual modifiers) | <ul><li>`shift`</li><li>`ctrl` or `control`</li><li>`cmd` or `command` or `meta`</li><li>`alt` or `opt` or `option`</li></ul> |
-| "Other" keys | <ul><li>`backspace`</li><li>`camera`</li><li>`capslock`</li><li>`delete`</li><li>`end`</li><li>`enter`</li><li>`esc`</li><li>`home`</li><li>`pagedown`</li><li>`pageup`</li><li>`space`</li><li>`tab`</li><li>`f1` through `f20`</li></ul> |
-| Left clicks | <ul><li>`click`</li><li>`mousedown`</li><li>`mouseup`</li><li>`dblclick`</li></ul> |
-| Right clicks | <ul><li>`rightclick`</li><li>`contextmenu`</li></ul> |
-| Pointers | <ul><li>`pointerdown`</li><li>`pointerup`</li></ul> |
-:::
-
-Finally, join your modifiers and your key, click, or pointer choice with `+`.
-
-Here are some more specific examples:
-
-::: ariaLabel="Examples of key combo and click combo event types"
-| Desired combo | `type` |
-| --- | --- |
-| B | `b` or `B` |
-| Command + 1 | `cmd+1` |
-| Shift + Command + Enter | `shift+cmd+enter` |
-| Shift wasn't pressed + Control + Option + Click | `!shift+ctrl+opt+click` or `!shift+ctrl+alt+click`|
-| Command + Shift + Up Arrow | `cmd+shift+up` or `cmd+shift+up` |
-| Shift + Right click | `shift+rightclick` |
-| Control + Plus | `ctrl++` |
-| Exclamation mark wasn't pressed | `!!` |
-| Command | `cmd` |
-:::
 
 
 :::

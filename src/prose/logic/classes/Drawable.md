@@ -1,6 +1,6 @@
 ---
 title: Drawable
-tags: UI Logic
+tags: UI logic
 source: true
 publish: true
 order: 0
@@ -20,13 +20,13 @@ order: 0
 ## Construct a `Drawable` instance
 :::
 
-To construct a `Drawable` instance, use the `Drawable` constructor, which accepts two parameters:
+The `Drawable` constructor accepts two parameters:
 
 ::: ariaLabel="Drawable constructor parameters" classes="wide-4"
 | Parameter | Type | Required | Description |
 | --- | --- | --- | --- |
 | `stroke` | Array | yes | An array of points as `[x, y, pressure]`. |
-| `options` | Object | no | Passes options for the `Drawable` instance. See the [`Drawable` constructor options](#Drawable-constructor-options) section for more guidance. |
+| `options` | Object | no | Options for the `Drawable` instance. See the [`Drawable` constructor options](#Drawable-constructor-options) section for more guidance. |
 :::
 
 

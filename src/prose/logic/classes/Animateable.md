@@ -30,8 +30,8 @@ To construct an `Animateable` instance, use the `Animateable` constructor, which
 ::: ariaLabel="Animateable constructor parameters" classes="wide-4"
 | Parameter | Type | Required | Description |
 | --- | --- | --- | --- |
-| `keyframes` | Array | yes | Passes the keyframes that will be made animatable. See the [How to format keyframes](#how-to-format-keyframes) section for more guidance on formatting the array. |
-| `options` | Object | no | Passes options for the `Animateable` instance. See the [`Animateable` constructor options](#Animateable-constructor-options) section for more guidance. |
+| `keyframes` | Array | yes | The keyframes that will be made animatable. See the [How to format keyframes](#how-to-format-keyframes) section for more guidance on formatting the array. |
+| `options` | Object | no | Options for the `Animateable` instance. See the [`Animateable` constructor options](#Animateable-constructor-options) section for more guidance. |
 :::
 
 

@@ -35,13 +35,13 @@ So, just be aware: even though `Delayable`'s API is designed to replace the `set
 ## Construct a `Delayable` instance
 :::
 
-To construct a `Delayable` instance, use the `Delayable` constructor, which accepts two parameters:
+The `Delayable` constructor accepts two parameters:
 
 ::: ariaLabel="Delayable constructor parameters" classes="wide-4"
 | Parameter | Type | Required | Description |
 | --- | --- | --- | --- |
 | `effect` | Function | yes | <p>Passes the callback function that will be made delayable.</p><p>Your `effect` will receive a `timestamp` argument ([DOMHighResTimeStamp](https://developer.mozilla.org/en-US/docs/Web/API/DOMHighResTimeStamp)) indicating the time since time origin.</p> |
-| `options` | Object | no | Passes options for the `Delayable` instance. See the [`Delayable` constructor options](#Delayable-constructor-options) section for more guidance. |
+| `options` | Object | no | Options for the `Delayable` instance. See the [`Delayable` constructor options](#Delayable-constructor-options) section for more guidance. |
 :::
 
 

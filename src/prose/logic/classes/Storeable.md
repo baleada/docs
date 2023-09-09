@@ -18,22 +18,15 @@ order: 0
 
 
 :::
-## Example
-:::
-
-Baleada's docs use `Storeable` to remember your dark theme and minimalist theme preferences, even after you reload this browser tab or open these docs in a new tab.
-
-
-:::
 ## Construct a `Storeable` instance
 :::
 
-To construct a `Storeable` instance, use the `Storeable` constructor, which accepts two parameters:
+The `Storeable` constructor accepts two parameters:
 
 ::: ariaLabel="Storeable constructor parameters" classes="wide-4"
 | Parameter | Type | Required | Description |
 | --- | --- | --- | --- |
-| `key` | String | yes | The key (from a key/value pair) that will be made storable. |
+| `key` | String | yes | The key (i.e. from a key/value pair) that will be made storable. |
 | `options` | Object | no | Options for the `Storeable` instance. See the [`Storeable` constructor options](#Storeable-constructor-options) section for more guidance. |
 :::
 
@@ -45,7 +38,7 @@ To construct a `Storeable` instance, use the `Storeable` constructor, which acce
 ::: ariaLabel="Storeable constructor options" classes="wide-4"
 | Option | Type | Default | Description |
 | --- | --- | --- | --- |
-| `type` | String | `local` | Indicates the type of storage that your `Storeable` instance should use. Valid values are `local` and `session`. |
+| `kind` | String | `local` | Indicates the kind of storage that your `Storeable` instance should use. Valid values are `local` and `session`. |
 | `statusKeySuffix` | String | ` status` | <p>Indicates the suffix your `Storeable` instance should add to your `key` when generating the key used to store `status`.</p><p>See the [Access state and methods](#access-state-and-methods) table to learn more about `status`.</p> |
 :::
 
@@ -79,73 +72,24 @@ The key used for your `Storeable` instance's `status` is your `key` suffixed wit
 
 Persistent status isn't quite as useful when using `sessionStorage`, but makes it particularly easy to write explicit, readable code when using `localStorage`.
 
-Here's an example of how these docs use `status` to make a decision about whether or not to apply the default dark theme setting (simplified into generic JavaScript instead of the original Vue code):
+Here's an example of how you could use `status` to make a decision about whether or not to apply "theme 1" or "theme 2" to a page:
 
 :::
 ```js
-const darkThemeStatus = new Storeable('baleada_dark_theme status'),
-      enableDarkTheme = () => darkThemeStatus.store('enabled'),
-      disableDarkTheme = () => darkThemeStatus.store('disabled')
+const theme = new Storeable('theme')
 
-switch (darkThemeStatus.status) {
-case 'ready':
-  disableDarkTheme() // Disable by default
-  break
-case 'stored':
-case 'removed':
-  // do nothing
-  break
+switch (theme.status) {
+  case 'ready':
+    theme.store('theme 1') // Set "theme 1" by default
+    break
+  case 'stored':
+    // do nothing - respect the stored theme choice
+    break
 }
-```
-:::
 
-The business logic here is that, if you have specifically set your theme preference, `status` will be `stored`, and these docs shouldn't mess with your preferences. If `status` is `ready`, though, it indicates that you haven't set any preferences yet, so the default preference (disable dark theme) will be set for you.
-
-Note that these docs handle the `removed` status to be safe, but there's no UI that would allow you to reach that state.
-
-Consider another example: imagine you're building a web app, and you plan to store a JSON web token in `localStorage` after somebody logs into your app. So naturally, you boot up an instance of `Storeable` to receive that token.
-
-The first time a user visits visit your app, `status` will be `ready`. After they log in, you'll call the `store` method to store the token, and `status` will be set to `stored`. 
-
-Now, you can write explicit code in your app to funnel the user to the correct process:
-
-:::
-```js
-const token = new Storeable('token')
-
-switch (token.status) {
-case 'ready':
-  // This person is most likely a new user without an account. Prompt them to sign up 🚀
-  break
-case 'stored':
-  // This person is most likely logged in. Authenticate their token with the server to make sure!
-  break
-}
-```
-:::
-
-And after the user logs out, you'll call the `remove` method to remove the token, and `status` will be set to `removed`.
-
-You can expand your code to handle the `removed` status when the user returns:
-
-:::
-```js
-const token = new Storeable('token')
-
-switch (token.status) {
-case 'ready':
-  // This person is a new user without an account.
-  // Prompt them to sign up 🚀
-  break
-case 'stored':
-  // This person is logged in.
-  // Authenticate their token with the server to make sure!
-  break
-case 'removed':
-  // This person has logged out.
-  // Skip the signup sales pitch, and prompt them to log in.
-  break
-}
+// Add the theme to the body so that other elements can read it
+// and change their styles.
+document.body.dataset.theme = theme.string
 ```
 :::
 
