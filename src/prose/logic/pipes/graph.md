@@ -2,7 +2,7 @@
 title: graph
 tags: UI Logic
 source: tree.ts
-publish: true
+publish: false
 order: 0
 ---
 

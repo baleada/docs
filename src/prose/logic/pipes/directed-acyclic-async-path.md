@@ -2,7 +2,7 @@
 title: directed acyclic async path
 tags: UI Logic
 source: directed-acyclic-async-state.ts
-publish: true
+publish: false
 order: 0
 ---
 

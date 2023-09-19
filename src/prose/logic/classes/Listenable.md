@@ -195,15 +195,7 @@ The default value for the `listen` method's `target` option depends on your `typ
 
 `Listenable` allows you to listen for custom gestures defined by Baleada Logic's `Recognizeable` class.
 
-Before you read any further, it's worth checking out the usage docs for these gestures that Baleada supports out of the box:
-- [`keychord`](/docs/logic/factories/keychord)
-- [`keypress`](/docs/logic/factories/keypress)
-- [`keyrelease`](/docs/logic/factories/keyrelease)
-- [`mousepress`](/docs/logic/factories/mousepress)
-- [`mouserelease`](/docs/logic/factories/mouserelease)
-- [`touchpress`](/docs/logic/factories/touchpress)
-- [`touchrelease`](/docs/logic/factories/touchrelease)
-- [`touchrotate`](/docs/logic/factories/touchrotate)
+Before you read any further, it's worth checking out the usage docs for [the gestures that Baleada supports out of the box](/docs/logic/factories-overview#recognizeable-effects).
 
 Those docs will show you the overall workflow for using `Listenable`, with `Recognizeable` under the hood, to recognize complex gestures.
 

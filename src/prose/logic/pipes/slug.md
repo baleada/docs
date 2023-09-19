@@ -9,7 +9,7 @@ order: 0
 `createSlug` is a [pipe](/docs/logic/pipes-overview) that transforms a string to a slug.
 
 ::: type="info"
-`createSlug` is a thin wrapper around [`@sindresorhus/slugify](https://github.com/sindresorhus/slugify).
+`createSlug` is a thin wrapper around [`@sindresorhus/slugify`](https://github.com/sindresorhus/slugify).
 :::
 
 :::

@@ -2,7 +2,7 @@
 title: directed acyclic node depth-first steps
 tags: UI Logic
 source: directed-acyclic.ts
-publish: true
+publish: false
 order: 0
 ---
 

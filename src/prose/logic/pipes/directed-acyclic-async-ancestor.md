@@ -2,7 +2,7 @@
 title: directed acyclic async ancestor
 tags: UI Logic
 source: directed-acyclic-async-node.ts
-publish: true
+publish: false
 order: 0
 ---
 

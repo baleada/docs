@@ -2,7 +2,7 @@
 title: directed acyclic ancestor
 tags: UI Logic
 source: directed-acyclic-node.ts
-publish: true
+publish: false
 order: 0
 ---
 

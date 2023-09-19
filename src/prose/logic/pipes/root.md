@@ -2,7 +2,7 @@
 title: root
 tags: UI Logic
 source: graph-node.ts
-publish: true
+publish: false
 order: 0
 ---
 
