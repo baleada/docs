@@ -2,7 +2,7 @@
 title: Graph
 tags: UI Logic
 source: extracted/graph.ts
-publish: false
+publish: true
 order: 6
 ---
 
@@ -44,6 +44,7 @@ A **graph** is defined as an object with two properties: `nodes` and `edges`.
 | `from` | GraphNode | The node where the edge starts. |
 | `to` | GraphNode | The node where the edge ends. |
 | `predicateShouldTraverse` | Function | <p>A function that accepts the state of the graph as a parameter and returns `true` if the edge should be traversed, and `false` if it should not.</p><p>Keep reading for more info about graph state and how it affects graph traversal.</p> |
+:::
 
 
 :::
@@ -190,7 +191,9 @@ A **tree** is an array of tree nodes.
 
 More documentation might land here in the future, but if you want to learn more in the meantime, click the link at the top of this article to view the source code and type definitions for graphs in Baleada Logic.
 
-You can also check out any of the Baleada Logic pipes related to graphs:
+Full documentation for graph-related pipes and factories is also coming at some point! ⏰
+
+<!-- You can also check out any of the Baleada Logic pipes related to graphs:
 - [incoming](/docs/logic/pipes/incoming)
 - [indegree](/docs/logic/pipes/indegree)
 - [outgoing](/docs/logic/pipes/outgoing)
@@ -210,4 +213,4 @@ You can also check out any of the Baleada Logic pipes related to graphs:
 - [directed-acyclic-async-layers](/docs/logic/pipes/directed-acyclic-async-layers)
 - [directed-acyclic-async-node-depth-first-steps](/docs/logic/pipes/directed-acyclic-async-node-depth-first-steps)
 - [directed-acyclic-async-path](/docs/logic/pipes/directed-acyclic-async-path)
-- [directed-acyclic-async-tree](/docs/logic/pipes/directed-acyclic-async-tree)
+- [directed-acyclic-async-tree](/docs/logic/pipes/directed-acyclic-async-tree) -->
