@@ -30,6 +30,7 @@ The `Shareable` constructor accepts two parameters:
 | --- | --- | --- | --- |
 | `shareData` | [ShareData](https://developer.mozilla.org/en-US/docs/Web/API/Navigator/share#parameters) | yes | The shareData that will be made shareable. |
 | `options` | Object | no | Options for the `Shareable` instance. See the [`Shareable` constructor options](#Shareable-constructor-options) section for more guidance. |
+:::
 
 
 :::

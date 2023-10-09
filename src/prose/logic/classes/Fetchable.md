@@ -42,6 +42,7 @@ The `Fetchable` constructor accepts two parameters:
 | Option | Type | Default | Description |
 | --- | --- | --- | --- |
 | `ky` | Object, Function | `{}` | <p>Passes options to create a default `ky` instance, which can be customized later for individual requests.</p><p>`options.ky` can either be [the `defaultOptions` object](https://github.com/sindresorhus/ky#kycreatedefaultoptions) passed to `ky.create`, or it can be a function that returns the `defaultOptions` object.</p><p>See the [How to format `ky` options](#how-to-format-ky-options) section for more guidance.</p> |
+:::
 
 :::
 #### How to format `ky` options
