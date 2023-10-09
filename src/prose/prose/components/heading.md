@@ -19,9 +19,9 @@ order: 0
 :::
 
 :::
-    :::
-    ### Find me in the table of contents!
-    :::
+      :::
+      ### Find me in the table of contents!
+      :::
 :::
 
 :::

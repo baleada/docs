@@ -16,27 +16,27 @@ order: 0
 :::
 
 :::
-    ::: type="info"
-    Note: by the _way_, in case you were **wondering**,
-    this is some `info`, for your information.
-    :::
+      ::: type="info"
+      Note: by the _way_, in case you were **wondering**,
+      this is some `info`, for your information.
+      :::
 
-    ::: type="warning"
-    If you don't read this, you'll probably mess something up,
-    but it's not the end of the world.
-    :::
+      ::: type="warning"
+      If you don't read this, you'll probably mess something up,
+      but it's not the end of the world.
+      :::
 
-    ::: type="danger"
-    Inconceivable!
-    :::
+      ::: type="danger"
+      Inconceivable!
+      :::
 
-    ::: type="success"
-    You go, Glen Coco!
-    :::
+      ::: type="success"
+      You go, Glen Coco!
+      :::
 
-    ::: type="simple"
-    Behold, your blank canvas.
-    :::
+      ::: type="simple"
+      Behold, your blank canvas.
+      :::
 :::
 
 :::
@@ -72,7 +72,7 @@ Behold, your blank canvas.
 ::: ariaLabel="ProseAside props" classes="wide-5"
 | Prop | Type | Required | Default | Description |
 | --- | --- | --- | --- | --- |
-| `type` | String | no | `info` | <p>Determines which icon gets rendered.</p><p>Pass `info'`, `warning'`, `success'`, or `danger` to render one of the icons seen above, or pass `simple` to render an `aside` element without an icon.</p> |
+| `type` | String | no | `info` | <p>Determines which icon gets rendered.</p><p>Pass `info`, `warning`, `success`, or `danger` to render one of the icons seen above, or pass `simple` to render an `aside` element without an icon.</p> |
 | `classes` | String | no | none | Adds additional classes to the component's root element. |
 :::
 

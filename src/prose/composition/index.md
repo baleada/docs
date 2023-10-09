@@ -34,7 +34,7 @@ All composables follow a simple naming convention: they start with `use` and end
 | --- | --- |
 | Animateable | `useAnimateable` |
 | Fetchable | `useFetchable` |
-| Searchable | `useSearchable` |
+| Pickable | `usePickable` |
 :::
 
 
@@ -59,35 +59,35 @@ import { useAnimateable } from '@baleada/vue-composition'
 Baleada Composition functions always need to be called from inside your component's `setup` function, or inside another composable that gets called inside your `setup` function:
 
 :::
-```js
+```html
+<script setup>
 import { useAnimateable } from '@baleada/vue-composition'
-
-export default {
-  setup () {
-    const animateable = useAnimateable(myKeyframes, myOptions)
-  }
-}
+const animateable = useAnimateable(myKeyframes, myOptions)
+</script>
 ```
 :::
 
-Each Baleada Composition function returns a reactive reference, i.e. an object with a `value` property where the reactive state is stored:
+Each Baleada Composition function returns a [shallow reactive](https://vuejs.org/api/reactivity-advanced.html#shallowreactive):
 
 :::
-```js
-import { isRef } from 'vue'
-import { useSearchable } from '@baleada/vue-composition'
+```html
+<script setup>
+import { watch } from 'vue'
+import { usePickable } from '@baleada/vue-composition'
+const pickable = usePickable(myArray, myOptions)
 
-export default {
-  setup () {
-    const searchable = useSearchable(myCandidates, myOptions)
+// You can watch first-level properties of the shallow reactive
+watch(
+  () => pickable.picks,
+  () => {...}
+)
 
-    console.log(isRef(searchable)) // true
-
-    // Access state and methods inside the value property
-    searchable.value.search(mySearchQuery) 
-    console.log(searchable.value.results)
-  }
-}
+// This won't work—you can't watch sub-properties of the
+// shallow reactive.
+watch(
+  () => pickable.picks[0],
+  () => {...}
+)
 ```
 :::
 
@@ -103,12 +103,12 @@ When you're using Baleada Composition with Vue, just know that you need to acces
 import { onMounted } from 'vue'
 import { useListenable } from '@baleada/vue-composition'
 
-const listenable = useListenable('cmd+shift+b')
+const listenable = useListenable('keydown')
 
 onMounted(() => {
   // Listenable's 'listen' method requires DOM access,
   // so you need to call it inside onMounted.
-  listenable.value.listen(event => console.log(event))
+  listenable.listen(event => console.log(event))
 })
 </script>
 ```
@@ -126,17 +126,17 @@ More specifically: every Baleada Logic class that has side effects (e.g. adding 
 import { onMounted, onBeforeUnmount } from 'vue'
 import { useListenable } from '@baleada/vue-composition'
 
-const listenable = useListenable('cmd+shift+b')
+const listenable = useListenable('keydown')
 
 onMounted(() => {
-  listenable.value.listen(event => console.log(event))
+  listenable.listen(event => console.log(event))
 })
 
 // No need to call 'stop' on onBeforeUnmount. useListenable
 // takes care of it for you. Cut out this boilerplate
 // and work on bigger and better things!
 //
-// onBeforeUnmount(() => listenable.value.stop())
+// onBeforeUnmount(() => listenable.stop())
 </script>
 ```
 :::

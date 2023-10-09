@@ -21,16 +21,14 @@ Just like `BaleadaProseList`, `BaleadaProseTable` also comes with an opt-in "typ
 :::
 
 :::
-```md
-    ::: ariaLabel="Alphabet table" readerCanSearch readerCanChangeSearchCaseSensitivity
-    | Letter | Word |
-    | --- | --- |
-    | A | Apple |
-    | B | Banana |
-    | C | Captain Jean Luc Picard of the USS Enterprise |
-    | D | Dog |
-    :::
-```
+      ::: ariaLabel="Alphabet table" readerCanSearch readerCanChangeSearchCaseSensitivity
+      | Letter | Word |
+      | --- | --- |
+      | A | Apple |
+      | B | Banana |
+      | C | Captain Jean Luc Picard of the USS Enterprise |
+      | D | Dog |
+      :::
 :::
 
 

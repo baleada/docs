@@ -1,6 +1,7 @@
 ---
 title: What is Baleada SPA Links?
 tags: Configuration utilities, Markdown-it, Inertia, Next, Nuxt, Sapper, React, Vue, Svelte
+source: true
 publish: true
 order: 0
 ---
@@ -43,7 +44,7 @@ You can install Baleada SPA Links from NPM.
 
 :::
 ```bash
-npm i @baleada/spa-links
+npm i @baleada/markdown-it-spa-links
 ```
 :::
 

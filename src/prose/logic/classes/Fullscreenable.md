@@ -1,6 +1,7 @@
 ---
 title: Fullscreenable
-tags: UI Logic
+tags: UI logic
+source: true
 publish: true
 order: 0
 ---
@@ -19,28 +20,13 @@ order: 0
 ## Construct a `Fullscreenable` instance
 :::
 
-To construct a `Fullscreenable` instance (Object), use the `Fullscreenable` constructor, which accepts two parameters:
+The `Fullscreenable` constructor accepts two parameters:
 
 ::: ariaLabel="Fullscreenable constructor parameters" classes="wide-4"
 | Parameter | Type | Required | Description |
 | --- | --- | --- | --- |
 | `getElement` | Function | yes | A function that, when called, will return the element that will be made fullscreenable. |
-| `options` | Object | no | Passes options for the `Fullscreenable` instance. See the [`Fullscreenable` constructor options](#Fullscreenable-constructor-options) section for more guidance. |
-:::
-
-
-:::
-```js
-const instance = new Fullscreenable(getElement[, options])
-```
-:::
-
-Or, if you're using [Baleada Composition](/docs/composition):
-
-:::
-```js
-const reactiveInstance = useFullscreenable(getElement[, options])
-```
+| `options` | Object | no | Options for the `Fullscreenable` instance. See the [`Fullscreenable` constructor options](#Fullscreenable-constructor-options) section for more guidance. |
 :::
 
 
@@ -52,11 +38,8 @@ const reactiveInstance = useFullscreenable(getElement[, options])
 
 
 :::
-## Access state and methods
+## State and methods
 :::
-
-The constructed `Fullscreenable` instance is an Object, and state and methods can be accessed via its properties:
-
 
 ::: ariaLabel="Fullscreenable state and methods" classes="wide-3 wide-4 wide-5"
 | Property | Type | Description | Parameters | Return value |
@@ -64,7 +47,7 @@ The constructed `Fullscreenable` instance is an Object, and state and methods ca
 | `getElement` | Getter/Setter | See return value | N/A | <p>A copy of the `getElement` function passed to the constructor.</p><p>If you assign a value directly to `getElement`, a setter will pass the new value to `setGetElement`.</p> |
 | `status` | Getter | See return value | N/A | Indicates the current status (String) of the `Fullscreenable` instance. See the [How methods affect status](#how-methods-affect-status) section for more information. |
 | `element` | Getter | See return value | N/A | The element returned by the `getElement`. Can't be accessed until the DOM is available. |
-| `error` | Getter | See return value | N/A | An empty object `{}` before the `fullscreen` or `exit` methods throw an error, and the error (Error) after any error is thrown.  |
+| `error` | Getter | See return value | N/A | `undefined` before the `fullscreen` or `exit` methods throw an error, and the error (Error) after any error is thrown. |
 | `setGetElement(newGetElement)` | Function | Sets the `getElement` | The new `getElement` (Array) | The `Fullscreenable` instance |
 | `fullscreen()` | Function | Asynchronously fullscreens the `element`. | none | The `Fullscreenable` instance |
 | `enter()` | Function | An alias for `fullscreen`. | none | The `Fullscreenable` instance |
@@ -109,7 +92,7 @@ withManualTypes.getElement = () => document.querySelector('input') // No type er
 ## API design compliance
 :::
 
-::: ariaLabel="A table showing Fullscreenable's API design compliance"  classes="wide-1 wide-3"
+::: ariaLabel="Fullscreenable's API design compliance"  classes="wide-1 wide-3"
 | Spec | Compliance status | Notes |
 | --- | --- | --- |
 | Access functionality by constructing an instance | <BrandApiDesignSpecCheckmark /> |  |
@@ -125,7 +108,7 @@ withManualTypes.getElement = () => document.querySelector('input') // No type er
 | Has at least one additional getter property that you can't (and shouldn't) set directly | <BrandApiDesignSpecCheckmark /> | `status`, `element`, `error` |
 | Has one or more public methods that expose core functionality | <BrandApiDesignSpecCheckmark /> | `fullscreen`, `enter`, `exit` |
 | Either has no side effects or has side effects that can be cleaned up with a `stop` method | <BrandApiDesignSpecCheckmark /> |  |
-| Uses the sentence template to decide what state type should be accepted by a constructor | <BrandApiDesignSpecCheckmark /> | "A element (retrieved by an element getter) can be fullscreened." |
+| Uses the sentence template to decide what state type should be accepted by a constructor | <BrandApiDesignSpecCheckmark /> | "An element (retrieved by an element getter) can be fullscreened." |
 | Constructor does not accept options that only customize the behavior of public methods, it allows those options to be passed to the method itself as a parameter. | <BrandApiDesignSpecCheckmark /> | |
 | Named after its core action, proper-cased and suffixed with `able` | <BrandApiDesignSpecCheckmark /> | |
 :::

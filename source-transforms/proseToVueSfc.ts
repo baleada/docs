@@ -14,11 +14,13 @@ export const proseToVueSfc = ({ source, id }) => {
 
           return log
         })(),
+        sourceLink = toSourceLink({ id, frontMatter }),
         withBaleadaDocsCustomizations = `\
 :::
 # ${frontMatter.title}
 :::
 
+${sourceLink ? '<LayoutArticleLinks></LayoutArticleLinks>' : ''}
 <LayoutArticleLog></LayoutArticleLog>
 
 ${prose}
@@ -26,7 +28,7 @@ ${prose}
 <LayoutArticleEdit></LayoutArticleEdit>
 
 `
-        
+
   return `\
 <template>
   <article class="baleada-prose-article">
@@ -43,6 +45,7 @@ export default {
     store.article.log = ${JSON.stringify(log)}
     store.article.frontMatter = ${JSON.stringify(frontMatter)}
     store.article.relativePath = '${relativePath}'
+    store.article.source = ${sourceLink ? `'${sourceLink}'` : sourceLink}
   }
 }
 </script>
@@ -57,4 +60,41 @@ function toLog (id) {
         log = gitlog({ repo: basePath, file: relativePath, number: 1 })
   
   return log
+}
+
+function toSourceLink({ id, frontMatter }) {
+  if (!frontMatter.source) return false
+
+  const basePath = resolve(''),
+        project = id
+          .replace(basePath, '')
+          .replace(/^\/src\/prose\//, '')
+          .replace(/\/.*$/, ''),
+        repo = project in repoPrefixesByProject ? `${repoPrefixesByProject[project]}-${project}` : project,
+        fileName = id.match(/[^/]+$/)[0].replace(/md$/, 'ts'),
+        pathRelativeToSrc = id
+          .replace(basePath, '')
+          .replace(/^\/src\/prose\//, '')
+          .match(/\/(.*$)/)[1]
+          .split('/')
+          .slice(0, -1)
+          .join('/'),
+        linkBegin = `https://github.com/baleada/${repo}/tree/main/src/${pathRelativeToSrc}`
+
+  return frontMatter.source === true
+    ? `${linkBegin}/${fileName}`
+    : `${linkBegin}/${frontMatter.source}`
+}
+
+
+const repoPrefixesByProject = {
+  'ancestor-variants': 'tailwind',
+  composition: 'vue',
+  features: 'vue',
+  'linear-numeric': 'tailwind',
+  prose: 'vue',
+  'prose-container': 'markdown-it',
+  'source-transform': 'rollup-plugin',
+  'spa-links': 'markdown-it',
+  utilities: 'tailwind',
 }

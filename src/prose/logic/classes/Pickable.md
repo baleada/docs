@@ -1,6 +1,7 @@
 ---
 title: Pickable
 tags: UI logic
+source: true
 publish: true
 order: 0
 ---
@@ -18,34 +19,14 @@ order: 0
 ## Construct a `Pickable` instance
 :::
 
-To construct a `Pickable` instance (Object), use the `Pickable` constructor, which accepts two parameters:
+The `Pickable` constructor accepts two parameters:
 
 ::: ariaLabel="Pickable constructor parameters" classes="wide-4"
 | Parameter | Type | Required | Description |
 | --- | --- | --- | --- |
-| `array` | Array | yes | Passes the array that will be made navigable. |
-| `options` | Object | no | Passes options for the `Pickable` instance. See the [Pickable constructor options](#Pickable-constructor-options) section for more guidance. |
+| `array` | Array | yes | The array that will be made pickable. |
+| `options` | Object | no | Options for the `Pickable` instance. See the [Pickable constructor options](#Pickable-constructor-options) section for more guidance. |
 :::
-
-
-:::
-```js
-import { Pickable } from '@baleada/logic'
-
-const instance = new Pickable(array[, options])
-```
-:::
-
-Or, if you're using [Baleada Composition](/docs/composition):
-
-:::
-```js
-import { usePickable } from '@baleada/vue-composition'
-
-const reactiveInstance = usePickable(array[, options])
-```
-:::
-
 
 
 :::
@@ -60,10 +41,8 @@ const reactiveInstance = usePickable(array[, options])
 
 
 :::
-## Access state and methods
+## State and methods
 :::
-
-The constructed `Pickable` instance is an Object, and state and methods can be accessed via its properties:
 
 ::: ariaLabel="Pickable state and methods" classes="wide-1 wide-3 wide-5"
 | Property | Type | Description | Parameters | Return value |
@@ -115,10 +94,11 @@ The only other thing you need to know about how your `Pickable` instance picks i
 
 `pick` accepts an optional `options` object as its second argument. Here's a breakdown of the `options` object:
 
-::: ariaLabel="Options for the navigate method" classes="wide-4"
+::: ariaLabel="Options for the pick method" classes="wide-4"
 | Option | Type | Default | Description |
 | --- | --- | --- | --- |
 | `replace` | String | `none` | <p>When `replace` is set to `none`, `Pickable` will append the new index or indices to its existing picks.</p><p>When `replace` is set to `all`, `Pickable` will clear out all the existing picks, and replace them with the new index or indices passed to the `pick` method.</p><p>When `replace` is set to `fifo`, `Pickable` will add the new picks, then remove the oldest picks until the `picks` array reaches its previous length.</p><p>When `replace` is set to `lifo`, `Pickable` removes the most recent picks to make room for the new picks, so that the array maintains its previous length.</p> |
+| `allowsDuplicates` | Boolean | `false` | When `allowsDuplicates` is set to `true`, `Pickable` will allow duplicate picks to be stored in `picks`. |
 :::
 
 
@@ -143,7 +123,7 @@ withManualTypes.array = ['a', 'b', 'c'] // No type error
 ## API design compliance
 :::
 
-::: ariaLabel="A table showing Pickable's API design compliance"  classes="wide-1 wide-3"
+::: ariaLabel="Pickable's API design compliance"  classes="wide-1 wide-3"
 | Spec | Compliance status | Notes |
 | --- | --- | --- |
 | Access functionality by constructing an instance | <BrandApiDesignSpecCheckmark /> |  |

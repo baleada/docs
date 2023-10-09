@@ -1,6 +1,7 @@
 ---
 title: Completeable
 tags: UI logic
+source: true
 publish: true
 order: 0
 ---
@@ -15,20 +16,13 @@ order: 0
 ## Construct a `Completeable` instance
 :::
 
-To construct a `Completeable` instance (Object), use the `Completeable` constructor, which accepts two parameters:
+The `Completeable` constructor accepts two parameters:
 
 ::: ariaLabel="Completeable constructor parameters" classes="wide-4"
 | Parameter | Type | Required | Description |
 | --- | --- | --- | --- |
-| `string` | String | yes | Passes the string that will be made completable. |
-| `options` | Object | no | Passes options for the `Completeable` instance. See the [Completeable constructor options](#Completeable-constructor-options) section for more guidance. |
-:::
-
-
-:::
-```js
-const instance = new Completeable(string[, options])
-```
+| `string` | String | yes | The string that will be made completable. |
+| `options` | Object | no | Options for the `Completeable` instance. See the [Completeable constructor options](#Completeable-constructor-options) section for more guidance. |
 :::
 
 
@@ -46,16 +40,13 @@ const instance = new Completeable(string[, options])
 
 
 :::
-## Access state and methods
+## State and methods
 :::
-
-The constructed `Completeable` instance is an Object, and state and methods can be accessed via its properties:
-
 
 ::: ariaLabel="Completeable state and methods" classes="wide-3 wide-4 wide-5"
 | Property | Type | Description | Parameters | Return value |
 | --- | --- | --- | --- | --- |
-| `string` | Getter/Setter | See return value | N/A | <p>A shallow copy (Array) of the string passed to the `Completeable` constructor.</p><p>If you assign a value directly to `string`, a setter will pass the new value to `setString`.</p> |
+| `string` | Getter/Setter | See return value | N/A | <p>The string passed to the `Completeable` constructor.</p><p>If you assign a value directly to `string`, a setter will pass the new value to `setString`.</p> |
 | `selection` | Getter/Setter | See return value | N/A | <p>An object that describes the current selection.</p><p>`selection.start` and `selection.end` indicate the index-based start and end positions (Numbers) of the currently selected text, and `selection.direction` indicates the selection direction (String, `forward`, `backward`, or `none`).</p><p>If you assign a value directly to `selection`, a setter will pass the new value to `setSelection`.</p><p>`Completeable` references `selection` when extracting segments of text. See the [How the `Completeable` instance extracts segments](#How-the-Completeable-instance-extracts-segments) section for more info on how that works.</p> |
 | `status` | Getter | See return value | N/A | <p>The status (String) of the `Completeable` instance.</p><p>`status` is `constructing` while the instance is constructing, and `ready` after the instance is constructed. `status` changes to `completing` right after the `complete` is called, then changes to `completed` after text completion is done.</p> |
 | `segment` | Getter | See return value | N/A | An extracted segment of `string`. See the [How the `Completeable` instance extracts segments](#How-the-Completeable-instance-extracts-segments) section for more info. |
@@ -129,14 +120,14 @@ As mentioned above, the `complete` method accepts two parameters: `completion` a
 ## Using with TypeScript
 :::
 
-Nothing special to know about using `Completeable` with TypeScript! Enjoy IDE autocomplete and type checking while you construct and use your instance.
+Nothing special to know about using `Completeable` with TypeScript 🚀
 
 
 :::
 ## API design compliance
 :::
 
-::: ariaLabel="A table showing Completeable's API design compliance"  classes="wide-1 wide-3"
+::: ariaLabel="Completeable's API design compliance"  classes="wide-1 wide-3"
 | Spec | Compliance status | Notes |
 | --- | --- | --- |
 | Access functionality by constructing an instance | <BrandApiDesignSpecCheckmark /> |  |

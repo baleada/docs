@@ -1,6 +1,7 @@
 ---
 title: Delayable
 tags: UI logic
+source: true
 publish: true
 order: 0
 ---
@@ -34,28 +35,13 @@ So, just be aware: even though `Delayable`'s API is designed to replace the `set
 ## Construct a `Delayable` instance
 :::
 
-To construct a `Delayable` instance (Object), use the `Delayable` constructor, which accepts two parameters:
+The `Delayable` constructor accepts two parameters:
 
 ::: ariaLabel="Delayable constructor parameters" classes="wide-4"
 | Parameter | Type | Required | Description |
 | --- | --- | --- | --- |
-| `fn` | Function | yes | <p>Passes the callback function that will be made delayable.</p><p>Your callback function can accept a `timestamp` parameter—a [DOMHighResTimeStamp](https://developer.mozilla.org/en-US/docs/Web/API/DOMHighResTimeStamp) indicating the time since time origin.</p> |
-| `options` | Object | no | Passes options for the `Delayable` instance. See the [`Delayable` constructor options](#Delayable-constructor-options) section for more guidance. |
-:::
-
-
-:::
-```js
-const instance = new Delayable(callback[, options])
-```
-:::
-
-Or, if you're using [Baleada Composition](/docs/composition):
-
-:::
-```js
-const reactiveInstance = useDelayable(callback[, options])
-```
+| `effect` | Function | yes | <p>Passes the callback function that will be made delayable.</p><p>Your `effect` will receive a `timestamp` argument ([DOMHighResTimeStamp](https://developer.mozilla.org/en-US/docs/Web/API/DOMHighResTimeStamp)) indicating the time since time origin.</p> |
+| `options` | Object | no | Options for the `Delayable` instance. See the [`Delayable` constructor options](#Delayable-constructor-options) section for more guidance. |
 :::
 
 
@@ -63,35 +49,31 @@ const reactiveInstance = useDelayable(callback[, options])
 ### `Delayable` constructor options
 :::
 
-
 ::: ariaLabel="Delayable constructor options" classes="wide-4"
 | Option | Type | Default | Description |
 | --- | --- | --- | --- |
-| `delay` | Number | `0` | The number of milliseconds that should pass before each execution of the `fn` |
+| `delay` | Number | `0` | The number of milliseconds that should pass before each execution of the `effect` |
 | `executions` | Number, Boolean | `1` | <p>Indicates the number of times the callback function will be delayed and executed.</p><p>Set `executions` to `1` to make it behave like `setTimeout`, set it to any number greater than `1` to make it delay and execute a specific number of times, and set it to `true` to make it behave like `setInterval` (i.e. delay and execute on an infinite loop).</p> |
 :::
 
 
 :::
-## Access state and methods
+## State and methods
 :::
-
-The constructed `Delayable` instance is an Object, and state and methods can be accessed via its properties:
-
 
 ::: ariaLabel="Delayable state and methods" classes="wide-3 wide-5"
 | Property | Type | Description | Parameters | Return value |
 | --- | --- | --- | --- | --- |
-| `fn` | Getter/Setter | See return value | N/A | <p>A slightly altered version of the `fn` you passed to the Delayable constructor. The altered `fn` will execute repeatedly at a rate of 60fps, and it won't call your original function until your number of milliseconds (specified in the `delay` option) have passed.</p><p>If you assign a value directly to `fn`, a setter will pass the new value to `setFn`.</p> |
+| `effect` | Getter/Setter | See return value | N/A | <p>A slightly altered version of the `effect` you passed to the Delayable constructor. The altered `effect` will execute repeatedly at a rate of 60fps, and it won't call your original function until your number of milliseconds (specified in the `delay` option) have passed.</p><p>If you assign a value directly to `effect`, a setter will pass the new value to `setEffect`.</p> |
 | `status` | Getter | See return value | N/A | Indicates the current status (String) of the `Delayable` instance. See the [How methods affect status, and vice-versa](#how-methods-affect-status-and-vice-versa) section for more information. |
-| `executions` | Getter | See return value | N/A | The number (Number) of times your original `fn` has been executed. |
-| `time` | Getter | See return value | N/A | An Object with two keys: `elapsed` and `remaining`. Both keys' values are millsecond values (Number), and they indicate the time elapsed since the last execution of the `fn` and the time remaining until the next execution. |
-| `progress` | Getter | See return value | N/A | A number (Number) between `0` and `1` indicating the time progress toward the next execution of the `fn`. |
-| `setFn(fn)` | Function | Sets the `fn` | A callback function, which itself can accept the `timestamp` parameter (see the [Construct a Delayable instance](#construct-a-delayable-instance) section for a refresher on that parameter). | The `Delayable` instance |
-| `delay()` | Function | <p>Delays the execution(s) of the `fn`.</p><p>If you call `delay` while the `fn` is currently being delayed, it will start over from the beginning (and reset `executions`, `time.elapsed`, and `progress` to `0`).</p><p>Can't be called until the DOM is available.</p> | none | The `Delayable` instance |
+| `executions` | Getter | See return value | N/A | The number (Number) of times your original `effect` has been executed. |
+| `time` | Getter | See return value | N/A | An Object with two keys: `elapsed` and `remaining`. Both keys' values are millsecond values (Number), and they indicate the time elapsed since the last execution of the `effect` and the time remaining until the next execution. |
+| `progress` | Getter | See return value | N/A | A number (Number) between `0` and `1` indicating the time progress toward the next execution of the `effect`. |
+| `setEffect(effect)` | Function | Sets the `effect` | A callback function, which itself can accept the `timestamp` parameter (see the [Construct a Delayable instance](#construct-a-delayable-instance) section for a refresher on that parameter). | The `Delayable` instance |
+| `delay()` | Function | <p>Delays the execution(s) of the `effect`.</p><p>If you call `delay` while the `effect` is currently being delayed, it will start over from the beginning (and reset `executions`, `time.elapsed`, and `progress` to `0`).</p><p>Can't be called until the DOM is available.</p> | none | The `Delayable` instance |
 | `pause()` | Function | Pauses the delay Can't be called until the DOM is available. | none | The `Delayable` instance |
-| `seek(progress)` | Function | <p>Seeks to a specific time progress in the delay. If `status` is `playing` or `reversing'`, the animation will continue progressing in the same direction after seeking to the time progress.</p><p>If your `fn` is supposed to execute more than one time, you can pass a time progress that is greater than `1` to seek to a specific execution. For example, to seek halfway through the third delay, you can call `seek(2.5)`. Your `fn` will instantly be executed twice, and will be halfway toward the third execution.</p><p>Can't be called until the DOM is available.</p> | `seek` Accepts one parameter: a time progress to seek to | The `Animateable` instance. |
-| `resume()` | Function | After pausing or seeking, resumes the delay from the current time progress. Has no effect if `status` is anything other than `paused` or `sought'`. Can't be called until the DOM is available. | none | The `Delayable` instance |
+| `seek(progress)` | Function | <p>Seeks to a specific time progress in the delay. If `status` is `playing` or `reversing`, the animation will continue progressing in the same direction after seeking to the time progress.</p><p>If your `effect` is supposed to execute more than one time, you can pass a time progress that is greater than `1` to seek to a specific execution. For example, to seek halfway through the third delay, you can call `seek(2.5)`. Your `effect` will instantly be executed twice, and will be halfway toward the third execution.</p><p>Can't be called until the DOM is available.</p> | `seek` Accepts one parameter: a time progress to seek to | The `Delayable` instance. |
+| `resume()` | Function | After pausing or seeking, resumes the delay from the current time progress. Has no effect if `status` is anything other than `paused` or `sought`. Can't be called until the DOM is available. | none | The `Delayable` instance |
 | `stop()` | Function | Cancels the delay, stopping it in its tracks and cleaning up side effects. Can't be called until the DOM is available. | None | The `Delayable` instance. |
 :::
 
@@ -103,12 +85,12 @@ The constructed `Delayable` instance is an Object, and state and methods can be 
 Each `Delayable` instance maintains a `status` property that allows it to take appropriate action based on the methods you call, in what order you call them, and when you call them.
 
 At any given time, `status` will always be one (and only one) of the following values:
-- `ready'`
-- `delaying'`
-- `delayed'`
-- `paused'`
-- `sought'`
-- `stopped'`
+- `ready`
+- `delaying`
+- `delayed`
+- `paused`
+- `sought`
+- `stopped`
 
 There's a lot of complexity involved in the way each `status` is achieved (it's affected by which methods you call,in what order you call them, and exactly when you call them), but you likely will never need to worry about that. `status` is available to you if you feel you need it, but for all intended use cases, it's an implementation detail, and you can ignore it.
 
@@ -119,7 +101,7 @@ The table below has a full breakdown:
 ::: ariaLabel="How status affects methods"
 | Method | Can be called when `status` is... |
 | --- | --- |
-| `setFn` | Anything |
+| `setEffect` | Anything |
 | `delay` | Anything |
 | `pause` | `delaying` |
 | `seek` | Anything |
@@ -130,7 +112,7 @@ The table below has a full breakdown:
 Or, just remember:
 - If you `delay` while the animation is already delaying, the delay will start over from the beginning (and reset `executions`, `time.elapsed`, and `progress` to `0`).
 - You can only `pause` while the delay process is in progress
-- You can `setFn`, `seek`, and `stop` at any time. Just remember that `setFn` will always `stop` the delay, and if you call `seek` while a delay is progressing, the animation will continue delaying after it seeks to the time progress you specified.
+- You can `setEffect`, `seek`, and `stop` at any time. Just remember that `setEffect` will always `stop` the delay, and if you call `seek` while a delay is progressing, the animation will continue delaying after it seeks to the time progress you specified.
 - You can only `resume` after calling `pause` or `seek`
 
 ::: type="info"
@@ -146,14 +128,14 @@ All methods always return the `Delayable` instance (i.e. `this`), regardless of 
 ## Using with TypeScript
 :::
 
-Nothing special to know about using `Delayable` with TypeScript! Enjoy IDE autocomplete and type checking while you construct and use your instance.
+Nothing special to know about using `Delayable` with TypeScript 🚀
 
 
 :::
 ## API design compliance
 :::
 
-::: ariaLabel="A table showing Delayable's API design compliance"  classes="wide-1 wide-3"
+::: ariaLabel="Delayable's API design compliance"  classes="wide-1 wide-3"
 | Spec | Compliance status | Notes |
 | --- | --- | --- |
 | Access functionality by constructing an instance | <BrandApiDesignSpecCheckmark /> |  |
@@ -162,8 +144,8 @@ Nothing special to know about using `Delayable` with TypeScript! Enjoy IDE autoc
 | Takes the form of a JavaScript Object | <BrandApiDesignSpecCheckmark /> |  |
 | State and methods are accessible through properties of the object | <BrandApiDesignSpecCheckmark /> |  |
 | Methods always return the instance | <BrandApiDesignSpecCheckmark /> |  |
-| Stores the constructor's state in a public getter named after the state's type | <BrandApiDesignSpecCheckmark /> | `fn`  |
-| Has a public method you can use to set a new value for that public getter | <BrandApiDesignSpecCheckmark /> | `setFn` |
+| Stores the constructor's state in a public getter named after the state's type | <BrandApiDesignSpecCheckmark /> | `effect`  |
+| Has a public method you can use to set a new value for that public getter | <BrandApiDesignSpecCheckmark /> | `setEffect` |
 | Has a setter for that getter so you can assign a new value directly | <BrandApiDesignSpecCheckmark /> |  |
 | Any other public getters that should be set by you in some cases also have setters and `set<Property>` methods | <BrandApiDesignSpecCheckmark /> | none |
 | Has at least one additional getter property that you can't (and shouldn't) set directly | <BrandApiDesignSpecCheckmark /> | `status`, `executions`, `time`, `progress` |

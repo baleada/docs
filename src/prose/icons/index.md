@@ -1,7 +1,7 @@
 ---
 title: What is Baleada Icons?
 tags: Components
-publish: true
+publish: false
 order: 0
 ---
 

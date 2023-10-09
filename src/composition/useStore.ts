@@ -7,10 +7,12 @@ type Article = {
   frontMatter?: {
     order?: number
     title?: string,
+    source?: string,
     summary?: string,
     image?: string,
     imageAlt?: string,
   },
+  source?: string,
   relativePath?: string
 }
 

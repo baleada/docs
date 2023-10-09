@@ -1,6 +1,7 @@
 ---
 title: Navigateable
 tags: UI logic
+source: true
 publish: true
 order: 0
 ---
@@ -9,7 +10,7 @@ order: 0
 `Navigateable` is a class that enriches an array, allowing it to:
 - Store the index-based location of an item that has been navigated to
 - Retrieve the item that has been navigated to
-- Store a status (`ready` or `navigated`)
+- Store a status (`ready`, `navigated`, or `navigated to <relative item position>`, where `<relative item position>` is `first`, `last`, `next`, `previous`, or `random`)
 - Navigate forward or backward to a different item
 - Navigate to a specific item or a random item
 
@@ -18,34 +19,14 @@ order: 0
 ## Construct a `Navigateable` instance
 :::
 
-To construct a `Navigateable` instance (Object), use the `Navigateable` constructor, which accepts two parameters:
+The `Navigateable` constructor accepts two parameters:
 
 ::: ariaLabel="Navigateable constructor parameters" classes="wide-4"
 | Parameter | Type | Required | Description |
 | --- | --- | --- | --- |
-| `array` | Array | yes | Passes the array that will be made navigable. |
-| `options` | Object | no | Passes options for the `Navigateable` instance. See the [Navigateable constructor options](#Navigateable-constructor-options) section for more guidance. |
+| `array` | Array | yes | The array that will be made navigable. |
+| `options` | Object | no | Options for the `Navigateable` instance. See the [Navigateable constructor options](#Navigateable-constructor-options) section for more guidance. |
 :::
-
-
-:::
-```js
-import { Navigateable } from '@baleada/logic'
-
-const instance = new Navigateable(array[, options])
-```
-:::
-
-Or, if you're using [Baleada Composition](/docs/composition):
-
-:::
-```js
-import { useNavigateable } from '@baleada/vue-composition'
-
-const reactiveInstance = useNavigateable(array[, options])
-```
-:::
-
 
 
 :::
@@ -60,10 +41,8 @@ const reactiveInstance = useNavigateable(array[, options])
 
 
 :::
-## Access state and methods
+## State and methods
 :::
-
-The constructed `Navigateable` instance is an Object, and state and methods can be accessed via its properties:
 
 ::: ariaLabel="Navigateable state and methods" classes="wide-3 wide-5"
 | Property | Type | Description | Parameters | Return value |
@@ -78,6 +57,8 @@ The constructed `Navigateable` instance is an Object, and state and methods can 
 | `next(options)` | Function | <p>Steps forward through the array, increasing `location` by `options.distance`.</p> | <p>An `options` object with two properties: `distance` (Number) and `loops` (Boolean).</p><p>See the [How `Navigateable` navigates](#how-navigateable-navigates) section for more information on how `options` affect navigation.</p> | The `Navigateable` instance |
 | `previous(options)` | Function | Steps backward through the array, decreasing `location` by `options.distance`. | <p>An `options` object with two properties: `distance` (Number) and `loops` (Boolean).</p><p>See the [How `Navigateable` navigates](#how-navigateable-navigates) section for more information on how `options` affect navigation.</p> | The `Navigateable` instance |
 | `random()` | Function | Navigates to a random item | none | The `Navigateable` instance |
+| `first()` | Function | Navigates to the first item in the array | none | The `Navigateable` instance |
+| `last()` | Function | Navigates to the last item in the array | none | The `Navigateable` instance |
 :::
 
 
@@ -85,7 +66,7 @@ The constructed `Navigateable` instance is an Object, and state and methods can 
 ### How `Navigateable` navigates
 :::
 
-In general, whenever the `setLocation`, `navigate`, `next`, `previous`, or `random` methods are called, the `Navigateable` instance computes the new location and stores that location in its `location` property. 
+In general, whenever the `setLocation`, `navigate`, `next`, `previous`, `random`, `first`, or `last` methods are called, the `Navigateable` instance computes the new location and stores that location in its `location` property. 
 
 The only other thing you need to know about how your `Navigateable` instance navigates is what options are available for the `navigate`, `next`, and `previous` methods, and how those options affect the way `Navigateable` computes the final location.
 
@@ -188,7 +169,7 @@ withManualTypes.array = ['a', 'b', 'c'] // No type error
 ## API design compliance
 :::
 
-::: ariaLabel="A table showing Navigateable's API design compliance"  classes="wide-1 wide-3"
+::: ariaLabel="Navigateable's API design compliance"  classes="wide-1 wide-3"
 | Spec | Compliance status | Notes |
 | --- | --- | --- |
 | Access functionality by constructing an instance | <BrandApiDesignSpecCheckmark /> |  |
