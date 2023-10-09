@@ -7,7 +7,7 @@ order: 2
 
 In Baleada Logic, lots of UI logic is implemented in [JavaScript classes](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Classes). Classes are designed to collocate pieces of related state, and provide methods for working with that state.
 
-Unlike Baleada Logic's [pipes](/docs/logic/pipes-overview), which are more like utility functions, classes are tailor-made for pretty specific browser-based UI features.
+Unlike Baleada Logic's [pipes](/docs/logic/pipes-overview), which are more like utility functions, each class manages multiple pieces of state that you can observe for changes.
 
 Here's a quick example of how you would construct and use one of the classes to manage some of the state needed for a tablist component:
 
@@ -20,6 +20,7 @@ const tabs = new Navigateable(['Tab #1', 'Tab #2', 'Tab #3'])
 tabs.location // 0
 tabs.next()
 tabs.location // 1
+tabs.item // 'Tab #2'
 ```
 :::
 
@@ -28,25 +29,27 @@ You can pair Baleada Logic classes with reactivity tools like [Vue](https://v3.v
 :::
 ```js
 import { Navigateable } from '@baleada/logic'
-import { ref, watch } from 'vue'
+import { shallowReactive, shallowRef, watch } from 'vue'
 
 // Create the Navigateable instance as a reactive Vue object
-const tabs = ref(
+const tabs = shallowReactive(
   new Navigateable(['Tab #1', 'Tab #2', 'Tab #3'])
 )
+
+const tabPanels = shallowRef([]) // A ref to the tab panels in the DOM
 
 // Watch the instance's location property for changes.
 // When a change is detected, update the DOM to activate
 // a new tab.
 watch(
-  () => tabs.value.location,
+  () => tabs.location,
   () => {
-    const tabPanels = document.querySelectorAll('.tab-panel')
-    tabPanels.forEach(panel => panel.setAttribute('aria-hidden', 'true'))
+    tabPanels.value.forEach(panel => panel.setAttribute('aria-selected', 'false'))
 
-    const activeTabPanel = tabPanels[tabs.value.location]
-    activeTabPanel.setAttribute('aria-hidden', '')
-  }
+    const activeTabPanel = tabPanels.value[tabs.location]
+    activeTabPanel.setAttribute('aria-selected', 'true')
+  },
+  { flush: 'post' }
 )
 ```
 :::
@@ -81,8 +84,6 @@ To accomplish that, classes all follow strict rules in these specific areas:
 6. Why constructors accept certain state and options
 
 The rest of this guide explains all the rules that classes follow. The words "all", "always", "any", and "never" are displayed in bold, to emphasize that the rules apply to every single class offered in Baleada Logic.
-
-Final note before we dive in: Baleada Logic is entirely written in TypeScript. This guide on API design is a good overview, but in practice, it's easier to rely on type hints and autocomplete to keep track of constructor parameters, instance properties, method parameters, etc.
 
 
 :::
@@ -123,7 +124,7 @@ const instance = new ExampleClass(state, {
 ```
 :::
 
-Class constructors **never** access the DOM internally. This ensures that you can construct any class in a server environment, or on the client side before your JavaScript has access to the DOM.
+Class constructors **never** access the DOM internally. This ensures that you can construct any class in a server environment, or on the client side before the document is ready.
 
 
 :::
@@ -165,12 +166,16 @@ The `set<PropertyName>` methods have two benefits:
 
 :::
 ```js
-// The Searchable class's constructor accepts an Array
-const instance = new Searchable(['Baleada', 'Logic', 'Composition', 'Icons'])
+// The Pickable class's constructor accepts an Array
+const instance = new Pickable(['Baleada', 'Logic', 'Composition', 'Icons'])
 
-instance.candidates // -> ['Baleada', 'Logic', 'Composition', 'Icons']
-instance.setCandidates(['tortilla', 'beans', 'egg', 'avocado']) // updates the Searchable instance's candidates and its `trie` property, and returns the Searchable instance
-instance.candidates  // -> ['tortilla', 'beans', 'egg', 'avocado']
+instance.array // -> ['Baleada', 'Logic', 'Composition', 'Icons']
+
+// Update the Pickable instance's array and other state,
+// and return the instance:
+instance.setArray(['tortilla', 'beans', 'egg', 'avocado'])
+
+instance.array  // -> ['tortilla', 'beans', 'egg', 'avocado']
 ```
 :::
 
@@ -178,13 +183,13 @@ If you _don't_ need to method chain after updated your state, but you _do_ want 
 
 :::
 ```js
-const instance = new Searchable(['Vue', 'React', 'Svelte'])
+const instance = new Pickable(['Vue', 'React', 'Svelte'])
 
-// Internally, the setter that updates `candidates` also
+// Internally, the setter that updates `array` also
 // performs the side effect of updating the `searcher` property
-instance.candidates = ['tortilla', 'beans', 'egg', 'avocado']
-instance.candidates // -> ['tortilla', 'beans', 'egg', 'avocado']
-instance.searcher // -> Updated based on the new candidates
+instance.array = ['tortilla', 'beans', 'egg', 'avocado']
+instance.array // -> ['tortilla', 'beans', 'egg', 'avocado']
+instance.items // -> Updated based on the new array
 ```
 :::
 
@@ -299,23 +304,23 @@ A `<state type>` can be `<action>`ed (by `<action arguments>`).
 ```
 :::
 
-For example, the `Searchable` class' core action is to search or fuzzy search an array of search candidates. The `Searchable` constructor's `state` parameter is the array of candidates, and the class has a `search` method that accepts a search query as its only argument. This fits into the sentence template nicely:
+For example, the `Completeable` class' core action is to help you autocomplete strings. The `Completeable` constructor's `state` parameter is a string, and the class has a `complete` method to update the string with a completed version of it. This fits into the sentence template nicely:
 
 :::
 ```
-**Search candidates** can be **searched** by a **query**.
+A **string** can be **completed** by a **completion**.
 ```
 :::
 
-Some classes have core actions that don't take arguments—in those cases, the last part of the sentence template is omitted. Take the `Sanitizeable` class for example:
+Some classes have core actions that don't take arguments—in those cases, the last part of the sentence template is omitted. Take the `Delayable` class for example:
 
 :::
 ```text
-**HTML** (String) can be **sanitized**.
+A **function** can be **delayed**.
 ```
 :::
 
-And some classes have core actions that are actually private methods on the class, with more specific public methods that call the core private method under the hood. The `Animateable` class is a great example—it's constructor accepts an array of keyframes, and in order to animate those keyframes, it internally calls a private `animate` method when you call one of its more specific public methods: `play`, `reverse`, `seek`, or `restart`.
+And some classes have core actions that are actually private methods on the class, with more specific public methods that call the core private method under the hood. The `Animateable` class is a great example—its constructor accepts an array of keyframes, and in order to animate those keyframes, it internally calls a private `animate` method when you call one of its more specific public methods: `play`, `reverse`, `seek`, or `restart`.
 
 These types of classes still use that core action in their sentence template, even though it's accessed via a private method that you'll never directly use:
 
@@ -356,7 +361,7 @@ Here are a few examples:
 ::: ariaLabel="Examples of classes' names"
 | Core action | Type | Name |
 | --- | --- | --- |
-| search | class | `Searchable` |
+| pick | class | `Pickable` |
 | listen | class | `Listenable` |
 | navigate | class | `Navigateable` |
 | copy | class | `Copyable` |
@@ -375,4 +380,3 @@ In conclusion, English grammar is annoying, so Baleada Logic ignores it and name
 :::
 > Proper English grammar is annoying. Baleada Logic's naming convention breaks its rules in favor of simplicity, consistency, and predictability.
 :::
-

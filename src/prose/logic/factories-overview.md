@@ -11,21 +11,4 @@ Baleada Logic's factories have one additional characteristic: all of the object'
 
 In terms of utility, factories fall in between [classes](/docs/logic/classes-overview) and [pipes](/docs/logic/pipes-overview) & [links](/docs/logic/links-overview). They follow functional programming principles like pipes and links, but similar to classes, they're less reusable and composable, and their functionality isn't tree-shakeable.
 
-Currently, Baleada Logic only uses the factory pattern to create objects that can be passed to the `effects` option of [the `Recognizeable` class](/docs/logic/classes/recognizeable).
-
-Here's an example of how you would use a factory:
-
-:::
-```js
-import { createKeyrelease, Recognizeable } from '@baleada/logic'
-
-const keyrelease = createKeyrelease('shift+cmd+b')
-
-const recognizeable = new Recognizeable(
-  [],
-  { effects: keyrelease }
-)
-```
-:::
-
-To learn more, visit the docs for each factory exported by Baleada Logic. For a complete list of available factories, see the **Factories** section under the **Logic** heading in the left sidebar.
+For a complete list of available factories, see the **Factories** section under the **Logic** heading in the left sidebar.

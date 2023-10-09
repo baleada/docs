@@ -2,7 +2,7 @@
 title: Graph
 tags: UI Logic
 source: extracted/graph.ts
-publish: true
+publish: false
 order: 6
 ---
 

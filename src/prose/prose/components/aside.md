@@ -72,7 +72,7 @@ Behold, your blank canvas.
 ::: ariaLabel="ProseAside props" classes="wide-5"
 | Prop | Type | Required | Default | Description |
 | --- | --- | --- | --- | --- |
-| `type` | String | no | `info` | <p>Determines which icon gets rendered.</p><p>Pass `info'`, `warning'`, `success'`, or `danger` to render one of the icons seen above, or pass `simple` to render an `aside` element without an icon.</p> |
+| `type` | String | no | `info` | <p>Determines which icon gets rendered.</p><p>Pass `info`, `warning`, `success`, or `danger` to render one of the icons seen above, or pass `simple` to render an `aside` element without an icon.</p> |
 | `classes` | String | no | none | Adds additional classes to the component's root element. |
 :::
 

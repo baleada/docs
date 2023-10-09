@@ -15,7 +15,8 @@
   "scripts": {
     "dev": "vite",
     "build": "vite build",
-    "empty-vite-cache": "trash node_modules/.vite"
+    "links": "node -r esbuild-register scripts/links.ts",
+    "pipes": "node -r esbuild-register scripts/pipes.ts"
   },
   "bugs": {
     "url": "https://github.com/baleada/docs/issues"

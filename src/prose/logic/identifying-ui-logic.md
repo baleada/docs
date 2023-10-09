@@ -29,7 +29,7 @@ At first glance, you might think of "autocomplete" as the piece of UI logic you 
 
 Using tools from Baleada Logic, you would approach this list of logic like so:
 1. [`Completable`](/docs/logic/classes/completeable) extracts the segment of text
-2. [`Searchable`](/docs/logic/classes/searchable) searches a list of options for the segment (fuzzy matching is optional)
+2. [`results`](/docs/logic/pipes/results) searches a list of options for the segment (fuzzy matching is optional)
 3. [`Listenable`](/docs/logic/classes/listenable) detects when the dropdown menu starts leaving the viewport, and gives you some information so that you can simply apply a CSS `transform: translate` to move the menu into a visible spot.
 4. [`Navigateable`](/docs/logic/classes/navigateable) tracks which option should be in focus, and can loop around to the beginning or end of the list as needed.
 5. `Completable` completes the segment of text with a completed value chosen by the user.
@@ -60,8 +60,8 @@ Visually, these components are so different that it feels clean and correct to b
 | Loop back to the beginning after navigating forwards past the last item | usually | yes | N/A  | yes |
 | Loop back to the end after navigating backwards past the first item | usually | yes | N/A | no |
 | Go to a specific item | yes | not usually | yes | no |
-| Move forward and back in custom increments | yes, if the carousel displays more than 1 image at a time | no | yes | yes (3-card or 1-card advance) |
-| Go to a random item | sometimes | no | sometimes | no |
+| Move forward and back in custom increments | yes, if the carousel displays more than 1 image at a time | not usually | yes | yes (3-card or 1-card advance) |
+| Go to a random item | sometimes | not usually | sometimes | no |
 :::
 
 Across each of these components, the code that implements this collection of array-navigating behaviors is more or less the same. But when you're using Baleada Logic, you don't have to write or install the same array-navigating code separately for each one of those components.
@@ -119,11 +119,11 @@ You would also need to make sure that, when the components reach the end of thei
 All that work and all of those APIs...just to make your app do something after something else happens!
 
 With Baleada Logic, you would instead follow a straightforward process:
-1. Identify the name of the "something" that you're waiting for. For the components above, the "somethings" would be `keydown` `intersect'`, `tap'`, `swipe'`, and `idle'`.
-2. Pass the name of each "something" to a `Listenable` constructor to create instances of the `Listenable` class.
-3. Call your `Listenable` instances' `listen` methods, passing a callback function to each one that will triggers the appropriate action when its "something" happens. (You can also pass options to `listen`, for example, to make sure that you are only listening for an event on a specific element instead of the whole page.)
-4. Wait for your events to happen, and rest easy knowing that your callbacks will all run at the appropriate time!
-5. At the end of the components' lifecycles, call the `stop` method on your instances to stop all listening and observing (therefore avoiding memory leaks).
+  1. Identify the name of the "something" that you're waiting for. For the components above, the "somethings" would be `keydown` `intersect`, `tap`, `swipe`, and `idle`.
+1. Pass the name of each "something" to a `Listenable` constructor to create instances of the `Listenable` class.
+2. Call your `Listenable` instances' `listen` methods, passing a callback function to each one that will triggers the appropriate action when its "something" happens. (You can also pass options to `listen`, for example, to make sure that you are only listening for an event on a specific element instead of the whole page.)
+3. Wait for your events to happen, and rest easy knowing that your callbacks will all run at the appropriate time!
+4. At the end of the components' lifecycles, call the `stop` method on your instances to stop all listening and observing (therefore avoiding memory leaks).
 
 The idea behind `Listenable` is, that, at the end of the day, you shouldn't have to know or care whether the right tool to listen for any given "something" is an Observer, a magical gesture recognition library, the somewhat obscure `requestIdleCallback`, or good old `addEventListener`, and you _definitely_ shouldn't have to know or care about how to clean up side effects and avoid memory leaks with each tool.
 

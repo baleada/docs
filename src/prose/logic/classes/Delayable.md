@@ -72,8 +72,8 @@ The `Delayable` constructor accepts two parameters:
 | `setEffect(effect)` | Function | Sets the `effect` | A callback function, which itself can accept the `timestamp` parameter (see the [Construct a Delayable instance](#construct-a-delayable-instance) section for a refresher on that parameter). | The `Delayable` instance |
 | `delay()` | Function | <p>Delays the execution(s) of the `effect`.</p><p>If you call `delay` while the `effect` is currently being delayed, it will start over from the beginning (and reset `executions`, `time.elapsed`, and `progress` to `0`).</p><p>Can't be called until the DOM is available.</p> | none | The `Delayable` instance |
 | `pause()` | Function | Pauses the delay Can't be called until the DOM is available. | none | The `Delayable` instance |
-| `seek(progress)` | Function | <p>Seeks to a specific time progress in the delay. If `status` is `playing` or `reversing'`, the animation will continue progressing in the same direction after seeking to the time progress.</p><p>If your `effect` is supposed to execute more than one time, you can pass a time progress that is greater than `1` to seek to a specific execution. For example, to seek halfway through the third delay, you can call `seek(2.5)`. Your `effect` will instantly be executed twice, and will be halfway toward the third execution.</p><p>Can't be called until the DOM is available.</p> | `seek` Accepts one parameter: a time progress to seek to | The `Delayable` instance. |
-| `resume()` | Function | After pausing or seeking, resumes the delay from the current time progress. Has no effect if `status` is anything other than `paused` or `sought'`. Can't be called until the DOM is available. | none | The `Delayable` instance |
+| `seek(progress)` | Function | <p>Seeks to a specific time progress in the delay. If `status` is `playing` or `reversing`, the animation will continue progressing in the same direction after seeking to the time progress.</p><p>If your `effect` is supposed to execute more than one time, you can pass a time progress that is greater than `1` to seek to a specific execution. For example, to seek halfway through the third delay, you can call `seek(2.5)`. Your `effect` will instantly be executed twice, and will be halfway toward the third execution.</p><p>Can't be called until the DOM is available.</p> | `seek` Accepts one parameter: a time progress to seek to | The `Delayable` instance. |
+| `resume()` | Function | After pausing or seeking, resumes the delay from the current time progress. Has no effect if `status` is anything other than `paused` or `sought`. Can't be called until the DOM is available. | none | The `Delayable` instance |
 | `stop()` | Function | Cancels the delay, stopping it in its tracks and cleaning up side effects. Can't be called until the DOM is available. | None | The `Delayable` instance. |
 :::
 
@@ -85,12 +85,12 @@ The `Delayable` constructor accepts two parameters:
 Each `Delayable` instance maintains a `status` property that allows it to take appropriate action based on the methods you call, in what order you call them, and when you call them.
 
 At any given time, `status` will always be one (and only one) of the following values:
-- `ready'`
-- `delaying'`
-- `delayed'`
-- `paused'`
-- `sought'`
-- `stopped'`
+- `ready`
+- `delaying`
+- `delayed`
+- `paused`
+- `sought`
+- `stopped`
 
 There's a lot of complexity involved in the way each `status` is achieved (it's affected by which methods you call,in what order you call them, and exactly when you call them), but you likely will never need to worry about that. `status` is available to you if you feel you need it, but for all intended use cases, it's an implementation detail, and you can ignore it.
 

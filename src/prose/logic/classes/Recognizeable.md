@@ -9,7 +9,7 @@ order: 0
 `Recognizeable` is a class that enriches a sequence of DOM events, allowing it to:
 - Recognize itself as something more abstract, like a "swipe" gesture, a keychord, etc.
 - Store metadata about itself
-- Store a status (`'ready'`, `recognizing'`, `recognized'`, or `denied'`)
+- Store a status (`'ready'`, `recognizing`, `recognized`, or `denied`)
 
 
 ::: type="warning"
@@ -106,8 +106,8 @@ Here's a breakdown of the Effect API:
 | `getStatus()` | Function | <p>Gets the current `status` from the `Recognizeable` instance.</p><p>See the [Access state and methods](#access-state-and-methods) section for more info about `status`.</p> | none | The `Recognizeable` instance's `status` |
 | `getMetadata()` | Function | <p>Gets the current `metadata` from the `Recognizeable` instance.</p><p>This `metadata` object is mutable, and any changes to it will directly affect the `Recognizeable` instance's `metadata` property.</p><p>See the [Access state and methods](#access-state-and-methods) section for more info about `metadata`.</p> | none | The `Recognizeable` instance's `metadata` object |
 | `setMetadata(metadata)` | Function | Replaces the entire `metadata` object with a new one. | The new `metadata` | none |
-| `recognized()` | Function | <p>Sets the `Recognizeable` instance's `status` to `recognized'`, and updates the `sequence` to include the most recent event.</p><p>You should _only_ call this function after the information you've gathered from events and stored in `metadata` proves that your custom gesture has occurred.</p> | none | none |
-| `denied()` | Function | <p>Sets the `Recognizeable` instance's `status` to `denied'`, resets the instance's `metadata` to an empty object, and resets the instance's `sequence` to an empty array.</p><p>You should _only_ call this function after the information you've gathered from events and stored in `metadata` proves that your custom gesture can't possibly occur, and everything should reset so you can start recognizing again with a clean slate.</p> | none | none |
+| `recognized()` | Function | <p>Sets the `Recognizeable` instance's `status` to `recognized`, and updates the `sequence` to include the most recent event.</p><p>You should _only_ call this function after the information you've gathered from events and stored in `metadata` proves that your custom gesture has occurred.</p> | none | none |
+| `denied()` | Function | <p>Sets the `Recognizeable` instance's `status` to `denied`, resets the instance's `metadata` to an empty object, and resets the instance's `sequence` to an empty array.</p><p>You should _only_ call this function after the information you've gathered from events and stored in `metadata` proves that your custom gesture can't possibly occur, and everything should reset so you can start recognizing again with a clean slate.</p> | none | none |
 | `getSequence()` | Function | <p>Gets the current `sequence` from the `Recognizeable` instance (including the most recent `sequenceItem` at the end).</p><p>See the [Access state and methods](#access-state-and-methods) section for more info about `sequence`.</p> | none | The `Recognizeable` instance's `sequence` |
 :::
 
