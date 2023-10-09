@@ -34,7 +34,13 @@ The `options` parameter of `createResults` can be one of two things:
 1. [fast-fuzzy options](https://github.com/EthanRutherford/fast-fuzzy#options)
 2. OR, a function that returns fast-fuzzy options.
 
-If you pass a function, it will receive fast fuzzy's `sortKind` enumerable as its first and only parameter, making it easy to customize sort order via fast fuzzy options.
+If you pass a function, it will receive an `api` object as its first and only parameter. Here are the details on that object:
+
+::: ariaLabel="api object" classes="wide-3"
+| Property | Type | Description |
+| --- | --- | --- |
+| `sortKind` | String | fast fuzzy's `sortKind` enumerable. This is provided so you can easily and type-safely customize sort order via fast fuzzy options. |
+:::
 
 
 :::
