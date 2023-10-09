@@ -62,6 +62,7 @@ function toLog (id) {
   return log
 }
 
+const overviewRE = /-overview\.ts$/
 function toSourceLink({ id, frontMatter }) {
   if (!frontMatter.source) return false
 
@@ -71,8 +72,13 @@ function toSourceLink({ id, frontMatter }) {
           .replace(/^\/src\/prose\//, '')
           .replace(/\/.*$/, ''),
         repo = project in repoPrefixesByProject ? `${repoPrefixesByProject[project]}-${project}` : project,
-        fileName = id.match(/[^/]+$/)[0].replace(/md$/, 'ts'),
-        pathRelativeToSrc = id
+        fileName = id.match(/[^/]+$/)[0].replace(/md$/, 'ts')
+
+  if (fileName === 'index.ts' && frontMatter.source === true) {
+    return `https://github.com/baleada/${repo}`
+  }
+  
+  const pathRelativeToSrc = id
           .replace(basePath, '')
           .replace(/^\/src\/prose\//, '')
           .match(/\/(.*$)/)[1]
@@ -80,6 +86,10 @@ function toSourceLink({ id, frontMatter }) {
           .slice(0, -1)
           .join('/'),
         linkBegin = `https://github.com/baleada/${repo}/tree/main/src/${pathRelativeToSrc}`
+
+  if (overviewRE.test(fileName) && frontMatter.source === true) {
+    return `${linkBegin}${fileName.replace(overviewRE, '')}`
+  }
 
   return frontMatter.source === true
     ? `${linkBegin}/${fileName}`
