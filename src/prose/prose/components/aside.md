@@ -16,27 +16,27 @@ order: 0
 :::
 
 :::
-    ::: type="info"
-    Note: by the _way_, in case you were **wondering**,
-    this is some `info`, for your information.
-    :::
+      ::: type="info"
+      Note: by the _way_, in case you were **wondering**,
+      this is some `info`, for your information.
+      :::
 
-    ::: type="warning"
-    If you don't read this, you'll probably mess something up,
-    but it's not the end of the world.
-    :::
+      ::: type="warning"
+      If you don't read this, you'll probably mess something up,
+      but it's not the end of the world.
+      :::
 
-    ::: type="danger"
-    Inconceivable!
-    :::
+      ::: type="danger"
+      Inconceivable!
+      :::
 
-    ::: type="success"
-    You go, Glen Coco!
-    :::
+      ::: type="success"
+      You go, Glen Coco!
+      :::
 
-    ::: type="simple"
-    Behold, your blank canvas.
-    :::
+      ::: type="simple"
+      Behold, your blank canvas.
+      :::
 :::
 
 :::

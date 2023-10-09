@@ -18,11 +18,11 @@ order: 0
 
 :::
 
-    ::: canCopy
-    ```js
-    const thing = new Stuff()
-    ```
-    :::
+      ::: canCopy
+      ```js
+      const thing = new Stuff()
+      ```
+      :::
 
 :::
 

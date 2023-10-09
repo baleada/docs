@@ -16,9 +16,9 @@ order: 0
 :::
 
 :::
-    :::
-    Inspect me! I'm contained in a `section`.
-    :::
+      :::
+      Inspect me! I'm contained in a `section`.
+      :::
 :::
 
 :::

@@ -1,5 +1,5 @@
 ---
-title: `Recognizeable` effects
+title: Recognizeable effects
 tags: UI logic
 publish: true
 order: 0
@@ -194,6 +194,7 @@ The `Angle` type is an object with two properties:
 | --- | --- | --- |
 | `degrees` | number | The angle in degrees. |
 | `radians` | number | The angle in radians. |
+:::
 
 
 :::
@@ -207,6 +208,7 @@ The `Angle` type is an object with two properties:
 | --- | --- | --- |
 | `fromStart` | `Direction` (see below) | The direction of the pointer from its starting point. |
 | `fromPrevious` | `Direction` (see below) | The direction of the pointer from its previous point. |
+:::
 
 The `Direction` type can be one of the following strings:
 - `up`
@@ -234,6 +236,7 @@ Time metadata is calculated using `requestAnimationFrame`, and it updates contin
 | --- | --- | --- |
 | `start` | number | The timestamp of the pointer's first interaction with the target. |
 | `end` | number | The timestamp of the pointer's last interaction with the target. |
+:::
 
 `duration` is the number of milliseconds that have passed since the pointer first interacted with the target.
 

@@ -1,14 +1,18 @@
 .baleada-prose-aside {
   @apply relative flex items-start rounded-r-3 p-5 pl-6 my-6 border-l-6;
 
-  & > svg {
-    @apply absolute left-0 ml-[-2px] transform -translate-x-1/2 h-7 w-7 rounded-full p-1 fill-current;
+  > div {
+    @apply absolute left-0 ml-[-2px] transform -translate-x-1/2 p-1 rounded-full overflow-hidden;
+
+    > svg {
+      @apply w-6 h-6 p-0.5;
+    }
   }
 
   &.baleada-prose-aside-info {
     @apply bg-blue-10 text-blue-90 border-blue-40;
 
-    & > svg {
+    & > div {
       @apply bg-blue-40 text-blue-10;
     }
 
@@ -29,7 +33,7 @@
   &.baleada-prose-aside-warning {
     @apply bg-yellow-10 text-yellow-90 border-yellow-40;
 
-    & > svg {
+    & > div {
       @apply bg-yellow-40 text-yellow-10;
     }
 
@@ -50,7 +54,7 @@
   &.baleada-prose-aside-danger {
     @apply bg-red-10 text-red-90 border-red-40;
 
-    & > svg {
+    & > div {
       @apply bg-red-40 text-red-10;
     }
 
@@ -71,7 +75,7 @@
   &.baleada-prose-aside-success {
     @apply bg-green-10 text-green-90 border-green-40;
 
-    & > svg {
+    & > div {
       @apply bg-green-40 text-green-10;
     }
 
@@ -92,7 +96,7 @@
   &.baleada-prose-aside-simple {
     @apply bg-primary-10 text-primary-90 border-primary-50;
 
-    & > svg {
+    & > div {
       @apply bg-primary-50 text-primary-10;
     }
 
@@ -114,7 +118,7 @@
     &.baleada-prose-aside-info {
       @apply bg-blue-90 text-blue-10 border-blue-80;
 
-      & > svg {
+      & > div {
         @apply bg-blue-70 text-blue-40;
       }
 
@@ -134,7 +138,7 @@
     &.baleada-prose-aside-warning {
       @apply bg-yellow-90 text-yellow-10 border-yellow-80;
 
-      & > svg {
+      & > div {
         @apply bg-yellow-70 text-yellow-40;
       }
 
@@ -154,7 +158,7 @@
     &.baleada-prose-aside-danger {
       @apply bg-red-90 text-red-10 border-red-80;
 
-      & > svg {
+      & > div {
         @apply bg-red-70 text-red-40;
       }
 
@@ -174,7 +178,7 @@
     &.baleada-prose-aside-success {
       @apply bg-green-90 text-green-10 border-green-80;
 
-      & > svg {
+      & > div {
         @apply bg-green-70 text-green-40;
       }
 
@@ -194,8 +198,8 @@
     &.baleada-prose-aside-simple {
       @apply bg-primary-90 text-primary-10 border-primary-80;
 
-      & > svg {
-        @apply bg-primary-70 text-primary-40;
+      & > div {
+        @apply bg-primary-70 text-primary-40 p-2;
       }
 
       code,

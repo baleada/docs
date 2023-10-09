@@ -15,7 +15,7 @@ order: 0
 ::: type="warning"
 `Recognizeable` is a lower-level tool designed to allow the [`Listenable`](/docs/logic/classes/Listenable) class to listen for custom gestures and sequences of events.
 
-Before constructing a `Recognizeable` instance of your own, you should test out [Baleada's collection of pre-built `Recognizeable` configurations](/docs/logic/factories-overview#recognizeable-effects) that allow `Listenable` to listen for common gestures like swipe, pan, keycombos, and more.
+Before constructing a `Recognizeable` instance of your own, you should test out [Baleada's collection of pre-built `Recognizeable` configurations](/docs/logic/factories/recognizeable-effects-overview) that allow `Listenable` to listen for common gestures like swipe, pan, keycombos, and more.
 
 If these configurations don't suit your needs, continue learning about `Recognizeable` so you can define your own custom gestures!
 :::
