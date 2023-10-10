@@ -1,6 +1,7 @@
 ---
 title: What is Baleada Utilities?
 tags: Configuration utilities, Tailwind CSS
+source: tailwind-utilities
 publish: true
 order: 0
 ---

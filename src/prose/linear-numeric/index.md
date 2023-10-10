@@ -1,6 +1,7 @@
 ---
 title: What is Baleada Linear Numeric?
 tags: Configuration utilities, Tailwind CSS
+source: tailwind-linear-numeric
 publish: true
 order: 0
 ---

@@ -1,6 +1,7 @@
 ---
 title: What is Baleada Prose?
 tags: Components
+source: vue-prose
 publish: true
 order: 0
 ---

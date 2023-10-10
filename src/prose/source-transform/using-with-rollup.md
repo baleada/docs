@@ -5,12 +5,12 @@ publish: true
 order: 0
 ---
 
-Baleada Source Transform's Rollup plugin can be imported from `@baleada/source-transform/rollup`.
+Baleada Source Transform's Rollup plugin can be imported from `@baleada/rollup-plugin-source-transform`.
 
 :::
 ```js
-//rollup.config.js
-const sourceTransform = require('@baleada/source-transform/rollup'),
+// rollup.config.js
+const sourceTransform = require('@baleada/rollup-plugin-source-transform'),
       myTransformFunction = require('path/to/myTransformFunction')
 
 export default {

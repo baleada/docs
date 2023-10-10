@@ -74,8 +74,8 @@ function toSourceLink({ id, frontMatter }) {
         repo = project in repoPrefixesByProject ? `${repoPrefixesByProject[project]}-${project}` : project,
         fileName = id.match(/[^/]+$/)[0].replace(/md$/, 'ts')
 
-  if (fileName === 'index.ts' && frontMatter.source === true) {
-    return `https://github.com/baleada/${repo}`
+  if (fileName === 'index.ts') {
+    return `https://github.com/baleada/${frontMatter.source}`
   }
   
   const pathRelativeToSrc = id

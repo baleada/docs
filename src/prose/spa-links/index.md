@@ -1,7 +1,7 @@
 ---
 title: What is Baleada SPA Links?
 tags: Configuration utilities, Markdown-it, Inertia, Next, Nuxt, Sapper, React, Vue, Svelte
-source: true
+source: markdown-it-spa-links
 publish: true
 order: 0
 ---
