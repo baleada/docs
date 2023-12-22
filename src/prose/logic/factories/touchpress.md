@@ -2,6 +2,7 @@
 title: touchpress
 tags: UI Logic
 source: createTouchpress.ts
+tests: browser/createTouchpress.test.ts
 publish: true
 order: 1
 ---

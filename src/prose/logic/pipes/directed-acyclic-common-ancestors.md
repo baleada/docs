@@ -2,6 +2,7 @@
 title: directed acyclic common ancestors
 tags: UI Logic
 source: directed-acyclic-node.ts
+tests: node/directed-acyclic.test.ts
 publish: false
 order: 0
 ---

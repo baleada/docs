@@ -24,7 +24,9 @@ export default new configureable.Vite()
   .alias({
     'virtual:manifest': '/src/state/manifest.ts',
     'virtual:searchableCandidates': '/src/state/searchableCandidates.ts',
-    '@composition': '/src/composition/index.ts'
+    '@composition': '/src/composition/index.ts',
+    '@octicons': '/node_modules/@primer/octicons/build/svg',
+    '@simple-icons': '/node_modules/simple-icons/icons',
   })
   .excludeDeps([
     'virtual:manifest',
@@ -51,6 +53,10 @@ export default new configureable.Vite()
       return route
     }
   })
+  .sourceTransform({
+    test: param => new Testable().include(/(@primer\/octicons|simple-icons|src\/icons)/).test(param),
+    transform: ({ id }) => toIconSfc(readFileSync(`${id}`, { encoding: 'utf8' })),
+  })
   .virtual({
     test: param => new Testable().idEndsWith('src/state/manifest.ts').test(param),
     transform: () => proseFilesToManifest(),
@@ -60,6 +66,11 @@ export default new configureable.Vite()
     transform: () => proseFilesToSearchableCandidates(),
   })
   .vue({
-    include: ['**/*.vue', '**/*.md'],
+    include: ['**/*.vue', '**/*.md', '**/*.svg'],
   })
+  .inspect()
   .configure()
+
+function toIconSfc (svg: string) {
+  return `<template>${svg.replace(/svg/, 'svg aria-hidden="true" class="fill-current"')}</template>`
+}

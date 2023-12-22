@@ -15,13 +15,16 @@ export const proseToVueSfc = ({ source, id }) => {
           return log
         })(),
         sourceLink = toSourceLink({ id, frontMatter }),
+        testLink = toTestsLink({ id, frontMatter }),
         withBaleadaDocsCustomizations = `\
 :::
 # ${frontMatter.title}
 :::
 
-${sourceLink ? '<LayoutArticleLinks></LayoutArticleLinks>' : ''}
-<LayoutArticleLog></LayoutArticleLog>
+<p class="mb-7 flex flex-col gap-2">
+  <LayoutArticleLog></LayoutArticleLog>
+  ${(sourceLink || testLink) ? '<LayoutArticleLinks></LayoutArticleLinks>' : ''}
+</p>
 
 ${prose}
 <LayoutAdjacentArticleLinks></LayoutAdjacentArticleLinks>
@@ -46,6 +49,7 @@ export default {
     store.article.frontMatter = ${JSON.stringify(frontMatter)}
     store.article.relativePath = '${relativePath}'
     store.article.source = ${sourceLink ? `'${sourceLink}'` : sourceLink}
+    store.article.tests = ${testLink ? `'${testLink}'` : testLink}
   }
 }
 </script>
@@ -94,6 +98,18 @@ function toSourceLink({ id, frontMatter }) {
   return frontMatter.source === true
     ? `${linkBegin}/${fileName}`
     : `${linkBegin}/${frontMatter.source}`
+}
+
+function toTestsLink ({ id, frontMatter }) {
+  const sourceLink = toSourceLink({ id, frontMatter: { ...frontMatter, source: frontMatter.tests } })
+
+  if (typeof sourceLink === 'boolean')
+    return sourceLink
+  
+  if (!/\/tree\/main\/src\//.test(sourceLink))
+    return `${toSourceLink({ id, frontMatter })}/tree/main/tests/${frontMatter.tests}`
+  
+  return sourceLink.replace(/\/src\/.*$/, `/tests/${frontMatter.tests}`)
 }
 
 

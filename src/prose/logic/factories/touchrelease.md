@@ -2,6 +2,7 @@
 title: touchrelease
 tags: UI Logic
 source: createTouchrelease.ts
+tests: browser/createTouchrelease.test.ts
 publish: true
 order: 1
 ---

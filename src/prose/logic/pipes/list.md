@@ -2,6 +2,7 @@
 title: list
 tags: UI Logic
 source: class-value.ts
+tests: node/class-value.test.ts
 publish: true
 order: 0
 ---

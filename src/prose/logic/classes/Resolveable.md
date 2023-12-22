@@ -2,6 +2,7 @@
 title: Resolveable
 tags: UI logic
 source: true
+tests: node/Resolveable.test.ts
 publish: true
 order: 0
 ---

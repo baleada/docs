@@ -48,7 +48,7 @@
 <script lang="ts">
 import { ref } from 'vue'
 import { useAnimateable, useNavigateable } from '@baleada/vue-composition'
-import { SimpleGitHub } from '@baleada/vue-simple-icons'
+import SimpleGitHub from '@simple-icons/github.svg'
 // @ts-ignore
 import { HeroiconsBookOpen } from '@baleada/vue-heroicons'
 

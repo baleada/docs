@@ -2,6 +2,7 @@
 title: Grantable
 tags: UI logic
 source: true
+tests: browser/Grantable.test.ts
 publish: true
 order: 0
 ---

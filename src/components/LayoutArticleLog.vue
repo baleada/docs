@@ -1,7 +1,7 @@
 <template>
-  <p class="mb-7 text-3 italic">
+  <span class="block text-3 italic">
     Updated on {{ intl }}
-  </p>
+  </span>
 </template>
 
 <script lang="ts">

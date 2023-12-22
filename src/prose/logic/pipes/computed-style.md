@@ -2,6 +2,7 @@
 title: computed style
 tags: UI Logic
 source: element.ts
+tests: browser/element.test.ts
 publish: true
 order: 0
 ---

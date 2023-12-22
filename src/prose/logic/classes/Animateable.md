@@ -2,6 +2,7 @@
 title: Animateable
 tags: UI logic
 source: true
+tests: browser/Animateable.test.ts
 publish: true
 order: 0
 ---

@@ -2,6 +2,7 @@
 title: mouserelease
 tags: UI Logic
 source: createMouserelease.ts
+tests: browser/createMouserelease.test.ts
 publish: true
 order: 1
 ---

@@ -2,6 +2,7 @@
 title: keycombo match
 tags: UI Logic
 source: keyboard-event.ts
+tests: node/keyboard-event.test.ts
 publish: true
 order: 0
 ---

@@ -2,6 +2,7 @@
 title: directed acyclic path
 tags: UI Logic
 source: directed-acyclic-state.ts
+tests: node/directed-acyclic.test.ts
 publish: false
 order: 0
 ---

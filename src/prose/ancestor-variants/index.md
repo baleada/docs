@@ -1,6 +1,7 @@
 ---
 title: What is Baleada Ancestor Variants?
 tags: Configuration utilities, Tailwind CSS
+source: ancestor-variants
 publish: tailwind-ancestor-variants
 order: 0
 ---

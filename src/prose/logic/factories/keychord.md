@@ -2,6 +2,7 @@
 title: keychord
 tags: UI Logic
 source: createKeychord.ts
+tests: browser/createKeychord.test.ts
 publish: true
 order: 1
 ---

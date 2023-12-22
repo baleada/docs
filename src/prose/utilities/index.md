@@ -2,6 +2,7 @@
 title: What is Baleada Utilities?
 tags: Configuration utilities, Tailwind CSS
 source: tailwind-utilities
+tests: browser/plugin.test.ts
 publish: true
 order: 0
 ---
@@ -53,8 +54,9 @@ Utility classes can be divided into these categories:
 - **Center** utilities, which make it easy to center elements or their contents, regardless of flex vs. grid, flex direction, etc.
 - **Corner** utilities, which make it easy to place elements or their contents in a specific corner, regardless of flex vs. grid, flex direction, etc.
 - **Edge** utilities, which make it easy to place elements or their contents in the center of a specific edge, regardless of flex vs. grid, flex direction, etc.
-- **Dimension** utilities, which are shorthand for creating elements with the same width and height.
-- **Stretch** utilities, which are shorthand for making an element full width or height while setting a max width or height.
+- **Dimension** utilities, which give elements the same width and height.
+- **Stretch** utilities, which make an element full width or height while setting a max width or height.
+- **Ring shorthand** utilities, which allow you to set ring inset, width, and color, all with a single class.
 
 All Baleada Utilities classes have a total specificity of 1, making them easy to override with variants and responsive classes.
 
@@ -213,7 +215,7 @@ As often as possible, edge utilities avoid using the `margin` property, so that 
 ### Dimension
 :::
 
-Dimension utilities are shorthand for creating elements with the same width and height. They also support setting width and height to different values with a single class.
+Dimension utilities are give elements the same width and height. They also support setting width and height to different values with a single class.
 
 Dimension utilities start with `.d-` and end with any value from your `width` or `height` theme configurations, or any arbitrary value supported by width and height utilities. You can also use `theme.dimension` to configure additional classes and values.
 
@@ -284,7 +286,7 @@ module.exports = {
 ### Stretch
 :::
 
-Stretch utilities are shorthand for making an element full width or height while setting a max width or height.
+Stretch utilities make an element full width or height while setting a max width or height.
 
 Stretch width utilities start with `.stretch-w-`  and end with any value from your `maxWidth` theme configurations, or any arbitrary value supported by max width. You can also use `theme.stretchWidth` to configure additional classes and values.
 
@@ -338,6 +340,11 @@ module.exports = {
   ]
 }
 ```
+:::
+
+
+:::
+### Ring shorthand
 :::
 
 

@@ -2,6 +2,7 @@
 title: directed acyclic async node depth-first steps
 tags: UI Logic
 source: directed-acyclic-async.ts
+tests: node/directed-acyclic-async.test.ts
 publish: false
 order: 0
 ---

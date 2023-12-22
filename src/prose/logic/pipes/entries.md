@@ -2,6 +2,7 @@
 title: entries
 tags: UI Logic
 source: object.ts
+tests: node/object.test.ts
 publish: true
 order: 0
 ---

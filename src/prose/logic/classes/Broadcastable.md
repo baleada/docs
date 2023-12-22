@@ -2,6 +2,7 @@
 title: Broadcastable
 tags: UI logic
 source: true
+tests: browser/Broadcastable.test.ts
 publish: true
 order: 0
 ---

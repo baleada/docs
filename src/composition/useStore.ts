@@ -8,11 +8,13 @@ type Article = {
     order?: number
     title?: string,
     source?: string,
+    tests?: string,
     summary?: string,
     image?: string,
     imageAlt?: string,
   },
   source?: string,
+  tests?: string,
   relativePath?: string
 }
 

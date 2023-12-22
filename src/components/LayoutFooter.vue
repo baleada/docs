@@ -47,7 +47,8 @@
 </template>
 
 <script lang="ts">
-import { SimpleGitHub, SimpleTwitter } from '@baleada/vue-simple-icons'
+import SimpleGitHub from '@simple-icons/github.svg'
+import SimpleTwitter from '@simple-icons/twitter.svg'
 
 export default {
   name: 'LayoutFooter',

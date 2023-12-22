@@ -2,6 +2,7 @@
 title: Pickable
 tags: UI logic
 source: true
+tests: node/Pickable.test.ts
 publish: true
 order: 0
 ---

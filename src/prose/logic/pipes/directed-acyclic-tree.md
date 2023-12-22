@@ -2,6 +2,7 @@
 title: directed acyclic tree
 tags: UI Logic
 source: directed-acyclic.ts
+tests: node/directed-acyclic.test.ts
 publish: false
 order: 0
 ---

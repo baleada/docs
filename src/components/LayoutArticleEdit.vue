@@ -12,7 +12,7 @@
 
 <script lang="ts">
 import { computed } from 'vue'
-import { SimpleGitHub } from '@baleada/vue-simple-icons'
+import SimpleGitHub from '@simple-icons/github.svg'
 import { useStore } from '../composition'
 
 export default {
