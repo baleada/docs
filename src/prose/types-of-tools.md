@@ -33,7 +33,7 @@ UI logic like this is not only useful in its own right, but also when it gets co
 ## Composables (a.k.a. hooks)
 :::
 
-"Composable" is a term coined by the [Vue](https://vuejs.org) team to describe functions that use the Vue Composition API and **collocate code** related to the same logical concern.
+"Composable" is a term coined by the [Vue](https://vuejs.org) team to describe functions that use the Vue Composition API and **colocate code** related to the same logical concern.
 
 In [React](https://react.org), these functions are called "hooks", but the concept and motivations are virtually the same.
 

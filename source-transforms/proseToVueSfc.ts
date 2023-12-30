@@ -16,6 +16,7 @@ export const proseToVueSfc = ({ source, id }) => {
         })(),
         sourceLink = toSourceLink({ id, frontMatter }),
         testLink = toTestsLink({ id, frontMatter }),
+        stubLink = toTestStubLink({ id, frontMatter }),
         withBaleadaDocsCustomizations = `\
 :::
 # ${frontMatter.title}
@@ -23,7 +24,7 @@ export const proseToVueSfc = ({ source, id }) => {
 
 <p class="mb-7 flex flex-col gap-2">
   <LayoutArticleLog></LayoutArticleLog>
-  ${(sourceLink || testLink) ? '<LayoutArticleLinks></LayoutArticleLinks>' : ''}
+  ${([sourceLink, testLink, stubLink].some(Boolean)) ? '<LayoutArticleLinks></LayoutArticleLinks>' : ''}
 </p>
 
 ${prose}
@@ -50,6 +51,7 @@ export default {
     store.article.relativePath = '${relativePath}'
     store.article.source = ${sourceLink ? `'${sourceLink}'` : sourceLink}
     store.article.tests = ${testLink ? `'${testLink}'` : testLink}
+    store.article.stub = ${stubLink ? `'${stubLink}'` : stubLink}
   }
 }
 </script>
@@ -112,6 +114,10 @@ function toTestsLink ({ id, frontMatter }) {
   return sourceLink.replace(/\/src\/.*$/, `/tests/${frontMatter.tests}`)
 }
 
+function toTestStubLink({ id, frontMatter }) {
+  // TODO
+  return false
+}
 
 const repoPrefixesByProject = {
   'ancestor-variants': 'tailwind',

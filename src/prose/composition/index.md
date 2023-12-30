@@ -117,7 +117,7 @@ onMounted(() => {
 
 And finally, the last thing to be aware of is that Baleada Composition functions always clean up after themselves.
 
-More specifically: every Baleada Logic class that has side effects (e.g. adding event listeners) _also_ has a `stop` method that cleans up all side effects. For those classes, Baleada Composition calls the `stop` method automatically on Vue's [`onBeforeUnmount` lifecycle hook](https://v3.vuejs.org/api/composition-api.html#lifecycle-hooks), ensuring that all side effects are cleaned up before the component gets torn down.
+More specifically: every Baleada Logic class that has side effects (e.g. adding event listeners) _also_ has a `stop` method that cleans up all side effects. For those classes, Baleada Composition calls the `stop` method automatically with Vue's [`onScopeDispose` lifecycle hook](https://vuejs.org/api/reactivity-advanced.html#onscopedispose), ensuring that all side effects are cleaned up when the component gets torn down (or the effect scope gets cleaned up).
 
 :::
 ```html

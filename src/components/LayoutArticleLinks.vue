@@ -18,6 +18,15 @@
       <OcticonBeaker class="icon icon-btn duration-1" />
       <span class="duration-1">Tests</span>
     </a>
+    <a
+      v-if="stub"
+      class="btn btn-sm p-0 no-underline"
+      :href="stub"
+      target="_blank"
+    >
+      <OcticonFileCode class="icon icon-btn duration-1" />
+      <span class="duration-1">Test stub</span>
+    </a>
   </span>
 </template>
 
@@ -25,6 +34,7 @@
 import { computed } from 'vue'
 import SimpleGitHub from '@simple-icons/github.svg'
 import OcticonBeaker from '@octicons/beaker-24.svg'
+import OcticonFileCode from '@octicons/file-code-24.svg'
 import { useStore } from '../composition'
 
 export default {
@@ -35,12 +45,14 @@ export default {
   },
   setup () {
     const store = useStore(),
+          source = computed(() => store?.article.source),
           tests = computed(() => store?.article.tests),
-          source = computed(() => store?.article.source)
+          stub = computed(() => store?.article.stub)
 
     return {
       source,
       tests,
+      stub,
     }
   }
 }

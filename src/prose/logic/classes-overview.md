@@ -6,7 +6,7 @@ publish: true
 order: 2
 ---
 
-In Baleada Logic, lots of UI logic is implemented in [JavaScript classes](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Classes). Classes are designed to collocate pieces of related state, and provide methods for working with that state.
+In Baleada Logic, lots of UI logic is implemented with [JavaScript classes](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Classes). Classes are designed to colocate pieces of related state, and provide methods for working with that state.
 
 Unlike Baleada Logic's [pipes](/docs/logic/pipes-overview), which are more like utility functions, each class manages multiple pieces of state that you can observe for changes.
 

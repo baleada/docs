@@ -9,12 +9,14 @@ type Article = {
     title?: string,
     source?: string,
     tests?: string,
+    stub?: string,
     summary?: string,
     image?: string,
     imageAlt?: string,
   },
   source?: string,
   tests?: string,
+  stub?: string,
   relativePath?: string
 }
 
