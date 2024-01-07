@@ -1,13 +1,15 @@
 ---
 title: keycombo match
 tags: UI Logic
-source: keyboard-event.ts
-tests: node/keyboard-event.test.ts
+source: keyboard-event-descriptor.ts
+tests: node/keyboard-event-descriptor.test.ts
 publish: true
 order: 0
 ---
 
-`createKeycomboMatch` is a [pipe](/docs/logic/pipes-overview) that transforms a keyboard event to a boolean indicating whether or not the event matches a given [keycombo](/docs/logic/keycombo-overview).
+`createKeycomboMatch` is a [pipe](/docs/logic/pipes-overview) that transforms a keyboard event descriptor to a boolean indicating whether or not the event matches a given [keycombo](/docs/logic/keycombo-overview).
+
+A keyboard event descriptor is an object with `code`, `shiftKey`, `altKey`, `ctrlKey`, and `metaKey` properties, all of which are optional. This means your `keycomboMatch` function works not only with keyboard events, but also mouse, pointer, and touch events.
 
 
 :::
