@@ -7,6 +7,7 @@ order: 1
 
 Each tool in the Baleada app-building toolkit falls into one of the following categories:
 - [UI logic](#ui-logic)
+- [Server logic](#backend-logic)
 - [Composables (a.k.a. hooks)](#composables-a-k-a-hooks)
 - [Components](#components)
 - [Configuration utilities](#configuration-utilities)
@@ -27,6 +28,16 @@ For example:
 
 UI logic like this is not only useful in its own right, but also when it gets composed into larger, more complicated UI features, which are way easier to build when you're working with the right tools!
 
+
+:::
+## Server logic
+:::
+
+Server logic is code that powers **server-side behaviors**. Baleada provides server logic for small, specific behaviors that are commonly needed, but can be complex to implement in a reusable way.
+
+For example:
+- Tools to model relationships as an edge list
+- TBD...still exploring this space!
 
 
 :::
