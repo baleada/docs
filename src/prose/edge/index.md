@@ -250,3 +250,49 @@ Edge::from('task')
   ->get();
 ```
 :::
+
+
+:::
+### Connecting multiple edges
+:::
+
+In real-world projects modeling data as an edge list, you'll frequently run into use cases where a single network request needs to create multiple edges at the same time. If any one of those edges fails to be created, the data would be inconsistent.
+
+For those cases, call the `connect` method on your `Edge` model, passing an array of edge data. `connect` will return an Eloquent collection of created edges:
+
+:::
+```php
+use App\Models\Edge;
+
+// When the user is viewing a project and creates a task,
+// relate the task to the project and to the user who created it:
+$edges = Edge::connect([
+  [
+    'from_kind' => 'project',
+    'from' => $projectId,
+    'kind' => 'requires',
+    'to_kind' => 'task',
+    'to' => $taskId,
+    'profile' => [
+      'project' => [...],
+      'task' => [...],
+    ],
+  ],
+  [
+    'from_kind' => 'user',
+    'from' => $userId,
+    'kind' => 'owns',
+    'to_kind' => 'task',
+    'to' => $taskId,
+    'profile' => [
+      'user' => [...],
+      'task' => [...],
+    ],
+  ],
+]);
+```
+:::
+
+Internally, Baleada Edge uses Laravel's [database transactions](https://laravel.com/docs/11.x/database#database-transactions) to ensure that each edges is created with separate queries in a single transaction.
+
+If any one of the queries fails, the entire transaction will be rolled back, and no data will be written to the database.
