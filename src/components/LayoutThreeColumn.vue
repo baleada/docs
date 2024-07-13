@@ -392,15 +392,13 @@ export default {
     })
 
     /* Dark theme */
-    const storeableDarkThemeStatus = useStoreable('baleada_dark_theme_status'),
-          darkThemeStatus = ref(storeableDarkThemeStatus.value.string),
+    const prefersDarkTheme = useListenable('(prefers-color-scheme: dark)'),
+          darkThemeStatus = ref('disabled'),
           enableDarkTheme = () => {
-            storeableDarkThemeStatus.value.store('enabled')
-            darkThemeStatus.value = storeableDarkThemeStatus.value.string
+            darkThemeStatus.value = 'enabled'
           },
           disableDarkTheme = () => {
-            storeableDarkThemeStatus.value.store('disabled')
-            darkThemeStatus.value = storeableDarkThemeStatus.value.string
+            darkThemeStatus.value = 'disabled'
           },
           toggleDarkTheme = () => {
             switch (darkThemeStatus.value) {
@@ -424,19 +422,15 @@ export default {
     )
 
     onMounted(() => {
-      switch (storeableDarkThemeStatus.value.status) {
-      case 'ready':
-        disableDarkTheme() // Disable by default
-        break
-      case 'stored':
-      case 'removed':
-        // do nothing
-        break
-      }
+      darkThemeStatus.value = [
+        ...prefersDarkTheme.value
+          .listen((event) => darkThemeStatus.value = event.matches ? 'enabled' : 'disabled')
+          .active
+      ][0].target.matches ? 'enabled' : 'disabled'
+      
+
       keydown.value.listen(event => {
-        if ((event.target as HTMLElement).tagName === 'INPUT'){
-          return
-        }
+        if (['INPUT', 'TEXTAREA'].includes((event.target as HTMLElement).tagName)) return
 
         if (createMatchesKeycombo('shift+d')(event)) {
           event.preventDefault()
