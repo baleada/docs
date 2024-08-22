@@ -1,6 +1,5 @@
 ---
 title: Section
-tags: Components
 publish: true
 order: 0
 ---

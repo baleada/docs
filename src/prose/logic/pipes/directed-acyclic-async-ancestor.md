@@ -1,6 +1,5 @@
 ---
 title: directed acyclic async ancestor
-tags: UI Logic
 source: directed-acyclic-async-node.ts
 tests: node/directed-acyclic-async-node.test.ts
 publish: false

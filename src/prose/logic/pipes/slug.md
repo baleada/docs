@@ -1,6 +1,5 @@
 ---
 title: slug
-tags: UI Logic
 source: string.ts
 tests: node/string.test.ts
 publish: true

@@ -1,6 +1,5 @@
 ---
 title: directed acyclic ancestor
-tags: UI Logic
 source: directed-acyclic-node.ts
 tests: node/directed-acyclic.test.ts
 publish: false

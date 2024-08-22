@@ -1,18 +1,20 @@
-.baleada-prose-article {
+.baleada-prose-codeblock {
+  @apply rounded-5 ring-2 ring-gray-20 dork:ring-transparent dork:text-gray-10 dork:bg-gray-100;
+  
   pre {
-    @apply bg-gray-10 text-gray-100;
+    @apply leading-rem-7 dork:saturate-[0.8];
 
-    & > code {
+    > code {
       .token.comment,
       .token.block-comment,
       .token.prolog,
       .token.doctype,
       .token.cdata {
-      	@apply text-gray-70;
+      	@apply text-neutral-60 dork:text-gray-40;
       }
 
       .token.punctuation {
-      	@apply text-gray-80;
+      	@apply text-gray-90 dork:text-gray-50;
       }
 
       .token.property,
@@ -23,7 +25,7 @@
       .token.constant,
       .token.symbol,
       .token.deleted {
-      	@apply text-red-60;
+      	@apply text-pink-70 dork:text-pink-40;
       }
 
       .token.selector,
@@ -33,120 +35,40 @@
       .token.function,
       .token.builtin,
       .token.inserted {
-      	@apply text-green-60;
+      	@apply text-teal-70 dork:text-teal-30;
       }
 
       .token.operator,
       .token.entity,
       .token.url,
-      .token.variable {
-      	@apply text-yellow-80;
+      .token.variable,
+      .token.regex {
+      	@apply text-blue-70 dork:text-blue-40;
       }
 
       .token.atrule,
       .token.attr-value,
       .token.keyword,
-      .token.class-name {
-      	@apply text-blue-60;
-      }
-
-      .token.regex,
+      .token.class-name,
       .token.important {
-      	@apply text-yellow-60;
+      	@apply text-purple-70 dork:text-purple-40;
       }
 
       .language-css .token.string,
       .style .token.string {
-      	@apply text-red-40;
+      	@apply text-amber-70 dork:text-amber-40;
       }
 
       .token.important {
-      	@apply font-4;
+      	@apply font-5;
       }
 
       .token.bold {
-      	@apply font-6;
+      	@apply font-5;
       }
 
       .namespace {
-      	@apply opacity-80;
-      }
-    }
-  }
-
-  .dark & {
-    pre {
-      @apply bg-gray-100 text-gray-30;
-
-      & > code {
-        .token.comment,
-        .token.block-comment,
-        .token.prolog,
-        .token.doctype,
-        .token.cdata {
-        	@apply text-gray-40;
-        }
-
-        .token.punctuation {
-        	@apply text-gray-30;
-        }
-
-        .token.property,
-        .token.tag,
-        .token.boolean,
-        .token.number,
-        .token.function-name,
-        .token.constant,
-        .token.symbol,
-        .token.deleted {
-        	@apply text-red-50;
-        }
-
-        .token.selector,
-        .token.attr-name,
-        .token.string,
-        .token.char,
-        .token.function,
-        .token.builtin,
-        .token.inserted {
-        	@apply text-green-50;
-        }
-
-        .token.operator,
-        .token.entity,
-        .token.url,
-        .token.variable {
-        	@apply text-yellow-40;
-        }
-
-        .token.atrule,
-        .token.attr-value,
-        .token.keyword,
-        .token.class-name {
-        	@apply text-blue-50;
-        }
-
-        .token.regex,
-        .token.important {
-        	@apply text-yellow-50;
-        }
-
-        .language-css .token.string,
-        .style .token.string {
-        	@apply text-red-50;
-        }
-
-        .token.important {
-        	@apply font-5;
-        }
-
-        .token.bold {
-        	@apply font-5;
-        }
-
-        .namespace {
-        	@apply opacity-80;
-        }
+      	@apply opacity-70;
       }
     }
   }

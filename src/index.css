@@ -15,9 +15,9 @@
 @import "./styles/prose/media.css";
 /* purgecss end ignore */
 
-@import "./styles/docs-nav.css";
-@import "./styles/docs-table-of-contents.css";
-@import "./styles/docs-table-utilities.css";
+@import "./styles/three-column-nav.css";
+@import "./styles/three-column-table-of-contents.css";
+@import "./styles/three-column-table-utilities.css";
 
 @import "tailwindcss/components";
 

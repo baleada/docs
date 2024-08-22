@@ -8,9 +8,9 @@
     ]"
   >
     <section class="flex flex-col gap-2">
-      <p :ref="details.root.ref">Example textbox (this is the accessible details)</p>
+      <p :ref="details.ref()">Example textbox (this is the accessible details)</p>
       <input
-        :ref="textbox.root.ref"
+        :ref="textbox.root.ref({ details: details.id })"
         type="text"
         aria-label="Example textbox"
         placeholder="Type something..."
@@ -34,15 +34,15 @@
 
 <script lang="ts">
 import { readonly, computed } from 'vue'
-import { useTextbox, useDetails } from '@baleada/vue-features'
+import { useTextbox, useElementApi } from '@baleada/vue-features'
 import { useStore } from '../composition'
 
 export default {
   name: 'ExampleUseDetails',
   setup () {
     const textbox = useTextbox(),
-          details = useDetails(textbox),
-          selectionJson = computed(() => JSON.stringify(textbox.text.value.selection, null, 2))
+          details = useElementApi({ identifies: true }),
+          selectionJson = computed(() => JSON.stringify(textbox.text.selection, null, 2))
 
     return {
       textbox: readonly(textbox),

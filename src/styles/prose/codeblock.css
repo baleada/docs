@@ -1,107 +1,29 @@
-.baleada-prose-article {
+.baleada-prose-codeblock {
+  @apply
+    relative left-0 sm:left-0 -ml-7 sm:-ml-9 py-4 lg:left-0 lg:mx-auto 
+    md:max-h-full w-screen lg:w-full;
+
+  .baleada-prose-contents {
+    @apply px-7 sm:px-9 lg:px-5 py-5;
+  }
+
   pre {
-    @apply rounded-4 py-5 overflow-x-scroll with-max-h overflow-x-scroll;
-
-    code {
-      @apply block leading-2;
-    }
+    @apply mx-auto stretch-w-5;
   }
 
-  .baleada-prose-codeblock {
-    @apply relative left-0 -ml-7 w-screen;
+  button {
+    @apply
+      absolute bottom-0 right-0 lg:top-0
+      d-7
+      flex center-all-y p-2
+      shadow-3 rounded-full
+      bg-gray-5 text-gray-100 dork:bg-primary-gray-80 dork:text-primary-gray-30
+      transition duration-2
+      translate-x-[-33%] translate-y-[33%] lg:translate-x-[33%] lg:translate-y-[-33%]
+      hover:scale-[1.1] focus:scale-[1] active:scale-[1];
 
-    .baleada-prose-contents {
-      @apply relative;
-
-      pre {
-        @apply pl-7;
-      }
-    }
-
-    & > button {
-      @apply absolute bottom-0 right-0 h-7 w-7 flex items-center p-2 shadow-3 rounded-full bg-gray-5 text-gray-100 transition duration-2;
-      transform: translate(-33%, 33%);
-
-      svg {
-        @apply block h-full w-full fill-current;
-      }
-
-      &:hover {
-        transform: scale(1.1) translate(-33%, 33%);
-      }
-
-      &:focus {
-        transform: scale(1) translate(-33%, 33%);
-      }
-
-      &:active {
-        transform: scale(1) translate(-33%, 33%);
-      }
-    }
-  }
-
-  .dark & {
-    .baleada-prose-codeblock {
-      & > button {
-        @apply bg-primary-gray-80 text-primary-gray-30;
-      }
-    }
-  }
-}
-
-@screen sm {
-  .baleada-prose-article {
-    .baleada-prose-codeblock {
-      @apply left-0 -ml-9;
-
-      .baleada-prose-contents {
-        pre {
-          @apply pl-9;
-        }
-      }
-    }
-  }
-}
-
-@screen md {
-  .baleada-prose-article {
-    .baleada-prose-codeblock {
-      @apply max-h-full;
-    }
-  }
-}
-
-@screen lg {
-  .baleada-prose-article {
-    .baleada-prose-codeblock {
-      @apply left-0 mx-auto w-auto;
-
-      .baleada-prose-contents {
-        pre {
-          @apply pl-5;
-        }
-      }
-
-      & > button {
-        @apply top-0;
-        transform: translate(33%, -33%);
-
-        svg {
-          @apply block h-full w-full fill-current;
-        }
-
-        &:hover {
-          transform: scale(1.1) translate(33%, -33%);
-        }
-
-        &:focus {
-          transform: scale(1) translate(33%, -33%);
-        }
-
-        &:active {
-          transform: scale(1) translate(33%, -33%);
-        }
-      }
+    svg {
+      @apply block h-full w-full fill-current;
     }
   }
 }

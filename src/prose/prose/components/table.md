@@ -1,6 +1,5 @@
 ---
 title: Table
-tags: Components
 publish: true
 order: 0
 ---

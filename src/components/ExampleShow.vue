@@ -85,15 +85,15 @@ export default {
             },
             active (done) {
               stopWatchingStatus = watch(
-                [() => fancyEnter.value.status],
+                [() => fancyEnter.status],
                 () => {
-                  if (fancyEnter.value.status === 'played') {
+                  if (fancyEnter.status === 'played') {
                     stopWatchingStatus()
                     done()
                   }
                 },
               )
-              fancyEnter.value.play(({ properties: { scale, rotate } }) => {
+              fancyEnter.play(({ properties: { scale, rotate } }) => {
                 el.value.style.transform = `scale(${scale.interpolated}) rotate(${rotate.interpolated}deg)`
               })
             },
@@ -102,7 +102,7 @@ export default {
             },
             cancel () {
               stopWatchingStatus()
-              fancyEnter.value.stop()
+              fancyEnter.stop()
               el.value.style.transform = `rotate(0deg)`
               status.value = 'cancelled appear/enter'
             },

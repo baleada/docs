@@ -1,6 +1,5 @@
 ---
 title: keycombo match
-tags: UI Logic
 source: keyboard-event-descriptor.ts
 tests: node/keyboard-event-descriptor.test.ts
 publish: true

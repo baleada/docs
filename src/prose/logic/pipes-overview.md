@@ -1,6 +1,5 @@
 ---
 title: Pipes
-tags: UI Logic
 source: true
 publish: true
 order: 3

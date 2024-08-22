@@ -1,6 +1,5 @@
 ---
 title: directed acyclic layers
-tags: UI Logic
 source: directed-acyclic.ts
 tests: node/directed-acyclic.test.ts
 publish: false

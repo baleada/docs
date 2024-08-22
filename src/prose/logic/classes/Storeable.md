@@ -1,6 +1,5 @@
 ---
 title: Storeable
-tags: UI logic
 source: true
 tests: browser/Storeable.test.ts
 publish: true

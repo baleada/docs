@@ -1,9 +1,9 @@
 ---
 title: What is Baleada Composition?
-tags: Composables
 source: vue-composition
 publish: true
 order: 0
+summary: A collection of low-level Vue 3 composables that integrate Baleada Logic classes with Vue's reactivity system
 ---
 
 Baleada Composition is a collection of low-level Vue 3 composables. Each composables is responsible for creating a reactive instance of a [Baleada Logic](/docs/logic) class, and if applicable, cleaning up any of the instance's side effects before the Vue component unmounts.
@@ -89,6 +89,7 @@ watch(
   () => pickable.picks[0],
   () => {...}
 )
+</script>
 ```
 :::
 

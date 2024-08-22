@@ -1,6 +1,5 @@
 ---
 title: graph
-tags: UI Logic
 source: tree.ts
 tests: node/graph.test.ts
 publish: false

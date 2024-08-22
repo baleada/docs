@@ -1,6 +1,5 @@
 ---
 title: Classes
-tags: UI Logic
 source: true
 publish: true
 order: 2

@@ -1,11 +1,29 @@
 .baleada-prose-media {
-  img,
-  video,
-  audio {
-    @apply block w-full rounded-3 shadow-4;
+  img {
+    @apply block with-max-h w-full object-cover rounded-4 shadow-4;
+  }
+
+  &.media-center img {
+    @apply object-center;
+  }
+
+  &.media-top img {
+    @apply object-top;
+  }
+
+  &.media-bottom img {
+    @apply object-bottom;
   }
 
   iframe {
-    @apply block w-full h-screen with-max-h overflow-hidden rounded-3 shadow-4;
+    @apply block w-full h-screen with-max-h overflow-hidden rounded-4 shadow-4;
+  }
+
+  p {
+    @apply mt-3 text-3 text-center text-balance italic;
+  }
+
+  &.media-white img {
+    @apply border-4 border-gray-20 dork:border-transparent;
   }
 }

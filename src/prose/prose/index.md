@@ -1,12 +1,12 @@
 ---
 title: What is Baleada Prose?
-tags: Components
 source: vue-prose
 publish: true
 order: 0
+summary: A component library that brings a base layer of rich interactivity to Markdown articles.
 ---
 
-Baleada Prose is a library of components that enhance prose, adding tweetable blockquotes, copiable codeblocks, anchored headings, filterable tables, and more. It's designed to bring a base layer of rich interactivity to articles written by programmers and non-programmers alike.
+Baleada Prose is a component library brings a base layer of rich interactivity to Markdown articles.
 
 ::: type="success"
 Every article in the Baleada Docs is written in Baleada-flavored Markdown and enhanced by Baleada Prose!

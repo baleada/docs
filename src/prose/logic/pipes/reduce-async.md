@@ -1,6 +1,5 @@
 ---
 title: reduce async
-tags: UI Logic
 source: array-async.ts
 tests: node/array-async.test.ts
 publish: true

@@ -5,215 +5,123 @@
     @apply absolute left-0 ml-[-2px] transform -translate-x-1/2 p-1 rounded-full overflow-hidden;
 
     > svg {
-      @apply w-6 h-6 p-0.5;
+      @apply d-6 p-0.5;
     }
   }
+  
 
   &.baleada-prose-aside-info {
-    @apply bg-blue-10 text-blue-90 border-blue-40;
+    @apply bg-blue-10 text-blue-90 border-blue-40
+      dork:bg-blue-90 dork:text-blue-10 dork:border-blue-80;
 
-    & > div {
-      @apply bg-blue-40 text-blue-10;
+    > div {
+      @apply bg-blue-40 text-blue-10
+        dork:bg-blue-70 dork:text-blue-40;
     }
 
     code,
     kbd {
-      @apply bg-blue-20;
+      @apply bg-blue-20 dork:bg-blue-80;
     }
 
     a {
-      @apply text-blue-70 font-6;
+      @apply text-blue-70 font-6 dork:text-blue-30;
     }
 
     li::before {
-      @apply text-blue-70;
+      @apply text-blue-70 dork:text-blue-20;
     }
   }
 
   &.baleada-prose-aside-warning {
-    @apply bg-yellow-10 text-yellow-90 border-yellow-40;
+    @apply bg-yellow-10 text-yellow-90 border-yellow-40
+      dork:bg-yellow-90 dork:text-yellow-10 dork:border-yellow-80;
 
-    & > div {
-      @apply bg-yellow-40 text-yellow-10;
+    > div {
+      @apply bg-yellow-40 text-yellow-10
+        dork:bg-yellow-70 dork:text-yellow-40;
     }
 
     code,
     kbd {
-      @apply bg-yellow-20;
+      @apply bg-yellow-20 dork:bg-yellow-80;
     }
 
     a {
-      @apply text-yellow-70 font-6;
+      @apply text-yellow-70 font-6 dork:text-yellow-30;
     }
 
     li::before {
-      @apply text-yellow-70;
+      @apply text-yellow-70 dork:text-yellow-20;
     }
   }
 
   &.baleada-prose-aside-danger {
-    @apply bg-red-10 text-red-90 border-red-40;
+    @apply bg-red-10 text-red-90 border-red-40
+      dork:bg-red-90 dork:text-red-10 dork:border-red-80;
 
-    & > div {
-      @apply bg-red-40 text-red-10;
+    > div {
+      @apply bg-red-40 text-red-10
+        dork:bg-red-70 dork:text-red-40;
     }
 
     code,
     kbd {
-      @apply bg-red-20;
+      @apply bg-red-20 dork:bg-red-80;
     }
 
     a {
-      @apply text-red-70 font-6;
+      @apply text-red-70 font-6 dork:text-red-30;
     }
 
     li::before {
-      @apply text-red-70;
+      @apply text-red-70 dork:text-red-20;
     }
   }
 
   &.baleada-prose-aside-success {
-    @apply bg-green-10 text-green-90 border-green-40;
+    @apply bg-green-10 text-green-90 border-green-40
+      dork:bg-green-90 dork:text-green-10 dork:border-green-80;
 
-    & > div {
-      @apply bg-green-40 text-green-10;
+    > div {
+      @apply bg-green-40 text-green-10
+        dork:bg-green-70 dork:text-green-40;
     }
 
     code,
     kbd {
-      @apply bg-green-20;
+      @apply bg-green-20 dork:bg-green-80;
     }
 
     a {
-      @apply text-green-70 font-6;
+      @apply text-green-70 font-6 dork:text-green-30;
     }
 
     li::before {
-      @apply text-green-70;
+      @apply text-green-70 dork:text-green-20;
     }
   }
 
   &.baleada-prose-aside-simple {
-    @apply bg-primary-10 text-primary-90 border-primary-50;
+    @apply bg-primary-10 text-primary-90 border-primary-50
+      dork:bg-primary-90 dork:text-primary-10 dork:border-primary-80;
 
-    & > div {
-      @apply bg-primary-50 text-primary-10;
+    > div {
+      @apply p-0 bg-primary-50 text-primary-10
+        dork:bg-primary-70 dork:text-primary-40;
     }
 
     code,
     kbd {
-      @apply bg-primary-20;
+      @apply bg-primary-20 dork:bg-primary-80;
     }
 
     a {
-      @apply text-primary-70 font-6;
+      @apply text-primary-70 font-6 dork:text-primary-30;
     }
 
     li::before {
-      @apply text-primary-70;
-    }
-  }
-
-  .dark & {
-    &.baleada-prose-aside-info {
-      @apply bg-blue-90 text-blue-10 border-blue-80;
-
-      & > div {
-        @apply bg-blue-70 text-blue-40;
-      }
-
-      code,
-      kbd {
-        @apply bg-blue-80;
-      }
-
-      a {
-        @apply text-blue-30;
-      }
-
-      li::before {
-        @apply text-blue-20;
-      }
-    }
-    &.baleada-prose-aside-warning {
-      @apply bg-yellow-90 text-yellow-10 border-yellow-80;
-
-      & > div {
-        @apply bg-yellow-70 text-yellow-40;
-      }
-
-      code,
-      kbd {
-        @apply bg-yellow-80;
-      }
-
-      a {
-        @apply text-yellow-30;
-      }
-
-      li::before {
-        @apply text-yellow-20;
-      }
-    }
-    &.baleada-prose-aside-danger {
-      @apply bg-red-90 text-red-10 border-red-80;
-
-      & > div {
-        @apply bg-red-70 text-red-40;
-      }
-
-      code,
-      kbd {
-        @apply bg-red-80;
-      }
-
-      a {
-        @apply text-red-30;
-      }
-
-      li::before {
-        @apply text-red-20;
-      }
-    }
-    &.baleada-prose-aside-success {
-      @apply bg-green-90 text-green-10 border-green-80;
-
-      & > div {
-        @apply bg-green-70 text-green-40;
-      }
-
-      code,
-      kbd {
-        @apply bg-green-80;
-      }
-
-      a {
-        @apply text-green-30;
-      }
-
-      li::before {
-        @apply text-green-20;
-      }
-    }
-    &.baleada-prose-aside-simple {
-      @apply bg-primary-90 text-primary-10 border-primary-80;
-
-      & > div {
-        @apply bg-primary-70 text-primary-40 p-2;
-      }
-
-      code,
-      kbd {
-        @apply bg-primary-80;
-      }
-
-      a {
-        @apply text-primary-30;
-      }
-
-      li::before {
-        @apply text-primary-20;
-      }
+      @apply text-primary-70 dork:text-primary-20;
     }
   }
 }

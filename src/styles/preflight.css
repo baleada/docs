@@ -1,15 +1,11 @@
-html {
-  font-size: 16.5px;
-}
-
 em {
   @apply not-italic;
 }
 
 *::selection {
-  @apply bg-primary-50 text-primary-10;
+  @apply bg-primary-20 text-primary-120;
 }
 
-* {
-  @apply transition duration-3;
+:where(.ancestor.dork) *::selection {
+  @apply bg-primary-gray-40 text-primary-gray-140;
 }

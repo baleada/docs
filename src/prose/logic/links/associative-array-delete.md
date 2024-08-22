@@ -1,6 +1,5 @@
 ---
 title: associative array delete
-tags: UI Logic
 source: associative-array.ts
 tests: node/associative-array.test.ts
 publish: true

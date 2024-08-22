@@ -1,9 +1,9 @@
 ---
 title: What is Baleada Ancestor Variants?
-tags: Configuration utilities, Tailwind CSS
 source: ancestor-variants
 publish: tailwind-ancestor-variants
 order: 0
+summary: A Tailwind plugin for adding ancestor variants, i.e. variants that will only apply styles when an ancestor element matches a specific selector
 ---
 
 Baleada Ancestor Variants is a Tailwind plugin for adding ancestor variants, i.e. variants that will only apply styles when an ancestor element matches a specific selector.

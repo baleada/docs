@@ -1,6 +1,5 @@
 ---
 title: keyrelease
-tags: UI Logic
 source: createKeyrelease.ts
 tests: browser/createKeyrelease.test.ts
 publish: true

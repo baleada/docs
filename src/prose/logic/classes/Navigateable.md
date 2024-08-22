@@ -1,6 +1,5 @@
 ---
 title: Navigateable
-tags: UI logic
 source: true
 tests: node/Navigateable.test.ts
 publish: true

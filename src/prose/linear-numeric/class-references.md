@@ -1,6 +1,5 @@
 ---
 title: Class references
-tags: Configuration utilities, Tailwind CSS
 publish: true
 order: 1
 ---

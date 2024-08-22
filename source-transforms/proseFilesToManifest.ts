@@ -10,20 +10,31 @@ export function proseFilesToManifest (): string {
   let words: number = 0
   const incrementWords = (increment: number) => (words += increment)
 
+  let currentPkg = ''
+
   const dirIds = fastGlob.sync('src/prose/**', { onlyDirectories: true }).sort(),
         manifest = [
           {
             level: 1,
             name: 'overview',
+            pkg: 'overview',
             articles: toManifested('src/prose', incrementWords),
           },
-          ...dirIds.map(
-            id => ({
-              level: id.replace('src/prose/', '').split('/').length,
-              name: parse(id).name.replace(/-/g, ' '),
+          ...dirIds.map(id => {
+            const level = id.replace(/(?:src\/prose\/|\d+-)/g, '').split('/').length,
+                  name = parse(id).name
+                    .replace(/\d+-/, '')
+                    .replace(/-/g, ' ')
+
+            if (level === 1) currentPkg = name
+
+            return {
+              level,
+              name,
+              pkg: currentPkg,
               articles: toManifested(id, incrementWords),
-            })
-          )
+            }
+          })
         ].filter(({ articles }) => articles.length > 0)
 
   const totalArticles = manifest.reduce((totalArticles, { articles }) => totalArticles + articles.length, 0)
@@ -45,15 +56,14 @@ function toManifested (dirPath: string, incrementWords: (increment: number) => v
             return manifested
           }
 
-          const { data: { title, tags: rawTags, order } } = matter(readFileSync(`${dirPath}/${file}`, 'utf8')),
-                tags = rawTags ? rawTags.split(',').map(tag => tag.trim()) : [],
+          const { data: { title, order, summary } } = matter(readFileSync(`${dirPath}/${file}`, 'utf8')),
                 fileName = parse(`${dirPath}/${file}`).name,
-                href = `/docs${dirPath.replace('src/prose', '')}${`/${fileName}`.replace(/^\/index$/, '')}`,
+                href = `/docs${dirPath.replace(/(?:src\/prose|\d+-)/g, '')}${`/${fileName}`.replace(/^\/index$/, '')}`,
                 authorDate = (toStats(`${dirPath}/${file}`)).authorDate
 
           manifested.push({
             title,
-            tags,
+            summary,
             href,
             authorDate,
             order,

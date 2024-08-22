@@ -1,14 +1,10 @@
 .baleada-prose-details {  
   summary {
-    @apply cursor-pointer inline-flex items-center rounded-3 list-none;
+    @apply cursor-pointer inline-flex center-all-y rounded-3 list-none highlighted;
 
     svg {
       @apply h-[1em] w-[1em] fill-current;
       transform-origin: center;
-    }
-
-    &:hover {
-      @apply text-primary-70;
     }
   }
 
@@ -19,12 +15,6 @@
   &[open] {
     svg {
       transform: rotate(90deg);
-    }
-  }
-
-  .dark & {
-    &:hover {
-      @apply text-primary-gray-30;
     }
   }
 }

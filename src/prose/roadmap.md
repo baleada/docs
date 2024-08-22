@@ -1,6 +1,5 @@
 ---
 title: Roadmap
-tags: agnostic
 publish: true
 order: 2
 ---
@@ -11,7 +10,7 @@ order: 2
 
 - Build example to-do app using Baleada tools
 - Build example blog/static site using Baleada tools
-- Build example ecommerce site using Baleada tools
+- Build example e-commerce site using Baleada tools
 - Pursue other tool category ideas
 
 

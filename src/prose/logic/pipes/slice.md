@@ -1,6 +1,5 @@
 ---
 title: slice
-tags: UI Logic
 source: array.ts
 tests: node/array.test.ts
 publish: true

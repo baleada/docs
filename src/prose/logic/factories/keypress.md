@@ -1,6 +1,5 @@
 ---
 title: keypress
-tags: UI Logic
 source: createKeypress.ts
 tests: browser/createKeypress.test.ts
 publish: true

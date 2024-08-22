@@ -4,6 +4,11 @@ declare module '*.vue' {
   export default component;
 }
 
+declare module '*.svg' {
+  import component from '*.vue';
+  export default component;
+}
+
 declare module '*.md' {
   import component from '*.vue';
   export default component;
@@ -18,9 +23,11 @@ type Directory = {
   name: string,
   articles: {
     title: string,
+    summary: string,
     tags: string[],
     href: string,
     authorDate: string,
     order: number,
-  }[]
+  }[],
+  pkg: string,
 }

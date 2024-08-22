@@ -1,6 +1,5 @@
 ---
 title: Recognizeable
-tags: UI logic
 source: true
 tests: browser/Recognizeable.test.ts
 publish: true

@@ -1,12 +1,12 @@
 ---
 title: What is Baleada Logic?
-tags: UI logic
 source: logic
 publish: true
 order: 0
+summary: TypeScript that implements low-level UI logic
 ---
 
-Baleada Logic is a collection of TypeScript tools that implement **UI logic**.
+Baleada Logic is TypeScript that implements **low-level UI logic**.
 
 Explore the philosophy behind Baleada Logic in [Identifying UI Logic](/docs/logic/identifying-ui-logic).
 

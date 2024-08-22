@@ -1,6 +1,5 @@
 ---
 title: Meta
-tags: 
 publish: true
 order: 3
 ---

@@ -1,6 +1,5 @@
 ---
 title: Shareable
-tags: UI logic
 source: true
 tests: browser/Shareable.test.ts
 publish: true

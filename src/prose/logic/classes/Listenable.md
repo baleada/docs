@@ -1,6 +1,5 @@
 ---
 title: Listenable
-tags: UI logic
 source: true
 tests: browser/Listenable.test.ts
 publish: true

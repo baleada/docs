@@ -129,7 +129,7 @@ export default {
     type: {
       type: String,
       default: 'fill',
-      validator: (value) => ['fill', 'outline'].indexOf(value) !== -1
+      validator: (value: string) => ['fill', 'outline'].indexOf(value) !== -1
     },
     hasShadow: {
       type: Boolean,

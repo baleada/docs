@@ -1,6 +1,5 @@
 ---
 title: Blockquote
-tags: Components
 publish: true
 order: 0
 ---

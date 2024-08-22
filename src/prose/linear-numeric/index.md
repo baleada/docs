@@ -1,12 +1,12 @@
 ---
 title: What is Baleada Linear Numeric?
-tags: Configuration utilities, Tailwind CSS
 source: tailwind-linear-numeric
 publish: true
 order: 0
+summary: A Tailwind plugin that configures Tailwind's default plugins with a linear numeric naming convention
 ---
 
-Baleada Linear Numeric is a function that returns configurations for certain [Tailwind](https://tailwindcss.com) default plugins, aliasing all class names so that they use a linear numeric naming convention.
+Baleada Linear Numeric is a function that returns configurations for [Tailwind](https://tailwindcss.com) default plugins, aliasing all class names to use a linear numeric naming convention.
 
 By default, it produces class names like the following:
 - `.text-4` instead of `.text-base`

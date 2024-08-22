@@ -1,6 +1,5 @@
 ---
 title: Completeable
-tags: UI logic
 source: true
 tests: node/Completeable.test.ts
 publish: true

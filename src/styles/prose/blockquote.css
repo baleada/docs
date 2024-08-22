@@ -1,11 +1,16 @@
 .baleada-prose-article {
-  blockquote::before {
+  :where(blockquote::before) {
     content: '\201C';
     @apply absolute text-9 font-3 text-primary-90 opacity-70 top-0 left-0 mt-[-.5em];
   }
 
   blockquote {
-    @apply relative pl-6 pr-4 py-3 font-display rounded-4 bg-primary-10 shadow-3 text-primary-90;
+    @apply
+      relative
+      pl-6 pr-4 py-3
+      font-display rounded-4 shadow-3
+      bg-primary-10 text-primary-90
+      dork:bg-primary-gray-90 dork:text-primary-gray-30;
 
     p {
       @apply text-6
@@ -15,8 +20,8 @@
   .baleada-prose-blockquote {
     @apply relative;
 
-    & > a {
-      @apply absolute bottom-0 right-0 h-7 w-7 flex items-center p-2 shadow-3 rounded-full bg-primary-20 text-primary-90 transition duration-2;
+    > a {
+      @apply absolute bottom-0 right-0 d-7 flex center-all-y p-2 shadow-3 rounded-full bg-primary-20 text-primary-90 dork:bg-primary-gray-90 dork:text-primary-gray-30 transition duration-2;
       transform: translate(33%, 33%);
 
       svg {
@@ -36,23 +41,33 @@
       }
     }
 
-    .baleada-prose-contents {
+    :where(.baleada-prose-contents) {
       @apply relative;
 
       blockquote::before {
         @apply hidden;
       }
     }
-  }
 
-  .dark & {
-    blockquote {
-      @apply bg-primary-gray-85 text-primary-gray-30;
-    }
+    &:where(.subtle) {
+      blockquote {
+        @apply
+          py-0 pr-0 pl-5
+          rounded-0 shadow-0
+          bg-transparent italic;
 
-    .baleada-prose-blockquote {
-      & > a {
-        @apply bg-primary-gray-80 text-primary-gray-30;
+        &::before {
+          content: '';
+          @apply
+            block absolute top-0 left-0 bottom-0 mt-0
+            h-full w-1
+            rounded-full
+            bg-primary-30 transition;
+
+          .dork & {
+            @apply bg-primary-gray-80;
+          }
+        }
       }
     }
   }
@@ -72,7 +87,7 @@
 
 @screen lg {
   .baleada-prose-article .baleada-prose-blockquote {
-    & > a {
+    > a {
       @apply top-0 left-0;
       transform: translate(-33%, -33%);
 
