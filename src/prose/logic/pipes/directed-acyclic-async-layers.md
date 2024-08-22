@@ -1,6 +1,5 @@
 ---
 title: directed acyclic async layers
-tags: UI Logic
 source: directed-acyclic-async.ts
 tests: node/directed-acyclic-async.test.ts
 publish: false

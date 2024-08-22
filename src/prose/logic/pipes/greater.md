@@ -1,6 +1,5 @@
 ---
 title: greater
-tags: UI Logic
 source: number.ts
 tests: node/number.test.ts
 publish: true

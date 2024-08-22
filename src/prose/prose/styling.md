@@ -1,6 +1,5 @@
 ---
 title: Styling
-tags: Components
 publish: true
 order: 4
 ---

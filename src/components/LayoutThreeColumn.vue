@@ -1,22 +1,22 @@
 <template>
   <main
-    class="relative z-10 lg:flex w-full overflow-x-hidden"
-    :class="[
-      darkThemeStatus === 'enabled' ? 'dark' : '',
-      minimalistThemeStatus === 'enabled' ? 'minimalist' : '',
-      (() => {
-        if (darkThemeStatus === 'disabled' && minimalistThemeStatus === 'disabled') return 'bg-gray-10'
-        if (darkThemeStatus === 'enabled' && minimalistThemeStatus === 'disabled') return 'bg-primary-gray-100'
-        if (darkThemeStatus === 'enabled' && minimalistThemeStatus === 'enabled') return 'bg-primary-gray-95'
-        if (darkThemeStatus === 'disabled' && minimalistThemeStatus === 'enabled') return 'bg-white'
-        return ''
-      })()
-    ]"
+    class="
+      layout-three-column
+      relative z-10
+      d-screen lg:flex overflow-x-hidden
+      not-dork:not-minimalist:bg-gray-10
+      dork:not-minimalist:bg-primary-gray-130
+      dork:minimalist:bg-primary-gray-120
+      not-dork:minimalist:bg-white"
   >
     <!-- Left -->
     <section
       ref="nav"
-      class="relative h-screen w-screen lg:w-24 flex-none px-7 py-3 overflow-y-scroll scrolling-touch lg:translate-x-0 transform"
+      class="
+        relative h-screen w-screen lg:w-24 flex-none
+        px-7 py-3 overflow-y-scroll scrolling-touch scrollbar-hide
+        lg:translate-x-0
+      "
       :class="[
         openStatus === 'nav' ? 'translate-x-0' : '-translate-x-full',
         tableOfContentsTransitionStatus === 'after-leave'
@@ -25,564 +25,391 @@
       ]"
     >
       <header
-        class="flex items-center pb-3 border-b-2"
-        :class="[
-          (() => {
-            if (darkThemeStatus === 'disabled' && minimalistThemeStatus === 'disabled') return 'border-gray-30'
-            if (darkThemeStatus === 'enabled' && minimalistThemeStatus === 'disabled') return 'border-primary-gray-95'
-            if (darkThemeStatus === 'enabled' && minimalistThemeStatus === 'enabled') return 'border-primary-gray-95'
-            if (darkThemeStatus === 'disabled' && minimalistThemeStatus === 'enabled') return 'border-white'
-            return ''
-          })()
-        ]"
+        class="
+          flex center-all-y pb-3 border-b-5
+          border-gray-30 dork:border-primary-gray-100 minimalist:border-transparent dork:minimalist:border-transparent
+        "
       >
         <RouterLink
           to="/"
           aria-label="Link to home page"
-          class="flex-none rounded-full h-10 w-10 p-2 -shadow transition btn-grows"
-          :class="[
-            darkThemeStatus === 'enabled' ? 'bg-primary-gray-90' : 'bg-primary-60',
-          ]"
+          class="
+            d-13 p-2
+            flex-none rounded-full overflow-hidden -shadow transition btn-grows
+            bg-primary-60 dork:bg-primary-gray-90
+          "
         >
           <BrandLogo
             id="nav-header"
-            :tortillaClasses="darkThemeStatus === 'enabled' ? 'text-primary-gray-50' : undefined"
-            :burnClasses="darkThemeStatus === 'enabled' ? 'text-primary-gray-100' : undefined"
+            :tortillaClasses="store.dorkTheme.status === 'enabled' ? 'text-primary-gray-50' : undefined"
+            :burnClasses="store.dorkTheme.status === 'enabled' ? 'text-primary-gray-100' : undefined"
           />
         </RouterLink>
       </header>
-
       <button
-        class="lg:hidden absolute top-0 right-0 mt-3 mr-6 h-7 w-7 cursor-pointer transition btn-grows"
-        :class="[
-          darkThemeStatus === 'enabled' ? 'text-gray-60 hover:text-gray-40' : 'text-gray-90 hover:text-primary-60'
-        ]"
+        class="
+          lg:hidden
+          absolute corner-t-r mt-3 mr-6 d-7
+          cursor-pointer transition btn-grows
+          dork:text-gray-60 dork:hover:text-gray-40
+          not-dork:text-gray-90 not-dork:hover:text-primary-60
+        "
         aria-label="Close menu"
         @click="openArticle"
       >
-        <HeroiconsX class="icon" />
+        <OcticonsX24 class="icon" />
       </button>
-
       <!-- Dark theme toggle -->
-      <div class="mt-3 py-3 w-full'">
-        <div class="flex items-center">
+      <div class="mt-5 w-full'">
+        <div class="flex center-all-y">
           <button
-            class="flex items-center text-2 rounded-full font-6 tracking-3"
-            :class="[
-              darkThemeStatus === 'enabled' ? 'text-primary-gray-50' : 'text-gray-60'
-            ]"
+            class="
+              flex center-all-y text-2 rounded-full font-6 tracking-3
+              text-gray-60 dork:text-gray-40
+            "
             aria-label="Disable dark theme"
-            @click="() => disableDarkTheme()"
+            @click="() => store.dorkTheme.disable()"
           >
-            <HeroiconsSun class="icon h-5 w-5 transition" />
+            <OcticonsSun24 class="icon d-5 transition" />
           </button>
           <div
-            class="relative mx-2 inline-flex h-6 w-9 -shadow rounded-full cursor-pointer"
-            :class="[
-              (() => {
-                if (darkThemeStatus === 'enabled' && minimalistThemeStatus === 'disabled') return 'bg-primary-gray-90'
-                if (darkThemeStatus === 'enabled' && minimalistThemeStatus === 'enabled') return 'bg-primary-gray-100'
-                return 'bg-gray-30'
-              })()
-              
-            ]"
-            @click="() => toggleDarkTheme()"
+            class="
+              relative mx-2 inline-flex d-9/6 -shadow rounded-full cursor-pointer
+              bg-gray-30 dork:bg-primary-100
+            "
+            @click="() => store.dorkTheme.toggle()"
           >
             <button
               aria-label="Toggle dark theme"
-              class="absolute rounded-full h-6 w-6 shadow transition-all focus:shadow-outline"
-              :style="darkThemeStatus === 'enabled' ? { transform: 'translateX(-100%)' } : {}"
-              :class="[
-                darkThemeStatus === 'enabled' ? 'left-full bg-primary-gray-70' : 'left-0 bg-white',
-              ]"
+              class="
+                absolute rounded-full d-6 shadow focus:shadow-outline
+                left-0 bg-white dork:left-full dork:-translate-x-full dork:bg-primary-gray-70
+                transition-all duration-3
+              "
             />
           </div>
           <button
-            class="flex items-center text-2 rounded-full font-6 tracking-3"
-            :class="[
-              darkThemeStatus === 'enabled' ? 'text-primary-gray-50' : 'text-gray-60'
-            ]"
+            class="
+              flex center-all-y text-2 rounded-full font-6 tracking-3
+              text-gray-60 dork:text-gray-40
+            "
             aria-label="Enable dark theme"
-            @click="() => enableDarkTheme()"
+            @click="() => store.dorkTheme.enable()"
           >
-            <HeroiconsMoon class="icon h-5 w-5 transition" />
+            <OcticonsMoon24 class="icon d-5 transition" />
           </button>
         </div>
-
         <span
-          class="block mt-3 text-2"
-          :class="[darkThemeStatus === 'enabled' ? 'text-primary-gray-50' : 'text-gray-60']"
+          class="block mt-2 text-2 text-gray-60 dork:text-gray-40"
         >
-          <code class="py-px px-1 font-40">SHIFT</code> + <code class="py-px px-1 font-40">D</code>
+          <code class="py-px px-1">SHIFT</code> + <code class="py-px px-1">D</code>
         </span>
       </div>
-
       <!-- Minimalist theme toggle -->
-      <div class="hidden lg:block mt-3 py-3 w-full">
-        <div class="flex items-center">
+      <div class="hidden lg:block mt-5 w-full">
+        <div class="flex center-all-y">
           <button
-            class="flex items-center text-3 rounded-full font-6 tracking-3"
-            :class="[
-              darkThemeStatus === 'enabled' ? 'text-primary-gray-50' : 'text-gray-60'
-            ]"
+            class="
+              flex center-all-y text-3 rounded-full font-6 tracking-3
+              text-gray-60 dork:text-gray-40
+            "
             aria-label="Disable minimalist theme"
-            @click="() => disableMinimalistTheme()"
+            @click="() => store.minimalistTheme.disable()"
           >
-            <HeroiconsTemplate class="icon transition h-5 w-5" />
+            <OcticonsColumns24 class="icon transition d-5" />
           </button>
           <div
-            class="relative mx-2 inline-flex h-6 w-9 -shadow rounded-full cursor-pointer"
-            :class="[
-              (() => {
-                if (darkThemeStatus === 'disabled' && minimalistThemeStatus === 'disabled') return 'bg-gray-30'
-                if (darkThemeStatus === 'enabled' && minimalistThemeStatus === 'disabled') return 'bg-primary-gray-90'
-                if (darkThemeStatus === 'enabled' && minimalistThemeStatus === 'enabled') return 'bg-primary-gray-100'
-                if (darkThemeStatus === 'disabled' && minimalistThemeStatus === 'enabled') return 'bg-primary-30'
-                return ''
-              })()
-            ]"
-            @click="() => toggleMinimalistTheme()"
+            class="
+              relative mx-2 inline-flex d-9/6 -shadow rounded-full cursor-pointer
+              bg-gray-30 minimalist:bg-primary-20 dork:bg-primary-gray-110 dork:minimalist:bg-primary-100
+            "
+            @click="() => store.minimalistTheme.toggle()"
           >
             <button
               aria-label="Toggle minimalist theme"
-              class="absolute rounded-full h-6 w-6 shadow transition-all focus:shadow-outline"
-              :style="minimalistThemeStatus === 'enabled' ? { transform: 'translateX(-100%)' } : {}"
-              :class="[
-                darkThemeStatus === 'enabled' ? 'bg-primary-gray-70' : 'bg-white',
-                minimalistThemeStatus === 'enabled' ? 'left-full' : 'left-0',
-              ]"
+              class="
+                absolute rounded-full d-6 shadow focus:shadow-outline
+                left-0 bg-white minimalist:left-full minimalist:-translate-x-full dork:bg-primary-gray-70
+                transition-all duration-3
+              "
             />
           </div>
           <button
-            class="flex items-center text-2 rounded-full font-6 tracking-3"
-            :class="[
-              darkThemeStatus === 'enabled' ? 'text-primary-gray-50' : 'text-gray-60'
-            ]"
+            class="
+              flex center-all-y text-2 rounded-full font-6 tracking-3
+              text-gray-60 dork:text-gray-40
+            "
             aria-label="Enable minimalist theme"
-            @click="() => enableMinimalistTheme()"
+            @click="() => store.minimalistTheme.enable()"
           >
-            <OcticonsSquare24 class="icon transition h-5 w-5" />
+            <IconBox24 class="icon transition d-5" />
           </button>
         </div>
-
         <span
-          class="block mt-3 text-2"
-          :class="[darkThemeStatus === 'enabled' ? 'text-primary-gray-50' : 'text-gray-60']"
+          class="block mt-2 text-2 text-gray-60 dork:text-gray-40"
         >
-          <code class="py-px px-1 font-40">SHIFT</code> + <code class="py-px px-1 font-40">M</code>
+          <code class="py-px px-1">SHIFT</code> + <code class="py-px px-1">M</code>
         </span>
       </div>
-
-      <transition name="fade">
+      <Transition name="fade">
         <LayoutNav
-          v-show="minimalistThemeStatus === 'disabled'"
+          v-if="store.minimalistTheme.status === 'disabled'"
           class="mt-5 pb-7"
           @click="handleSidebarClick"
         />
-      </transition>
+      </Transition>
     </section>
-
     <!-- Middle -->
     <section
       ref="article"
-      class="absolute lg:relative top-0 left-0 z-20 h-screen w-screen lg:w-full overflow-x-hidden overflow-y-scroll scrolling-touch lg:translate-x-0 transform"
+      class="
+        h-screen w-screen lg:w-full
+        absolute lg:relative corner-t-l z-20 lg:translate-x-0
+        overflow-x-hidden overflow-y-scroll scrolling-touch scrollbar-hide
+        bg-white dork:bg-primary-gray-120
+        not-minimalist:shadow-3 not-minimalist:rounded-2
+      "
       :class="[
         (() => {
           if (openStatus === 'nav') return 'translate-x-full'
           if (openStatus === 'tableOfContents') return '-translate-x-full'
           return ''
         })(),
-        darkThemeStatus === 'enabled' ? 'bg-primary-gray-95' : 'bg-white',
-        minimalistThemeStatus === 'enabled' ? '' : 'shadow-3 lg:rounded-2',
         `table-of-contents-${tableOfContentsTransitionStatus}`,
       ]"
     >
-      <transition name="fade">
-        <div v-show="minimalistThemeStatus === 'disabled'">
-          <BrandLogo
-            id="article-decoration"
-            class="absolute h-auto w-full sm:w-3/4 max-w-screen-sm top-0 right-0"
-            :style="{ transform: 'translate(14%, -42%)' }"
-            type="outline"
-            :classes="[
-              darkThemeStatus === 'disabled' ? 'text-primary-10' : 'text-primary-gray-80 opacity-80',
-            ]"
-          />
-        </div>
-      </transition>
-      <header class="flex items-center z-40 absolute left-0 top-0 pt-6 px-7 sm:px-9 lg:pl-11 w-full">
+      <header class="flex center-all-y z-40 absolute corner-t-l pt-6 px-7 sm:px-9 lg:pl-11 w-full">
         <button
           type="button"
           aria-label="Show navigation"
-          class="lg:hidden h-7 w-7 p-0 rounded-full transition btn-grows"
+          class="
+            lg:hidden d-7 p-0 rounded-full transition btn-grows"
           :class="[
-            darkThemeStatus === 'enabled' ? 'text-gray-60 hover:text-gray-40' : 'text-gray-70 hover:text-primary-60'
+            store.dorkTheme.status === 'enabled' ? 'text-gray-60 hover:text-gray-40' : 'text-gray-70 hover:text-primary-60'
           ]"
           @click="openNav"
         >
-          <HeroiconsMenuAlt2 class="icon" />
+          <OcticonsThreeBars16 class="icon" />
         </button>
-
-        <!-- <LayoutSearch class="ml-2 lg:ml-0 w-full max-w-6" /> -->
-
+        <!-- <LayoutSearch class="ml-2 lg:ml-0 stretch-w-6" /> -->
         <button
           type="button"
           aria-label="Show table of contents"
-          class="ml-auto lg:hidden h-7 w-7 p-0 rounded-full transition btn-grows"
+          class="ml-auto lg:hidden d-7 p-0 rounded-full transition btn-grows"
           :class="[
-            darkThemeStatus === 'enabled' ? 'text-gray-60 hover:text-gray-40' : 'text-gray-70 hover:text-primary-60'
+            store.dorkTheme.status === 'enabled' ? 'text-gray-60 hover:text-gray-40' : 'text-gray-70 hover:text-primary-60'
           ]"
           @click="openTableOfContents"
         >
-          <HeroiconsMenuAlt3 class="icon" />
+          <OcticonsThreeBars16 class="icon" />
         </button>
       </header>
-
-      <RouterView
-        key="content"
-        class="relative mt-7"
-      />
+      <RouterView v-slot="{ Component }">
+        <component
+          :is="Component"
+          key="content"
+          class="relative mt-7"
+        />
+      </RouterView>
     </section>
-
     <!-- Right -->
-    <transition
+    <Transition
       name="fade"
       @before-enter="onTableOfContentsBeforeEnter"
       @after-leave="onTableOfContentsAfterLeave"
     >
       <section
-        v-show="minimalistThemeStatus === 'disabled'"
+        v-show="store.minimalistTheme.status === 'disabled'"
         ref="tableOfContents"
-        class="absolute lg:relative top-0 left-0 h-screen w-screen lg:w-24 flex-none px-7 py-3 overflow-y-scroll scrolling-touch lg:translate-x-0 transform"
+        class="
+          absolute lg:relative corner-t-l d-screen lg:w-24 flex-none
+          px-7 py-3 overflow-y-scroll scrolling-touch scrollbar-hide
+          lg:translate-x-0
+        "
         :class="[
           openStatus === 'tableOfContents' ? 'translate-x-0' : 'translate-x-full',
         ]"
       >
-        <!-- minimalistThemeStatus === 'enabled' ? 'opacity-0 pointer-events-none translate-x-full' : 'lg:translate-x-0', -->
+        <!-- store.minimalistTheme.status === 'enabled' ? 'opacity-0 pointer-events-none translate-x-full' : 'lg:translate-x-0', -->
         <button
-          class="lg:hidden absolute top-0 right-0 mt-3 mr-6 h-7 w-7 cursor-pointer transition btn-grows"
+          class="lg:hidden absolute corner-t-r mt-3 mr-6 d-7 cursor-pointer transition btn-grows"
           :class="[
-            darkThemeStatus === 'enabled' ? 'text-gray-60 hover:text-gray-40' : 'text-gray-90 hover:text-primary-60'
+            store.dorkTheme.status === 'enabled' ? 'text-gray-60 hover:text-gray-40' : 'text-gray-90 hover:text-primary-60'
           ]"
           aria-label="close-menu"
           @click="openArticle"
         >
-          <HeroiconsX class="icon" />
+          <OcticonsX24 class="icon" />
         </button>
         <!-- <LayoutAd class="mt-auto" /> -->
         <LayoutTableOfContents @click="handleSidebarClick" />
       </section>
-    </transition>
+    </Transition>
   </main>
 </template>
 
-<script lang="ts">
-import { ref, computed, onMounted, watch } from 'vue'
+<script setup lang="ts">
+import { ref, computed, onMounted } from 'vue'
 import { useRoute } from 'vue-router'
 import { useEffects } from '@baleada/vue-prose'
-import { touchdragdrop as swipe } from '@baleada/recognizeable-effects'
-import { createMatchesKeycombo } from '@baleada/logic'
+import { createTouchrelease as createSwipe } from '@baleada/logic'
 import type {
-  TouchdragdropTypes as SwipeTypes,
-  TouchdragdropMetadata as SwipeMetadata,
-} from '@baleada/recognizeable-effects'
-import { useListenable, useStoreable } from '@baleada/vue-composition'
+  TouchreleaseType as SwipeType,
+  TouchreleaseMetadata as SwipeMetadata,
+} from '@baleada/logic'
+import { useListenable } from '@baleada/vue-composition'
 import { useHead } from '@baleada/vue-features'
-import {
-  HeroiconsMenuAlt2,
-  HeroiconsX,
-  HeroiconsMenuAlt3,
-  HeroiconsSun,
-  HeroiconsMoon,
-  HeroiconsTemplate,
-  // @ts-ignore
-} from '@baleada/vue-heroicons'
-// @ts-ignore
-import { OcticonsSquare24 } from '@baleada/vue-octicons'
+import OcticonsThreeBars16 from '@octicons/three-bars-16.svg'
+import OcticonsX24 from '@octicons/x-24.svg'
+import OcticonsSun24 from '@octicons/sun-24.svg'
+import OcticonsMoon24 from '@octicons/moon-24.svg'
+import OcticonsColumns24 from '@octicons/columns-24.svg'
+import IconBox24 from '../icons/box-24.svg'
 import { useStore } from '../composition'
+import LayoutNav from './LayoutNav.vue'
+import LayoutTableOfContents from './LayoutTableOfContents.vue'
 
-export default {
-  name: 'LayoutThreeColumn',
-  components: {
-    HeroiconsMenuAlt2,
-    HeroiconsX,
-    HeroiconsMenuAlt3,
-    HeroiconsSun,
-    HeroiconsMoon,
-    HeroiconsTemplate,
-    OcticonsSquare24,
-  },
-  setup () {
-    // Gonna need it
-    const store = useStore()
-    const keydown = useListenable('keydown')
 
-    /* Manage open status */
-    const openStatus = ref('article'),
-          openNav = () => (openStatus.value = 'nav'),
-          openArticle = () => (openStatus.value = 'article'),
-          openTableOfContents = () => (openStatus.value = 'tableOfContents'),
-          handleSidebarClick = ({ target }) => {
-            if (target.matches('a')) {
-              openArticle()
-            }
-          },
+// Gonna need it
+const store = useStore()
 
-          /* Touch gestures */
-          nav = ref(null),
-          article = ref(null),
-          tableOfContents = ref(null),
-          articleSwipe = useListenable<SwipeTypes, SwipeMetadata>('recognizeable' as SwipeTypes, {
-            recognizeable: { effects: swipe({ minDistance: 20 }) }
-          }),
-          navSwipe = useListenable<SwipeTypes, SwipeMetadata>('recognizeable' as SwipeTypes, {
-            recognizeable: { effects: swipe({ minDistance: 20 }) }
-          }),
-          tableOfContentsSwipe = useListenable<SwipeTypes, SwipeMetadata>('recognizeable' as SwipeTypes, {
-            recognizeable: { effects: swipe({ minDistance: 20 }) }
-          }),
-          except = [
-            '.baleada-prose-article .overflow-y-scroll',
-            '.baleada-prose-article .overflow-y-scroll *',
 
-            '.baleada-prose-article .overflow-x-scroll',
-            '.baleada-prose-article .overflow-x-scroll *',
-
-            '.baleada-prose-codeblock',
-            '.baleada-prose-codeblock *',
-
-            '.baleada-prose-table',
-            '.baleada-prose-table *',
-
-            '.swiper-no-swiping',
-          ]
-
-    onMounted(() => {
-      articleSwipe.value.listen(
-        () => {
-          const direction = articleSwipe.value.recognizeable.metadata.direction.fromStart
-          if (direction === 'right') {
-            openNav()
-          } else if (direction === 'left') {
-            openTableOfContents()
-          }
-        },
-        { target: article.value, except, addEventListener: { passive: true } }
-      )
-
-      navSwipe.value.listen(
-        () => {
-          const direction = navSwipe.value.recognizeable.metadata.direction.fromStart
-          if (direction === 'left') {
-            openArticle()
-          }
-        },
-        { target: nav.value, addEventListener: { passive: true } }
-      )
-
-      tableOfContentsSwipe.value.listen(
-        () => {
-          const direction = tableOfContentsSwipe.value.recognizeable.metadata.direction.fromStart
-          if (direction === 'right') {
-            openArticle()
-          }
-        },
-        { target: tableOfContents.value, addEventListener: { passive: true } }
-      )
-    })
-
-    /* Dark theme */
-    const prefersDarkTheme = useListenable('(prefers-color-scheme: dark)'),
-          darkThemeStatus = ref('disabled'),
-          enableDarkTheme = () => {
-            darkThemeStatus.value = 'enabled'
-          },
-          disableDarkTheme = () => {
-            darkThemeStatus.value = 'disabled'
-          },
-          toggleDarkTheme = () => {
-            switch (darkThemeStatus.value) {
-            case null:
-              // do nothing
-              break
-            case 'enabled':
-              disableDarkTheme()
-              break
-            case 'disabled':
-              enableDarkTheme()
-              break
-            }
-          },
-          darkThemeStoreEffect = () => store.statuses.darkTheme = darkThemeStatus.value
-
-    darkThemeStoreEffect()
-    watch(
-      [darkThemeStatus],
-      darkThemeStoreEffect
-    )
-
-    onMounted(() => {
-      darkThemeStatus.value = [
-        ...prefersDarkTheme.value
-          .listen((event) => darkThemeStatus.value = event.matches ? 'enabled' : 'disabled')
-          .active
-      ][0].target.matches ? 'enabled' : 'disabled'
-      
-
-      keydown.value.listen(event => {
-        if (['INPUT', 'TEXTAREA'].includes((event.target as HTMLElement).tagName)) return
-
-        if (createMatchesKeycombo('shift+d')(event)) {
-          event.preventDefault()
-          toggleDarkTheme()
+/* Manage open status */
+const openStatus = ref('article'),
+      openNav = () => (openStatus.value = 'nav'),
+      openArticle = () => (openStatus.value = 'article'),
+      openTableOfContents = () => (openStatus.value = 'tableOfContents'),
+      handleSidebarClick = ({ target }) => {
+        if (target.matches('a')) {
+          openArticle()
         }
-      })
-    })
+      },
 
-    /* Minimalist theme */
-    const storeableMinimalistThemeStatus = useStoreable('baleada_minimalist_theme_status'),
-          minimalistThemeStatus = ref(storeableMinimalistThemeStatus.value.string),
-          enableMinimalistTheme = () => {
-            storeableMinimalistThemeStatus.value.store('enabled')
-            minimalistThemeStatus.value = storeableMinimalistThemeStatus.value.string
-          },
-          disableMinimalistTheme = () => {
-            storeableMinimalistThemeStatus.value.store('disabled')
-            minimalistThemeStatus.value = storeableMinimalistThemeStatus.value.string
-          },
-          toggleMinimalistTheme = () => {
-            switch (minimalistThemeStatus.value) {
-            case null:
-              // do nothing
-              break
-            case 'enabled':
-              disableMinimalistTheme()
-              break
-            case 'disabled':
-              enableMinimalistTheme()
-              break
-            }
-          },
-          minimalistThemeStoreEffect = () => store.statuses.minimalistTheme
-    
-    minimalistThemeStoreEffect()
-    watch(
-      [minimalistThemeStatus],
-      minimalistThemeStoreEffect
-    )
+      /* Touch gestures */
+      nav = ref(null),
+      article = ref(null),
+      tableOfContents = ref(null),
+      articleSwipe = useListenable<SwipeType, SwipeMetadata>('recognizeable' as SwipeType, {
+        recognizeable: { effects: createSwipe({ minDistance: 20 }) }
+      }),
+      navSwipe = useListenable<SwipeType, SwipeMetadata>('recognizeable' as SwipeType, {
+        recognizeable: { effects: createSwipe({ minDistance: 20 }) }
+      }),
+      tableOfContentsSwipe = useListenable<SwipeType, SwipeMetadata>('recognizeable' as SwipeType, {
+        recognizeable: { effects: createSwipe({ minDistance: 20 }) }
+      }),
+      except = [
+        '.baleada-prose-article .overflow-y-scroll',
+        '.baleada-prose-article .overflow-y-scroll *',
 
-    onMounted(() => {
-      switch (storeableMinimalistThemeStatus.value.status) {
-      case 'ready':
-        disableMinimalistTheme() // Disable by default
-        break
-      case 'stored':
-      case 'removed':
-        // do nothing
-        break
-      }
-      keydown.value.listen((event) => {
-        if ((event.target as HTMLElement).tagName === 'INPUT'){
-          return
-        }
+        '.baleada-prose-article .overflow-x-scroll',
+        '.baleada-prose-article .overflow-x-scroll *',
 
-        if (createMatchesKeycombo('shift+m')(event)) {
-          event.preventDefault()
-          toggleMinimalistTheme()
-        }
-      })
-    })
+        '.baleada-prose-codeblock',
+        '.baleada-prose-codeblock *',
 
-    /* Transition hooks for table of contents */
-    const tableOfContentsTransitionStatus = ref('after-enter'),
-          onTableOfContentsAfterLeave = () => (tableOfContentsTransitionStatus.value = 'after-leave'),
-          onTableOfContentsBeforeEnter = () => (tableOfContentsTransitionStatus.value = 'before-enter')
-    
-    onMounted(() => {
-      if (minimalistThemeStatus.value === 'enabled') {
-        tableOfContentsTransitionStatus.value = 'after-leave'
-      }
-    })
+        '.baleada-prose-table',
+        '.baleada-prose-table *',
 
-
-    // Prose effects
-    useEffects({ scrollableContainer: article })
-    
-          
-    // Set up reactive SEO
-    const route = useRoute(),
-          SITE_NAME = 'Baleada'
-
-    useHead({
-      title: computed(() => store.article.frontMatter?.title ?? SITE_NAME),
-      metas: [
-        // Essential META Tags
-        { 
-          property: 'og:title',
-          content: computed(() => store.article.frontMatter?.title ?? SITE_NAME)
-        },
-        { 
-          property: 'og:description',
-          content: computed(() => store.article.frontMatter?.summary ?? '')
-        },
-        { 
-          property: 'og:image',
-          content: computed(() => store.article.frontMatter?.image ?? '')
-        },
-        { 
-          property: 'og:url',
-          content: computed(() => `${window.origin}${route.fullPath}`),
-        },
-        { 
-          name: 'twitter:card',
-          content: computed(() => store.article.frontMatter?.image ?? ''),
-        },
-
-        // Non-Essential, But Recommended
-        { 
-          property: 'og:site_name',
-          content: SITE_NAME
-        },
-        {
-          name: 'twitter:image:alt',
-          content: computed(() => store.article.frontMatter?.imageAlt ?? '')
-        },
-
-        // Non-Essential, But Required for Analytics
-        {
-          name: 'twitter:site',
-          content: '@BaleadaToolkit'
-        },
+        '.swiper-no-swiping',
       ]
-    })
 
-    return {
-      openStatus,
-      openNav,
-      openArticle,
-      openTableOfContents,
-      handleSidebarClick,
+onMounted(() => {
+  articleSwipe.listen(
+    () => {
+      const direction = articleSwipe.recognizeable.metadata.direction.fromStart
+      if (direction === 'right') {
+        openNav()
+      } else if (direction === 'left') {
+        openTableOfContents()
+      }
+    },
+    { target: article.value, except, addEventListener: { passive: true } }
+  )
 
-      nav,
-      article,
-      tableOfContents,
+  navSwipe.listen(
+    () => {
+      const direction = navSwipe.recognizeable.metadata.direction.fromStart
+      if (direction === 'left') {
+        openArticle()
+      }
+    },
+    { target: nav.value, addEventListener: { passive: true } }
+  )
 
-      darkThemeStatus,
-      toggleDarkTheme,
-      enableDarkTheme,
-      disableDarkTheme,
+  tableOfContentsSwipe.listen(
+    () => {
+      const direction = tableOfContentsSwipe.recognizeable.metadata.direction.fromStart
+      if (direction === 'right') {
+        openArticle()
+      }
+    },
+    { target: tableOfContents.value, addEventListener: { passive: true } }
+  )
+})
 
-      minimalistThemeStatus,
-      toggleMinimalistTheme,
-      enableMinimalistTheme,
-      disableMinimalistTheme,
+/* Transition hooks for table of contents */
+const tableOfContentsTransitionStatus = ref('after-enter'),
+      onTableOfContentsAfterLeave = () => (tableOfContentsTransitionStatus.value = 'after-leave'),
+      onTableOfContentsBeforeEnter = () => (tableOfContentsTransitionStatus.value = 'before-enter')
 
-      tableOfContentsTransitionStatus,
-      onTableOfContentsAfterLeave,
-      onTableOfContentsBeforeEnter,
-    }
-  },
-}
+onMounted(() => {
+  if (store.minimalistTheme.status === 'enabled') {
+    tableOfContentsTransitionStatus.value = 'after-leave'
+  }
+})
+
+
+// Prose effects
+useEffects({ scrollableContainer: article })
+
+      
+// Set up reactive SEO
+const route = useRoute(),
+      siteName = 'Baleada'
+
+useHead({
+  title: computed(() => store.article.frontMatter?.title ?? siteName),
+  metas: [
+    // Essential META Tags
+    { 
+      property: 'og:title',
+      content: computed(() => store.article.frontMatter?.title ?? siteName)
+    },
+    { 
+      property: 'og:description',
+      content: computed(() => store.article.frontMatter?.summary ?? '')
+    },
+    { 
+      property: 'og:image',
+      content: computed(() => store.article.frontMatter?.image ?? '')
+    },
+    { 
+      property: 'og:url',
+      content: computed(() => `${window.origin}${route.fullPath}`),
+    },
+    { 
+      name: 'twitter:card',
+      content: computed(() => store.article.frontMatter?.image ?? ''),
+    },
+
+    // Non-Essential, But Recommended
+    { 
+      property: 'og:site_name',
+      content: siteName
+    },
+    {
+      name: 'twitter:image:alt',
+      content: computed(() => store.article.frontMatter?.imageAlt ?? '')
+    },
+
+    // Non-Essential, But Required for Analytics
+    {
+      name: 'twitter:site',
+      content: '@BaleadaToolkit'
+    },
+  ]
+})
 </script>
 
 <style lang="postcss">
@@ -591,9 +418,8 @@ export default {
     @apply transition-none;
 
     .table-of-contents-after-leave & {
-      @apply w-full;
-      padding-left: 21rem;
-      padding-right: 21rem;
+      @apply mx-auto;
+      width: calc(100% - 14rem * 2);
     }
 
     .table-of-contents-before-enter & {
@@ -603,7 +429,7 @@ export default {
 }
 
 .fade-enter-active, .fade-leave-active {
-  transition: opacity .3s;
+  transition: opacity .0s;
 }
 .fade-enter, .fade-leave-to {
   opacity: 0;

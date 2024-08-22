@@ -1,11 +1,11 @@
 ---
 title: What is Baleada Source Transform?
-tags: agnostic
 publish: true
 order: 0
+summary: An absurdly flexible tool that can transform the contents of any file during your site or app's build step
 ---
 
-Baleada Source Transform is an absurdly flexible tool that allows you to transform files' content during your site or app's build step.
+Baleada Source Transform is an absurdly flexible tool that can transform the contents of any file during your site or app's build step.
 
 It handles the most basic implementation details of [Webpack](https://webpack.js.org/) loaders and [Rollup](https://rollupjs.org/) plugins, then lets you transform the contents of any source file in any way you see fit, using a [consistent, build tool agnostic, simple workflow](#workflow).
 

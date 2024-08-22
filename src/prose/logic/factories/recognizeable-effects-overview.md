@@ -1,6 +1,5 @@
 ---
 title: Recognizeable effects
-tags: UI logic
 publish: true
 order: 0
 ---

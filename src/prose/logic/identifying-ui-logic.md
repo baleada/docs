@@ -1,6 +1,5 @@
 ---
 title: Identifying UI logic
-tags: UI logic
 publish: true
 order: 1
 ---

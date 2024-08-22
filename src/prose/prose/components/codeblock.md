@@ -1,6 +1,5 @@
 ---
 title: Codeblock
-tags: Components
 publish: true
 order: 0
 ---

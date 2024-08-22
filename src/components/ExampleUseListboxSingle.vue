@@ -7,7 +7,7 @@
     }"
   >
     <div
-      :ref="listbox.root.ref"
+      :ref="listbox.root.ref()"
       aria-label="Example listbox"
       class="h-24 flex flex-col overflow-x-scroll shadow-5"
       :class="{
@@ -18,7 +18,7 @@
       <div
         v-for="(name, index) in organizations"
         :key="name"
-        :ref="listbox.options.getRef(index)"
+        :ref="listbox.options.ref(index)"
         class="p-2 focus:outline-none"
         :class="{
           'bg-primary-10 text-primary-90': listbox.is.focused(index) && !listbox.is.selected(index) && store.statuses.darkTheme === 'disabled',
@@ -33,11 +33,11 @@
     <section class="flex flex-col gap-4">
       <section class="flex flex-col gap-2">
         <label>Focused:</label>
-        <pre class="px-2 py-1 mt-2 mb-0"><code class="mr-auto">{{ listbox.focused.location }}</code></pre>
+        <pre class="px-2 py-1 mt-2 mb-0"><code class="mr-auto">{{ listbox.focused }}</code></pre>
       </section>
       <section class="flex flex-col gap-2">
         <label>Selected:</label>
-        <pre class="px-2 py-1 mt-2 mb-0"><code class="mr-auto">{{ listbox.selected.newest }}</code></pre>
+        <pre class="px-2 py-1 mt-2 mb-0"><code class="mr-auto">{{ listbox.selected[0] }}</code></pre>
       </section>
     </section>
   </section>
@@ -48,8 +48,8 @@ import { ref, readonly } from 'vue'
 import { useListbox } from '@baleada/vue-features'
 // import { useFetchable } from '@baleada/vue-composition'
 import { useStore } from '../composition'
-import { names } from '@alexvipond/mulago-foundation-portfolio'
-// import type { Organization } from '@alexvipond/mulago-foundation-portfolio'
+import { names } from '@alexvipond/mulago'
+// import type { Organization } from '@alexvipond/mulago'
 
 export default {
   name: 'ExampleUseListboxSingle',

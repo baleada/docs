@@ -1,7 +1,7 @@
 .baleada-prose-table {
-  @apply w-full flex flex-col mb-6;
+  @apply w-full flex-col mb-6;
 
-  & > div {
+  > div {
     @apply with-max-w w-full mx-auto;
 
     input[name="Search by query"] {
@@ -9,7 +9,7 @@
     }
   }
 
-  & > div:nth-of-type(2) {
+  > div:nth-of-type(2) {
     @apply flex mt-2;
 
     input[name="Change search case sensitivity"] {
@@ -20,12 +20,19 @@
     }
   }
 
-  & > * + .baleada-prose-contents {
+  > * + .baleada-prose-contents {
     @apply mt-2;
   }
 
+  input[name="Type to filter"] {
+    @apply dork:bg-primary-gray-100;
+  }
+  input[name="Change filter case sensitivity"] + label {
+    @apply dork:text-primary-gray-50;
+  }
+
   .baleada-prose-contents {
-    @apply mx-auto min-w-5 with-max-h inline-block overflow-x-scroll;
+    @apply mx-auto min-w-5 with-max-h inline-block overflow-x-scroll scrollbar-hide;
 
     [role="table"] {
       @apply w-full mr-auto;
@@ -50,10 +57,10 @@
     }
 
     [role="columnheader"] {
-      @apply py-2 text-2 font-6 uppercase tracking-1 bg-primary-10 text-primary-90;
+      @apply py-2 text-2 font-6 uppercase tracking-1 bg-primary-10 text-primary-90 dork:bg-primary-gray-90 dork:text-primary-gray-30;
 
       code {
-        @apply bg-primary-20 normal-case;
+        @apply bg-primary-20 normal-case dork:bg-primary-gray-80;
       }
     }
 
@@ -64,26 +71,34 @@
     }
 
     [role="cell"] {
-      @apply py-4 leading-2 border-l-4 bg-white border-gray-30;
+      @apply py-4 leading-2 border-l-4 bg-white border-gray-30 dork:bg-primary-gray-100 dork:border-primary-gray-80;
 
       &:last-child {
         @apply border-r-4;
       }
     }
 
+    [role="rowgroup"] > :nth-child(odd) {
+      [role="cell"] {
+        code {
+          @apply dork:bg-primary-gray-90;
+        }
+      }
+    }
+
     [role="rowgroup"] > :nth-child(even) {
       [role="cell"] {
-        @apply bg-gray-5 border-gray-40;
+        @apply bg-gray-5 dork:bg-primary-gray-90;
 
         code {
-          @apply bg-gray-30;
+          @apply bg-gray-20 dork:bg-primary-gray-80 dork:text-primary-gray-30;
         }
       }
     }
 
     &.baleada-prose-table-solid {
       [role="rowgroup"] > :nth-child(even) {
-        @apply bg-transparent;
+        @apply bg-transparent dork:bg-transparent;
 
         [role="cell"] {
           @apply border-gray-30;
@@ -103,45 +118,6 @@
       [role="columnheader"]:first-child,
       [role="cell"]:first-child {
         @apply sticky left-0;
-      }
-    }
-  }
-
-  .dark & {
-    input[name="Type to filter"] {
-      @apply bg-primary-gray-100;
-    }
-    input[name="Change filter case sensitivity"] + label {
-      @apply text-primary-gray-50;
-    }
-
-    .baleada-prose-contents {
-      [role="columnheader"] {
-        @apply bg-primary-gray-85 text-primary-gray-30;
-
-        code {
-          @apply bg-primary-gray-80;
-        }
-      }
-
-      [role="cell"] {
-        @apply bg-primary-gray-95 border-primary-gray-80;
-      }
-
-      [role="rowgroup"] > :nth-child(even) {
-        [role="cell"] {
-          @apply bg-primary-gray-85 border-primary-gray-70;
-
-          code {
-            @apply bg-primary-gray-80 text-primary-gray-30;
-          }
-        }
-      }
-
-      &.baleada-prose-table-solid {
-        [role="rowgroup"] > :nth-child(even) {
-          @apply bg-transparent;
-        }
       }
     }
   }
@@ -172,10 +148,10 @@
   }
 
   th {
-    @apply py-2 text-2 font-6 uppercase tracking-1 bg-primary-10 text-primary-90;
+    @apply py-2 text-2 font-6 uppercase tracking-1 bg-primary-10 text-primary-90 dork:bg-primary-gray-80 dork:text-primary-gray-10;
 
     code {
-      @apply bg-primary-20 normal-case;
+      @apply normal-case dork:bg-primary-gray-70;
     }
   }
 
@@ -186,7 +162,7 @@
   }
 
   td {
-    @apply py-4 leading-2 border-l-4 border-gray-30;
+    @apply py-4 leading-2 border-l-4 border-gray-30 dork:border-gray-70;
 
     &:last-child {
       @apply border-r-4;
@@ -194,39 +170,13 @@
   }
 
   tbody > :nth-child(even) {
-    @apply bg-gray-5;
+    @apply bg-gray-5 dork:bg-gray-75;
 
     td {
-      @apply border-gray-40;
+      @apply border-gray-40 dork:border-gray-70;
 
       code {
-        @apply bg-gray-30;
-      }
-    }
-  }
-
-  .dark & {
-    th {
-      @apply bg-primary-gray-80 text-primary-gray-10;
-
-      code {
-        @apply bg-primary-gray-70;
-      }
-    }
-
-    td {
-      @apply border-gray-70;
-    }
-
-    tbody > :nth-child(even) {
-      @apply bg-gray-75;
-
-      td {
-        @apply border-gray-70;
-
-        code {
-          @apply bg-gray-70;
-        }
+        @apply bg-gray-30 dork:bg-gray-70;
       }
     }
   }

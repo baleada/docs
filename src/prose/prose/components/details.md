@@ -1,6 +1,5 @@
 ---
 title: Details
-tags: Components
 publish: true
 order: 0
 ---

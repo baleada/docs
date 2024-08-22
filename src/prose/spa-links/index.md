@@ -1,12 +1,12 @@
 ---
 title: What is Baleada SPA Links?
-tags: Configuration utilities, Markdown-it, Inertia, Next, Nuxt, Sapper, React, Vue, Svelte
 source: markdown-it-spa-links
 publish: true
 order: 0
+summary: A Markdown-it plugin that replaces the default link markup with the correct routing component for your single-page application
 ---
 
-Baleada SPA Links is a [Markdown-it](https://markdown-it.github.io/) plugin that replaces the default link markup with markup that tells your single-page application to handle the routing (i.e. navigate to the route without doing a full page refresh).
+Baleada SPA Links is a [Markdown-it](https://markdown-it.github.io/) plugin that replaces the default link markup with the correct routing component for your single-page application.
 
 For example, if you're using [Nuxt](https://nuxtjs.org), you can write the following Markdown:
 
@@ -30,10 +30,6 @@ The plugin supports link components for the following tools:
 - [Nuxt](https://nuxtjs.org)
 - [React Router](https://reacttraining.com/react-router/)
 - [Vue Router](https://router.vuejs.org/)
-
-::: type="info"
-[Sapper](https://sapper.svelte.dev) was originally on the list of supported link components as well, but since [Sapper links are simply `<a>` elements](https://sapper.svelte.dev/docs#Comparison_with_Next_js) instead of specific components, special rendering is not necessary.
-:::
 
 
 :::

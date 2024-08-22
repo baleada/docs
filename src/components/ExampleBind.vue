@@ -1,11 +1,9 @@
 <template>
   <section
-    class="mx-auto with-max-w flex flex-col gap-7 p-6 rounded-4 shadow-4"
-    :class="[
-      store.statuses.darkTheme === 'enabled'
-        ? 'bg-primary-gray-80'
-        : 'bg-primary-20 text-primary-100'
-    ]"
+    class="
+      mx-auto with-max-w flex flex-col gap-7 p-6 rounded-4 shadow-4
+      bg-primary-10 text-primary-100 dork:bg-primary-gray-80
+    "
   >
     <section>
       <span class="preexisting-class" ref="example">👉 Inspect this <code :class="store.statuses.darkTheme === 'enabled' ? 'bg-primary-gray-70' : 'bg-primary-10'">&lt;span&gt;</code> in devtools 👈</span>
@@ -16,13 +14,11 @@
         id="bind-example-ariaLabel-input"
         type="text"
         v-model="ariaLabel"
-        class="form -shadow-4"
-        :class="[
-          store.statuses.darkTheme === 'enabled'
-            ? 'bg-primary-gray-90 ring-primary-gray-80 focus:ring-primary-gray-40'
-            : 'bg-white ring-primary-20 focus:ring-primary-70'
-          
-        ]"
+        class="
+          form -shadow-4
+          bg-white ring-primary-20 focus:ring-primary-70
+          dork:bg-primary-gray-90 dork:ring-primary-gray-80 dork:focus:ring-primary-gray-40
+        "
       />
     </section>
     <section class="flex flex-col gap-2">

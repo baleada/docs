@@ -1,6 +1,5 @@
 ---
 title: Types of tools
-tags: 
 publish: true
 order: 1
 ---

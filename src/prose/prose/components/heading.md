@@ -1,6 +1,5 @@
 ---
 title: Heading
-tags: Components
 publish: true
 order: 0
 ---

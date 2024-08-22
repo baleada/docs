@@ -1,6 +1,5 @@
 ---
 title: outdegree
-tags: UI Logic
 source: graph-node.ts
 tests: node/graph-node.test.ts
 publish: false

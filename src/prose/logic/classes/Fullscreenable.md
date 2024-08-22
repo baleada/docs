@@ -1,6 +1,5 @@
 ---
 title: Fullscreenable
-tags: UI logic
 source: true
 tests: browser/Fullscreenable.test.ts
 publish: true

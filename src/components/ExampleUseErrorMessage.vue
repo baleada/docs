@@ -9,7 +9,7 @@
   >
     <section class="flex flex-col gap-2">
       <input
-        :ref="textbox.root.ref"
+        :ref="textbox.root.ref({ validity, errorMessage: errorMessage.id })"
         type="text"
         aria-label="Example textbox"
         placeholder="Type something..."
@@ -22,8 +22,9 @@
         ]"
       />
       <p
-        :ref="errorMessage.root.ref"
+        :ref="errorMessage.ref()"
         aria-live="assertive"
+        v-show="validity === 'invalid'"
       >
         Enter a value with no numbers (this is the accessible error message, which assistive tech will only read when data is invalid)
       </p>
@@ -39,7 +40,7 @@
 
 <script lang="ts">
 import { ref, watchEffect, readonly, computed } from 'vue'
-import { useTextbox, useErrorMessage } from '@baleada/vue-features'
+import { useTextbox, useElementApi } from '@baleada/vue-features'
 import { useStore } from '../composition'
 
 export default {
@@ -47,12 +48,13 @@ export default {
   setup () {
     const validity = ref<'valid' | 'invalid'>('valid'),
           textbox = useTextbox(),
-          errorMessage = useErrorMessage(textbox, { validity: () => validity.value }),
-          selectionJson = computed(() => JSON.stringify(textbox.text.value.selection, null, 2))
+          errorMessage = useElementApi({ identifies: true }),
+          selectionJson = computed(() => JSON.stringify(textbox.text.selection, null, 2))
 
-    watchEffect(() => /\d/.test(textbox.text.value.string) ? 'invalid' : 'valid')
+    watchEffect(() => /\d/.test(textbox.text.string) ? 'invalid' : 'valid')
 
     return {
+      validity,
       textbox: readonly(textbox),
       errorMessage: readonly(errorMessage),
       selectionJson,

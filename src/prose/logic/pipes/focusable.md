@@ -1,6 +1,5 @@
 ---
 title: focusable
-tags: UI Logic
 source: element.ts
 tests: browser/element.test.ts
 publish: true

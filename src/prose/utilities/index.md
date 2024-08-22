@@ -1,13 +1,13 @@
 ---
 title: What is Baleada Utilities?
-tags: Configuration utilities, Tailwind CSS
 source: tailwind-utilities
 tests: browser/plugin.test.ts
 publish: true
 order: 0
+summary: A Tailwind plugin that adds a small library of additional utility classes
 ---
 
-Baleada Utilities is a Tailwind plugin designed to add a small library of Tailwind utility classes.
+Baleada Utilities is a Tailwind plugin that adds a small library of additional utility classes.
 
 [Here's a demo](https://stackblitz.com/edit/baleada-utilities?file=tailwind.config.js) where you can see them all in action 🤓
 

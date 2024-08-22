@@ -1,6 +1,5 @@
 ---
 title: List
-tags: Components
 publish: true
 order: 0
 ---

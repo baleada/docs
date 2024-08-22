@@ -1,6 +1,5 @@
 ---
 title: Keycombo
-tags: UI Logic
 publish: true
 order: 7
 ---

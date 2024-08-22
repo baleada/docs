@@ -1,6 +1,5 @@
 ---
 title: Copyable
-tags: UI logic
 source: true
 tests: browser/Copyable.test.ts
 publish: true

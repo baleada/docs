@@ -1,6 +1,5 @@
 ---
 title: sanitize
-tags: UI Logic
 source: string.ts
 tests: browser/string.test.ts
 publish: true

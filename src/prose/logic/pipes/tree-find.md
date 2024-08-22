@@ -1,6 +1,5 @@
 ---
 title: tree find
-tags: UI Logic
 source: graph-tree.ts
 tests: node/graph.test.ts
 publish: false

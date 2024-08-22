@@ -8,9 +8,12 @@
     ]"
   >
     <section class="flex flex-col gap-2">
-      <label :ref="label.root.ref">Example textbox (this is the accessible label)</label>
+      <label
+        :ref="label.ref()"
+        :htmlFor="textbox.root.id"
+      >Example textbox (this is the accessible label)</label>
       <input
-        :ref="textbox.root.ref"
+        :ref="textbox.root.ref({ labelledBy: label.id })"
         type="text"
         placeholder="Type something..."
         class="form -shadow-4"
@@ -33,15 +36,15 @@
 
 <script lang="ts">
 import { readonly, computed } from 'vue'
-import { useTextbox, useLabel } from '@baleada/vue-features'
+import { useTextbox, useElementApi } from '@baleada/vue-features'
 import { useStore } from '../composition'
 
 export default {
   name: 'ExampleUseLabel',
   setup () {
     const textbox = useTextbox(),
-          label = useLabel(textbox, { bindsHtmlFor: true }),
-          selectionJson = computed(() => JSON.stringify(textbox.text.value.selection, null, 2))
+          label = useElementApi({ identifies: true}),
+          selectionJson = computed(() => JSON.stringify(textbox.text.selection, null, 2))
 
     return {
       textbox: readonly(textbox),

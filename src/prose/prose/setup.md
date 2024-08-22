@@ -1,6 +1,5 @@
 ---
 title: Setup
-tags: Components
 publish: true
 order: 2
 ---

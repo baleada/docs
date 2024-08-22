@@ -1,21 +1,27 @@
 ---
 title: What is Baleada Features?
-tags: Composables
 source: vue-features
 publish: true
 order: 0
+summary: Vue 3 composables that lay the foundation for accessible, highly interactive, feature-rich custom components
 ---
 
-Baleada Features is a collection of functions that implement all kinds of useful features in Vue 3.
+Baleada Features is a collection of composables that implement all kinds of useful features in Vue 3:
 
-Some of these functions offer simple features, like the ability to reactively track the width of an element, and whether that element is currently wider than certain breakpoints.
+- Fine-grained press interactions, normalized across browsers, devices, and input types (mouse, touch, keyboard, etc.)
+- Focus trapping
+- Excel-inspired keyboard interactions for data grids, tables, single- and multi-select dropdowns, menus, and more
+- VS-Code-inspired undo/redo functionality for text inputs
+- Fuzzy matching for typeahead search on data grids, tables, select dropdowns, menus, and more
+- ARIA role & attribute management for complex, fully accessible custom components
+- First-class support for accessible labelling
+- Reactive tracking for various DOM element states (focus, hover, transition, size, intersection, etc.)
+- So, so much more
 
-Other functions implement all of the logic for complex, fully accessible interfaces, like tablists, comboboxes, grids, etc.
-
-Baleada Features doesn't include any markup or styles. Instead, it combines composables from [Baleada Composition](/docs/composition) with the Vue Composition API to create JavaScript-only layers of logic, which you can use directly in your app, or to power your own custom component library, with your own custom markup and styles.
+Baleada Features doesn't include any markup or styles. It only ships composables, which you can use to power your own custom component library, with your own custom markup and styles.
 
 ::: type="success"
-For a ✨111-page✨ deep dive in to the patterns, concepts, and Vue 3 best practices behind Baleada Features, [check out "Rethinking Reusability in Vue"](https://rethinking-reusability-in-vue.alexvipond.dev).
+Check out ["Rethinking Reusability in Vue"](https://rethinking-reusability-in-vue.alexvipond.dev), a 150+ page deep dive in to the patterns, concepts, and Vue 3 best practices behind Baleada Features.
 
 Use code **BALEADA** for $15 off!
 :::
@@ -25,7 +31,7 @@ Use code **BALEADA** for $15 off!
 ## Installation
 :::
 
-Baleada Features might someday have separate packages for multiple different reactivity and component frameworks, but right now, only the [Vue 3](https://v3.vuejs.org) implementation is available:
+Right now, Baleada Features is only implemented in [Vue 3](https://v3.vuejs.org):
 
 :::
 ```bash
@@ -43,50 +49,75 @@ The functions exported by Baleada Features fall into five categories:
 2. Combos
 3. Extensions
 4. Affordances
-5. Utilities
+5. Transforms
 
 **Interfaces** are composables that add rich interactivity and accessibility to your markup.
 
-Some examples of interfaces are:
+Interfaces include:
+- [`useButton`](/docs/features/interfaces/button)
+- [`useCheckbox`](/docs/features/interfaces/checkbox)
+- [`useDialog`](/docs/features/interfaces/dialog)
+- [`useGrid`](/docs/features/interfaces/grid)
+- [`useHead`](/docs/features/interfaces/head)
+- [`useLink`](/docs/features/interfaces/link)
+- [`useListbox`](/docs/features/interfaces/listbox)
+- [`useMenubar`](/docs/features/interfaces/menubar)
+- [`useSeparator`](/docs/features/interfaces/separator)
 - [`useTablist`](/docs/features/interfaces/tablist)
 - [`useTextbox`](/docs/features/interfaces/textbox)
-- [`useListbox`](/docs/features/interfaces/listbox)
 
 Jump to the [Using interfaces](#using-interfaces) section to learn more about basic interface usage.
 
-**Combos** are composables that combine multiple interfaces under the hood. Some examples of combos are:
+**Combos** are composables that combine multiple interfaces under the hood. Combos include:
 - [`useCombobox`](/docs/features/combos/combobox) (Combines [`useTextbox`](/docs/features/interfaces/textbox) with [`useListbox`](/docs/features/interfaces/listbox))
+- [`useMenu`](/docs/features/combos/menu) (Combines [`useButton`](/docs/features/interfaces/button) with [`useMenubar`](/docs/features/interfaces/menubar))
+- [`useModal`](/docs/features/combos/menu) (Combines [`useButton`](/docs/features/interfaces/button) with [`useDialog`](/docs/features/interfaces/dialog))
 - [`useSelect`](/docs/features/combos/select) (Combines [`useButton`](/docs/features/interfaces/button) with [`useListbox`](/docs/features/interfaces/listbox))
 
 Jump to the [Using combos](#using-combos) section to learn more about basic combo usage.
 
-**Extensions** are composables that add optional layers of functionality and accessibility as needed.
+**Extensions** are composables that track various DOM element states and/or add unique features to interfaces, combos, or plain HTML elements.
 
-Some examples of extensions are:
-- [`useLabel`](/docs/features/extensions/label)
-- [`useVisibility`](/docs/features/extensions/visibility)
-- [`useMarkdownCompletion`](/docs/features/extensions/markdown-completion)
+Extensions include:
+- [`useBalanced`](/docs/features/extensions/balanced)
+- [`useButtonStorage`](/docs/features/extensions/button-storage))
+- [`useClosingCompletion`](/docs/features/extensions/closing-completion))
+- [`useMarkdownCompletion`](/docs/features/extensions/markdown-completion))
+- [`usePopup`](/docs/features/extensions/popup)
+- [`useRendering`](/docs/features/extensions/rendering))
+- [`useTablistStorage`](/docs/features/extensions/tablist-storage))
+- [`useTextboxStorage`](/docs/features/extensions/textbox-storage))
+- [`useWithCssAnimation`](/docs/features/extensions/with-css-animation))
+- [`useWithCssTransition`](/docs/features/extensions/with-css-transition))
+- [`useWithFocus`](/docs/features/extensions/with-focus))
+- [`useWithHover`](/docs/features/extensions/with-hover))
+- [`useWithIntersection`](/docs/features/extensions/with-intersection))
+- [`useWithPress`](/docs/features/extensions/with-press))
+- [`useWithSize`](/docs/features/extensions/with-size)
 
 Jump to the [Using extensions](#using-extensions) section to learn more about basic extension usage.
 
 **Affordances** are functions that implement certain features that are readily available in Vue templates, but are not so easy to figure out inside of composables.
 
-Some examples of affordances are:
+Affordances include:
 - [`bind`](/docs/features/affordances/bind)
+- [`identify`](/docs/features/affordances/identify)
+- [`model`](/docs/features/affordances/model)
 - [`on`](/docs/features/affordances/on)
 - [`show`](/docs/features/affordances/show)
 
-Affordances are primarily used internally by interfaces and extensions. However, Baleada Features exports them publicly because they are useful for authors who want to write their own Vue composables, following the style and patterns of Baleada Features. They're also super useful for authors who want to [organize their code by logical concern](https://www.youtube.com/watch?v=q4a115Kdla8) in Vue setup functions.
+Affordances are primarily used internally by interfaces and extensions. However, they're exported publicly for authors who want to write their own composables, following the style and patterns of Baleada Features, and [organizing code by logical concern](https://www.youtube.com/watch?v=q4a115Kdla8).
 
 Jump to the [Using affordances](#using-affordances) section to learn more about basic affordance usage.
 
-**Utilities** are small utility functions for working with **function refs**, the awesome Vue feature that is the backbone of Baleada Features. For more info on function refs and how they're used in Baleada Features, see the [Element API](/docs/features/shared/element-api) guide.
+**Transforms** are small utility functions for working with **function refs**, the awesome Vue feature that is the backbone of Baleada Features. For more info on function refs and how they're used in Baleada Features, see the [Element API](/docs/features/shared/element-api) guide.
 
-Some example of utilities are:
-- [`toComponentRef`](/docs/features/utilities/toComponentRef)
-- [`toMultiRef`](/docs/features/utilities/toMultiRef)
+Transforms include:
+- [`createComponentRef`](/docs/features/transforms/component-ref)
+- [`createMaybeComponentRef`](/docs/features/transforms/maybe-component-ref)
+- [`createMultiRef`](/docs/features/transforms/multi-ref)
 
-Visit any utility's dedicated guide to learn more about its use cases and usage.
+Visit any transform's dedicated guide to learn more about its use cases and usage.
 
 
 :::
@@ -192,8 +223,8 @@ const storage = useTextboxStorage(textbox, { key: 'my textbox' })
 
 As their first parameter, extensions can accept one of three things:
 - The return value of a Baleada Features interface function
-- An interface included in the return value of a combo function (for example you can pass `useSelect().listbox` to an extension)
-- A reactive reference to an HTML element
+- OR an interface included in the return value of a combo function (for example, you can pass `useSelect().listbox` to an extension)
+- OR a reactive reference to an HTML element
 
 Not every extension accepts all of these things, though. `useMarkdownCompletion`, for example, specifically accepts the `textbox` object returned from the `useTextbox` interface, and won't accept any other interface objects, nor a reactive reference to an HTML element.
 
@@ -294,11 +325,11 @@ Vue templates, for example, allow you to easily bind static reactive data to the
 Inside a composable, it's not obvious how to properly recreate this behavior, but Baleada Features' `bind` affordance makes it a cinch:
 
 :::
-```js
+```ts
 // Inside script setup
 import { bind } from '@baleada/vue-features'
 
-const element = ref(null), // `element` is a template ref in this case
+const element = ref<HTMLElement>(null),
       isSelected = computed(...)
 
 bind(
@@ -318,6 +349,6 @@ bind(
 ```
 :::
 
-These functions are primarily used internally by various interfaces, combos, and extensions. However, Baleada Features exports them publicly because they are useful for authors who want to write their own Vue composables, following the style and patterns of Baleada Features. They're also super useful for authors who want to [organize their code by logical concern](https://www.youtube.com/watch?v=q4a115Kdla8) in Vue setup functions.
+Affordances are primarily used internally by interfaces and extensions. However, they're exported publicly for authors who want to write their own composables, following the style and patterns of Baleada Features, and [organizing code by logical concern](https://www.youtube.com/watch?v=q4a115Kdla8)
 
 To learn more, visit the docs for each affordance exported by Baleada Features. For a complete list of available affordances, see the **Affordances** section under the **Features** heading in the left sidebar.

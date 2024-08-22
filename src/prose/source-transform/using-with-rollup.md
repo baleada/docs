@@ -1,6 +1,5 @@
 ---
 title: Using with Rollup
-tags: agnostic
 publish: true
 order: 0
 ---

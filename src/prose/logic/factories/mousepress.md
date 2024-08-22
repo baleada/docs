@@ -1,6 +1,5 @@
 ---
 title: mousepress
-tags: UI Logic
 source: createMousepress.ts
 tests: browser/createMousepress.test.ts
 publish: true

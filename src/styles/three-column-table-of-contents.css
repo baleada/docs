@@ -1,0 +1,48 @@
+.three-column-table-of-contents {
+  @apply flex-col;
+
+  h2 {
+    @apply text-3 font-6 tracking-3 text-primary-70 dork:text-gray-50
+    after:w-9 after:mt-3 after:block after:rounded-full after:h-[2px] after:bg-gray-30 after:dork:bg-primary-80;
+  }
+  h3 {
+    @apply mt-6 text-2 font-6 tracking-3 text-gray-70 dork:text-gray-50;
+  }
+  a {
+    @apply
+      block mt-3 pl-2 text-3
+      text-gray-90 dork:text-gray-40
+      hover:text-primary-60 dork:hover:text-gray-30
+      hover:border-primary-60 dork:hover:border-gray-30
+      no-underline hover:underline
+      transition-all;
+
+    &.workaround-exact-active {
+      @apply
+        ml-[-2px] border-l-5
+        text-primary-70
+        border-primary-70 dork:border-gray-40 dork:text-gray-40;
+    }
+  }
+  * + a {
+    @apply mt-2;
+  }
+  .h1 {
+    @apply ml-0 font-5;
+  }
+  .h2 {
+    @apply ml-2;
+  }
+  .h3 {
+    @apply ml-5;
+  }
+  .h4 {
+    @apply ml-7;
+  }
+  .h5 {
+    @apply ml-9;
+  }
+  .h6 {
+    @apply ml-10;
+  }
+}

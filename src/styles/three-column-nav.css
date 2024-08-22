@@ -1,0 +1,28 @@
+.three-column-nav {
+  * + section {
+    @apply mt-7;
+  }
+  h2 {
+    @apply text-3 font-6 tracking-3 text-primary-70 dork:text-gray-50
+    after:w-9 after:mt-3 after:block after:rounded-full after:h-[2px]
+    after:bg-gray-30 after:dork:bg-primary-80;
+  }
+  h3 {
+    @apply mt-6 text-2 font-6 tracking-3 text-gray-70 dork:text-gray-50;
+  }
+  a {
+    @apply
+      block mt-3 pl-2 text-3
+      text-gray-90 dork:text-gray-40
+      hover:text-primary-60 hover:border-primary-60 dork:hover:text-gray-30 dork:hover:border-gray-30
+      no-underline hover:underline
+      transition-all;
+  }
+  a.router-link-exact-active {
+    @apply
+      ml-[-2px]
+      border-l-5
+      text-primary-70 border-primary-70
+      dork:text-gray-40 dork:border-gray-40;
+  }
+}

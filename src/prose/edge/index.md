@@ -1,9 +1,9 @@
 ---
 title: What is Baleada Edge?
-tags: Server logic
 source: laravel-edge
 publish: true
 order: 0
+summary: Tools for modeling relational data as an edge list in Laravel
 ---
 
 Baleada Edge makes it easy to model relational data as an [edge list](https://en.wikipedia.org/wiki/Edge_list) where nodes are data objects and edges are the relationships between them.

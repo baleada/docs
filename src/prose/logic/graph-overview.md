@@ -1,6 +1,5 @@
 ---
 title: Graph
-tags: UI Logic
 source: extracted/graph.ts
 publish: true
 order: 6

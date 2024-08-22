@@ -1,6 +1,5 @@
 ---
 title: directed acyclic async path
-tags: UI Logic
 source: directed-acyclic-async-state.ts
 tests: node/directed-acyclic-async-state.test.ts
 publish: false

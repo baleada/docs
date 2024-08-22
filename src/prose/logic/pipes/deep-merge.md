@@ -1,6 +1,5 @@
 ---
 title: deep merge
-tags: UI Logic
 source: object.ts
 tests: node/object.test.ts
 publish: true

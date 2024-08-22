@@ -8,9 +8,9 @@
     ]"
   >
     <section class="flex flex-col gap-2">
-      <p :ref="description.root.ref">Type an opening bracket or quote to autocomplete. Or, highlight text and type an opening bracket or quote to wrap the selected text.</p>
+      <p :ref="description.ref()">Type an opening bracket or quote to autocomplete. Or, highlight text and type an opening bracket or quote to wrap the selected text.</p>
       <input
-        :ref="textbox.root.ref"
+        :ref="textbox.root.ref({ describedBy: description.id })"
         type="text"
         placeholder="Type something..."
         aria-label="Example textbox with closing completion"
@@ -100,7 +100,7 @@
 
 <script lang="ts">
 import { readonly, shallowRef } from 'vue'
-import { useTextbox, useClosingCompletion, useDescription } from '@baleada/vue-features'
+import { useTextbox, useClosingCompletion, useElementApi } from '@baleada/vue-features'
 import { useStore } from '../composition'
 
 export default {
@@ -108,7 +108,7 @@ export default {
   setup () {
     const textbox = useTextbox(),
           closingCompletion = useClosingCompletion(textbox),
-          description = useDescription(textbox)
+          description = useElementApi({ identifies: true })
 
     return {
       textbox: readonly(textbox),

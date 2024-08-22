@@ -1,6 +1,5 @@
 ---
 title: Drawable
-tags: UI logic
 source: true
 tests: node/Drawable.test.ts
 publish: true

@@ -1,6 +1,5 @@
 ---
 title: mix
-tags: UI Logic
 source: color.ts
 tests: browser/color.test.ts
 publish: true

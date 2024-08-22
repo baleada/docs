@@ -1,6 +1,5 @@
 ---
 title: Shared state
-tags: Components
 publish: true
 order: 3
 ---
