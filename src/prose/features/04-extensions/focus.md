@@ -1,11 +1,18 @@
 ---
 title: Focus
-source: useWithFocus.ts
+source: useFocus.ts
 publish: true
 order: 0
 ---
 
-`useWithFocus` is an extension that tracks when an element has been focused or blurred, and stores that info in a reactive reference. 
+`useFocus` is an [extension](/docs/features/extensions-overview) that tracks when an element has been focused or blurred, and stores that info in a reactive reference.
+
+
+:::
+## Example
+:::
+
+<ExampleUseFocus />
 
 ::: type="warning"
 Under construction 🚧

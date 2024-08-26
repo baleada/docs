@@ -45,7 +45,7 @@
           {{ name }}
         </component>
         <RouterLink v-for="{ href, title } in articles" :key="title" :to="href">
-          {{ title }}
+          {{ title.startsWith('What is') ? 'Getting started' : title }}
         </RouterLink>
       </section>
     </nav>

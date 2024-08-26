@@ -36,13 +36,13 @@
           class="
             d-13 p-2
             flex-none rounded-full overflow-hidden -shadow transition btn-grows
-            bg-primary-60 dork:bg-primary-gray-90
+            bg-primary-40 dork:bg-primary-100
           "
         >
           <BrandLogo
             id="nav-header"
-            :tortillaClasses="store.dorkTheme.status === 'enabled' ? 'text-primary-gray-50' : undefined"
-            :burnClasses="store.dorkTheme.status === 'enabled' ? 'text-primary-gray-100' : undefined"
+            :tortillaClasses="store.dorkTheme.status === 'enabled' ? 'text-primary-gray-40' : undefined"
+            :burnClasses="store.dorkTheme.status === 'enabled' ? 'text-primary-gray-110' : undefined"
           />
         </RouterLink>
       </header>

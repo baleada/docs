@@ -1,6 +1,6 @@
 ---
 title: Size
-source: useWithSize.ts
+source: useSize.ts
 publish: true
 order: 0
 ---
@@ -10,7 +10,7 @@ Under construction 🚧
 :::
 
 
-`useSize` is an extension that allows you to reactively track the dimensions of an element, and whether that element's width is currently wider than certain breakpoints.
+`useSize` is an [extension](/docs/features/extensions-overview) that allows you to reactively track the dimensions of an element, and whether that element's width is currently wider than certain breakpoints.
 
 ::: type="info"
 Under the hood, `useSize` uses the `ResizeObserver` API for performant dimension tracking.

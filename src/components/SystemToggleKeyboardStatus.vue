@@ -2,9 +2,9 @@
   <div class="flex">
     <button
       :ref="selectingButton.root.ref()"
-      class="btn btn-4 rounded-r-0 ring-sh-2-gray-30 dork:ring-primary-100"
+      class="btn btn-4 rounded-r-0 ring-sh-2-primary-20 dork:ring-primary-100"
       :class="{
-        'bg-gray-30 dork:bg-primary-100 dork:text-primary-30': is.selecting(),
+        'bg-primary-20 text-primary-120 dork:bg-primary-100 dork:text-primary-30': is.selecting(),
 
       }"
     >
@@ -12,9 +12,9 @@
     </button>
     <button
       :ref="focusingButton.root.ref()"
-      class="btn btn-4 rounded-l-0 ring-sh-2-gray-30 dork:ring-primary-100"
+      class="btn btn-4 rounded-l-0 ring-sh-2-primary-20 dork:ring-primary-100"
       :class="{
-        'bg-gray-30 dork:bg-primary-100 dork:text-primary-30': is.focusing(),
+        'bg-primary-20 text-primary-120 dork:bg-primary-100 dork:text-primary-30': is.focusing(),
       }"
     >
       "Add to Selection" mode
@@ -33,37 +33,13 @@ const props = defineProps<{
   is: (Listbox | Grid)['is'],
 }>()
 
-let selectedWasPressed = false
 watch(
-  props.selectingButton.press,
-  () => {
-    if (focusingWasPressed || selectedWasPressed) return
-    selectedWasPressed = true
-    props.selecting()
-  },
-)
-watch(
-  props.selectingButton.release,
-  () => {
-    selectedWasPressed = false
-    focusingWasPressed = false
-  }
+  props.selectingButton.firstPressDescriptor,
+  props.selecting,
 )
 
-let focusingWasPressed = false
 watch(
-  props.focusingButton.press,
-  () => {
-    if (focusingWasPressed || selectedWasPressed) return
-    focusingWasPressed = true
-    props.focusing()
-  },
-)
-watch(
-  props.focusingButton.release,
-  () => {
-    selectedWasPressed = false
-    focusingWasPressed = false
-  }
+  props.focusingButton.firstPressDescriptor,
+  props.focusing,
 )
 </script>

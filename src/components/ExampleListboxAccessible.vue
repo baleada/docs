@@ -86,7 +86,7 @@
           </div>
         </div>
         <span>{{ name }}</span>
-        <span v-if="variant !== 'configured'">{{ listbox.is.disabled(index) && '(disabled)' }}</span>
+        <span v-if="variant !== 'configured'">{{ listbox.is.disabled(index) ? '(disabled)' : '' }}</span>
       </li>
     </ul>
   </div>

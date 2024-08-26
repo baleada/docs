@@ -9,7 +9,7 @@ order: 0
 Under construction 🚧
 :::
 
-`useMarkdownCompletion` is an extension that autocompletes markdown notation in a textbox created by [`useTextbox`](/docs/features/interfaces/textbox).
+`useMarkdownCompletion` is an [extension](/docs/features/extensions-overview) that autocompletes markdown notation in a textbox created by [`useTextbox`](/docs/features/interfaces/textbox).
 
 
 :::

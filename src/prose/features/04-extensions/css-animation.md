@@ -1,6 +1,6 @@
 ---
 title: CSS animation
-source: useWithCssAnimation.ts
+source: useCssAnimation.ts
 publish: true
 order: 0
 ---

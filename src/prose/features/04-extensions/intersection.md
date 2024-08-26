@@ -1,6 +1,6 @@
 ---
 title: Intersection
-source: useWithIntersection.ts
+source: useIntersection.ts
 publish: true
 order: 0
 ---
@@ -10,10 +10,10 @@ Under construction 🚧
 :::
 
 
-`useVisibility` is an extension that allows you to reactively track whether or not an element has entered a viewport.
+`useIntersection` is an [extension](/docs/features/extensions-overview) that allows you to reactively track whether or not an element has entered a viewport.
 
 ::: type="info"
-Under the hood, `useVisibility` uses the `IntersectionObserver` API for performant visibility tracking.
+Under the hood, `useIntersection` uses the `IntersectionObserver` API for performant intersection tracking.
 :::
 
 
@@ -21,18 +21,18 @@ Under the hood, `useVisibility` uses the `IntersectionObserver` API for performa
 ## Create visibility
 :::
 
-To start tracking visibility, call the `useVisibility` function, which accepts two parameters:
+To start tracking visibility, call the `useIntersection` function, which accepts two parameters:
 
-::: ariaLabel="useVisibility parameters" classes="wide-4"
+::: ariaLabel="useIntersection parameters" classes="wide-4"
 | Parameter | Type | Required | Description |
 | --- | --- | --- | --- |
-| `extendable` | Interface, Ref (HTMLElement) | yes | <p>The return object from a Baleada Features [interface](/docs/features#using-functions), or a reactive reference to an HTML element.</p><p>If you pass an interface object, `useVisibility` will track the size of the `root` element.</p> |
+| `extendable` | Interface, Ref (HTMLElement) | yes | <p>The return object from a Baleada Features [interface](/docs/features#using-functions), or a reactive reference to an HTML element.</p><p>If you pass an interface object, `useIntersection` will track the size of the `root` element.</p> |
 | `options` | Object | no | Passes customization options. See the next table for more guidance. |
 :::
 
-Here's a breakdown of the `useVisibility` options:
+Here's a breakdown of the `useIntersection` options:
 
-::: ariaLabel="useVisibility options" classes="wide-5"
+::: ariaLabel="useIntersection options" classes="wide-5"
 | Property | Type | Required | Default | Description |
 | --- | --- | --- | --- | --- |
 | `observer` | Object | no | none | The `options` parameter of the [Intersection Observer constructor](https://developer.mozilla.org/en-US/docs/Web/API/IntersectionObserver/IntersectionObserver). |
@@ -41,7 +41,7 @@ Here's a breakdown of the `useVisibility` options:
 ::: type="info"
 **Note**: for the `root` option of the Intersection Observer constructor, you would normally pass an HTML element. However, in your `setup` function, you won't be able to reliably access DOM elements before the component is mounted.
 
-Instead of passing the unreliable DOM element to `options.observer.root`, you can pass a reactive reference to an HTML element. `useVisibility` will resolve that reference before setting up the Intersection Observer.
+Instead of passing the unreliable DOM element to `options.observer.root`, you can pass a reactive reference to an HTML element. `useIntersection` will resolve that reference before setting up the Intersection Observer.
 :::
 
 :::
@@ -54,11 +54,11 @@ Instead of passing the unreliable DOM element to `options.observer.root`, you ca
 </template>
 
 <script setup>
-import { useTablist, useVisibility } from '@baleada/vue-features'
+import { useTablist, useIntersection } from '@baleada/vue-features'
 
 const tablist = useTablist(),
       viewport = ref(null),
-      visibility = useVisibility(
+      visibility = useIntersection(
         tablist,
         {
           threshold: 0.5,
@@ -77,7 +77,7 @@ const tablist = useTablist(),
 ## Use your visibility
 :::
 
-`useVisibility` returns `visibility`—an object with tools you can use to react to an element's visibility and visibility.
+`useIntersection` returns `visibility`—an object with tools you can use to react to an element's visibility and visibility.
 
 Here's a breakdown of that object:
 

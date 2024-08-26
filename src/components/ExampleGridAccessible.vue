@@ -12,19 +12,21 @@
     <div
       :ref="grid.root.ref()"
       class="
-        mx-auto grid/3
+        swiper-no-swiping
+        mx-auto grid/3 touch-none
         select-none
       "
     >
       <div
         v-for="(r, row) in data"
         :key="row"
-        class="grid/3 grid-cols-6"
+        class="grid/3 grid-cols-6 swiper-no-swiping"
       >
         <div
           v-for="(c, column) in r"
           :ref="grid.cells.ref({ row, column })"
           class="
+            swiper-no-swiping
             relative d-11 flex center-all
             rounded-3
             ring-sh-2-gray-40 dork:ring-primary-gray-100
@@ -37,7 +39,7 @@
         >
           <OcticonsCheck16
             aria-hidden="true"
-            class="text-primary-70 transition duration-1"
+            class="swiper-no-swiping text-primary-70 transition duration-1"
             :class="[
               grid.is.selected({ row, column })
                 ? 'opacity-1 scale-100'

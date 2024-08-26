@@ -1,6 +1,6 @@
 ---
 title: CSS transition
-source: useWithCssTransition.ts
+source: useCssTransition.ts
 publish: true
 order: 0
 ---

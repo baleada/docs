@@ -137,7 +137,7 @@ export default {
     },
     tortillaClasses: {
       type: [String, Array],
-      default: 'text-primary-10',
+      default: 'text-primary-5',
     },
     burnClasses: {
       type: [String, Array],
@@ -145,7 +145,7 @@ export default {
     },
     classes: {
       type: [String, Array],
-      default: 'text-primary-60',
+      default: 'text-primary-40',
     }
   }
 }

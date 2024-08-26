@@ -1,12 +1,19 @@
 ---
 title: Hover
-source: useWithHover.ts
+source: useHover.ts
 publish: true
 order: 0
 ---
 
-`useWithHover` is an extension that tracks when the mouse has entered or left an element, and stores that info in a reactive reference. 
+`useHover` is an [extension](/docs/features/extensions-overview) that tracks when the mouse has entered or left an element, and stores that info in a reactive reference.
 
-::: type="danger"
-Baleada Features just got a big update! This documentation is coming soon.
+
+:::
+## Example
+:::
+
+<ExampleUseHover />
+
+::: type="warning"
+Under construction 🚧
 :::

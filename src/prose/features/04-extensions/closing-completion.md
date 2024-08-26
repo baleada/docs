@@ -5,7 +5,7 @@ publish: true
 order: 0
 ---
 
-`useClosingCompletion` is an extension that autocompletes closing punctuation (e.g. brackets and quotes) in a textbox created by [`useTextbox`](/docs/features/interfaces/textbox).
+`useClosingCompletion` is an [extension](/docs/features/extensions-overview) that autocompletes closing punctuation (e.g. brackets and quotes) in a textbox created by [`useTextbox`](/docs/features/interfaces/textbox).
 
 For example, when the end user types `[`, the `]` will be autocompleted. Or, if they highlight text and type `(`, the highlighted text will be wrapped in opening and closing parentheses.
 

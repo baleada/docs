@@ -3,7 +3,7 @@
 </template>
 
 <script setup lang="ts">
-import { provideWithPressOn } from '@baleada/vue-features';
+import { delegatePress } from '@baleada/vue-features'
 
-// provideWithPressOn()
+delegatePress()
 </script>

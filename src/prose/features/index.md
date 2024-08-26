@@ -80,20 +80,20 @@ Jump to the [Using combos](#using-combos) section to learn more about basic comb
 
 Extensions include:
 - [`useBalanced`](/docs/features/extensions/balanced)
-- [`useButtonStorage`](/docs/features/extensions/button-storage))
-- [`useClosingCompletion`](/docs/features/extensions/closing-completion))
-- [`useMarkdownCompletion`](/docs/features/extensions/markdown-completion))
+- [`useButtonStorage`](/docs/features/extensions/button-storage)
+- [`useClosingCompletion`](/docs/features/extensions/closing-completion)
+- [`useMarkdownCompletion`](/docs/features/extensions/markdown-completion)
 - [`usePopup`](/docs/features/extensions/popup)
-- [`useRendering`](/docs/features/extensions/rendering))
-- [`useTablistStorage`](/docs/features/extensions/tablist-storage))
-- [`useTextboxStorage`](/docs/features/extensions/textbox-storage))
-- [`useWithCssAnimation`](/docs/features/extensions/with-css-animation))
-- [`useWithCssTransition`](/docs/features/extensions/with-css-transition))
-- [`useWithFocus`](/docs/features/extensions/with-focus))
-- [`useWithHover`](/docs/features/extensions/with-hover))
-- [`useWithIntersection`](/docs/features/extensions/with-intersection))
-- [`useWithPress`](/docs/features/extensions/with-press))
-- [`useWithSize`](/docs/features/extensions/with-size)
+- [`useRendering`](/docs/features/extensions/rendering)
+- [`useTablistStorage`](/docs/features/extensions/tablist-storage)
+- [`useTextboxStorage`](/docs/features/extensions/textbox-storage)
+- [`useCssAnimation`](/docs/features/extensions/with-css-animation)
+- [`useCssTransition`](/docs/features/extensions/with-css-transition)
+- [`useFocus`](/docs/features/extensions/with-focus)
+- [`useHover`](/docs/features/extensions/with-hover)
+- [`useIntersection`](/docs/features/extensions/with-intersection)
+- [`usePress`](/docs/features/extensions/with-press)
+- [`useSize`](/docs/features/extensions/with-size)
 
 Jump to the [Using extensions](#using-extensions) section to learn more about basic extension usage.
 
