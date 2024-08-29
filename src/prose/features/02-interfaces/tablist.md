@@ -21,9 +21,7 @@ It follows [WAI-ARIA authoring practices](https://www.w3.org/TR/wai-aria-practic
 ## Example
 :::
 
-[Source code](https://github.com/baleada/docs/blob/main/src/components/ExampleUseTablist.vue)
-
-<ExampleUseTablist class="with-mt" />
+<LayoutExample component="ExampleUseTablist" />
 
 
 :::

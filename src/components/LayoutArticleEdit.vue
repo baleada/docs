@@ -1,11 +1,11 @@
 <template>
-  <p class="mt-8 text-center">
+  <p class="mt-8 flex center-all-x">
     <a
-      class="btn btn-sm p-0 no-underline"
+      class="flex/2 center-all-y text-3"
       :href="gitRepoPath"
     >
       <SimpleGitHub class="icon icon-btn" />
-      <span>Edit on GitHub</span>
+      <span>Edit doc on GitHub</span>
     </a>
   </p>
 </template>

@@ -16,9 +16,7 @@ Under construction 🚧
 ## Example
 :::
 
-[Source code](https://github.com/baleada/docs/blob/main/src/components/ExampleUseMarkdownCompletion.vue)
-
-<ExampleUseMarkdownCompletion class="with-mt" />
+<LayoutExample component="ExampleUseMarkdownCompletion" />
 
 
 :::

@@ -12,7 +12,7 @@ order: 0
 ## Example
 :::
 
-<ExampleUseFocus />
+<LayoutExample component="ExampleUseFocus" />
 
 ::: type="warning"
 Under construction 🚧

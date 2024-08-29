@@ -18,9 +18,7 @@ Under construction 🚧
 ## Example
 :::
 
-[Source code](https://github.com/baleada/docs/blob/main/src/components/ExampleUseTextbox.vue)
-
-<ExampleUseTextbox class="with-mt" />
+<LayoutExample component="ExampleUseTextbox" />
 
 
 :::

@@ -48,18 +48,14 @@ Here's a breakdown of all the features offered by `useListbox`:
 ### Single select
 :::
 
-[Source code](https://github.com/baleada/docs/blob/main/src/components/ExampleUseListboxSingle.vue)
-
-<ExampleUseListboxSingle class="with-mt" />
+<LayoutExample component="ExampleUseListboxSingle" />
 
 
 :::
 ### Multiselect
 :::
 
-[Source code](https://github.com/baleada/docs/blob/main/src/components/ExampleUseListboxMulti.vue)
-
-<ExampleUseListboxMulti class="with-mt" />
+<LayoutExample component="ExampleUseListboxMulti" />
 
 
 

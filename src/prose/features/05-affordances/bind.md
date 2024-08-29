@@ -43,9 +43,7 @@ Just like Vue's `v-bind`, the `bind` affordance handles all that complexity inte
 ## Example
 :::
 
-[Source code](https://github.com/baleada/docs/blob/main/src/components/ExampleBind.vue)
-
-<ExampleBind class="with-mt" />
+<LayoutExample component="ExampleBind" />
 
 :::
 ## Usage

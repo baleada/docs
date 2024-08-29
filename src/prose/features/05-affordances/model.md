@@ -15,9 +15,7 @@ order: 0
 ## Example
 :::
 
-[Source code](https://github.com/baleada/docs/blob/main/src/components/ExampleModel.vue)
-
-<ExampleModel class="with-mt" />
+<LayoutExample component="ExampleModel" />
 
 :::
 ## Usage

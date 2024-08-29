@@ -87,6 +87,7 @@ function toSourceLink({ id, frontMatter }) {
   const pathRelativeToSrc = id
           .replace(basePath, '')
           .replace(/^\/src\/prose\//, '')
+          .replace(/\d+-/, '')
           .match(/\/(.*$)/)[1]
           .split('/')
           .slice(0, -1)

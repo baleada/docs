@@ -2,7 +2,7 @@
   <span class="flex flex-col gap-2 text-3">
     <a
       v-if="source"
-      class="btn btn-sm p-0 no-underline"
+      class="flex/2 center-all-y text-3"
       :href="source"
       target="_blank"
     >
@@ -11,7 +11,7 @@
     </a>
     <a
       v-if="tests"
-      class="btn btn-sm p-0 no-underline"
+      class="flex/2 center-all-y text-3"
       :href="tests"
       target="_blank"
     >
@@ -20,7 +20,7 @@
     </a>
     <a
       v-if="stub"
-      class="btn btn-sm p-0 no-underline"
+      class="flex/2 center-all-y text-3"
       :href="stub"
       target="_blank"
     >

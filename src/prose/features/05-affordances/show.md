@@ -14,9 +14,7 @@ order: 0
 ## Example
 :::
 
-[Source code](https://github.com/baleada/docs/blob/main/src/components/ExampleShow.vue)
-
-<ExampleShow class="with-mt" />
+<LayoutExample component="ExampleShow" />
 
 The [`useTablist` example](/docs/features/interfaces/tablist#example) is another good demo—it uses `show` under the hood to toggle an array of tab panel elements.
 

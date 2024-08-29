@@ -14,9 +14,7 @@ For example, when the end user types `[`, the `]` will be autocompleted. Or, if 
 ## Example
 :::
 
-[Source code](https://github.com/baleada/docs/blob/main/src/components/ExampleUseClosingCompletion.vue)
-
-<ExampleUseClosingCompletion class="with-mt" />
+<LayoutExample component="ExampleUseClosingCompletion" />
 
 
 :::

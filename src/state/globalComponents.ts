@@ -25,6 +25,7 @@ import LayoutAdjacentArticleLinks from '../components/LayoutAdjacentArticleLinks
 import LayoutArticleEdit from '../components/LayoutArticleEdit.vue'
 import LayoutArticleLinks from '../components/LayoutArticleLinks.vue'
 import LayoutArticleLog from '../components/LayoutArticleLog.vue'
+import LayoutExample from '../components/LayoutExample.vue'
 import LayoutFooter from '../components/LayoutFooter.vue'
 import LayoutNav from '../components/LayoutNav.vue'
 import LayoutPackageSummaries from '../components/LayoutPackageSummaries.vue'
@@ -61,6 +62,7 @@ export const globalComponents: Component[] = Object.values({
   LayoutArticleEdit,
   LayoutArticleLinks,
   LayoutArticleLog,
+  LayoutExample,
   LayoutFooter,
   LayoutNav,
   LayoutPackageSummaries,

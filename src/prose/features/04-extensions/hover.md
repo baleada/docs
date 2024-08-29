@@ -12,7 +12,7 @@ order: 0
 ## Example
 :::
 
-<ExampleUseHover />
+<LayoutExample component="ExampleUseHover" />
 
 ::: type="warning"
 Under construction 🚧
