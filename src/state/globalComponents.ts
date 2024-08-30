@@ -14,11 +14,13 @@ import ExampleUseDetails from '../components/ExampleUseDetails.vue'
 import ExampleUseErrorMessage from '../components/ExampleUseErrorMessage.vue'
 import ExampleUseFocus from '../components/ExampleUseFocus.vue'
 import ExampleUseHover from '../components/ExampleUseHover.vue'
+import ExampleUseIntersection from '../components/ExampleUseIntersection.vue'
 import ExampleUseLabel from '../components/ExampleUseLabel.vue'
 import ExampleUseListboxMulti from '../components/ExampleUseListboxMulti.vue'
 import ExampleUseListboxSingle from '../components/ExampleUseListboxSingle.vue'
 import ExampleUseMarkdownCompletion from '../components/ExampleUseMarkdownCompletion.vue'
 import ExampleUsePress from '../components/ExampleUsePress.vue'
+import ExampleUseSize from '../components/ExampleUseSize.vue'
 import ExampleUseTablist from '../components/ExampleUseTablist.vue'
 import ExampleUseTextbox from '../components/ExampleUseTextbox.vue'
 import LayoutAdjacentArticleLinks from '../components/LayoutAdjacentArticleLinks.vue'
@@ -51,11 +53,13 @@ export const globalComponents: Component[] = Object.values({
   ExampleUseErrorMessage,
   ExampleUseFocus,
   ExampleUseHover,
+  ExampleUseIntersection,
   ExampleUseLabel,
   ExampleUseListboxMulti,
   ExampleUseListboxSingle,
   ExampleUseMarkdownCompletion,
   ExampleUsePress,
+  ExampleUseSize,
   ExampleUseTablist,
   ExampleUseTextbox,
   LayoutAdjacentArticleLinks,

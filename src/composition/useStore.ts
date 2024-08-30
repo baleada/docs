@@ -13,7 +13,11 @@ type Article = {
     summary?: string,
     image?: string,
     imageAlt?: string,
+    source?: string | boolean,
   },
+  source?: string,
+  tests?: string,
+  stub?: string,
   relativePath?: string
 }
 

@@ -1,7 +1,7 @@
 <template>
-  <p>
+  <p class="flex">
     <a
-      class="flex/2 center-all-y text-3"
+      class="mr-auto flex/2 center-all-y text-3"
       :href="`https://github.com/baleada/docs/blob/main/src/components/${component}.vue`"
       target="_blank"
     >
@@ -9,11 +9,12 @@
       <span class="duration-1">Example source code</span>
     </a>
   </p>
-  <component :is="component" />
+  <div class="with-mt">
+    <component :is="component" />
+  </div>
 </template>
 
 <script setup lang="tsx">
 import SimpleGitHub from '@simple-icons/github.svg'
-const props = defineProps<{ component: any }>()
-console.log(props)
+defineProps<{ component: any }>()
 </script>

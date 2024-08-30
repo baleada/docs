@@ -5,19 +5,24 @@ publish: true
 order: 0
 ---
 
+`useIntersection` is an [extension](/docs/features/extensions-overview) that tracks whether or not an element has entered a viewport.
+
+Under the hood, `useIntersection` uses the `IntersectionObserver` API for performant intersection tracking.
+
+
+:::
+## Example
+:::
+
+<LayoutExample component="ExampleUseIntersection" />
+
+
+
 ::: type="warning"
 Under construction 🚧
 :::
 
-
-`useIntersection` is an [extension](/docs/features/extensions-overview) that allows you to reactively track whether or not an element has entered a viewport.
-
-::: type="info"
-Under the hood, `useIntersection` uses the `IntersectionObserver` API for performant intersection tracking.
-:::
-
-
-:::
+<!-- :::
 ## Create visibility
 :::
 
@@ -45,9 +50,9 @@ Instead of passing the unreliable DOM element to `options.observer.root`, you ca
 :::
 
 :::
-```html
+```html -->
 <!-- MyComponent.vue -->
-<template>
+<!-- <template>
   <div ref="viewport">
     <div :ref="tablist.root.ref()">...</div>
   </div>
@@ -90,4 +95,4 @@ Here's a breakdown of that object:
 | `isVisible` | Ref (Boolean) | <p>A reactive reference to a Boolean describing the visibility of your element. `isVisible` is `true` when `status` is `visible`, and `false` when it's `invisible`.</p> |
 | `time` | Ref (DOMHighResTimestamp) | A reactive reference to the [time](https://developer.mozilla.org/en-US/docs/Web/API/IntersectionObserverEntry/time) of the most recent change in visibility. |
 :::
-
+ -->

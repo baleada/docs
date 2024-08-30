@@ -5,19 +5,24 @@ publish: true
 order: 0
 ---
 
+`useSize` is an [extension](/docs/features/extensions-overview) that tracks the dimensions of an element, and whether that element's width is currently wider than certain breakpoints.
+
+Under the hood, `useSize` uses the `ResizeObserver` API for performant size tracking.
+
+
+:::
+## Example
+:::
+
+<LayoutExample component="ExampleUseSize" />
+
+
 ::: type="warning"
 Under construction 🚧
 :::
 
 
-`useSize` is an [extension](/docs/features/extensions-overview) that allows you to reactively track the dimensions of an element, and whether that element's width is currently wider than certain breakpoints.
-
-::: type="info"
-Under the hood, `useSize` uses the `ResizeObserver` API for performant dimension tracking.
-:::
-
-
-:::
+<!-- :::
 ## Create size
 :::
 
@@ -37,12 +42,12 @@ Here's a breakdown of the `useSize` options:
 | --- | --- | --- | --- | --- |
 | `breakpoints` | Object | no | See description | <p>An object specifying breakpoints for `useSize` to compare against. Each key should be the name of the breakpoint, and the value should be the width (Number) of that breakpoint, measured in pixels.</p><p>The keys of the default `breakpoints` object are `sm`, `md`, `lg`, `xl`, and `2xl`. The values of those keys are [the default TailwindCSS breakpoints](https://tailwindcss.com/docs/responsive-design).</p> |
 | `observe` | Object | no | none | The `options` parameter of the [Resize Observer's `observe` method](https://developer.mozilla.org/en-US/docs/Web/API/ResizeObserver/observe). |
-:::
+::: -->
 
-:::
-```html
+<!-- :::
+```html -->
 <!-- MyComponent.vue -->
-<template>...</template>
+<!-- <template>...</template>
 
 <script setup>
 import { computed } from 'vue'
@@ -89,9 +94,9 @@ If you stick with the default `breakpoints`, the properties of `breaks` will be 
 You can use these values to, for example, swap out the `src` of an `img` element based on screen size, so that only the correct image for that screen size is loaded:
 
 :::
-```html
+```html -->
 <!-- MyComponent.vue -->
-<style>
+<!-- <style>
 header {
   height: 100vw;
   width: 100vw;
@@ -127,4 +132,4 @@ const header = ref(null)
 const size = readonly(useSize(header))
 </script>
 ```
-:::
+::: -->
