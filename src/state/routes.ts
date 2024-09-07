@@ -18,5 +18,5 @@ const toWithoutIndex = createClip(/(?:^index|\/index$)/),
 export const routes: RouteRecordRaw[] = [
   { path: '/', component: PageIndex, },
   { path: '/docs', component: LayoutThreeColumn, children: [...concise] },
-  { path: '/:pathMatch(.*)*', name: 'NotFound', component: LayoutThreeColumn, children: [{ path: '', component: NotFound }] },
+  { path: '/:pathMatch(.*)*', component: LayoutThreeColumn, children: [{ name: 'NotFound', path: '', component: NotFound }] },
 ]

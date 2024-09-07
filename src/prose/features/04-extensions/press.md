@@ -2,7 +2,6 @@
 title: Press
 source: usePress.ts
 tests: suites/extensions/usePress.test.ts
-tests: suites/extensions/usePress.test.ts
 publish: true
 order: 0
 ---
