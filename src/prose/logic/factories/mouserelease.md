@@ -8,7 +8,7 @@ order: 1
 
 `createMouserelease` is a [factory](/docs/logic/factories-overview) that returns [`Recognizeable` effects](/docs/logic/classes/recognizeable#effect-workflow) for recognizing mouse releases.
 
-A **mouse release** is a sequence of a `mousedown` and a `mouseup`, and allows for `mousemove` in between those events, but denies the event on `mouseleave`.
+A **mouse release** is a sequence of a `mousedown` and a `mouseup`, and allows for `mousemove` in between those events, but denies the event on `mouseout`.
 
 `createMouserelease` attempts to recognize the gesture when `mouseup` fires. The gesture is recognized at on `mouseup` if the mouse has been down for a minimum duration and has moved a minimum distance, both of which are configurable.
 
@@ -17,12 +17,12 @@ A **mouse release** is a sequence of a `mousedown` and a `mouseup`, and allows f
 ## Create mouserelease
 :::
 
-Call `createMouserelease` with these parameters to create your `mousedown`, `mouseleave`, and `mouseup` effects:
+Call `createMouserelease` with these parameters to create your `mousedown`, `mouseout`, and `mouseup` effects:
 
 ::: ariaLabel="createMouserelease parameters" classes="wide-4"
 | Parameter | Type | Required | Description |
 | --- | --- | --- | --- |
-| `options` | Object | no | Options to customize the behavior of the `mousedown`, `mouseleave`, and `mouseup` effects. See the [Options](#options) section for more guidance. |
+| `options` | Object | no | Options to customize the behavior of the `mousedown`, `mouseout`, and `mouseup` effects. See the [Options](#options) section for more guidance. |
 :::
 
 
@@ -38,7 +38,7 @@ Call `createMouserelease` with these parameters to create your `mousedown`, `mou
 | `minVelocity` | number | `0` | The minimum pixel velocity the mouse must move. |
 | `onDown` | Function | `undefined` | <p>A function that is called when the mouse is pressed down.</p><p>`onDown` receives the [`mouserelease` hook API](#hook-api) as its only parameter.</p> |
 | `onMove` | Function | `undefined` | <p>A function that is called when the mouse moves.</p><p>`onMove` receives the [`mouserelease` hook API](#hook-api) as its only parameter.</p> |
-| `onLeave` | Function | `undefined` | <p>A function that is called when the mouse leaves the target.</p><p>`onLeave` receives the [`mouserelease` hook API](#hook-api) as its only parameter.</p> |
+| `onOut` | Function | `undefined` | <p>A function that is called when the mouse leaves the target.</p><p>`onOut` receives the [`mouserelease` hook API](#hook-api) as its only parameter.</p> |
 | `onUp` | Function | `undefined` | <p>A function that is called when the mouse is released.</p><p>`onUp` receives the [`mouserelease` hook API](#hook-api) as its only parameter.</p> |
 :::
 
@@ -47,7 +47,7 @@ Call `createMouserelease` with these parameters to create your `mousedown`, `mou
 #### Hook API
 :::
 
-The hook API is an object that is passed to the `onDown`, `onMove`, `onLeave`, and `onUp` options as their only parameter. It contains the following properties:
+The hook API is an object that is passed to the `onDown`, `onMove`, `onOut`, and `onUp` options as their only parameter. It contains the following properties:
 
 ::: ariaLabel="`mouserelease` hook API" classes="wide-4"
 | Property | Type | Description |
