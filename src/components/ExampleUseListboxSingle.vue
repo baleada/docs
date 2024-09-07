@@ -1,19 +1,17 @@
 <template>
   <section
-    class="mx-auto with-max-w flex flex-col gap-8 p-6 rounded-4 shadow-4"
-    :class="{
-      'bg-primary-20': store.statuses.darkTheme === 'disabled',
-      'bg-primary-gray-80': store.statuses.darkTheme === 'enabled',
-    }"
+    class="
+      mx-auto with-max-w flex flex-col gap-8 p-6 rounded-4 shadow-4
+      bg-primary-20 dork:bg-primary-gray-80
+    "
   >
     <div
       :ref="listbox.root.ref()"
       aria-label="Example listbox"
-      class="h-24 flex flex-col overflow-x-scroll shadow-5"
-      :class="{
-        'bg-white': store.statuses.darkTheme === 'disabled',
-        'bg-primary-gray-90': store.statuses.darkTheme === 'enabled',
-      }"
+      class="
+        h-24 flex flex-col overflow-x-scroll shadow-5
+        bg-white dork:bg-primary-gray-90
+      "
     >
       <div
         v-for="(name, index) in organizations"
@@ -21,10 +19,8 @@
         :ref="listbox.options.ref(index)"
         class="p-2 focus:outline-none"
         :class="{
-          'bg-primary-10 text-primary-90': listbox.is.focused(index) && !listbox.is.selected(index) && store.statuses.darkTheme === 'disabled',
-          'bg-primary-50 text-primary-10': listbox.is.selected(index) && store.statuses.darkTheme === 'disabled',
-          'bg-primary-gray-70': listbox.is.focused(index) && !listbox.is.selected(index) && store.statuses.darkTheme === 'enabled',
-          'bg-primary-50': listbox.is.selected(index) && store.statuses.darkTheme === 'enabled',
+          'bg-primary-10 text-primary-90 dork:bg-primary-gray-70': listbox.is.focused(index) && !listbox.is.selected(index),
+          'bg-primary-50 text-primary-10 dork:bg-primary-50': listbox.is.selected(index),
         }"
       >
         {{ name }}
@@ -47,7 +43,6 @@
 import { ref, readonly } from 'vue'
 import { useListbox } from '@baleada/vue-features'
 // import { useFetchable } from '@baleada/vue-composition'
-import { useStore } from '../composition'
 import { names } from '@alexvipond/mulago'
 // import type { Organization } from '@alexvipond/mulago'
 
@@ -61,7 +56,6 @@ export default {
     return {
       organizations,
       listbox,
-      store: useStore(),
     }
   }
 }

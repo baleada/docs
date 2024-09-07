@@ -9,7 +9,7 @@
       <span class="duration-1">Example source code</span>
     </a>
   </p>
-  <div class="with-mt">
+  <div class="with-mt with-max-w mx-auto">
     <component :is="component" />
   </div>
 </template>

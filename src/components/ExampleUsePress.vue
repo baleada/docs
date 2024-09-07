@@ -13,7 +13,7 @@
     "
   >
     <div class="text-3 absolute top-2 left-2 pointer-events-none select-none flex flex-col gap-1">
-      <div v-if="isDenied">Canceled by mouseleave</div>
+      <div v-if="isDenied">Canceled by mouseout</div>
       <div class="flex items-center gap-1">
         <svg
           xmlns="http://www.w3.org/2000/svg"
@@ -112,24 +112,24 @@ const boundingClientRect = ref<DOMRect>({} as DOMRect)
 const press = usePress(
   element.element,
   {
-    press: {
-      mouse: {
-        onDown: () => {
-          isDenied.value = false
-          boundingClientRect.value = element.element.value.getBoundingClientRect()
-        },
-        onLeave: () => isDenied.value = press.status.value !== 'released',
+    mouse: {
+      onDown: () => {
+        isDenied.value = false
+        boundingClientRect.value = element.element.value.getBoundingClientRect()
       },
-      touch: {
-        onStart: () => {
-          isDenied.value = false
-          boundingClientRect.value = element.element.value.getBoundingClientRect()
-        },
+      onOut: () => {
+        // isDenied.value = press.status.value !== 'released'
       },
-      keyboard: {
-        onDown: () => isDenied.value = false,
-      }
     },
+    touch: {
+      onStart: () => {
+        isDenied.value = false
+        boundingClientRect.value = element.element.value.getBoundingClientRect()
+      },
+    },
+    keyboard: {
+      onDown: () => isDenied.value = false,
+    }
   }
 )
 
@@ -141,7 +141,10 @@ const decimalFormatter = new Intl.NumberFormat(
 )
 
 watch(
-  press.releaseDescriptor,
-  () => isDenied.value = false,
+  press.status,
+  status => {
+    if (status !== 'released') return
+    isDenied.value = false
+  },
 )
 </script>

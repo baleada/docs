@@ -7,7 +7,7 @@
     </div>
     <ul
       :ref="packagesListbox.root.ref({ labelledBy: packagesLabel.id.value })"
-      class="mt-4 flex-col max-h-20 overflow-y-scroll ring-sh-2-gray-30 dork:ring-primary-gray-100 rounded-3 scrollbar-hide"
+      class="mt-4 flex-col max-h-20 overflow-y-scroll ring-sh-2-gray-30 dork:ring-primary-gray-100 rounded-3 scrollbar-hide select-none"
     >
       <li
         v-for="(tag, index) in packages"

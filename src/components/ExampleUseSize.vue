@@ -11,7 +11,7 @@
       style="width: 4rem; height: 4rem;"
     >
     </div>
-    <p>Height: <code>{{ size.borderBox.value?.height }}</code>, Width: <code>{{ size.borderBox.value?.width }}</code></p>
+    <p>Height: <code>{{ size.borderBox.value.height }}</code>, Width: <code>{{ size.borderBox.value.width }}</code></p>
   </div>
 </template>
 

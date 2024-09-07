@@ -42,6 +42,7 @@ export default {
   components: {
     SimpleGitHub,
     OcticonBeaker,
+    OcticonFileCode,
   },
   setup () {
     const store = useStore(),
