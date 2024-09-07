@@ -1,6 +1,7 @@
 ---
 title: Size
 source: useSize.ts
+tests: suites/extensions/useSize.test.ts
 publish: true
 order: 0
 ---

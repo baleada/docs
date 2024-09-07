@@ -1,6 +1,7 @@
 ---
 title: Select
 source: useSelect.ts
+tests: suites/combos/useSelect.test.ts
 publish: true
 order: 0
 ---

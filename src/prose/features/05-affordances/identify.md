@@ -1,5 +1,7 @@
 ---
 title: identify
+source: true
+tests: suites/affordances/identify.test.ts
 publish: true
 order: 0
 ---

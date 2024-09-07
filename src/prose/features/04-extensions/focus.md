@@ -1,6 +1,7 @@
 ---
 title: Focus
 source: useFocus.ts
+tests: suites/extensions/useFocus.test.ts
 publish: true
 order: 0
 ---

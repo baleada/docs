@@ -1,6 +1,7 @@
 ---
 title: Link
 source: useLink.ts
+tests: suites/interfaces/useLink.test.ts
 publish: true
 order: 0
 ---

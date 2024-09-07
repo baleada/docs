@@ -1,6 +1,7 @@
 ---
 title: Markdown completion
 source: useMarkdownCompletion.ts
+tests: suites/extensions/useMarkdownCompletion.test.ts
 publish: true
 order: 0
 ---

@@ -1,5 +1,7 @@
 ---
 title: bind
+source: true
+tests: suites/affordances/bind.test.ts
 publish: true
 order: 0
 ---

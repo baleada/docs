@@ -1,6 +1,7 @@
 ---
 title: Intersection
 source: useIntersection.ts
+tests: suites/extensions/useIntersection.test.ts
 publish: true
 order: 0
 ---

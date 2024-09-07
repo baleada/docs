@@ -1,6 +1,7 @@
 ---
 title: Grid
 source: useGrid.ts
+tests: suites/interfaces/useGrid.test.ts
 publish: true
 order: 0
 ---

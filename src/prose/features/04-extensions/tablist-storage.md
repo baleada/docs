@@ -1,6 +1,7 @@
 ---
 title: Tablist storage
 source: useTablistStorage.ts
+tests: suites/extensions/useTablistStorage.test.ts
 publish: true
 order: 0
 ---

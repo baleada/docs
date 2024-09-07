@@ -1,6 +1,7 @@
 ---
 title: Closing completion
 source: useClosingCompletion.ts
+tests: suites/extensions/useClosingCompletion.test.ts
 publish: true
 order: 0
 ---

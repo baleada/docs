@@ -1,5 +1,7 @@
 ---
 title: on
+source: true
+tests: suites/affordances/on.test.ts
 publish: true
 order: 0
 ---

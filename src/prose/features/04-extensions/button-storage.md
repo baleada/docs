@@ -1,6 +1,7 @@
 ---
 title: Button storage
 source: useButtonStorage.ts
+tests: suites/extensions/useButtonStorage.test.ts
 publish: true
 order: 0
 ---

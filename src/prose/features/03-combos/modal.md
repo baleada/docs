@@ -1,6 +1,7 @@
 ---
 title: Modal
 source: useModal.ts
+tests: suites/combos/useModal.test.ts
 publish: true
 order: 0
 ---

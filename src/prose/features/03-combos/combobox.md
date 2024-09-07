@@ -1,6 +1,7 @@
 ---
 title: Combobox
 source: useCombobox.ts
+tests: suites/combos/useCombobox.test.ts
 publish: true
 order: 0
 ---

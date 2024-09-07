@@ -1,5 +1,7 @@
 ---
 title: show
+source: true
+tests: suites/affordances/show.test.ts
 publish: true
 order: 0
 ---

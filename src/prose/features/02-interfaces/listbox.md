@@ -1,6 +1,7 @@
 ---
 title: Listbox
 source: useTablist.ts
+tests: suites/interfaces/useTablist.test.ts
 publish: true
 order: 0
 ---

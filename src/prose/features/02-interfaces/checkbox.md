@@ -1,6 +1,7 @@
 ---
 title: Checkbox
 source: useCheckbox.ts
+tests: suites/interfaces/useCheckbox.test.ts
 publish: true
 order: 0
 ---

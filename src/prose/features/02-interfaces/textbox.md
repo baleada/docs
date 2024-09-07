@@ -1,6 +1,7 @@
 ---
 title: Textbox
 source: useTextbox.ts
+tests: suites/interfaces/useTextbox.test.ts
 publish: true
 order: 0
 ---

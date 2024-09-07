@@ -1,6 +1,7 @@
 ---
 title: Textbox storage
 source: useTextboxStorage.ts
+tests: suites/extensions/useTextboxStorage.test.ts
 publish: true
 order: 0
 ---
