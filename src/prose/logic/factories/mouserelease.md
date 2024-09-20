@@ -1,5 +1,5 @@
 ---
-title: mouserelease
+title: Mouserelease
 source: createMouserelease.ts
 tests: browser/createMouserelease.test.ts
 publish: true

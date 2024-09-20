@@ -1,5 +1,5 @@
 ---
-title: keyrelease
+title: Keyrelease
 source: createKeyrelease.ts
 tests: browser/createKeyrelease.test.ts
 publish: true

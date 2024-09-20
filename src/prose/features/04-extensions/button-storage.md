@@ -6,7 +6,7 @@ publish: true
 order: 0
 ---
 
-`useButtonStorage` is an [extension](/docs/features/extensions-overview) that stores state from the [`useButton`](/docs/features/interfaces/button) interface in local storage and resets the interface with that state when the page reloads.
+`useButtonStorage` is an [extension](/docs/features/extensions-overview) that uses local storage to save and load state for the [`useButton`](/docs/features/interfaces/button) interface.
 
 ::: type="warning"
 Under construction 🚧

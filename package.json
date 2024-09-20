@@ -47,7 +47,7 @@
   "dependencies": {
     "@alexvipond/mulago": "^0.0.0",
     "@babel/runtime": "^7.25.0",
-    "@baleada/logic": "^0.24.17",
+    "@baleada/logic": "^0.24.18",
     "@baleada/vue-composition": "^0.11.1",
     "@baleada/vue-features": "^0.14.8",
     "@baleada/vue-heroicons": "^0.1.2",

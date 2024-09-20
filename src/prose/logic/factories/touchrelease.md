@@ -1,5 +1,5 @@
 ---
-title: touchrelease
+title: Touchrelease
 source: createTouchrelease.ts
 tests: browser/createTouchrelease.test.ts
 publish: true

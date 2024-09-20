@@ -1,5 +1,5 @@
 ---
-title: mousepress
+title: Mousepress
 source: createMousepress.ts
 tests: browser/createMousepress.test.ts
 publish: true

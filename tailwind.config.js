@@ -98,7 +98,9 @@ const config = new configureable.Tailwindcss()
       '.btn-raised': apply('shadow-5 hover:shadow-6 active:shadow-5 transition duration-3'),
       '.btn-grows': apply('scale-100 hover:scale-110 active:scale-100 transform transition duration-3'),
       
-      '.form': apply('shadow-0 border-0 ring-2 focus:ring-3 transition'),
+      '.form': apply('shadow-0 border-0 ring-sh-2-gray-40 dork:ring-primary-gray-100 transition'),
+
+      '.textbox': apply('dork:bg-primary-gray-130'),
 
       '.highlighted': apply(`
         inline pb-[0.0625rem] px-0.5 ring-2

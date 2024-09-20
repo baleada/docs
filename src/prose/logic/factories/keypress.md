@@ -1,5 +1,5 @@
 ---
-title: keypress
+title: Keypress
 source: createKeypress.ts
 tests: browser/createKeypress.test.ts
 publish: true

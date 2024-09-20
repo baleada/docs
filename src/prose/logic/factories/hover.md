@@ -1,5 +1,5 @@
 ---
-title: hover
+title: Hover
 source: createHover.ts
 tests: browser/createHover.test.ts
 publish: true

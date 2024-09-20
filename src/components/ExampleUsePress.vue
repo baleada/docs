@@ -15,37 +15,11 @@
     <div class="text-3 absolute top-2 left-2 pointer-events-none select-none flex flex-col gap-1">
       <div v-if="isDenied">Canceled by mouseout</div>
       <div class="flex items-center gap-1">
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          fill="none"
-          viewBox="0 0 24 24"
-          stroke-width="1.5"
-          stroke="currentColor"
-          class="w-4 h-4 text-inherit"
-        >
-          <path
-            stroke-linecap="round"
-            stroke-linejoin="round"
-            d="M12 6v6h4.5m4.5 0a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z"
-          />
-        </svg>
+        <OcticonsStopwatch16 class="w-4 h-4 text-inherit" />
         <code>{{ press.descriptor.value?.metadata?.duration ?? 0 }}ms</code>
       </div>
       <div class="flex items-center gap-1">
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          fill="none"
-          viewBox="0 0 24 24"
-          stroke-width="1.5"
-          stroke="currentColor"
-          class="d-4"
-        >
-          <path
-            stroke-linecap="round"
-            stroke-linejoin="round"
-            d="M3 8.689c0-.864.933-1.406 1.683-.977l7.108 4.061a1.125 1.125 0 0 1 0 1.954l-7.108 4.061A1.125 1.125 0 0 1 3 16.811V8.69ZM12.75 8.689c0-.864.933-1.406 1.683-.977l7.108 4.061a1.125 1.125 0 0 1 0 1.954l-7.108 4.061a1.125 1.125 0 0 1-1.683-.977V8.69Z"
-          />
-        </svg>
+        <OcticonsPulse16 class="w-4 h-4 text-inherit" />
         <code>
           {{
             decimalFormatter.format(
@@ -106,6 +80,8 @@ import {
   usePress,
 } from '@baleada/vue-features'
 import type { MousepressMetadata, TouchpressMetadata } from '@baleada/logic'
+import OcticonsStopwatch16 from '@octicons/stopwatch-16.svg'
+import OcticonsPulse16 from '@octicons/pulse-16.svg'
 
 const element = useElementApi()
 const boundingClientRect = ref<DOMRect>({} as DOMRect)

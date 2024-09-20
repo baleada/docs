@@ -1,5 +1,5 @@
 ---
-title: keychord
+title: Keychord
 source: createKeychord.ts
 tests: browser/createKeychord.test.ts
 publish: true
