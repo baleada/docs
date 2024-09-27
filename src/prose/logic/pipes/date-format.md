@@ -1,7 +1,7 @@
 ---
-title: number format
-source: number.ts
-tests: node/number.test.ts
+title: date format
+source: date.ts
+tests: node/date.test.ts
 publish: true
 order: 0
 ---
