@@ -69,7 +69,6 @@ The **downside** of this data modeling strategy: profile data for each object is
 :::
 ```php
 // Update a user's email address
-
 $userProfile = Edge::from('user', 1)
   ->kind('is')
   ->to('profile')
@@ -84,6 +83,33 @@ $newUserProfile = [
 // Write new data to every edge that references the user's profile
 Edge::from('user', 1)->toIn(['profile', 'project', 'task'])
     ->update(['profile->user' => $newUserProfile]);
+```
+:::
+
+Also, as relationships get more complex, the queries to retrieve data tend to search nested JSON values, which is less performant than searching traditional columns:
+
+:::
+```php
+// Store a message sent from one user to another in a chat session
+Edge::create([
+    'from_kind' => 'user',
+    'from' => 1,
+    'kind' => 'messaged',
+    'to_kind' => 'user',
+    'to' => 2,
+    'profile' => [
+        'userFrom' => [...],
+        'userTo' => [...],
+        'message' => [...],
+        'session' => [...],
+    ],
+]);
+
+// Get all messages sent to a user during a specific chat session
+Edge::to('user', 2)
+    ->kind('messaged')
+    ->profile('session->id', $sessionId)
+    ->get();
 ```
 :::
 
@@ -149,23 +175,24 @@ return new class extends Migration
 | `updated_at` | Timestamp for when the edge was last updated | `timestamp` |
 :::
 
-The types of all columns except `profile`, `created_at`, and `updated_at` can be customized by overriding the `types` method in your migration.
+The types of all columns except `profile`, `created_at`, and `updated_at` can be customized by overriding the `columns` method in your migration.
 
-`types` should return an associative array, where each key is a column name, and each value can be one of two things:
+`columns` should return an associative array, where each key is a column name, and each value can be one of two things:
 1. The string name of a Laravel `$table` method (e.g. `string`, `integer`, `json`, etc.),
-2. OR an array, where the first item is the string name of a Laravel `$table` method, and the rest of the items are arguments to that method.
+2. OR a callback, whose first parameter is the name of the column it's setting up, and whose second parameter is the table (`Illuminate\Database\Schema\Blueprint`). (This is considered more dangerous, because you should only use your callback to modify the intended column, but it technically has the power to modify the table in any way.)
 
 Here's an example of a migration that uses `string` for the `from` and `to` columns, and configures `from_kind` and `to_kind` to be an `enum` of `user` and `post`:
 
 :::
 ```php
 use Baleada\Edge\Migration;
+use Illuminate\Database\Schema\Blueprint;
 
 return new class extends Migration
 {
     private $nodeKinds = ['user', 'post'];
 
-    protected function types(): array
+    protected function columns(): array
     {
         return [
             // For simple type customizations, just provide
@@ -173,18 +200,23 @@ return new class extends Migration
             'from' => 'string',
             'to' => 'string',
             // For more complex type customizations, provide
-            // an array where the first item is the type name,
-            // and the rest of the items are arguments to the
-            // corresponding $table method:
-            'from_kind' => ['enum', $this->nodeKinds],
-            'to_kind' => ['enum', $this->nodeKinds],
+            // a callback that receives the column name and
+            // the table:
+            'from_kind' => fn (
+              string $name,
+              Blueprint $table
+            ) => $table->enum($name, $this->nodeKinds),
+            'to_kind' => fn (
+              string $name,
+              Blueprint $table
+            ) => $table->enum($name, $this->nodeKinds),
         ];
     }
 }
 ```
 :::
 
-If you want to add additional columns to your edges table, you can include more keys and values in the associative array returned by `types`.
+If you want to add additional columns to your edges table, you can include more keys and values in the associative array returned by `columns`.
 
 
 :::
