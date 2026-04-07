@@ -4,25 +4,22 @@ publish: true
 order: 0
 ---
 
-Baleada Features implements comprehensive, reusable, flexible features for **accessibility**, one of the core motivations behind the package.
+Baleada Features implements comprehensive **accessibility**.
 
-Some accessibility features—like ARIA role & attribute management, keyboard interactions, and focus management—are always required.
-Baleada Features takes care of all of those things for you!
+This includes accessibility features that are always required (like ARIA role & attribute management, keyboard interactions, and focus management) as well as optional, situational, and dynamic features.
 
-For example, use your mouse, keyboard, touch, and screen reader to play with this custom multiselectable listbox, and note:
+For example, use your mouse, keyboard, touch, and screen reader to play with this custom multiselectable listbox, and note these features, required by WAI-ARIA guidelines:
 - It announces itself properly to assistive tech, including selection state and disabled state
 - It supports Excel-inspired pointer and keyboard interactions
 - It automatically manages focus on the listbox options
 
 <ExampleListboxAccessible class="mt-6 mx-auto w-full with-max-w" variant="default" />
 
-Other accessibility features are optional or situational.
-
-For example, after you add the required accessible label to a listbox, you might want to add an optional description, announced to assistive tech. Baleada Features makes it easy to do so.
+And note how this listbox, which has the required label, also has a fully optional description that gets announced to assistive tech. Baleada Features makes this easy to do.
 
 <ExampleListboxAccessible class="mt-6 mx-auto w-full with-max-w" variant="described" />
 
-Other accessibility features are required, but configurable.
+Other accessibility features are situational and [configurable](/docs/features/motivations/configurability).
 
 For example, in the listboxes above:
 - We use a vertical orientation
@@ -65,9 +62,7 @@ And on top of that, Baleada Features adds these features to UI elements where yo
 
 <ExampleListboxAccessible class="mt-6 mx-auto w-full with-max-w" variant="dynamic" />
 
-The web platform is amazing, but when it comes to accessibility, it's still missing so many UI components, and so much configurability.
-
-Baleada Features aims to close that gap.
+When it comes to accessibility, the web platform is amazing, but it's still missing so many UI components, and so much configurability. Baleada Features aims to close that gap.
 
 ::: type="success"
 Accessibility is great UX!
