@@ -42,12 +42,12 @@ The `Transactable` constructor accepts two parameters:
 | `setName(newName)` | Function | Stops all active listeners and sets a new database name. | The new `name` (String) | The `Transactable` instance |
 | `open(options)` | Function | Opens the IndexedDB database. See the [`open` options](#open-options) section. | See below | The `Transactable` instance |
 | `transact(effect, options)` | Function | Runs a transaction against the open database. See the [`transact` options](#transact-options) section. | See below | The `Transactable` instance |
-| `readonly(effect, options)` | Function | Shorthand for `transact(effect, { ...options, mode: 'readonly' })`. | Same as `transact`, except `mode` is not accepted. | The `Transactable` instance |
-| `readwrite(effect, options)` | Function | Shorthand for `transact(effect, { ...options, mode: 'readwrite' })`. | Same as `transact`, except `mode` is not accepted. | The `Transactable` instance |
-| `versionchange(effect, options)` | Function | Shorthand for `transact(effect, { ...options, mode: 'versionchange' })`. | Same as `transact`, except `mode` is not accepted. | The `Transactable` instance |
+| `readonly(effect, options)` | Function | Shorthand for `transact(...)` with `mode: 'readonly'`. | Same as `transact`, except `mode` is not accepted. | The `Transactable` instance |
+| `readwrite(effect, options)` | Function | Shorthand for `transact(...)` with `mode: 'readwrite'`. | Same as `transact`, except `mode` is not accepted. | The `Transactable` instance |
+| `versionchange(effect, options)` | Function | Shorthand for `transact(...)` with `mode: 'versionchange'`. | Same as `transact`, except `mode` is not accepted. | The `Transactable` instance |
 | `close()` | Function | Closes the IndexedDB database connection. | None | The `Transactable` instance |
 | `delete()` | Function | Deletes the IndexedDB database. | None | The `Transactable` instance |
-| `stop()` | Function | Stops all active event listeners. | None | The `Transactable` instance |
+| `stop()` | Function | Closes the database and stops any active event listeners. | None | The `Transactable` instance |
 :::
 
 
