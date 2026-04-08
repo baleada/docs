@@ -17,9 +17,9 @@ order: 0
 
 :::
 
-      ::: canCopy
+      ::: readerCanCopy
       ```js
-      const thing = new Stuff()
+      const thing = new Thing()
       ```
       :::
 
@@ -29,7 +29,7 @@ order: 0
 ### Rendered
 :::
 
-::: canCopy
+:::
 ```js
 const example = new Thing()
 ```
@@ -43,7 +43,7 @@ const example = new Thing()
 ::: ariaLabel="ProseAside props" classes="wide-5"
 | Prop | Type | Required | Default | Description |
 | --- | --- | --- | --- | --- |
-| `canCopy` | Boolean | no | `false` | Indicates whether or not `BaleadaProseCodeblock` should render the copy-to-clipboard button and icon. |
+| `readerCanCopy` | Boolean | no | `false` | Indicates whether or not `BaleadaProseCodeblock` should render the copy-to-clipboard button and icon. |
 | `hasLineNumbers` | Boolean | no | `false` | Indicates whether or not `BaleadaProseCodeblock` should render line numbers. |
 | `classes` | String | no | none | Adds additional classes to the component's root element. |
 :::
