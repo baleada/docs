@@ -45,6 +45,7 @@
     "vue-tsc": "^2.0.29"
   },
   "dependencies": {
+    "@alexvipond/llm-context": "^0.0.0",
     "@alexvipond/mulago": "^0.0.0",
     "@babel/runtime": "^7.25.0",
     "@baleada/logic": "^0.24.18",

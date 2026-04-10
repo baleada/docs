@@ -1,0 +1,774 @@
+# Context
+
+## Docs
+
+
+### src/prose/linear-numeric/class-references.md
+
+``````md
+---
+title: Class references
+publish: true
+order: 1
+---
+
+In this article, you'll find a class reference table for each of the properties customized by Baleada Tailwind Linear, matching up their linear numeric class names with the original Tailwind names.
+
+
+
+
+:::
+## Colors
+:::
+
+Blue is shown here as an example, but Baleada Linear Numeric includes all of the default Tailwind colors.
+
+Baleada Linear Numeric also includes Tailwind's default standalone colors `black`, `white`, and `transparent`.
+
+::: ariaLabel="Colors class reference"
+| Class | Tailwind equivalent | Value |
+| --- | --- | --- |
+| `.bg-blue-0.5` | `.bg-blue-50` | `#eff6ff` |
+| `.bg-blue-1` | `.bg-blue-100` | `#dbeafe` |
+| `.bg-blue-2` | `.bg-blue-200` | `#bfdbfe` |
+| `.bg-blue-3` | `.bg-blue-300` | `#93c5fd` |
+| `.bg-blue-4` | `.bg-blue-400` | `#60a5fa` |
+| `.bg-blue-5` | `.bg-blue-500` | `#3b82f6` |
+| `.bg-blue-6` | `.bg-blue-600` | `#2563eb` |
+| `.bg-blue-7` | `.bg-blue-700` | `#1d4ed8` |
+| `.bg-blue-8` | `.bg-blue-800` | `#1e40af` |
+| `.bg-blue-9` | `.bg-blue-900` | `#1e3a8a` |
+| `.bg-blue-9.5` | `.bg-blue-950` | `#172554` |
+:::
+
+
+:::
+## Spacing
+:::
+
+`height` is shown here as an example, but spacing affects several other Tailwind core plugins. [Visit the Tailwind docs](https://tailwindcss.com/docs/customizing-spacing) for a full list.
+
+::: ariaLabel="Spacing class reference"
+| Class | Tailwind equivalent | Value |
+| --- | --- | --- |
+| `.h-0` | `.h-0` | `0px` |
+| `.h-1` | `.h-1` | `0.25rem` |
+| `.h-2` | `.h-2` | `0.5rem` |
+| `.h-3` | `.h-3` | `0.75rem` |
+| `.h-4` | `.h-4` | `1rem` |
+| `.h-5` | `.h-5` | `1.25rem` |
+| `.h-6` | `.h-6` | `1.5rem` |
+| `.h-7` | `.h-7` | `1.75rem` |
+| `.h-8` | `.h-8` | `2rem` |
+| `.h-9` | `.h-9` | `2.25rem` |
+| `.h-10` | `.h-10` | `2.5rem` |
+| `.h-11` | `.h-11` | `2.75rem` |
+| `.h-12` | `.h-12` | `3rem` |
+| `.h-13` | `.h-14` | `3.5rem` |
+| `.h-14` | `.h-16` | `4rem` |
+| `.h-15` | `.h-20` | `5rem` |
+| `.h-16` | `.h-24` | `6rem` |
+| `.h-17` | `.h-28` | `7rem` |
+| `.h-18` | `.h-32` | `8rem` |
+| `.h-19` | `.h-36` | `9rem` |
+| `.h-20` | `.h-40` | `10rem` |
+| `.h-21` | `.h-44` | `11rem` |
+| `.h-22` | `.h-48` | `12rem` |
+| `.h-23` | `.h-52` | `13rem` |
+| `.h-24` | `.h-56` | `14rem` |
+| `.h-25` | `.h-60` | `15rem` |
+| `.h-26` | `.h-64` | `16rem` |
+| `.h-27` | `.h-72` | `18rem` |
+| `.h-28` | `.h-80` | `20rem` |
+| `.h-29` | `.h-96` | `24rem` |
+| `.h-px-1` | `.h-px` | `1px` |
+| `.h-0.5` | `.h-0.5` | `0.125rem` |
+| `.h-1.5` | `.h-1.5` | `0.375rem` |
+| `.h-2.5` | `.h-2.5` | `0.625rem` |
+| `.h-3.5` | `.h-3.5` | `0.875rem` |
+:::
+
+
+:::
+## Blur
+:::
+
+::: ariaLabel="Blur class reference"
+| Class | Tailwind equivalent | Value |
+| --- | --- | --- |
+| `.blur-0` | `.blur-0` | `0` |
+| `.blur-3` | `.blur-sm` | `4px` |
+| `.blur-4` | `.blur` | `8px` |
+| `.blur-5` | `.blur-md` | `12px` |
+| `.blur-6` | `.blur-lg` | `16px` |
+| `.blur-7` | `.blur-xl` | `24px` |
+| `.blur-8` | `.blur-2xl` | `40px` |
+| `.blur-9` | `.blur-3xl` | `64px` |
+:::
+
+
+:::
+## Border radius
+:::
+
+::: ariaLabel="Border radius class reference"
+| Class | Tailwind equivalent | Value |
+| --- | --- | --- |
+| `.rounded-0` | `.rounded-none` | `0px` |
+| `.rounded-3` | `.rounded-sm` | `0.125rem` |
+| `.rounded-4` | `.rounded` | `0.25rem` |
+| `.rounded-5` | `.rounded-md` | `0.375rem` |
+| `.rounded-6` | `.rounded-lg` | `0.5rem` |
+| `.rounded-7` | `.rounded-xl` | `0.75rem` |
+| `.rounded-8` | `.rounded-2xl` | `1rem` |
+| `.rounded-9` | `.rounded-3xl` | `1.5rem` |
+| `.rounded-full` | `.rounded-full` | `9999px` |
+:::
+
+
+:::
+## Border width
+:::
+
+::: ariaLabel="Border width class reference"
+| Class | Tailwind equivalent | Value |
+| --- | --- | --- |
+| `.border-0` | `.border-0` | `0px` |
+| `.border-4` | `.border` | `1px` |
+| `.border-5` | `.border-2` | `2px` |
+| `.border-6` | `.border-4` | `4px` |
+| `.border-7` | `.border-8` | `8px` |
+:::
+
+
+:::
+## Box shadow
+:::
+
+::: ariaLabel="Box shadow class reference"
+| Class | Tailwind equivalent | Value |
+| --- | --- | --- |
+| `.shadow-0` | `.shadow-none` | `none` |
+| `.shadow-3` | `.shadow-sm` | `0 1px 2px 0 rgb(0 0 0 / 0.05)` |
+| `.shadow-4` | `.shadow` | `0 1px 3px 0 rgb(0 0 0 / 0.1), 0 1px 2px -1px rgb(0 0 0 / 0.1)` |
+| `.shadow-5` | `.shadow-md` | `0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1)` |
+| `.shadow-6` | `.shadow-lg` | `0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1)` |
+| `.shadow-7` | `.shadow-xl` | `0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1)` |
+| `.shadow-8` | `.shadow-2xl` | `0 25px 50px -12px rgb(0 0 0 / 0.25)` |
+| `.-shadow-4` | `.shadow-inner` | `inset 0 2px 4px 0 rgb(0 0 0 / 0.05)` |
+:::
+
+
+:::
+## Drop shadow
+:::
+
+::: ariaLabel="Drop shadow class reference"
+| Class | Tailwind equivalent | Value |
+| --- | --- | --- |
+| `.drop-shadow-0` | `.drop-shadow-none` | `0 0 #0000` |
+| `.drop-shadow-3` | `.drop-shadow-sm` | `0 1px 1px rgb(0 0 0 / 0.05)` |
+| `.drop-shadow-4` | `.drop-shadow` | `0 1px 2px rgb(0 0 0 / 0.1),0 1px 1px rgb(0 0 0 / 0.06)` |
+| `.drop-shadow-5` | `.drop-shadow-md` | `0 4px 3px rgb(0 0 0 / 0.07),0 2px 2px rgb(0 0 0 / 0.06)` |
+| `.drop-shadow-6` | `.drop-shadow-lg` | `0 10px 8px rgb(0 0 0 / 0.04),0 4px 3px rgb(0 0 0 / 0.1)` |
+| `.drop-shadow-7` | `.drop-shadow-xl` | `0 20px 13px rgb(0 0 0 / 0.03),0 8px 5px rgb(0 0 0 / 0.08)` |
+| `.drop-shadow-8` | `.drop-shadow-2xl` | `0 25px 25px rgb(0 0 0 / 0.15)` |
+:::
+
+
+:::
+## Flex grow
+:::
+
+::: ariaLabel="Flex grow class reference"
+| Class | Tailwind equivalent | Value |
+| --- | --- | --- |
+| `.flex-grow-0` | `.flex-grow-0` | `0` |
+| `.flex-grow-4` | `.flex-grow` | `1` |
+:::
+
+
+:::
+## Flex shrink
+:::
+
+::: ariaLabel="Flex shrink class reference"
+| Class | Tailwind equivalent | Value |
+| --- | --- | --- |
+| `.flex-shrink-0` | `.flex-shrink-0` | `0` |
+| `.flex-shrink-4` | `.flex-shrink` | `1` |
+:::
+
+
+:::
+## Font size
+:::
+
+::: ariaLabel="Font size class reference"
+| Class | Tailwind equivalent | Value |
+| --- | --- | --- |
+| `.text-2` | `.text-xs` | `0.75rem,[object Object]` |
+| `.text-3` | `.text-sm` | `0.875rem,[object Object]` |
+| `.text-4` | `.text-base` | `1rem,[object Object]` |
+| `.text-5` | `.text-lg` | `1.125rem,[object Object]` |
+| `.text-6` | `.text-xl` | `1.25rem,[object Object]` |
+| `.text-7` | `.text-2xl` | `1.5rem,[object Object]` |
+| `.text-8` | `.text-3xl` | `1.875rem,[object Object]` |
+| `.text-9` | `.text-4xl` | `2.25rem,[object Object]` |
+| `.text-10` | `.text-5xl` | `3rem,[object Object]` |
+| `.text-11` | `.text-6xl` | `3.75rem,[object Object]` |
+| `.text-12` | `.text-7xl` | `4.5rem,[object Object]` |
+| `.text-13` | `.text-8xl` | `6rem,[object Object]` |
+| `.text-14` | `.text-9xl` | `8rem,[object Object]` |
+:::
+
+
+:::
+## Font weight
+:::
+
+::: ariaLabel="Font weight class reference"
+| Class | Tailwind equivalent | Value |
+| --- | --- | --- |
+| `.font-1` | `.font-thin` | `100` |
+| `.font-2` | `.font-extralight` | `200` |
+| `.font-3` | `.font-light` | `300` |
+| `.font-4` | `.font-normal` | `400` |
+| `.font-5` | `.font-medium` | `500` |
+| `.font-6` | `.font-semibold` | `600` |
+| `.font-7` | `.font-bold` | `700` |
+| `.font-8` | `.font-extrabold` | `800` |
+| `.font-9` | `.font-black` | `900` |
+:::
+
+
+:::
+## Letter spacing
+:::
+
+::: ariaLabel="Letter spacing class reference"
+| Class | Tailwind equivalent | Value |
+| --- | --- | --- |
+| `.tracking-0` | `.tracking-normal` | `0em` |
+| `.tracking-1` | `.tracking-wide` | `0.025em` |
+| `.tracking-2` | `.tracking-wider` | `0.05em` |
+| `.tracking-3` | `.tracking-widest` | `0.1em` |
+| `.-tracking-2` | `.tracking-tighter` | `-0.05em` |
+| `.-tracking-1` | `.tracking-tight` | `-0.025em` |
+:::
+
+
+:::
+## Line height
+:::
+
+::: ariaLabel="Line height class reference"
+| Class | Tailwind equivalent | Value |
+| --- | --- | --- |
+| `.leading-0` | `.leading-none` | `1` |
+| `.leading-2` | `.leading-tight` | `1.25` |
+| `.leading-3` | `.leading-snug` | `1.375` |
+| `.leading-4` | `.leading-normal` | `1.5` |
+| `.leading-5` | `.leading-relaxed` | `1.625` |
+| `.leading-6` | `.leading-loose` | `2` |
+| `.leading-rem-3` | `.leading-3` | `.75rem` |
+| `.leading-rem-4` | `.leading-4` | `1rem` |
+| `.leading-rem-5` | `.leading-5` | `1.25rem` |
+| `.leading-rem-6` | `.leading-6` | `1.5rem` |
+| `.leading-rem-7` | `.leading-7` | `1.75rem` |
+| `.leading-rem-8` | `.leading-8` | `2rem` |
+| `.leading-rem-9` | `.leading-9` | `2.25rem` |
+| `.leading-rem-10` | `.leading-10` | `2.5rem` |
+:::
+
+
+:::
+## Max width
+:::
+
+::: ariaLabel="Max width class reference"
+| Class | Tailwind equivalent | Value |
+| --- | --- | --- |
+| `.max-w-0` | `.max-w-none` | `none` |
+| `.max-w-1` | `.max-w-xs` | `20rem` |
+| `.max-w-2` | `.max-w-sm` | `24rem` |
+| `.max-w-3` | `.max-w-md` | `28rem` |
+| `.max-w-4` | `.max-w-lg` | `32rem` |
+| `.max-w-5` | `.max-w-xl` | `36rem` |
+| `.max-w-6` | `.max-w-2xl` | `42rem` |
+| `.max-w-7` | `.max-w-3xl` | `48rem` |
+| `.max-w-8` | `.max-w-4xl` | `56rem` |
+| `.max-w-9` | `.max-w-5xl` | `64rem` |
+| `.max-w-10` | `.max-w-6xl` | `72rem` |
+| `.max-w-11` | `.max-w-7xl` | `80rem` |
+| `.max-w-full` | `.max-w-full` | `100%` |
+| `.max-w-min` | `.max-w-min` | `min-content` |
+| `.max-w-max` | `.max-w-max` | `max-content` |
+| `.max-w-prose` | `.max-w-prose` | `65ch` |
+| `.max-w-screen-sm` | `.max-w-screen-sm` | `640px` |
+| `.max-w-screen-md` | `.max-w-screen-md` | `768px` |
+| `.max-w-screen-lg` | `.max-w-screen-lg` | `1024px` |
+| `.max-w-screen-xl` | `.max-w-screen-xl` | `1280px` |
+| `.max-w-screen-2xl` | `.max-w-screen-2xl` | `1536px` |
+:::
+
+
+:::
+## Outline offset
+:::
+
+::: ariaLabel="Outline offset class reference"
+| Class | Tailwind equivalent | Value |
+| --- | --- | --- |
+| `.ring-offset-0` | `.ring-offset-0` | `0px` |
+| `.ring-offset-1` | `.ring-offset-1` | `1px` |
+| `.ring-offset-2` | `.ring-offset-2` | `2px` |
+| `.ring-offset-3` | `.ring-offset-4` | `4px` |
+| `.ring-offset-4` | `.ring-offset-8` | `8px` |
+:::
+
+
+:::
+## Outline width
+:::
+
+::: ariaLabel="Outline width class reference"
+| Class | Tailwind equivalent | Value |
+| --- | --- | --- |
+| `.ring-0` | `.ring-0` | `0px` |
+| `.ring-1` | `.ring-1` | `1px` |
+| `.ring-2` | `.ring-2` | `2px` |
+| `.ring-3` | `.ring-4` | `4px` |
+| `.ring-4` | `.ring-8` | `8px` |
+:::
+
+
+:::
+## Ring offset width
+:::
+
+::: ariaLabel="Ring offset width class reference"
+| Class | Tailwind equivalent | Value |
+| --- | --- | --- |
+| `.ring-offset-0` | `.ring-offset-0` | `0px` |
+| `.ring-offset-1` | `.ring-offset-1` | `1px` |
+| `.ring-offset-2` | `.ring-offset-2` | `2px` |
+| `.ring-offset-3` | `.ring-offset-4` | `4px` |
+| `.ring-offset-4` | `.ring-offset-8` | `8px` |
+:::
+
+
+:::
+## Ring width
+:::
+
+::: ariaLabel="Ring width class reference"
+| Class | Tailwind equivalent | Value |
+| --- | --- | --- |
+| `.ring-0` | `.ring-0` | `0px` |
+| `.ring-2` | `.ring-1` | `1px` |
+| `.ring-3` | `.ring-2` | `2px` |
+| `.ring-4` | `.ring` | `3px` |
+| `.ring-5` | `.ring-4` | `4px` |
+| `.ring-6` | `.ring-8` | `8px` |
+:::
+
+
+:::
+## Text decoration thickness
+:::
+
+::: ariaLabel="Text decoration thickness class reference"
+| Class | Tailwind equivalent | Value |
+| --- | --- | --- |
+| `.decoration-0` | `.decoration-0` | `0px` |
+| `.decoration-1` | `.decoration-1` | `1px` |
+| `.decoration-2` | `.decoration-2` | `2px` |
+| `.decoration-3` | `.decoration-4` | `4px` |
+| `.decoration-4` | `.decoration-8` | `8px` |
+| `.decoration-auto` | `.decoration-auto` | `auto` |
+| `.decoration-from-font` | `.decoration-from-font` | `from-font` |
+:::
+
+
+:::
+## Text underline offset
+:::
+
+::: ariaLabel="Text underline offset class reference"
+| Class | Tailwind equivalent | Value |
+| --- | --- | --- |
+| `.underline-0` | `.underline-0` | `0px` |
+| `.underline-1` | `.underline-1` | `1px` |
+| `.underline-2` | `.underline-2` | `2px` |
+| `.underline-3` | `.underline-4` | `4px` |
+| `.underline-4` | `.underline-8` | `8px` |
+| `.underline-auto` | `.underline-auto` | `auto` |
+:::
+
+
+:::
+## Transition duration
+:::
+
+::: ariaLabel="Transition duration class reference"
+| Class | Tailwind equivalent | Value |
+| --- | --- | --- |
+| `.duration-1` | `.duration-75` | `75ms` |
+| `.duration-2` | `.duration-100` | `100ms` |
+| `.duration-3` | `.duration-150` | `150ms` |
+| `.duration-4` | `.duration-200` | `200ms` |
+| `.duration-5` | `.duration-300` | `300ms` |
+| `.duration-6` | `.duration-500` | `500ms` |
+| `.duration-7` | `.duration-700` | `700ms` |
+| `.duration-8` | `.duration-1000` | `1000ms` |
+:::
+
+
+:::
+## Transition delay
+:::
+
+::: ariaLabel="Transition delay class reference"
+| Class | Tailwind equivalent | Value |
+| --- | --- | --- |
+| `.delay-1` | `.delay-75` | `75ms` |
+| `.delay-2` | `.delay-100` | `100ms` |
+| `.delay-3` | `.delay-150` | `150ms` |
+| `.delay-4` | `.delay-200` | `200ms` |
+| `.delay-5` | `.delay-300` | `300ms` |
+| `.delay-6` | `.delay-500` | `500ms` |
+| `.delay-7` | `.delay-700` | `700ms` |
+| `.delay-8` | `.delay-1000` | `1000ms` |
+:::
+
+``````
+
+### src/prose/linear-numeric/index.md
+
+``````md
+---
+title: What is Baleada Linear Numeric?
+source: tailwind-linear-numeric
+publish: true
+order: 0
+summary: A Tailwind plugin that configures Tailwind's default plugins with a linear numeric naming convention
+---
+
+Baleada Linear Numeric is a function that returns configurations for [Tailwind](https://tailwindcss.com) default plugins, aliasing all class names to use a linear numeric naming convention.
+
+By default, it produces class names like the following:
+- `.text-4` instead of `.text-base`
+- `.font-1` instead of `.font-hairline`
+- `.mt-8`, `.mt-9`, and `.mt-10`, instead of `.mt-10`, `.mt-12`, and `.mt-16`
+
+It can be customized to produce classes like `.text-40` or `.text-400` instead of `.text-4`.
+
+If you're familiar with the concept of a linear numeric naming convention in Tailwind, you can [jump to the Installation section](#installation). Otherwise, the next section has some helpful background info!
+
+:::
+## WTF is a "linear numeric naming convention"?
+:::
+
+Tailwind uses several different naming conventions for its utility classes.
+
+Some classes, like [transition duration](https://tailwindcss.com/docs/transition-duration), use literal values from the underlying design system:
+- `duration-75` for `75ms`
+- `duration-100` for `100ms`
+- `duration-150` for `150ms`
+
+
+Other classes use "T-shirt sizes" in their class names. For example, here are the default [font size](https://tailwindcss.com/docs/font-size) classes:
+- `.text-xs`
+- `.text-sm`
+- `.text-base`
+- `.text-lg`
+- `.text-xl`
+- `.text-2xl`
+- etc.
+
+Other classes, like the ones for font weight, use more semantic words:
+- `.font-hairline`
+- `.font-thin`
+- `.font-light`
+- `.font-normal`
+- `.font-medium`
+- `.font-semibold`
+- `.font-bold`
+- `.font-extrabold`
+- `.font-black`
+
+Spacing utilities ([margin](https://tailwindcss.com/docs/margin), [padding](https://tailwindcss.com/docs/padding), [width](https://tailwindcss.com/docs/width), [height](https://tailwindcss.com/docs/height), and [gap](https://tailwindcss.com/docs/gap)), use proportional numeric names. This means that the classes are suffixed with numbers that are proportional to the underlying values.
+
+Spacing utilities multiply the underlying `rem` value by 4 to derive the class name. Here are a few examples from the padding utilities:
+- `.p-1` for `0.25rem`
+- `.p-5` for `1.25rem`
+- `.p-24` for `6rem`
+- `.p-64` for `16rem`
+
+And finally, Tailwind's [color](https://tailwindcss.com/docs/color) utilities use a **linear numeric naming convention**. This means that all class suffixes are numbers that increment linearly from one value to the next:
+- `.bg-blue-100`
+- `.bg-blue-200`
+- `.bg-blue-300`
+- `.bg-blue-400`
+- `.bg-blue-500`
+- `.bg-blue-600`
+- `.bg-blue-700`
+- `.bg-blue-800`
+- `.bg-blue-900`
+
+**Literal**, **T-shirt**, **semantic**, **proportional numeric**, and **linear numeric**—all of these naming conventions have their pros and cons. Baleada Linear Numeric will help you explore the pros and cons of linear numeric class names in your own projects.
+
+
+:::
+## Installation
+:::
+
+Baleada Linear Numeric can be installed from NPM:
+
+:::
+```bash
+npm i @baleada/tailwind-linear-numeric --save-dev
+```
+:::
+
+
+:::
+## Usage
+:::
+
+To get started, require `@baleada/tailwind-linear-numeric` in your [Tailwind config file](https://tailwindcss.com/docs/configuration). The default export is a function, which we'll call `getLinearNumeric` in this example.
+
+:::
+```js
+// tailwind.config.js
+const getLinearNumeric = require('@baleada/tailwind-linear-numeric')
+```
+:::
+
+The `getLinearNumeric` function returns configurations for the following properties of the `theme` object in your config file:
+- `colors`
+- `spacing`
+- `blur`
+- `borderRadius`
+- `borderWidth`
+- `boxShadow`
+- `dropShadow`
+- `flexGrow`
+- `flexShrink`
+- `fontSize`
+- `fontWeight`
+- `letterSpacing`
+- `lineHeight`
+- `maxWidth`
+- `outlineOffset`
+- `outlineWidth`
+- `ringOffsetWidth`
+- `ringWidth`
+- `textDecorationThickness`
+- `textUnderlineOffset`
+- `transitionDuration`
+- `transitionDelay`
+
+The `linearNumeric` function does not configure the following properties, because their default configurations coincidentally follow all the rules in Baleada Linear Numeric's naming convention:
+
+- `maxHeight`
+- `minHeight`
+- `minWidth`
+
+The function accepts one parameter: an object with options (none of which are required). Here's a full breakdown of that object:
+
+::: ariaLabel="linearNumeric options schema" classes="wide-4"
+| Property | Type | Default | Value description |
+| --- | --- | --- | --- |
+| `only` | String, Array of Strings | An array of all the properties listed above | <p>Indicates which properties' configurations should be returned by `linearNumeric`.</p><p>When `only` is an Array, `linearNumeric` will return a config object with a key for each item in the array.</p><p>When `only` is a String, `linearNumeric` will directly return the config object for that property.</p> |
+| `increment` | Number | `100` | <p>Determines how much the class name is incremented for each step up in size.</p><p>For example, if you pass `1` as the `increment`, you'll get class names like `.text-4` and `.text-5` instead of the default `.text-400` and `.text-500`.</p> |
+:::
+
+If you want to use linear numeric naming for all of these properties, simply spread the output of `linearNumeric` into your config file.
+
+:::
+```js
+// tailwind.config.js
+const linearNumeric = require('@baleada/tailwind-linear-numeric')
+
+module.exports = {
+  theme: {
+    ...linearNumeric() // Overrides the default theme (only the properties listed above)
+  }
+}
+```
+:::
+
+If you only want to use linear numeric naming for some properties, use the `only` option to restrict your list.
+
+:::
+```js
+// tailwind.config.js
+const linearNumeric = require('@baleada/tailwind-linear-numeric')
+
+module.exports = {
+  theme: {
+    ...linearNumeric({ only: ['spacing', 'minHeight'] }) // Overrides the default theme's spacing and minHeight values, but you'll still get default classes (e.g. .shadow-md) for other properties
+  }
+}
+```
+:::
+
+::: type="info"
+The default configurations for `height`, `inset`, `width`, `margin`, `padding`, `translate`, `gap`, `space`, and `divide` all reference your `spacing` object. `linearNumeric`'s `spacing` configuration will adjust all of those utility classes.
+:::
+
+To customize the increment that gets used in your class names, use the `increment` option.
+
+:::
+```js
+// tailwind.config.js
+const linearNumeric = require('@baleada/tailwind-linear-numeric')
+
+module.exports = {
+  theme: {
+    ...linearNumeric({ increment: 10 }) // Produces classes like .text-40 and .text-50 instead of the default .text-4 and .text-5
+  }
+}
+```
+:::
+
+You can call `linearNumeric` as many times as you want, so feel free to use the `only` and `increment` options to fine tune class names for individual properties.
+
+:::
+```js
+// tailwind.config.js
+const linearNumeric = require('@baleada/tailwind-linear-numeric')
+
+module.exports = {
+  theme: {
+    ...linearNumeric({ only: ['fontSize'] }), // .text-4, .text-5, etc.
+    ...linearNumeric({ only: ['fontWeight'], increment: 100 }) // .font-400, .font-500, etc.
+  }
+}
+```
+:::
+
+Almost all configurations returned by `linearNumeric` are plain JavaScript objects, so you can typically spread them out alongside any additional custom values you want to add.
+
+If you're using `linearNumeric` to add new values inside of one existing property, you can pass a String to the `only` property to make sure that it directly returns the config object for that property:
+
+:::
+```js
+// tailwind.config.js
+const linearNumeric = require('@baleada/tailwind-linear-numeric')
+
+module.exports = {
+  theme: {
+    borderWidth: {
+      '55': '3px',
+      ...linearNumeric({ only: 'borderWidth', increment: '10' }), // Spreads in all the default borderWidth values
+    }
+  }
+}
+```
+:::
+
+To expand on that concept: `linearNumeric` returns a full colors object for the `colors` property. If you want to access a single color, you can pass `colors` to the `only` option, and tack on the color name right after your function call:
+
+:::
+```js
+// tailwind.config.js
+const linearNumeric = require('@baleada/tailwind-linear-numeric')
+
+module.exports = {
+  theme: {
+    colors: {
+      blue: linearNumeric({ only: 'colors', increment: 100 }).blue, // .bg-blue-100, .bg-blue-200, etc.
+      gray: {
+        ...linearNumeric({ only: 'colors' }).gray, // .bg-gray-1, .bg-gray-2, etc.
+        '10': 'hsla(217, 30%, 8%, 1.0)',
+      },
+      // Also, don't forget to add black, white, and transparent, if you need them!
+    }
+  }
+}
+```
+:::
+
+Also, be aware that Baleada Linear Numeric _does_ include Tailwind's default standalone colors, `black`, `white`, and `transparent`:
+
+:::
+```js
+// tailwind.config.js
+const linearNumeric = require('@baleada/tailwind-linear-numeric')
+
+module.exports = {
+  theme: {
+    colors: {
+      // These colors don't increment, so they are unaffected by the increment option
+      black: linearNumeric({ only: 'colors' }).black,
+      white: linearNumeric({ only: 'colors' }).white,
+      transparent: linearNumeric({ only: 'colors' }).transparent,
+    }
+  }
+}
+```
+:::
+
+
+:::
+## Naming convention rules
+:::
+
+Ok, so Baleada Linear Numeric uses linear numeric names—but where does the numbering start? How are "default" classes handled?
+
+Baleada Linear Numeric follows the rules below, in their exact order, to answer those questions individually for each property:
+1. Properties that already have linear numeric names (just color, at the moment) are not changed from their original naming scheme, except to support different increments using `linearNumeric`'s `increment` option. Colors, for example, are only changed to support different increments.
+1. Anything with an underlying value of `0` or `none` (e.g. `.tracking-normal` and `shadow-none`) is named with the number `0`.
+2. If a the property has a `0` class, Baleada Linear Numeric aliases other class names so that they increment linearly from the `0` class (or decrement, if the property can have negative values).
+
+    If the Tailwind team clearly and explicitly intends certain values to be "in-between" the core set of values, Baleada Linear Numeric respects that categorization, and increments (or decrements) the class names by half.
+    
+    For example, Tailwind 2.0 introduced `0.5`, `1.5`, `2.5`, and `3.5` classes to the spacing scale, intending for those values to be used only when `1`, `2`, `3`, and `4` aren't quite precise enough. Rather than starting from `0` and assigning `1` to Tailwind's `0.5`, `2` to Tailwind's `1`, `3` to Tailwind's `1.5`, and so on, Baleada Linear Numeric stays true to Tailwind's intention of those being in-between values, and [matches those names exactly](/docs/linear-numeric/class-references#spacing).
+3. If there is no `0` value for the property, but there is a value assigned to a `DEFAULT`, `normal`, or `base` key, Baleada Linear Numeric renames DEFAULT/normal/base with `4`. This follows the CSS convention of using `400` for normal font weight.
+
+    Then, Baleada Linear Numeric increments in both directions from the `4` class. Note that this sometimes results in certain properties (e.g. `borderWidth`) having `4` classes, but not having classes for `1`, `2`, or `3`.
+
+    Tailwind's `.shadow-inner` is treated as a default negative shadow, and is assigned a key of `-4` (which produces the class `.-shadow-4`).
+4. Proportions (e.g. `full: 100%`, `screen: 100vh`), key words (e.g. `auto` and `outline`), and screen breakpoints (applicable for `max-width` utilities) are left unchanged.
+5. If a default Tailwind property includes a secondary set of values with different units, the Baleada Linear Numeric follows all the above rules to name those secondary values' classes, and finally includes the unit (and an extra hyphen) in the middle of the class name.
+
+    For example, default `lineHeight` values include both relative values (e.g. `1`, `1.25`, etc.) and fixed values using `rem` units (e.g. `1rem`, `1.25rem`, etc.). Baleada Linear Numeric follows all the above naming rules to name the relative and fixed values, then, to avoid naming collisions, adds `-rem-` to the middle of the class name for all `rem` values.
+
+    This produces classes like `.leading-3` (relative line height of `1.375`) and `.leading-rem-3` (fixed line height of `0.75rem`).
+
+    Note that this also happens with `spacing` which produces classes like `w-px` using Tailwind's default config. In Baleada Linear Numeric, that class becomes `w-px-1`.
+
+Once you get used to the naming convention, you'll find that classes become very easy to guess without visiting your config file or these docs.
+
+But, if you have any doubts, check out the [class references](/docs/tailwind-linear/class-references) to see classes are being generated for each property, how they match up with the original Tailwind classes, and what the underlying values are.
+
+
+:::
+## Language, compilation, browser support, and dependencies
+:::
+
+Baleada Linear Numeric is written in modern JavaScript, exported using CommonJS modules, and is not compiled. It's not designed to be used in the browser, but instead will most often be used in the Node environment where you are configuring Tailwind.
+
+Baleada Linear Numeric has no dependencies, although it does require Tailwind as a peer dependency.
+
+:::
+## Semantic versioning conventions
+:::
+
+In Baleada Linear Numeric, the only thing that will ever trigger a new major version is a change to the underlying naming convention outlined above.
+
+From time to time, Tailwind's default config file changes, usually to support new properties, and sometimes to expand the design system and add values for existing properties. When this happens, any necessary updates to Baleada Linear Numeric will be released as a new minor version, even if the linear numeric naming convention gets applied in a different way.
+
+For example, Tailwind 1.2 introduced a new value for the `borderRadius` property, between two existing values, and it also added the `transitionDuration` and `strokeWidth` properties (among others). In response, Baleada Linear Numeric was updated in the following ways:
+- Baleada Linear Numeric's `borderRadius.5` was changed to `borderRadius.6`, and the new value was inserted as `borderRadius.5`.
+- The `transitionDuration` and `strokeWidth` properties were added to the config object returned by Baleada Linear Numeric
+- Baleada Linear Numeric released a new minor version
+
+After Tailwind 1.2 was released, anyone using the `.rounded-5` class generated by Baleada Linear Numeric would have had to change all occurrences of that class to `.rounded-6` in their code. 
+
+This kind of impact is characteristic of a breaking change and a new major version. However, since it was a Tailwind design system change and not a change to the rules of the linear numeric naming convention, only a new minor version was released.
+
+``````

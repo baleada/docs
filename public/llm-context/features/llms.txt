@@ -1,0 +1,4793 @@
+# Context
+
+## Docs
+
+
+### src/prose/features/utilities-overview.md
+
+``````md
+---
+title: Utilities
+publish: true
+order: 5
+---
+
+::: type="warning"
+Under construction 🚧
+:::
+
+``````
+
+### src/prose/features/extensions-overview.md
+
+``````md
+---
+title: Extensions
+publish: true
+order: 3
+---
+
+::: type="warning"
+Under construction 🚧
+:::
+
+``````
+
+### src/prose/features/combos-overview.md
+
+``````md
+---
+title: Combos
+publish: true
+order: 2
+---
+
+::: type="warning"
+Under construction 🚧
+:::
+
+``````
+
+### src/prose/features/index.md
+
+``````md
+---
+title: What is Baleada Features?
+source: vue-features
+publish: true
+order: 0
+summary: Vue 3 composables that lay the foundation for accessible, highly interactive, feature-rich custom components
+---
+
+Baleada Features is a collection of composables that implement all kinds of useful features in Vue 3:
+
+- Fine-grained press interactions, normalized across browsers, devices, and input types (mouse, touch, keyboard, etc.)
+- Focus trapping
+- Excel-inspired keyboard interactions for data grids, tables, single- and multi-select dropdowns, menus, and more
+- VS-Code-inspired undo/redo functionality for text inputs
+- Fuzzy matching for typeahead search on data grids, tables, select dropdowns, menus, and more
+- ARIA role & attribute management for complex, fully accessible custom components
+- First-class support for accessible labelling
+- Reactive tracking for various DOM element states (focus, hover, transition, size, intersection, etc.)
+- So, so much more
+
+Baleada Features doesn't include any markup or styles. It only ships composables, which you can use to power your own custom component library, with your own custom markup and styles.
+
+::: type="success"
+Check out ["Rethinking Reusability in Vue"](https://rethinking-reusability-in-vue.alexvipond.dev), a 150+ page deep dive in to the patterns, concepts, and Vue 3 best practices behind Baleada Features.
+
+Use code **BALEADA** for $15 off!
+:::
+
+
+:::
+## Installation
+:::
+
+Right now, Baleada Features is only implemented in [Vue 3](https://v3.vuejs.org):
+
+:::
+```bash
+npm i @baleada/vue-features
+```
+:::
+
+
+:::
+## Using functions
+:::
+
+The functions exported by Baleada Features fall into five categories:
+1. Interfaces
+2. Combos
+3. Extensions
+4. Affordances
+5. Transforms
+
+**Interfaces** are composables that add rich interactivity and accessibility to your markup.
+
+Interfaces include:
+- [`useButton`](/docs/features/interfaces/button)
+- [`useCheckbox`](/docs/features/interfaces/checkbox)
+- [`useDialog`](/docs/features/interfaces/dialog)
+- [`useGrid`](/docs/features/interfaces/grid)
+- [`useHead`](/docs/features/interfaces/head)
+- [`useLink`](/docs/features/interfaces/link)
+- [`useListbox`](/docs/features/interfaces/listbox)
+- [`useMenubar`](/docs/features/interfaces/menubar)
+- [`useSeparator`](/docs/features/interfaces/separator)
+- [`useTablist`](/docs/features/interfaces/tablist)
+- [`useTextbox`](/docs/features/interfaces/textbox)
+
+Jump to the [Using interfaces](#using-interfaces) section to learn more about basic interface usage.
+
+**Combos** are composables that combine multiple interfaces under the hood. Combos include:
+- [`useCombobox`](/docs/features/combos/combobox) (Combines [`useTextbox`](/docs/features/interfaces/textbox) with [`useListbox`](/docs/features/interfaces/listbox))
+- [`useMenu`](/docs/features/combos/menu) (Combines [`useButton`](/docs/features/interfaces/button) with [`useMenubar`](/docs/features/interfaces/menubar))
+- [`useModal`](/docs/features/combos/menu) (Combines [`useButton`](/docs/features/interfaces/button) with [`useDialog`](/docs/features/interfaces/dialog))
+- [`useSelect`](/docs/features/combos/select) (Combines [`useButton`](/docs/features/interfaces/button) with [`useListbox`](/docs/features/interfaces/listbox))
+
+Jump to the [Using combos](#using-combos) section to learn more about basic combo usage.
+
+**Extensions** are composables that track various DOM element states and/or add unique features to interfaces, combos, or plain HTML elements.
+
+Extensions include:
+- [`useBalanced`](/docs/features/extensions/balanced)
+- [`useButtonStorage`](/docs/features/extensions/button-storage)
+- [`useClosingCompletion`](/docs/features/extensions/closing-completion)
+- [`useMarkdownCompletion`](/docs/features/extensions/markdown-completion)
+- [`usePopup`](/docs/features/extensions/popup)
+- [`useRendering`](/docs/features/extensions/rendering)
+- [`useTablistStorage`](/docs/features/extensions/tablist-storage)
+- [`useTextboxStorage`](/docs/features/extensions/textbox-storage)
+- [`useCssAnimation`](/docs/features/extensions/with-css-animation)
+- [`useCssTransition`](/docs/features/extensions/with-css-transition)
+- [`useFocus`](/docs/features/extensions/with-focus)
+- [`useHover`](/docs/features/extensions/with-hover)
+- [`useIntersection`](/docs/features/extensions/with-intersection)
+- [`usePress`](/docs/features/extensions/with-press)
+- [`useSize`](/docs/features/extensions/with-size)
+
+Jump to the [Using extensions](#using-extensions) section to learn more about basic extension usage.
+
+**Affordances** are functions that implement certain features that are readily available in Vue templates, but are not so easy to figure out inside of composables.
+
+Affordances include:
+- [`bind`](/docs/features/affordances/bind)
+- [`identify`](/docs/features/affordances/identify)
+- [`model`](/docs/features/affordances/model)
+- [`on`](/docs/features/affordances/on)
+- [`show`](/docs/features/affordances/show)
+
+Affordances are primarily used internally by interfaces and extensions. However, they're exported publicly for authors who want to write their own composables, following the style and patterns of Baleada Features, and [organizing code by logical concern](https://www.youtube.com/watch?v=q4a115Kdla8).
+
+Jump to the [Using affordances](#using-affordances) section to learn more about basic affordance usage.
+
+**Transforms** are small utility functions for working with **function refs**, the awesome Vue feature that is the backbone of Baleada Features. For more info on function refs and how they're used in Baleada Features, see the [Element API](/docs/features/shared/element-api) guide.
+
+Transforms include:
+- [`createComponentRef`](/docs/features/transforms/component-ref)
+- [`createMaybeComponentRef`](/docs/features/transforms/maybe-component-ref)
+- [`createMultiRef`](/docs/features/transforms/multi-ref)
+
+Visit any transform's dedicated guide to learn more about its use cases and usage.
+
+
+:::
+### Using interfaces
+:::
+
+Import any interface to start using it in your Vue component. Most often, you'll use interfaces in `script setup`:
+
+:::
+```html
+<script setup>
+import { useTablist } from '@baleada/vue-features'
+
+const tablist = useTablist(...)
+</script>
+```
+:::
+
+Every interface accepts only one parameter: an `options` object that customizes basic functionality. Every interface returns an object with tools you can use to set up and control your UI.
+
+:::
+```html
+<script setup>
+import { useTextbox } from '@baleada/vue-features'
+
+// For example, use the `options` object to customize
+// the initial value of a textbox:
+const textbox = useTextbox({ initialValue: 'Hello world' })
+
+function handleUndoButtonClick () {
+  // Use the `undo` method of the returned `textbox`
+  // object to programmatically undo changes:
+  textbox.undo()
+}
+</script>
+```
+:::
+
+To learn more, visit the docs for each interface exported by Baleada Features. For a complete list of available interfaces, see the **Interfaces** section under the **Features** heading in the left sidebar.
+
+
+:::
+### Using combos
+:::
+
+Import any combo to start using it in your Vue component. Most often, you'll use combos in `script setup`:
+
+:::
+```html
+<script setup>
+import { useSelect } from '@baleada/vue-features'
+
+const select = useSelect(...)
+</script>
+```
+:::
+
+Every combo accepts only one parameter: an `options` object that customizes basic functionality. Every combo returns an object with tools you can use to set up and control your UI.
+
+:::
+```html
+<script setup>
+import { useSelect } from '@baleada/vue-features'
+
+// For example, use the `options` object to customize
+// the initially selected value of the select's listbox
+// ("select" is a combination of a listbox and a button):
+const select = useSelect({
+  listbox: { multiselectable: true, initialSelected: [3, 6] }
+})
+</script>
+```
+:::
+
+To learn more, visit the docs for each combo exported by Baleada Features. For a complete list of available combos, see the **Combos** section under the **Features** heading in the left sidebar.
+
+
+:::
+### Using extensions
+:::
+
+Import any extension to start using it in your Vue component. Most often, you'll use extensions in `script setup`:
+
+:::
+```html
+<script setup>
+import { useTextbox, useTextboxStorage } from '@baleada/vue-features'
+
+// Set up a textbox interface
+const textbox = useTextbox()
+
+// To extend your `textbox`'s functionality, pass it into the
+// `useTextboxStorage` extension.
+//
+// Now, the textbox's value will automatically get stored in 
+// `localStorage`, and when the component is mounted, your 
+// `textbox` will update its value if `localStorage` has 
+// any contents.
+const storage = useTextboxStorage(textbox, { key: 'my textbox' })
+</script>
+```
+:::
+
+As their first parameter, extensions can accept one of three things:
+- The return value of a Baleada Features interface function
+- OR an interface included in the return value of a combo function (for example, you can pass `useSelect().listbox` to an extension)
+- OR a reactive reference to an HTML element
+
+Not every extension accepts all of these things, though. `useMarkdownCompletion`, for example, specifically accepts the `textbox` object returned from the `useTextbox` interface, and won't accept any other interface objects, nor a reactive reference to an HTML element.
+
+The docs for each extension, along with TypeScript types, will let you know what the extension accepts as valid first parameters.
+
+`useSize`, for example, can accept any of those three options:
+
+:::
+```html
+<script setup>
+import { ref, onMounted } from 'vue'
+import { useSize } from '@baleada/vue-features'
+
+const body = ref()
+onMounted(() = body.value = document.body)
+
+// We could pass an interface object as the first argument,
+// but in this example, we'll pass a reactive reference to
+// the document body:
+const size = useSize(body)
+</script>
+```
+:::
+
+As the second parameter, many extensions also accept an `options` object that customizes functionality.
+
+Every extension returns an object with tools you can use to set up and control your extended functionality.
+
+:::
+```html
+<script setup>
+import { ref, readonly, watchEffect } from 'vue'
+import { useSize } from '@baleada/vue-features'
+
+const body = ref()
+onMounted(() = body.value = document.body)
+
+// Optionally use `readonly` to unwrap all refs, so
+// everything can be accessed reactively without using
+// `.value`:
+const size = readonly(useSize(body))
+
+const addOrientationClass = () => {
+  document.body.classList.add(`orientation-${size.orientation}`)
+}
+
+const cleanupOrientationClasses = () => {
+  document.body.classList.remove(
+    'orientation-landscape',
+    'orientation-portrait',
+    'orientation-none'
+  )
+}
+
+watchEffect(() => {
+  // Clean up any previous effects
+  cleanupOrientationClasses()
+  
+  // Reactively add a class to the body based on its orientation:
+  addOrientationClass()
+})
+</script>
+```
+:::
+
+To learn more, visit the docs for each extension exported by Baleada Features. For a complete list of available extensions, see the **Extensions** section under the **Features** heading in the left sidebar.
+
+
+:::
+### Using affordances
+:::
+
+Baleada Features' Vue implementation also exports "affordances": functions that re-implement certain features that are readily available in Vue templates, but are not so easy to figure out inside composables.
+
+:::
+```js
+import { bind, on, show, model } from '@baleada/vue-features'
+```
+:::
+
+Vue templates, for example, allow you to easily bind static reactive data to the attributes of any element:
+
+:::
+```html
+<!-- MyComponent.vue -->
+<template>
+  <div
+    role="tab"
+    :aria-selected="isSelected"
+    :class="isSelected ? 'border-blue-600' : 'border-gray-200'"
+  >
+    ...
+  </div>
+</template>
+```
+:::
+
+Inside a composable, it's not obvious how to properly recreate this behavior, but Baleada Features' `bind` affordance makes it a cinch:
+
+:::
+```ts
+// Inside script setup
+import { bind } from '@baleada/vue-features'
+
+const element = ref<HTMLElement>(null),
+      isSelected = computed(...)
+
+bind(
+  element,
+  {
+    // bind can assign static values
+    role: 'tab',
+    // But it really shines with reactive values
+    ariaSelected: isSelected,
+    class: computed(() => 
+      isSelected.value 
+        ? 'border-blue-600' 
+        : 'border-gray-200'
+    ),
+  }
+)
+```
+:::
+
+Affordances are primarily used internally by interfaces and extensions. However, they're exported publicly for authors who want to write their own composables, following the style and patterns of Baleada Features, and [organizing code by logical concern](https://www.youtube.com/watch?v=q4a115Kdla8)
+
+To learn more, visit the docs for each affordance exported by Baleada Features. For a complete list of available affordances, see the **Affordances** section under the **Features** heading in the left sidebar.
+
+``````
+
+### src/prose/features/interfaces-overview.md
+
+``````md
+---
+title: Boxes
+publish: true
+order: 1
+---
+
+::: type="warning"
+Under construction 🚧
+:::
+
+
+- Boxes are composables
+
+``````
+
+### src/prose/features/affordances-overview.md
+
+``````md
+---
+title: Affordances
+publish: true
+order: 4
+---
+
+::: type="warning"
+Under construction 🚧
+:::
+
+``````
+
+### src/prose/features/01-concepts/element-metadata.md
+
+``````md
+---
+title: Element metadata
+publish: true
+order: 0
+---
+
+Baleada Features implements an **element metadata** system that allows you to associate metadata—like accessible labels, enabled/disabled state, and valid/invalid state—with elements in your UI.
+
+Element metadata is an object that gets passed as an argument to function ref getters from the [element API](/docs/features/element-api).
+
+For single elements, metadata is the first and only argument:
+
+:::
+```html
+<template>
+  <div :ref="elementApi.ref({ ... })">
+</template>
+
+<script setup lang="tsx">
+import { useElementApi } from '@baleada/vue-features'
+const elementApi = useElementApi({
+  defaultMeta: { ... }
+})
+</script>
+```
+:::
+
+For lists, metadata is the second argument, passed after `index`:
+
+:::
+```html
+<template>
+  <div
+    v-for="(item, index) in items"
+    :key="item"
+    :ref="listApi.ref(index, { ... })"
+  >
+</template>
+
+<script setup lang="tsx">
+import { useListApi } from '@baleada/vue-features'
+
+const items = ref([...])
+const listApi = useListApi({
+  defaultMeta: { ... }
+})
+</script>
+```
+:::
+
+For planes, metadata is the second argument, passed after `coordinates`:
+
+:::
+```html
+<template>
+  <div
+    v-for="(row, rowIndex) in rows"
+    :key="row"
+  >
+    <div
+      v-for="(cell, columnIndex) in row"
+      :key="cell"
+      :ref="planeApi.ref(
+        { row: rowIndex, column: columnIndex },
+        { ... }
+      )"
+    >
+  </div>
+</template>
+
+<script setup lang="tsx">
+import { usePlaneApi } from '@baleada/vue-features'
+
+const rows = ref([...])
+
+const planeApi = usePlaneApi({
+  defaultMeta: { ... }
+})
+</script>
+```
+:::
+
+Metadata passed in these objects can be **static** or **reactive**. If metadata is reactive, Baleada Features' internals will respond to changes in the reactive data, keeping interaction logic and accessibility features in sync with any changes.
+
+The exact properties and values that are supported in metadata objects vary for each of Baleada Features' [interfaces](/docs/features/interfaces). The documentation for each interface will detail the metadata properties that are supported.
+
+
+:::
+## Examples
+:::
+
+Below are some practical examples of the metadata system.
+
+
+:::
+### Textbox metadata
+:::
+
+:::
+```html
+<template>
+  <!--
+    Metadata can be static or reactive.
+
+    In this case, the label is static, while validity
+    and the error message ID are reactive.
+
+    Internally, Baleada Features will use this metadata
+    to bind the `aria-label`, `aria-description`, `aria-invalid`,
+    `aria-disabled`, and `aria-describedby` attributes, and
+    to set up UI logic for various interactions.
+    
+    The values of `aria-invalid`, `aria-disabled`, and
+    `aria-describedby` will update reactively when Vue
+    detects changes in the reactive data.
+  -->
+  <input
+    :ref="textbox.root.ref({
+      label: 'What\'s your favorite color?',
+      description: 'This field is required.',
+      validity,
+      ability,
+      errorMessage: errorMessage.id.value,
+    })"
+  />
+  <p
+    :ref="errorMessage.ref()"
+    v-if="validity === 'invalid'"
+  >
+    This field is required.
+  </p>
+</template>
+
+<script setup lang="tsx">
+import { useTextbox, useElementApi } from '@baleada/vue-features'
+
+const textbox = useTextbox()
+const errorMessage = useElementApi({ identifies: true })
+
+const validity = computed(() => (
+  textbox.text.string
+    ? 'valid'
+    : 'invalid'
+))
+
+const props = defineProps<{
+  formStatus: boolean,
+}>()
+const ability = computed(() => (
+  props.formStatus === 'editable'
+    ? 'enabled'
+    : 'disabled'
+))
+</script>
+```
+:::
+
+
+:::
+### Listbox metadata
+:::
+
+:::
+```html
+<template>
+  <!--
+  In this example, we're passing metadata to `listbox.root`
+  to set a static label and description, and a reactive
+  enabled/disabled state.
+  -->
+  <div
+    :ref="listbox.root.ref({
+      label: 'Select donation recipient',
+      description: 'This field is required.',
+      ability,
+    })"
+  >
+    <!-- 
+    For each option in the listbox, we're setting a label and
+    description, and also disabling any options that have
+    already received more than 10 donations.
+
+    We're also using the `candidate` property of metadata to tell
+    Baleada Features that the typeahead for this listbox should
+    only match against the `name` property of each organization,
+    instead of scanning the entire description.
+    -->
+    <div
+      v-for="({ name, why, donations }, index) in organizations"
+      :key="name"
+      :ref="listbox.options.ref(
+        index,
+        {
+          label: name,
+          description: why.join(' '),
+          ability: donations.length > 10 ? 'disabled' : 'enabled',
+          candidate: name,
+        }
+      )"
+    >
+      <h2>{{ name }}</h2>
+      <p v-for="p in why" :key="p">{{ p }}</p>
+    </div>
+  </div>
+</template>
+
+<script setup lang="tsx">
+import { useListbox } from '@baleada/vue-features'
+import { organizations } from '@alexvipond/mulago'
+
+const listbox = useListbox()
+
+const props = defineProps<{
+  formStatus: boolean,
+}>()
+const ability = computed(() => (
+  props.formStatus === 'editable'
+    ? 'enabled'
+    : 'disabled'
+))
+</script>
+```
+:::
+
+``````
+
+### src/prose/features/01-concepts/plane.md
+
+``````md
+---
+title: Plane
+source: extracted/plane.ts
+publish: true
+order: 0
+---
+
+Baleada Features uses the concept of a **plane** to represent a two-dimensional space of elements.
+
+Abstractly, a plane is an array of arrays. Each of those nested arrays contains items, which are the "points" in the plane.
+
+:::
+```js
+[
+  [1, 2, 3],
+  [4, 5, 6],
+  [7, 8, 9],
+]
+```
+:::
+
+To make this data structure a little easier to work with, Baleada Features implements and exports a `Plane` class, which is a simple extension of `Array`, with a few nice methods:
+
+::: ariaLabel="Plane methods" classes="wide-2 wide-3"
+| Method | Description | Parameters | Return value |
+| --- | --- | --- | --- |
+| `get` | Retrieves the value at a specific set of [coordinates](/docs/features/coordinates) | `{ row: number, column: number }` | The value at the specified coordinates |
+| `set` | Sets the value at a specific set of [coordinates](/docs/features/coordinates) | `{ row: number, column: number }`, `value: any` | `undefined` |
+| `points` | Iterates over every point in the plane, yielding the [coordinates](/docs/features/coordinates) and value of each point | - | An iterator |
+:::
+
+In day-to-day userland code, you'll virtually never interact with any `Plane`s directly. It's mainly useful for Baleada Features' internals, and it's useful to anyone authoring their own composables with Baleada Features' patterns.
+
+But just in case, here are a few examples of how you might use a `Plane`:
+
+:::
+```ts
+const plane = new Plane([
+  [1, 2, 3],
+  [4, 5, 6],
+  [7, 8, 9],
+])
+
+plane.get({ row: 1, column: 1 }) // 5
+
+plane.set({ row: 1, column: 1 }, 10)
+
+for (const { row, column, point } of plane.points()) {
+  console.log(`Row ${row}, column ${column}: ${point}`)
+}
+
+function isPlane (arrayOrPlane) {
+  return arrayOrPlane instanceof Plane
+}
+```
+:::
+
+::: type="warning"
+Currently the underlying assumption is that each item in a plane only fills the space of one point, and that all rows have the same number of points (i.e. the same number of columns).
+
+In the real world, planes don't always behave this way. For example, in tables and spreadsheet interfaces, cells can span multiple columns or rows.
+
+Supporting these use cases is definitely on the roadmap for Baleada Features, but right now, only simpler planes are supported.
+:::
+
+``````
+
+### src/prose/features/01-concepts/coordinates.md
+
+``````md
+---
+title: Coordinates
+source: extracted/coordinates.ts
+publish: true
+order: 0
+---
+
+Baleada Features uses the concept of **coordinates** to identify the position of an element in a [plane](/docs/features/concepts/plane).
+
+A set of coordinates is an object with two properties:
+
+::: ariaLabel="Coordinates properties"
+| Property | Type | Description |
+| --- | --- | --- |
+| `row` | `number` | In the plane, which is an array of arrays, the row is the index of the nested array that contains the element. |
+| `column` | `number` | In the plane, which is an array of arrays, the column is the index of the element within the nested array. |
+:::
+
+``````
+
+### src/prose/features/01-concepts/eligible-picking.md
+
+``````md
+---
+title: Eligible picking
+publish: true
+order: 0
+---
+
+::: type="warning"
+Under construction 🚧
+:::
+
+In Baleada Features, any interface that allows you to select or activate one or more elements relies on **eligible picking**: a group of functions that only pick elements that are considered "eligible".
+
+To be considered "eligible", an element's [ability](/docs/features/ability) must be `enabled`.
+
+Every interface that relies on eligible picking also includes all of the eligible picking functions in its return value. This guide serves as **shared documentation** for the eligible picking functions returned by interfaces.
+
+
+:::
+## Use eligible picking
+:::
+
+Eligible picking is always included in interfaces' return values as an object containing methods. Here are the properties on that object:
+
+::: ariaLabel="Eligible picking methods" classes="wide-1 wide-3 wide-4"
+| Property | Type | Description | Parameters |
+| --- | --- | --- | --- |
+| `exact(indexOrIndices[, options])` | Function | Picks a specific element, or more than one element, identified by the elements' index-based positions in your list. | <p>The index-based position of the element, or an array of index based positions for more than one element.</p><p>The optional `options` argument accepts options for the `pick` method of the [`Pickable`](/docs/logic/classes/Pickable) class.</p><p>It also accepts a `toEligibility` option. For more guidance on `toEligibility`, see the [Narrowing the definition of "eligible"](#narrowing-the-definition-of-eligible) section.</p> |
+| `next(index[, options])` | Function | Picks the next eligible element after a specific index | <p>The index to start searching from.</p><p>Interfaces that use eligible picking never allow `next` to loop around to the beginning of the list of elements to continue its search for an eligible picking target.</p><p>The optional `options` argument accepts options for the `pick` method of the [`Pickable`](/docs/logic/classes/Pickable) class.</p><p>It also accepts a `toEligibility` option. For more guidance on `toEligibility`, see the [Narrowing the definition of "eligible"](#narrowing-the-definition-of-eligible) section.</p> |
+| `previous(index[, options])` | Function | Picks the previous eligible element before a specific index | <p>The index to start searching from.</p><p>Interfaces that use eligible picking never allow `previous` to loop around to the beginning of the list of elements to continue its search for an eligible picking target.</p><p>The optional `options` argument accepts options for the `pick` method of the [`Pickable`](/docs/logic/classes/Pickable) class.</p><p>It also accepts a `toEligibility` option. For more guidance on `toEligibility`, see the [Narrowing the definition of "eligible"](#narrowing-the-definition-of-eligible) section.</p> |
+:::
+
+All eligible picking methods return a string that describes the element that was picked to:
+- Methods return `enabled` if the destination element is enabled
+- Methods return `none` if picking was unsuccessful (e.g. if you use `exact` to try and pick a disabled element)
+- Unlike the [eligible focus](/docs/features/shared/eligible-focus) methods, eligible picking methods never return `disabled`, because picking disabled elements is never allowed.
+
+
+:::
+### Narrowing the definition of "eligible" 
+:::
+
+In some situations, you might want to narrow the definition of "eligible". In other words, you might want to consider other information, beyond just the enabled/disabled state, before confirming that an element is actually an eligible picking target.
+
+For example, if you're building a spreadsheet interface, you might want an easy way to highlight the next cell that contains a formula. These app-specific conditions for picking get first-class support from Baleada Features' eligible picking functions.
+
+More specifically, you can use the optional `options` argument of the eligible picking functions to set up your additional conditions to determine what is considered "eligible".
+
+The `options` argument for each of those functions is an object. Here's a breakdown of that object:
+
+::: ariaLabel="Eligible picking methods" classes="wide-1 wide-4 wide-5"
+| Property | Type | Required | Default | Description |
+| --- | --- | --- | --- | --- |
+| `toEligibility({ index, element })` | Function | no | `() => 'eligible'` | <p>When eligible picking functions find an element that they consider to be an eligible picking target (based on the conditions listed at the beginning of this guide), they call the `toEligibility` function as an additional check.</p><p>`toEligibility` receives one argument: an object with two properties. The `index` property holds the index-based position of the element in its list, and the `element` property is a reference to the actual DOM element.</p><p>Given that argument, `toEligibility` should return the string `eligible` if the element is an eligible picking target, and the string `ineligible` if it is not an eligible picking target.</p> |
+| Any property that can be passed to the optional `options` argument of the `pick` method of the [`Pickable`](/docs/logic/classes/Pickable) class. | See `Pickable` docs | ... | ... | ... |
+:::
+
+Here's a code example of how to use the eligible picking functions return by [`useListbox`](/docs/features/interfaces/listbox) to select the next eligible element, where the definition of "eligible" has been narrowed:
+
+:::
+```ts
+import { useListbox } from '@baleada/vue-features'
+
+const listbox = useListbox()
+
+// Imagine a listbox whose list options are split into several groups.
+//
+// We can pass an index of `-1` and a custom `toEligibility` option
+// to the `listbox.select.next` function to select the first
+// enabled element in a specific group.
+listbox.select.next(-1, {
+  toEligibility: ({ index }) => {
+    return myOptions[index].group === 'Group 3'
+      ? 'eligible'
+      : 'ineligible'
+  }
+})
+```
+:::
+
+``````
+
+### src/prose/features/01-concepts/ability.md
+
+``````md
+---
+title: Ability
+source: extracted/ability.ts
+publish: true
+order: 0
+---
+
+Baleada Features uses the concept of **ability** to represent the enabled/disabled state of a form control, or one of the descendants of a form control (e.g. an option inside a listbox).
+
+You can use [element metadata](/docs/features/element-metadata) to tell Baleada Features whether an element is enabled or disabled, and Baleada Features will implement all the appropriate interaction logic and accessibility features.
+
+:::
+```html
+<template>
+  <input :ref="textbox.root.ref({ ability: 'disabled' })" />
+  
+  <div :ref="listbox.root.ref({ ability: 'enabled' })">
+    <div 
+      v-for="({ label, ability }, index) in listboxOptions"
+      :key="label"
+      :ref="listbox.options.ref(index, { ability })"
+    >
+      {{ label }}
+    </div>
+  </div>
+</template>
+
+<script setup lang="tsx">
+import { ref } from 'vue'
+import { useTextbox, useListbox } from '@baleada/vue-features'
+
+const textbox = useTextbox()
+const listbox = useListbox()
+
+const listboxOptions = [
+  { label: 'Option 1', ability: 'disabled' },
+  { label: 'Option 2', ability: 'enabled' },
+]
+</script>
+```
+:::
+
+Depending on your app, ability might be static or reactive. The example above shows a static ability, but you can also use reactive data.
+
+Baleada Features will respond to changes in the reactive data, keeping interaction logic and accessibility features in sync with any changes.
+
+:::
+```html
+<template>
+  <input :ref="textbox.root.ref({ ability })" />
+  
+  <div :ref="listbox.root.ref({ ability })">
+    <div 
+      v-for="(option, index) in listboxOptions"
+      :key="option"
+      :ref="listbox.options.ref(
+        index,
+        { ability: listboxOptionAbilities[index] }
+      )"
+    >
+      {{ option }}
+    </div>
+  </div>
+</template>
+
+<script setup lang="tsx">
+import { ref } from 'vue'
+import { useTextbox, useListbox } from '@baleada/vue-features'
+
+const textbox = useTextbox()
+const listbox = useListbox()
+
+const ability = ref('disabled')
+
+const listboxOptions = [
+  'Option 1',
+  'Option 2',
+]
+
+const listboxOptionAbilities = ref([
+  'disabled',
+  'enabled',
+])
+</script>
+```
+:::
+
+``````
+
+### src/prose/features/01-concepts/orientation.md
+
+``````md
+---
+title: Orientation
+source: extracted/orientation.ts
+publish: true
+order: 0
+---
+
+Baleada Features uses the concept of **orientation** to represent the axis along which a component's keyboard navigation operates.
+
+When a component is `'vertical'`, it uses the up and down arrow keys to navigate between items. When a component is `'horizontal'`, it uses the left and right arrow keys instead.
+
+Orientation also determines the value of the `aria-orientation` attribute on the component's root element, which communicates the navigation direction to assistive technologies.
+
+You pass orientation as an option to composables that support it, including `useListbox`, `useTablist`, `useMenubar`, `useGrid`, `useMenu`, and `useSelect`.
+
+:::
+```html
+<template>
+  <div :ref="listbox.root.ref()">
+    <div
+      v-for="(option, index) in options"
+      :key="option"
+      :ref="listbox.options.ref(index)"
+    >
+      {{ option }}
+    </div>
+  </div>
+</template>
+
+<script setup lang="tsx">
+import { useListbox } from '@baleada/vue-features'
+
+// Horizontal listbox—navigate with left and right arrow keys
+const listbox = useListbox({ orientation: 'horizontal' })
+const options = ['Option 1', 'Option 2', 'Option 3']
+</script>
+```
+:::
+
+Each composable has a default orientation that matches its most common usage. `useListbox`, `useMenubar`, `useMenu`, `useGrid`, and `useSelect` default to `'vertical'`. `useTablist` defaults to `'horizontal'`.
+
+``````
+
+### src/prose/features/01-concepts/validity.md
+
+``````md
+---
+title: Validity
+source: extracted/validity.ts
+publish: true
+order: 0
+---
+
+Baleada Features uses the concept of **validity** to represent the valid/invalid state of a form control.
+
+You can use [element metadata](/docs/features/element-metadata) to tell Baleada Features whether an element is valid or invalid, and Baleada Features will implement all the appropriate interaction logic and accessibility features (e.g. announcing error messages to screen readers).
+
+:::
+```html
+<template>
+  <input
+    :ref="textbox.root.ref({
+      validity: 'invalid',
+      errorMessage: errorMessage.id.value,
+    })"
+  />
+  <p :ref="errorMessage.ref()">
+    This field is required.
+  </p>
+</template>
+
+<script setup lang="tsx">
+import { useTextbox, useElementApi } from '@baleada/vue-features'
+
+const textbox = useTextbox()
+const errorMessage = useElementApi({ identifies: true })
+</script>
+```
+:::
+
+Depending on your app, validity might be static or reactive. The example above shows a static validity, but you can also use reactive data.
+
+Baleada Features will respond to changes in the reactive data, keeping interaction logic and accessibility features in sync with any changes.
+
+:::
+```html
+<template>
+  <input
+    :ref="textbox.root.ref({
+      validity,
+      errorMessage: errorMessage.id.value,
+    })"
+  />
+  <p :ref="errorMessage.ref()" v-if="validity === 'invalid'">
+    This field is required.
+  </p>
+</template>
+
+<script setup lang="tsx">
+import { ref } from 'vue'
+import { useTextbox, useElementApi } from '@baleada/vue-features'
+
+const textbox = useTextbox()
+const errorMessage = useElementApi({ identifies: true })
+
+const validity = computed(() => (
+  textbox.text.string
+    ? 'valid'
+    : 'invalid'
+))
+</script>
+```
+:::
+
+``````
+
+### src/prose/features/01-concepts/element-api.md
+
+``````md
+---
+title: Element API
+publish: true
+order: 0
+---
+
+In the return value for each of Baleada Features' interfaces and combos, as well as some extensions, you'll find at least one **element API** object.
+
+Broadly speaking, the purpose of the element API is to capture DOM elements from your Vue template, so that a Baleada Features composable can use that DOM element internally.
+
+The element API also gives you an easy way to access those DOM elements in case you need to do additional work with them in your Vue component's `setup` function.
+
+There are three kinds of APIs:
+1. **Element API**, designed for individual DOM elements.
+2. **List API**, designed for a list of DOM elements rendered by a `v-for` statement in your template.
+3. **Plane API**, designed for a [plane](/docs/features/plane) of elements, typically rendered in your template by a top-level `v-for` statement with another `v-for` nested inside it (for example, to loop over rows and their nested columns).
+
+Again, each of these APIs is an object, nested inside the object returned by a Baleada Features interface. For example:
+
+:::
+```js
+import { useTablist } from '@baleada/features'
+
+const tablist useTablist(...)
+
+tablist.root // -> Element API object
+tablist.tabs // -> List API object
+tablist.panels // -> another List API object
+```
+:::
+
+
+:::
+## Using the Element API
+:::
+
+First, here's a breakdown of the Element API object designed for individual DOM elements:
+
+::: ariaLabel="Element API breakdown" classes="wide-3"
+| Property | Type | Description |
+| --- | --- | --- |
+| `ref` | Function | <p>A function that returns a [function ref](https://vuejs.org/guide/essentials/template-refs.html#function-refs).</p><p>`elementApi.ref()` should be bound to the DOM element that you want to capture.</p><p>See the [Getting and using refs](#getting-and-using-function-refs) section for more guidance.</p><p>Optionally, you can pass element metadata to `elementApi.ref` as the first argument. See the [element metadata doc](/docs/features/element-metadata) for more guidance on why and how to do this.</p> |
+| `element` | Ref (HTMLElement) | <p>A reactive reference to the DOM element captured by `elementApi.ref`.</p><p>Useful when you need to access that DOM element inside your Vue component's `setup` function to apply a side effect.</p> |
+| `meta` | Ref (Object) | <p>A reactive reference to an object containing [element metadata](/docs/features/element-metadata).</p> |
+| `id` | Ref (String) | <p>A reactive reference to a unique ID for the element.</p><p>`id` is not included in every Element API object. Documentation for interfaces and extensions will inform you when `id` is included.</p><p>When `id` is included, the unique ID will also be bound automatically to the `id` attribute of your `element`.</p> |
+:::
+
+And here's a breakdown of the List API object:
+
+::: ariaLabel="List API breakdown" classes="wide-3"
+| Property | Type | Description |
+| --- | --- | --- |
+| `ref` | Function | <p>A function that returns a [function ref](https://vuejs.org/guide/essentials/template-refs.html#function-refs). The function ref returned by `listApi.ref` should be bound to the `ref` attribute of an element in your Vue template that has a `v-for` statement.</p><p>Call `listApi.ref` with the `index` (Number) of the current element, which you can get from the `v-for` statement.</p><p>See the [Getting and using refs](#getting-and-using-function-refs) section for more guidance.</p><p>Optionally, you can pass element metadata to `listApi.ref` as the second argument. See the [element metadata doc](/docs/features/element-metadata) for more guidance on why and how to do this.</p> |
+| `list` | Ref (Array) | <p>A reactive reference to an array of DOM elements captured by the function ref. Inside the array, DOM elements will be listed in the exact order they appear in the DOM.</p><p>Useful when you need to access these DOM elements from your Vue component's `setup` function to apply a side effect.</p> |
+| `meta` | Ref (Array) | A reactive reference to an array of objects containing [element metadata](/docs/features/element-metadata) for each element in `list`. The order of `meta` exactly matches the order of `list`. |
+| `status` | Ref (Object) | <p>A reactive reference to an object describing the status of `list`.</p><p>`status` has two properties: `order` and `length`.</p><p>After each Vue update, `status.order` is set to `changed` if the order of elements in your `list` array has changed, or `none` if not.</p><p>Also after each Vue update, `status.length` is set to `shortened` if elements have been removed from your `list` array, `lengthened` if elements have been added, or `none` if the number of elements has not changed.</p> |
+| `ids` | Ref (Array) | <p>A reactive reference to an array of unique IDs (Strings) for each element in `list`.</p><p>`ids` and `list` are always kept in exactly the same order, and when `ids` is included, IDs will also be bound automatically to the `id` attribute of your `list`. In other words, you can be confident that `ids.value[3]` will be the ID assigned to the `id` attribute of `list.value[3]`. IDs will always stay attached to the same element, even after elements are reordered.</p><p>`ids` is not included in every List API object. Documentation for interfaces and extensions will inform you when `ids` is included.</p> |
+:::
+
+And finally, here's a breakdown of the Plane API object:
+
+::: ariaLabel="Plane API breakdown" classes="wide-3"
+| Property | Type | Description |
+| --- | --- | --- |
+| `ref` | Function | <p>A function that returns a [function ref](https://vuejs.org/guide/essentials/template-refs.html#function-refs). The function ref returned by `planeApi.ref` should be bound to the `ref` attribute of an element in your Vue template that is rendered by a nested `v-for` statement.</p><p>Call `planeApi.ref` with two arguments: the current element's `row` (Number), which you can get from your top-level `v-for` statement, and the element's `column` (Number), which you can get from your nested `v-for` statement.</p><p>See the [Getting and using refs](#getting-and-using-function-refs) section for more guidance.</p><p>Optionally, you can pass element metadata to `planeApi.ref` as the second argument. See the [element metadata doc](/docs/features/element-metadata) for more guidance on why and how to do this.</p> |
+| `plane` | Ref (Plane) | <p>A reactive [plane](/docs/features/plane) of DOM elements captured by the function ref.</p><p>Inside the plane, DOM elements will be listed in the exact order they appear in the DOM.</p><p>Useful when you need to access these DOM elements from your Vue component's `setup` function to apply a side effect.</p> |
+| `meta` | Ref (Plane) | A reactive reference to a plane of objects containing [element metadata](/docs/features/element-metadata) for each element in `plane`. The order of `meta` exactly matches the order of `plane`. |
+| `status` | Ref (Object) | <p>A reactive reference to an object describing the status of `plane`.</p><p>`status` has three properties: `order`, `rowWidth`, and `columnHeight`.</p><p>After each Vue update, `status.value.order` is set to `changed` if the order of elements in your `plane` has changed, or `none` if not.</p><p>Also after each Vue update, `status.value.rowWidth` is set to `shortened` if columns have been removed from your `Plane`, `lengthened` if columns have been added, or `none` if the number of columns has not changed.</p><p>`status.value.columnHeight` behaves the same way, but it describes changes in the number of rows.</p> |
+| `ids` | Ref (Plane) | <p>A reactive reference to a plane of unique IDs (Strings) for each element in `plane`.</p><p>`ids` and `plane` are always kept in exactly the same order, and when `ids` is included, IDs will also be bound automatically to the `id` attribute of your `plane`. In other words, you can be confident that `ids.value[2][4]` will be the ID assigned to the `id` attribute of `plane.value[2][4]`. IDs will always stay attached to the same element, even after elements are reordered.</p><p>`ids` is not included in every List API object. Documentation for interfaces and extensions will inform you when `ids` is included.</p> |
+:::
+
+
+:::
+### Getting and using function refs
+:::
+
+The overarching workflow of Baleada Features is:
+1. Call a Baleada Features interface, combo, or extension function in the setup function of your Vue template, passing optional parameters as needed.
+2. The Baleada Features function will return a object. Inside this object, you'll find at least one element API object.
+3. Get a function ref from the element API object, and use it to capture a DOM element from your Vue component's template and expose it to the Baleada Features function.
+4. Internally, the Baleada Features function will access that element. It will bind attributes, add and remove event listeners, conditionally display the element, etc.
+
+The thing that ties this whole system together is the **function ref** feature of Vue 3, which powers the `ref` property on the Element API object, and the `ref` property of the List API object.
+
+::: type="info"
+Looking for more info on what function refs are, how to use them, and why Baleada Features relies on them? Check out [this three-part screencast series](https://www.youtube.com/playlist?list=PLHP34VGeo17dkrxEksyo3-ySK7oay6huY) dedicated to function refs.
+:::
+
+As mentioned above, `elementApi.ref`, `listApi.ref`, and `planeApi.ref` are functions that each return a [function ref](https://vuejs.org/guide/essentials/template-refs.html#function-refs): a JavaScript function that accepts a DOM element and stores that DOM element in a Vue reactive references.
+
+To see how this all works when capturing DOM elements, let's look at [`useGrid`](/docs/features/interfaces/grid) as an example.
+
+Internally, `useGrid` needs to perform a few side effects on your grid's root element, including:
+- Set the element's `role` attribute to `grid`
+- Set up event listeners to capture keyboard and pointer interactions that transfer focus to different grid cells
+
+To perform these side effects, `useGrid` needs you to somehow give it access to the correct DOM element. That's where the element API comes in!
+
+`useGrid`'s return object includes a element API for a "root" element:
+
+:::
+```js
+import { useGrid } from '@baleada/features'
+
+const grid = useGrid(...)
+
+grid.root // -> Element API object
+```
+:::
+
+And that element API includes a `ref` property, which is a **function ref getter**, i.e. a function that returns a function ref:
+
+:::
+```js
+import { useGrid } from '@baleada/features'
+
+const grid = useGrid(...)
+
+grid.root.ref // -> function that returns a function ref
+```
+:::
+
+So, to give `useGrid` access to your root element in the DOM, you need to call `grid.root.ref()`, binding the return value to the `ref` attribute of your grid's root element:
+
+:::
+```html
+<!-- MyComponent.vue -->
+<script setup>
+import { useGrid } from '@baleada/features'
+
+const grid = useGrid(...)
+</script>
+
+<template>
+  <section>
+    <!--
+      This div is the grid root in this example. We bind
+      `grid.root.ref()` to its ref attribute.
+    
+      Note that the grid root *does not* have to be
+      the root element of your component, but for accessibility purposes, it should be a container element for your rows
+      and cells.
+    -->
+    <div :ref="grid.root.ref()">
+      ...
+    </div>
+  </section>
+</template>
+```
+:::
+
+With that done, `useGrid` can now access the grid root internally and do what it needs to do.
+
+Also, if you need to access the root element from JavaScript, you can use `grid.root.element`. Just be careful not to do anything with that element before the component is mounted, since it won't be available yet.
+
+:::
+```js
+import { useGrid } from '@baleada/features'
+import { onMounted } from 'vue'
+
+const grid = useGrid(...)
+
+onMounted(() => {
+  // `grid.root.element` is a reactive reference,
+  // with the DOM element as its `value`:
+  grid.root.element.value.style.backgroundColor = 'rebeccapurple'
+})
+```
+:::
+
+For lists of elements, rendered by a `v-for` statement, we use the List API, which has a few subtle differences. `useGrid` again is a great example to explore this.
+
+`useGrid` needs to access the row elements in your DOM so it can set their `role` attribute. To make this possible, `useGrid` returns a List API for rows:
+
+:::
+```js
+import { useGrid } from '@baleada/features'
+
+const grid = useGrid(...)
+
+grid.rows // -> List API object
+```
+:::
+
+And that List API includes a `ref` property, which is a function ref getter:
+
+:::
+```js
+import { useGrid } from '@baleada/features'
+
+const grid = useGrid(...)
+
+grid.rows.ref // -> function that returns a function ref
+```
+:::
+
+In most cases, you should use a `v-for` to programmatically render all your row elements. This is especially true for things like rows in a spreadsheet app, since the number of rows and the order of rows can change reactively as the user interacts with the app.
+
+To give `useGrid` access to your row elements in the DOM, you need to call `grid.rows.ref`, and bind its return value to the `ref` attribute of your `v-for` element.
+
+The `grid.rows.ref` function requires an `index` parameter. You can get that index from the `v-for` statement as shown below:
+
+:::
+```html
+<!-- MyComponent.vue -->
+<script setup>
+import { ref } from 'vue'
+import { useGrid } from '@baleada/features'
+
+const grid = useGrid(...)
+const gridData = ref([...]) // Array of data for your grid
+</script>
+
+<template>
+  <section>
+    <!-- Here's our grid root element again -->
+    <div :ref="grid.root.ref()">
+      <!--
+        And here are the rows. Note how we use the v-for statement
+        to access the current element's index in the list.
+
+        We pass that index to the `grid.rows.ref` function.
+        This allows the function to insert the current DOM element
+        in the correct position in an array that useGrid
+        tracks internally.
+
+        If rows are reordered, deleted, or added, Vue will call
+        `grid.rows.ref` again for each row, and all of useGrid's
+        internal systems will sync up with the new rows.
+      -->
+      <div
+        v-for="(row, index) in gridData"
+        :key="row"
+        :ref="grid.rows.ref(index)"
+      >
+        <!-- We'll see shortly how cells get rendered here -->
+      </div>
+    </div>
+  </section>
+</template>
+```
+:::
+
+With that done, `useGrid` can now access an array of row elements internally, and perform side effects.
+
+If you need to access the array of row elements from JavaScript, you can use `grid.rows.list`. Again, be careful not to do anything with those elements before the component is mounted, since they won't be available yet.
+
+:::
+```js
+import { useGrid } from '@baleada/features'
+import { onMounted } from 'vue'
+
+const grid = useGrid(...)
+
+onMounted(() => {
+  // `grid.rows.list` is a reactive reference,
+  // with the array of DOM elements as its `value`:
+  for (const el of grid.rows.list.value) {
+    el.style.backgroundColor = 'rebeccapurple'
+  }
+})
+```
+:::
+
+For [planes](/docs/features/plane) of elements, rendered by a `v-for` statement with another `v-for` nested inside it, we use the Plane API. `useGrid` again is the perfect example to explore this.
+
+`useGrid` needs to access the grid cell elements in your DOM so it can set their `role` attribute, reactively manage their `aria-selected` attribute, and support all kinds of other features. To make this possible, `useGrid` returns a Plane API for cells:
+
+:::
+```js
+import { useGrid } from '@baleada/features'
+
+const grid = useGrid(...)
+
+grid.cells // -> Plane API object
+```
+:::
+
+And that Plane API includes a `ref` property, which is a function ref getter:
+
+:::
+```js
+import { useGrid } from '@baleada/features'
+
+const grid = useGrid(...)
+
+grid.cells.ref // -> function that returns a function ref
+```
+:::
+
+In most cases, you should use a `v-for` to programmatically render all your row elements, and a nested `v-for` to programmatically render all your cells in each row.
+
+To give `useGrid` access to your cell elements in the DOM, you need to call `grid.cells.ref`, and bind its return value to the `ref` attribute of your nested `v-for` element.
+
+The `grid.cells.ref` function requires a `coordinates` parameter, which is a set of [coordinates](/docs/features/coordinates) for the cell's position in the plane. Take those coordinates from the indices in your `v-for` statements, as shown below:
+
+:::
+```html
+<!-- MyComponent.vue -->
+<script setup>
+import { ref } from 'vue'
+import { useGrid } from '@baleada/features'
+
+const grid = useGrid(...)
+const gridData = ref([...]) // Array of data for your grid
+</script>
+
+<template>
+  <section>
+    <!-- Here's our grid root element again -->
+    <div :ref="grid.root.ref()">
+
+      <!-- And here are our grid row elements again -->
+      <div
+        v-for="(row, rowIndex) in gridData"
+        :key="row.id"
+        :ref="grid.rows.ref(index)"
+      >
+        <!--
+          And here are the cells.
+          
+          In this example, grid data is an array of objects for
+          each row. Each row object has an `id` and a `cells`
+          property, and `row.cells` is an array of cell data.
+        
+          Note how we use the rows' v-for statement to access the
+          row index, and the nested v-for statement to access the
+          column index.
+
+          We assemble those indices into a coordinates object,
+          which we can pass to the `grid.cells.ref` function.
+          This tells the useGrid internals exactly where each
+          cell is located.
+
+          If rows or columns are reordered, deleted, or added, Vue
+          will call `grid.cells.ref` again for each cell, and all
+          of useGrid's internal systems will sync up with the new
+          grid.
+        -->
+        <div
+          v-for="(cell, columnIndex) in row.cells"
+          :key="cell.id"
+          :ref="grid.cells.ref({
+            row: rowIndex,
+            column: columnIndex,
+          })"
+        >...</div>
+      </div>
+    </div>
+  </section>
+</template>
+```
+:::
+
+With that done, `useGrid` can now access a plane of cell elements internally, and perform side effects.
+
+If you need to access the plane of cell elements from JavaScript, you can use `grid.cells.plane`. Again, be careful not to do anything with those elements before the component is mounted, since they won't be available yet.
+
+:::
+```js
+import { useGrid } from '@baleada/features'
+import { onMounted } from 'vue'
+
+const grid = useGrid(...)
+
+onMounted(() => {
+  // Note that `grid.cells.plane` is a reactive reference,
+  // so you have to go through its .value property to access
+  // the actual `Plane` of DOM elements.
+  //
+  // We can loop over `plane.value.points()` to access
+  // each cell element in the plane.
+  for (
+    const { point: el }
+    of grid.cells.plane.value.points()
+  ) {
+    el.style.backgroundColor = 'rebeccapurple'
+  }
+})
+```
+:::
+
+
+::: type="info"
+For more information on why and how this all works, and how you might use this pattern to build your own custom features, consider buying a copy of [Rethinking Reusability in Vue](https://rethinking-reusability-in-vue.alexvipond.dev)! Use the coupon code BALEADA at checkout for $15 off.
+:::
+
+
+``````
+
+### src/prose/features/01-concepts/targetability.md
+
+``````md
+---
+title: Targetability
+source: extracted/targetability.ts
+publish: true
+order: 0
+---
+
+Baleada Features uses the concept of **targetability** to represent whether the keyboard target element of a component is currently accepting keyboard interactions.
+
+Each component has a keyboard target—the element that its keyboard event listeners are bound to. When the keyboard target is `'targetable'`, it responds to keyboard events normally. When it is `'untargetable'`, all keyboard interaction handling is suppressed.
+
+You can use [element metadata](/docs/features/element-metadata) to tell Baleada Features whether the keyboard target element is targetable or untargetable, and Baleada Features will implement all the appropriate interaction logic.
+
+:::
+```html
+<template>
+  <div :ref="listbox.root.ref()">
+    <div
+      v-for="(option, index) in options"
+      :key="option"
+      :ref="listbox.options.ref(index)"
+    >
+      {{ option }}
+    </div>
+  </div>
+  <!-- Reassign the keyboard target to a separate element -->
+  <input :ref="listbox.keyboardTarget.ref({ targetability: 'untargetable' })" />
+</template>
+
+<script setup lang="tsx">
+import { useListbox } from '@baleada/vue-features'
+
+const listbox = useListbox()
+const options = ['Option 1', 'Option 2', 'Option 3']
+</script>
+```
+:::
+
+Depending on your app, targetability might be static or reactive. The example above shows a static targetability, but you can also use reactive data.
+
+Baleada Features will respond to changes in the reactive data, keeping interaction logic in sync with any changes.
+
+:::
+```html
+<template>
+  <div :ref="listbox.root.ref()">
+    <div
+      v-for="(option, index) in options"
+      :key="option"
+      :ref="listbox.options.ref(index)"
+    >
+      {{ option }}
+    </div>
+  </div>
+  <!-- Keyboard target is only active while the popup is open -->
+  <input
+    :ref="listbox.keyboardTarget.ref({ targetability })"
+    @click="isOpen = !isOpen"
+  />
+</template>
+
+<script setup lang="tsx">
+import { ref, computed } from 'vue'
+import { useListbox } from '@baleada/vue-features'
+
+const listbox = useListbox()
+const options = ['Option 1', 'Option 2', 'Option 3']
+
+const isOpen = ref(false)
+const targetability = computed(() => isOpen.value ? 'targetable' : 'untargetable')
+</script>
+```
+:::
+
+This concept is primarily applied in [`useCombobox`](/docs/features/combos/combobox), but can also support any custom use cases you might have, such as a search field for a popup keyboard-navigable grid.
+
+``````
+
+### src/prose/features/01-concepts/eligible-focus.md
+
+``````md
+---
+title: Eligible focus
+publish: true
+order: 0
+---
+
+::: type="warning"
+Under construction 🚧
+:::
+
+In Baleada Features, any interface that allows arrow keys to transfer focus relies on **eligible focus**: a group of functions that only focus elements that are considered "eligible" focus targets.
+
+To be considered a "eligible" focus target, an element has to meet **one** of two conditions:
+1. The element's [ability](/docs/features/ability) is `enabled`, OR
+2. The element's [ability](/docs/features/ability) is `disabled` AND the interface was configured to allow focus to transfer to disabled elements
+
+Every interface that relies on eligible focus also includes all of the eligible focus functions in its return value. This guide serves as **shared documentation** for the eligible focus functions returned by interfaces.
+
+
+:::
+## Use eligible focus
+:::
+
+Eligible focus is always included in interfaces' return values as an object containing methods. Here are the properties on that object:
+
+::: ariaLabel="Eligible focus methods" classes="wide-1 wide-3 wide-4"
+| Property | Type | Description | Parameters |
+| --- | --- | --- | --- |
+| `exact(index[, options])` | Function | Transfers focus to a specific element, identified by its index-based position in your list. | <p>The index-based position of the element.</p><p>For more guidance on the optional `options` parameter, see the [Narrowing the definition of "eligible"](#narrowing-the-definition-of-eligible) section.</p> |
+| `next(index[, options])` | Function | Transfers focus to the next eligible element after a specific index | <p>The index to start searching from.</p><p>Each interface that uses eligible focus accepts an option to configure whether or not `next` will loop around to the beginning of the list of elements to continue its search for an eligible focus target.</p><p>For more guidance on the optional `options` parameter, see the [Narrowing the definition of "eligible"](#narrowing-the-definition-of-eligible) section.</p> |
+| `previous(index[, options])` | Function | Transfers focus to the previous eligible element before a specific index | <p>The index to start searching from.</p><p>Each interface that uses eligible focus accepts an option to configure whether or not `previous` will loop around to the end of the list of elements to continue its search for an eligible focus target.</p><p>For more guidance on the optional `options` parameter, see the [Narrowing the definition of "eligible"](#narrowing-the-definition-of-eligible) section.</p> |
+| `first([options])` | Function | Transfers focus to the first eligible element | For more guidance on the optional `options` parameter, see the [Narrowing the definition of "eligible"](#narrowing-the-definition-of-eligible) section. |
+| `last([options])` | Function | Transfers focus to the last eligible element | For more guidance on the optional `options` parameter, see the [Narrowing the definition of "eligible"](#narrowing-the-definition-of-eligible) section. |
+:::
+
+All eligible focus methods return a string that describes the element that was focused:
+- Methods return `enabled` if the destination element is enabled
+- Methods return `disabled` if the destination element is disabled
+- Methods return `none` if focus was unsuccessful (e.g. if you use `exact` to focus a disabled elements when disabled elements are not configured to receive focus)
+
+
+:::
+### Narrowing the definition of "eligible" 
+:::
+
+In some situations, you might want to narrow the definition of "eligible". In other words, you might want to consider other information, beyond just the enabled/disabled state, before confirming that an element is actually an eligible focus target.
+
+For example, if you're building a spreadsheet interface, you might want an easy way to focus the next cell that contains a formula. These app-specific conditions for focus transfer get first-class support from Baleada Features' eligible focus functions.
+
+More specifically, you can use the optional `options` argument of the eligible focus functions to set up your additional conditions to determine what is considered a "eligible" focus target.
+
+The `options` argument for each of those functions is an object. Here's a breakdown of that object:
+
+::: ariaLabel="Eligible focus methods" classes="wide-1 wide-4 wide-5"
+| Property | Type | Required | Default | Description |
+| --- | --- | --- | --- | --- |
+| `toEligibility({ index, element })` | Function | no | `() => 'eligible'` | <p>When eligible focus functions find an element that they consider to be an eligible focus target (based on the conditions listed at the beginning of this guide), they call the `toEligibility` function as an additional check.</p><p>`toEligibility` receives one argument: an object with two properties. The `index` property holds the index-based position of the element in its list, and the `element` property is a reference to the actual DOM element.</p><p>Given that argument, `toEligibility` should return the string `eligible` if the element is an eligible focus target, and the string `ineligible` if it is not an eligible focus target.</p> |
+:::
+
+Here's a code example of how to use the eligible focus functions return by [`useListbox`](/docs/features/interfaces/listbox) to transfer focus to the next eligible element, where the definition of "eligible" has been narrowed:
+
+:::
+```ts
+import { useListbox } from '@baleada/vue-features'
+
+const listbox = useListbox()
+
+// Imagine a listbox whose list options are split into several groups.
+//
+// We can pass a custom `toEligibility` option to the 
+// `listbox.focus.first` function to transfer focus the first
+// enabled element in a specific group.
+listbox.focus.first({
+  toEligibility: ({ index }) => {
+    return myOptions[index].group === 'Group 3'
+      ? 'eligible'
+      : 'ineligible'
+  }
+})
+```
+:::
+
+``````
+
+### src/prose/features/02-interfaces/button.md
+
+``````md
+---
+title: Button
+source: useButton.ts
+tests: suites/interfaces/useButton.test.ts
+publish: true
+order: 0
+---
+
+`useButton` is a composable that implements the UI logic needed for a reactive, accessible button interface.
+
+::: type="warning"
+Under construction 🚧
+:::
+
+``````
+
+### src/prose/features/02-interfaces/textbox.md
+
+``````md
+---
+title: Textbox
+source: useTextbox.ts
+tests: suites/interfaces/useTextbox.test.ts
+publish: true
+order: 0
+---
+
+::: type="warning"
+Under construction 🚧
+:::
+
+`useTextbox` is a composable that controls native HTML inputs and textareas with reactive two-way binding for both the input's value and its selection metadata (start position, end position, and direction). `useTextbox` also provides an API for autocomplete operations and undo/redo history.
+
+`useTextbox` uses [the `Completeable` class](/docs/logic/classes/Completeable) from Baleada Logic to control your input's value and selection, and to support autocomplete features.
+
+
+:::
+## Example
+:::
+
+<LayoutExample component="ExampleUseTextbox" />
+
+
+:::
+## Create a textbox
+:::
+
+To start using a controlled textbox, call the `useTextbox` function, which accepts one optional `options` object as its only parameter.
+
+:::
+```html
+<!-- MyComponent.vue -->
+<template>...</template>
+
+<script setup>
+import { useTextbox } from '@baleada/vue-features'
+
+const textbox = useTextbox([options])
+</script>
+```
+:::
+
+Here's a breakdown of the `options` object:
+
+::: ariaLabel="useTextbox options" classes="wide-5"
+| Property | Type | Required | Default | Description |
+| --- | --- | --- | --- | --- |
+| `initialValue` | String | no | `''` | The initial value that should be bound to your HTML input |
+| `text` | Object | no | none | [Constructor options](/docs/logic/classes/Completeable#Completeable-constructor-options) for the `Completeable` instance created by `useTextbox` |
+| `history` | Object | no | none | Options for the undo/redo history tracked by `useTextbox`. See the next table for more info. |
+:::
+
+As mentioned in the table above, `useTextbox` tracks an undo/redo history, whose behavior can be configured via the `options.history` object. See the [How your textbox manages undo/redo history](#how-your-textbox-manages-undo-redo-history) section for more general info, and see the table below for the optional properties of the `options.history` object:
+
+::: ariaLabel="history options" classes="wide-5"
+| Property | Type | Required | Default | Description |
+| --- | --- | --- | --- | --- |
+| `maxLength` | Number, `true` | no | `true` | <p>Limits the number of events that `useTextbox` can record in its undo/redo history.</p><p>Set `maxLength` to `true` to allow an infinite number of events.</p> |
+:::
+
+
+:::
+## Use your textbox
+:::
+
+`useTextbox` returns `textbox`—an object with tools you can use to control your HTML input or textarea.
+
+Here's a breakdown of that object:
+
+::: ariaLabel="input breakdown" classes="wide-3"
+| Property | Type | Description |
+| --- | --- | --- |
+| `root` | Object | <p>A [single element API object](/docs/features/shared/element-api).</p><p>`root.ref` should be bound to the HTML input or textarea you want to control.</p> |
+| `text` | Ref ([`Completeable`](/docs/logic/classes/Completeable)) | <p>The reactive `Completeable` instance created by `useTextbox`.</p><p>See the [How to control value and selection](#how-to-control-value-and-selection) section for more guidance on `text` usage, and see the [Access state and methods](/docs/logic/classes/Completeable#access-state-and-methods) section of the `Completeable` docs for more guidance on how to use `text` to autocomplete text.</p> |
+| `type(string)` | Function | <p>A function you can use to programmatically type in the textbox.</p><p>`type` requires one parameter: the new `string` to type into the textbox.</p><p>You can assign a new string to `text.value.string` to achieve the same effect, but `type` is a convenient shortcut.</p> |
+| `select(selection)` | Function | <p>A function you can use to programmatically select text in the textbox.</p><p>`select` requires one parameter: the new `selection` object.</p><p>[See the `Completeable` docs](/docs/logic/classes/Completeable#access-state-and-methods) to learn what the shape of that `selection` object should be.</p><p>You can assign a new selection object to `text.value.selection` to achieve the same effect, but `select` is a convenient shortcut.</p> |
+| `history` | Ref (Array) | <p>A reactive [`Navigateable`](/docs/logic/classes/Navigateable) instance that stores and navigates your undo/redo history.</p><p>See the [How your textbox manages undo/redo history](#how-your-textbox-manages-undo-redo-history) section for more info.</p> |
+| `record(entry)` | Ref (Object) | <p>A function you can use to programmatically record new entries in your textbox's `history`.</p><p>`record` requires one parameter: a new history entry, which is an object with a `string` and `selection` property.</p><p>`string` is a plain string, and `selection` is a selection object as defined by [`Completeable`](/docs/logic/classes/Completeable).</p> |
+| `undo(options)` | Function | <p>A function you can use to undo events and revert to a recorded state.</p><p>To undo more than one entry at a time, pass the optional `options` object, with the `options.distance` property indicating how many entries should be undone.</p><p>Note that `undo` is not exactly the same as calling `history`'s `previous` method—it's slightly more sophisticated and tailored to `useTextbox`'s specific use case.</p> |
+| `redo(options)` | Function | <p>A function you can use to redo events and move forward to a recorded state.</p><p>To redo more than one entry at a time, pass the optional `options` object, with the `options.distance` property indicating how many entries should be redone.</p><p>Note that `redo` is not exactly the same as calling `history`'s `next` method—it's slightly more sophisticated and tailored to `useTextbox`'s specific use case.</p> |
+| `rewrite(entries)` | Function | <p>A function you can use to rewrite `history`, replacing all of its current entries with an array of new entries.</p> |
+:::
+
+Here's a more complete example of how to use your `textbox` and bind the function ref:
+
+:::
+```html
+<template>
+  <input type="text" :ref="textbox.root.ref()" />
+</template>
+
+<script setup>
+import { useTextbox } from '@baleada/vue-features'
+
+const textbox = useTextbox([options])
+</script>
+```
+:::
+
+:::
+### How to control value and selection
+:::
+
+As mentioned, `useTextbox` implements reactive two-way binding for both your input's value and its selected text. It stores the value and the selection metadata in `textbox.text`, a fully reactive `Completeable` instance.
+
+With this tooling in place, here are the useful side effects that certain actions will have:
+
+::: ariaLabel="actions and effects in useTextbox" class="wide-1 wide-2"
+| Action | Side effect |
+| --- | --- |
+| The end user enters text into your HTML input | You can read that value in `textbox.text.value.string` |
+| The end user selects text in your HTML input | You can read selection metadata in `textbox.text.value.selection` |
+| You assign a new value to `textbox.text.value.string`, or you call the `type(...)` function | The HTML input's value will automatically update |
+| You assign new selection metadata to `textbox.text.value.selection`, or you call the `select` method | Text will automatically be selected in the the HTML input (assuming the input is currently focused) |
+| You use the `textbox.text.value.complete(...)` method to perform an autocomplete operation | <p>The HTML input's value will automatically update.</p><p>Also, the completed portion of text will be automatically selected, or you can [pass options to `complete`](/docs/logic/classes/Completeable#how-the-completeable-instance-completes-strings-and-computes-new-selections) if you'd rather automatically position the cursor right after the completed text.</p> |
+:::
+
+
+:::
+### How your textbox manages undo/redo history
+:::
+
+`useTextbox` supports undo/redo functionality inspired by VS Code's undo/redo. This feature is much more thorough and flexible than browsers' default undo/redo for HTML inputs and textareas.
+
+Users of your textbox can press `Command+Z` or `Control+Z` to undo, and `Command+Y` or `Control+Y` to redo. You can also call the `textbox.undo` and `textbox.redo` functions at any time to programmatically navigate history.
+
+::: type="info"
+If you extend your `textbox` with the `useTextboxStorage` extension, your textbox will update `localStorage` with its value and selection metadata each time a `history` entry is recorded.
+:::
+
+In most cases, you don't need to be concerned with how this undo/redo history is tracked, but just in case you need to watch changes or record new history events, your `textbox` object has a `history` property, which holds the reactive [`Navigateable`](/docs/logic/classes/Navigateable) instance that stores and navigates your history entries.
+
+:::
+```js
+import { watchEffect } from 'vue'
+
+const textbox = useTextbox()
+
+watchEffect(() => console.log(textbox.history.value.location))
+```
+:::
+
+
+:::
+## Extend the textbox
+:::
+
+The following extensions are compatible with your textbox:
+- [`useClosingCompletion`](/docs/features/extensions/closing-completion)
+- [`useMarkdownCompletion`](/docs/features/extensions/markdown-completion)
+- [`useTextboxStorage`](/docs/features/extensions/textbox-storage)
+- [`useSize`](/docs/features/extensions/size)
+- [`useVisibility`](/docs/features/extensions/visibility)
+- [`useLabel`](/docs/features/extensions/label)
+- [`useDescription`](/docs/features/extensions/description)
+- [`useDetails`](/docs/features/extensions/details)
+- [`useErrorMessage`](/docs/features/extensions/error-message)
+
+``````
+
+### src/prose/features/02-interfaces/listbox.md
+
+``````md
+---
+title: Listbox
+source: useTablist.ts
+tests: suites/interfaces/useTablist.test.ts
+publish: true
+order: 0
+---
+
+::: type="warning"
+Under construction 🚧
+:::
+
+`useListbox` is a composable that implements the UI logic needed for a reactive, accessible listbox interface.
+
+It follows [WAI-ARIA authoring practices](https://www.w3.org/TR/wai-aria-practices-1.1/#Listbox) and allows you to easily customize accessibility features.
+
+::: type="info"
+`useListbox` uses [Baleada Logic's `Navigateable` class](/docs/logic/classes/Navigateable) internally to manage option navigation, and [Baleada Logic's `Pickable` class](/docs/logic/classes/Pickable) to manage the selected option(s).
+:::
+
+::: type="success"
+For a ✨111-page✨ deep dive in to the patterns, concepts, and Vue 3 best practices behind Baleada Features, with `useListbox` as an in-depth, real world use case, [check out "Rethinking Reusability in Vue"](https://rethinking-reusability-in-vue.alexvipond.dev).
+
+Use code **BALEADA** for $15 off!
+:::
+
+:::
+## Features
+:::
+
+Here's a breakdown of all the features offered by `useListbox`:
+
+::: ariaLabel="useListbox features by category"
+| Feature | Details |
+| --- | --- |
+| Listbox basics | <ul><li>Supports single, multiple, and no selection</li><li>Compatible with assistive technology</li><li>Typeahead—with optional fuzzy matching—to quickly transfer focus</li><li>Supports enabled/disabled option state, even if that state changes reactively with user interaction</li><li>Support for complex options, with help from the [`useLabels`](/docs/features/extensions/labels) extension</li></ul> |
+| Reactivity | <ul><li>Focused option and selected option(s) are tracked and controlled reactively</li><li>Via the return object, you can read and watch reactive references to the focused option and selected option(s)</li><li>Via the return object, you can access methods that intelligently mutate the focused option and selected option(s)</li><li>Keyboard interactions adjust their behavior based on reactive changes to options' enabled/disabled state</li><li>Reactively disabled options are automatically deselected</li><li>Focused option and selected option(s) automatically update if option elements are reactively reordered</li></ul> |
+| ARIA attribute management | <ul><li>`role`</li><li>`aria-orientation`</li><li>`aria-multiselectable`</li><li>`aria-selected`</li><li>`aria-disabled`</li><li>`aria-owns`</li></ul> |
+| Keyboard interaction | <ul><li>Arrow keys transfer focus to the next or previous [eligible](/docs/features/shared/eligible-focus) option (up and down for vertical listboxes, left and right for horizontal listboxes)</li><li>Keyboard interaction is compatible with listboxes whose options are divided into multiple groups.</li><li>`Home`, `End`, and `Command/Control + arrow` transfers focus to the first or last eligible option</li><li>`mousedown`, `touchstart`, `Space` and `Enter` select the focused option, if it's eligible and not selected</li><li>`mousedown`, `touchstart`, `Space` and `Enter` deselect the focused option, if it's selected</li><li>`esc` deselects all options</li></ul> |
+| Keyboard interaction for multiselectable listboxes | <ul><li>`Shift + arrow` adds the next or previous eligible option to the selection</li><li>`Shift + Command/Control + arrow` adds all preceding or all following eligible options to the selection</li><li>`Command/Control + A` selects all eligible options</li></ul> |
+:::
+
+
+:::
+## Example
+:::
+
+:::
+### Single select
+:::
+
+<LayoutExample component="ExampleUseListboxSingle" />
+
+
+:::
+### Multiselect
+:::
+
+<LayoutExample component="ExampleUseListboxMulti" />
+
+
+
+
+
+:::
+## Create a listbox
+:::
+
+To create a listbox, call the `useListbox` function, which accepts one optional `options` object as its only parameter.
+
+:::
+```html
+<!-- MyComponent.vue -->
+<template>...</template>
+
+<script setup>
+import { useListbox } from '@baleada/vue-features'
+
+const listbox = useListbox([options])
+</script>
+```
+:::
+
+Here's a breakdown of the `options` object:
+
+::: ariaLabel="useListbox options" classes="wide-4 wide-5"
+| Property | Type | Required | Default | Description |
+| --- | --- | --- | --- | --- |
+| `multiselectable` | Boolean | no | `false` | Indicates whether or not the listbox supports multiple selections. |
+| `initialSelected` | Number, Array | no | `0` | <p>The index-based position of the option that should be initially selected.</p><p>For multiselectable listboxes, `initialSelected` can also be an array of index-based positions for multiple selected options.</p> |
+| `ability` | StatusOption | no | `() => 'enabled'` | <p>A [status option](/docs/features/shared/controlling-status) that should resolve to `enabled` for each enabled option, and `disabled` for each disabled option.</p><p>`useListbox` uses this information to decide which options are eligible to receive focus and/or be selected.</p> |
+| `orientation` | String | no | `horizontal` | Indicates the orientation of the listbox. For horizontal listboxes, left and right arrow keys will transfer focus, and for vertical listboxes, up and down arrow keys will transfer focus. |
+| `selectsOnFocus` | Boolean | no | `true` | Indicates whether or not options should be selected as soon as they are focused |
+| `loops` | Boolean | no | `true` | Indicates whether or not your listbox should "loop around" to the beginning of the list after reaching the end, and vice versa. |
+| `disabledOptionsReceiveFocus` | Boolean | no | `true` | <p>Indicates whether or not your listbox can transfer focus to disabled options.</p><p>If you set `disabledOptionsReceiveFocus` to `false`, you should be confident that assistive tech users don't need or want to read the labels of disabled options, or that they have another way to access that content.</p><p>Note that even when `disabledOptionsReceiveFocus` is `true`, it's never possible to select disabled options.</p> |
+| `toCandidate(param)` | Function | no | `({ element }) => element.textContent` | <p>A callback function that helps your listbox's typeahead feature retrieve searchable text from each option.</p><p>When the end user starts typing a query, your listbox will iterate through the listbox options, calling `toCandidate` for each one to retrieve the "search candidate" text.</p><p>`toCandidate` receives one argument: an object with an `element` property and an `index` property. `element` holds the listbox option's actual DOM element, and `index` holds the option's index-based position in your array of options.</p> |
+| `queryMatchThreshold` | Number | no | `1` | <p>Configures fuzzy matching for the typeahead feature.</p><p>`queryMatchThreshold` should be a number from `0` to `1`. When `queryMatchThreshold` is `1`, your listbox's typeahead will only transfer focus to an option that is an exact match for the typeahead's query. A numbers less than `1` will be increasingly less strict, ignoring slight typos and query mistakes when it transfers focus.</p> |
+| `needsAriaOwns` | Boolean | no | `false` | <p>Indicates whether or not your listbox needs to manage the [`aria-owns`](https://www.w3.org/TR/wai-aria/#aria-owns) attribute automatically.</p><p>`needsAriaOwns` should only be `true` if the structure of your HTML markup does **not** define a clear relationship between the listbox root element and the listbox options.</p> |
+:::
+
+
+:::
+## Use your listbox
+:::
+
+`useListbox` returns a `listbox`—an object with tools you can use to connect `useListbox`'s UI logic to your markup.
+
+Here's a breakdown of that object:
+
+::: ariaLabel="listbox breakdown" classes="wide-3"
+| Property | Type | Description |
+| --- | --- | --- |
+| `root` | Function | <p>A [single element API object](/docs/features/shared/element-api).</p><p>`root.ref` should be bound to the DOM element that serves as your listbox's root.</p> |
+| `options` | Function | <p>A [multiple element API object](/docs/features/shared/element-api).</p><p>Pass the index-based position (Number) of the current option as the only argument for `options.ref`, and its returned function ref should be bound to the DOM element that serves as that option.</p><p>It's recommended that you render the options with `v-for`, get the index from your `v-for` statement, and bind the function ref to the `v-for` element.</p> |
+| `focused` | Ref (Number) | A reactive reference to the index-based position of the currently focused option |
+| `selected` | Ref (Number), Ref (Array) | <p>A reactive reference to the index-based position of the currently selected option</p><p>For multiselectable listboxes, `selected` will be an array of numbers, indicating the index-based positions of all selected options, in the order they were selected.</p> |
+| `is` | Object | <p>An object with two properties: `focused` and `selected`.</p><p>Each property holds a method that requires an index (Number) as its only parameter.</p><p>Given the index, `is.focused` returns a boolean indicating whether or not that option is focused, and `is.selected` returns a boolean indicating whether or not that option is selected.</p><p>`is.focused` and `is.selected` read from reactive references, so their boolean return values are fully reactive when used in Vue templates, watchers, and computed references.</p> |
+| `getStatuses(index)` | Function | <p>A function that requires an index (Number) as its only parameter, and returns a three-item array indicating the statuses (Strings) of the option at that index.</p><p>The first item will be `focused` or `blurred`, the second item will be `selected` or `deselected` and the third item will be `enabled` or `disabled`.</p> |
+| `focus` | Object | <p>An object containing all the methods described in the [eligible focus guide](/docs/features/shared/eligible-focus).</p><p>You can use these methods to programmatically transfer focus in a smarter way, taking enabled/disabled state and other customizable conditions into account.</p> |
+| `select` | Functions | <p>An object containing all the methods described in the [eligible picking guide](/docs/features/shared/eligible-picking).</p><p>You can use these methods to programmatically select options in a smarter way, taking enabled/disabled state and other customizable conditions into account.</p><p>Note that if you have a multiselectable listbox you can optionally pass an array of index-based positions to the `select.exact` method to programmatically select multiple eligible options.</p> |
+| `deselect(indexOrIndices)` | Function | <p>A function that deselects an option.</p><p>For single select listboxes, `deselect` does not accept any parameters.</p><p>For multiselect listboxes, you can either pass a single index-based position (Number) to deselect one option, or pass an array of indices to deselect multiple options, or pass no arguments to deselect all currently selected options.</p> |
+:::
+
+Here's a more complete example of how to use your `listbox` and bind the various function refs:
+
+:::
+```html
+<!-- MyComponent.vue -->
+<template>
+  <div :ref="listbox.root.ref()">
+    <div
+      v-for="(option, index) in options"
+      :key="option"
+      :ref="listbox.options.ref(index)"
+    >
+      {{ option }}
+    </div>
+  </div>
+</template>
+
+<script setup>
+import { ref } from 'vue'
+import { useListbox } from '@baleada/vue-features'
+
+const options = ref([
+  'Educate Girls',
+  'Kheyti',
+  'One Heart Worldwide',
+])
+
+const listbox = useListbox()
+</script>
+```
+:::
+
+
+:::
+## Extend the listbox
+:::
+
+The following extensions are compatible with your textbox:
+- [`useListboxStorage`](/docs/features/extensions/listbox-storage)
+- [`useSize`](/docs/features/extensions/size)
+- [`useVisibility`](/docs/features/extensions/visibility)
+- [`useLabel`](/docs/features/extensions/label)
+- [`useDescription`](/docs/features/extensions/description)
+- [`useDetails`](/docs/features/extensions/details)
+
+``````
+
+### src/prose/features/02-interfaces/checkbox.md
+
+``````md
+---
+title: Checkbox
+source: useCheckbox.ts
+tests: suites/interfaces/useCheckbox.test.ts
+publish: true
+order: 0
+---
+
+`useCheckbox` is a composable that implements the UI logic needed for a reactive, accessible checkbox interface.
+
+::: type="warning"
+Under construction 🚧
+:::
+
+``````
+
+### src/prose/features/02-interfaces/dialog.md
+
+``````md
+---
+title: Dialog
+source: useDialog.ts
+tests: suites/interfaces/useDialog.test.ts
+publish: true
+order: 0
+---
+
+::: type="warning"
+Under construction 🚧
+:::
+
+``````
+
+### src/prose/features/02-interfaces/tablist.md
+
+``````md
+---
+title: Tablist
+source: useTablist.ts
+tests: suites/interfaces/useTablist.test.ts
+publish: true
+order: 0
+---
+
+::: type="warning"
+Under construction 🚧
+:::
+
+`useTablist` is a composable that implements the UI logic needed for a reactive, accessible tablist interface.
+
+It follows [WAI-ARIA authoring practices](https://www.w3.org/TR/wai-aria-practices-1.1/#tabpanel) and allows you to easily customize accessibility features.
+
+::: type="info"
+`useListbox` uses [Baleada Logic's `Navigateable` class](/docs/logic/classes/Navigateable) internally to manage tab navigation, and [Baleada Logic's `Pickable` class](/docs/logic/classes/Pickable) to manage the selected tab.
+:::
+
+:::
+## Example
+:::
+
+<LayoutExample component="ExampleUseTablist" />
+
+
+:::
+## Create a tablist
+:::
+
+To create a tablist, call the `useTablist` function, which accepts one optional `options` object as its only parameter.
+
+:::
+```html
+<!-- MyComponent.vue -->
+<template>...</template>
+
+<script setup>
+import { useTablist } from '@baleada/vue-features'
+
+const tablist = useTablist([options])
+</script>
+```
+:::
+
+Here's a breakdown of the `options` object:
+
+::: ariaLabel="useTablist options" classes="wide-5"
+| Property | Type | Required | Default | Description |
+| --- | --- | --- | --- | --- |
+| `transition` | Object | no | none | <p>An object with one property: `panel`.</p><p>Pass an object to `transition.panel`, specifying a transition or animation that `useTablist` should apply to each tab panel as they enter and leave visibility.</p><p>See the [How to format enter/leave transitions](/docs/features/affordances/show#how-to-format-enter-leave-transitions) section of the `show` docs for more guidance.</p> |
+| `initialSelected` | Number | no | `0` | The index-based position of the tab that should be initially selected. |
+| `ability` | StatusOption | no | `() => 'enabled'` | <p>A [status option](/docs/features/shared/controlling-status) that should resolve to `enabled` for each enabled tab, and `disabled` for each disabled tab.</p><p>`useTablist` uses this information to decide which tabs are eligible to receive focus and/or be selected.</p> |
+| `orientation` | String | no | `horizontal` | Indicates the orientation of the tablist. For horizontal tablists, left and right arrow keys will transfer focus, and for vertical tablists, up and down arrow keys will transfer focus. |
+| `selectsOnFocus` | Boolean | no | `true` | Indicates whether or not tabs should be selected as soon as they are focused |
+| `loops` | Boolean | no | `true` | Indicates whether or not your tablist should "loop around" to the beginning of the list after reaching the end, and vice versa. |
+| `disabledTabsReceiveFocus` | Boolean | no | `true` | <p>Indicates whether or not your `tablist` can transfer focus to disabled tabs.</p><p>If you set `disabledTabsReceiveFocus` to `false`, you should be confident that assistive tech users don't need or want to read the labels of disabled tabs, or that they have another way to access that content.</p><p>Note that even when `disabledTabsReceiveFocus` is `true`, it's never possible to select disabled tabs.</p> |
+| `panelContentsFocusability` | StatusOption | | <p>A [status option](/docs/features/shared/controlling-status) that should resolve to `focusable` when tab panel contents can receive focus, and `not focusable` when tab panel contents cannot receive focus.</p><p>`useTablist` uses this information to implement an accessibility feature for you: the tab panel should only be included in the page's tab order when tab panel contents are **not** focusable.</p> |
+:::
+
+
+:::
+## Use your tablist
+:::
+
+`useTablist` returns a `tablist`—an object with tools you can use to connect `useTablist`'s UI logic to your markup.
+
+Here's a breakdown of that object:
+
+::: ariaLabel="tablist breakdown" classes="wide-3"
+| Property | Type | Description |
+| --- | --- | --- |
+| `root` | Function | <p>A [single element API object](/docs/features/shared/element-api).</p><p>`root.ref` should be bound to the DOM element that serves as your tablist's root.</p> |
+| `tabs` | Function | <p>A [multiple element API object](/docs/features/shared/element-api).</p><p>Pass the index-based position (Number) of the current tab as the only argument for `tabs.ref`, and its returned function ref should be bound to the DOM element that serves as that tab.</p><p>It's recommended that you render the tabs with `v-for`, get the index from your `v-for` statement, and bind the function ref to the `v-for` element.</p> |
+| `panels` | Function | <p>A [multiple element API object](/docs/features/shared/element-api).</p><p>Pass the index-based position (Number) of the current panel as the only argument for `panels.ref`, and its returned function ref should be bound to the DOM element that serves as that panel.</p><p>It's recommended that you render the panels with `v-for`, get the index from your `v-for` statement, and bind the function ref to the `v-for` element.</p> |
+| `focused` | Ref (Number) | A reactive reference to the index-based position of the currently focused tab |
+| `selected` | Ref (Number) | A reactive reference to the index-based position of the currently selected tab |
+| `is` | Object | <p>An object with two properties: `focused` and `selected`.</p><p>Each property holds a method that requires an index (Number) as its only parameter.</p><p>Given the index, `is.focused` returns a boolean indicating whether or not that tab is focused, and `is.selected` returns a boolean indicating whether or not that tab is selected.</p><p>`is.focused` and `is.selected` read from reactive references, so their boolean return values are fully reactive when used in Vue templates, watchers, and computed references.</p> |
+| `getStatuses(index)` | Function | <p>A function that requires an index (Number) as its only parameter, and returns a three-item array indicating the statuses (Strings) of the tab at that index.</p><p>The first item will be `focused` or `blurred`, the second item will be `selected` or `deselected` and the third item will be `enabled` or `disabled`.</p> |
+| `focus` | Object | <p>An object containing all the methods described in the [eligible focus guide](/docs/features/shared/eligible-focus).</p><p>You can use these methods to programmatically transfer focus in a smarter way, taking enabled/disabled state and other customizable conditions into account.</p> |
+| `select` | Functions | <p>An object containing all the methods described in the [eligible picking guide](/docs/features/shared/eligible-picking).</p><p>You can use these methods to programmatically select tabs in a smarter way, taking enabled/disabled state and other customizable conditions into account.</p><p>Note that tablists can never be multiselectable, so you can only pass a single index to the `select.exact` method—an array of selected indices is not possible.</p> |
+:::
+
+Here's a more complete example of how to use your `tablist` and bind the various function refs:
+
+:::
+```html
+<!-- MyComponent.vue -->
+<template>
+  <div :ref="tablist.root.ref()">
+    <div
+      v-for="({ tab }, index) in metadata"
+      :key="tab"
+      :ref="tablist.tabs.ref(index)"
+    >
+      {{ tab }}
+    </div>
+    <div
+      v-for="({ tab, panel }, index) in metadata"
+      :key="tab"
+      :ref="tablist.panels.ref(index)"
+    >
+      {{ panel }}
+    </div>
+  </div>
+</template>
+
+<script setup>
+import { ref, computed } from 'vue'
+import { useTablist } from '@baleada/vue-features'
+
+const metadata = ref([
+  { tab: 'Educate Girls', panel: 'https://www.educategirls.ngo/' },
+  { tab: 'Kheyti', panel: 'https://www.kheyti.com/' },
+  { tab: 'One Heart Worldwide', panel: 'https://oneheartworldwide.org/' },
+])
+
+const tablist = useTablist()
+</script>
+```
+:::
+
+
+:::
+## Extend the tablist
+:::
+
+The following extensions are compatible with your textbox:
+- [`useTablistStorage`](/docs/features/extensions/tablist-storage)
+- [`useSize`](/docs/features/extensions/size)
+- [`useVisibility`](/docs/features/extensions/visibility)
+- [`useLabel`](/docs/features/extensions/label)
+- [`useDescription`](/docs/features/extensions/description)
+- [`useDetails`](/docs/features/extensions/details)
+
+``````
+
+### src/prose/features/02-interfaces/menubar.md
+
+``````md
+---
+title: Menubar
+source: useMenubar.ts
+tests: suites/interfaces/useMenubar.test.ts
+publish: true
+order: 0
+---
+
+::: type="warning"
+Under construction 🚧
+:::
+
+``````
+
+### src/prose/features/02-interfaces/separator.md
+
+``````md
+---
+title: Separator
+source: useSeparator.ts
+tests: suites/interfaces/useSeparator.test.ts
+publish: true
+order: 0
+---
+
+::: type="warning"
+Under construction 🚧
+:::
+
+``````
+
+### src/prose/features/02-interfaces/link.md
+
+``````md
+---
+title: Link
+source: useLink.ts
+tests: suites/interfaces/useLink.test.ts
+publish: true
+order: 0
+---
+
+`useLink` is a composable that implements the UI logic needed for a reactive, accessible link interface.
+
+::: type="warning"
+Under construction 🚧
+:::
+
+``````
+
+### src/prose/features/02-interfaces/grid.md
+
+``````md
+---
+title: Grid
+source: useGrid.ts
+tests: suites/interfaces/useGrid.test.ts
+publish: true
+order: 0
+---
+
+`useGrid` is a composable that implements the UI logic needed for a reactive, accessible grid interface.
+
+::: type="warning"
+Under construction 🚧
+:::
+
+``````
+
+### src/prose/features/06-utilities/coordinates.md
+
+``````md
+---
+title: Coordinates 
+source: createCoordinates.ts
+publish: true
+order: 0
+---
+
+::: type="warning"
+Under construction 🚧
+:::
+
+``````
+
+### src/prose/features/06-utilities/body.md
+
+``````md
+---
+title: Body
+source: useBody.ts
+publish: true
+order: 0
+---
+
+::: type="warning"
+Under construction 🚧
+:::
+
+``````
+
+### src/prose/features/06-utilities/delegate-hover.md
+
+``````md
+---
+title: Delegate press
+publish: true
+order: 0
+---
+
+::: type="warning"
+Under construction 🚧
+:::
+
+``````
+
+### src/prose/features/06-utilities/multi-ref.md
+
+``````md
+---
+title: Multi ref
+source: createMultiRef.ts
+publish: true
+order: 0
+---
+
+`createMultiRef` is a utility function that combines multiple function refs, all of which need access to the same DOM element, into a single function ref that you can bind to your DOM element.
+
+::: type="warning"
+Under construction 🚧
+:::
+
+``````
+
+### src/prose/features/06-utilities/element-api.md
+
+``````md
+---
+title: Element API
+source: useElementApi.ts
+publish: true
+order: 0
+---
+
+::: type="warning"
+Under construction 🚧
+:::
+
+``````
+
+### src/prose/features/06-utilities/list-api.md
+
+``````md
+---
+title: List API
+source: useListApi.ts
+publish: true
+order: 0
+---
+
+::: type="warning"
+Under construction 🚧
+:::
+
+``````
+
+### src/prose/features/06-utilities/coordinates-equal.md
+
+``````md
+---
+title: Coordinates equal
+source: createCoordinatesEqual.ts
+publish: true
+order: 0
+---
+
+::: type="warning"
+Under construction 🚧
+:::
+
+``````
+
+### src/prose/features/06-utilities/delegate-press.md
+
+``````md
+---
+title: Delegate press
+publish: true
+order: 0
+---
+
+::: type="warning"
+Under construction 🚧
+:::
+
+``````
+
+### src/prose/features/06-utilities/component-ref.md
+
+``````md
+---
+title: Component ref
+source: createComponentRef.ts
+publish: true
+order: 0
+---
+
+`createComponentRef` is a utility function that converts a function ref designed for use with plain DOM elements into a function ref that can be used on a Vue component.
+
+::: type="warning"
+Under construction 🚧
+:::
+
+``````
+
+### src/prose/features/06-utilities/maybe-component-ref.md
+
+``````md
+---
+title: Maybe component ref
+source: createMaybeComponentRef.ts
+publish: true
+order: 0
+---
+
+::: type="warning"
+Under construction 🚧
+:::
+
+``````
+
+### src/prose/features/06-utilities/plane-api.md
+
+``````md
+---
+title: Plane API
+source: usePlaneApi.ts
+publish: true
+order: 0
+---
+
+::: type="warning"
+Under construction 🚧
+:::
+
+``````
+
+### src/prose/features/04-extensions/balanced.md
+
+``````md
+---
+title: Balanced
+source: useBalanced.ts
+tests: suites/extensions/useBalanced.test.ts
+publish: true
+order: 0
+---
+
+::: type="warning"
+Under construction 🚧
+:::
+
+``````
+
+### src/prose/features/04-extensions/press.md
+
+``````md
+---
+title: Press
+source: usePress.ts
+tests: suites/extensions/usePress.test.ts
+publish: true
+order: 0
+---
+
+`usePress` is an [extension](/docs/features/extensions-overview) that tracks when an element has been pressed or released. It behaves consistently across browsers and devices, and it supports various inputs, including mouse, touch, and keyboard.
+
+`usePress` gives you a reactive reference to all of the rich metadata captured by the [keypress](/docs/logic/factories/keypress), [mousepress](/docs/logic/factories/mousepress), and [touchpress](/docs/logic/factories/touchpress) tools from Baleada Logic, which it uses internally.
+
+:::
+## Example
+:::
+
+<LayoutExample component="ExampleUsePress" />
+
+
+::: type="warning"
+Under construction 🚧
+:::
+
+
+<!-- :::
+### Act-on-press
+::: -->
+
+<!-- https://x.com/ID_AA_Carmack/status/1787850053912064005 -->
+
+``````
+
+### src/prose/features/04-extensions/focus.md
+
+``````md
+---
+title: Focus
+source: useFocus.ts
+tests: suites/extensions/useFocus.test.ts
+publish: true
+order: 0
+---
+
+`useFocus` is an [extension](/docs/features/extensions-overview) that tracks when an element has been focused or blurred, and stores that info in a reactive reference.
+
+
+:::
+## Example
+:::
+
+<LayoutExample component="ExampleUseFocus" />
+
+::: type="warning"
+Under construction 🚧
+:::
+
+``````
+
+### src/prose/features/04-extensions/button-storage.md
+
+``````md
+---
+title: Button storage
+source: useButtonStorage.ts
+tests: suites/extensions/useButtonStorage.test.ts
+publish: true
+order: 0
+---
+
+`useButtonStorage` is an [extension](/docs/features/extensions-overview) that uses local storage to save and load state for the [`useButton`](/docs/features/interfaces/button) interface.
+
+::: type="warning"
+Under construction 🚧
+:::
+
+``````
+
+### src/prose/features/04-extensions/textbox-storage.md
+
+``````md
+---
+title: Textbox storage
+source: useTextboxStorage.ts
+tests: suites/extensions/useTextboxStorage.test.ts
+publish: true
+order: 0
+---
+
+`useTextboxStorage` is an [extension](/docs/features/extensions-overview) that stores state from the [`useTextbox`](/docs/features/interfaces/textbox) combo in local storage and resets the interface with that state when the page reloads.
+
+::: type="warning"
+Under construction 🚧
+:::
+
+``````
+
+### src/prose/features/04-extensions/hover.md
+
+``````md
+---
+title: Hover
+source: useHover.ts
+tests: suites/extensions/useHover.test.ts
+publish: true
+order: 0
+---
+
+`useHover` is an [extension](/docs/features/extensions-overview) that tracks when the mouse has entered or left an element. It behaves consistently across browsers and devices.
+
+`useHover` gives you a reactive reference to all of the rich metadata captured by the [hover](/docs/logic/factories/hover) tool from Baleada Logic, which it uses internally.
+
+
+:::
+## Example
+:::
+
+<LayoutExample component="ExampleUseHover" />
+
+::: type="warning"
+Under construction 🚧
+:::
+
+``````
+
+### src/prose/features/04-extensions/intersection.md
+
+``````md
+---
+title: Intersection
+source: useIntersection.ts
+tests: suites/extensions/useIntersection.test.ts
+publish: true
+order: 0
+---
+
+`useIntersection` is an [extension](/docs/features/extensions-overview) that tracks whether or not an element has entered a viewport.
+
+Under the hood, `useIntersection` uses the `IntersectionObserver` API for performant intersection tracking.
+
+
+:::
+## Example
+:::
+
+<LayoutExample component="ExampleUseIntersection" />
+
+
+
+::: type="warning"
+Under construction 🚧
+:::
+
+<!-- :::
+## Create visibility
+:::
+
+To start tracking visibility, call the `useIntersection` function, which accepts two parameters:
+
+::: ariaLabel="useIntersection parameters" classes="wide-4"
+| Parameter | Type | Required | Description |
+| --- | --- | --- | --- |
+| `extendable` | Interface, Ref (HTMLElement) | yes | <p>The return object from a Baleada Features [interface](/docs/features#using-functions), or a reactive reference to an HTML element.</p><p>If you pass an interface object, `useIntersection` will track the size of the `root` element.</p> |
+| `options` | Object | no | Passes customization options. See the next table for more guidance. |
+:::
+
+Here's a breakdown of the `useIntersection` options:
+
+::: ariaLabel="useIntersection options" classes="wide-5"
+| Property | Type | Required | Default | Description |
+| --- | --- | --- | --- | --- |
+| `observer` | Object | no | none | The `options` parameter of the [Intersection Observer constructor](https://developer.mozilla.org/en-US/docs/Web/API/IntersectionObserver/IntersectionObserver). |
+:::
+
+::: type="info"
+**Note**: for the `root` option of the Intersection Observer constructor, you would normally pass an HTML element. However, in your `setup` function, you won't be able to reliably access DOM elements before the component is mounted.
+
+Instead of passing the unreliable DOM element to `options.observer.root`, you can pass a reactive reference to an HTML element. `useIntersection` will resolve that reference before setting up the Intersection Observer.
+:::
+
+:::
+```html -->
+<!-- MyComponent.vue -->
+<!-- <template>
+  <div ref="viewport">
+    <div :ref="tablist.root.ref()">...</div>
+  </div>
+</template>
+
+<script setup>
+import { useTablist, useIntersection } from '@baleada/vue-features'
+
+const tablist = useTablist(),
+      viewport = ref(null),
+      visibility = useIntersection(
+        tablist,
+        {
+          threshold: 0.5,
+          // When in the `setup` function, pass a reactive
+          // reference instead of an unreliable HTML element
+          // to `options.observer.root` if needed.
+          root: viewport,
+        }
+      )
+</script>
+```
+:::
+
+
+:::
+## Use your visibility
+:::
+
+`useIntersection` returns `visibility`—an object with tools you can use to react to an element's visibility and visibility.
+
+Here's a breakdown of that object:
+
+::: ariaLabel="visibility breakdown" classes="wide-3"
+| Property | Type | Description |
+| --- | --- | --- |
+| `rect` | Ref (Number) | <p>A reactive reference to an object containing three different bounding rectangles.</p><ul><li>`rect.visible` contains the [`intersectionRect`](https://developer.mozilla.org/en-US/docs/Web/API/IntersectionObserverEntry/intersectionRect), i.e. the rectangle around the visible area of your element.</li><li>`rect.bounding` contains the [`boundingClientRect`](https://developer.mozilla.org/en-US/docs/Web/API/IntersectionObserverEntry/boundingClientRect), i.e. the rectangle around your entire element, including non-visible area.</li><li>`rect.viewport` contains the [`rootBounds`](https://developer.mozilla.org/en-US/docs/Web/API/IntersectionObserverEntry/rootBounds), i.e. the rectangle around the viewport that shows or hides your element.</li></ul> |
+| `ratio` | Ref (Number) | <p>A reactive reference to the area of `rect.visible` divided by the area of the `rect.bounding`.</p><p>In other words, a number between `0` and `1` indicating how much of the element is visible, with `1` being the highest visibility.</p> |
+| `status` | Ref (String) | <p>A reactive reference to a String describing the state of your element: `visible` or `invisible`.</p> |
+| `isVisible` | Ref (Boolean) | <p>A reactive reference to a Boolean describing the visibility of your element. `isVisible` is `true` when `status` is `visible`, and `false` when it's `invisible`.</p> |
+| `time` | Ref (DOMHighResTimestamp) | A reactive reference to the [time](https://developer.mozilla.org/en-US/docs/Web/API/IntersectionObserverEntry/time) of the most recent change in visibility. |
+:::
+ -->
+
+``````
+
+### src/prose/features/04-extensions/css-animation.md
+
+``````md
+---
+title: CSS animation
+source: useCssAnimation.ts
+tests: suites/extensions/useCssAnimation.test.ts
+publish: true
+order: 0
+---
+
+::: type="warning"
+Under construction 🚧
+:::
+
+``````
+
+### src/prose/features/04-extensions/rendering.md
+
+``````md
+---
+title: Rendering
+source: useRendering.ts
+tests: suites/extensions/useRendering.test.ts
+publish: true
+order: 0
+---
+
+::: type="warning"
+Under construction 🚧
+:::
+
+``````
+
+### src/prose/features/04-extensions/css-transition.md
+
+``````md
+---
+title: CSS transition
+source: useCssTransition.ts
+tests: suites/extensions/useCssTransition.test.ts
+publish: true
+order: 0
+---
+
+::: type="warning"
+Under construction 🚧
+:::
+
+``````
+
+### src/prose/features/04-extensions/size.md
+
+``````md
+---
+title: Size
+source: useSize.ts
+tests: suites/extensions/useSize.test.ts
+publish: true
+order: 0
+---
+
+`useSize` is an [extension](/docs/features/extensions-overview) that tracks the dimensions of an element, and whether that element's width is currently wider than certain breakpoints.
+
+Under the hood, `useSize` uses the `ResizeObserver` API for performant size tracking.
+
+
+:::
+## Example
+:::
+
+<LayoutExample component="ExampleUseSize" />
+
+
+::: type="warning"
+Under construction 🚧
+:::
+
+
+<!-- :::
+## Create size
+:::
+
+To start tracking dimensions, call the `useSize` function, which accepts two parameters:
+
+::: ariaLabel="useSize parameters" classes="wide-4"
+| Parameter | Type | Required | Description |
+| --- | --- | --- | --- |
+| `extendable` | Interface, Ref (HTMLElement) | yes | <p>The return object from a Baleada Features [interface](/docs/features#using-functions), or a reactive reference to an HTML element.</p><p>If you pass an interface object, `useSize` will track the size of the `root` element.</p> |
+| `options` | Object | no | Passes customization options. See the next table for more guidance. |
+:::
+
+Here's a breakdown of the `useSize` options:
+
+::: ariaLabel="useSize options" classes="wide-5"
+| Property | Type | Required | Default | Description |
+| --- | --- | --- | --- | --- |
+| `breakpoints` | Object | no | See description | <p>An object specifying breakpoints for `useSize` to compare against. Each key should be the name of the breakpoint, and the value should be the width (Number) of that breakpoint, measured in pixels.</p><p>The keys of the default `breakpoints` object are `sm`, `md`, `lg`, `xl`, and `2xl`. The values of those keys are [the default TailwindCSS breakpoints](https://tailwindcss.com/docs/responsive-design).</p> |
+| `observe` | Object | no | none | The `options` parameter of the [Resize Observer's `observe` method](https://developer.mozilla.org/en-US/docs/Web/API/ResizeObserver/observe). |
+::: -->
+
+<!-- :::
+```html -->
+<!-- MyComponent.vue -->
+<!-- <template>...</template>
+
+<script setup>
+import { computed } from 'vue'
+import { useSize } from '@baleada/vue-features'
+
+const size = useSize(
+  computed(() => document.body)
+  [, options]
+)
+</script>
+```
+:::
+
+
+:::
+## Use your size
+:::
+
+`useSize` returns `size`—an object with tools you can use to react to an element's size.
+
+Here's a breakdown of that object:
+
+::: ariaLabel="size breakdown" classes="wide-3"
+| Property | Type | Description |
+| --- | --- | --- |
+| `rect` | Ref (Object) | A reactive reference to the [`contentRect`](https://developer.mozilla.org/en-US/docs/Web/API/ResizeObserverEntry/size) (Object) of the most recent `ResizeObserver` entry. |
+| `breaks` | Ref (Object) | <p>A reactive reference to an object describing whether or not your element's width is currently "breaking" your `breakpoints`.</p><p>See the [How to check breakpoints](#how-to-check-breakpoints) section for more guidance on using `breaks`.</p> |
+| `orientation` | Ref (String) | A reactive reference to the orientation (String) of the element: `portrait` (height greater than width), `landscape` (width greater than height), or `none` (equal height and width). |
+:::
+
+
+:::
+### How to check breakpoints
+:::
+
+As mentioned, `size.breaks` is a reactive reference to an object you can use to check whether certain breakpoints have been "broken", i.e. the width of your element is greater than or equal to the breakpoint.
+
+The properties of `breaks.value` are the same properties in the `breakpoints` object from your `options`. The value of each property is a Boolean indicating whether or not your element is wider than that breakpoint.
+
+If the smallest breakpoint is greater than `0`, the `breaks` object will also include a `zero` property, whose value is `true` when your element is wider than `0` pixels.
+
+If you stick with the default `breakpoints`, the properties of `breaks` will be `zero`, `sm`, `md`, `lg`, `xl`, and `2xl`.
+
+You can use these values to, for example, swap out the `src` of an `img` element based on screen size, so that only the correct image for that screen size is loaded:
+
+:::
+```html -->
+<!-- MyComponent.vue -->
+<!-- <style>
+header {
+  height: 100vw;
+  width: 100vw;
+  position: relative;
+}
+
+img {
+  height: 100%;
+  width: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+</style>
+
+<template>
+  <header ref="header">
+    <img 
+      :src="[
+        size.breaks.lg 
+          ? '/large-image.jpg' 
+          : '/small-image.jpg'
+      ]"
+    >
+  </header>
+</template>
+
+<script setup>
+import { ref, readonly } from 'vue'
+import { useSize } from '@baleada/vue-features'
+
+const header = ref(null)
+const size = readonly(useSize(header))
+</script>
+```
+::: -->
+
+``````
+
+### src/prose/features/04-extensions/popup.md
+
+``````md
+---
+title: Popup
+source: usePopup.ts
+tests: suites/extensions/usePopup.test.ts
+publish: true
+order: 0
+---
+
+::: type="warning"
+Under construction 🚧
+:::
+
+``````
+
+### src/prose/features/04-extensions/tablist-storage.md
+
+``````md
+---
+title: Tablist storage
+source: useTablistStorage.ts
+tests: suites/extensions/useTablistStorage.test.ts
+publish: true
+order: 0
+---
+
+`useTablistStorage` is an [extension](/docs/features/extensions-overview) that stores state from the [`useTablist`](/docs/features/interfaces/tablist) combo in local storage and resets the interface with that state when the page reloads.
+
+::: type="warning"
+Under construction 🚧
+:::
+
+``````
+
+### src/prose/features/04-extensions/markdown-completion.md
+
+``````md
+---
+title: Markdown completion
+source: useMarkdownCompletion.ts
+tests: suites/extensions/useMarkdownCompletion.test.ts
+publish: true
+order: 0
+---
+
+::: type="warning"
+Under construction 🚧
+:::
+
+`useMarkdownCompletion` is an [extension](/docs/features/extensions-overview) that autocompletes markdown notation in a textbox created by [`useTextbox`](/docs/features/interfaces/textbox).
+
+
+:::
+## Example
+:::
+
+<LayoutExample component="ExampleUseMarkdownCompletion" />
+
+
+:::
+## Create markdown completion
+:::
+
+To start autocompleting markdown, call the `useMarkdownCompletion` function, which requires one parameter:
+
+::: ariaLabel="useMarkdownCompletion parameters" classes="wide-4"
+| Parameter | Type | Required | Description |
+| --- | --- | --- | --- |
+| `textbox` | Textbox | yes | The return object from [`useTextbox`](/docs/features/interfaces/textbox). |
+:::
+
+:::
+```html
+<!-- MyComponent.vue -->
+<template>...</template>
+
+<script setup>
+import { useTextbox, useMarkdownCompletion } from '@baleada/vue-features'
+
+const textbox = useTextbox(),
+      markdownCompletion = useMarkdownCompletion(textbox)
+</script>
+```
+:::
+
+
+:::
+## Use your markdown completion
+:::
+
+`useMarkdownCompletion` returns `markdownCompletion`—an object with tools you can use to perform and monitor autocompletion.
+
+Here's a breakdown of that object:
+
+::: ariaLabel="size breakdown" classes="wide-3"
+| Property | Type | Description |
+| --- | --- | --- |
+| `segmentedBySpace` | Ref ([`Completeable`](/docs/logic/classes/Completeable)) | <p>The reactive `Completeable` instance created by `useMarkdownCompletion` to manage inline markdown autocompletion.</p><p>Inline markdown includes:</p><ul><li>bold</li><li>italic</li><li>superscript</li><li>subscript</li><li>strikethrough</li><li>code</li><li>link</li></ul> |
+| `segmentedByNewline` | Ref ([`Completeable`](/docs/logic/classes/Completeable)) | <p>The reactive `Completeable` instance created by `useMarkdownCompletion` to manage block-level markdown autocompletion.</p><p>Block-level markdown includes:</p><ul><li>codeblock</li><li>blockquote</li><li>ordered list</li><li>unordered list</li><li>checklist</li><li>heading</li><li>horizontal rule</li></ul> |
+| `bold` | Function | <p>A function you can use to autocomplete bold text, i.e. wrap words in `**`.</p> |
+| `italic` | Function | <p>A function you can use to autocomplete italic text, i.e. wrap words in `_`.</p> |
+| `superscript` | Function | <p>A function you can use to autocomplete superscript text, i.e. wrap words in `^`.</p> |
+| `subscript` | Function | <p>A function you can use to autocomplete subscript text, i.e. wrap words in `~`.</p> |
+| `strikethrough` | Function | <p>A function you can use to autocomplete strikethrough text, i.e. wrap words in `~~`.</p> |
+| `code` | Function | <p>A function you can use to autocomplete code text, i.e. wrap words in <code>`</code>.</p> |
+| `link` | Function | <p>A function you can use to autocomplete a link.</p> |
+| `codeblock` | Function | <p>A function you can use to autocomplete a codeblock, i.e. wrap a block of text in <code>```</code>.</p> |
+| `blockquote` | Function | <p>A function you can use to programmatically convert one or more</p> |
+| `orderedList` | Function | <p>A function you can use to autocomplete orderedList text</p> |
+| `unorderedList` | Function | <p>A function you can use to autocomplete unorderedList text</p> |
+| `checklist` | Function | <p>A function you can use to autocomplete checklist text</p> |
+| `heading` | Function | <p>A function you can use to autocomplete heading text</p> |
+| `horizontalRule` | Function | <p>A function you can use to autocomplete horizontalRule text</p> |
+:::
+
+``````
+
+### src/prose/features/04-extensions/closing-completion.md
+
+``````md
+---
+title: Closing completion
+source: useClosingCompletion.ts
+tests: suites/extensions/useClosingCompletion.test.ts
+publish: true
+order: 0
+---
+
+`useClosingCompletion` is an [extension](/docs/features/extensions-overview) that autocompletes closing punctuation (e.g. brackets and quotes) in a textbox created by [`useTextbox`](/docs/features/interfaces/textbox).
+
+For example, when the end user types `[`, the `]` will be autocompleted. Or, if they highlight text and type `(`, the highlighted text will be wrapped in opening and closing parentheses.
+
+
+:::
+## Example
+:::
+
+<LayoutExample component="ExampleUseClosingCompletion" />
+
+
+:::
+## Create closing completion
+:::
+
+To start autocompleting punctuation, call the `useClosingCompletion` function, which accepts two parameters:
+
+::: ariaLabel="useClosingCompletion parameters" classes="wide-4"
+| Parameter | Type | Required | Description |
+| --- | --- | --- | --- |
+| `textbox` | Textbox | yes | The return object from [`useTextbox`](/docs/features/interfaces/textbox). |
+| `options` | Object | no | Passes customization options. See the next table for more guidance. |
+:::
+
+Here's a breakdown of the `useClosingCompletion` options:
+
+::: ariaLabel="useClosingCompletion options" classes="wide-5"
+| Property | Type | Required | Default | Description |
+| --- | --- | --- | --- | --- |
+| `only` | Array | no | See description | <p>An array of punctuation that should be autocompleted. Valid opening punctuation includes:</p><ul><li>`[`</li><li>`(`</li><li>`{`</li><li>`<`</li><li>`"`</li><li>`'`</li><li><code>\`</code></li></ul><p>The default `only` array includes all of those characters.</p> |
+:::
+
+:::
+```html
+<!-- MyComponent.vue -->
+<template>...</template>
+
+<script setup>
+import { useTextbox, useClosingCompletion } from '@baleada/vue-features'
+
+const textbox = useTextbox(),
+      closingCompletion = useClosingCompletion(textbox[, options])
+</script>
+```
+:::
+
+
+:::
+## Use your closing completion
+:::
+
+`useClosingCompletion` returns `closingCompletion`—an object with tools you can use to perform and monitor autocompletion.
+
+Here's a breakdown of that object:
+
+::: ariaLabel="size breakdown" classes="wide-3"
+| Property | Type | Description |
+| --- | --- | --- |
+| `close(opening)` | Function | <p>A function you can use to programmatically autocomplete punctuation based on the current selection.</p><p>`close` requires one parameter: `opening`, the opening punctuation that should be autocompleted.</p><p>Given the `opening` punctuation, `close` will record a new entry with the autocompleted text into your [`textbox`'s undo/redo history](/docs/features/interfaces/textbox#how-your-textbox-manages-undo-redo-history), which in turn will update the value of your HTML text input or textarea.</p><p>`close` returns the closing punctuation character (String).</p> |
+| `segmentedBySelection` | Ref ([`Completeable`](/docs/logic/classes/Completeable)) | <p>The reactive `Completeable` instance created by `useClosingCompletion` to manage punctuation autocompletion.</p><p>See the [How autocompletion works](#how-autocompletion-works) section for more guidance on `segmentedBySelection` usage.</p> |
+:::
+
+
+:::
+### How autocompletion works
+:::
+
+As mentioned above, the returned `closingCompletion` object has a `segmentedBySelection` property that holds the [`Completeable`](/docs/logic/classes/Completeable) instance that handles all of `closingCompletion`'s autocompletion logic.
+
+Like all `Completeable` instances, this instance extracts a segment of your text, which it eventually replaces with autocompleted text.
+
+This segment starts exactly where the end user's selection starts, and ends exactly where the end user's selection ends. If the end user types `Baleada` into your textbox, then highlights `Bal`, then `closingCompletion.segmentedBySelection.value.segment` will be `Bal`.
+
+More importantly, if the end user highlights `Bal` and then types `[`, two things would happen:
+- The textbox would autocomplete to `[Bal]eada` (wrapping the highlighted text in autocompleted punctuation)
+- The selection range would update, so that only `Bal` is still highlighted
+
+Play with the example near the top of this article to get a better sense of how that logic works.
+
+``````
+
+### src/prose/features/03-combos/modal.md
+
+``````md
+---
+title: Modal
+source: useModal.ts
+tests: suites/combos/useModal.test.ts
+publish: true
+order: 0
+---
+
+`useModal` is a composable that implements the UI logic needed for a reactive, accessible modal dialog interface.
+
+::: type="warning"
+Under construction 🚧
+:::
+
+``````
+
+### src/prose/features/03-combos/menu.md
+
+``````md
+---
+title: Menu
+source: useMenu.ts
+tests: suites/combos/useMenu.test.ts
+publish: true
+order: 0
+---
+
+::: type="warning"
+Under construction 🚧
+:::
+
+``````
+
+### src/prose/features/03-combos/select.md
+
+``````md
+---
+title: Select
+source: useSelect.ts
+tests: suites/combos/useSelect.test.ts
+publish: true
+order: 0
+---
+
+`useSelect` is a composable that implements the UI logic needed for a reactive, accessible select interface.
+
+::: type="warning"
+Under construction 🚧
+:::
+
+``````
+
+### src/prose/features/03-combos/combobox.md
+
+``````md
+---
+title: Combobox
+source: useCombobox.ts
+tests: suites/combos/useCombobox.test.ts
+publish: true
+order: 0
+---
+
+`useCombobox` is a composable that implements the UI logic needed for a reactive, accessible combobox interface.
+
+::: type="warning"
+Under construction 🚧
+:::
+
+``````
+
+### src/prose/features/05-affordances/bind.md
+
+``````md
+---
+title: bind
+source: true
+tests: suites/affordances/bind.test.ts
+publish: true
+order: 0
+---
+
+`bind` is a function that assigns values to properties or attributes on DOM elements.
+
+:::
+```ts
+import { ref } from 'vue'
+import { bind } from '@baleada/vue-features'
+
+export function useButton (...) {
+  const element = ref<HTMLElement>()
+  
+  bind(
+    element,
+    {
+      role: 'button',
+      tabindex: 0,
+      ...
+    }
+  )
+
+  return element
+}
+```
+:::
+
+`bind` works with static values (assigning them once) and reactive values (updating the DOM element each time the value changes).
+
+::: type="info"
+`bind` reimplements the `v-bind` affordance from Vue templates.
+
+And yes, there's a difference between DOM element attributes and properties! The DOM APIs for reading and writing their values are different.
+
+Just like Vue's `v-bind`, the `bind` affordance handles all that complexity internally, offering you a unified, consistent API instead.
+:::
+
+
+:::
+## Example
+:::
+
+<LayoutExample component="ExampleBind" />
+
+:::
+## Usage
+:::
+
+To bind static or reactive data to a DOM element, call the `bind` function, which requires two parameters: the element, list of elements, or `Plane` of elements you're binding to, and the values you want to bind.
+
+:::
+```js
+import { bind } from '@baleada/vue-features'
+
+export function useFoo (...) {
+  bind(elementOrListOrPlane, values)
+}
+```
+:::
+
+::: type="info"
+Usually, you'll call `bind` from inside another composable, but it also works in `script setup`.
+:::
+
+Here's a breakdown of the parameters:
+
+::: ariaLabel="bind parameters breakdown" classes="wide-5"
+| Parameter | Type | Required | Default | Description |
+| --- | --- | --- | --- | --- |
+| `elementOrListOrPlane` | See description | yes | none | <p>A reactive reference to the DOM element or elements you're binding data to.</p><p>`elementOrListOrPlane` can be one of the following types: </p><ul><li>HTMLElement</li><li>Array of HTMLElements</li><li>`Plane` of HTMLElements</li><li>Reactive reference to any of the above types</li></ul><p>See the [How to format values](#how-to-format-values) section for more guidance on binding values to specific elements in a reactive array or reactive `Plane`.</p> |
+| `values` | Object | yes | none | <p>The attributes or properties and values you want to bind to your element or elements.</p><p>See the [How to format the `values` object](#how-to-format-the-values-object) section for more guidance.</p> |
+:::
+
+
+:::
+### How to format the `values` object
+:::
+
+The required `values` parameter is an object. The keys of that object must be DOM element attributes (e.g. `aria-label`) or DOM element properties (e.g. `value`) that you'll be binding data to:
+
+:::
+```js
+import { bind } from '@baleada/vue-features'
+
+export function myCompositionFunction (...) {
+  bind(
+    myElement,
+    {
+      ariaLabel: ...,
+      class: ...,
+      style_backgroundColor: ...,
+    }
+  )
+}
+```
+:::
+
+
+:::
+#### How to format keys
+:::
+
+Here are the rules `bind` follows when reading the keys on the `values` object:
+
+If the key starts with `aria` or `data`, followed by a capital letter, `bind` binds to the correct `aria-` or `data-` attribute.
+
+:::
+```js
+bind(
+  ...
+  {
+    // Binds to aria-label
+    ariaLabel: ...,
+    // Binds to data-name
+    dataName: ...,
+  }
+)
+```
+:::
+
+If the key is one of the values from the list below, `bind` binds to the correct DOM property:
+
+::: ariaLabel="map of attribute and property names"
+| Key | DOM element property |
+| --- | --- |
+| `for` | `htmlFor` |
+| `allowfullscreen` | `allowFullscreen` |
+| `formnovalidate` | `formNoValidate` |
+| `ismap` | `isMap` |
+| `nomodule` | `noModule` |
+| `novalidate` | `noValidate` |
+| `readonly` | `readOnly` |
+:::
+
+:::
+```js
+bind(
+  ...
+  {
+    // bind sets the htmlFor property
+    for: ...,
+  }
+)
+```
+:::
+
+If the key is `class` or `rel` `bind` binds to `classList` or `relList`. Existing values in those lists are preserved, while your reactive values are added and removed as needed:
+
+:::
+```js
+bind(
+  ...
+  {
+    // bind adds to and removes from classList,
+    // respecting existing values
+    class: ...,
+    // bind adds to and removes from relList,
+    // respecting existing values
+    rel: ...,
+  }
+)
+```
+:::
+
+If the key is `ariaDescribedbys` or `ariaLabelledbys` (note the `s` at the end), `bind` adds your value to any space-separated list of element IDs that might already be present in the `aria-describedby` or `aria-labelledby` attributes:
+
+:::
+```js
+bind(
+  ...
+  {
+    // bind adds your value to the aria-describedby attribute,
+    // instead of overwriting it.
+    ariaDescribedbys: ...,
+    // bind adds to the aria-labelledby attribute
+    ariaLabelledbys: ...,
+  }
+)
+```
+:::
+
+If the key starts with `style_`, `bind` binds to `style.` + whatever follows the underscore:
+
+:::
+```js
+bind(
+  ...
+  {
+    // Binds to style.backgroundColor
+    style_backgroundColor: ...,
+  }
+)
+```
+:::
+
+For all other keys, `bind` binds to the property or attribute exactly as it's written:
+
+:::
+```js
+bind(
+  ...
+  {
+    // Binds to the id property
+    id: ...,
+    // Binds to the aria-label attribute
+    'aria-label': ...,
+    // Overwrites the aria-labelledby attribute, instead of
+    // adding to it, because the key is not pluralized
+    ariaLabelledby: ...,
+  }
+)
+```
+:::
+
+::: type="warning"
+Setting `innerHTML` is out of Baleada Features' scope. Using `bind` with `innerHTML` is possible in some cases, but not recommended, since Baleada Features doesn't include security measures or edge case handling for this kind of work.
+
+If you're going to bind to `innerHTML`, be sure to use something like [`createSanitize`](/docs/logic/pipes/sanitize) to sanitize your content.
+:::
+
+
+:::
+#### How to format values
+:::
+
+There are several different ways to format the values that `bind` binds to the properties or attributes you specified.
+
+The simplest type of value is a plain String, Number, or Boolean.
+
+:::
+```js
+bind(
+  ...
+  {
+    id: 'my-number-input',
+    ariaHidden: true,
+    value: 0,
+  }
+)
+```
+:::
+
+When you pass plain data like this, `bind` sets the DOM element's attribute or property once, then leaves it alone.
+
+In most cases though, some of those values will be reactive references to Strings, Numbers, or Booleans:
+
+:::
+```js
+import { ref } from 'vue'
+
+const numberInputValue = ref(0)
+
+bind(
+  ...
+  {
+    ...
+    value: numberInputValue,
+  }
+)
+```
+:::
+
+When the value is a reactive ref (i.e. a `ref`, `shallowRef`, or `computed` value), `bind` automatically watches it for changes, and sets the DOM element's attribute or property each time a change is detected.
+
+But what about when the `element` is a reactive array of elements, rather than a single reactive element reference? How do we make sure the correct data is bound to each element?
+
+When you're binding static data, you can pass the **value getter** instead of a standard value. The value getter is a callback function that receives only one argument: the `index` (Number) of a given element in your reactive array of elements. It should return the value that `bind` should bind to that specific element.
+
+:::
+```js
+import { ref } from 'vue'
+
+const list = ref<HTMLElement[]>([])
+
+bind(
+  list,
+  {
+    dataIndex: index => `${index}`,
+  }
+)
+```
+:::
+
+But what about when the data _is_ reactive, but still needs to be bound to an array of elements? For those cases, you can pass a **reactive value getter** as the key's value.
+
+A reactive value getter is an **object**. Here's a breakdown of that object:
+
+::: ariaLabel="reactive value getter breakdown" classes="wide-5"
+| Property | Type | Required | Default | Description |
+| --- | --- | --- | --- | --- |
+| `get` | Function | yes | none | A value getter, as described above. |
+| `watchSource` | Ref, Array | yes | none | <p>A single [watch source](https://v3.vuejs.org/guide/reactivity-computed-watchers.html#watching-a-single-source), or an array of watch sources. No need to pass your reactive array of elements—that data is already watched automatically.</p><p>Each time `bind` detects a change in your watch sources or the reactive array of elements, it will iterate through your array of elements, calling `get` for each one.</p> |
+:::
+
+Here's an example of how [`useTablist` ](/docs/features/interfaces/tablist) uses a reactive value getter to manage the `aria-hidden` attribute on its array of tab panels, setting `false` for the hidden tabs and `true` for the currently selected tab:
+
+:::
+```js
+export function useTablist (...) {
+  bind(
+    // Reactive array of tab panel elements
+    panels.list,
+    {
+      // `selected` is a reactive reference to the index 
+      // of the currently `selected` tab panel.
+      //
+      // aria-hidden should be true for all panels whose
+      // index doesn't match `selected`, and should be
+      // `undefined` for the one panel whose index.
+      // (`undefined` will instruct `bind` to remove
+      // the `aria-hidden` attribute from the visible
+      // tab panel.)
+      //
+      // This get should run again each time
+      // `selected` changes.
+      ariaHidden: {
+        get: index => index === selected.value
+          ? undefined
+          : 'true',
+        watchSource: selected,
+      },
+    },
+  )
+}
+```
+:::
+
+Finally, let's look at how this all works with a [plane](/docs/features/plane).
+
+The value format for a plane is almost identical to the format for arrays of elements. When you're binding static data, you can pass the **value getter** instead of a standard value. The value getter for a plane is a callback function that receives one argument: the [coordinates](/docs/features/coordinates) of a given element in your plane of elements. It should return the value that `bind` should bind to that specific element.
+
+Here's an example of how [`useGrid` ](/docs/features/interfaces/grid) uses this feature to set the `role` attribute for each cell in the grid. These values never change, so `roles` does not need to be reactive:
+
+:::
+```js
+export function useGrid (...) {
+  bind(
+    // Reactive plane (array of arrays) of grid cell elements
+    cells.plane,
+    {
+      // The `hasRowHeaders` and `hasColumnHeaders` options
+      // control whether or not `useGrid` applies the `rowheader`
+      // and `columnheader` roles to the first row and column.
+      //
+      // This value getter is able to use the `row` and `column`
+      // arguments to determine whether or not the cell is in the
+      // first row or column.
+      //
+      // Any cell that is neither in the first row nor the first
+      // column should get the `gridcell` role.
+      role: (row, column) => 
+        (hasRowheaders && row === 0 && 'rowheader')
+        || (hasColumnheaders && column === 0 && 'columnheader')
+        || 'gridcell',
+    }
+  )
+
+  ...
+}
+```
+:::
+
+And just like with arrays of elements, when the data _is_ reactive, but still needs to be bound to the plane of elements, you can pass a **reactive value getter** as the key's value.
+
+A reactive value getter for a plane is identical to the reactive value getter for arrays. It's still an object, with a `get` property for the value getter, and a `watchSource` property for a single watch source or array of watch sources.
+
+The only difference is that this value getter receives coordinates as its argument, instead of an index.
+
+Here's an example of how [`useGrid` ](/docs/features/interfaces/grid) uses a reactive value getter to manage the `aria-selected` attribute on its plane of grid cells, setting `true` for selected cells and removing the attribute for unselected cells:
+
+:::
+```js
+export function useGrid (...) {
+  bind(
+    cells.plane,
+    {
+      ariaSelected: {
+        // An internal `isSelected` function does the heavy lifting
+        // here and returns a boolean.
+        get: (row, column) => isSelected(row, column)
+          ? 'true'
+          // Returning `undefined` from a value getter causes
+          // the attribute to get removed. More on that in the
+          // next section of this guide.
+          : undefined,
+        // Internally, info about selected cells is stored in 
+        // two reactive objects, named `selectedRows` and
+        // `selectedColumns`.
+        //
+        // We can set up those two objects as watch sources, and
+        // `bind` will recompute `aria-selected` for each gridcell
+        // whenever reactive changes are detected.
+        watchSource: [
+          () => selectedRows.value.picks,
+          () => selectedColumns.value.picks
+        ],
+      },
+    }
+  )
+
+  ...
+}
+```
+:::
+
+
+:::
+#### How to remove attributes
+:::
+
+In a few code samples above, you can see great examples of cases where we'd actually like to **remove an attribute** from an element in certain cases.
+- Hidden tab panels should have their `aria-hidden` attribute set to `true`, but the visible tab panel should not have an `aria-hidden` attribute.
+- Selected grid cells should have `aria-selected` set to `true`, but unselected grid cells should not have an `aria-selected` attribute.
+
+In cases like theses, the attribute needs to either be set to `true` or be removed reactively, based on user interaction.
+
+With `bind`, you can remove any attribute from an element at any time by making sure the value of that attribute is `undefined`. In other words, if a reactive reference, value getter, or reactive value getter resolves to `undefined` for an element, `bind` will completely remove the attribute from that element.
+
+``````
+
+### src/prose/features/05-affordances/model.md
+
+``````md
+---
+title: model
+source: true
+tests: suites/affordances/model.test.ts
+publish: true
+order: 0
+---
+
+`model` is a function that creates two-way data binding between a DOM element and your reactive reference.
+
+::: type="info"
+`model` reimplements the `v-model` affordance from Vue templates. Under the hood, it uses the [`bind`](/docs/features/affordances/bind) and [`on`](/docs/features/affordances/on) affordances.
+:::
+
+
+:::
+## Example
+:::
+
+<LayoutExample component="ExampleModel" />
+
+:::
+## Usage
+:::
+
+To create two-way binding, call the `model` function, which requires two parameters: the element you're binding data to, and the model value—a reactive reference where `model` can read and write the stored value.
+
+`model` also accepts an optional `options` object as its final parameter.
+
+:::
+```js
+import { model } from '@baleada/vue-features'
+
+export function myCompositionFunction (...) {
+  model(element, modelValue[, options])
+}
+```
+:::
+
+::: type="info"
+Usually, you'll call `model` from inside another composable, but it also works in `script setup`.
+:::
+
+Here's a breakdown of the required parameters:
+
+::: ariaLabel="model required object breakdown" classes="wide-5"
+| Property | Type | Required | Default | Description |
+| --- | --- | --- | --- | --- |
+| `element` | Ref (HTMLElement) | yes | none | <p>A reactive reference to the DOM element you're modeling data to.</p><p>Unlike other Baleada Features affordances, which let you pass an array of DOM elements as the first parameter, `model` only accepts a reactive reference to a single DOM element.</p> |
+| `modelValue` | Ref | yes | none | The reactive reference where `model` will read and write the two-way bound data. |
+:::
+
+And here's a breakdown of the `options` object:
+
+::: ariaLabel="model required object breakdown" classes="wide-4 wide-5"
+| Property | Type | Required | Default | Description |
+| --- | --- | --- | --- | --- |
+| `key` | String | no | `value` | The DOM element's attribute or property where data should be bound. |
+| `event` | String | no | `input` | The event that `model` should listen for on the DOM element to detect when new data has been entered by the end user |
+| `toValue` | Function | no | `({ target: { value } }) => value` | A function that accepts your DOM event as its first and only parameter, and should return the value that `model` should store in the `required.modelValue` reactive reference |
+:::
+
+Here's an example of how you could create two-way data binding on an HTML text input:
+
+:::
+```html
+<!-- MyComponent.vue -->
+<script setup>
+import { ref } from 'vue'
+import { model } from '@baleada/vue-features'
+
+// Set up the DOM element ref and the value ref
+const input = ref(null),
+      modelValue = ref('')
+
+// Pass those reactive references to model
+model(input, modelValue)
+</script>
+
+<template>
+  <!--
+    Attach the template ref to an element, and wait for 
+    user input!
+
+    In this example, as soon as the 'input' event fires,
+    event.target.value will be stored in your `modelValue` reactive
+    reference, then `model` will set that value as the HTML
+    input's new value.
+
+    You can also programmatically assign a new value to your
+    `modelValue` reactive reference, and `model` will update the
+    HTML input's value automatically.
+  -->
+  <input ref="input" />
+</template>
+```
+:::
+
+Here's an example of how you would use `option` to customize `model`'s behavior to work with a `checkbox` input:
+
+:::
+```html
+<!-- MyComponent.vue -->
+<script setup>
+import { ref } from 'vue'
+import { model } from '@baleada/vue-features'
+
+// Set up the DOM element ref and the value ref
+const input = ref(null),
+      modelValue = ref(false)
+
+// Pass those reactive references to model
+model(
+  input,
+  modelValue,
+  // Use options to make sure `model` is modelling the boolean `checked`
+  // property of the input, instead of grabbing the `value` property
+  // by default.
+  { toValue: event => event.target.checked }
+)
+</script>
+
+<template>
+  <!--
+    Attach the template ref to an element, and wait for 
+    user input!
+  -->
+  <input type="checked" ref="input" />
+</template>
+```
+:::
+
+``````
+
+### src/prose/features/05-affordances/identify.md
+
+``````md
+---
+title: identify
+source: true
+tests: suites/affordances/identify.test.ts
+publish: true
+order: 0
+---
+
+`identify` is a function that can create unique IDs for elements when a component is mounted, and cache & retrieve those IDs until the component is unmounted.
+
+::: type="warning"
+Under construction 🚧
+:::
+
+``````
+
+### src/prose/features/05-affordances/show.md
+
+``````md
+---
+title: show
+source: true
+tests: suites/affordances/show.test.ts
+publish: true
+order: 0
+---
+
+`show` is a function that can conditionally show or hide elements in the DOM, using the CSS `display` property under the hood. It works with static values—conditionally displaying once—and reactive values—showing and hiding elements each time the value changes.
+
+::: type="info"
+`show` reimplements the `v-show` affordance from Vue templates.
+:::
+
+:::
+## Example
+:::
+
+<LayoutExample component="ExampleShow" />
+
+The [`useTablist` example](/docs/features/interfaces/tablist#example) is another good demo—it uses `show` under the hood to toggle an array of tab panel elements.
+
+:::
+## Usage
+:::
+
+To conditionally display a DOM element, call the `show` function, which requires two parameters: the element or elements you're conditionally showing, and the condition the element or elements need to meet. `show` also accepts an optional `options` object as its final parameter.
+
+:::
+```js
+import { show } from '@baleada/vue-features'
+
+export function myCompositionFunction (...) {
+  show(elementOrListOrPlane, condition[, options])
+}
+```
+:::
+
+::: type="info"
+Usually, you'll call `show` from inside another composable, but it also works in `script setup`.
+:::
+
+Here's a breakdown of the required parameters:
+
+::: ariaLabel="show parameter breakdown" classes="wide-5"
+| Parameter | Type | Required | Default | Description |
+| --- | --- | --- | --- | --- |
+| `elementOrListOrPlane` | See description | yes | none | <p>A reactive reference to the DOM element or elements you're binding data to.</p><p>`elementOrListOrPlane` can be one of the following types: </p><ul><li>HTMLElement</li><li>Array of HTMLElements</li><li>`Plane` of HTMLElements</li><li>Reactive reference to any of the above types</li></ul><p>See the [How to format your condition](#how-to-format-your-condition) section for more guidance on conditionally displaying specific elements in a reactive array.</p> |
+| `condition` | Ref (Boolean), Function, Object | yes | none | <p>Indicates whether or not `elementOrListOrPlane` should be displayed.</p><p>See the [How to format your condition](#how-to-format-your-condition) section for more guidance on formatting your condition.</p> |
+:::
+
+
+And here's a breakdown of the `options` object:
+
+::: ariaLabel="show options object breakdown" classes="wide-5"
+| Property | Type | Required | Default | Description |
+| --- | --- | --- | --- | --- |
+| `transition` | Object | no | none | <p>An object that contains methods and/or CSS classes for enter/leave transitions.</p><p>See the [How to format enter/leave transitions](#how-to-format-enter-leave-transitions) section for more guidance, including tips for type-safe transition definitions using TypeScript.</p> |
+:::
+
+
+:::
+### How to format your condition
+:::
+
+There are several different ways to format the condition that `show` uses to determine whether or not an element should be displayed.
+
+The simplest type of condition is a reactive reference to a Boolean:
+
+:::
+```js
+import { ref } from 'vue'
+
+const isShown = ref(true),
+      myElement = ref(null) 
+      // ☝️ A Vue component would populate this ref 
+      // with a DOM element after the component is
+      // mounted.
+
+show(
+  myElement,
+  isShown,
+)
+```
+:::
+
+`show` watches your reactive value for changes. When the value is `true`, your element is displayed, and when it's `false`, the element is hidden.
+
+But what about when the `element` is a reactive array of elements, rather than a single reactive element reference? How do we make each element is correctly shown or hidden?
+
+If you only need to conditionally display your elements once, you can pass the **value getter** instead of a reactive Boolean. The value getter is a callback function that receives only one argument: the `index` (Number) of a given element in your reactive array of elements. It should return `true` for elements that should be shown, and `false` for elements that should be hidden.
+
+But more commonly, you'll need to conditionally display an array of elements based on some other piece of reactive data. For those cases, you can pass a **reactive value getter** as the key's value.
+
+A reactive value getter is an **object**, as described in the [`bind`](/docs/features/affordances/bind#how-to-format-values) guide. Here's a breakdown of that object:
+
+::: ariaLabel="reactive value getter breakdown" classes="wide-5"
+| Property | Type | Required | Default | Description |
+| --- | --- | --- | --- | --- |
+| `get` | Function | yes | none | A value getter, as described above. |
+| `watchSource` | Ref, Array | yes | none | <p>A single [watch source](https://v3.vuejs.org/guide/reactivity-computed-watchers.html#watching-a-single-source), or an array of watch sources. No need to pass your reactive array of elements—that data is already watched automatically.</p><p>Each time `show` detects a change in your watch sources (or the reactive array of elements), it will iterate through your array of elements, calling `get` for each one.</p> |
+:::
+
+Here's an example of how [`useTablist` ](/docs/features/interfaces/tablist) uses this feature to conditionally display tab panels, displaying only the currently selected panel:
+
+:::
+```js
+export function useTablist (...) {
+  ...
+
+  show(
+    // Reactive array of tab panel elements
+    panels.list,
+    {
+      // `selected.value.newest` is a reactive reference to the
+      // index of the currently selected tab panel.
+      //
+      // Every panel should be hidden, except for the panel
+      // whose index is a match.
+      //
+      // This `get` callback should run again each time
+      // `selected.value.newest` changes.
+      get: index => index === selected.value.newest,
+      watchSource: () => selected.value.newest,
+    },
+    options
+  )
+
+  ...
+}
+```
+:::
+
+Finally, let's look at how this all works with a `Plane`, the Baleada Features data structure for an array of arrays of elements.
+
+The value format for a `Plane` is almost identical to the format for arrays of elements. When you only need to conditionally display the elements in the `Plane` once, you can pass the **value getter**. The value getter for a `Plane` is a callback function that receives two arguments: the `row` index (Number) and `column` index (Number) of a given element in your `Plane` of elements. It should return `true` for elements that should be shown, and `false` for elements that should be hidden.
+
+Here's an example of how that would look:
+
+:::
+```js
+import { show } from '@baleada/vue-features'
+
+export function myComposable (...) {
+  ...
+
+  show(
+    // Reactive `Plane` of elements
+    myPlane,
+    {
+      get: (row, column) => {
+        // Based on `row` and `column`, return `true` for
+        // elements that should be shown, and `false` for
+        // elements that should be hidden.
+      },
+      watchSource: [
+        // Any watch sources that should cause the `get` callback
+        // to re-run and conditionally display each element again.
+      ],
+    },
+    options
+  )
+
+  ...
+}
+```
+:::
+
+
+:::
+### How to format enter/leave transitions
+:::
+
+As outlined above, `show` accepts an optional `options` object as its final parameter, and that object's only property is `transition`.
+
+You can use this `transition` property to configure an enter/leave transition that will more smoothly show and hide your element or elements.
+
+The API for `show`'s `transition` option is inspired by the API of [Vue's `Transition` component](https://vuejs.org/guide/built-ins/transition.html). Both CSS and JS transitions are supported.
+
+The value of the `transition` property should be an object configuring your transition. That object can have these properties:
+- `appear`
+- `enter`
+- `leave`
+
+Each property of your transition config can either be a CSS transition or a JS transition, whose formats are explained in more detail in the next section.
+
+Before diving in to transition formats, note a few points:
+- It's possible to mix and match transitions, i.e. you can have a CSS `enter` transition and a JS `leave` transition.
+- It's not required to define a transition for every state, i.e. you can define an `enter` transition with no `leave` transition.
+- Just like with Vue's `Transition` component, you can set `appear` to `true`, and your element will use the `enter` transition when it first appears.
+
+Now, let's go through the CSS and JS transition formats individually, and finish up by looking at type-safe transitions for TypeScript users.
+
+
+:::
+#### CSS transitions
+:::
+
+CSS transitions are configured by objects. Here's a breakdown of the CSS transition object:
+
+::: ariaLabel="CSS transition object breakdown" classes="wide-5"
+| Property | Type | Required | Default | Description |
+| --- | --- | --- | --- | --- |
+| `from` | String | yes | none | One or more space-separated CSS classes that should be added to the target element to apply initial styles. |
+| `active` | String | yes | none | One or more space-separated CSS classes that should be added to the target element one frame after the `from` classes get added, and kept on the element until it finishes transitioning. |
+| `to` | String | yes | none | One or more space-separated CSS classes that should be added to the target element to define where it transitions to. |
+| `start` | Function | no | none | A callback that `show` will call with no arguments, right before adding `from` classes. Useful for performing pre-transition side effects. |
+| `end` | Function | no | none | A callback that `show` will call with no arguments, one animation frame after the transition ends, in the same animation frame that `active` and `to` classes are removed. Useful for performing post-transition side effects, like focusing a form control. |
+| `cancel` | Function | no | none | A callback that `show` will call with no arguments, one animation frame after the transition cancels. Useful for performing post-cancel side effects, like focusing a form control. |
+:::
+
+Here's a more detailed breakdown of transition timing:
+1. The optional `start` callback gets called
+2. `from` classes get added
+3. One animation frame later, `active` classes get added
+4. One animation frame later, `from` classes get removed, and `to` classes get added
+5. Transition eventually ends
+6. One animation frame later, `active` and `to` classes get removed, and `show` calls the optional `end` callback
+
+Cancel timing:
+1. Transition is canceled by setting `transition-property` to `none` and removing `from`, `active`, and `to` classes
+2. One animation frame later, `transition-property` is restored to its original value (if any) and `show` calls the optional `cancel` callback
+3. `show` never calls the optional `end` callback
+
+
+:::
+```js
+import { show } from '@baleada/vue-features'
+
+show(
+  myElement,
+  myCondition,
+  {
+    transition: {
+      // Example fade-in transition using Tailwind classes
+      enter: {
+        from: 'opacity-0 scale-[98%]',
+        active: 'transition ease-out duration-150',
+        to: 'opacity-100 scale-100',
+
+        // Optional callbacks for post-transition side effects
+        end: () => myElement.value.focus(),
+        cancel: () => someOtherElement.value.focus(),
+      }
+    }
+  }
+)
+```
+:::
+
+
+:::
+#### JS transitions
+:::
+
+JS transitions are configured by objects. Here's a breakdown of the JS transition object:
+
+::: ariaLabel="JS transition object breakdown" classes="wide-5"
+| Property | Type | Required | Default | Description |
+| --- | --- | --- | --- | --- |
+| `before` | Function | no | none | <p>Performs side effects before the transition starts.</p><p>See the list below this table for more info on `before` parameters.</p> |
+| `active` | Function | no | none | <p>Performs the bulk of JS transition work</p><p>**Important:** in addition to the parameters explained below this table, `active` receives a final `done` parameter.</p><p>`done` is a callback that you should call with no arguments when the JS transition has been completed.</p> |
+| `after` | Function | no | none | <p>Performs side effects after the transition ends.</p><p>See the list below this table for more info on `before` parameters.</p> |
+| `cancel` | Function | no | none | <p>Performs side effects after the transition cancels.</p><p>See the list below this table for more info on `before` parameters.</p> |
+:::
+
+More info on the parameters passed to these callbacks:
+- When you're transitioning a single element, the callbacks receive no parameters.
+- When you're transitioning a list, the callbacks get called for each element, and the receive the index (number) of the element currently being transitioned.
+- When you're transitioning a `Plane`, the callbacks get called for each element, and they receive the row (Number) and column (Number) of the element currently being transitioned.
+- Remember that `active` receives its `done` parameter _after_ any index/row/column parameters. Call `done` with no arguments when the JS transition has been completed.
+
+
+:::
+```js
+import { show } from '@baleada/vue-features'
+
+show(
+  required,
+  {
+    transition: {
+      enter: {
+        before: ...,
+        active: ...,
+        after: ...,
+        cancel: ...,
+      },
+      leave: {
+        before: ...,
+        active: ...,
+        after: ...,
+        cancel: ...,
+      },
+      appear: {
+        before: ...,
+        active: ...,
+        after: ...,
+        cancel: ...,
+      },
+    }
+  }
+)
+```
+:::
+
+Here's a more detailed breakdown of JS transition timing:
+
+::: ariaLabel="JS transition hook timing"
+| Callback | When it's called |
+| --- | --- |
+| `appear.before` | Right before the element's `display` property is changed to show the element for the first time. |
+| `appear.active` | Right after the element's `display` property is changed to show the element for the first time. |
+| `appear.after` | Right after `appear.active`, assuming the transition was not canceled. |
+| `appear.cancel` | When reactive data changes cause `show` to hide the element after `appear.active` starts AND before the `done` function has been called inside `appear.active`. |
+| `enter.before` | Right before the element's `display` property is changed to show the element. Does not run when this happens for the first time. |
+| `enter.active` | Right after the element's `display` property is changed to show the element. Does not run when this happens for the first time. |
+| `enter.after` | Right after `enter.active`, assuming the transition was not canceled. |
+| `enter.cancel` | When reactive data changes cause `show` to hide the element after `enter.active` starts AND before the `done` function has been called inside `enter.active`. |
+| `leave.before` | Right after reactive data changes cause `show` to hide the element. |
+| `leave.active` | Right after `leave.before`. |
+| `leave.after` | Right after the element's `display` property is changed to hide the element, which in turn happens right after the `done` function is called inside `leave.active`. |
+| `leave.cancel` | When reactive data changes cause `show` to show the element after `leave.active` starts AND before the `done` function has been called inside `leave.active`. |
+:::
+
+
+:::
+#### Type-safe transitions
+:::
+
+Baleada Features exports a `defineTransition` helper function that you can use to define type-safe transition configurations for `appear`, `enter`, and `leave`.
+
+`defineTransition` is a no-op—you pass in a transition configuration object as its first and only parameter, and the exact same object gets returned.
+
+Type safety comes from the generic types that you can pass to `defineTransition`.
+
+::: ariaLabel="defineTransition generic types breakdown"
+| Generic | Required | Default | Description |
+| --- | --- | --- | --- |
+| `BindElement` | yes | none | <p>A type that describes the type of element being transitioned. Valid types include:</p><ul><li>`HTMLElement`</li><li>`HTMLElement[]`</li><li>`HTMLElement[][]`</li><li>Vue's `Ref` type, with any of the above types passed in as a generic</li></ul><p>Normally, you'll use the `typeof` operator to infer this type—see example below this table.</p> |
+| `TransitionType` | yes | none | A string literal—it can be `'css'` or `'js'`, depending on what kind of transition you're configuring. |
+:::
+
+Here's a code example:
+:::
+```ts
+import { ref } from 'vue'
+import {
+  show,
+  defineTransition,
+  useElementApi
+} from '@baleada/vue-features'
+
+const element = ref<HTMLElement>()
+const elementIsShown = ref(false)
+
+show(
+  element,
+  elementIsShown,
+  {
+    transition: {
+      appear: true,
+      // It's recommended to use the `typeof` operator to infer
+      // the first generic type, instead of manually passing a
+      // valid type.
+      //
+      // The second generic type defines `enter` as a CSS transition.
+      enter: defineTransition<typeof element, 'css'>({
+        // `from`, `active`, and `to` are type-checked as strings
+        from: ..., active: ..., to: ...,
+        // `end` and `cancel` are type checked as functions
+        end: ..., cancel: ...,
+      }),
+
+      // You can pass 'js' as the second generic to define a
+      // type-safe JS transition:
+      leave: defineTransition<typeof element, 'js'>({
+        // All properties are type-checked as functions
+        before: () => { ... },
+        after: () => { ... },
+        cancel: () => { ... },
+        // The `active` function actually has a few different
+        // signatures. For single elements, it just receives
+        // the `done` callback as its first and only parameter.
+        //
+        // For lists and planes, though, it can receive the `index`
+        // or the `row` & `column` as parameters, with the `done`
+        // callback always passed as the last parameter. TypeScript
+        // will correctly type-check all three of these variations
+        // with the help of your generic types.
+        active: (done) => { ... },
+    }
+  }
+)
+```
+:::
+
+``````
+
+### src/prose/features/05-affordances/on.md
+
+``````md
+---
+title: on
+source: true
+tests: suites/affordances/on.test.ts
+publish: true
+order: 0
+---
+
+`on` is a function that manages all kinds of event listeners, adding them when a Vue component is mounted, and automatically removing them up when the component is destroyed.
+
+::: type="info"
+`on` reimplements the `v-on` affordance from Vue templates, and adds support for even more web APIs, like [Intersection Observer](https://developer.mozilla.org/en-US/docs/Web/API/intersectionObserver) and [media queries](https://developer.mozilla.org/en-US/docs/Web/API/Window/matchMedia).
+
+To do this, `on` uses [`Listenable`](/docs/logic/classes/Listenable) under the hood. Check out the `Listenable` docs for a full list of supported event types.
+:::
+
+
+:::
+## Usage
+:::
+
+To listen for events, call the `on` function, which requires two parameters: the element, list of elements, or `Plane` of elements you're listening on, and the side effects you want to perform.
+
+:::
+```js
+import { on } from '@baleada/vue-features'
+
+export function myCompositionFunction (...) {
+  on(elementOrListOrPlane, effects)
+}
+```
+:::
+
+::: type="info"
+Usually, you'll call `on` from inside another composable, but it also works in `script setup`.
+:::
+
+Here's a breakdown of the required parameters:
+
+::: ariaLabel="on parameters breakdown" classes="wide-5"
+| Parameter | Type | Required | Default | Description |
+| --- | --- | --- | --- | --- |
+| `elementOrListOrPlane` | See description | yes | none | <p>A reactive reference to the DOM element or elements you're listening on.</p><p>`elementOrListOrPlane` can be one of the following types: </p><ul><li>HTMLElement</li><li>Array of HTMLElements</li><li>`Plane` of HTMLElements</li><li>Reactive reference to any of the above types</li></ul><p>See the [How to format effects](#how-to-format-effects) section for more guidance on using your event listener/observer callback/etc. to access specific elements in a reactive array or reactive `Plane`.</p> |
+| `effects` | Object | yes | none | <p>An object describing side effects, performed via callback functions, that you want to run when events are fired on your element, list of elements, or `Plane` of elements.</p><p>See the [How to format the effects object](#how-to-format-the-effects-object) section for more guidance on usage.</p><p>Also, see the [Valid event types](/docs/logic/classes/Listenable#Valid-event-types) section of the `Listenable` docs for more guidance on how to listen for specific keyboard shortcuts, resized elements, custom gestures, and much more.</p><p>Finally, note that `effects` has some awesome TypeScript features to support type safety and autocomplete in your callbacks. You can learn more about that in the [How to write type-safe effects](#how-to-write-type-safe-effects) section</p> |
+:::
+
+
+:::
+### How to format the effects object
+:::
+
+The `effects` parameter is an object. The properties of that object must be [valid `Listenable` event types](/docs/logic/classes/Listenable#Valid-event-types):
+
+:::
+```js
+import { on } from '@baleada/vue-features'
+
+export function myCompositionFunction (...) {
+  on(
+    myElement,
+    {
+      click: ...,
+      keydown: ...,
+      intersect: ...,
+      recognizeable: ..., // For custom gestures
+    }
+  )
+}
+```
+:::
+
+
+:::
+#### How to format effects
+:::
+
+There are several different ways to format the effects that `on` will add to your elements, and perform each time their corresponding event occurs.
+
+The simplest type of listener is a plain callback function, exactly like the one you might pass to `addEventListener` or `IntersectionObserver.observe`:
+
+:::
+```js
+import { on } from '@baleada/vue-features'
+
+on(
+  ...
+  {
+    click: mouseEvent => { ... },
+    keydown: keyboardEvent => { ... },
+    intersect: intersectionObserverEntries => { ... },
+  }
+)
+```
+:::
+
+But in some situations, you'll need to configure the listener more precisely. For example, you'll need to pass options to `addEventListener` or the `IntersectionObserver` constructor (both used under the hood by `Listenable`), or you might want to configure the underlying `Listenable` instance to listen for custom gestures.
+
+In these cases, you can pass an **effect config** as the key's value. The effect config is an object with two properties: `createEffect` and `options`.
+
+The value of `createEffect` should be a callback function that **returns** a function with side effects:
+
+:::
+```js
+import { on } from '@baleada/vue-features'
+
+on(
+  ...,
+  {
+    // Each `createEffect` returns the function that should
+    // be called each time an event happens, or an Observer
+    // adds an entry, etc.
+    click: {
+      createEffect: (...) => mouseEvent => { ... },
+    },
+    keydown: {
+      createEffect: (...) => keyboardEvent => { ... },
+    },
+    intersect: {
+      createEffect: (...) => intersectionObserverEntries => { ... },
+    },
+  }
+)
+```
+:::
+
+The `createEffect` function receives two arguments: the `index` (Number) of a given element in your reactive array of elements, and an object with some useful values.
+
+Here's a breakdown of that object:
+
+::: ariaLabel="createEffect object breakdown" classes="wide-3"
+| Property | Type | Description |
+| --- | --- | --- |
+| `off` | Function | <p>A function you can call with no arguments to immediately stop listening for the event on the current `element`. The event listener (or observer, etc.) will be cleaned up and will be inactive for the rest of the component's lifecycle OR until Vue detects a change to the DOM target or array of DOM elements you passed as the `elementOrListOrPlane` parameter.</p><p>To implement the `once` feature of Vue, where an event listener only runs once, you can call `off` at the end of your listener.</p> |
+| `listenable` | [`Listenable`](/docs/logic/classes/Listenable) | <p>The [`Listenable`](/docs/logic/classes/Listenable) instance used by `on` under the hood to set up listeners, connect observers, parse keycombos, etc.</p><p>`listenable` is primarily useful when you're using `on` with [`Recognizeable`](/docs/logic/classes/recognizeable) to listen for custom gestures—you can access `Recognizeable`'s metadata via `listenable.recognizeable`.</p> |
+:::
+
+Again, the `createEffect`, given this object as an argument, should return an event listener.
+
+The other key of the effect config is `options`, which is an object. Here's a breakdown of the `options` object:
+
+::: ariaLabel="effect config options breakdown" classes="wide-5"
+| Property | Type | Required | Default | Description |
+| --- | --- | --- | --- | --- |
+| `listenable` | Object | no | `{}` | <p>The optional second parameter of the `Listenable` constructor.</p><p>You can use `effectConfig.options.listenable` to configure custom gesture recognition powered by [`Recognizeable`](/docs/logic/classes/Recognizeable).</p> |
+| `listen` | Object | no | `{}` | <p>The optional second parameter of `Listenable.listen` method.</p><p>You can use `effectConfig.options.listenable` to pass things like `addEventListener` options or `IntersectionObserver` constructor options.</p> |
+
+Here's a simplified example of how `useGrid` uses an effect config with `options` to react to the [`mousedrag`](/docs/recognizeable-effects/mousedrag) gesture:
+
+:::
+```js
+import { mousedrag } from '@baleada/recognizeable-effects'
+
+export function useGrid (...) {
+  ...
+
+  on(
+    root.element,
+    {
+      // To listen to a custom gesture powered by `Recognizeable`,
+      // use `recognizeable` as the effect key name.
+      recognizeable: {
+        // `createEffect` returns the event handler, which will get
+        // called as soon as the `mousedrag` gesture is recognized.
+        createEffect: () => (event, { is }) => {
+          // Do some magic to figure out which grid cells get added
+          // to the current selection when the user clicks and drags
+          // across the grid.
+        },
+        // `options.listenable` passes the optional second parameter
+        // of the underlying `Listenable` instance. In this case,
+        // that feature is used to configure the `mousedrag` gesture
+        // with `Listenable`.
+        options: {
+          listenable: {
+            recognizeable: {
+              effects: mousedrag(...)
+            },
+          },
+        },
+      }),
+    }
+  )
+
+  ...
+}
+```
+:::
+
+And here's an example of use `useVisibility` uses an effect config to configure the underlying `IntersectionObserver` instance that tracks element visibility.
+
+:::
+```js
+export function useVisibility (element, options) {
+  ...
+
+  on(
+    element,
+    {
+      // When `on` and its underlying `Listenable` instance see
+      // the `intersect` effect name, they know to use an 
+      // `IntersectionObserver` instance under the hood.
+      intersect: {
+        // `createEffect` returns the callback that should run
+        // when the `IntersectionObserver` adds a new entry.
+        createEffect: () => entries => {
+          // Store relevant entry data as reactive state
+        },
+        // `options.listen` is used to pass `IntersectionObserver`
+        // constructor options through to the underlying instance.
+        options: {
+          listen: {
+            observer: options.observer || {},
+          }
+        }
+      }
+    }
+  )
+
+  ...
+}
+```
+:::
+
+<!-- But what about when the `element` is a reactive array of elements, rather than a single reactive element reference? How do we create custom listeners that are aware of each element's position in the array?
+
+First, make sure this is actually the right solution to your problem. Adding one or more event listeners to every item in a list of arbitrary length can quickly have a negative impact on performance. If there's a way to add fewer listeners, or to add them to a single parent element, take that option.
+
+In `useListbox` for example, individual listbox options can receive keyboard focus, but there are no `keydown` listeners on the options themselves. Instead, a single `keydown` listener is added to the listbox's root element, handling `keydown` events that bubble up from the options.
+
+If you do want to add listeners to a list of elements though, it's possible!
+
+Adding event listeners to every element in a `Plane` (array of arrays of elements) works the same way. The only difference is that `createEffect` will receive three parameters: the `row` index (Number)  of a given element in your `Plane`, the `column` index (Number) of that element, and the same object detailed above.
+
+::: type="info"
+When Baleada Features, with Vue's help, detects a meaningful change in your reactive array or `Plane` of DOM elements (for example, when an element is added or removed, or the elements are reordered), the `on` function will do the following: 
+1. Remove all listeners
+2. Call `createEffect` again for each element to get new listeners
+3. Add the new listeners
+
+This not only helps avoid memory leaks, but also ensures that element position arguments (i.e. `index` for lists, and `row` & `column` for `Plane`s) is never stale when accessed by your listeners.
+
+But be aware, this process has a noticeable negative performance impact when working with larger lists, and that negative impact is multiplied for `Plane`s.
+::: -->
+
+
+:::
+### How to write type-safe effects
+:::
+
+Thanks to some truly joy-sparking TypeScript tactics, type safety works out of the box for almost every use case.
+
+:::
+```js
+import { on } from '@baleada/vue-features'
+
+on(
+  ...
+  {
+    click: event => {
+      // `event` is type-checked and autocompleted as a `MouseEvent`
+    },
+    keydown: event => {
+      // `event` is type-checked and autocompleted as a `KeyboardEvent`
+    },
+    intersect: entries => {
+      // `event` is type-checked and autocompleted as an array
+      // of `IntersectionObserverEntry` objects.
+    },
+  }
+)
+```
+:::
+
+The one exception to this rule is custom gestures powered by `Recognizeable`. To set those up, you use `recognizeable` as the effect key:
+
+:::
+```js
+import { on } from '@baleada/vue-features'
+
+on(
+  ...
+  {
+    recognizeable: event => { ... },
+  }
+)
+```
+:::
+
+But since `Recognizeable` instances are designed to collect and analyze pretty much any kind of event, including `MouseEvent`, `KeyboardEvent`, `IntersectionObserverEntry`, `MutationRecord`, etc., it's impossible to infer types automatically.
+
+The solution is the `defineRecognizeableEffect` type helper from Baleada Features.
+
+There are three basic steps to using `defineRecognizeableEffect`:
+1. Pass in generic types to support type safety in your event callback (which runs when the gesture is recognized).
+2. Pass an effect config object as the first and only parameter of `defineRecognizeableEffect`. The `createEffect` callback will type-check and autocomplete its arguments based on the generic types you passed to `defineRecognizeableEffect`.
+3. Spread the return value of `defineRecognizeableEffect` into your `effects` parameter.
+
+Let's take a look at the basic pattern, and then we'll see a real world example.
+
+:::
+```js
+import { on, defineRecognizeableEffect } from '@baleada/vue-features'
+
+on(
+  element,
+  {
+    // We spread the return value of `defineRecognizeableEffect`
+    // into our `effects` parameter. We'll also use the function's
+    // generic types to support type safety for our callback function.
+    //
+    // `defineRecognizeableEffect`'s  first and only parameter is an
+    // effect config object.
+    ...defineRecognizeableEffect<...>({
+      // Enjoy type safety in `createEffect`
+      createEffect: () => event => { ... },
+      // For `options`, we'll use `options.listenable` to configure
+      // `Recognizeable` to recognize a custom gesture.
+      options: {
+        listenable: {
+          recognizeable: {
+            effects: { ... }
+          }
+        },
+      }
+    }),
+  }
+)
+```
+:::
+
+Earlier in this guide, we looked at a simplified example of how [`useGrid`](/docs/features/interfaces/grid) uses an effect config object to set up a `Recognizeable`-powered listener for the `mousedrag` gesture. In the source code, that listener is actually implemented with `defineRecognizeableEffect` for type safety. Here's roughly how it works:
+
+:::
+```js
+import {
+  mousedrag,
+  MousedragTypes,
+  MousedragMetadata
+} from '@baleada/recognizeable-effects'
+import { on, defineRecognizeableEffect } from '@baleada/vue-features'
+
+
+
+export function useGrid (...) {
+  ...
+  on(
+    element,
+    {
+      // Generic types for the target element, `mousedrag` event
+      // types (mousedown, mouseleave, and mouseup) and `mousedrag`
+      // metadata are passed in.
+      ...defineRecognizeableEffect<
+        typeof element,
+        MousedragTypes,
+        MousedragMetadata
+      >({
+        createEffect: () => event => {
+          // `event` is type-checked and autocompleted as a 
+          // `MouseEvent`, inferred from the `MousedragTypes`
+          // type.
+          // 
+          // MousedragTypes -> 'mousedown' | 'mouseleave' | 'mouseup'
+        },
+        options: {
+          listenable: {
+            recognizeable: {
+              // `useGrid` calls the `mousedrag` function to create
+              // a suite of event listeners that will captured
+              // various mouse events and store their metadata
+              // for later analysis.
+              effects: mousedrag(...)
+            },
+          },
+        },
+      }),
+    }
+  )
+
+  ...
+}
+```
+:::
+
+``````
+
+### src/prose/features/00-motivations/configurability.md
+
+``````md
+---
+title: Configurability
+publish: true
+order: 2
+---
+
+Baleada Features supports deep **configurability**, to serve a massive variety of custom design systems with different use cases. Optional composable parameters, deeply reactive data stores, and plenty of exposed methods allow you to customize many behaviors that other libraries tend to lock away internally.
+
+It does enforce some strong opinions—for example, thoroughly researched systems and architecture for press interactions, keyboard shortcuts, Excel-inspired pointer and keyboard interactions on grids and lists, etc. But even these systems and opinions try to provide only the bare minimum features needed for functionality and accessibility, while leaving the rest up to you.
+
+For example, here's a custom listbox, using Baleada Features systems to provide basic pointer and keyboard interactions, but with the following configured custom behaviors:
+- Uses a horizontal orientation
+- Allows disabled options to receive keyboard focus
+- Prevents the listbox from being cleared
+- Stops focus from wrapping around to the first option
+
+<ExampleListboxAccessible class="mt-6 mx-auto w-full with-max-w" variant="configured" />
+
+All of this configurability means you can match your exact design requirements and user experience goals, while still benefiting from Baleada Features' work on the hardest parts of accessibility and interaction handling.
+
+Baleada Features exists for people building custom design systems from scratch. It offers all the configurability needed to serve that use case.
+
+``````
+
+### src/prose/features/00-motivations/accessibility.md
+
+``````md
+---
+title: Accessibility
+publish: true
+order: 0
+---
+
+Baleada Features implements comprehensive **accessibility**.
+
+This includes accessibility features that are always required (like ARIA role & attribute management, keyboard interactions, and focus management) as well as optional, situational, and dynamic features.
+
+For example, use your mouse, keyboard, touch, and screen reader to play with this custom multiselectable listbox, and note these features, required by WAI-ARIA guidelines:
+- It announces itself properly to assistive tech, including selection state and disabled state
+- It supports Excel-inspired pointer and keyboard interactions
+- It automatically manages focus on the listbox options
+
+<ExampleListboxAccessible class="mt-6 mx-auto w-full with-max-w" variant="default" />
+
+And note how this listbox, which has the required label, also has a fully optional description that gets announced to assistive tech. Baleada Features makes this easy to do.
+
+<ExampleListboxAccessible class="mt-6 mx-auto w-full with-max-w" variant="described" />
+
+Other accessibility features are situational and [configurable](/docs/features/motivations/configurability).
+
+For example, in the listboxes above:
+- We use a vertical orientation
+- We don't allow disabled options to receive keyboard focus
+- We allow the listbox to be cleared, via the Escape key and pointer interactions
+- When focus reaches the last option, it wraps around to the first option
+
+But in a different context, even within the same UI, you might want to:
+- Use a horizontal orientation
+- Allow disabled options to receive keyboard focus
+- Prevent the listbox from being cleared
+- Stop focus from wrapping around to the first option
+
+All of this is allowed by the WAI-ARIA spec, as long as keyboard interactions and other accessibility features work as expected.
+
+Here's the same listbox, but with those customizations:
+
+<ExampleListboxAccessible class="mt-6 mx-auto w-full with-max-w" variant="configured" />
+
+There are even some accessibility features that need to change dynamically at runtime.
+
+For example, consider Excel's default keyboard interactions:
+- Arrow keys will navigate the cells
+- Shift + arrow keys will select multiple cells
+- With multiple cells selected, the next arrow key will destroy the selection and start over
+
+<ExampleGridAccessible class="mt-6 mx-auto w-full with-max-w" variant="default" />
+
+To select a second, disconnected cell range, without wiping out the first range, sighted users typically hold down the Command or Control key, and click-and-drag to add the second range. But this is not an option for keyboard-only users.
+
+Keyboard-only users in Excel actually toggle an ["Add to Selection" mode](https://support.microsoft.com/en-us/office/excel-status-bar-options-6055ecd9-e20f-4a7a-a611-4481bd488c55#:~:text=Add%20to%20Selection%20when%20you%20press,by%20using%20the%20arrow%20keys) that allows them to navigate to and select the second range without losing the first range.
+
+In other words, the user changes app state, and the app responds by changing its accessibility features on the fly.
+
+Baleada Features supports these dynamic accessibility features, too:
+
+<ExampleGridAccessible class="mt-6 mx-auto w-full with-max-w" variant="dynamic" />
+
+And on top of that, Baleada Features adds these features to UI elements where you might not expect them, but will definitely appreciate them. Returning to our original example, notice how Excel-inspired dynamic keyboard interactions are available in Baleada's multiselect listboxes, too:
+
+<ExampleListboxAccessible class="mt-6 mx-auto w-full with-max-w" variant="dynamic" />
+
+When it comes to accessibility, the web platform is amazing, but it's still missing so many UI components, and so much configurability. Baleada Features aims to close that gap.
+
+::: type="success"
+Accessibility is great UX!
+:::
+
+``````
+
+### src/prose/features/00-motivations/composability.md
+
+``````md
+---
+title: Composability
+publish: true
+order: 1
+---
+
+Baleada Features is designed for **composability**—the ability to build complex UIs by combining smaller reusable pieces.
+
+You can use an [interface](/docs/features/interfaces-overview) or a [combo](/docs/features/combo-overview) to wire up essential UI logic and [accessibility](/docs/features/motivations/accessibility) features, then add [extensions](/docs/features/extensions-overview) to bring additional functionality. You can even drop down to [affordances](/docs/features/affordances-overview) for lower level tasks like binding props or adding custom event listeners to an existing element.
+
+:::
+```ts
+import { useListbox, useFocus, bind, on } from '@baleada/vue-features'
+
+const listbox = useListbox()
+
+// Extend with focus tracking
+const focus = useFocus(listbox)
+
+// Bind a custom class to the root element
+bind(
+  listbox.root.element,
+  { class: 'my-listbox' }
+)
+
+// Add a custom event listener to the root element
+on(
+  listbox.root.element,
+  { keydown: event => console.log('keydown', event.key) }
+)
+```
+:::
+
+Baleada Features is a love letter to the Vue 3 Composition API, showcasing the composability it unlocks.
+
+``````
+
+### src/prose/features/00-motivations/type-safety.md
+
+``````md
+---
+title: Type safety
+publish: true
+order: 3
+---
+
+Baleada Features provides **type safety** obsessively. It has excellent IDE autocomplete, and it catches errors at compile time.
+
+
+:::
+## Exported types
+:::
+
+When building a design system, you'll typically build a component on top of a Baleada Features composable. Your component will usually accept a lot of props that it passes straight through to the composable:
+
+:::
+```html
+<Select
+  orientation="horizontal"
+  :multiselectable="true"
+  :initialSelected="[6, 9]"
+>
+  My select
+</Select>
+```
+:::
+
+To make this use case as easy as possible, Baleada Features exports dedicated types like `UseListboxOptions`, which exhaustively document all available options. Use these with TypeScript type unions and utility types to compose the perfect props for your wrapper component or custom composable.
+
+Baleada Features also exports types that document return values, like `Listbox`. Use these types when you need to type-safely pass return values into your components and composables.
+
+
+:::
+## Option-based type inference
+:::
+
+Baleada Features composables can read your configured options, and adjust return types to match:
+
+:::
+```ts
+import { useListbox } from '@baleada/vue-features'
+
+// Baleada Features sees that `multiselectable` is `false`
+const single = useListbox({ multiselectable: false })
+// This is safe; single-select listboxes can select one index.
+single.select.exact(0)
+// This throws a type error; single-select listboxes are not
+// allowed to select an array of indices.
+single.select.exact([0, 1])
+
+// Baleada Features sees that `multiselectable` is `true`
+const multi = useListbox({ multiselectable: true })
+// These are both safe; multi-select listboxes are allowed
+// to select one index, or an array of multiple indices.
+multi.select.exact(0)
+multi.select.exact([0, 1])
+```
+:::
+
+Option-based type inference keeps your IDE and your compiler informed on which options are compatible together, which state and functions will be present on the return value, what shape the state is, what parameters are accepted by functions, etc.
+
+There are tons of examples of option-based type inference, spread all across Baleada Features. It's library-grade TypeScript, designed to let you write plain JavaScript syntax without sacrificing advanced type safety.
+
+``````
+
+### src/prose/features/00-motivations/consistency.md
+
+``````md
+---
+title: Consistency
+publish: true
+order: 4
+---
+
+Baleada Features values **consistency**. Code is painstakingly organized into [different categories](/docs/features/#using-functions), each of which follow their own set of explicit, unbreakable rules.
+
+These rules govern everything from return types to optional parameters to source code organization, and they reduce mental overhead for users and contributors, both human and LLM 🤖
+
+Feast your eyes on some visual symmetry:
+
+:::
+```ts
+// Interfaces
+const button = useButton({
+  toggles: true,
+  initialStatus: 'off',
+})
+const listbox = useListbox({
+  loops: true,
+  initialFocused: 0,
+  initialSelected: 0,
+})
+const grid = useGrid({
+  loops: true,
+  initialFocused: { row: 0, column: 0 },
+  initialSelected: { row: 0, column: 0 },
+})
+
+
+// Combos
+const modal = useModal({
+  button: { press: { keyboard: false } },
+  dialog: {},
+  popup: { trapsFocus: true },
+})
+const menu = useMenu({
+  button: { press: { keyboard: false } },
+  bar: { loops: true, orientation: 'horizontal' },
+  popup: { trapsFocus: true },
+})
+
+
+// Extensions
+const element = ref()
+
+const size = useSize(element)
+const focus = useFocus(element)
+const animation = useCssAnimation(element)
+
+
+// Affordances
+const element = ref(),
+      condition = ref(true),
+      modelValue = ref('')
+
+bind(element, { id: 'my-element', ariaLabel: 'My element' })
+on(element, { click: event => handle(event) })
+show(element, condition)
+model(element, modelValue)
+
+
+// Transforms
+const componentRef = createComponentRef(
+  element => (store.element = element)
+)
+const multiRef = createMultiRef(
+  element => (store1.element = element),
+  element => (store2.element = element)
+)
+```
+:::
+
+``````
